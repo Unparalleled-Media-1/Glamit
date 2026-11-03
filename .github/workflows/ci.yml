@@ -1,0 +1,51 @@
+name: Foundation checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-bookworm@sha256:839fbb5a4942a7758dd93e18b42ea5649807491a0545b5eeeb8f0b8bb11857a5
+        env:
+          POSTGRES_USER: glam
+          POSTGRES_PASSWORD: ci_test_only
+          POSTGRES_DB: glam_test
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U glam -d glam_test" --health-interval 2s --health-timeout 2s --health-retries 30
+    env:
+      GLAM_TEST_DATABASE_URL: postgresql+psycopg://glam:ci_test_only@127.0.0.1:5432/glam_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+      - run: uv run --frozen ruff check .
+      - run: uv run --frozen ruff format --check .
+      - run: uv run --frozen pytest
+      - run: uv run --frozen python scripts/export_contracts.py --check
+  clients:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      EXPO_NO_TELEMETRY: "1"
+      EXPO_OFFLINE: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm audit --omit=dev --audit-level=moderate
+      - run: npm run contracts:generate
+      - run: git diff --exit-code -- packages/contracts
+      - run: npm run typecheck
+      - run: npm run build:web
+      - run: npm exec --workspace=@glam/mobile -- expo install --check
+      - run: npm run export --workspace=@glam/mobile

@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:17-bookworm@sha256:839fbb5a4942a7758dd93e18b42ea5649807491a0545b5eeeb8f0b8bb11857a5
+    environment:
+      POSTGRES_USER: glam
+      POSTGRES_PASSWORD: glam_local_only
+      POSTGRES_DB: glam
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - glam-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U glam -d glam"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+volumes:
+  glam-postgres:

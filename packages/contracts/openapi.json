@@ -1,0 +1,1016 @@
+{
+  "components": {
+    "schemas": {
+      "Component-Input": {
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Category",
+            "type": "string"
+          },
+          "key": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[a-z0-9_-]+$",
+            "title": "Key",
+            "type": "string"
+          },
+          "provenance": {
+            "const": "user_confirmed",
+            "default": "user_confirmed",
+            "title": "Provenance",
+            "type": "string"
+          },
+          "quantity_max": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Quantity Max"
+          },
+          "quantity_min": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Quantity Min"
+          },
+          "required": {
+            "default": true,
+            "title": "Required",
+            "type": "boolean"
+          },
+          "role": {
+            "enum": [
+              "product",
+              "service",
+              "tool",
+              "accessory"
+            ],
+            "title": "Role",
+            "type": "string"
+          },
+          "unit": {
+            "enum": [
+              "item",
+              "pack",
+              "ml",
+              "g",
+              "appointment"
+            ],
+            "title": "Unit",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "category",
+          "role",
+          "quantity_min",
+          "quantity_max",
+          "unit"
+        ],
+        "title": "Component",
+        "type": "object"
+      },
+      "Component-Output": {
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Category",
+            "type": "string"
+          },
+          "key": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[a-z0-9_-]+$",
+            "title": "Key",
+            "type": "string"
+          },
+          "provenance": {
+            "const": "user_confirmed",
+            "default": "user_confirmed",
+            "title": "Provenance",
+            "type": "string"
+          },
+          "quantity_max": {
+            "title": "Quantity Max",
+            "type": "string"
+          },
+          "quantity_min": {
+            "title": "Quantity Min",
+            "type": "string"
+          },
+          "required": {
+            "default": true,
+            "title": "Required",
+            "type": "boolean"
+          },
+          "role": {
+            "enum": [
+              "product",
+              "service",
+              "tool",
+              "accessory"
+            ],
+            "title": "Role",
+            "type": "string"
+          },
+          "unit": {
+            "enum": [
+              "item",
+              "pack",
+              "ml",
+              "g",
+              "appointment"
+            ],
+            "title": "Unit",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "category",
+          "role",
+          "quantity_min",
+          "quantity_max",
+          "unit"
+        ],
+        "title": "Component",
+        "type": "object"
+      },
+      "ConsentChoice": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "enum": [
+              "granted",
+              "withdrawn"
+            ],
+            "title": "Action",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "title": "ConsentChoice",
+        "type": "object"
+      },
+      "ConsentResult": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "enum": [
+              "granted",
+              "withdrawn"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action",
+          "id"
+        ],
+        "title": "ConsentResult",
+        "type": "object"
+      },
+      "CreditBalance": {
+        "additionalProperties": false,
+        "properties": {
+          "available": {
+            "minimum": 0.0,
+            "title": "Available",
+            "type": "integer"
+          },
+          "held": {
+            "minimum": 0.0,
+            "title": "Held",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "available",
+          "held"
+        ],
+        "title": "CreditBalance",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "LookResult": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "source_type": {
+            "const": "user_authored",
+            "default": "user_authored",
+            "title": "Source Type",
+            "type": "string"
+          },
+          "title": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "id"
+        ],
+        "title": "LookResult",
+        "type": "object"
+      },
+      "NewLook": {
+        "additionalProperties": false,
+        "properties": {
+          "source_type": {
+            "const": "user_authored",
+            "default": "user_authored",
+            "title": "Source Type",
+            "type": "string"
+          },
+          "title": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "title": "NewLook",
+        "type": "object"
+      },
+      "NewOrganization": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "NewOrganization",
+        "type": "object"
+      },
+      "NewRevision": {
+        "additionalProperties": false,
+        "properties": {
+          "base_revision": {
+            "minimum": 0.0,
+            "title": "Base Revision",
+            "type": "integer"
+          },
+          "components": {
+            "items": {
+              "$ref": "#/components/schemas/Component-Input"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "title": "Components",
+            "type": "array"
+          }
+        },
+        "required": [
+          "base_revision",
+          "components"
+        ],
+        "title": "NewRevision",
+        "type": "object"
+      },
+      "OrganizationRead": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "owner",
+              "catalog_manager",
+              "analyst"
+            ],
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "role"
+        ],
+        "title": "OrganizationRead",
+        "type": "object"
+      },
+      "OrganizationResult": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "OrganizationResult",
+        "type": "object"
+      },
+      "PolicyRead": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "title": "Content",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "purpose": {
+            "title": "Purpose",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "purpose",
+          "version",
+          "content"
+        ],
+        "title": "PolicyRead",
+        "type": "object"
+      },
+      "RevisionRead": {
+        "additionalProperties": false,
+        "properties": {
+          "components": {
+            "items": {
+              "$ref": "#/components/schemas/Component-Output"
+            },
+            "title": "Components",
+            "type": "array"
+          },
+          "content_hash": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Content Hash",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "revision_no": {
+            "exclusiveMinimum": 0.0,
+            "title": "Revision No",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "revision_no",
+          "content_hash",
+          "components"
+        ],
+        "title": "RevisionRead",
+        "type": "object"
+      },
+      "RevisionResult": {
+        "additionalProperties": false,
+        "properties": {
+          "content_hash": {
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Content Hash",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "revision_no": {
+            "exclusiveMinimum": 0.0,
+            "title": "Revision No",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "revision_no",
+          "content_hash"
+        ],
+        "title": "RevisionResult",
+        "type": "object"
+      },
+      "UserResult": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "UserResult",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "title": "GLAM AI",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/health/live": {
+      "get": {
+        "operationId": "live_health_live_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Live"
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "operationId": "ready_health_ready_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Ready"
+      }
+    },
+    "/v1/looks": {
+      "post": {
+        "operationId": "create_look_v1_looks_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "maxLength": 160,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewLook"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LookResult"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Look"
+      }
+    },
+    "/v1/looks/{look_id}": {
+      "delete": {
+        "operationId": "delete_look_v1_looks__look_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "look_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Look Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Look"
+      }
+    },
+    "/v1/looks/{look_id}/revisions": {
+      "post": {
+        "operationId": "revise_look_v1_looks__look_id__revisions_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "look_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Look Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "maxLength": 160,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewRevision"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RevisionResult"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Revise Look"
+      }
+    },
+    "/v1/looks/{look_id}/revisions/{revision_no}": {
+      "get": {
+        "operationId": "get_revision_v1_looks__look_id__revisions__revision_no__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "look_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Look Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "revision_no",
+            "required": true,
+            "schema": {
+              "title": "Revision No",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RevisionRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Revision"
+      }
+    },
+    "/v1/me": {
+      "get": {
+        "operationId": "me_v1_me_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResult"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Me"
+      }
+    },
+    "/v1/me/credits": {
+      "get": {
+        "operationId": "credits_v1_me_credits_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreditBalance"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Credits"
+      }
+    },
+    "/v1/organizations": {
+      "post": {
+        "operationId": "create_organization_v1_organizations_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "maxLength": 160,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewOrganization"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationResult"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create Organization"
+      }
+    },
+    "/v1/organizations/{org_id}": {
+      "get": {
+        "operationId": "get_organization_v1_organizations__org_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Org Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Organization"
+      }
+    },
+    "/v1/policies": {
+      "get": {
+        "operationId": "policies_v1_policies_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/PolicyRead"
+                  },
+                  "title": "Response Policies V1 Policies Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Policies"
+      }
+    },
+    "/v1/policies/{policy_id}/consent": {
+      "post": {
+        "operationId": "consent_v1_policies__policy_id__consent_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "policy_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Policy Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "maxLength": 160,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsentChoice"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentResult"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Consent"
+      }
+    }
+  }
+}
