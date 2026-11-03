@@ -20,7 +20,7 @@ jobs:
     env:
       GLAM_TEST_DATABASE_URL: postgresql+psycopg://glam:ci_test_only@127.0.0.1:5432/glam_test
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
@@ -36,7 +36,7 @@ jobs:
       EXPO_NO_TELEMETRY: "1"
       EXPO_OFFLINE: "1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
