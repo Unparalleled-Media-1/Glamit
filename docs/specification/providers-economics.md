@@ -98,6 +98,8 @@ Ad contribution is `recognized valid advertising spend - delivery/measurement co
 
 ## Cost controls and decisions
 
+The user subsequently selected Supabase PostgreSQL and Google through Supabase Auth, with connection deferred. The database/auth allowances above are not Supabase plan quotations; reprice project region, connection limits, auth MAU/MFA, backup/PITR and network costs against the selected plan before procurement. No Supabase Storage or AI provider choice is implied. [ADR 015](../adr-015-supabase-google-capture.md) records this selection.
+
 [Complete the Look economics](look-delivery-economics.md) adds decomposition, matching, catalog processing, sponsored commerce and incremental capacity scenarios. It separates GMV from platform revenue and CPC, affiliate, marketplace and sponsored-collection income. Add only genuinely incremental resources; shared capacity and base generation cannot be counted twice. These remain planning inputs, not vendor quotes.
 
 Require a server-side feature price registry, per-account quotas, provider spend caps, concurrency limits, quote expiry and anomaly alerts. Report cost per accepted result and failed attempt, not just cost per API call. Record vendor model changes and rerun quality/cost benchmarks. Finance approves pricing changes; existing accepted quotes retain their price through expiry. Initial safety envelope proposes a hard daily provider budget and per-country feature switches, with final amounts approved in Phase 0.
