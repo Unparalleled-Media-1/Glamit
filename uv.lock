@@ -192,7 +192,7 @@ requires-dist = [
     { name = "fastapi", specifier = ">=0.115,<1" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.2,<4" },
     { name = "pydantic-settings", specifier = ">=2.8,<3" },
-    { name = "pyjwt", extras = ["crypto"], specifier = ">=2.10,<3" },
+    { name = "pyjwt", extras = ["crypto"], specifier = ">=2.15.1,<3" },
     { name = "sqlalchemy", specifier = ">=2.0,<3" },
     { name = "uvicorn", specifier = ">=0.34,<1" },
 ]
@@ -579,6 +579,9 @@ dependencies = [
     { name = "typing-extensions" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/b7/35/0e5c53211e06508cf7bf060085aeaf3b530dbe632b8ff96f1aebec2b662a/sqlalchemy-2.1.7.tar.gz", hash = "sha256:adc3cbb57ce41ea499984a09332cacd001d5bfbcf1860b057b4e1ea49b883120", size = 10626202, upload-time = "2026-11-03T20:34:34.104Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/50/26/283d376c607abe75f4026f567a352b4648ae86ab85a0218dd1ee459576cb/sqlalchemy-2.1.7-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:d1c0ddfbb3b2086b1110ef6222f2d070212b0f4535377c51cee70ca73a31a568", size = 2479030, upload-time = "2026-11-03T22:19:48.533Z" },
+]
 
 [[package]]
 name = "starlette"
