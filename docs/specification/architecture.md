@@ -32,11 +32,11 @@ The database outbox is the authoritative work handoff; the API transaction write
 |---|---|
 | Expo / React Native | Camera permissions, guided capture, consent, upload, progress, results, commerce; secure OS token storage; no secret API keys |
 | Next.js | Consumer discovery/web checkout where permitted; merchant, professional, creator, advertiser and admin portals; server-side session handling; no shared cached private responses |
-| Identity integration | OIDC/OAuth with PKCE; validated tokens at API; organization membership and scopes from server; MFA required for privileged roles |
+| Identity integration | Google through Supabase Auth, OIDC/OAuth with PKCE; exact-project token validation at API; server organization memberships/scopes; MFA required for privileged roles; connection deferred |
 | FastAPI modules | Identity, consent/media, analysis, catalog/recommendations, subscriptions/credits, orders/marketplace, creators, ads, trust/support |
 | Complete the Look modules | Look Decomposition, Product Matching, Professional Matching, Sponsored Ranking, Attribution, Advertising Billing and Shopping Orchestration in the same backend; existing identity, catalog, consent, ledgers and orders remain canonical |
 | Workers | Image validation/sanitization, analysis/generation, reconciliation, deletion, notifications; isolated credentials and resource pools |
-| PostgreSQL | Transaction source of truth, row constraints and locking, canonical Alembic migrations, backups and point-in-time restore |
+| PostgreSQL | Supabase-managed PostgreSQL selected; local PostgreSQL until connection setup. Canonical Alembic migrations, server-only financial/private tables, row constraints/locking, backups and restore |
 | Private object store | Quarantine/source/output namespaces, encryption, lifecycle rules, no public buckets; signed object access after authorization |
 | Event warehouse | Allowlisted pseudonymous events; no face images, face geometry, appearance traits or raw sensitive prompts; purpose-filtered ingestion |
 | Observability | OpenTelemetry traces, metrics, structured redacted logs, error reporting, paging, cost/quality dashboards and audit trails |
@@ -73,6 +73,8 @@ Glamit/
 Use a locked JS workspace and Python lockfile with versions selected and pinned in Phase 1 against supported Expo/React Native/Next.js/FastAPI combinations. Keep Python migrations authoritative; no Prisma/Django second schema history. Generate TS clients from FastAPI OpenAPI and test drift. Country/currency settings are versioned server configuration, not client switches that change prices. Use the task's existing checkout; no additional Git worktree is necessary. After initial repository creation, each feature uses an isolated branch and a reviewable PR.
 
 ## AI orchestration and media workflow
+
+The confirmed onboarding flow is Google sign-in → explicit consent and guided camera capture → processing/results on the next screen, as specified in [ADR 015](../adr-015-supabase-google-capture.md). The scan is cosmetic analysis, not biometric login; no camera starts merely because login completes. Supabase/Google setup is deferred, and private object storage/provider choice is not inferred from database selection.
 
 1. Issue a narrowly scoped upload grant only after capture-purpose consent. Enforce content type, size, checksum and upload ownership; upload to quarantine with a short expiry. Finalization verifies the actual decoded file, strips EXIF, rejects malformed media and disallowed content, and records object provenance.
 2. Check service availability and quote the server-calculated credit price with a version and expiry. The user confirms that quote. In one transaction validate entitlements/consent, reserve credits, insert an immutable input reference and create a queued job plus outbox message.

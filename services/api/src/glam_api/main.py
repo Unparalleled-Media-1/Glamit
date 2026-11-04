@@ -135,7 +135,7 @@ def ready(db: Db):
     from glam_api.config import get_settings
 
     head = db.scalar(text("SELECT version_num FROM alembic_version"))
-    if head != "0002_credit_safety":
+    if head != "0003_server_only_access":
         raise HTTPException(503, "Database migration is not current")
     if not get_settings().oidc_issuer:
         raise HTTPException(503, "Identity provider is not configured")

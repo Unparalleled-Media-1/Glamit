@@ -26,7 +26,7 @@ def verify_token(token: str, key, issuer: str, audience: str) -> Principal:
     claims = jwt.decode(
         token,
         key,
-        algorithms=["RS256"],
+        algorithms=["RS256", "ES256"],
         issuer=issuer,
         audience=audience,
         options={"require": ["exp", "iat", "sub", "iss", "aud"]},
