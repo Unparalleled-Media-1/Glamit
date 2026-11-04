@@ -20,6 +20,7 @@ All ADRs are `Proposed`. User-specified architecture and engineering rules are r
 | 012 | Seven Complete the Look domain services inside existing backend; shared inventory/orders/ledgers | First-class shoppable looks without a second application/history | Proposed |
 | 013 | Immutable decomposition/organic matching independent of sponsorship | Ads cannot alter analysis, quantities or organic ordering; private traits excluded from commercial context | Proposed; user-required separation |
 | 014 | Verified versioned offers, freshness, revalidation and honest unknown states | No fabricated inventory/price/delivery; external handoff where authoritative checkout is unsupported | Proposed |
+| 015 | Google via Supabase Auth, Supabase PostgreSQL; guided beauty scan after sign-in | User selected on 4 November 2026; integration deferred. Face scan is analysis, not login. [Detailed ADR](../adr-015-supabase-google-capture.md) | User-selected; not connected |
 
 ## Unresolved decisions
 
@@ -28,7 +29,7 @@ All ADRs are `Proposed`. User-specified architecture and engineering rules are r
 | Launch country, audience and product surface | South Africa, 18+, English/ZAR; P3 consumer AI + catalog first, limited verified professionals after P4 | P0 / product + legal |
 | Mobile platforms and web checkout scope | iOS/Android consumer, responsive consumer web and desktop role dashboards; validate digital billing per storefront | UX and billing build / product |
 | Image retention/consent | 24h captures, 7d unsaved outputs, 90d saved looks, 30d opted-in traits; no customer model training | Provider selection / privacy lead |
-| Hosting and transfer regions | Prefer suitable South African region if service/provider availability and costs pass; otherwise documented lawful transfer choice | Infrastructure setup / security + privacy |
+| Hosting and transfer regions | Supabase selected for PostgreSQL; project region/plan still needs availability, transfer/privacy and cost review; prefer a suitable launch-region option where supported | Infrastructure setup / security + privacy |
 | AI providers | Qualify at least two candidates per critical capability where feasible; no automatic unqualified fallback | Integration build / AI lead |
 | Evaluation dataset | License/recruit consented representation across hair families/skin tones; approve proposed metrics and sampling | Trials / privacy + AI + product |
 | Trial budget | Approve a maximum $1k–$3k inference envelope, with licensing/rater budget separately quoted | Any paid vendor trial / finance |

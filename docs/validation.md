@@ -1,11 +1,11 @@
 # Current-instance validation
 
-3 November 2026; branch `feat/platform-foundations`. These checks establish the foundation subset in `implementation-status.md`, not production readiness.
+4 November 2026; branch `feat/platform-foundations`. These checks establish the foundation subset in `implementation-status.md`, not production readiness.
 
 | Check | Evidence |
 |---|---|
-| Backend automated suite | 29 tests passed against real PostgreSQL 17; no skipped tests. Covers RSA auth, audience/signature rejection, owner/tenant isolation, idempotency, immutable revisions, redacted logs, consent withdrawal/deletion, credit constraints/concurrency/rollback and ranking primitives |
-| Canonical migrations | `upgrade head` succeeded on an empty `glam_migration_test` database and again without changes; existing `glam_test` upgraded through both revisions; one head `0002_credit_safety` |
+| Backend automated suite | 32 tests passed against real PostgreSQL 17; no skipped tests. Covers RS256/ES256 auth, Google-token/cross-project rejection, owner/tenant isolation, client RLS denial, idempotency, immutable revisions, redacted logs, consent withdrawal/deletion, credit constraints/concurrency/rollback and ranking primitives |
+| Canonical migrations | Initial/safety migrations succeeded on an empty database and on repeat; the additive server-only RLS migration passed in local development/test databases; one head `0003_server_only_access` |
 | Python hygiene / contracts | Ruff checks and formatting passed; implemented OpenAPI JSON exported and checked; TypeScript types generated |
 | Client compilation | Mobile/web TypeScript checks and Next.js production-mode build passed; this is a build artifact, not a deployment |
 | Mobile bundles | Expo exported Android and iOS Hermes JavaScript bundles; installed compatibility map agrees with pinned direct versions; no native binaries/device/store testing claimed |
