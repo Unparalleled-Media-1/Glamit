@@ -7,4 +7,5 @@ uv run --frozen ruff check .
 uv run --frozen ruff format --check .
 uv run --frozen pytest
 uv run --frozen python scripts/export_contracts.py --check
+npm run check:client-runtime
 npm run typecheck

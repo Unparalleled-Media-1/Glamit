@@ -42,6 +42,7 @@ jobs:
           node-version-file: .node-version
           cache: npm
       - run: npm ci --ignore-scripts
+      - run: npm run check:client-runtime
       - run: npm audit --omit=dev --audit-level=moderate
       - run: npm run contracts:generate
       - run: git diff --exit-code -- packages/contracts

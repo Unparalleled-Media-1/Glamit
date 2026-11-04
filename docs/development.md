@@ -2,6 +2,8 @@
 
 Use the existing checkout, not an additional worktree. Node 24.22.1, npm 11.9.0 and Python 3.12 are pinned. `uv.lock` and `package-lock.json` reproduce dependencies. PostgreSQL 17 is required; SQLite does not validate locking or journal triggers.
 
+TypeScript is pinned to 5.9.3 because `openapi-typescript` 7.13.0 requires its compiler API. Both clients use React 19.3.0, the installed Expo SDK's expected version; root overrides keep React/React DOM peers on that version so Metro cannot load a different React instance from the app. Upgrade Expo, React Native and React together and run the runtime/compatibility checks below. See [dependency constraints](dependency-overrides.md). Frozen installation and contract generation use the repository commands directly; the earlier external generator and `--legacy-peer-deps`/`--package-lock=false` installation workarounds are unnecessary on this branch.
+
 From this managed checkout, `bash scripts/setup.sh` is the tested repeatable installer. It preserves `.env`, targets the local Docker daemon, refuses automatic migrations against other database destinations and creates the dedicated test database only if absent. It also sets a writable uv cache. The expanded equivalent workflow follows below.
 
 ```sh
@@ -43,6 +45,7 @@ uv run --frozen ruff check .
 uv run --frozen ruff format --check .
 uv run --frozen python scripts/export_contracts.py --check
 npm run contracts:generate
+npm run check:client-runtime
 npm run typecheck
 NEXT_TELEMETRY_DISABLED=1 npm run build:web
 EXPO_OFFLINE=1 EXPO_NO_TELEMETRY=1 npm exec --workspace=@glam/mobile -- expo install --check

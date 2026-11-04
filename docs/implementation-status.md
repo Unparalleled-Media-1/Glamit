@@ -4,7 +4,7 @@ This is the first foundation PR, not the completed platform or a production rele
 
 | Work / requirement | Current implementation | Remaining gate |
 |---|---|---|
-| B10 repository/toolchains/CI | Feature branch, approved design snapshot, locked Python/JS workspace, Next.js/Expo shells, CI configuration | Remote CI result and branch protection; native device builds |
+| B10 repository/toolchains/CI | Feature branch, approved design snapshot, repaired frozen JS installation and compatible compiler, shared React runtime checks in CI, Next.js/Expo shells; see validation.md | Remote CI result and branch protection; native device builds |
 | B11 identity/tenant access | RS256/ES256 issuer/audience/signature/expiry verification, owner-scoped resources and organization membership reads; Google through Supabase Auth selected | Supabase connection deferred by user; login UI, privileged MFA, permission administration and full RBAC matrix |
 | B12 canonical schema | One Alembic history, additive baseline/safety/server-only RLS migrations, financial/immutability constraints; Supabase PostgreSQL selected | Supabase connection deferred; full entity model, production runtime-role/tenant RLS policies and migration release review |
 | B13 consent/privacy | Approved-policy references, append-only consent, private manual look deletion and withdrawal cleanup worker, redacted request evidence | Real policy approval, facial media/private object storage, vendor deletion, retention scheduling and backup tombstones |
