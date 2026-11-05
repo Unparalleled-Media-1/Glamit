@@ -5,6 +5,8 @@ import BusinessPortal from "../apps/web/components/BusinessPortal";
 import { sectionFromPath, appPath } from "../apps/web/lib/paths";
 import type { Page } from "../packages/product/platform";
 import "../apps/web/app/styles.css";
+import "../apps/web/app/golden-tokens.css";
+import "../apps/web/app/golden-screens.css";
 import "./preview.css";
 const base = process.env.PREVIEW_SITE_BASE || "";
 const tasks = [
@@ -52,6 +54,16 @@ const tasks = [
     title: "Workspace switching",
     path: "/profile",
     copy: "Open Switch workspace. Public business tool review does not authorize membership, inventory or staff access.",
+  },
+  {
+    title: "Golden / Shop",
+    path: "/shop",
+    copy: "Editorial product studies with user-selected destination. These are not live offers.",
+  },
+  {
+    title: "Golden / Product Detail",
+    path: "/product",
+    copy: "Explore an illustrative color, Studio and your saved-look reference. Purchase remains gated.",
   },
 ];
 function PreviewHub() {

@@ -1,5 +1,7 @@
 # GLAM AI engineering rules
 
+- Latest authority: read docs/specification/golden-screen-review.md, visual-gap-report.md and feature-freeze-contracts.md. Freeze major feature expansion; submit the five golden patterns for visual approval before redesigning the remainder. Destination/weather contracts are proposals, not enabled services. Keep current primary navigation and preserve backend/auth/canonical migrations.
+
 - Read docs/specification/beauty-led-visual-pass.md for the latest portrait-led Home/Analysis/Studio/color UX. Editorial portraits and reference swatches must never become fabricated personal results; tool-specific directions hand off only to the corresponding look component.
 
 - Read docs/specification/goal-led-experience.md and goal-led-backlog.md for the latest goal-led UX, continuous brief, independent Look Builder, opt-in metadata memory and fixed server-only item commission. Never persist photos/conversations/tokens in that device profile or pretend disconnected AI/commerce is live.

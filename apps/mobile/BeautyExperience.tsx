@@ -1,7 +1,14 @@
+import {
+  rememberChoice,
+  undoChoice,
+} from "../../packages/product/studio-history";
+import type { StudioChoice } from "../../packages/product/studio-history";
+import design from "../../packages/product/consumer-design.json";
 import { useState } from "react";
 import {
   Image,
   Pressable,
+  Share,
   Platform,
   ScrollView,
   StyleSheet,
@@ -284,7 +291,10 @@ export function BeautyAnalysis({ go }: { go: (p: Page) => void }) {
             accessibilityRole="button"
             accessibilityState={{ selected: focus === v }}
             key={v}
-            style={[s.focus, focus === v && { backgroundColor: "#f5b4d0" }]}
+            style={[
+              s.focus,
+              focus === v && { backgroundColor: design.palette.blush },
+            ]}
             onPress={() => setFocus(v)}
           >
             <Text
@@ -364,6 +374,44 @@ export function BeautyStudio(p: StudioProps) {
   const [family, setFamily] = useState<keyof typeof shadeFamilies>("Rose");
   const [shade, setShade] = useState(2);
   const [favorite, setFavorite] = useState(false);
+  const [history, setHistory] = useState<StudioChoice[]>([]);
+  const [notice, setNotice] = useState("");
+  const remember = () =>
+    setHistory((h) =>
+      rememberChoice(h, {
+        tool: p.tool,
+        style: p.direction,
+        intensity: p.intensity,
+        family,
+        shade,
+        preset,
+        marked: favorite,
+      }),
+    );
+  function undo() {
+    const previous = undoChoice(history);
+    if (!previous.choice) return;
+    const c = previous.choice;
+    setHistory(previous.history);
+    p.onTool(c.tool);
+    p.onDirection(c.style);
+    p.onIntensity(c.intensity);
+    setFamily(c.family);
+    setShade(c.shade);
+    setPreset(c.preset);
+    setFavorite(c.marked);
+    setNotice("Previous choices restored. Your original is unchanged.");
+  }
+  function reset() {
+    remember();
+    p.reset();
+    setFamily("Rose");
+    setShade(2);
+    setPreset(0);
+    setFavorite(false);
+    setNotice("Choices reset. Your original was never changed.");
+  }
+
   return (
     <>
       <Text style={s.kicker}>YOUR EXPRESSION LAB</Text>
@@ -380,10 +428,14 @@ export function BeautyStudio(p: StudioProps) {
             accessibilityRole="button"
             accessibilityState={{ selected: p.tool === v }}
             onPress={() => {
+              remember();
               p.onTool(v);
               p.onDirection("Natural");
             }}
-            style={[s.tool, p.tool === v && { backgroundColor: "#f5b4d0" }]}
+            style={[
+              s.tool,
+              p.tool === v && { backgroundColor: design.palette.blush },
+            ]}
             key={v}
           >
             <Text
@@ -417,7 +469,10 @@ export function BeautyStudio(p: StudioProps) {
             accessibilityRole="button"
             accessibilityState={{ selected: favorite }}
             accessibilityLabel="Favorite inspiration for this session"
-            onPress={() => setFavorite(!favorite)}
+            onPress={() => {
+              remember();
+              setFavorite(!favorite);
+            }}
             style={[s.favorite, favorite && { backgroundColor: "#f3b1ce" }]}
           >
             <Text
@@ -438,13 +493,47 @@ export function BeautyStudio(p: StudioProps) {
       <View style={s.drawer}>
         <Text style={s.kicker}>THE FINISHING TOUCHES</Text>
         <Text style={s.section}>Pick your direction.</Text>
+        <View style={s.entry}>
+          <View style={s.flex}>
+            <Action
+              title="Undo choice"
+              outline
+              disabled={!history.length}
+              onPress={undo}
+            />
+          </View>
+          <View style={s.flex}>
+            <Action title="Reset to original" outline onPress={reset} />
+          </View>
+        </View>
+        <Action
+          title="Share styling brief"
+          outline
+          onPress={async () => {
+            try {
+              await Share.share({
+                message: `My GLAM brief: ${p.tool}; ${p.direction}; ${family} reference color ${shade + 1}; intensity request ${p.intensity}%. No generated result or verified product shade is implied.`,
+              });
+              setNotice(
+                "Share sheet closed. No photo or private analysis was attached.",
+              );
+            } catch {
+              setNotice(
+                "Sharing is unavailable. Your choices remain in this editor.",
+              );
+            }
+          }}
+        />
         <View style={s.thumbs}>
           {beautyEdits.map((v, i) => (
             <Pressable
               accessibilityRole="button"
               accessibilityState={{ selected: preset === i }}
               key={v.name}
-              onPress={() => setPreset(i)}
+              onPress={() => {
+                remember();
+                setPreset(i);
+              }}
               style={s.thumbButton}
             >
               <View
@@ -465,6 +554,7 @@ export function BeautyStudio(p: StudioProps) {
               accessibilityRole="button"
               accessibilityState={{ selected: family === v }}
               onPress={() => {
+                remember();
                 setFamily(v as keyof typeof shadeFamilies);
                 setShade(2);
               }}
@@ -494,7 +584,10 @@ export function BeautyStudio(p: StudioProps) {
                 { backgroundColor: c },
                 shade === i && { borderWidth: 3, borderColor: "#ffd1e5" },
               ]}
-              onPress={() => setShade(i)}
+              onPress={() => {
+                remember();
+                setShade(i);
+              }}
             />
           ))}
         </View>
@@ -513,7 +606,10 @@ export function BeautyStudio(p: StudioProps) {
               accessibilityRole="button"
               accessibilityState={{ selected: p.direction === v }}
               key={v}
-              onPress={() => p.onDirection(v)}
+              onPress={() => {
+                remember();
+                p.onDirection(v);
+              }}
               style={[
                 s.tool,
                 p.direction === v && { backgroundColor: "#6b4158" },
@@ -529,14 +625,20 @@ export function BeautyStudio(p: StudioProps) {
             <Action
               outline
               title="Less"
-              onPress={() => p.onIntensity(p.intensity - 10)}
+              onPress={() => {
+                remember();
+                p.onIntensity(p.intensity - 10);
+              }}
             />
           </View>
           <View style={s.flex}>
             <Action
               outline
               title="More"
-              onPress={() => p.onIntensity(p.intensity + 10)}
+              onPress={() => {
+                remember();
+                p.onIntensity(p.intensity + 10);
+              }}
             />
           </View>
         </View>
@@ -566,15 +668,20 @@ export function BeautyStudio(p: StudioProps) {
           }
         />
         <Action
-          outline
-          title="Reset to original"
-          onPress={() => {
-            p.reset();
-            setFamily("Rose");
-            setShade(2);
-            setFavorite(false);
-          }}
+          title="Compare — real preview required"
+          disabled
+          onPress={() => {}}
         />
+        <Action
+          title="Get This Look"
+          outline
+          onPress={() => p.go("complete")}
+        />
+        {!!notice && (
+          <Text accessibilityRole="alert" style={s.small}>
+            {notice}
+          </Text>
+        )}
       </View>
     </>
   );
@@ -661,7 +768,10 @@ const s = StyleSheet.create({
     marginBottom: 9,
   },
   title: {
-    fontFamily: Platform.OS === "ios" ? "Georgia" : "serif",
+    fontFamily:
+      Platform.OS === "ios"
+        ? design.fonts.iosHeading
+        : design.fonts.androidHeading,
     fontSize: 32,
     lineHeight: 37,
     color: "#fff4f0",
@@ -670,7 +780,7 @@ const s = StyleSheet.create({
   mark: { fontSize: 27, color: "#e9b2cb", padding: 8 },
   entry: { flexDirection: "row", gap: 8, marginBottom: 12 },
   action: {
-    backgroundColor: "#f5b0cc",
+    backgroundColor: design.palette.blush,
     borderRadius: 25,
     minHeight: 48,
     padding: 12,
@@ -720,7 +830,10 @@ const s = StyleSheet.create({
     backgroundColor: "#11111188",
   },
   campaignTitle: {
-    fontFamily: Platform.OS === "ios" ? "Georgia" : "serif",
+    fontFamily:
+      Platform.OS === "ios"
+        ? design.fonts.iosHeading
+        : design.fonts.androidHeading,
     fontSize: 31,
     lineHeight: 32,
     color: "#fff2f0",
@@ -745,7 +858,10 @@ const s = StyleSheet.create({
     gap: 10,
   },
   teaserTitle: {
-    fontFamily: Platform.OS === "ios" ? "Georgia" : "serif",
+    fontFamily:
+      Platform.OS === "ios"
+        ? design.fonts.iosHeading
+        : design.fonts.androidHeading,
     fontSize: 17,
     lineHeight: 20,
     color: "#3b2933",
@@ -761,7 +877,10 @@ const s = StyleSheet.create({
     padding: 15,
   },
   teaserSerif: {
-    fontFamily: Platform.OS === "ios" ? "Georgia" : "serif",
+    fontFamily:
+      Platform.OS === "ios"
+        ? design.fonts.iosHeading
+        : design.fonts.androidHeading,
     fontSize: 20,
     color: "#ffdeed",
     lineHeight: 23,
@@ -769,7 +888,10 @@ const s = StyleSheet.create({
   },
   sectionHead: { marginTop: 28, marginBottom: 15 },
   section: {
-    fontFamily: Platform.OS === "ios" ? "Georgia" : "serif",
+    fontFamily:
+      Platform.OS === "ios"
+        ? design.fonts.iosHeading
+        : design.fonts.androidHeading,
     fontSize: 25,
     lineHeight: 29,
     color: "#fff1f3",
@@ -805,7 +927,10 @@ const s = StyleSheet.create({
     marginTop: 25,
   },
   pageTitle: {
-    fontFamily: Platform.OS === "ios" ? "Georgia" : "serif",
+    fontFamily:
+      Platform.OS === "ios"
+        ? design.fonts.iosHeading
+        : design.fonts.androidHeading,
     fontSize: 35,
     lineHeight: 38,
     letterSpacing: -0.7,

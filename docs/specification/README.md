@@ -1,5 +1,8 @@
 # GLAM AI architecture approval package
 
+**Latest directive — golden-screen recovery and feature freeze (5 November 2026):** [Visual gap report](visual-gap-report.md), [review and design system](golden-screen-review.md), [frozen feature contracts](feature-freeze-contracts.md) and [proposed Destination Stylist](destination-stylist-contracts.md) govern this revision. Five golden patterns are implemented as review candidates. Primary navigation remains Home / Analyze / AI Studio / AI Advisor / Profile. Visual approval is pending; no external integration or production readiness is claimed.
+
+
 **Latest visual revision:** [Beauty-led experience](beauty-led-visual-pass.md) replaces the prior text-led home and core tool layouts with portrait-led charcoal/blush Home, Analysis and Studio, plus interactive color exploration. Existing goal, state, consent and integration boundaries remain. The user has not approved this new revision.
 
 **Latest UX authority:** [Goal-led GLAM companion](goal-led-experience.md) and [phased gaps](goal-led-backlog.md). Compact goal-led home, shared styling brief, independent Look Builder and opt-in device profile metadata extend this build; live AI/account/commerce remain deferred. Older tool-led and session-only-for-all-metadata wording below is historical where it conflicts.

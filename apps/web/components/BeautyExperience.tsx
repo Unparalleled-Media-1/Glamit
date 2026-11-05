@@ -1,4 +1,9 @@
 "use client";
+import {
+  rememberChoice,
+  undoChoice,
+} from "../../../packages/product/studio-history";
+import type { StudioChoice } from "../../../packages/product/studio-history";
 import { useState } from "react";
 import type { Page, Photo } from "../../../packages/product/platform";
 import { tools } from "../../../packages/product/platform";
@@ -398,6 +403,59 @@ export function BeautyStudio(p: StudioProps) {
   const [shade, setShade] = useState(2);
   const [preset, setPreset] = useState(0);
   const [saved, setSaved] = useState(false);
+  const [choiceHistory, setChoiceHistory] = useState<StudioChoice[]>([]);
+  const [actionNotice, setActionNotice] = useState("");
+  const remember = () =>
+    setChoiceHistory((h) =>
+      rememberChoice(h, {
+        tool: p.tool,
+        style: p.style,
+        intensity: p.intensity,
+        family,
+        shade,
+        preset,
+        marked: saved,
+      }),
+    );
+  function restorePrevious() {
+    const previous = undoChoice(choiceHistory);
+    if (!previous.choice) return;
+    const c = previous.choice;
+    setChoiceHistory(previous.history);
+    p.onTool(c.tool);
+    p.onStyle(c.style);
+    p.onIntensity(c.intensity);
+    setFamily(c.family);
+    setShade(c.shade);
+    setPreset(c.preset);
+    setSaved(c.marked);
+    setActionNotice(
+      "Previous choices restored. Your original photo is unchanged.",
+    );
+  }
+  function resetChoices() {
+    remember();
+    p.reset();
+    setFamily("Rose");
+    setShade(2);
+    setPreset(0);
+    setSaved(false);
+    setActionNotice("Choices reset. Your original photo was never changed.");
+  }
+  async function copyBrief() {
+    const text = `My GLAM styling brief: ${p.tool}; ${p.style}; ${family} reference color ${shade + 1}; intensity request ${p.intensity}%. No generated preview or product compatibility is implied.`;
+    try {
+      await navigator.clipboard.writeText(text);
+      setActionNotice(
+        "Styling brief copied. No photo or private analysis was included.",
+      );
+    } catch {
+      setActionNotice(
+        "Clipboard is unavailable. Your choices remain in this editor; no photo or message was shared.",
+      );
+    }
+  }
+
   return (
     <div className="beauty-studio">
       <header className="studio-title-row">
@@ -420,6 +478,7 @@ export function BeautyStudio(p: StudioProps) {
               key={v}
               aria-pressed={p.tool === v}
               onClick={() => {
+                remember();
                 p.onTool(v);
                 p.onStyle("Natural");
               }}
@@ -460,7 +519,10 @@ export function BeautyStudio(p: StudioProps) {
                   : "Favorite this inspiration for this session"
               }
               aria-pressed={saved}
-              onClick={() => setSaved(!saved)}
+              onClick={() => {
+                remember();
+                setSaved(!saved);
+              }}
               className={saved ? "editor-heart favorited" : "editor-heart"}
             >
               <BeautyIcon kind="heart" />
@@ -487,6 +549,13 @@ export function BeautyStudio(p: StudioProps) {
             </div>
             <span>01 / 03</span>
           </div>
+          <div className="golden-studio-toolbar">
+            <button disabled={!choiceHistory.length} onClick={restorePrevious}>
+              Undo choice
+            </button>
+            <button onClick={resetChoices}>Reset to original</button>
+            <button onClick={copyBrief}>Copy my brief</button>
+          </div>
           <div className="inspiration-thumbs" aria-label="Editorial references">
             {beautyEdits.map((v, i) => (
               <button
@@ -494,7 +563,10 @@ export function BeautyStudio(p: StudioProps) {
                 className={preset === i ? "active" : ""}
                 aria-pressed={preset === i}
                 key={v.name}
-                onClick={() => setPreset(i)}
+                onClick={() => {
+                  remember();
+                  setPreset(i);
+                }}
               >
                 <BeautyPortrait panel={v.panel} />
                 <span>{v.name}</span>
@@ -511,6 +583,7 @@ export function BeautyStudio(p: StudioProps) {
                 key={v}
                 aria-pressed={family === v}
                 onClick={() => {
+                  remember();
                   setFamily(v as keyof typeof shadeFamilies);
                   setShade(2);
                 }}
@@ -526,7 +599,10 @@ export function BeautyStudio(p: StudioProps) {
                 style={{ "--swatch": c } as React.CSSProperties}
                 aria-label={`${family} swatch ${i + 1}`}
                 aria-pressed={shade === i}
-                onClick={() => setShade(i)}
+                onClick={() => {
+                  remember();
+                  setShade(i);
+                }}
               />
             ))}
           </div>
@@ -536,7 +612,13 @@ export function BeautyStudio(p: StudioProps) {
           </p>
           <label>
             Style direction
-            <select value={p.style} onChange={(e) => p.onStyle(e.target.value)}>
+            <select
+              value={p.style}
+              onChange={(e) => {
+                remember();
+                p.onStyle(e.target.value);
+              }}
+            >
               {studioDirections(p.tool).map((v) => (
                 <option key={v}>{v}</option>
               ))}
@@ -550,7 +632,10 @@ export function BeautyStudio(p: StudioProps) {
               min="0"
               max="100"
               value={p.intensity}
-              onChange={(e) => p.onIntensity(Number(e.target.value))}
+              onChange={(e) => {
+                remember();
+                p.onIntensity(Number(e.target.value));
+              }}
             />
           </label>
           <label>
@@ -561,28 +646,24 @@ export function BeautyStudio(p: StudioProps) {
               min="0"
               max="100"
               value={p.compare}
+              disabled
+              title="A qualified generated preview is required before comparison."
               onChange={(e) => p.onCompare(Number(e.target.value))}
             />
           </label>
-          <p className="beauty-fine">
-            No generated comparison yet. These controls prepare your request;
-            they do not alter the original.
-          </p>
+          <div className="golden-compare-pending">
+            <strong>Before / after unlocks with a real preview.</strong>
+            <p>
+              No generated comparison yet. Intensity prepares a request, not a
+              live effect. Your original stays unchanged.
+            </p>
+          </div>
           <button className="beauty-primary" disabled>
             Generate — connection required <BeautyIcon kind="spark" />
           </button>
-          <div className="editor-bottom-actions">
+          <div className="golden-studio-actions-primary">
             <button
-              onClick={() => {
-                p.reset();
-                setFamily("Rose");
-                setShade(2);
-                setSaved(false);
-              }}
-            >
-              Reset to original
-            </button>
-            <button
+              className="beauty-primary"
               onClick={() =>
                 p.carry(
                   p.tool === "Makeup Match"
@@ -593,7 +674,16 @@ export function BeautyStudio(p: StudioProps) {
             >
               Use direction in my look <BeautyIcon />
             </button>
+            <button className="beauty-outline" onClick={() => p.go("complete")}>
+              Get This Look
+              <BeautyIcon />
+            </button>
           </div>
+          {actionNotice && (
+            <p role="status" className="golden-studio-live-status">
+              {actionNotice}
+            </p>
+          )}
         </section>
       </div>
     </div>

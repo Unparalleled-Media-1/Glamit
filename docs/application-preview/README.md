@@ -1,5 +1,8 @@
 # Goal-led GLAM application preview
 
+**Latest five-screen review:** [Phone](golden-iphone-review.html), [desktop](golden-desktop-review.html), [uncomputed report](golden/iphone-report.png) and [scope/validation boundaries](../specification/golden-screen-review.md). These supersede the earlier visual board as current candidates. The static interactive hub now has eleven journeys; new Shop and Product Detail routes remain secondary to the retained five primary tabs.
+
+
 **Interactive preview:** [Run the phone/desktop review hub](interactive-preview.md). It mounts the actual app in a responsive frame and includes all nine journeys. The standalone build supports the GitHub Pages repository path and retains only the explicitly approved local metadata. See [all eight pushed build snapshots](published-build-snapshots.json).
 
 **Latest visual revision:** [See the actual phone capture sheet](visual-review.png), [desktop Home](web-home.png), [editorial Studio](studio-editorial-preview.png) and [color explorer](color-palette-explorer.png). Home, Analysis and Studio now have a portrait-led charcoal/blush design with category choices, private capture entry, reference thumbnails and color controls. These are real application screens; their portraits/palettes are labeled inspiration, not completed AI output. Compare the prior edition in `comparison/`. Run `node scripts/capture-beauty-board.cjs` after `npm run test:web` to regenerate the sheet via a narrowly scoped loopback server.

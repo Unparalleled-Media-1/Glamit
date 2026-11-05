@@ -1,0 +1,17 @@
+[
+  {
+    "source": "docs/specification/sources/2026-11-destination-stylist-directive.txt",
+    "sha256": "ae76ed2febd63b9ca81f151b048448bd116eda319d7b39004a404096f9d68116",
+    "bytes": 8553
+  },
+  {
+    "source": "docs/specification/sources/2026-11-mandatory-visual-quality-recovery.txt",
+    "sha256": "ef682b8f8da6119a398d2c64060fa5b2509ad52ddd5c63859ede1163588d8374",
+    "bytes": 12971
+  },
+  {
+    "source": "docs/specification/sources/2026-11-final-feature-freeze.txt",
+    "sha256": "9cdf36112ced798a3d788c90cd0345de5cd95e312ce58ebfe680f7acef073d8f",
+    "bytes": 9486
+  }
+]

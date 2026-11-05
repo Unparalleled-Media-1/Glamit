@@ -1,0 +1,46 @@
+{
+  "palette": {
+    "ivory": "#f8f3ef",
+    "blush": "#f6c6d8",
+    "rose": "#b76d8c",
+    "mauve": "#78546c",
+    "charcoal": "#181719",
+    "champagne": "#dcc7a8",
+    "ink": "#30252d",
+    "muted": "#786772",
+    "line": "#dfd1d5",
+    "white": "#fffcfa"
+  },
+  "spacing": {
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "xxl": 32,
+    "section": 48
+  },
+  "radius": {
+    "control": 24,
+    "card": 20,
+    "sheet": 28,
+    "thumbnail": 16
+  },
+  "type": {
+    "display": 48,
+    "heading": 30,
+    "body": 14,
+    "caption": 11
+  },
+  "interaction": {
+    "touch": 44,
+    "fastMs": 160,
+    "normalMs": 240
+  },
+  "fonts": {
+    "display": "Georgia, serif",
+    "body": "Arial, sans-serif",
+    "iosHeading": "Georgia",
+    "androidHeading": "serif"
+  }
+}

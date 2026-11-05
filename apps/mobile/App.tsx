@@ -38,6 +38,8 @@ import {
 } from "react-native-safe-area-context";
 import { BeautyAnalysis, BeautyStudio, BeautyColor } from "./BeautyExperience";
 import { studioPart } from "../../packages/product/beauty";
+import GoldenCommerce from "./GoldenCommerce";
+import { editorialProducts } from "../../packages/product/editorial-products";
 import StylingJourney from "./StylingJourney";
 import {
   durableJourney,
@@ -164,6 +166,7 @@ function PersonalApp() {
   const [savedRequirements, setSavedRequirements] = useState<
     RequirementDraft[]
   >([]);
+  const [editorialProduct, setEditorialProduct] = useState(0);
   const [photo, setPhoto] = useState<Photo | null>(null);
   const photoRef = useRef<Photo | null>(null);
   const [consent, setConsent] = useState(false);
@@ -375,6 +378,30 @@ function PersonalApp() {
                   : "makeover"
                 : "face";
   function content() {
+    if (state.page === "shop" || state.page === "product")
+      return (
+        <GoldenCommerce
+          page={state.page}
+          data={journey}
+          setData={setJourney}
+          selected={editorialProduct}
+          select={setEditorialProduct}
+          go={go}
+          studio={() => {
+            dispatch({
+              type: "tool",
+              value:
+                editorialProducts[editorialProduct].category === "Hair"
+                  ? "Hair Try-On"
+                  : editorialProducts[editorialProduct].category === "Skincare"
+                    ? "Glow-Up Preview"
+                    : "Makeup Match",
+            });
+            dispatch({ type: "style", value: directions[0] });
+            go("studio");
+          }}
+        />
+      );
     if (
       [
         "home",
@@ -986,15 +1013,9 @@ function PersonalApp() {
             ) : (
               <Note text="Opening your private GLAM space…" />
             )}
-            {[
-              "report",
-              "hair",
-              "skin",
-              "body-fit",
-              "color",
-              "guide",
-              "studio",
-            ].includes(state.page) && (
+            {["report", "hair", "skin", "body-fit", "color", "guide"].includes(
+              state.page,
+            ) && (
               <>
                 <Button
                   title="Shape my complete look"

@@ -255,3 +255,28 @@ test("durable approved profile allowlists metadata and rejects corrupt or unappr
   assert.equal("roles" in safe, false);
   assert.equal("Religion" in safe.look.parts, false);
 });
+
+const H = load("studio-history.ts");
+test("Studio undo snapshots are independent, bounded and never include private media", () => {
+  const initial = {
+    tool: "Makeup Match",
+    style: "Natural",
+    intensity: 35,
+    family: "Rose",
+    shade: 2,
+    preset: 0,
+    marked: false,
+  };
+  initial.photo = "blob:private-original";
+  let history = H.rememberChoice([], initial);
+  initial.shade = 4;
+  const previous = H.undoChoice(history);
+  assert.equal(previous.choice.shade, 2);
+  assert.equal(previous.history.length, 0);
+  for (let n = 0; n < 25; n++)
+    history = H.rememberChoice(history, { ...initial, intensity: n });
+  assert.equal(history.length, 20);
+  assert.equal(H.undoChoice(history).choice.intensity, 24);
+  assert.equal("photo" in H.undoChoice(history).choice, false);
+  assert.equal(H.undoChoice([]).choice, null);
+});

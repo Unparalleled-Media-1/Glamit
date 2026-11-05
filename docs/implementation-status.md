@@ -1,5 +1,8 @@
 # Implementation evidence and remaining gates
 
+**Latest directive — golden-screen recovery and feature freeze (5 November 2026):** [Visual gap report](specification/visual-gap-report.md), [review and design system](specification/golden-screen-review.md), [frozen feature contracts](specification/feature-freeze-contracts.md) and [proposed Destination Stylist](specification/destination-stylist-contracts.md) govern this revision. Five golden patterns are implemented as review candidates. Primary navigation remains Home / Analyze / AI Studio / AI Advisor / Profile. Visual approval is pending; no external integration or production readiness is claimed.
+
+
 ## Interactive preview and GitHub publication
 
 The user explicitly authorized pushing the past 24 hours' builds and creating an interactive preview. All eight earlier snapshots now have verified GitHub branch hashes; see [published build inventory](application-preview/published-build-snapshots.json). The default branch was not merged. A new static review hub mounts the actual consumer/business components with phone/desktop viewport and nine journey entries; repository-prefix routing and local-photo/privacy/access gates are browser-tested. [Preview build and hosting instructions](application-preview/interactive-preview.md) distinguish tested local/static artifacts from unverified Pages deployment. API-based GitHub Pages management was Forbidden locally. No live AI, merchant, booking or payment activation follows from publication.

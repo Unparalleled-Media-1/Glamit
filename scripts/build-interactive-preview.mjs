@@ -58,6 +58,8 @@ await cp("apps/web/public/images", path.join(root, "images"), {
   recursive: true,
 });
 const routes = [
+  "shop",
+  "product",
   "",
   "analyze",
   "hair",

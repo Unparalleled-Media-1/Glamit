@@ -1,5 +1,18 @@
 # Current-instance validation
 
+## Golden-screen candidate verification — 5 November 2026
+
+- Required check script passed: Ruff check/format, 104 real-PostgreSQL tests on the dedicated local `glam_test` database, implemented OpenAPI drift check, client runtime checks and web/native TypeScript. One existing Starlette test-client deprecation warning remains.
+- Next production-mode build passed; all 12 browser journey groups passed with no external requests or runtime errors.
+- Nine shared client tests passed, including bounded private-media-free Studio history and independent look changes.
+- Static preview browser tests passed, including the two new golden commerce journeys and repository-prefixed assets/routes; no external requests or runtime errors. Preview TypeScript and token drift checks passed. Twenty-four golden candidate dimensions passed; approved-baseline pixel comparisons remain gated by visual approval.
+- Both offline Expo Hermes exports passed. This does not validate physical devices, installed binaries or store release.
+- Review captures show actual responsive web screens; generation, weather and merchant matching accuracy remain unmeasured because providers are unconnected.
+
+
+**Latest directive — golden-screen recovery and feature freeze (5 November 2026):** [Visual gap report](specification/visual-gap-report.md), [review and design system](specification/golden-screen-review.md), [frozen feature contracts](specification/feature-freeze-contracts.md) and [proposed Destination Stylist](specification/destination-stylist-contracts.md) govern this revision. Five golden patterns are implemented as review candidates. Primary navigation remains Home / Analyze / AI Studio / AI Advisor / Profile. Visual approval is pending; no external integration or production readiness is claimed.
+
+
 ## Interactive preview and authorized GitHub push — 5 November 2026
 
 All eight source/build snapshots from the requested previous 24 hours were pushed to matching GitHub branches with remote hashes verified. Five branches were new uploads; three older branches were already present. The default branch was not merged or force-updated. A filename/content scan checked 674 unique historical blobs for private-key/token patterns and tracked local-environment files; no potential secret paths were found. This is a targeted publication check, not a comprehensive secret-security audit. Eight source ZIP archives were generated and checked to exclude local env/dependencies/build caches.

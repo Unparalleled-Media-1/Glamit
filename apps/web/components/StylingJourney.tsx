@@ -584,6 +584,7 @@ export default function StylingJourney({ page, data: s, setData, go }: Props) {
           </section>
           <aside className="sourcing-panel">
             <p className="eyebrow">THE COMPLETE PICTURE</p>
+            {act("Explore the beauty edit", "shop", true)}
             <h2>Made for your world.</h2>
             {market}
             <div className="cost-summary">

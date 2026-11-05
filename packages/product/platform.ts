@@ -87,7 +87,9 @@ export type Page =
   | "groups"
   | "agent"
   | "event"
-  | "builder";
+  | "builder"
+  | "shop"
+  | "product";
 export const tabPage: Record<string, Page> = {
   Home: "home",
   Analyze: "analyze",

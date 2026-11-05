@@ -21,6 +21,8 @@ import type { Page, Photo } from "../../../packages/product/platform";
 
 import { BeautyAnalysis, BeautyStudio, BeautyColor } from "./BeautyExperience";
 import { studioPart } from "../../../packages/product/beauty";
+import { editorialProducts } from "../../../packages/product/editorial-products";
+import GoldenCommerce from "./GoldenCommerce";
 import StylingJourney from "./StylingJourney";
 import {
   durableJourney,
@@ -38,6 +40,8 @@ import type {
 } from "../../../packages/product/catalog";
 
 const pages: Page[] = [
+  "shop",
+  "product",
   "home",
   "event",
   "builder",
@@ -186,6 +190,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
   const [savedRequirements, setSavedRequirements] = useState<
     RequirementDraft[]
   >([]);
+  const [editorialProduct, setEditorialProduct] = useState(0);
   const [photo, setPhoto] = useState<Photo | null>(null);
   const photoRef = useRef<Photo | null>(null);
   const selection = useRef(0);
@@ -396,6 +401,30 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
     </div>
   );
   function content() {
+    if (page === "shop" || page === "product")
+      return (
+        <GoldenCommerce
+          page={page}
+          data={journey}
+          setData={setJourney}
+          selected={editorialProduct}
+          select={setEditorialProduct}
+          go={go}
+          studio={() => {
+            dispatch({
+              type: "tool",
+              value:
+                editorialProducts[editorialProduct].category === "Hair"
+                  ? "Hair Try-On"
+                  : editorialProducts[editorialProduct].category === "Skincare"
+                    ? "Glow-Up Preview"
+                    : "Makeup Match",
+            });
+            dispatch({ type: "style", value: styles[0] });
+            go("studio");
+          }}
+        />
+      );
     if (
       [
         "home",
@@ -567,13 +596,34 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
       case "body-fit":
       case "report":
         return (
-          <>
+          <div
+            className={page === "report" ? "golden-analysis-report" : undefined}
+          >
             {heading(
               recommendationContext === "face"
                 ? "Your personal analysis."
                 : analysisContexts.find((n) => n.id === recommendationContext)!
                     .title,
               "A report will explain estimates, their limits and practical options. There is no analysis result yet.",
+            )}
+            {page === "report" && (
+              <div className="golden-report-progress">
+                <span>
+                  01 / Photo{" "}
+                  <strong>
+                    {photo ? "Local preview only" : "Not selected"}
+                  </strong>
+                </span>
+                <span>
+                  02 / Goals{" "}
+                  <strong>
+                    {state.goals.length ? "Your choices" : "Choose your goals"}
+                  </strong>
+                </span>
+                <span>
+                  03 / Analysis <strong>Not computed</strong>
+                </span>
+              </div>
             )}
             <h2>Your Results</h2>
             <div className="report-layout">
@@ -584,9 +634,15 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
                   Your image stays on this device until you explicitly authorize
                   a qualified service.
                 </p>
-                {photo && (
+                {photo ? (
                   <img src={photo.uri} alt="Unanalyzed local original" />
-                )}
+                ) : page === "report" ? (
+                  <div
+                    className="golden-report-reference"
+                    role="img"
+                    aria-label="Editorial portrait guide, not a personal analysis"
+                  />
+                ) : null}
                 {btn("Prepare a photo", "consent", true)}
               </section>
               <div className="report-fields">
@@ -612,7 +668,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
                 {unavailable(capabilityReasons.analysis)}
               </aside>
             </div>
-          </>
+          </div>
         );
       case "color":
         return (
@@ -1196,15 +1252,9 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
             Opening your private GLAM space…
           </p>
         )}
-        {[
-          "report",
-          "hair",
-          "skin",
-          "body-fit",
-          "color",
-          "guide",
-          "studio",
-        ].includes(page) && (
+        {["report", "hair", "skin", "body-fit", "color", "guide"].includes(
+          page,
+        ) && (
           <div className="result-next">
             <span>Keep your journey connected.</span>
             {btn("Shape my complete look", "builder", true)}

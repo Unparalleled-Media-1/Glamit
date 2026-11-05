@@ -1,5 +1,8 @@
 # Approval record
 
+**Latest directive — golden-screen recovery and feature freeze (5 November 2026):** [Visual gap report](specification/visual-gap-report.md), [review and design system](specification/golden-screen-review.md), [frozen feature contracts](specification/feature-freeze-contracts.md) and [proposed Destination Stylist](specification/destination-stylist-contracts.md) govern this revision. Five golden patterns are implemented as review candidates. Primary navigation remains Home / Analyze / AI Studio / AI Advisor / Profile. Visual approval is pending; no external integration or production readiness is claimed.
+
+
 On 3 November 2026, the user approved both scopes: the GLAM AI foundation scope and the Complete the Look architecture, commercial rules and acceptance baseline, saying **“both scopes above are approved.”**
 
 The specification documents preserve their original proposal language as a design snapshot. This record supersedes their request to approve these two baselines. Development proceeds with the documented defaults, phased dependencies and evidence gates. Unselected vendors, unsupported countries, unmeasured quality and hypothetical economics remain unresolved facts, not completed integrations.

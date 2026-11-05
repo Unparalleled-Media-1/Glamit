@@ -452,6 +452,7 @@ export default function StylingJourney({ page, data: d, setData, go }: Props) {
         </View>
         <View style={s.card}>
           {market}
+          {button("Explore the beauty edit", "shop", true)}
           <Text style={s.section}>Total delivered cost: not yet known</Text>
           <Text style={s.body}>
             Best matches: no verified products or professionals yet. Prices,

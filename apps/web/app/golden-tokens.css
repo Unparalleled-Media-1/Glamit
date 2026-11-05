@@ -1,0 +1,35 @@
+/* Generated from packages/product/consumer-design.json. */
+:root {
+  --glam-palette-ivory: #f8f3ef;
+  --glam-palette-blush: #f6c6d8;
+  --glam-palette-rose: #b76d8c;
+  --glam-palette-mauve: #78546c;
+  --glam-palette-charcoal: #181719;
+  --glam-palette-champagne: #dcc7a8;
+  --glam-palette-ink: #30252d;
+  --glam-palette-muted: #786772;
+  --glam-palette-line: #dfd1d5;
+  --glam-palette-white: #fffcfa;
+  --glam-spacing-xs: 4px;
+  --glam-spacing-sm: 8px;
+  --glam-spacing-md: 12px;
+  --glam-spacing-lg: 16px;
+  --glam-spacing-xl: 24px;
+  --glam-spacing-xxl: 32px;
+  --glam-spacing-section: 48px;
+  --glam-radius-control: 24px;
+  --glam-radius-card: 20px;
+  --glam-radius-sheet: 28px;
+  --glam-radius-thumbnail: 16px;
+  --glam-type-display: 48px;
+  --glam-type-heading: 30px;
+  --glam-type-body: 14px;
+  --glam-type-caption: 11px;
+  --glam-interaction-touch: 44px;
+  --glam-interaction-fast-ms: 160ms;
+  --glam-interaction-normal-ms: 240ms;
+  --glam-fonts-display: Georgia, serif;
+  --glam-fonts-body: Arial, sans-serif;
+  --glam-fonts-ios-heading: Georgia;
+  --glam-fonts-android-heading: serif;
+}

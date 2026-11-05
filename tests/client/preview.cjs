@@ -152,8 +152,20 @@ const assert = require("node:assert/strict");
       "app/business/",
       "app/admin/",
       "app/studio/",
+      "app/shop/",
+      "app/product/",
     ])
       assert.equal((await fetch(origin + base + "/" + route)).status, 200);
+    await page.getByLabel("Preview journey").selectOption("9");
+    app = page.frameLocator("iframe");
+    await app.getByRole("button", { name: "Makeup", exact: true }).click();
+    assert.equal(await app.locator(".golden-product-card").count(), 2);
+    await page.getByLabel("Preview journey").selectOption("10");
+    app = page.frameLocator("iframe");
+    await app
+      .getByRole("heading", { name: "The velvet lip.", exact: true })
+      .waitFor();
+    assert.match(await app.locator("main").innerText(), /Offer not verified/);
     await page.getByLabel("Preview journey").selectOption("0");
     await page.getByRole("button", { name: "Phone", exact: true }).click();
     await app

@@ -120,7 +120,10 @@ const net = require("node:net");
       .waitFor();
     await page.getByRole("button", { name: "View report workspace" }).click();
     assert.equal(
-      await page.getByText("Not computed", { exact: true }).count(),
+      await page
+        .locator(".report-fields")
+        .getByText("Not computed", { exact: true })
+        .count(),
       7,
     );
     assert(
@@ -164,8 +167,11 @@ const net = require("node:net");
       .getByRole("button", { name: "Makeup Match", exact: true })
       .click();
     await page.getByLabel("Style direction").selectOption("Soft bronze");
-    await page.getByRole("slider", { name: "Comparison handle" }).focus();
-    await page.keyboard.press("End");
+    assert(
+      await page
+        .getByRole("slider", { name: "Comparison handle" })
+        .isDisabled(),
+    );
     assert.match(await page.locator(".canvas-label").innerText(), /Unchanged/);
     await page.getByRole("button", { name: "Reset to original" }).click();
     assert.equal(
@@ -460,6 +466,103 @@ const net = require("node:net");
     assert.deepEqual((await context.storageState()).origins, []);
     pass(
       "Event brief continuity, independent look components, wardrobe reuse, returning profile, approved metadata persistence and deletion; no fabricated AI or offers",
+    );
+    await page.goto(origin + "/studio");
+    assert(
+      await page
+        .getByRole("button", { name: "Undo choice", exact: true })
+        .isDisabled(),
+    );
+    await page
+      .getByRole("button", { name: "Makeup Match", exact: true })
+      .click();
+    await page.getByRole("button", { name: "Berry", exact: true }).click();
+    await page
+      .getByRole("button", { name: "Berry swatch 4", exact: true })
+      .click();
+    await page.getByLabel("Style direction").selectOption("Soft bronze");
+    await page
+      .getByRole("button", { name: "Undo choice", exact: true })
+      .click();
+    assert.equal(
+      await page.getByLabel("Style direction").inputValue(),
+      "Natural",
+    );
+    assert.match(
+      await page.locator(".shade-description").innerText(),
+      /Berry \/ 04/,
+    );
+    assert(
+      await page
+        .getByRole("slider", { name: "Comparison handle", exact: true })
+        .isDisabled(),
+    );
+    await page.goto(origin + "/builder");
+    await page
+      .getByRole("button", { name: "Sculpted braids", exact: true })
+      .click();
+    await page
+      .getByRole("button", { name: "Get This Look", exact: true })
+      .click();
+    await page
+      .getByRole("button", { name: "Explore the beauty edit", exact: true })
+      .click();
+    await page
+      .getByRole("button", {
+        name: "Choose shopping destination",
+        exact: false,
+      })
+      .click();
+    const destinationDialog = page.getByRole("dialog");
+    await destinationDialog
+      .getByLabel("Shopping country", { exact: true })
+      .fill("South Africa");
+    await destinationDialog
+      .getByLabel("Shopping city", { exact: true })
+      .fill("Durban");
+    await destinationDialog
+      .getByRole("button", { name: "Use this destination", exact: true })
+      .click();
+    await page.getByRole("button", { name: /Durban.*ZAR/ }).click();
+    await page
+      .getByRole("dialog")
+      .getByLabel("Shopping city", { exact: true })
+      .fill("Cape Town");
+    await page.keyboard.press("Escape");
+    assert(await page.getByRole("button", { name: /Durban.*ZAR/ }).isVisible());
+    await page.getByRole("button", { name: "Makeup", exact: true }).click();
+    assert.equal(await page.locator(".golden-product-card").count(), 2);
+    await page
+      .getByRole("button", { name: "View The velvet lip.", exact: true })
+      .click();
+    await page
+      .getByRole("button", { name: "Rose reference color", exact: true })
+      .click();
+    assert(
+      await page
+        .getByRole("button", {
+          name: "Purchase requires a verified offer",
+          exact: true,
+        })
+        .isDisabled(),
+    );
+    assert.match(
+      await page.locator(".golden-price-status").innerText(),
+      /Offer not verified/,
+    );
+    await page
+      .getByRole("button", { name: "Use as a makeup reference", exact: true })
+      .click();
+    assert.match(
+      await page.locator(".look-summary").innerText(),
+      /Sculpted braids/,
+    );
+    assert.match(
+      await page.locator(".look-summary").innerText(),
+      /The velvet lip.*Rose/,
+    );
+    pass(
+      "Golden commerce studies: optional destination save/cancel, category/detail selection, no fabricated offer, component-preserving reference handoff and reversible Studio controls",
     );
     await page.goto(origin + "/business");
     const configs = await page
@@ -759,6 +862,8 @@ const net = require("node:net");
         "/event",
         "/builder",
         "/wardrobe",
+        "/shop",
+        "/product",
         "/analyze",
         "/report",
         "/color",
@@ -839,6 +944,81 @@ const net = require("node:net");
         await capture("mobile-face-report");
       }
     }
+    const goldenDir = path.join(out, "golden");
+    fs.mkdirSync(goldenDir, { recursive: true });
+    const goldenViews = [
+      { name: "iphone", width: 390, height: 844 },
+      { name: "android", width: 412, height: 915 },
+      { name: "tablet", width: 768, height: 1024 },
+      { name: "desktop", width: 1440, height: 1050 },
+    ];
+    const goldenRoutes = {
+      home: "/",
+      analyze: "/analyze",
+      report: "/report",
+      studio: "/studio",
+      shop: "/shop",
+      product: "/product",
+    };
+    const goldenFiles = [];
+    for (const viewport of goldenViews) {
+      await page.setViewportSize({
+        width: viewport.width,
+        height: viewport.height,
+      });
+      for (const [screen, route] of Object.entries(goldenRoutes)) {
+        await page.goto(origin + route);
+        await page.locator("h1").waitFor();
+        assert(
+          await page.evaluate(
+            () => document.documentElement.scrollWidth <= innerWidth,
+          ),
+          "Golden overflow " + viewport.name + " " + screen,
+        );
+        if (screen === "studio") {
+          assert(
+            await page
+              .getByRole("slider", { name: "Comparison handle", exact: true })
+              .isDisabled(),
+          );
+        }
+        if (screen === "product") {
+          assert(
+            await page
+              .getByRole("button", {
+                name: "Purchase requires a verified offer",
+                exact: true,
+              })
+              .isDisabled(),
+          );
+        }
+        const file = viewport.name + "-" + screen + ".png";
+        await page.screenshot({
+          path: path.join(goldenDir, file),
+          fullPage: false,
+          animations: "disabled",
+          caret: "hide",
+        });
+        goldenFiles.push({ file, viewport, screen });
+      }
+    }
+    fs.writeFileSync(
+      path.join(goldenDir, "candidate-manifest.json"),
+      JSON.stringify(
+        {
+          approved: false,
+          approval_required:
+            "User review of five golden patterns before redesigning remaining screens",
+          browser: browser.version(),
+          files: goldenFiles,
+        },
+        null,
+        2,
+      ) + "\n",
+    );
+    pass(
+      "Five golden patterns plus uncomputed report captured at iPhone, Android-sized phone, tablet and desktop; candidate baselines await visual approval",
+    );
     await context.setOffline(true);
     await page.goto(origin + "/goals").catch(() => {});
     await context.setOffline(false);
