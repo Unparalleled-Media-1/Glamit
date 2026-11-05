@@ -10,6 +10,7 @@ from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Session
 
 from glam_api.auth import Principal, get_principal
+from glam_api.catalog import build_catalog_router
 from glam_api.contracts import (
     ConsentChoice,
     ConsentResult,
@@ -136,7 +137,7 @@ def ready(db: Db):
     from glam_api.config import get_settings
 
     head = db.scalar(text("SELECT version_num FROM alembic_version"))
-    if head != "0006_staff_context":
+    if head != "0008_catalog_market_policy":
         raise HTTPException(503, "Database migration is not current")
     if not get_settings().oidc_issuer:
         raise HTTPException(503, "Identity provider is not configured")
@@ -326,3 +327,5 @@ def delete_look(look_id: UUID, db: Db, identity: Identity):
 
 
 app.include_router(build_router(user, audit, replay, remember))
+
+app.include_router(build_catalog_router(user, audit, replay, remember))

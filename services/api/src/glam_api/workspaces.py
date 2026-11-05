@@ -96,6 +96,7 @@ class StaffContext(Strict):
     roles: list[str]
     modules: list[str]
     operational_actions_enabled: Literal[False] = False
+    catalog_review_enabled: bool = False
 
 
 class UnavailableResult(Strict):
@@ -146,6 +147,26 @@ def authorize(db, uid, org, workspace, write=False):
     if write and not can_write:
         raise HTTPException(403, "Workspace write permission required")
     return can_write
+
+
+def require_staff_roles(db, uid, identity, allowed=None):
+    import time
+
+    age = time.time() - (identity.authenticated_at or 0)
+    if identity.assurance != "aal2" or not 0 <= age <= 300 or not eligible(db, uid):
+        raise HTTPException(403, "Fresh privileged verification required")
+    roles = list(
+        db.scalars(
+            text(
+                "SELECT role FROM staff_grant WHERE user_id=:u AND active AND expires_at>now() "
+                "ORDER BY role FOR SHARE"
+            ),
+            {"u": uid},
+        )
+    )
+    if not roles or (allowed is not None and not set(roles) & allowed):
+        raise HTTPException(403, "Staff authorization required")
+    return roles
 
 
 def build_router(user, audit, replay, remember):
@@ -566,23 +587,8 @@ def build_router(user, audit, replay, remember):
 
     @router.get("/v1/admin/context", response_model=StaffContext)
     def staff_context(db: Db, identity: Identity):
-        import time
-
         uid = user(db, identity)
-        age = time.time() - (identity.authenticated_at or 0)
-        if identity.assurance != "aal2" or not 0 <= age <= 300 or not eligible(db, uid):
-            raise HTTPException(403, "Fresh privileged verification required")
-        roles = list(
-            db.scalars(
-                text(
-                    "SELECT role FROM staff_grant WHERE user_id=:u AND active AND expires_at>now() "
-                    "ORDER BY role"
-                ),
-                {"u": uid},
-            )
-        )
-        if not roles:
-            raise HTTPException(403, "Staff authorization required")
+        roles = require_staff_roles(db, uid, identity)
         modules = {
             "super_admin": [
                 "executive",
@@ -615,6 +621,7 @@ def build_router(user, audit, replay, remember):
             "roles": roles,
             "modules": sorted({m for role in roles for m in modules[role]}),
             "operational_actions_enabled": False,
+            "catalog_review_enabled": bool(set(roles) & {"super_admin", "content_moderation"}),
         }
 
     @router.post("/v1/analysis/requests", response_model=UnavailableResult, status_code=503)

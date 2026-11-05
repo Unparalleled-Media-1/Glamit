@@ -1,11 +1,13 @@
 {
-  "run_at": "2026-11-05T15:25:31.281Z",
+  "run_at": "2026-11-05T16:41:41.722Z",
   "checks": [
     "Consent-gated photo selection, invalid-file rejection, technical review, goals and honest uncomputed report",
     "Editable routine save/checklist, dedicated Makeup Match, original-preserving Studio and reset",
     "Unsent Advisor, unauthorized workspace switcher, focus restoration, photo deletion and no persisted private data",
     "All business role modules, isolated session draft save/reset and evidence-gated campaign wizard",
     "Public admin inventory reveals no privileged controls or business data",
+    "Embedded organic/sponsored no-match sections across all report contexts and saved user requirements",
+    "Snap & List originals, unavailable AI, manual factual review, duplicate rejection, session catalog health and publication guard",
     "Responsive 320–1920px, five analysis-first mobile destinations, offline guard, reduced motion and no external requests/errors"
   ],
   "screenshots": [
@@ -21,6 +23,8 @@
     "creator-workspace.png",
     "affiliate-workspace.png",
     "admin.png",
+    "hair-contextual-recommendations.png",
+    "merchant-snap-list-review.png",
     "mobile-home.png",
     "mobile-face-report.png"
   ],

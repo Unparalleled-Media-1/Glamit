@@ -1,0 +1,286 @@
+# GLAM AI — Merchant Snap & List
+
+AI-powered product listing, catalog enhancement and automatic matching
+
+Absolutely. This should be a flagship feature of the Merchant workspace.
+
+A merchant should be able to photograph a product using their phone, and GLAM AI should automatically create a professional product listing, enhance its presentation and make it discoverable through relevant consumer AI analysis results.
+
+The goal is simple:
+
+Snap → AI Enhance → Review → Publish → Get Matched → Sell.
+
+## 1. How Snap & List works
+
+![Lifestyle Product Photography Perth | Amplify](https://images.openai.com/static-rsc-4/KoqYaJd4XtKm5LKi4Lycf2kJi77vH0Mdms58nzjOyew_lB2YFhJ-YqBMGyfHc53ASYLGzGjmU3LEAQ8f9pH_DAtGbuEfI1VbzOnTrPvMBoFcySrX1Y7Q-C2Gytt-4ZPYK8JzVIrOMNYgMwPJ9q9DlLPowd85Y5TWlK22-Twfppw?purpose=inline)
+
+Add to Favorites
+
+Step 1 — Snap
+
+Take a photo or upload several images of a cosmetic, wig, hair product, clothing item, accessory or beauty tool.
+
+![White Background Product Photo - AI Product Photo Editor | Nano Image](https://images.openai.com/static-rsc-4/VV9qdaf9X7YWEBpBBJM0jcedIcAnBcc7rAAizlYv4HTTl9yM6GVXI_szGfCza7iaxQe-DoTtmr6G-B8gH8_TuYCEoTE4Nbgxxan1XcN4dW_43du06z6g9fJxQu68NFe_q1ZveB8QiX3Luqy6xGF-td0Cbe1LJuerdhKSg_V6bCU?purpose=inline)
+
+Add to Favorites
+
+Step 2 — AI Enhance
+
+Clean up the background, improve lighting, straighten the image, crop it and produce professional-looking product photos.
+
+Step 3 — AI Creates the Listing
+
+Automatically suggest a product title, description, category, color, style, material, suitable uses and searchable attributes.
+
+Step 4 — Merchant Reviews
+
+Merchant confirms product identity, variants, stock, price, condition, shipping and any claims that AI cannot verify.
+
+Step 5 — Publish & Match
+
+Approved listings enter the searchable catalog and become eligible for relevant analysis-to-product recommendations and sponsored placements.
+
+## 2. AI enhancements I would include
+
+| AI capability            | What it does                                                                       |
+| ------------------------ | ---------------------------------------------------------------------------------- |
+| Background cleanup       | Removes distracting backgrounds while preserving the actual product                |
+| Studio photo enhancement | Improves lighting, framing and image clarity                                       |
+| Product recognition      | Suggests the product category and attributes                                       |
+| OCR and barcode scanning | Reads visible packaging text and recognized product identifiers                    |
+| Description generation   | Produces professional product titles and descriptions                              |
+| Multilingual listings    | Creates translated listings for selected markets                                   |
+| Variant detection        | Suggests colors, sizes, shades and styles                                          |
+| Duplicate detection      | Warns when the same product is already listed                                      |
+| SEO optimization         | Generates relevant keywords and searchable descriptions                            |
+| Look compatibility       | Tags products for matching to hairstyles, makeup looks, color palettes and fashion |
+| Catalog quality scoring  | Identifies missing photos, attributes and inaccurate information                   |
+| Promotional creatives    | Produces optional advertising visuals and approved campaign copy                   |
+
+For cosmetics and skincare, AI must not invent ingredients, SPF ratings, medical benefits, certifications or shade compatibility. Product facts should be verified against packaging or authoritative merchant data.
+
+## 3. Merchant mobile experience
+
+Snap & List should be accessible directly from the Merchant workspace after role switching.
+
+Merchant Workspace
+
+## Add a Product
+
+Snap & List
+
+Take a photo and let GLAM AI prepare your listing.
+
+Design Snap & List Flow
+
+Gallery Upload
+
+Select existing photos
+
+Scan Barcode
+
+Identify a product
+
+AI Enhancement Options
+
+Clean background
+
+Improve lighting
+
+Generate description
+
+Generate product tags
+
+Translate listing
+
+Create advertising images
+
+Proposed interface controls; actual image processing and publishing require backend implementation.
+
+## 4. The most important differentiator: automatic AI matching
+
+A published product should not simply sit in a merchant catalog waiting for someone to search for it.
+
+GLAM AI should index approved products using visual and structured attributes so they can appear in relevant consumer experiences.
+
+Example: Merchant lists a foundation
+
+![Dior - 7W Forever Skin Glow Foundation | Ulta Beauty](https://images.openai.com/static-rsc-4/64TAG9er6TRCC9pFgTzrl7nFih0eCgwP2WfwrUvppH-f82bU6KRATjnNtMElLw95CLIDEjESwh1vGARNtCZ03SS9FAC8Q_mUVmtUWHaFfa-HEy01U2GRnxHVTw5W4oRF71z97T1yEXlLjDyO0ZXMjuVsSW3g_YZKXn_t5Px4k74?purpose=inline)
+
+Add to Favorites
+
+Foundation — Deep Warm Shade
+
+AI tags: Foundation · Warm undertone · Deep shade · Liquid finish
+
+Pending merchant verification
+
+Potential matching destinations
+
+Color Analysis
+
+Makeup Match
+
+Glow-Up Guide
+
+AI Studio
+
+Complete the Look
+
+Once the merchant confirms the shade, product details and availability, the listing becomes eligible for matching.
+
+For example, a user exploring a warm-toned makeup look could see this product as a relevant option, provided the shade and other attributes actually match the user's chosen requirements.
+
+Merchants gain qualified discovery. Consumers receive actionable recommendations. GLAM AI gains advertising and affiliate opportunities.
+
+## 5. Merchant Snap & List on web
+
+The web portal should support the same functionality plus bulk catalog operations.
+
+| Mobile                       | Web                                            |
+| ---------------------------- | ---------------------------------------------- |
+| Camera capture               | Drag-and-drop uploads                          |
+| Single product creation      | Single and bulk listing creation               |
+| Quick AI enhancement         | Batch AI enhancement                           |
+| Basic variants and pricing   | Advanced variants and inventory                |
+| Publish and manage listings  | Bulk publishing and catalog quality management |
+| Simple advertising boost     | Full campaign creation and reporting           |
+| Sales and lead notifications | Detailed analytics and integrations            |
+
+The mobile experience is ideal for small merchants and independent sellers. The web experience supports larger retailers and brands.
+
+## 6. Additional merchant features worth including
+
+I would add four capabilities to make Snap & List commercially useful:
+
+Smart Pricing Assistant: Show comparable public or participating merchant prices where reliable data exists. Let merchants choose their own prices.
+
+Instant Campaign Creation: After publishing, offer an optional Promote This Product action that creates a sponsored listing campaign with a defined budget.
+
+Catalog Health Dashboard: Highlight missing variants, low-quality photos, out-of-stock items, expired offers and products receiving impressions without clicks.
+
+Multi-Channel Catalog Export: Allow merchants to export approved listings to supported external commerce platforms or social channels where integrations and platform permissions permit.
+
+## 7. Exact Codex instruction
+
+GLAM AI — Merchant Snap & List AI Engine
+
+# GLAM AI — Merchant Snap & List AI Engine
+
+Implement Snap & List as a first-class feature within the unified Merchant workspace on iOS, Android and web.
+
+## Objective
+
+Enable merchants to photograph a product and create a professional, searchable, AI-enhanced product listing with minimal manual effort.
+
+## Required workflow
+
+Capture or upload product images → AI enhancement → Product recognition → Listing generation → Merchant review → Validation → Publish → Catalog indexing → Consumer recommendation eligibility.
+
+## AI features
+
+* Background cleanup and image optimization.
+
+* Lighting and framing enhancement.
+
+* Product category and attribute extraction.
+
+* Packaging text recognition and barcode lookup.
+
+* Product title and description generation.
+
+* Color, size, shade and variant suggestions.
+
+* Multilingual descriptions.
+
+* Search tags and visual embeddings.
+
+* Duplicate listing detection.
+
+* Catalog quality scoring.
+
+* Optional promotional creative generation.
+
+## Image integrity
+
+Preserve the real product's appearance, shade, branding, proportions and packaging details.
+
+Do not invent logos, certifications, ingredients, product features or misleading before-and-after results.
+
+Store original images separately from enhanced derivatives.
+
+Require merchant review before publication.
+
+## Commerce integration
+
+Published listings must be eligible for matching against:
+
+* Face Analysis recommendations.
+
+* Hair Analysis recommendations.
+
+* Skin Appearance Analysis recommendations.
+
+* Personal Color Analysis recommendations.
+
+* Body and Fit Styling recommendations.
+
+* Makeup Match.
+
+* AI Makeover.
+
+* Complete the Look.
+
+Only approved, relevant and sufficiently verified listings may appear as purchasable recommendations.
+
+Support organic recommendations and separately labeled sponsored placements.
+
+## Merchant dashboard
+
+Include:
+
+* Snap & List.
+
+* My Products.
+
+* Draft Listings.
+
+* Catalog Health.
+
+* Inventory.
+
+* Orders / Referral Leads.
+
+* Promotions.
+
+* Advertising.
+
+* Analytics.
+
+* Billing.
+
+* Settings.
+
+## Technical requirements
+
+Use asynchronous AI processing, idempotent jobs, original/derivative media storage, merchant-owned catalog records, organization-scoped RBAC, audit logs and versioned listing approvals.
+
+Implement human review and validation for uncertain or regulated product claims.
+
+Support mobile camera capture and web bulk uploads.
+
+## Acceptance criteria
+
+A merchant can take a photo, generate an editable listing, verify all required facts and publish it.
+
+A published product is indexed for relevant consumer AI recommendations without requiring a separate manual catalog entry.
+
+An unverified or out-of-stock product must not be represented as an available verified match.
+
+AI-generated advertising content must be distinguishable from factual product photography where necessary.
+
+Implement automated tests for listing creation, AI processing, review, publishing, catalog matching, permissions and rollback.
+
+My recommendation: Make Snap & List one of the first Merchant features released. It directly solves the problem of getting sufficient product inventory onto GLAM AI, which is essential for the analysis-to-commerce model to work.
+
+The key is that a merchant can list a product in minutes, and GLAM AI can then match that product to relevant users whenever they perform a face, hair, color, makeup or styling analysis.

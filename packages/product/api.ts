@@ -1,5 +1,7 @@
 /** Connection port for the selected identity/backend. Tokens are supplied in memory by Auth. */
 import type { Role } from "./platform";
+import type { components } from "../contracts/api";
+type CatalogSchemas = components["schemas"];
 export interface WorkspaceAccess {
   organization_id: string;
   name: string;
@@ -83,11 +85,9 @@ export class GlamApi {
       : (response.json() as Promise<T>);
   }
   staffContext(signal?: AbortSignal) {
-    return this.request<{
-      roles: string[];
-      modules: string[];
-      operational_actions_enabled: false;
-    }>("/v1/admin/context", { signal });
+    return this.request<CatalogSchemas["StaffContext"]>("/v1/admin/context", {
+      signal,
+    });
   }
   workspaces(signal?: AbortSignal) {
     return this.request<WorkspaceAccess[]>("/v1/me/workspaces", { signal });
@@ -172,6 +172,155 @@ export class GlamApi {
       `/v1/me/workspace-invitations/${encodeURIComponent(id)}/accept`,
       { method: "POST", signal },
     );
+  }
+  catalog(org: string, signal?: AbortSignal) {
+    return this.request<CatalogSchemas["ListingRead"][]>(
+      `/v1/organizations/${encodeURIComponent(org)}/catalog/listings`,
+      { signal },
+    );
+  }
+  createListing(
+    org: string,
+    body: CatalogSchemas["NewListing"],
+    key: string,
+    signal?: AbortSignal,
+  ) {
+    return this.request<CatalogSchemas["ListingRead"]>(
+      `/v1/organizations/${encodeURIComponent(org)}/catalog/listings`,
+      { method: "POST", body, key, signal },
+    );
+  }
+  reviewListing(
+    org: string,
+    id: string,
+    body: CatalogSchemas["RevisionChoice"],
+    key: string,
+    signal?: AbortSignal,
+  ) {
+    return this.request<CatalogSchemas["ListingRead"]>(
+      this.catalogPath(org, id) + "/revisions",
+      { method: "POST", body, key, signal },
+    );
+  }
+  publishListing(
+    org: string,
+    id: string,
+    revision: number,
+    signal?: AbortSignal,
+  ) {
+    return this.request<CatalogSchemas["ListingRead"]>(
+      this.catalogPath(org, id) + "/publish",
+      { method: "POST", body: { revision }, signal },
+    );
+  }
+  withdrawListing(org: string, id: string, signal?: AbortSignal) {
+    return this.request<CatalogSchemas["ListingRead"]>(
+      this.catalogPath(org, id) + "/withdraw",
+      { method: "POST", signal },
+    );
+  }
+  matches(body: CatalogSchemas["Requirement"], signal?: AbortSignal) {
+    return this.request<CatalogSchemas["MatchResult"]>(
+      "/v1/recommendations/matches",
+      { method: "POST", body, signal },
+    );
+  }
+  matchDetail(
+    id: string,
+    body: CatalogSchemas["Requirement"],
+    signal?: AbortSignal,
+  ) {
+    return this.request<CatalogSchemas["MatchResult"]>(
+      `/v1/recommendations/listings/${encodeURIComponent(id)}`,
+      { method: "POST", body, signal },
+    );
+  }
+  saveRequirement(
+    body: CatalogSchemas["Requirement"],
+    key: string,
+    signal?: AbortSignal,
+  ) {
+    return this.request<CatalogSchemas["SavedRead"]>(
+      "/v1/me/saved-requirements",
+      { method: "POST", body, key, signal },
+    );
+  }
+  savedRequirements(signal?: AbortSignal) {
+    return this.request<CatalogSchemas["SavedRead"][]>(
+      "/v1/me/saved-requirements",
+      { signal },
+    );
+  }
+  deleteRequirement(id: string, signal?: AbortSignal) {
+    return this.request<void>(
+      `/v1/me/saved-requirements/${encodeURIComponent(id)}`,
+      { method: "DELETE", signal },
+    );
+  }
+  prepareListing(
+    org: string,
+    id: string,
+    body: CatalogSchemas["EnhancementRequest"],
+    key: string,
+    signal?: AbortSignal,
+  ) {
+    return this.request<CatalogSchemas["JobRead"]>(
+      this.catalogPath(org, id) + "/enhancements",
+      { method: "POST", body, key, signal },
+    );
+  }
+  listingPreparation(
+    org: string,
+    id: string,
+    job: string,
+    signal?: AbortSignal,
+  ) {
+    return this.request<CatalogSchemas["JobRead"]>(
+      this.catalogPath(org, id) + "/enhancements/" + encodeURIComponent(job),
+      { signal },
+    );
+  }
+  createListingsBulk(
+    org: string,
+    body: CatalogSchemas["BulkListings"],
+    key: string,
+    signal?: AbortSignal,
+  ) {
+    return this.request<CatalogSchemas["ListingRead"][]>(
+      `/v1/organizations/${encodeURIComponent(org)}/catalog/listings/bulk`,
+      { method: "POST", body, key, signal },
+    );
+  }
+  publishListingsBulk(
+    org: string,
+    body: CatalogSchemas["BulkPublication"],
+    signal?: AbortSignal,
+  ) {
+    return this.request<CatalogSchemas["ListingRead"][]>(
+      `/v1/organizations/${encodeURIComponent(org)}/catalog/publish-bulk`,
+      { method: "POST", body, signal },
+    );
+  }
+  catalogReviewQueue(signal?: AbortSignal) {
+    return this.request<CatalogSchemas["ListingRead"][]>(
+      "/v1/admin/catalog/review-queue",
+      { signal },
+    );
+  }
+  approveCatalogRevision(
+    id: string,
+    revision: number,
+    body: CatalogSchemas["ReviewChoice"],
+    key: string,
+    signal?: AbortSignal,
+  ) {
+    return this.request<CatalogSchemas["ReviewChoice"]>(
+      `/v1/admin/catalog/${encodeURIComponent(id)}/revisions/${revision}/review`,
+      { method: "POST", body, key, signal },
+    );
+  }
+  private catalogPath(org: string, id: string) {
+    return `/v1/organizations/${encodeURIComponent(org)}/catalog/listings/${encodeURIComponent(id)}`;
   }
   private workspacePath(org: string, role: Role) {
     return `/v1/organizations/${encodeURIComponent(org)}/workspaces/${encodeURIComponent(role)}`;

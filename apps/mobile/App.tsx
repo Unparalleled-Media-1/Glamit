@@ -32,6 +32,17 @@ import {
 } from "../../packages/product/platform";
 import type { Page, Photo, Role } from "../../packages/product/platform";
 
+import ContextualRecommendations from "./ContextualRecommendations";
+import MerchantSnapList from "./MerchantSnapList";
+import {
+  analysisContexts,
+  contextualReportFields,
+} from "../../packages/product/catalog";
+import type {
+  AnalysisContext,
+  RequirementDraft,
+} from "../../packages/product/catalog";
+
 function Button({
   title,
   onPress,
@@ -91,6 +102,9 @@ function Title({ title, copy }: { title: string; copy: string }) {
 }
 export default function App() {
   const [state, dispatch] = useReducer(personalReducer, initialPersonal);
+  const [savedRequirements, setSavedRequirements] = useState<
+    RequirementDraft[]
+  >([]);
   const [photo, setPhoto] = useState<Photo | null>(null);
   const photoRef = useRef<Photo | null>(null);
   const [consent, setConsent] = useState(false);
@@ -285,6 +299,22 @@ export default function App() {
       "Routine saved for this app session. Account sync is not connected.",
     );
   }
+  const recommendationContext: AnalysisContext =
+    state.page === "hair"
+      ? "hair"
+      : state.page === "skin"
+        ? "skin"
+        : state.page === "body-fit"
+          ? "body-fit"
+          : state.page === "color"
+            ? "color"
+            : state.page === "guide"
+              ? "routine"
+              : state.page === "studio"
+                ? state.tool === "Makeup Match"
+                  ? "makeup-match"
+                  : "makeover"
+                : "face";
   function content() {
     switch (state.page) {
       case "home":
@@ -375,6 +405,9 @@ export default function App() {
                 </Text>
               ))}
               {nav("Start Face Analysis", "consent")}
+              {nav("Hair Analysis", "hair", true)}
+              {nav("Skin Appearance Analysis", "skin", true)}
+              {nav("Body & Fit Styling", "body-fit", true)}
               {nav("Open Color Analysis", "color", true)}
               <Text style={s.fine}>
                 No diagnosis, face identification or attractiveness ranking.
@@ -485,15 +518,24 @@ export default function App() {
             </Card>
           </>
         );
+      case "hair":
+      case "skin":
+      case "body-fit":
       case "report":
         return (
           <>
             {heading(
-              "Your personal analysis.",
+              recommendationContext === "face"
+                ? "Your personal analysis."
+                : analysisContexts.find((n) => n.id === recommendationContext)!
+                    .title,
               "No analysis result exists yet. Qualified estimates should explain uncertainty and allow corrections.",
             )}
+            <Text accessibilityRole="header" style={s.h2}>
+              Your Results
+            </Text>
             <Note text={capabilityReasons.analysis} />
-            {reportFields.map((n) => (
+            {contextualReportFields[recommendationContext].map((n) => (
               <Card key={n}>
                 <Text style={s.h2}>{n}</Text>
                 <Text style={s.badge}>Not computed</Text>
@@ -514,6 +556,9 @@ export default function App() {
               "Find your colors.",
               "Color guidance depends on lighting and a qualified analysis, never a universal beauty standard.",
             )}
+            <Text accessibilityRole="header" style={s.h2}>
+              Your Results
+            </Text>
             <View style={s.palette}>
               {["#c9a46a", "#a98abd", "#d96b95", "#62515d", "#dfcbb9"].map(
                 (c) => (
@@ -547,6 +592,9 @@ export default function App() {
               "A guide of your own.",
               "Practical steps you choose. These notes are not AI-generated advice.",
             )}
+            <Text accessibilityRole="header" style={s.h2}>
+              Your Results
+            </Text>
             <Card>
               <Text style={s.label}>Routine title</Text>
               <TextInput
@@ -609,6 +657,9 @@ export default function App() {
               "Explore your look.",
               "Keep your identity, complexion and original. Choose the styling direction yourself.",
             )}
+            <Text accessibilityRole="header" style={s.h2}>
+              Your Results
+            </Text>
             {photo ? localPhoto() : hero(2)}
             <Text style={s.badge}>
               {photo
@@ -830,6 +881,7 @@ export default function App() {
                         onPress: () => {
                           if (clearPhoto()) {
                             dispatch({ type: "reset" });
+                            setSavedRequirements([]);
                             setMessage("Session cleared.");
                           }
                         },
@@ -1011,6 +1063,10 @@ export default function App() {
               ))}
               <Button title="Verified organization required" disabled />
             </Card>
+            {reviewRole === "merchant" &&
+              workspaces[reviewRole].modules[module].name === "Snap & List" && (
+                <MerchantSnapList />
+              )}
             <Button
               title="Return to Personal"
               secondary
@@ -1021,7 +1077,31 @@ export default function App() {
             />
           </>
         ) : (
-          content()
+          <>
+            {content()}
+            {[
+              "report",
+              "hair",
+              "skin",
+              "body-fit",
+              "color",
+              "guide",
+              "studio",
+            ].includes(state.page) && (
+              <ContextualRecommendations
+                key={recommendationContext}
+                context={recommendationContext}
+                saved={savedRequirements}
+                onSave={(r) => setSavedRequirements([...savedRequirements, r])}
+                onDelete={(id) =>
+                  setSavedRequirements(
+                    savedRequirements.filter((r) => r.id !== id),
+                  )
+                }
+                onComplete={() => go("complete")}
+              />
+            )}
+          </>
         )}
       </ScrollView>
       <View accessibilityRole="tablist" style={s.bottomNav}>

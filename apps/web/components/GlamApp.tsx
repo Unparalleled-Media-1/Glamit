@@ -18,9 +18,22 @@ import {
 } from "../../../packages/product/platform";
 import type { Page, Photo } from "../../../packages/product/platform";
 
+import ContextualRecommendations from "./ContextualRecommendations";
+import {
+  contextualReportFields,
+  analysisContexts,
+} from "../../../packages/product/catalog";
+import type {
+  AnalysisContext,
+  RequirementDraft,
+} from "../../../packages/product/catalog";
+
 const pages: Page[] = [
   "home",
   "analyze",
+  "hair",
+  "skin",
+  "body-fit",
   "consent",
   "quality",
   "goals",
@@ -129,6 +142,9 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
     ...initialPersonal,
     page: start,
   });
+  const [savedRequirements, setSavedRequirements] = useState<
+    RequirementDraft[]
+  >([]);
   const [photo, setPhoto] = useState<Photo | null>(null);
   const photoRef = useRef<Photo | null>(null);
   const selection = useRef(0);
@@ -150,6 +166,23 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
   const modalRef = useRef<HTMLDialogElement>(null);
   const switchButton = useRef<HTMLButtonElement>(null);
   const page = state.page;
+  const recommendationContext: AnalysisContext =
+    state.page === "hair"
+      ? "hair"
+      : state.page === "skin"
+        ? "skin"
+        : state.page === "body-fit"
+          ? "body-fit"
+          : state.page === "color"
+            ? "color"
+            : state.page === "guide"
+              ? "routine"
+              : state.page === "studio"
+                ? state.tool === "Makeup Match"
+                  ? "makeup-match"
+                  : "makeover"
+                : "face";
+
   useEffect(() => {
     const pop = () => {
       const p = location.pathname.slice(1) || "home";
@@ -436,6 +469,11 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
               "Your features. Your possibilities.",
               "A personal guide to facial features, colors and styling — without a beauty score.",
             )}
+            <div className="secondary-links">
+              {btn("Hair Analysis", "hair", true)}
+              {btn("Skin Appearance Analysis", "skin", true)}
+              {btn("Body & Fit Styling", "body-fit", true)}
+            </div>
             <div className="split">
               <Editorial panel={1} />
               <section className="panel">
@@ -607,13 +645,20 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
             </section>
           </>
         );
+      case "hair":
+      case "skin":
+      case "body-fit":
       case "report":
         return (
           <>
             {heading(
-              "Your personal analysis.",
+              recommendationContext === "face"
+                ? "Your personal analysis."
+                : analysisContexts.find((n) => n.id === recommendationContext)!
+                    .title,
               "A report will explain estimates, their limits and practical options. There is no analysis result yet.",
             )}
+            <h2>Your Results</h2>
             <div className="report-layout">
               <section className="panel report-visual">
                 <Icon name="analyze" />
@@ -628,7 +673,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
                 {btn("Prepare a photo", "consent", true)}
               </section>
               <div className="report-fields">
-                {reportFields.map((n) => (
+                {contextualReportFields[recommendationContext].map((n) => (
                   <section className="panel" key={n}>
                     <h2>{n}</h2>
                     <span className="badge">Not computed</span>
@@ -659,6 +704,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
               "Find your colors.",
               "Personal color suggestions depend on lighting, camera and a qualified analysis. They are not rules about what you can wear.",
             )}
+            <h2>Your Results</h2>
             <div className="split">
               <section className="palette-art">
                 <div className="palette-orbit">
@@ -699,6 +745,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
               "A guide you can make your own.",
               "Start with practical steps you choose. AI personalization will require a qualified analysis; these are your own editable notes.",
             )}
+            <h2>Your Results</h2>
             <div className="split">
               <form className="panel" onSubmit={saveRoutine}>
                 <h2>Build a routine</h2>
@@ -782,6 +829,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
               "Explore your look.",
               "Hair, makeup and grooming choices — while keeping your original, your complexion and your identity.",
             )}
+            <h2>Your Results</h2>
             <div className="studio-layout">
               <aside className="panel">
                 <h2>Your studio</h2>
@@ -1097,6 +1145,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
                 onClick={() => {
                   clearPhoto();
                   dispatch({ type: "reset" });
+                  setSavedRequirements([]);
                   setMessage(
                     "All app-session photo previews, interests and routines cleared.",
                   );
@@ -1393,6 +1442,26 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
         )}
         {message && <Notice>{message}</Notice>}
         {content()}
+        {[
+          "report",
+          "hair",
+          "skin",
+          "body-fit",
+          "color",
+          "guide",
+          "studio",
+        ].includes(page) && (
+          <ContextualRecommendations
+            key={recommendationContext}
+            context={recommendationContext}
+            saved={savedRequirements}
+            onSave={(r) => setSavedRequirements([...savedRequirements, r])}
+            onDelete={(id) =>
+              setSavedRequirements(savedRequirements.filter((r) => r.id !== id))
+            }
+            onComplete={() => go("complete")}
+          />
+        )}
       </main>
       <footer className="site-footer">
         <a className="brand" href="/">

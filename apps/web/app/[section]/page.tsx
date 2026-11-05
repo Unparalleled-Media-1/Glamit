@@ -3,6 +3,9 @@ import GlamApp from "../../components/GlamApp";
 import type { Page } from "../../../../packages/product/platform";
 const sections = [
   "analyze",
+  "hair",
+  "skin",
+  "body-fit",
   "consent",
   "quality",
   "goals",

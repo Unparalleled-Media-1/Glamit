@@ -1,4 +1,6 @@
 "use client";
+import MerchantSnapList from "./MerchantSnapList";
+import type { MerchantDraft } from "../../../packages/product/catalog";
 import { useState } from "react";
 import {
   adminModules,
@@ -10,6 +12,7 @@ import type { Role } from "../../../packages/product/platform";
 
 /** Public task inventory and session drafts. Actual tenant records require the canonical API. */
 export default function BusinessPortal({ admin = false }: { admin?: boolean }) {
+  const [catalogDrafts, setCatalogDrafts] = useState<MerchantDraft[]>([]);
   const [role, setRole] = useState<Role>("merchant");
   const [module, setModule] = useState(0);
   const [drafts, setDrafts] = useState<
@@ -53,6 +56,7 @@ export default function BusinessPortal({ admin = false }: { admin?: boolean }) {
     }
     setDiscard(null);
     setRole(next);
+    setCatalogDrafts([]);
     setModule(0);
     setTitle("");
     setValues({});
@@ -238,180 +242,195 @@ export default function BusinessPortal({ admin = false }: { admin?: boolean }) {
                   </section>
                 ))}
               </div>
-              <div className="workspace-columns">
-                <section className="panel">
-                  <p className="eyebrow">Session planning only</p>
-                  <h2>{current.name} planning draft</h2>
-                  {role === "advertiser" &&
-                  current.name === "Create Campaign" ? (
-                    <>
-                      <ol className="stepper">
-                        {campaignSteps.map((n, i) => (
-                          <li
-                            key={n}
-                            aria-current={step === i ? "step" : undefined}
-                          >
+              {role === "merchant" &&
+              [
+                "Snap & List",
+                "My Products",
+                "Draft Listings",
+                "Catalog Health",
+              ].includes(current.name) ? (
+                <MerchantSnapList
+                  drafts={catalogDrafts}
+                  setDrafts={setCatalogDrafts}
+                  view={current.name}
+                />
+              ) : (
+                <div className="workspace-columns">
+                  <section className="panel">
+                    <p className="eyebrow">Session planning only</p>
+                    <h2>{current.name} planning draft</h2>
+                    {role === "advertiser" &&
+                    current.name === "Create Campaign" ? (
+                      <>
+                        <ol className="stepper">
+                          {campaignSteps.map((n, i) => (
+                            <li
+                              key={n}
+                              aria-current={step === i ? "step" : undefined}
+                            >
+                              {n}
+                            </li>
+                          ))}
+                        </ol>
+                        <h3>{campaignSteps[step]}</h3>
+                        {step < 5 && (
+                          <label>
+                            {campaignSteps[step]} planning note
+                            <input
+                              value={values[campaignSteps[step]] || ""}
+                              maxLength={500}
+                              onChange={(e) =>
+                                setValues({
+                                  ...values,
+                                  [campaignSteps[step]]: e.target.value,
+                                })
+                              }
+                            />
+                          </label>
+                        )}
+                        {step >= 5 && (
+                          <>
+                            <dl>
+                              {campaignSteps.slice(0, 5).map((n) => (
+                                <div key={n}>
+                                  <dt>{n}</dt>
+                                  <dd>{values[n] || "Not supplied"}</dd>
+                                </div>
+                              ))}
+                            </dl>
+                            <p>
+                              Eligible offers, spend caps, creative rights,
+                              brand safety and billing require verified server
+                              evidence.
+                            </p>
+                          </>
+                        )}
+                        <div className="actions">
+                          {step > 0 && (
+                            <button
+                              className="button secondary"
+                              onClick={() => setStep(step - 1)}
+                            >
+                              Back
+                            </button>
+                          )}
+                          {step < 6 ? (
+                            <button
+                              className="button"
+                              onClick={() => setStep(step + 1)}
+                            >
+                              Next: {campaignSteps[step + 1]}
+                            </button>
+                          ) : (
+                            <button className="button" disabled>
+                              Launch unavailable
+                            </button>
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      <form
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          const notes = current.fields
+                            .map((n) => `${n}: ${values[n] || "Not supplied"}`)
+                            .join("\n");
+                          setDrafts([
+                            ...drafts,
+                            {
+                              id: crypto.randomUUID(),
+                              title: title.trim(),
+                              notes,
+                            },
+                          ]);
+                          setMessage(
+                            "Planning draft saved in this browser session only. No server write or publication occurred.",
+                          );
+                          setTitle("");
+                          setValues({});
+                        }}
+                      >
+                        <label>
+                          Draft title
+                          <input
+                            value={title}
+                            required
+                            maxLength={160}
+                            onChange={(e) => setTitle(e.target.value)}
+                          />
+                        </label>
+                        {current.fields.map((n) => (
+                          <label key={n}>
                             {n}
+                            <input
+                              maxLength={500}
+                              value={values[n] || ""}
+                              onChange={(e) =>
+                                setValues({ ...values, [n]: e.target.value })
+                              }
+                            />
+                          </label>
+                        ))}
+                        <button className="button" disabled={!title.trim()}>
+                          Save session planning draft
+                        </button>
+                        <p className="fine">
+                          No private customer photos, payment information or
+                          verification documents.
+                        </p>
+                      </form>
+                    )}
+                  </section>
+                  <aside>
+                    <section className="panel">
+                      <h2>Session planning notes</h2>
+                      {drafts.length ? (
+                        drafts.map((d) => (
+                          <article className="draft" key={d.id}>
+                            <h3>{d.title}</h3>
+                            <p style={{ whiteSpace: "pre-line" }}>{d.notes}</p>
+                            <button
+                              className="text-button"
+                              onClick={() =>
+                                setDrafts(drafts.filter((n) => n.id !== d.id))
+                              }
+                            >
+                              Delete planning draft
+                            </button>
+                          </article>
+                        ))
+                      ) : (
+                        <p>
+                          No planning drafts for this review session. Switching
+                          workspace clears these notes.
+                        </p>
+                      )}
+                      <button className="button secondary" disabled>
+                        Load authorized organization records
+                      </button>
+                    </section>
+                    <section className="panel">
+                      <h2>Activation checklist</h2>
+                      <ul className="list">
+                        {[
+                          "Verified identity & eligible account",
+                          "Active organization membership",
+                          "Approved capability & scoped role",
+                          "Source facts / rights / audit",
+                        ].map((n) => (
+                          <li key={n}>
+                            {n}
+                            <span>Required</span>
                           </li>
                         ))}
-                      </ol>
-                      <h3>{campaignSteps[step]}</h3>
-                      {step < 5 && (
-                        <label>
-                          {campaignSteps[step]} planning note
-                          <input
-                            value={values[campaignSteps[step]] || ""}
-                            maxLength={500}
-                            onChange={(e) =>
-                              setValues({
-                                ...values,
-                                [campaignSteps[step]]: e.target.value,
-                              })
-                            }
-                          />
-                        </label>
-                      )}
-                      {step >= 5 && (
-                        <>
-                          <dl>
-                            {campaignSteps.slice(0, 5).map((n) => (
-                              <div key={n}>
-                                <dt>{n}</dt>
-                                <dd>{values[n] || "Not supplied"}</dd>
-                              </div>
-                            ))}
-                          </dl>
-                          <p>
-                            Eligible offers, spend caps, creative rights, brand
-                            safety and billing require verified server evidence.
-                          </p>
-                        </>
-                      )}
-                      <div className="actions">
-                        {step > 0 && (
-                          <button
-                            className="button secondary"
-                            onClick={() => setStep(step - 1)}
-                          >
-                            Back
-                          </button>
-                        )}
-                        {step < 6 ? (
-                          <button
-                            className="button"
-                            onClick={() => setStep(step + 1)}
-                          >
-                            Next: {campaignSteps[step + 1]}
-                          </button>
-                        ) : (
-                          <button className="button" disabled>
-                            Launch unavailable
-                          </button>
-                        )}
-                      </div>
-                    </>
-                  ) : (
-                    <form
-                      onSubmit={(e) => {
-                        e.preventDefault();
-                        const notes = current.fields
-                          .map((n) => `${n}: ${values[n] || "Not supplied"}`)
-                          .join("\n");
-                        setDrafts([
-                          ...drafts,
-                          {
-                            id: crypto.randomUUID(),
-                            title: title.trim(),
-                            notes,
-                          },
-                        ]);
-                        setMessage(
-                          "Planning draft saved in this browser session only. No server write or publication occurred.",
-                        );
-                        setTitle("");
-                        setValues({});
-                      }}
-                    >
-                      <label>
-                        Draft title
-                        <input
-                          value={title}
-                          required
-                          maxLength={160}
-                          onChange={(e) => setTitle(e.target.value)}
-                        />
-                      </label>
-                      {current.fields.map((n) => (
-                        <label key={n}>
-                          {n}
-                          <input
-                            maxLength={500}
-                            value={values[n] || ""}
-                            onChange={(e) =>
-                              setValues({ ...values, [n]: e.target.value })
-                            }
-                          />
-                        </label>
-                      ))}
-                      <button className="button" disabled={!title.trim()}>
-                        Save session planning draft
-                      </button>
-                      <p className="fine">
-                        No private customer photos, payment information or
-                        verification documents.
-                      </p>
-                    </form>
-                  )}
-                </section>
-                <aside>
-                  <section className="panel">
-                    <h2>Session planning notes</h2>
-                    {drafts.length ? (
-                      drafts.map((d) => (
-                        <article className="draft" key={d.id}>
-                          <h3>{d.title}</h3>
-                          <p style={{ whiteSpace: "pre-line" }}>{d.notes}</p>
-                          <button
-                            className="text-button"
-                            onClick={() =>
-                              setDrafts(drafts.filter((n) => n.id !== d.id))
-                            }
-                          >
-                            Delete planning draft
-                          </button>
-                        </article>
-                      ))
-                    ) : (
-                      <p>
-                        No planning drafts for this review session. Switching
-                        workspace clears these notes.
-                      </p>
-                    )}
-                    <button className="button secondary" disabled>
-                      Load authorized organization records
-                    </button>
-                  </section>
-                  <section className="panel">
-                    <h2>Activation checklist</h2>
-                    <ul className="list">
-                      {[
-                        "Verified identity & eligible account",
-                        "Active organization membership",
-                        "Approved capability & scoped role",
-                        "Source facts / rights / audit",
-                      ].map((n) => (
-                        <li key={n}>
-                          {n}
-                          <span>Required</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <a href="/profile" className="button secondary">
-                      Account & workspace switching
-                    </a>
-                  </section>
-                </aside>
-              </div>
+                      </ul>
+                      <a href="/profile" className="button secondary">
+                        Account & workspace switching
+                      </a>
+                    </section>
+                  </aside>
+                </div>
+              )}
             </>
           )}
         </main>

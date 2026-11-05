@@ -122,6 +122,13 @@ const net = require("node:net");
       await page.getByText("Not computed", { exact: true }).count(),
       7,
     );
+    assert(
+      await page
+        .locator(".report-visual button svg")
+        .evaluateAll((nodes) =>
+          nodes.every((n) => n.getBoundingClientRect().width <= 24),
+        ),
+    );
     await capture("face-report");
     pass(
       "Consent-gated photo selection, invalid-file rejection, technical review, goals and honest uncomputed report",
@@ -278,6 +285,219 @@ const net = require("node:net");
     await capture("admin");
     pass(
       "Public admin inventory reveals no privileged controls or business data",
+    );
+    for (const route of [
+      "/report",
+      "/hair",
+      "/skin",
+      "/body-fit",
+      "/color",
+      "/guide",
+      "/studio",
+    ]) {
+      await page.goto(origin + route);
+      assert(
+        await page
+          .getByRole("heading", {
+            name: "Personalized Recommendations",
+            exact: true,
+          })
+          .isVisible(),
+      );
+      assert(
+        await page
+          .getByRole("heading", { name: "Where to Buy / Book", exact: true })
+          .isVisible(),
+      );
+      assert(
+        await page.getByText("Sponsored Matches", { exact: true }).isVisible(),
+      );
+      assert(
+        await page
+          .getByText("No verified matching listings currently available.", {
+            exact: true,
+          })
+          .isVisible(),
+      );
+    }
+    await page.goto(origin + "/hair");
+    await page
+      .getByLabel("Style requirements (comma-separated tags)", { exact: true })
+      .fill("braids, protective-style");
+    await page.getByLabel("Delivery country code", { exact: true }).fill("ZA");
+    await page
+      .getByRole("button", {
+        name: "Save recommendation requirements",
+        exact: true,
+      })
+      .click();
+    assert(
+      await page
+        .getByRole("heading", { name: "Saved session requirements" })
+        .isVisible(),
+    );
+    await capture("hair-contextual-recommendations");
+    await page
+      .getByRole("button", { name: "Delete saved requirement", exact: true })
+      .click();
+    assert.equal(
+      await page
+        .getByRole("heading", { name: "Saved session requirements" })
+        .count(),
+      0,
+    );
+    pass(
+      "Embedded organic/sponsored no-match sections across all report contexts and saved user requirements",
+    );
+    await page.goto(origin + "/business");
+    await page
+      .getByRole("navigation", { name: "Workspace modules" })
+      .getByRole("button", { name: /Snap & List/ })
+      .click();
+    await page
+      .getByTestId("merchant-images")
+      .setInputFiles(
+        path.resolve(__dirname, "../../apps/web/public/images/products.webp"),
+      );
+    await page.getByText("Original · Unchanged", { exact: true }).waitFor();
+    await page
+      .getByRole("button", {
+        name: "Continue to enhancement options",
+        exact: true,
+      })
+      .click();
+    assert(
+      await page
+        .getByRole("button", {
+          name: "Run AI preparation — connection required",
+          exact: true,
+        })
+        .isDisabled(),
+    );
+    await page
+      .getByRole("checkbox", { name: "Clean background", exact: true })
+      .check();
+    await page
+      .getByRole("button", {
+        name: "Continue with a manual listing draft",
+        exact: true,
+      })
+      .click();
+    for (const [label, value] of [
+      ["Product title", "Session braiding extensions"],
+      ["Source SKU / product identifier", "LOCAL-SKU-1"],
+      ["Merchant price", "100.00"],
+      ["Confirmed stock quantity", "5"],
+      ["Delivery country code", "ZA"],
+      ["Source evidence reference", "packaging-reference"],
+      ["Merchant HTTPS destination", "https://merchant.invalid/product"],
+    ])
+      await page.getByLabel(label, { exact: true }).fill(value);
+    await page.getByRole("checkbox").check();
+    await page
+      .getByRole("button", {
+        name: "Save reviewed session listing draft",
+        exact: true,
+      })
+      .click();
+    assert.match(
+      await page.locator(".snap-list [role=status]").innerText(),
+      /nothing|no listing/i,
+    );
+    await capture("merchant-snap-list-review");
+    await page
+      .getByRole("button", {
+        name: "Save reviewed session listing draft",
+        exact: true,
+      })
+      .click();
+    assert.match(
+      await page.locator(".snap-list [role=status]").innerText(),
+      /already has a session draft/,
+    );
+    await page
+      .getByRole("button", {
+        name: "Review publication requirements",
+        exact: true,
+      })
+      .click();
+    assert(
+      await page
+        .getByRole("button", {
+          name: "Publish — verified connections required",
+          exact: true,
+        })
+        .isDisabled(),
+    );
+    await page
+      .getByRole("navigation", { name: "Workspace modules" })
+      .getByRole("button", { name: /Catalog Health/ })
+      .click();
+    assert.match(
+      await page.locator("main").innerText(),
+      /your actual session drafts/,
+    );
+    await page
+      .getByRole("navigation", { name: "Workspace modules" })
+      .getByRole("button", { name: /Draft Listings/ })
+      .click();
+    assert(
+      await page
+        .getByRole("heading", { name: "Session braiding extensions" })
+        .isVisible(),
+    );
+    await page
+      .getByRole("button", {
+        name: "Delete session listing draft",
+        exact: true,
+      })
+      .click();
+    assert(
+      await page
+        .getByText("No session listing drafts.", { exact: true })
+        .isVisible(),
+    );
+    const importedDraft = {
+      id: "untrusted-import-id",
+      title: "Imported session draft",
+      category: "hair",
+      sku: "IMPORTED-1",
+      description: "Test-only facts",
+      price: "20.00",
+      currency: "ZAR",
+      stock: "0",
+      country: "ZA",
+      source: "test-packaging",
+      destination: "https://merchant.invalid/product",
+      condition: "new",
+      reviewed: true,
+      photoCount: 8,
+    };
+    await page.getByTestId("merchant-bulk-import").setInputFiles({
+      name: "drafts.json",
+      mimeType: "application/json",
+      buffer: Buffer.from(JSON.stringify([importedDraft])),
+    });
+    await page
+      .getByRole("heading", { name: "Imported session draft", exact: true })
+      .waitFor();
+    const downloadEvent = page.waitForEvent("download");
+    await page
+      .getByRole("button", { name: "Download session draft JSON", exact: true })
+      .click();
+    const downloaded = await downloadEvent;
+    const parsed = JSON.parse(fs.readFileSync(await downloaded.path(), "utf8"));
+    assert.equal(parsed[0].reviewed, false);
+    assert.equal(parsed[0].photoCount, 0);
+    assert.notEqual(parsed[0].id, importedDraft.id);
+    await page
+      .getByRole("button", {
+        name: "Delete session listing draft",
+        exact: true,
+      })
+      .click();
+    pass(
+      "Snap & List originals, unavailable AI, manual factual review, duplicate rejection, session catalog health and publication guard",
     );
     for (const width of [320, 390, 768, 1440, 1920]) {
       await page.setViewportSize({ width, height: 1000 });

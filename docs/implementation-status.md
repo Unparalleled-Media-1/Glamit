@@ -1,5 +1,15 @@
 # Implementation evidence and remaining gates
 
+## Current contextual-catalog update
+
+The [catalog addendum](specification/contextual-catalog-build.md) implements embedded recommendations across Face/Hair/Skin/Body & Fit/Color/Makeup Match/Makeover/routines in web and native. Users can save/delete chosen requirements; disconnected views say no verified matches. Qualified-response cards distinguish organic/Sponsored, Exact/Similar, source condition, known/unknown cost and fresh handoff/quote review. No merchants or paid placements are seeded.
+
+Snap & List now has local original product photos, optional enhancement controls, manual factual review, duplicate validation, session drafts/catalog health, bounded web JSON import/export and native camera/gallery integration. Live enhancement, storage upload, canonical client persistence and authenticated publication are not connected. Catalog counts refer to real session drafts only.
+
+Canonical backend additions: scoped single/bulk listing creation, immutable factual revisions, separate fresh staff content review, source/rights/freshness publication, atomic bulk publish, withdrawal/new-version rollback, transactional outbox/index worker, strict product/professional matching, exact identifier/source scoping, explicit cost/condition handling, private saved requirements and lease/idempotency-safe AI-preparation worker protocol. Source catalogs, private binary storage and real AI adapters remain deferred. Market discovery is default-deny through immutable latest policy versions; none is activated outside tests. Canonical head is `0008_catalog_market_policy`; only the dedicated local test database receives migrations in this update.
+
+Sponsored serving/budgets/attribution, notifications, purchase/booking, external feed rights, real model output/quality and physical-device image behavior still require implementation/integration and qualification. See [connections](application-preview/connections.md) and [validation](validation.md). Earlier implementation records below are historical where they conflict.
+
 ## Current analysis-first application build
 
 The newest explicit user instruction authorizes coding/building now, followed by external connections. See [the authoritative build specification](specification/analysis-first-build.md). Earlier approval-wait/navigation text below records prior revisions.

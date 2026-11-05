@@ -63,6 +63,9 @@ export const reportFields = [
 export type Page =
   | "home"
   | "analyze"
+  | "hair"
+  | "skin"
+  | "body-fit"
   | "consent"
   | "quality"
   | "goals"
@@ -116,6 +119,21 @@ export const workspaces: Record<
     ],
     modules: [
       m("Overview", "Catalog coverage", "Source freshness"),
+      m(
+        "Snap & List",
+        "Original product images",
+        "AI preparation",
+        "Merchant review",
+        "Publication",
+      ),
+      m("My Products", "Approved revisions", "Source facts"),
+      m("Draft Listings", "Merchant-owned drafts", "Review state"),
+      m(
+        "Catalog Health",
+        "Missing facts",
+        "Source freshness",
+        "Stock and media",
+      ),
       m("Storefront", "Public name", "Support contact", "Returns policy"),
       m(
         "Product Catalog",

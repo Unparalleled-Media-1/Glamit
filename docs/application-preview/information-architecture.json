@@ -1,5 +1,5 @@
 {
-  "authority": "analysis-first-build-2026-11",
+  "authority": "contextual-catalog-2026-11",
   "surfaces": [
     "Expo iOS / Android unified mobile",
     "Responsive consumer web",
@@ -37,6 +37,37 @@
           "fields": [
             "Catalog coverage",
             "Source freshness"
+          ]
+        },
+        {
+          "name": "Snap & List",
+          "fields": [
+            "Original product images",
+            "AI preparation",
+            "Merchant review",
+            "Publication"
+          ]
+        },
+        {
+          "name": "My Products",
+          "fields": [
+            "Approved revisions",
+            "Source facts"
+          ]
+        },
+        {
+          "name": "Draft Listings",
+          "fields": [
+            "Merchant-owned drafts",
+            "Review state"
+          ]
+        },
+        {
+          "name": "Catalog Health",
+          "fields": [
+            "Missing facts",
+            "Source freshness",
+            "Stock and media"
           ]
         },
         {
@@ -535,6 +566,24 @@
     "original-preserving Studio",
     "saved server results when connected"
   ],
-  "commerce": "secondary and contextual; no fabricated offer/booking/payout",
-  "authorityBoundary": "Client role/module inventory never grants access; canonical authenticated API requires active verified scopes."
+  "commerce": "Required embedded recommendations, organic and separately labeled sponsored opportunities or no-match states. Purchases are optional; no separate Shop tab is required.",
+  "authorityBoundary": "Client role/module inventory never grants access; canonical authenticated API requires active verified scopes.",
+  "contextualResults": [
+    "Face",
+    "Hair",
+    "Skin Appearance",
+    "Body & Fit",
+    "Color",
+    "Makeup Match",
+    "Makeover",
+    "Routines"
+  ],
+  "merchantWorkflow": [
+    "Snap",
+    "Qualified AI preparation or manual draft",
+    "Merchant factual review",
+    "Version-specific content approval",
+    "Publish and transactional index",
+    "Qualified organic/sponsored matching"
+  ]
 }

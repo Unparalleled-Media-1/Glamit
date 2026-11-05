@@ -1,5 +1,7 @@
 # Analysis-first application build
 
+**Current catalog addendum:** [Contextual commerce and Snap & List](contextual-catalog-build.md). Analysis stays first; every relevant result includes recommendations, organic and separately labeled sponsored opportunities or an honest no-match state. Optional purchase does not mean hidden recommendations. Merchant AI suggestions require factual review and version approval before publication.
+
 5 November 2026, Africa/Johannesburg. The user's instruction to code/build the supplied briefs authorizes application development now, with external tools and hosted databases connected afterward. It supersedes earlier waiting-for-design-approval text for this build. No release, provider spend, marketplace/advertising activation, Git publication or environment publication is implied.
 
 Authoritative direction: [product correction](sources/2026-11-analysis-first-correction.txt), [dashboard/role architecture](sources/2026-11-unified-workspace-architecture.txt), [design correction](sources/2026-11-analysis-design-correction.txt), [market assessment](sources/2026-11-market-readiness-assessment.txt). Newest explicit user instruction governs quoted older approval conditions in these sources. Preserve the editorial design language; no attractiveness scores, inferred identity, medical claims or fake analysis/commerce evidence.

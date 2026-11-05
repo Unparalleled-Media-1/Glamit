@@ -1,5 +1,7 @@
 # GLAM AI UI/UX design review and development handoff
 
+**Current catalog addendum:** [Contextual commerce and Snap & List](contextual-catalog-build.md). Analysis stays first; every relevant result includes recommendations, organic and separately labeled sponsored opportunities or an honest no-match state. Optional purchase does not mean hidden recommendations. Merchant AI suggestions require factual review and version approval before publication.
+
 **Current authority:** [Analysis-first build](analysis-first-build.md). The latest user instruction authorizes implementation now, then external connections. Face Analysis, Color Analysis, Glow-Up Guide and makeover lead the experience; Home · Analyze · AI Studio · AI Advisor · Profile replaces the earlier shopping-first navigation. One Expo app, consumer web, unified business portal and restricted admin share canonical identity/RBAC/backend/migrations. Older design-approval waiting and surface/navigation descriptions below are historical where they conflict; production activation/release gates remain.
 
 5 November 2026 · Design specification v1.0 · **Primary flows/design system proposed for review; no production implementation authorized by this package.**

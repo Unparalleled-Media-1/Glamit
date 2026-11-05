@@ -1,5 +1,7 @@
 # GLAM AI engineering rules
 
+- Read docs/specification/contextual-catalog-build.md for the permanent analysis-to-commerce requirement and Snap & List. Every relevant result/guide/Studio flow embeds organic and separately labeled sponsored matches or an honest no-match state. Commerce remains integrated, never hidden behind a mandatory Shop tab. Relevance, source facts, stock, freshness, market/age policy and rights precede bids; AI suggestions never publish without factual/version approval.
+
 - Read docs/specification/analysis-first-build.md first. The latest explicit user instruction authorizes code/build now, with external tools and hosted databases connected afterward. Earlier design-wait instructions are superseded for this implementation; deployment, provider spend and commercial activation still require their own evidence/authorization. Consumer navigation is Home, Analyze, AI Studio, AI Advisor, Profile; commerce is secondary. One native app, unified web/business platform and restricted admin use canonical identities/RBAC/migrations.
 
 - Read docs/approvals.md, docs/specification/README.md and docs/implementation-status.md.

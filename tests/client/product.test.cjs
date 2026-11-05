@@ -99,3 +99,109 @@ test("API port refuses missing identity, insecure destinations and redirect cred
   assert.match(calls[0].url, /organization-a\/workspaces\/merchant/);
   assert.equal(calls[0].options.headers.Authorization, "Bearer test-only");
 });
+
+const C = load("catalog.ts");
+test("recommendation requirements are explicit and merchant facts cannot bypass review or duplicate checks", () => {
+  assert(C.requirementProblem([], "ZA"));
+  assert(C.requirementProblem(["braids", "braids"], "ZA"));
+  assert.equal(C.requirementProblem(["braids"], "ZA"), null);
+  const draft = {
+    ...C.emptyMerchantDraft,
+    title: "Product",
+    sku: "SKU-1",
+    price: "10.00",
+    stock: "0",
+    country: "ZA",
+    source: "packaging",
+    destination: "https://merchant.invalid/product",
+    reviewed: true,
+  };
+  assert.equal(C.merchantDraftProblem(draft), null);
+  assert(C.merchantDraftProblem({ ...draft, reviewed: false }));
+  assert(
+    C.merchantDraftProblem({ ...draft, destination: "http://unsafe.invalid" }),
+  );
+  assert(C.merchantDraftProblem(draft, [{ ...draft, id: "existing" }]));
+  assert(C.merchantDraftProblem({ ...draft, currency: "invented" }));
+});
+
+test("bulk draft import resets review and media authority and rejects duplicate batches atomically", () => {
+  const row = {
+    ...C.emptyMerchantDraft,
+    id: "untrusted-id",
+    title: "Product",
+    sku: "SKU-2",
+    price: "20.00",
+    stock: "1",
+    country: "ZA",
+    source: "packaging",
+    destination: "https://merchant.invalid/item",
+    reviewed: true,
+    photoCount: 8,
+  };
+  const imported = C.parseMerchantImport(JSON.stringify([row]), []);
+  assert.equal(imported.length, 1);
+  assert.equal(imported[0].reviewed, false);
+  assert.equal(imported[0].photoCount, 0);
+  assert.equal("id" in imported[0], false);
+  assert.throws(() => C.parseMerchantImport(JSON.stringify([row, row]), []));
+  assert.throws(() =>
+    C.parseMerchantImport(
+      JSON.stringify([{ ...row, destination: "http://unsafe.invalid" }]),
+      [],
+    ),
+  );
+});
+
+test("qualified match renderer labels sources and sponsorship, preserves unknown costs and never opens a destination automatically", () => {
+  const React = require("react");
+  const { renderToStaticMarkup } = require("react-dom/server");
+  const exports = {};
+  const source = fs.readFileSync(
+    path.resolve(__dirname, "../../apps/web/components/VerifiedMatches.tsx"),
+    "utf8",
+  );
+  const code = ts.transpileModule(source, {
+    compilerOptions: {
+      module: ts.ModuleKind.CommonJS,
+      target: ts.ScriptTarget.ES2022,
+      jsx: ts.JsxEmit.ReactJSX,
+    },
+  }).outputText;
+  vm.runInNewContext(code, {
+    exports,
+    require: (name) => (name.endsWith("/catalog") ? C : require(name)),
+    Date,
+  });
+  const match = {
+    listing_id: "fixture-only",
+    revision: 1,
+    title: "Test <script> product",
+    merchant: "Test merchant",
+    category: "hair",
+    match_type: "Similar",
+    condition: "used",
+    source: "reviewed_merchant_assertion",
+    currency: "ZAR",
+    price_minor: 10000,
+    delivered_total_minor: null,
+    purchase_url: "https://merchant.invalid/product",
+    offer_expires_at: new Date(Date.now() + 3600000).toISOString(),
+    service_quote_required: false,
+  };
+  const markup = renderToStaticMarkup(
+    React.createElement(exports.default, { matches: [match], sponsored: true }),
+  );
+  assert.match(markup, /Sponsored/);
+  assert.match(markup, /Full delivered \/ service total unconfirmed/);
+  assert.match(markup, /&lt;script&gt;/);
+  assert.match(markup, /disabled/);
+  assert.doesNotMatch(markup, /href=/);
+  const expired = renderToStaticMarkup(
+    React.createElement(exports.default, {
+      matches: [{ ...match, offer_expires_at: "2000-01-01T00:00:00Z" }],
+    }),
+  );
+  assert.match(expired, /no longer current/);
+  assert.doesNotMatch(expired, /Test merchant/);
+});

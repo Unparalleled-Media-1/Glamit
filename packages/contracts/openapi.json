@@ -1,6 +1,65 @@
 {
   "components": {
     "schemas": {
+      "BulkListings": {
+        "additionalProperties": false,
+        "properties": {
+          "listings": {
+            "items": {
+              "$ref": "#/components/schemas/NewListing"
+            },
+            "maxItems": 50,
+            "minItems": 1,
+            "title": "Listings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "listings"
+        ],
+        "title": "BulkListings",
+        "type": "object"
+      },
+      "BulkPublication": {
+        "additionalProperties": false,
+        "properties": {
+          "listings": {
+            "items": {
+              "$ref": "#/components/schemas/BulkPublicationItem"
+            },
+            "maxItems": 50,
+            "minItems": 1,
+            "title": "Listings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "listings"
+        ],
+        "title": "BulkPublication",
+        "type": "object"
+      },
+      "BulkPublicationItem": {
+        "additionalProperties": false,
+        "properties": {
+          "listing_id": {
+            "format": "uuid",
+            "title": "Listing Id",
+            "type": "string"
+          },
+          "revision": {
+            "minimum": 1.0,
+            "title": "Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "listing_id",
+          "revision"
+        ],
+        "title": "BulkPublicationItem",
+        "type": "object"
+      },
       "Component-Input": {
         "additionalProperties": false,
         "properties": {
@@ -216,6 +275,39 @@
         "title": "CreditBalance",
         "type": "object"
       },
+      "Derivative": {
+        "additionalProperties": false,
+        "properties": {
+          "advertising": {
+            "default": false,
+            "title": "Advertising",
+            "type": "boolean"
+          },
+          "original_id": {
+            "format": "uuid",
+            "title": "Original Id",
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Sha256",
+            "type": "string"
+          },
+          "storage_ref": {
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Storage Ref",
+            "type": "string"
+          }
+        },
+        "required": [
+          "original_id",
+          "storage_ref",
+          "sha256"
+        ],
+        "title": "Derivative",
+        "type": "object"
+      },
       "Draft": {
         "additionalProperties": false,
         "properties": {
@@ -306,6 +398,40 @@
           "expected_revision"
         ],
         "title": "DraftUpdate",
+        "type": "object"
+      },
+      "EnhancementRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_revision": {
+            "minimum": 1.0,
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "features": {
+            "items": {
+              "enum": [
+                "background",
+                "lighting",
+                "description",
+                "tags",
+                "ocr",
+                "translation",
+                "advertising"
+              ],
+              "type": "string"
+            },
+            "maxItems": 7,
+            "minItems": 1,
+            "title": "Features",
+            "type": "array"
+          }
+        },
+        "required": [
+          "expected_revision",
+          "features"
+        ],
+        "title": "EnhancementRequest",
         "type": "object"
       },
       "HTTPValidationError": {
@@ -433,6 +559,282 @@
         "title": "InviteRead",
         "type": "object"
       },
+      "JobRead": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "queued",
+              "processing",
+              "review_ready",
+              "failed",
+              "cancelled"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "suggestions": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Suggestions"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "state"
+        ],
+        "title": "JobRead",
+        "type": "object"
+      },
+      "ListingFacts": {
+        "additionalProperties": false,
+        "properties": {
+          "accepting_requests": {
+            "default": false,
+            "title": "Accepting Requests",
+            "type": "boolean"
+          },
+          "category": {
+            "enum": [
+              "cosmetics",
+              "hair",
+              "skincare",
+              "clothing",
+              "footwear",
+              "accessories",
+              "tool",
+              "service"
+            ],
+            "title": "Category",
+            "type": "string"
+          },
+          "condition": {
+            "default": "new",
+            "enum": [
+              "new",
+              "used",
+              "refurbished",
+              "rental"
+            ],
+            "title": "Condition",
+            "type": "string"
+          },
+          "countries": {
+            "items": {
+              "pattern": "^[A-Z]{2}$",
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "title": "Countries",
+            "type": "array"
+          },
+          "currency": {
+            "enum": [
+              "ZAR",
+              "USD",
+              "EUR",
+              "GBP"
+            ],
+            "title": "Currency",
+            "type": "string"
+          },
+          "description": {
+            "default": "",
+            "maxLength": 3000,
+            "title": "Description",
+            "type": "string"
+          },
+          "offer_expires_at": {
+            "format": "date-time",
+            "title": "Offer Expires At",
+            "type": "string"
+          },
+          "other_costs_minor": {
+            "anyOf": [
+              {
+                "maximum": 100000000000.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Other Costs Minor"
+          },
+          "price_minor": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 100000000000.0,
+            "title": "Price Minor",
+            "type": "integer"
+          },
+          "purchase_url": {
+            "format": "uri",
+            "maxLength": 2083,
+            "minLength": 1,
+            "title": "Purchase Url",
+            "type": "string"
+          },
+          "shipping_minor": {
+            "anyOf": [
+              {
+                "maximum": 100000000000.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Shipping Minor"
+          },
+          "source_ref": {
+            "maxLength": 160,
+            "minLength": 1,
+            "pattern": ".*\\S.*",
+            "title": "Source Ref",
+            "type": "string"
+          },
+          "source_sku": {
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:/-]*$",
+            "title": "Source Sku",
+            "type": "string"
+          },
+          "stock_quantity": {
+            "default": 0,
+            "maximum": 1000000000.0,
+            "minimum": 0.0,
+            "title": "Stock Quantity",
+            "type": "integer"
+          },
+          "tags": {
+            "items": {
+              "pattern": "^[a-z0-9][a-z0-9-]{0,47}$",
+              "type": "string"
+            },
+            "maxItems": 20,
+            "minItems": 1,
+            "title": "Tags",
+            "type": "array"
+          },
+          "tax_minor": {
+            "anyOf": [
+              {
+                "maximum": 100000000000.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tax Minor"
+          },
+          "title": {
+            "maxLength": 160,
+            "minLength": 1,
+            "pattern": ".*\\S.*",
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "category",
+          "tags",
+          "source_sku",
+          "source_ref",
+          "currency",
+          "price_minor",
+          "countries",
+          "offer_expires_at",
+          "purchase_url"
+        ],
+        "title": "ListingFacts",
+        "type": "object"
+      },
+      "ListingRead": {
+        "additionalProperties": false,
+        "properties": {
+          "current_revision": {
+            "title": "Current Revision",
+            "type": "integer"
+          },
+          "decision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/ListingFacts"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "merchant_reviewed": {
+            "title": "Merchant Reviewed",
+            "type": "boolean"
+          },
+          "organization_id": {
+            "format": "uuid",
+            "title": "Organization Id",
+            "type": "string"
+          },
+          "published_revision": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published Revision"
+          },
+          "state": {
+            "enum": [
+              "draft",
+              "published",
+              "withdrawn"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "organization_id",
+          "current_revision",
+          "published_revision",
+          "state",
+          "facts",
+          "merchant_reviewed",
+          "decision"
+        ],
+        "title": "ListingRead",
+        "type": "object"
+      },
       "LookResult": {
         "additionalProperties": false,
         "properties": {
@@ -459,6 +861,173 @@
           "id"
         ],
         "title": "LookResult",
+        "type": "object"
+      },
+      "Match": {
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "enum": [
+              "cosmetics",
+              "hair",
+              "skincare",
+              "clothing",
+              "footwear",
+              "accessories",
+              "tool",
+              "service"
+            ],
+            "title": "Category",
+            "type": "string"
+          },
+          "condition": {
+            "anyOf": [
+              {
+                "enum": [
+                  "new",
+                  "used",
+                  "refurbished"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Condition"
+          },
+          "currency": {
+            "enum": [
+              "ZAR",
+              "USD",
+              "EUR",
+              "GBP"
+            ],
+            "title": "Currency",
+            "type": "string"
+          },
+          "delivered_total_minor": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Delivered Total Minor"
+          },
+          "listing_id": {
+            "format": "uuid",
+            "title": "Listing Id",
+            "type": "string"
+          },
+          "match_type": {
+            "enum": [
+              "Exact",
+              "Similar"
+            ],
+            "title": "Match Type",
+            "type": "string"
+          },
+          "merchant": {
+            "title": "Merchant",
+            "type": "string"
+          },
+          "offer_expires_at": {
+            "format": "date-time",
+            "title": "Offer Expires At",
+            "type": "string"
+          },
+          "price_minor": {
+            "title": "Price Minor",
+            "type": "integer"
+          },
+          "purchase_url": {
+            "format": "uri",
+            "maxLength": 2083,
+            "minLength": 1,
+            "title": "Purchase Url",
+            "type": "string"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "integer"
+          },
+          "service_quote_required": {
+            "title": "Service Quote Required",
+            "type": "boolean"
+          },
+          "source": {
+            "const": "reviewed_merchant_assertion",
+            "default": "reviewed_merchant_assertion",
+            "title": "Source",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "listing_id",
+          "revision",
+          "title",
+          "merchant",
+          "category",
+          "match_type",
+          "condition",
+          "currency",
+          "price_minor",
+          "delivered_total_minor",
+          "purchase_url",
+          "offer_expires_at",
+          "service_quote_required"
+        ],
+        "title": "Match",
+        "type": "object"
+      },
+      "MatchResult": {
+        "additionalProperties": false,
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "organic": {
+            "items": {
+              "$ref": "#/components/schemas/Match"
+            },
+            "title": "Organic",
+            "type": "array"
+          },
+          "sponsored": {
+            "items": {
+              "$ref": "#/components/schemas/Match"
+            },
+            "title": "Sponsored",
+            "type": "array"
+          }
+        },
+        "required": [
+          "organic",
+          "sponsored",
+          "message"
+        ],
+        "title": "MatchResult",
+        "type": "object"
+      },
+      "NewListing": {
+        "additionalProperties": false,
+        "properties": {
+          "facts": {
+            "$ref": "#/components/schemas/ListingFacts"
+          }
+        },
+        "required": [
+          "facts"
+        ],
+        "title": "NewListing",
         "type": "object"
       },
       "NewLook": {
@@ -602,6 +1171,174 @@
           "content"
         ],
         "title": "PolicyRead",
+        "type": "object"
+      },
+      "PublishChoice": {
+        "additionalProperties": false,
+        "properties": {
+          "revision": {
+            "minimum": 1.0,
+            "title": "Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "revision"
+        ],
+        "title": "PublishChoice",
+        "type": "object"
+      },
+      "Requirement": {
+        "additionalProperties": false,
+        "properties": {
+          "budget_minor": {
+            "anyOf": [
+              {
+                "maximum": 100000000000.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget Minor"
+          },
+          "category": {
+            "enum": [
+              "cosmetics",
+              "hair",
+              "skincare",
+              "clothing",
+              "footwear",
+              "accessories",
+              "tool",
+              "service"
+            ],
+            "title": "Category",
+            "type": "string"
+          },
+          "context": {
+            "enum": [
+              "face",
+              "hair",
+              "skin",
+              "body-fit",
+              "color",
+              "makeup-match",
+              "makeover",
+              "routine"
+            ],
+            "title": "Context",
+            "type": "string"
+          },
+          "country": {
+            "pattern": "^[A-Z]{2}$",
+            "title": "Country",
+            "type": "string"
+          },
+          "currency": {
+            "enum": [
+              "ZAR",
+              "USD",
+              "EUR",
+              "GBP"
+            ],
+            "title": "Currency",
+            "type": "string"
+          },
+          "source_organization_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Organization Id"
+          },
+          "source_sku": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Sku"
+          },
+          "tags": {
+            "items": {
+              "pattern": "^[a-z0-9][a-z0-9-]{0,47}$",
+              "type": "string"
+            },
+            "maxItems": 20,
+            "minItems": 1,
+            "title": "Tags",
+            "type": "array"
+          }
+        },
+        "required": [
+          "context",
+          "category",
+          "tags",
+          "country",
+          "currency"
+        ],
+        "title": "Requirement",
+        "type": "object"
+      },
+      "ReviewChoice": {
+        "additionalProperties": false,
+        "properties": {
+          "decision": {
+            "enum": [
+              "approved",
+              "rejected"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
+          "identifier_verified": {
+            "default": false,
+            "title": "Identifier Verified",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "title": "ReviewChoice",
+        "type": "object"
+      },
+      "RevisionChoice": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_revision": {
+            "minimum": 1.0,
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "facts": {
+            "$ref": "#/components/schemas/ListingFacts"
+          },
+          "merchant_reviewed": {
+            "const": true,
+            "title": "Merchant Reviewed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "facts",
+          "expected_revision",
+          "merchant_reviewed"
+        ],
+        "title": "RevisionChoice",
         "type": "object"
       },
       "RevisionRead": {
@@ -792,9 +1529,33 @@
         "title": "RoutineUpdate",
         "type": "object"
       },
+      "SavedRead": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "requirement": {
+            "$ref": "#/components/schemas/Requirement"
+          }
+        },
+        "required": [
+          "id",
+          "requirement"
+        ],
+        "title": "SavedRead",
+        "type": "object"
+      },
       "StaffContext": {
         "additionalProperties": false,
         "properties": {
+          "catalog_review_enabled": {
+            "default": false,
+            "title": "Catalog Review Enabled",
+            "type": "boolean"
+          },
           "modules": {
             "items": {
               "type": "string"
@@ -821,6 +1582,75 @@
           "modules"
         ],
         "title": "StaffContext",
+        "type": "object"
+      },
+      "Suggestions": {
+        "additionalProperties": false,
+        "properties": {
+          "completed_features": {
+            "items": {
+              "enum": [
+                "background",
+                "lighting",
+                "description",
+                "tags",
+                "ocr",
+                "translation",
+                "advertising"
+              ],
+              "type": "string"
+            },
+            "maxItems": 7,
+            "minItems": 1,
+            "title": "Completed Features",
+            "type": "array"
+          },
+          "derivatives": {
+            "items": {
+              "$ref": "#/components/schemas/Derivative"
+            },
+            "maxItems": 12,
+            "title": "Derivatives",
+            "type": "array"
+          },
+          "description": {
+            "maxLength": 3000,
+            "title": "Description",
+            "type": "string"
+          },
+          "tags": {
+            "items": {
+              "pattern": "^[a-z0-9][a-z0-9-]{0,47}$",
+              "type": "string"
+            },
+            "maxItems": 20,
+            "title": "Tags",
+            "type": "array"
+          },
+          "title": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "minItems": 1,
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "completed_features",
+          "title",
+          "description",
+          "tags",
+          "warnings"
+        ],
+        "title": "Suggestions",
         "type": "object"
       },
       "UnavailableResult": {
@@ -978,6 +1808,108 @@
           }
         },
         "summary": "Ready"
+      }
+    },
+    "/v1/admin/catalog/review-queue": {
+      "get": {
+        "operationId": "review_queue_v1_admin_catalog_review_queue_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ListingRead"
+                  },
+                  "title": "Response Review Queue V1 Admin Catalog Review Queue Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Review Queue"
+      }
+    },
+    "/v1/admin/catalog/{lid}/revisions/{revision}/review": {
+      "post": {
+        "operationId": "review_v1_admin_catalog__lid__revisions__revision__review_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lid",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Lid",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "revision",
+            "required": true,
+            "schema": {
+              "title": "Revision",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "maxLength": 160,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewChoice"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewChoice"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Review"
       }
     },
     "/v1/admin/context": {
@@ -1458,6 +2390,125 @@
         "summary": "Update Routine"
       }
     },
+    "/v1/me/saved-requirements": {
+      "get": {
+        "operationId": "saved_v1_me_saved_requirements_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/SavedRead"
+                  },
+                  "title": "Response Saved V1 Me Saved Requirements Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Saved"
+      },
+      "post": {
+        "operationId": "save_requirement_v1_me_saved_requirements_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "maxLength": 160,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Requirement"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Save Requirement"
+      }
+    },
+    "/v1/me/saved-requirements/{sid}": {
+      "delete": {
+        "operationId": "delete_saved_v1_me_saved_requirements__sid__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sid",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Sid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete Saved"
+      }
+    },
     "/v1/me/workspace-invitations": {
       "get": {
         "operationId": "invitations_v1_me_workspace_invitations_get",
@@ -1656,6 +2707,705 @@
           }
         ],
         "summary": "Get Organization"
+      }
+    },
+    "/v1/organizations/{org}/catalog/listings": {
+      "get": {
+        "operationId": "list_owned_v1_organizations__org__catalog_listings_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Org",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ListingRead"
+                  },
+                  "title": "Response List Owned V1 Organizations  Org  Catalog Listings Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List Owned"
+      },
+      "post": {
+        "operationId": "create_v1_organizations__org__catalog_listings_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Org",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "maxLength": 160,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewListing"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListingRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Create"
+      }
+    },
+    "/v1/organizations/{org}/catalog/listings/bulk": {
+      "post": {
+        "operationId": "bulk_create_v1_organizations__org__catalog_listings_bulk_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Org",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "maxLength": 160,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkListings"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ListingRead"
+                  },
+                  "title": "Response Bulk Create V1 Organizations  Org  Catalog Listings Bulk Post",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Bulk Create"
+      }
+    },
+    "/v1/organizations/{org}/catalog/listings/{lid}": {
+      "get": {
+        "operationId": "detail_v1_organizations__org__catalog_listings__lid__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Org",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "lid",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Lid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListingRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Detail"
+      }
+    },
+    "/v1/organizations/{org}/catalog/listings/{lid}/enhancements": {
+      "post": {
+        "operationId": "enhance_v1_organizations__org__catalog_listings__lid__enhancements_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Org",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "lid",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Lid",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "maxLength": 160,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnhancementRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Enhance"
+      }
+    },
+    "/v1/organizations/{org}/catalog/listings/{lid}/enhancements/{jid}": {
+      "get": {
+        "operationId": "job_v1_organizations__org__catalog_listings__lid__enhancements__jid__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Org",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "lid",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Lid",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "jid",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Jid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Job"
+      }
+    },
+    "/v1/organizations/{org}/catalog/listings/{lid}/publish": {
+      "post": {
+        "operationId": "publish_v1_organizations__org__catalog_listings__lid__publish_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Org",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "lid",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Lid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishChoice"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListingRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Publish"
+      }
+    },
+    "/v1/organizations/{org}/catalog/listings/{lid}/revisions": {
+      "post": {
+        "operationId": "revise_v1_organizations__org__catalog_listings__lid__revisions_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Org",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "lid",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Lid",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "maxLength": 160,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevisionChoice"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListingRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Revise"
+      }
+    },
+    "/v1/organizations/{org}/catalog/listings/{lid}/rollback": {
+      "post": {
+        "operationId": "rollback_v1_organizations__org__catalog_listings__lid__rollback_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Org",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "lid",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Lid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishChoice"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListingRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Rollback"
+      }
+    },
+    "/v1/organizations/{org}/catalog/listings/{lid}/withdraw": {
+      "post": {
+        "operationId": "withdraw_v1_organizations__org__catalog_listings__lid__withdraw_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Org",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "lid",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Lid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListingRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Withdraw"
+      }
+    },
+    "/v1/organizations/{org}/catalog/publish-bulk": {
+      "post": {
+        "operationId": "publish_bulk_v1_organizations__org__catalog_publish_bulk_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Org",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkPublication"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ListingRead"
+                  },
+                  "title": "Response Publish Bulk V1 Organizations  Org  Catalog Publish Bulk Post",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Publish Bulk"
       }
     },
     "/v1/organizations/{org}/workspaces/{workspace}/drafts": {
@@ -2259,6 +4009,104 @@
           }
         ],
         "summary": "Consent"
+      }
+    },
+    "/v1/recommendations/listings/{lid}": {
+      "post": {
+        "operationId": "qualified_detail_v1_recommendations_listings__lid__post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lid",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Lid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Requirement"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchResult"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Qualified Detail"
+      }
+    },
+    "/v1/recommendations/matches": {
+      "post": {
+        "operationId": "match_requirements_v1_recommendations_matches_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Requirement"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchResult"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Match Requirements"
       }
     }
   }
