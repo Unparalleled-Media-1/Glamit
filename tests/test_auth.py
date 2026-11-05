@@ -74,3 +74,17 @@ def test_google_id_token_is_not_a_supabase_access_token(key):
     token = jwt.encode(claims(iss="https://accounts.google.com"), key, algorithm="RS256")
     with pytest.raises(jwt.InvalidIssuerError):
         verify_token(token, key.public_key(), "https://example-project.supabase.co/auth/v1", "glam")
+
+
+def test_verified_privileged_assurance_is_carried_from_signed_claims(key):
+    now = int(datetime.now(UTC).timestamp())
+    token = jwt.encode(claims(aal="aal2", auth_time=now), key, algorithm="RS256")
+    principal = verify_token(token, key.public_key(), "https://issuer.invalid", "glam")
+    assert principal.assurance == "aal2"
+    assert principal.authenticated_at == now
+
+
+def test_malformed_auth_time_does_not_create_privileged_freshness(key):
+    token = jwt.encode(claims(aal="aal2", auth_time="now"), key, algorithm="RS256")
+    principal = verify_token(token, key.public_key(), "https://issuer.invalid", "glam")
+    assert principal.authenticated_at is None

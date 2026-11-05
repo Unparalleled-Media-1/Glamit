@@ -1,5 +1,7 @@
 # GLAM AI Master PRD v2.0
 
+**Current authority:** [Analysis-first build](analysis-first-build.md). The latest user instruction authorizes implementation now, then external connections. Face Analysis, Color Analysis, Glow-Up Guide and makeover lead the experience; Home · Analyze · AI Studio · AI Advisor · Profile replaces the earlier shopping-first navigation. One Expo app, consumer web, unified business portal and restricted admin share canonical identity/RBAC/backend/migrations. Older design-approval waiting and surface/navigation descriptions below are historical where they conflict; production activation/release gates remain.
+
 5 November 2026 · **Revised architecture and acceptance criteria: proposed for review.**
 
 **Every Look. Every Style. Everyone.** GLAM AI is a worldwide AI-powered beauty, grooming, fashion and lifestyle discovery platform: **Discover → Try → Complete → Shop → Book → Share**. People choose their style; the system does not tell them how attractive they are or infer their identity from appearance.

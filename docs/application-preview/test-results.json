@@ -1,0 +1,32 @@
+{
+  "run_at": "2026-11-05T15:25:31.281Z",
+  "checks": [
+    "Consent-gated photo selection, invalid-file rejection, technical review, goals and honest uncomputed report",
+    "Editable routine save/checklist, dedicated Makeup Match, original-preserving Studio and reset",
+    "Unsent Advisor, unauthorized workspace switcher, focus restoration, photo deletion and no persisted private data",
+    "All business role modules, isolated session draft save/reset and evidence-gated campaign wizard",
+    "Public admin inventory reveals no privileged controls or business data",
+    "Responsive 320–1920px, five analysis-first mobile destinations, offline guard, reduced motion and no external requests/errors"
+  ],
+  "screenshots": [
+    "web-home.png",
+    "photo-quality.png",
+    "face-report.png",
+    "color-report.png",
+    "glow-up-guide.png",
+    "ai-studio.png",
+    "merchant-workspace.png",
+    "advertiser-workspace.png",
+    "professional-workspace.png",
+    "creator-workspace.png",
+    "affiliate-workspace.png",
+    "admin.png",
+    "mobile-home.png",
+    "mobile-face-report.png"
+  ],
+  "limits": [
+    "No native-device/camera validation",
+    "No provider, identity, storage, catalog, payment or business activation",
+    "Browser tests use actual Next.js application; report fields remain uncomputed"
+  ]
+}

@@ -1,5 +1,7 @@
 # Mobile and web design blueprint
 
+**Current authority:** [Analysis-first build](analysis-first-build.md). The latest user instruction authorizes implementation now, then external connections. Face Analysis, Color Analysis, Glow-Up Guide and makeover lead the experience; Home · Analyze · AI Studio · AI Advisor · Profile replaces the earlier shopping-first navigation. One Expo app, consumer web, unified business portal and restricted admin share canonical identity/RBAC/backend/migrations. Older design-approval waiting and surface/navigation descriptions below are historical where they conflict; production activation/release gates remain.
+
 5 November 2026. Design proposal derived from the [uploaded master](sources/2026-11-master-product-specification.txt), reconciled by [master alignment](master-alignment.md). The [visual preview](../design-preview/index.html) illustrates the direction; it is not an implemented app journey or admin service.
 
 Current direction: [Master PRD v2](master-prd-v2.md) and the [12-opportunity companion extension](style-companion-extension.md). Globally inclusive beauty/grooming/fashion, user-controlled Style DNA, occasion/budget planning and a confirmation-based Shopping Agent supersede an exclusively African/adults-only target product. African categories retain full support. Restricted teen/guardian-managed child flows are planned under the [age matrix](global-policy-architecture.md#age-specific-permission-matrix); no new age/country/capability is enabled. Expanded production architecture/criteria await approval.

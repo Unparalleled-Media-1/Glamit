@@ -1,5 +1,7 @@
 # GLAM AI UI/UX design review and development handoff
 
+**Current authority:** [Analysis-first build](analysis-first-build.md). The latest user instruction authorizes implementation now, then external connections. Face Analysis, Color Analysis, Glow-Up Guide and makeover lead the experience; Home · Analyze · AI Studio · AI Advisor · Profile replaces the earlier shopping-first navigation. One Expo app, consumer web, unified business portal and restricted admin share canonical identity/RBAC/backend/migrations. Older design-approval waiting and surface/navigation descriptions below are historical where they conflict; production activation/release gates remain.
+
 5 November 2026 · Design specification v1.0 · **Primary flows/design system proposed for review; no production implementation authorized by this package.**
 
 Source: the [complete UI/UX brief](sources/2026-11-ui-ux-design-brief.txt) and the accompanying visual references. The references inform editorial scale, photography, restrained cards, immersive previews and task hierarchy; their brand layouts, product images, logos, claimed prices/reviews and business metrics are not reproduced. New photographic assets are original AI-generated editorial/product illustrations, clearly separated from actual user results or merchant inventory.

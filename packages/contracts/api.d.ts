@@ -38,6 +38,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/admin/context": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Staff Context */
+        get: operations["staff_context_v1_admin_context_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/analysis/requests": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Analysis Unavailable */
+        post: operations["analysis_unavailable_v1_analysis_requests_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/looks": {
         parameters: {
             query?: never;
@@ -140,6 +174,93 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/me/routines": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Routines */
+        get: operations["routines_v1_me_routines_get"];
+        put?: never;
+        /** Save Routine */
+        post: operations["save_routine_v1_me_routines_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/routines/{routine}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Update Routine */
+        put: operations["update_routine_v1_me_routines__routine__put"];
+        post?: never;
+        /** Delete Routine */
+        delete: operations["delete_routine_v1_me_routines__routine__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/workspace-invitations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Invitations */
+        get: operations["invitations_v1_me_workspace_invitations_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/workspace-invitations/{invitation}/accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Accept */
+        post: operations["accept_v1_me_workspace_invitations__invitation__accept_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/workspaces": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Workspaces */
+        get: operations["list_workspaces_v1_me_workspaces_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/organizations": {
         parameters: {
             query?: never;
@@ -169,6 +290,93 @@ export interface paths {
         put?: never;
         post?: never;
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/workspaces/{workspace}/drafts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Drafts */
+        get: operations["drafts_v1_organizations__org__workspaces__workspace__drafts_get"];
+        put?: never;
+        /** Create Draft */
+        post: operations["create_draft_v1_organizations__org__workspaces__workspace__drafts_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/workspaces/{workspace}/drafts/{draft}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Update Draft */
+        put: operations["update_draft_v1_organizations__org__workspaces__workspace__drafts__draft__put"];
+        post?: never;
+        /** Delete Draft */
+        delete: operations["delete_draft_v1_organizations__org__workspaces__workspace__drafts__draft__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/workspaces/{workspace}/invitations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Invite */
+        post: operations["invite_v1_organizations__org__workspaces__workspace__invitations_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/workspaces/{workspace}/invitations/{invitation}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Revoke Invite */
+        delete: operations["revoke_invite_v1_organizations__org__workspaces__workspace__invitations__invitation__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/workspaces/{workspace}/roles/{member}/{role}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Revoke Role */
+        delete: operations["revoke_role_v1_organizations__org__workspaces__workspace__roles__member___role__delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -304,10 +512,112 @@ export interface components {
             /** Held */
             held: number;
         };
+        /** Draft */
+        Draft: {
+            /**
+             * Notes
+             * @default
+             */
+            notes: string;
+            /** Title */
+            title: string;
+        };
+        /** DraftRead */
+        DraftRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Notes
+             * @default
+             */
+            notes: string;
+            /** Revision */
+            revision: number;
+            /** Title */
+            title: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /** DraftUpdate */
+        DraftUpdate: {
+            /** Expected Revision */
+            expected_revision: number;
+            /**
+             * Notes
+             * @default
+             */
+            notes: string;
+            /** Title */
+            title: string;
+        };
         /** HTTPValidationError */
         HTTPValidationError: {
             /** Detail */
             detail?: components["schemas"]["ValidationError"][];
+        };
+        /** InvitationSummary */
+        InvitationSummary: {
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /**
+             * Organization Id
+             * Format: uuid
+             */
+            organization_id: string;
+            /** Role */
+            role: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "pending" | "accepted" | "revoked";
+            /**
+             * Workspace
+             * @enum {string}
+             */
+            workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+        };
+        /** Invite */
+        Invite: {
+            /**
+             * Recipient Id
+             * Format: uuid
+             */
+            recipient_id: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "catalog_manager" | "campaign_manager" | "booking_manager" | "creator" | "affiliate" | "analyst";
+        };
+        /** InviteRead */
+        InviteRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "pending" | "accepted" | "revoked";
         };
         /** LookResult */
         LookResult: {
@@ -413,6 +723,71 @@ export interface components {
             /** Revision No */
             revision_no: number;
         };
+        /** Routine */
+        Routine: {
+            /** Steps */
+            steps: components["schemas"]["RoutineStep"][];
+            /** Title */
+            title: string;
+        };
+        /** RoutineRead */
+        RoutineRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Revision */
+            revision: number;
+            /** Steps */
+            steps: components["schemas"]["RoutineStep"][];
+            /** Title */
+            title: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /** RoutineStep */
+        RoutineStep: {
+            /**
+             * Done
+             * @default false
+             */
+            done: boolean;
+            /** Text */
+            text: string;
+        };
+        /** RoutineUpdate */
+        RoutineUpdate: {
+            /** Expected Revision */
+            expected_revision: number;
+            /** Steps */
+            steps: components["schemas"]["RoutineStep"][];
+            /** Title */
+            title: string;
+        };
+        /** StaffContext */
+        StaffContext: {
+            /** Modules */
+            modules: string[];
+            /**
+             * Operational Actions Enabled
+             * @default false
+             * @constant
+             */
+            operational_actions_enabled: false;
+            /** Roles */
+            roles: string[];
+        };
+        /** UnavailableResult */
+        UnavailableResult: {
+            /** Code */
+            code: string;
+            /** Detail */
+            detail: string;
+        };
         /** UserResult */
         UserResult: {
             /**
@@ -433,6 +808,23 @@ export interface components {
             msg: string;
             /** Error Type */
             type: string;
+        };
+        /** WorkspaceRead */
+        WorkspaceRead: {
+            /** Can Write */
+            can_write: boolean;
+            /** Name */
+            name: string;
+            /**
+             * Organization Id
+             * Format: uuid
+             */
+            organization_id: string;
+            /**
+             * Workspace
+             * @enum {string}
+             */
+            workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
         };
     };
     responses: never;
@@ -479,6 +871,46 @@ export interface operations {
                 };
                 content: {
                     "application/json": unknown;
+                };
+            };
+        };
+    };
+    staff_context_v1_admin_context_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StaffContext"];
+                };
+            };
+        };
+    };
+    analysis_unavailable_v1_analysis_requests_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UnavailableResult"];
                 };
             };
         };
@@ -656,6 +1088,196 @@ export interface operations {
             };
         };
     };
+    routines_v1_me_routines_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoutineRead"][];
+                };
+            };
+        };
+    };
+    save_routine_v1_me_routines_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Routine"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoutineRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_routine_v1_me_routines__routine__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                routine: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RoutineUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoutineRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_routine_v1_me_routines__routine__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                routine: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    invitations_v1_me_workspace_invitations_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InvitationSummary"][];
+                };
+            };
+        };
+    };
+    accept_v1_me_workspace_invitations__invitation__accept_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                invitation: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InviteRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_workspaces_v1_me_workspaces_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WorkspaceRead"][];
+                };
+            };
+        };
+    };
     create_organization_v1_organizations_post: {
         parameters: {
             query?: never;
@@ -710,6 +1332,245 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["OrganizationRead"];
                 };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    drafts_v1_organizations__org__workspaces__workspace__drafts_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DraftRead"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_draft_v1_organizations__org__workspaces__workspace__drafts_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Draft"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DraftRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_draft_v1_organizations__org__workspaces__workspace__drafts__draft__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+                draft: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DraftUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DraftRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_draft_v1_organizations__org__workspaces__workspace__drafts__draft__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+                draft: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    invite_v1_organizations__org__workspaces__workspace__invitations_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Invite"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InviteRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    revoke_invite_v1_organizations__org__workspaces__workspace__invitations__invitation__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+                invitation: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    revoke_role_v1_organizations__org__workspaces__workspace__roles__member___role__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+                member: string;
+                role: "catalog_manager" | "campaign_manager" | "booking_manager" | "creator" | "affiliate" | "analyst";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description Validation Error */
             422: {

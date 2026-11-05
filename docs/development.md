@@ -1,5 +1,9 @@
 # Development environment
 
+The current client implementation is the [analysis-first application build](specification/analysis-first-build.md), superseding the older foundation-shell/design-only preview notes below. Run `npm run dev:web` and open `http://localhost:3000` on the same machine; `/analyze`, `/report`, `/color`, `/guide`, `/studio`, `/business` and `/admin` are actual app routes. Run `npm run dev:mobile` for Expo. Native photo/camera modules need an SDK-compatible Expo Go or development build; physical-device behavior remains unverified. See [current preview guide](application-preview/README.md).
+
+For UI tests run `npm run test:client`; after `npm run build:web`, run `npm run test:web` (requires the isolated Playwright install in `docs/design-preview` and Chromium). New APIs are in generated contracts. Apply canonical migrations to a deliberately selected development database before using them; tests use only a dedicated `_test` database. No hosted connection is activated by this code update.
+
 Use the existing checkout, not an additional worktree. Node 24.22.1, npm 11.9.0 and Python 3.12 are pinned. `uv.lock` and `package-lock.json` reproduce dependencies. PostgreSQL 17 is required; SQLite does not validate locking or journal triggers.
 
 TypeScript is pinned to 5.9.3 because `openapi-typescript` 7.13.0 requires its compiler API. Both clients use React 19.3.0, the installed Expo SDK's expected version; root overrides keep React/React DOM peers on that version so Metro cannot load a different React instance from the app. Upgrade Expo, React Native and React together and run the runtime/compatibility checks below. See [dependency constraints](dependency-overrides.md). Frozen installation and contract generation use the repository commands directly; the earlier external generator and `--legacy-peer-deps`/`--package-lock=false` installation workarounds are unnecessary on this branch.

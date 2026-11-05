@@ -1,5 +1,25 @@
 # Implementation evidence and remaining gates
 
+## Current analysis-first application build
+
+The newest explicit user instruction authorizes coding/building now, followed by external connections. See [the authoritative build specification](specification/analysis-first-build.md). Earlier approval-wait/navigation text below records prior revisions.
+
+| Delivered in this build | Evidence / boundary |
+|---|---|
+| Actual consumer web + Expo app | Home, Analyze, AI Studio, AI Advisor, Profile; dedicated consent/photo-quality/goals/report/color/guide/history/privacy and secondary commerce/companion routes. No fabricated inference or makeover results |
+| Browser local photo preparation | Permission before file selection, MIME/size/dimensions checks, local object URL and explicit clearing; no facial quality model or server upload |
+| Native photo integration | Expo picker/camera permission and app-owned cache deletion code; iOS/Android JS exports pass. Native device/camera behavior remains unverified |
+| Guides / routine interaction | Editable, checkable and deletable session routines; optional interests and reset. No private persistent browser storage; account sync deferred |
+| Consumer persistence API | Authenticated owner-only routine create/read/update/delete, optimistic revisions, idempotent creation and audit; real PostgreSQL tests |
+| Unified business portal | Five role inventories, module-specific planning forms, isolated session drafts and seven-step campaign review; no approved tenant activated or business operation executed |
+| Canonical server RBAC | Verified/unexpired capability + eligible adult assertion + active organization membership + workspace grants; read/write separation; no public self-verification endpoint |
+| Team invitations | Owner-issued recipient-bound invitations; acceptance, expiration, revocation, role revocation and changed-authority checks; no email/notification delivery connected |
+| Business draft API | Scoped CRUD with optimistic updates/idempotent creation/audit; capability/permission rechecked before replay, no cross-tenant access |
+| Restricted admin | Public module/role inventory only, no staff records, privileges or operational controls. Separate staff-context API requires expiring staff grants and fresh AAL2/auth_time; full operational staff portal remains connection/implementation work |
+| Canonical migrations/contracts | Additive 0004/0005/0006, server-only RLS for all new tables; actual OpenAPI/TypeScript contracts regenerated; migrations exercised on dedicated local test DB only |
+
+Remaining: connect Google/Supabase Auth and hosted PostgreSQL; qualify age/guardian/market/privacy policies; private storage, real provider analysis/makeovers/Advisor, persistent results/history and deletion; source-backed catalog/matching/full-cost budgets; professional availability/quotes/booking; publication/moderation; payments/subscriptions/ledger/payout execution; verified analytics and admin staff authority; native/device, accessibility, localization, provider quality and pilot/recovery evidence. The broad marketplace and later companion proposals are not fully implemented by planning forms. Current code is a reviewable build, not a market-ready platform.
+
 Current application code is a limited foundation, not the completed platform or a production release. This file records the delivered subset; all feature and release gates without evidence remain open. The revised global [Master PRD v2.0](specification/master-prd-v2.md) and age/commerce architecture await review before expanded production implementation.
 
 Latest design scope (5 November 2026): the [UI/UX handoff](specification/ui-ux-design-handoff.md) supersedes the earlier mobile-only/landing-only design restriction with eight application designs. Home, Discover, Studio, Shop, Profile are the proposed mobile destinations; Advisor is contextual. The standalone HTML prototype contains 133 dedicated screen-family studies, separate role workspaces and original illustrative imagery. Native Figma authoring remains outstanding. Only the existing web/mobile application foundation screens are implemented; the prototype adds no production routes, identity/provider/catalog/payment connection or privileged access. Primary flows/design system and expanded architecture still await review.

@@ -1,5 +1,7 @@
 # GLAM AI
 
+The [analysis-first application build](docs/specification/analysis-first-build.md) now lives in Expo and Next.js: Face/Color Analysis workspaces, private photo preparation, editable routines, Studio/Advisor, unified business tools and restricted admin inventory. [Current screenshots and run instructions](docs/application-preview/README.md). External AI, identity, storage, catalogs, payments and hosted databases are deferred; no live AI result or verified commerce is claimed.
+
 Review the latest [UI/UX design package](docs/specification/ui-ux-design-handoff.md) and [interactive prototype](docs/design-preview/index.html), with original editorial imagery, eight application surfaces, 133 screen-family studies, tokens and editable SVGs. Native Figma authoring remains outstanding; production application code is unchanged.
 
 Global AI beauty, grooming, fashion and lifestyle discovery. Every Look. Every Style. Everyone.

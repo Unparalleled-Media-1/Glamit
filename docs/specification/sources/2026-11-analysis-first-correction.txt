@@ -1,0 +1,252 @@
+You're right. We've allowed shopping and advertising to become too prominent in GLAM AI's design. That moves us away from the original goal: building a stronger, more inclusive competitor to Glam Up – Perfect Your Look.
+
+The app should be AI beauty and personal appearance analysis first, with shopping as an optional way to recreate recommended looks.
+
+Most importantly, Face Analysis should be a primary navigation tab, not something hidden inside Studio.
+
+## 1. Corrected primary mobile navigation
+
+## Face Analysis
+
+Discover your facial features, personal colors and tailored styling suggestions.
+
+Start Face Analysis
+
+Take a selfie or upload a photo
+
+Home
+
+Analyze
+
+AI Studio
+
+AI Advisor
+
+Profile
+
+Interactive proposed navigation. Select a tab to preview its primary purpose.
+
+This replaces:
+
+Home | Discover | Studio | Shop | Profile
+
+With:
+
+Home | Analyze | AI Studio | AI Advisor | Profile
+
+Shopping remains accessible through recommendations, saved looks and a secondary Explore/Shop section. It should not occupy a primary navigation tab.
+
+## 2. What Glam Up actually offers
+
+I checked the competitor's published App Store description and official website.
+
+Its central promise is a personalized AI beauty consultant—not a fashion marketplace. The advertised features include facial-feature analysis, personal color analysis, AI glow-up previews, personalized glow-up guides, makeup routines, makeup matching and tailored product recommendations. The App Store listing also mentions celebrity lookalikes.
+
+![](https://www.google.com/s2/favicons?domain=https://apps.apple.com\&sz=32)
+
+App Store+1
+
+That gives us a much clearer baseline.
+
+| Competitor capability   | GLAM AI requirement                                                           |
+| ----------------------- | ----------------------------------------------------------------------------- |
+| Selfie upload           | Guided capture, quality checks and consent                                    |
+| Facial analysis         | Face shape, eye shape, lips, brows and facial proportions                     |
+| Skin tone analysis      | Tone and estimated undertone, with lighting limitations explained             |
+| Personal color analysis | Seasonal palette, flattering colors and makeup shade guidance                 |
+| AI glow-up preview      | User-selected makeover styles with before/after comparison                    |
+| Glow-up guide           | Personalized, actionable step-by-step plan                                    |
+| Makeup match            | Upload an inspiration look and learn how to recreate it                       |
+| Makeup routines         | Everyday, evening, occasion and skill-level tutorials                         |
+| Product recommendations | Relevant optional suggestions, including sponsored matches                    |
+| Celebrity lookalikes    | Optional inspiration-based style matching without identifying faces in photos |
+
+We should build the competitor's core experience first, then differentiate through broader inclusivity, better hairstyle support, grooming, personalization and higher-quality AI previews.
+
+## 3. Face Analysis must be the hero feature
+
+![Free Face Shape Detector: Find Your Face Shape](https://images.openai.com/static-rsc-4/iVSXL8S3zZGv8UmKc_XVeDFiqX4gdYIWNtxv4q8IWmjF7-1IHbu-qldFEfy3H_xi5suYI_k8NJcMyoqsEa-_98PEXYgH4p3NzlRSfI0gHYMbWTao-u83u4mDlATAVcVrXMYVQ6zeANZhLm8tMaEyR54i9EcoL9n5B-p3ATjyyJ4?purpose=inline)
+
+Add to Favorites
+
+## Your Personal Face Analysis
+
+One selfie. A personalized guide to your features, colors and styling possibilities.
+
+Face Shape
+
+Eye Shape
+
+Color Analysis
+
+Glow-Up Guide
+
+Hair Suggestions
+
+Makeup Guidance
+
+### Correct Face Analysis journey
+
+1. Start Analysis: From the Home hero or the Analyze tab.
+
+2. Capture Photo: Guided selfie with lighting, angle and image-quality checks.
+
+3. Choose Goals: Makeup, hair, grooming, colors, or a complete personalized guide.
+
+4. Run Analysis: Show clear processing states and any limitations.
+
+5. View Your Report: Feature breakdown, palette, recommended techniques and explanations.
+
+6. Generate Your Look: Open AI Studio with recommendations preloaded.
+
+7. Follow Your Guide: Save a practical routine and optionally explore relevant products.
+
+The report must not reduce a person's appearance to a beauty score or claim to diagnose skin conditions. Where visual characteristics are uncertain, the app should allow corrections rather than present guesses as facts.
+
+## 4. Revised product hierarchy
+
+I would rebalance the product around these priorities:
+
+AI Face & Color Analysis
+
+30%
+
+AI Makeover & Hairstyle Studio
+
+25%
+
+Personalized Guides & Routines
+
+20%
+
+AI Beauty & Style Advisor
+
+15%
+
+Optional Shopping & Professionals
+
+10%
+
+Recommended allocation of product-design emphasis, not a forecast of user behavior or development expenditure.
+
+Shopping and advertising can still generate revenue, but they should appear naturally after the user receives useful advice.
+
+For example, after recommending a makeup technique, GLAM AI can offer a Products for This Look section. The user can ignore it and continue enjoying the analysis, tutorial or makeover.
+
+## 5. Updated mobile and web structure
+
+| Mobile tab | Primary purpose                                                           |
+| ---------- | ------------------------------------------------------------------------- |
+| Home       | Today's recommendations, latest analysis, glow-up progress, quick actions |
+| Analyze    | Facial features, skin tone, personal color analysis and reports           |
+| AI Studio  | Makeup match, hairstyle simulation, hair colors, glow-up previews         |
+| AI Advisor | Personalized routines, tutorials, questions and ongoing guidance          |
+| Profile    | Style DNA, saved looks, analysis history, subscription and privacy        |
+
+For the consumer web app, use:
+
+Home | Face Analysis | Color Analysis | AI Studio | My Glow-Up Guide | AI Advisor
+
+Keep Discover Looks, Complete the Look, products and professional services as secondary sections or contextual actions.
+
+The merchant, advertiser, creator and professional dashboards can remain separate web portals. They do not need to dominate the consumer interface.
+
+## 6. Instruction to correct the Codex and UI/UX briefs
+
+GLAM AI — Mandatory Product Direction Correction
+
+# GLAM AI — Mandatory Product Direction Correction
+
+The previous GLAM AI specifications overemphasized shopping, fashion commerce and advertising.
+
+This directive supersedes those navigation and prioritization decisions.
+
+## Primary product identity
+
+GLAM AI is first and foremost a global, inclusive AI-powered personal beauty, grooming, facial analysis and glow-up consultant.
+
+The principal competitor benchmark is Glam Up – Perfect Your Look (App Store ID 6480331890).
+
+Our product must provide comprehensive equivalents of the competitor's advertised core capabilities, with differentiated quality, inclusivity, personalization and user experience.
+
+## Mandatory primary features
+
+1. Guided selfie capture and upload.
+
+2. Detailed facial feature analysis.
+
+3. Face shape, eye shape, brow, lip and facial proportion guidance.
+
+4. Skin tone and undertone estimation.
+
+5. Personal color season analysis.
+
+6. Personalized glow-up preview and actionable guide.
+
+7. Makeup matching from inspiration images.
+
+8. Step-by-step makeup tutorials and routines.
+
+9. Hairstyle, hair color, wig and grooming simulations.
+
+10. AI beauty and grooming advisor.
+
+11. Saved analysis reports, routines and looks.
+
+12. Optional personalized product and professional recommendations.
+
+## Mobile navigation
+
+Home | Analyze | AI Studio | AI Advisor | Profile
+
+The Analyze tab must be a first-class destination and must provide direct access to Face Analysis and Color Analysis.
+
+The Home screen must prominently feature a Start Face Analysis action.
+
+## Web consumer navigation
+
+Home | Face Analysis | Color Analysis | AI Studio | My Glow-Up Guide | AI Advisor
+
+## Commercial functionality
+
+Preserve Complete the Look, Screenshot to Shop, merchant catalogs, professional booking, creator commerce and advertising infrastructure.
+
+However, make these secondary and contextual to the analysis, makeover and personal guidance experience.
+
+Do not insert advertising into facial-analysis results in a way that compromises their integrity.
+
+Sponsored product recommendations must be clearly identified.
+
+## UX priorities
+
+The main journey is:
+
+Upload Selfie → Face Analysis → Personal Report → Glow-Up Guide → AI Makeover → Save and Follow Routine.
+
+The secondary journey is:
+
+Selected Look → Optional Product Recommendations → Shop or Book.
+
+## Global inclusivity
+
+Support diverse skin tones, facial features, hair textures, ages, genders, abilities, cultural styles and grooming preferences.
+
+Do not generate attractiveness rankings or impose a single beauty standard.
+
+Apply appropriate age-based safeguards, privacy protections and consent controls.
+
+## Required action
+
+Revise the master PRD, information architecture, mobile navigation, web navigation, screen inventory, UI/UX designs and phased backlog to reflect this corrected product hierarchy.
+
+Maintain a feature-parity matrix against the competitor's documented capabilities.
+
+Do not begin implementing the commerce-heavy navigation previously proposed.
+
+Prioritize Face Analysis, Color Analysis, Glow-Up Guide, Makeup Match and AI Studio for the first commercial release.
+
+The central product promise should now be:
+
+“Understand your features. Discover your colors. Explore your look. Learn how to achieve it.”
+
+That is a much closer fit to the competitor you originally identified, while leaving us room to build a more capable, inclusive platform with optional commerce later.

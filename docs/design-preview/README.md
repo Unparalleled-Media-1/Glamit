@@ -1,5 +1,7 @@
 # GLAM AI design review
 
+**Historical editorial study:** its commerce-first navigation is superseded by the [actual analysis-first application](../application-preview/README.md). Keep these files as the previous visual snapshot and SVG handoff, not the current product navigation.
+
 Open the [mobile screenshot](mobile.png), [consumer web screenshot](website.png) or [admin screenshot](admin.png) to review the visual direction. The full [UI/UX handoff](../specification/ui-ux-design-handoff.md) records scope, journeys, states, acceptance and remaining work.
 
 For the interactive prototype, serve this directory on the same machine as your browser:

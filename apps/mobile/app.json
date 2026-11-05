@@ -1,8 +1,25 @@
 {
   "expo": {
-    "name": "GLAM AI", "slug": "glam-ai", "version": "0.1.0",
-    "orientation": "portrait", "userInterfaceStyle": "light",
-    "ios": {"supportsTablet": true},
-    "android": {"permissions": []}
+    "name": "GLAM AI",
+    "slug": "glam-ai",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "permissions": []
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Choose a photo for a private device-only GLAM AI preview. Upload and analysis need separate authorization.",
+          "cameraPermission": "Take a photo for a private GLAM AI preview after you choose to start the camera.",
+          "microphonePermission": false
+        }
+      ]
+    ]
   }
 }

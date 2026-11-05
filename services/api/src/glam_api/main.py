@@ -28,6 +28,7 @@ from glam_api.contracts import (
 from glam_api.credits import balance
 from glam_api.db import get_session
 from glam_api.observability import http_error, request_evidence, validation_error
+from glam_api.workspaces import build_router
 
 app = FastAPI(title="GLAM AI", version="0.1.0", docs_url=None, redoc_url=None)
 app.middleware("http")(request_evidence)
@@ -135,7 +136,7 @@ def ready(db: Db):
     from glam_api.config import get_settings
 
     head = db.scalar(text("SELECT version_num FROM alembic_version"))
-    if head != "0003_server_only_access":
+    if head != "0006_staff_context":
         raise HTTPException(503, "Database migration is not current")
     if not get_settings().oidc_issuer:
         raise HTTPException(503, "Identity provider is not configured")
@@ -218,7 +219,7 @@ def get_organization(org_id: UUID, db: Db, identity: Identity):
             text(
                 "SELECT o.id,o.name,m.role FROM organization o "
                 "JOIN organization_member m ON m.organization_id=o.id "
-                "WHERE o.id=:id AND m.user_id=:u"
+                "WHERE o.id=:id AND m.user_id=:u AND m.active AND NOT o.suspended"
             ),
             {"id": org_id, "u": uid},
         )
@@ -322,3 +323,6 @@ def delete_look(look_id: UUID, db: Db, identity: Identity):
     )
     audit(db, uid, "look.deleted", look_id)
     return Response(status_code=204)
+
+
+app.include_router(build_router(user, audit, replay, remember))
