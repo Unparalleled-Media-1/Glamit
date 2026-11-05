@@ -6,8 +6,9 @@ Start with a modular monolith and independently scalable workers. Distributed mi
 
 ```mermaid
 flowchart TD
-  M[Expo consumer mobile] --> E[Edge / WAF / API ingress]
-  W[Next.js consumer web and role dashboards] --> E
+  M[Expo mobile apps - all non-admin product workflows] --> E[Edge / WAF / API ingress]
+  W[Next.js administrative control at /admin] --> E
+  L[Public informational landing page] --> M
   E --> A[FastAPI modular API]
   A --> P[(PostgreSQL + transactional outbox)]
   A --> O[Private object storage / signed uploads]
@@ -31,7 +32,7 @@ The database outbox is the authoritative work handoff; the API transaction write
 | Component | Responsibilities / constraints |
 |---|---|
 | Expo / React Native | Camera permissions, guided capture, consent, upload, progress, results, commerce; secure OS token storage; no secret API keys |
-| Next.js | Consumer discovery/web checkout where permitted; merchant, professional, creator, advertiser and admin portals; server-side session handling; no shared cached private responses |
+| Next.js | Public informational landing page directing visitors to app downloads; administrative control at `/admin` only; secure server-side admin sessions/MFA; no shared cached private responses. All non-admin workflows run in mobile apps, per the 5 November clarification in approvals.md |
 | Identity integration | Google through Supabase Auth, OIDC/OAuth with PKCE; exact-project token validation at API; server organization memberships/scopes; MFA required for privileged roles; connection deferred |
 | FastAPI modules | Identity, consent/media, analysis, catalog/recommendations, subscriptions/credits, orders/marketplace, creators, ads, trust/support |
 | Complete the Look modules | Look Decomposition, Product Matching, Professional Matching, Sponsored Ranking, Attribution, Advertising Billing and Shopping Orchestration in the same backend; existing identity, catalog, consent, ledgers and orders remain canonical |
@@ -48,8 +49,8 @@ Initially use one write region and redundant availability zones. Prefer the laun
 ```text
 Glamit/
   apps/
-    mobile/                         # Expo consumer application
-    web/                            # Next.js consumer web + scoped dashboards
+    mobile/                         # Expo apps: consumer and non-admin business workflows
+    web/                            # Next.js informational/download landing page + /admin
   services/
     api/app/modules/                # FastAPI domain modules
     worker/app/                     # task execution + provider adapter runtime

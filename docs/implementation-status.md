@@ -2,6 +2,8 @@
 
 This is the first foundation PR, not the completed platform or a production release. The approved specification remains the target; this file records the delivered subset. All feature and release gates without evidence remain open.
 
+Platform surface clarification (5 November 2026): public web is informational with app-download destinations; `/admin` is the web administrative control surface; all other product workflows run in the mobile apps. Only the existing web/mobile foundation screens are currently implemented. The download destinations and admin portal remain unimplemented. See `approvals.md` and the preview instructions in `development.md`.
+
 | Work / requirement | Current implementation | Remaining gate |
 |---|---|---|
 | B10 repository/toolchains/CI | Feature branch, approved design snapshot, repaired frozen JS installation and compatible compiler, shared React runtime checks in CI, Next.js/Expo shells; see validation.md | Remote CI result and branch protection; native device builds |

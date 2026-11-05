@@ -6,7 +6,7 @@ All requirements below are proposed and unimplemented. The matrix and backlog mu
 
 Complete the Look adds component confirmation, organic/sponsored panels, offer comparison, private lists/assembly coverage, child quote/partial-checkout status and professional material/slot coordination. Merchants gain catalog feed/error/freshness views; advertisers gain catalog-linked auction/holds/invalid-traffic/collection controls. Details: [look flows](complete-the-look.md), [advertiser dashboard](look-ranking-commerce.md).
 
-Each flow includes loading, empty, denied, expired, offline, retry, error and accessibility states. Mobile owns consumer camera flows; responsive web supports discovery/account and dashboards. Shared business operations use the same API. Desktop dashboard permissions are distinct from consumer entitlements.
+Each flow includes loading, empty, denied, expired, offline, retry, error and accessibility states. Per the user's 5 November 2026 clarification, all non-admin product flows run in the mobile apps, including consumer, merchant, professional, creator and advertiser workflows. The public web is an informational landing page directing visitors to app downloads; web control is restricted to administrative workflows at `/admin`. This supersedes earlier consumer-web, web-checkout and non-admin web-dashboard proposals throughout the design package. Shared business operations use the same API; administrative permissions remain distinct from mobile entitlements. Real store destinations must be configured before claiming app downloads are available.
 
 | Audience | Screens / flows |
 |---|---|

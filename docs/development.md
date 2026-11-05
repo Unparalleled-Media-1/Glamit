@@ -33,6 +33,19 @@ npm run dev:mobile
 
 The web and mobile screens are explicitly labeled development shells. Expo can bundle offline with installed packages; online Expo account/device services are separate capabilities. Native iOS/Android binary builds, store distribution and device testing have not been established by JavaScript exports.
 
+## Preview the current UI
+
+The target public website is informational and directs visitors to the mobile apps; administrative control belongs at `/admin`. All other product features belong in mobile, per the 5 November clarification in `approvals.md`. Currently both clients contain foundation screens; `/admin`, login, scanning, analysis and commerce screens are not implemented, and there are no configured store listings.
+
+For a phone preview, use a checkout on your own computer on the same network as the phone:
+
+```sh
+npm ci --ignore-scripts
+npm exec --workspace=@glam/mobile -- expo start --lan
+```
+
+Open the QR code in an Expo Go version compatible with the pinned Expo SDK. This is the intended local-device preview workflow; device execution remains unverified. The repository's normal mobile start script uses `--localhost`, which does not expose the cloud server to a phone. A cloud-local address or QR code is not a public preview link. If the installed Expo Go cannot support the pinned SDK, a compatible development build is required; native build/distribution setup remains outstanding.
+
 ## Tests and generated contracts
 
 Create a dedicated empty database once (the test harness refuses a name without `_test`):
