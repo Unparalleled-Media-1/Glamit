@@ -1,10 +1,14 @@
 # Implementation evidence and remaining gates
 
-This is the first foundation PR, not the completed platform or a production release. The approved specification remains the target; this file records the delivered subset. All feature and release gates without evidence remain open.
+Current application code is a limited foundation, not the completed platform or a production release. This file records the delivered subset; all feature and release gates without evidence remain open. The revised global [Master PRD v2.0](specification/master-prd-v2.md) and age/commerce architecture await review before expanded production implementation.
 
 Platform surface clarification (5 November 2026): public web is informational with app-download destinations; `/admin` is the web administrative control surface; all other product workflows run in the mobile apps. Only the existing web/mobile foundation screens are currently implemented. The download destinations and admin portal remain unimplemented. See `approvals.md` and the preview instructions in `development.md`.
 
 The uploaded master specification is now mapped in `docs/specification/master-alignment.md`, with screen families/admin modules in `screen-blueprint.md` and a standalone interactive design proposal in `docs/design-preview/index.html`. These are planning/design artifacts; they do not add working app routes, native navigation, admin authorization, uploads, billing, catalogs or AI. `/admin` is intended to control the entire platform, including mobile apps.
+
+PRD v2 expands the target to global inclusive styling and age-specific experiences, with African categories fully supported. It adds explicit visual search, delivered-cost budgets, professional feasibility requests, referral-first commerce, supply/verification/trust/returns/growth plans and jurisdiction/guardian/localization contracts. These remain designs. Runtime age/market enforcement, guardian accounts, minor processing, global activation and commerce integrations have not been implemented or enabled. Standalone preview copy reflects the global direction only.
+
+All 12 companion opportunities are consolidated in `style-companion-extension.md`, including Style DNA, wardrobe/twin, Occasion Concierge, group planning, agent proposals, circular commerce, reviewed catalog assistance, challenges, aggregate intelligence, daily utility and later B2B API. M01–M71/B01–B03 are proposed screen families, with no implication that they exist in the native app. No memory/agent/twin/marketplace feature is implemented by this planning update.
 
 | Work / requirement | Current implementation | Remaining gate |
 |---|---|---|

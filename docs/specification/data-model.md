@@ -1,5 +1,9 @@
 # Canonical logical database model
 
+PRD v2 delta: [global policy architecture](global-policy-architecture.md#logical-schema-delta) defines market/age/guardian/assurance/decision, localization/sizing, visual search/evidence, professional feasibility, sharing, verification and supply records. Its canonical-user/managed-child distinction needs a reviewed future migration; current `app_user` constraints do not implement it. Existing age eligibility fields alone cannot authorize cross-jurisdiction capabilities. [Commerce operations](commerce-operations-v2.md) preserve existing catalog, outbox, orders and journals rather than duplicating them. These are proposed schema changes, not installed tables.
+
+The [companion schema/API delta](style-companion-extension.md#logical-schema-api-and-events-delta) adds versioned explicit/learned preference provenance, wardrobe items, privately consented twin manifests, occasion/preparation/group plans, shopping proposals/confirmations, catalog suggestions, challenges and scoped API usage. Existing routines, report snapshots, offers/orders/journals remain canonical; rental terms extend their authorities. Private memory/twin/wardrobe/group data never becomes advertiser reporting input. All are logical proposals, not migrations executed by this update.
+
 This is a complete logical entity inventory for the proposed scope, not executable migrations. Phase 1 must translate approved invariants into PostgreSQL constraints and migration tests. One Alembic history under `db/migrations` governs all transactional modules. An analytical warehouse is a derived projection, never an alternative authority for billing.
 
 Canonical scope includes the [Complete the Look schema delta](look-schema-api.md): look/component revisions, verified market offers/feed evidence, matching, shopping lists/assemblies, checkout orchestration, sponsored collections and auction/budget/frequency records. These extend this database/history without parallel ledgers, inventory or recommendation authorities.
@@ -173,7 +177,7 @@ erDiagram
   MEDIA_ASSET ||--o{ AI_JOB_INPUT : referenced_by
   AI_JOB ||--o{ AI_ATTEMPT : executes
   AI_JOB ||--o{ AI_JOB_OUTPUT : produces
-  USER ||--|| CREDIT_ACCOUNT : holds
+  USER ||--o| CREDIT_ACCOUNT : may_hold
   CREDIT_ACCOUNT ||--o{ CREDIT_LOT : receives
   CREDIT_ACCOUNT ||--o{ CREDIT_RESERVATION : reserves
   AI_JOB ||--|| CREDIT_RESERVATION : consumes

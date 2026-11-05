@@ -1,5 +1,13 @@
 # Current-instance validation
 
+## Global PRD v2 and companion consolidation — 5 November 2026
+
+Branch `docs/global-master-prd-v2`. Both new uploads were preserved byte-for-byte; all 15 V2 capability IDs, 12 opportunity IDs, 71 consumer screen-family IDs, three business additions and 16 admin IDs were checked for completeness/uniqueness. Referenced relative documentation paths and authored-file whitespace checks passed. The verbatim source archives retain their original whitespace/line endings.
+
+`npm test --prefix docs/design-preview` passed after updating only standalone design copy: global website/mobile headlines, Style DNA review controls, explicit shopping-agent confirmation language, age/guardian mobile-admin scope, five tabs, Home-to-Analyze, 16 admin selections, keyboard switching, disabled downloads, 390 px no-overflow layouts, zero browser runtime errors and zero external requests. Website/mobile/admin screenshots were refreshed and visually inspected. This is an LTR concept; RTL, native devices and full accessibility remain unverified.
+
+No application source, migration, generated API contract, root dependency/lockfile or published environment configuration was changed. Backend/build checks were not rerun for these planning/design changes. Age/guardian/localization, AI/commerce/agent/wardrobe/twin, partner and B2B acceptance tests in PRD v2 are required future evidence, not executed policy or integration validation. The revised architecture/acceptance package remains proposed for approval before expanded production implementation, exactly as the user's global directive requires.
+
 ## Master blueprint/design preview — 5 November 2026
 
 Branch `docs/master-specification-and-design-blueprint`. Documentation and standalone design artifacts only; application code, migrations, API contracts and the published environment configuration were not changed.

@@ -35,6 +35,8 @@ The web and mobile screens are explicitly labeled development shells. Expo can b
 
 ## Preview the current UI
 
+The standalone design artifact in `docs/design-preview` now reflects the proposed global PRD v2/Style Companion direction. It remains separate from application routes; global/age/guardian/agent/twin capabilities are not enabled. The revised architecture/criteria await the review required in `docs/approvals.md`.
+
 The target public website is informational and directs visitors to the mobile apps; administrative control belongs at `/admin`. All other product features belong in mobile, per the 5 November clarification in `approvals.md`. Currently both clients contain foundation screens; `/admin`, login, scanning, analysis and commerce screens are not implemented, and there are no configured store listings.
 
 For a phone preview, use a checkout on your own computer on the same network as the phone:

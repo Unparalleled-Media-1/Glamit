@@ -1,0 +1,105 @@
+# Style companion and visual-shopping opportunities
+
+5 November 2026 · Consolidated PRD v2 extension. Source: [12 opportunities upload](sources/2026-11-style-companion-opportunities.txt). Its linked reference images are illustrative third-party references, not licensed application assets. This extends the [global Master PRD v2](master-prd-v2.md), [global age/policy architecture](global-policy-architecture.md) and [commerce operating model](commerce-operations-v2.md). Expanded production implementation still awaits the revised-architecture approval requested by the preceding global directive.
+
+GLAM AI is a personal AI style companion powering a global visual-shopping marketplace. Daily usefulness includes expression, planning, care, organization and making use of things people already own. Exploration should remain free within disclosed policy/capability limits; premium generations and advanced tools can be paid after measured economics/store review. No paywall may conceal a previously promised free result. Commerce/advertising is useful only when it serves the user's chosen goal.
+
+## Twelve additions, with staged scope and evidence
+
+Release labels below follow the upload's priorities, not a second replacement for canonical P0–P7/Bxx/CTL work. “MVP” means a target for a narrow, qualified vertical slice; it does not bypass provider, age, market or partner gates. No addition is represented as implemented.
+
+| ID | Addition / priority / target | Scope and strict acceptance |
+|---|---|---|
+| OPP-01 | Style DNA / Critical / MVP | User-controlled optional colors/fits/hair goals/makeup/budget/sizes/brands/occasions/dislikes; inspect/edit/reset/export/delete, source/provenance and learning consent; no genetic/biometric identity model or inferred protected identity; choices still work without behavior-based learning |
+| OPP-02 | Digital Wardrobe / High / Phase 2 | Private, consented photographs of owned garments/shoes/accessories with user-confirmed ownership and editable attributes; reuse existing items and recommend only missing pieces; no guarantee of fit from a photo; background/face minimization and derivative deletion |
+| OPP-03 | Virtual Style Twin / High / Phase 2 | Separately consented private representation for qualified simulations, explicit reuse scope/model/retention/expiry/revoke; original access and identity/complexion/proportion preservation; no persistent photorealistic child twin at launch; teen mode off until separately reviewed |
+| OPP-04 | Occasion Concierge / High / MVP | User selects occasion/location/date/timezone/budget/preferences; source-backed arrival/service feasibility, full-cost plan, preparation checklist and optional reminders; unknown delivery/slot cannot become an arrival or booking promise |
+| OPP-05 | Group Styling / Medium / Phase 2 | Private theme/palette/budget invitations with per-participant choice, limited roles, consented sharing and revoke/leave; organizer cannot view members' private profiles/selfies or authorize others' purchases; guardian/age policies apply per member |
+| OPP-06 | AI Shopping Agent / Critical / MVP | Read-only search/compare/constraint planning over approved catalogs and services; itemized delivered-cost proposal/alternatives, source evidence and quote expiry; human confirmation of exact obligations before any purchase, booking or paid generation |
+| OPP-07 | Resale/rentals/refurbished / Medium / Phase 3 | Verified condition/authenticity/source rights, truthful stock, rental dates/size/cleaning/return/deposit/damage terms; full obligations in budget; no unsupported sustainability/fit/availability claims |
+| OPP-08 | AI Merchant Catalogs / Critical onboarding / MVP | Draft suggested titles/categories/colors/styles/descriptions/attributes from authorized product images; schema/claims/rights validation, provenance/confidence and merchant review before publication; no generated stock, price, certification, identifier or exact-item evidence |
+| OPP-09 | Creator Look Challenges / Medium / Phase 2 | Licensed/disclosed style templates, opt-in participation, moderated safety and verified affiliate commissions; no attractiveness rankings, youth appearance contests or automatic user-image reuse; youth participation requires separate safeguards |
+| OPP-10 | Merchant Intelligence / High / Phase 3 | Privacy-preserving aggregate eligible demand/categories/conversions/abandonment/trends only with approved collection/measurement basis, minimum cohort and anti-differencing; no private lists/photos/traits or identifiable profiles sold/shared |
+| OPP-11 | Beyond-shopping personalization / High / staged daily utility | Outfit planning, maintenance/reminders, organization, product-usage tracking and tutorials with user opt-in, correction/deletion and no medical/appearance-pressure claims; value without purchasing; link initial routines/reminders to core companion slice |
+| OPP-12 | Commercial Style API / High / Phase 3 | Tenant-scoped qualified try-on/matching/recommendation/collection capabilities, API rights/privacy/age/region contracts, authentication/rate/cost/usage reconciliation and versioning; no cross-tenant customer data or unlicensed vendor resale |
+
+## Target MVP vertical slice
+
+**Style DNA → Complete the Look / Screenshot to Shop → Occasion Concierge → AI Shopping Agent → explicit partner handoff / professional request.** Real qualified try-on is included only after the model/market/age gate passes. The user can choose a style without uploading a face, use owned-item declarations, see the full evidenced cost and availability limits, then confirm a reliable partner purchase/booking flow. The result must remain useful when the user chooses not to buy.
+
+Dependencies: V2-B01 policy/identity; V2-B02 actual supply/trust; V2-B03 qualified AI/retrieval; V2-B04 visual/occasion discovery; V2-B05 cost/fit; V2-B06 referrals/feasibility; V2-B07 mobile/admin boundaries. OPP-01/04/06/08 and basic OPP-11 add to these work items. Wardrobe/twin/group/challenges follow their stated later phase and privacy requirements; resale/rentals/intelligence/API stay later. Shipping a static screen for each does not satisfy this end-to-end acceptance.
+
+## Style DNA memory and privacy architecture
+
+Style DNA is an editable preference/memory feature, not literal DNA, race inference, a faceprint or a permanent appearance diagnosis. Explicit user input is authoritative. Optional learning from saves, actual verified purchases and feedback requires disclosed purpose and opt-in, with evidence provenance, uncertainty, review/correction and an independent off/reset control. A purchase can suggest interest, never establish gender, religion, ethnicity, health, disability or a definitive personal identity. Refusing memory learning must not deny generic exploration.
+
+Keep voluntarily supplied sizes, coverage/accessibility choices and other sensitive preferences private/purpose-limited. Use minimum relevant context for an authorized recommendation; never copy the memory/profile into advertiser targeting, merchant reports, shared links or unrestricted model prompts. Unknown/teen/child policies follow the global matrix; initial youth memory uses minimal explicit choices, no behavioral profiling by default, no ads and no sensitive-inference learning. Guardian management is scoped and independently verified. Deletion covers derived memory, indexes, prompts retained by authorized processors and backup tombstones under approved deadlines.
+
+Existing consent, user preferences, private looks, routines and verified commercial events remain authorities. Add a versioned memory projection with user-review state; avoid a parallel opaque profile system that cannot explain or remove learned preferences. Distinguish “user selected,” “suggested from permitted activity,” and “not known.” Browsing a style does not silently rewrite permanent preferences.
+
+## Wardrobe, twin, occasion and group boundaries
+
+**Wardrobe:** owned-item media is private, not merchant stock. Strip irrelevant metadata/minimize background faces; scope uploads and derived indexes by owner/purpose. User confirms item identity, ownership, condition and units; visual confidence is not authoritative size/material/fit. Existing-item assembly avoids encouraging unnecessary purchases. Deleting an item removes derived representations and invalidates plans referencing it; no hidden cross-user reuse.
+
+**Style Twin:** a reusable representation needs a separate explicit purpose/retention grant; ordinary short-lived capture consent does not authorize persistent twins. Store private versioned manifests/media refs, not an identity-recognition template; assess actual processing sensitivity regardless of its product name. Expiry, revocation, model/processor region changes and account deletion stop reuse and trigger derivative/vendor cleanup. Reads do not automatically renew retention. Preserve natural skin tone, body proportions, visible features and original access; realistic simulation does not certify physical fit/drape/salon feasibility. No persistent photorealistic child twin at launch; no implicit teen or guardian exception through an adult account.
+
+**Occasion:** date/timezone and destination drive actual evidence-backed arrival/appointment feasibility and preparation lead times. An event name is user-selected context, not inferred religious/cultural identity or advertiser permission. Unknown delivery windows require clarification/alternatives. Reminders are optional, timezone-correct, quiet-hours aware and deletable; a notification cannot reserve a service or spend credits.
+
+**Groups:** organizer controls theme/palette and invitations, not participant identity, private wardrobe, budget history, consent or financial authority. Participants share only chosen style/template information and can leave/revoke. Invitations are expiring/revocable and do not grant household/admin/merchant permissions. Group totals distinguish individual estimates and confirmations; no pooled checkout/purchase by organizer without separate explicit authority. Child contexts remain guardian-controlled/private, with no public photos or persistent photorealistic twin; youth group publication remains disabled pending dedicated review.
+
+## Shopping agent execution contract
+
+The agent is a constrained planning client of approved server tools, not an independent payer. Inputs: explicit style/occasion/date/location/currency/budget, permitted preference/owned-item context and user-confirmed constraints. Tools are allowlisted catalog/service search, delivered-cost calculation, evidence refresh and proposal preparation. Feed/product text is untrusted data; instructions embedded in it cannot grant tools, alter prices/limits or extract private memory.
+
+Return a proposal with required components, alternatives, item/merchant/quote revisions, cost/FX/tax/shipping/full service basis, source freshness, arrival/availability uncertainty, unmet constraints and expiry. Unknown fees or dates prevent a firm “within budget/delivered by Friday” promise. Commercial totals/eligibility are calculated by deterministic server policy, never an LLM-generated amount.
+
+Purchases, booking commitments, partner checkout handoffs and any separately billable AI call require explicit confirmation of the exact current obligations. Reprice or changed consent/availability/terms requires renewed confirmation. The agent cannot expand the budget, use a saved payment silently, substitute a paid placement without user choice, grant entitlements or book merely because a chat message requested ideas. Minimum scoped context, server identity/authorization, idempotent side effects, spend/rate limits and auditable proposal/confirmation lineage apply; raw tokens/keys never enter prompts.
+
+## Merchant drafts, challenges, intelligence and API
+
+AI catalog extraction creates an unapproved draft revision. Merchants verify claims/attributes/rights and separately supply authoritative price/stock/variants/size/delivery evidence. Record proposed-versus-approved values and reviewer/version; suspicious image/text claims go to review. Generating a title cannot establish authenticity, safety certification, exact SKU match, inventory or publication eligibility. This reuses the canonical catalog staging/review pipeline rather than bypassing it.
+
+Creator challenges use rights-cleared templates, disclosed sponsorship/affiliate terms, participation consent and safe moderation/appeal. A participant's result remains private unless separately published under a permitted age policy. No physical-attractiveness scoring/leaderboards, coercive popularity/body comparisons or unsafe beauty tasks. Verified postbacks/returns drive commissions through existing journals; a participant click/save does not create earnings. Initial public challenges are adult-eligible; later youth modes require separate safeguards and do not expose child profiles/photos.
+
+Merchant/advertiser intelligence derives only from approved minimal aggregate event projections. Private shopping lists/abandonment histories, Style DNA, wardrobes, twins and personal identities are not report rows. Apply collection consent/opt-outs, minimum cohort/suppression, overlap/differencing controls, allowed dimensions, freshness and deletion/rebuild policy; block sensitive-context reconstruction. Exclude unknown/teen/child events from initial commercial intelligence. Baseline cohort thresholds are proposals requiring privacy review; a dashboard does not prove privacy merely by hiding names. Business reporting/management remains in mobile; web `/admin` controls platform policy and compliance.
+
+B2B API is a later service-to-service integration exception to client surfaces, not a new public consumer web app or merchant portal. Require qualified organizational contracts, source-image/likeness rights, end-user consent/age/region responsibilities, vendor redistribution license, retention/no-training terms and tenant isolation. Scoped short-lived credentials or approved key rotation, per-tenant quotas/rate/cost caps, versioned schemas, signed callbacks, audit and reconciled usage billing reuse canonical commercial authorities. No third-party caller can submit a raw customer ID and retrieve that customer's private assets. Do not offer an API capability in markets/age bands for which it is unqualified.
+
+## Logical schema, API and events delta
+
+All entries are proposed under the one canonical migration history, with UUID/FKs/timestamps/versioning, private owner/tenant scope and approved retention. They extend the existing global/commerce model; no migration or real API is installed by this document.
+
+| Domain | Proposed records / relationships | Contract boundary |
+|---|---|---|
+| Style DNA | `style_preference_revision` → canonical user/preferences/consent; `memory_suggestion` → allowed event/provenance, review/expiry | Owned read/edit/reset/export, opt-in learning and suggestion accept/reject; no protected identity inference |
+| Wardrobe | `wardrobe_item` → owner/private media, declared attributes/ownership/state; `wardrobe_item_revision` → item/source/version | Owned upload/confirm/edit/delete, recompute plans after removal |
+| Twin | `style_twin_revision` → owner/private assets/model/purpose consent/region/expiry, revocation state | Explicit create/reuse/revoke; forbid unqualified age band and derivative resurrection |
+| Occasion | `occasion_plan` → owner, timezone/date/region/budget/constraints; `preparation_task` → plan/routine/optional reminder | Proposed itinerary/checklist, evidence-backed feasible alternatives, opt-in reminders |
+| Group | `styling_group` → organizer/theme/expiry; `group_member` → verified participant/limited role/invite; `group_shared_style` → explicitly published template/ref | Invite/accept/leave/revoke; per-member age/guardian and sharing authorization |
+| Agent | `shopping_proposal` → owner/constraints/offer/quote versions/cost uncertainty/expiry; `proposal_confirmation` → exact accepted hash/obligation revision | Prepare/refresh/confirm; side effects remain canonical referral/quote/booking/order commands |
+| Circular commerce | Existing product/offer extended by source condition and `rental_terms_revision` / availability period / return obligations | No new parallel inventory/order/payment authority; full rental costs and overlap checks |
+| Catalog assist | `catalog_attribute_suggestion` → merchant/staged revision/model/source/approved/rejected values | Review/approve before canonical publication; no generated financial facts |
+| Challenges | `look_challenge` → creator/rights/terms/moderation; `challenge_participation` → owner/template/age policy/private or permitted explicit publication | Separate participation and media-publication grants; verified commissions reuse finance |
+| Intelligence | Existing `report_snapshot` / permitted aggregate projection extended by dimensions/privacy version/as_of/suppression lineage | No user drilldown, private-list export or sensitive cohorts |
+| Daily utility | Existing routines/progress/notifications + `outfit_plan` / `product_usage_entry` → owner/purpose/optional item/context | User correction/deletion/reminders; no diagnosis or compulsory purchase |
+| B2B | `api_client` → verified organization/scopes/region/status; `api_usage_event` → accepted capability/model/request lineage; existing invoices/journals | Token/scoped request/usage/revoke; no raw secrets in stored audit or prompts |
+
+Extend existing proposed APIs with owned preferences/memory, wardrobe, twin, occasion plan, group, shopping-proposal and challenge operations; organization-scoped catalog-draft/intelligence/API-client operations. Rights/age/market gates apply before private URLs, quotes, tool calls and asynchronous dispatch. Mutations require existing idempotency and error contracts; no broad unscoped “AI agent” endpoint may execute arbitrary commands.
+
+Events reuse transactional outbox/inbox with minimal versioned payloads: `style.preference_changed`, `memory.suggestion_reviewed`, `wardrobe.item_removed`, `twin.access_revoked`, `occasion.plan_updated`, `group.member_left`, `shopping.proposal_confirmed`, `catalog.suggestion_approved`, `challenge.participation_changed`, `api.usage_verified`. Private-event projections never become advertiser logs. Revocation invalidates queued processing/caches/grants; confirmations bind exact current hashes and cannot replay into duplicate purchases/commissions.
+
+## Backlog and acceptance additions
+
+| Work | Dependencies / canonical lane | Required tests and evidence |
+|---|---|---|
+| OPP-B01 companion memory | V2-B01/07 + privacy/consent | Explicit-versus-learned provenance, opt-out/reset/expiry/export/delete and derived-state cleanup; no demographic inference or ad leakage |
+| OPP-B02 occasion + agent vertical slice | V2-B02–B06 + OPP-B01 | Real source-backed delivered-cost/date constraints, deterministic unknown states, proposal/confirmation/reprice/race tests, no unconfirmed transaction or model-authoritative prices |
+| OPP-B03 assisted catalog review | V2-B02/04 | Merchant/tenant rights, malicious inputs, draft-only generation, mandatory review and canonical freshness/stock evidence |
+| OPP-B04 wardrobe/twin | B13/P2 + V2-B01/03 + later phase | Private media/ownership, deletion/revocation/vendor region/retention, qualified fidelity, no child twin and no guaranteed fit |
+| OPP-B05 groups/challenges | B51/P5 + V2-B01/08 + OPP-B04 as needed | Invite/revoke/cross-member isolation, organizer non-authority, private defaults, rights/moderation and youth restrictions; verified commission/no appearance ranking |
+| OPP-B06 circular commerce | B30/B41–B45 + V2-B10 | Condition/stock/rental period overlaps, full-cost/deposit/damage/return/late terms, refunds/reconciliation and substantiated sustainability claims |
+| OPP-B07 intelligence/B2B | B64–B66 + V2-B01/09/10 | Consent/suppression/anti-differencing, private-data exclusion, tenant/region/age/API scope isolation, quotas/replay/usage billing, signed rights contracts |
+
+Costs include extra memory/storage/index/deletion work, optional twin inference, reminder support, merchant review, group moderation, privacy-preserving reporting and API operations. Measure accepted-result cost and contribution by eligible capability/market; do not invent revenue, virality or retention effects. The proposed flywheel requires real value and actual supply/demand at every step.
+
+Review these additions together with the global PRD v2 architecture and acceptance criteria. The coherent MVP is a safe, useful look-to-partner outcome, with free exploration and premium controls where approved; all twelve opportunities need not launch simultaneously.

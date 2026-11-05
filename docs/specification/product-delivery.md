@@ -1,10 +1,12 @@
 # Product scope, delivery and release strategy
 
+Current authority: [Master PRD v2](master-prd-v2.md), [global age/localization policy](global-policy-architecture.md), [commerce workflows](commerce-operations-v2.md) and the [12-opportunity companion backlog](style-companion-extension.md). V2-B00–B11 and OPP-B01–B07 extend the existing Bxx/CTL dependencies; they do not reset the backlog or enable production capabilities. The revised architecture/criteria await approval under the user's directive. African specialization remains fully supported inside a globally inclusive product; restricted youth/family experiences require their own readiness evidence.
+
 All requirements below are proposed and unimplemented. The matrix and backlog must be version-controlled and updated in every feature PR with evidence links. Completed means acceptance criteria, relevant automated tests, documentation and actual integration evidence all exist; a screen with fixtures does not count as a completed integration.
 
 ## Screen inventory
 
-The uploaded master's five-tab mobile navigation, normalized 50 consumer screen families, role-specific mobile workspaces and 16-module platform-wide web admin proposal are detailed in the [screen/design blueprint](screen-blueprint.md). The [master alignment](master-alignment.md) maps its G1–G9 gates and API/model deltas to this canonical backlog. Its 13-week schedule remains illustrative; it does not replace the dependency and evidence gates below.
+The [screen/design blueprint](screen-blueprint.md) retains the v1 source-count reconciliation and adds global/companion families: M01–M71, business additions B01–B03, existing role workspaces and 16 platform-wide web admin modules. Five mobile tabs remain. The [master alignment](master-alignment.md) records earlier G1–G9/source traceability; PRD v2 adds strict current acceptance. The earlier 13-week schedule is illustrative, not a commitment.
 
 Complete the Look adds component confirmation, organic/sponsored panels, offer comparison, private lists/assembly coverage, child quote/partial-checkout status and professional material/slot coordination. Merchants gain catalog feed/error/freshness views; advertisers gain catalog-linked auction/holds/invalid-traffic/collection controls. Details: [look flows](complete-the-look.md), [advertiser dashboard](look-ranking-commerce.md).
 

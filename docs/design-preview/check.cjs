@@ -25,15 +25,19 @@ const path = require('node:path');
     page.on('request', r => { if (new URL(r.url()).origin !== origin) external.push(r.url()); });
     await page.goto(origin, { waitUntil: 'networkidle' });
     assert(await page.locator('#web').isVisible());
+    assert.equal((await page.locator('#web h1').innerText()).replace(/\s+/g, ' ').trim(), 'Every Look. Every Style. Everyone.');
+    assert((await page.locator('#web').innerText()).includes('Style DNA'));
     assert.equal(await page.locator('#web button:disabled').count(), 2);
     await page.screenshot({ path: path.join(__dirname, 'website.png'), fullPage: true });
     await page.getByRole('button', { name: 'Mobile app', exact: true }).click();
     const nav = page.getByRole('navigation', { name: 'Mobile bottom navigation' });
-    const titles = { Home: 'Find your next look.', Analyze: 'A fresh perspective.', Studio: 'Your own beauty studio.', 'AI Advisor': "Let's talk about your goals.", Profile: 'Your account. Your choices.' };
+    const titles = { Home: 'Every Look. Every Style. Everyone.', Analyze: 'Your style. Your boundaries.', Studio: 'Your own style studio.', 'AI Advisor': "A plan for your occasion.", Profile: 'Your account. Your choices.' };
     for (const [tab, title] of Object.entries(titles)) {
       await nav.getByRole('button', { name: tab, exact: true }).click();
       assert.equal(await nav.locator('[aria-pressed=true]').count(), 1);
       assert.equal((await page.locator('.mobile-title').innerText()).replace(/\s+/g, ' ').trim(), title);
+      if (tab === 'Profile') assert((await page.locator('#mobile-content').innerText()).includes('Style DNA and learning controls'));
+      if (tab === 'AI Advisor') assert((await page.locator('#mobile-content').innerText()).includes('only you can confirm a purchase or booking'));
     }
     await nav.getByRole('button', { name: 'Home', exact: true }).click();
     await page.getByRole('button', { name: 'Explore Analyze' }).click();
@@ -56,6 +60,7 @@ const path = require('node:path');
     }
     await admin.getByRole('button', { name: 'Mobile app controls', exact: true }).click();
     assert((await page.locator('#admin-description').innerText()).includes('minimum app versions'));
+    assert((await page.locator('#admin-description').innerText()).includes('guardian policy'));
     await admin.getByRole('button', { name: 'Overview', exact: true }).click();
     await page.screenshot({ path: path.join(__dirname, 'admin.png'), fullPage: true });
     await page.getByRole('button', { name: 'Website', exact: true }).focus();

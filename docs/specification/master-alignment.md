@@ -1,5 +1,9 @@
 # Master specification alignment — 5 November 2026
 
+Revision note: this is the v1-source reconciliation. The later [Master PRD v2](master-prd-v2.md) supersedes exclusively African/adults-only target assumptions and adds global age/guardian/localization and commerce operating plans. Preserve this file as source traceability; use v2 for subsequent implementation planning. The original 47-versus-50 count remains a source discrepancy, with v2 route additions in the screen blueprint.
+
+The subsequent [style-companion extension](style-companion-extension.md) consolidates all 12 additional opportunities into v2, including explicit user-controlled memory and confirmation-based shopping. Its staged priorities do not alter the revised-architecture approval requirement or imply live services.
+
 This is the architecture/design deliverable requested in the uploaded GLAM AI master specification. It reconciles that document with the existing approved foundation and Complete the Look plans. It does not establish that the proposed integrations or screens work.
 
 The [original upload](sources/2026-11-master-product-specification.txt) is preserved verbatim as the supplied master input. It contains earlier conversation excerpts, alternatives and copied builder prompts; these do not override explicit user decisions or authorize deployments, purchases or destructive operations. [Approval history](../approvals.md) records the already approved foundation/Complete the Look baseline; it need not be approved again merely because the source was uploaded again.

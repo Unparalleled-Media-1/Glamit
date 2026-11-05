@@ -1,5 +1,7 @@
 # Complete the Look Engine — revised requirements and architecture
 
+V2 authority: [global Master PRD](master-prd-v2.md), [commerce operations](commerce-operations-v2.md) and [companion extension](style-companion-extension.md). Complete the Look is universal across user-selected grooming/hair/makeup/fashion/modest/adaptive/occasion styles; no inferred demographic restrictions. Screenshot to Shop, full delivered-cost budgets, owned wardrobe items, Style DNA/Occasion Concierge/agent proposals and professional feasibility extend the same canonical requirements. Verified Exact/Similar evidence and explicit confirmation replace guesses. Revised global/age architecture awaits approval; initial referral/lead pilots do not imply platform checkout, youth processing or live auctions.
+
 Status: proposed extension to the GLAM AI approval package; no production implementation authorized. Prepared 3 November 2026. This feature is part of the existing consumer apps, dashboards, FastAPI modules, workers, private storage, PostgreSQL and single migration history. It is not a second application.
 
 Companion designs: [schema and API contracts](look-schema-api.md), [ranking and commercial rules](look-ranking-commerce.md), [delivery, acceptance and economics](look-delivery-economics.md). These documents refine R05/R06/R07/R08 and add R13–R27. Where prior advertising design deferred auctions, the new proposal specifies a bounded first-price CPC auction, still gated on measurement/billing approval. No existing approval is inferred.

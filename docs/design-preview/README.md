@@ -4,6 +4,8 @@
 
 This is a design proposal informed by the uploaded master and [screen blueprint](../specification/screen-blueprint.md). The running app still contains the earlier foundation screens. No API, camera, login, chat, purchase, catalog, metrics or admin authorization is connected. Downloads and other unavailable operations are disabled. An admin module selection changes the explanatory heading; it is not a working business module.
 
+The current copy reflects [global Master PRD v2](../specification/master-prd-v2.md) and the [style-companion extension](../specification/style-companion-extension.md): Every Look. Every Style. Everyone.; editable Style DNA; occasion/budget proposals; age/guardian/market boundaries and explicit transaction confirmation. These capabilities remain proposed. The preview is an LTR layout concept; it does not implement RTL localization, age assurance, real memory, shopping-agent tools or any other expanded production behavior. Revised architecture/acceptance criteria await approval.
+
 Visual checks performed in Chromium include surface switching, all five mobile tabs, 16 admin module headings, keyboard selection, disabled unavailable actions, no external network requests, no browser runtime errors and desktop/phone screenshots. Native device appearance, VoiceOver/TalkBack and full accessibility testing remain unverified.
 
 To repeat the automated interaction checks and refresh screenshots from this directory:

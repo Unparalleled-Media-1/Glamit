@@ -1,11 +1,17 @@
 # GLAM AI architecture approval package
 
+**Current revision:** [Master PRD v2.0](master-prd-v2.md) governs globally inclusive positioning, age-specific experiences and the three engines. Its revised production architecture and acceptance criteria await approval under the user's latest directive. [Global policy/schema/APIs](global-policy-architecture.md) and [commerce operations](commerce-operations-v2.md) supersede conflicting older adults-only/exclusively African/launch-auction assumptions. Existing foundation approval remains recorded separately.
+
 Prepared 3 November 2026; reconciled with the uploaded master specification on 5 November. The foundation and Complete the Look planning baseline were approved on 3 November; provider integrations, commercial activation and production release keep their separate evidence gates. See [approval history](../approvals.md) and [actual implementation status](../implementation-status.md).
 
-This package answers the master build instruction for a commercially deployable beauty, hair, fashion and social-commerce platform with African specialization. It proposes a bounded path to that objective, not a claim that integrations or features exist.
+This package answers the master build instruction for a worldwide beauty, grooming, fashion and lifestyle discovery/commerce platform, serving diverse audiences with age-appropriate safeguards. African beauty/hair/fashion remain fully supported categories. These are bounded plans, not integration or readiness claims.
 
 | Read | Contents |
 |---|---|
+| [Master PRD v2.0](master-prd-v2.md) | All 15 gaps, globally inclusive scope, three engines, flagship journeys, staged rollout, strict acceptance and review decisions |
+| [Global policy architecture](global-policy-architecture.md) | Age/guardian permissions, jurisdiction/localization, schema/API delta, policy revocation and tests |
+| [Commerce operations v2](commerce-operations-v2.md) | Referral/booking versus settlement, supply/trust/returns, event contracts, budget/search and advertiser pilots |
+| [Style companion extension](style-companion-extension.md) | All 12 opportunities, core companion journey, private memory/wardrobe/twin, agent confirmation, staged schema/API/backlog |
 | [Master alignment](master-alignment.md) | Uploaded-source traceability, decisions carried forward, API/model gaps, release targets and next work |
 | [Screen/design blueprint](screen-blueprint.md) | Five mobile tabs, normalized screen families, 16 admin modules, palette/accessibility and platform boundaries |
 | [Visual design preview](../design-preview/index.html) | Standalone, interactive website/mobile/admin layout proposals; no live integrations |
@@ -28,7 +34,7 @@ The referenced ChatGPT conversation could not be read because no conversation-re
 
 ## Proposed first commercial release
 
-Use South Africa as the planning launch market, adults only, with English and ZAR first, while designing currencies, localization and country rules for expansion. These are approval decisions. Launch consumer analysis and try-on, curated product discovery, subscriptions/credits and a bounded set of verified professionals. Introduce creator commerce and advertising only after consent, commercial reconciliation and attribution controls pass their gates. Keep the full product in the requirements matrix throughout.
+The revised target is global, with country/capability activation staged by supply, payments, localization, compliance and operating evidence. South Africa is a possible pilot, not the exclusive product identity. Required teen and guardian-managed child designs do not enable those modes before qualification. PRD v2 proposes verified affiliate/referral commerce and professional look requests first, with simplified sponsored pilots and later platform checkout/complex auctions. Review the revised architecture/criteria before expanded production implementation; no country/age/partner capability is currently claimed ready.
 
 Consumer analysis is cosmetic guidance, not diagnosis. Avoid identity recognition and persistent facial identity templates. Skin tone/color suitability data may itself be sensitive: retain only with consent, limit its purpose and exclude it from advertising. Realism, African hair coverage, lawful processing and positive unit economics must be demonstrated before commercial claims.
 

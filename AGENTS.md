@@ -1,6 +1,7 @@
 # GLAM AI engineering rules
 
 - Read docs/approvals.md, docs/specification/README.md and docs/implementation-status.md.
+- Master PRD v2 defines globally inclusive product scope and age-specific experiences; read its global policy/commerce plans before expanding implementation. Revised production architecture/acceptance criteria await the approval explicitly requested by the user's 5 November directive. No global/age mode is enabled by planning approval alone.
 - Use the existing checkout; do not create Git worktrees unless explicitly requested.
 - Work on isolated feature branches and use reviewable PRs. Update requirement/backlog status with evidence.
 - Keep db/migrations the sole canonical migration history. No alternate ORM migration system.
