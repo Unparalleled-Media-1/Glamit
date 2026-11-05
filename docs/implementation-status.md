@@ -4,6 +4,8 @@ This is the first foundation PR, not the completed platform or a production rele
 
 Platform surface clarification (5 November 2026): public web is informational with app-download destinations; `/admin` is the web administrative control surface; all other product workflows run in the mobile apps. Only the existing web/mobile foundation screens are currently implemented. The download destinations and admin portal remain unimplemented. See `approvals.md` and the preview instructions in `development.md`.
 
+The uploaded master specification is now mapped in `docs/specification/master-alignment.md`, with screen families/admin modules in `screen-blueprint.md` and a standalone interactive design proposal in `docs/design-preview/index.html`. These are planning/design artifacts; they do not add working app routes, native navigation, admin authorization, uploads, billing, catalogs or AI. `/admin` is intended to control the entire platform, including mobile apps.
+
 | Work / requirement | Current implementation | Remaining gate |
 |---|---|---|
 | B10 repository/toolchains/CI | Feature branch, approved design snapshot, repaired frozen JS installation and compatible compiler, shared React runtime checks in CI, Next.js/Expo shells; see validation.md | Remote CI result and branch protection; native device builds |

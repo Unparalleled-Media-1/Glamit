@@ -1,5 +1,19 @@
 # Current-instance validation
 
+## Master blueprint/design preview — 5 November 2026
+
+Branch `docs/master-specification-and-design-blueprint`. Documentation and standalone design artifacts only; application code, migrations, API contracts and the published environment configuration were not changed.
+
+Chromium interaction checks passed for three design surfaces, all five mobile tabs, Home-to-Analyze navigation, all 16 admin module selections including Mobile app controls, keyboard surface selection, disabled unavailable downloads, and no horizontal overflow at 390 px. No browser runtime errors or external requests occurred. Website/mobile/admin screenshots were captured from the current preview. Managed Chromium blocks `file:` navigation, so verification used a loopback HTTP server; no browser policy or TLS verification was disabled.
+
+Reproducible commands: `npm ci --prefix docs/design-preview --ignore-scripts` and `npm test --prefix docs/design-preview`, using the isolated lockfile/Playwright dependency and installed Chromium. The test starts and closes its own ephemeral loopback server. Source-byte equality, unique consecutive M01–M50/A01–A16 IDs and referenced relative documentation paths were also checked.
+
+The imported source is preserved verbatim. Its category counts sum to 50 rather than 47; its visible admin list names six of the claimed 16 modules. The blueprint labels normalized consumer titles and the remaining ten admin modules as proposals. Palette contrast was calculated with WCAG sRGB relative luminance; full accessibility/native-device testing remains unrun.
+
+The verbatim source retains its original whitespace (including tab-only lines); authored-file whitespace checks exclude that archive. Source equality was checked byte-for-byte instead of rewriting the supplied document to satisfy formatting checks.
+
+Backend tests and application builds were not rerun for these isolated design/documentation changes. Earlier foundation checks below are separate evidence, not validation of the unimplemented product journeys.
+
 ## Client toolchain repair — 4 November 2026
 
 Branch `fix/reproducible-client-toolchain`, validated in the restored published environment. The repository's frozen installer now runs directly without the external generator or npm peer-resolution workarounds used during onboarding. The published environment configuration was not edited or republished.

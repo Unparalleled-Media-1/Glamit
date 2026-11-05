@@ -4,6 +4,8 @@ This is a complete logical entity inventory for the proposed scope, not executab
 
 Canonical scope includes the [Complete the Look schema delta](look-schema-api.md): look/component revisions, verified market offers/feed evidence, matching, shopping lists/assemblies, checkout orchestration, sponsored collections and auction/budget/frequency records. These extend this database/history without parallel ledgers, inventory or recommendation authorities.
 
+The uploaded master adds explicit advisor/routine/feedback/session/incident domains. [Master alignment](master-alignment.md#upload-specific-model-additions) specifies their columns, FKs, invariants and deletion boundaries: analysis_result, analysis_feedback, ai_conversation, ai_message, beauty_routine, routine_step, routine_progress, referral, provider_incident and user_session. These are proposed logical extensions under this same history, not installed tables. `user_session` is a revocation/audit projection of Supabase sessions, not a second identity authority; shared `ai_job` and balanced journals remain canonical.
+
 Notation: every entity has UUID `id`, `created_at`, and appropriate audit/version fields unless a composite key is stated. `→` identifies an FK; `?` is nullable. All references below target the named entity's `id` unless specified. Money is integer minor units plus ISO currency; rates use fixed precision decimals, never binary floats. Times are timezone-aware UTC; business timezone and original local appointment date are recorded separately. Junction FKs are unique pairs unless otherwise stated. Sensitive fields are minimized and encrypted where needed. No image bytes or persistent face identity embeddings belong in PostgreSQL.
 
 ## Identity, tenancy and consent

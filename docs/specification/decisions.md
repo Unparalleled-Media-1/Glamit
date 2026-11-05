@@ -1,6 +1,6 @@
 # Decisions and implementation approval
 
-All ADRs are `Proposed`. User-specified architecture and engineering rules are requirements; proposed launch details below need approval. Approval of planning documents is not production deployment approval or permission for destructive database operations.
+The user approved the foundation and Complete the Look planning baseline on 3 November 2026; the original `Proposed` entries below describe design maturity, not an outstanding request to repeat that approval. Explicit later selections are recorded in ADRs 015–016 and [approval history](../approvals.md). Vendor, retention, launch and commercial details without evidence remain unresolved. Planning approval does not authorize production deployment or destructive database operations.
 
 ## Architecture decision register
 
@@ -21,13 +21,15 @@ All ADRs are `Proposed`. User-specified architecture and engineering rules are r
 | 013 | Immutable decomposition/organic matching independent of sponsorship | Ads cannot alter analysis, quantities or organic ordering; private traits excluded from commercial context | Proposed; user-required separation |
 | 014 | Verified versioned offers, freshness, revalidation and honest unknown states | No fabricated inventory/price/delivery; external handoff where authoritative checkout is unsupported | Proposed |
 | 015 | Google via Supabase Auth, Supabase PostgreSQL; guided beauty scan after sign-in | User selected on 4 November 2026; integration deferred. Face scan is analysis, not login. [Detailed ADR](../adr-015-supabase-google-capture.md) | User-selected; not connected |
+| 016 | Public informational/download website; web `/admin` controls the entire platform including mobile; every non-admin workflow in iOS/Android | User clarified on 5 November; supersedes consumer web/checkout and merchant/creator/advertiser web portals | User-selected; admin/downloads not implemented |
+| 017 | [Master alignment](master-alignment.md) and [screen blueprint](screen-blueprint.md) | Upload counts add to 50 rather than 47; only six admin modules are named. Proposed normalization/remaining ten module definitions are labeled as design proposals | Design proposal; not new service/production approval |
 
 ## Unresolved decisions
 
 | Decision | Recommended starting point | Needed before / owner |
 |---|---|---|
 | Launch country, audience and product surface | South Africa, 18+, English/ZAR; P3 consumer AI + catalog first, limited verified professionals after P4 | P0 / product + legal |
-| Mobile platforms and web checkout scope | iOS/Android consumer, responsive consumer web and desktop role dashboards; validate digital billing per storefront | UX and billing build / product |
+| Mobile platforms and web scope | Selected: iOS/Android non-admin product, informational/download website and web `/admin` for platform-wide control. Validate digital billing per mobile storefront | Platform decision answered; store/payment integration outstanding |
 | Image retention/consent | 24h captures, 7d unsaved outputs, 90d saved looks, 30d opted-in traits; no customer model training | Provider selection / privacy lead |
 | Hosting and transfer regions | Supabase selected for PostgreSQL; project region/plan still needs availability, transfer/privacy and cost review; prefer a suitable launch-region option where supported | Infrastructure setup / security + privacy |
 | AI providers | Qualify at least two candidates per critical capability where feasible; no automatic unqualified fallback | Integration build / AI lead |
@@ -42,12 +44,12 @@ All ADRs are `Proposed`. User-specified architecture and engineering rules are r
 | Social/content moderation | Curated publishing and reporting/appeals before broad creator access; staffed escalation | Creator release / trust lead |
 | Team, spend and SLO ownership | Staff the roles assumed in estimates; approve initial capacity, availability and restore objectives | Schedule commitment / engineering + finance |
 
-## Requested approval scope
+## Approved scope and remaining release boundaries
 
-Complete the Look requires review of [R13–R27 and architecture](complete-the-look.md), [schema/APIs](look-schema-api.md), [ranking/auction/commercial rules](look-ranking-commerce.md), and [AC-01–AC-12/economics/backlog](look-delivery-economics.md). Decide organic weights/quality floor; first-price CPC; account/day/total holds and cap-change rules; frequency limits; 5-minute tokens/24-hour click validation; feed freshness; seven-day attribution and commission funding; collection terms; decomposition quota/pricing; launch countries/providers and evidence thresholds. Nothing is approved by this update. Approve this baseline before production implementation; deployment remains a separate later approval.
+The recorded approval covers [R13–R27/architecture](complete-the-look.md), [schema/APIs](look-schema-api.md), [ranking/auction/commercial rules](look-ranking-commerce.md), and [AC-01–AC-12/economics/backlog](look-delivery-economics.md) as a baseline. Its parameters remain versioned policies to validate: relevance floor, first-price CPC, atomic holds/caps/frequency, token/click expiry, freshness, attribution, collection terms, pricing and country/provider eligibility. Real integrations and commercial release need their stated evidence; a design preview cannot satisfy those gates.
 
-Approve this architecture as the planning baseline and authorize **Phase 0 discovery/qualification and Phase 1 foundations only**, subject to resolving the applicable decisions above. Also authorize initialization of the empty Glamit repository on an initial feature branch and opening a documentation/foundation PR once Git write access is available. No vendor purchase, secret provisioning, production deployment or destructive database operation is performed or implied by this package. Vendor trials with charges require the approved budget and credentials supplied securely.
+Authorized scope is **Phase 0 discovery/design and Phase 1 foundations**, plus dependency-appropriate Complete the Look foundation work. Repository initialization and the first foundation have already occurred. No new vendor purchase, secret provisioning, production deployment or destructive database operation is implied by the upload or this reconciliation. Charged vendor trials require an approved budget and securely supplied credentials.
 
 Before Phase 2 provider integration, record vendor privacy terms, quality/cost evidence and approved retention settings. Before paid beta, approve actual plans, prices, payment/store arrangements and country-specific terms. Before marketplace/creator/ad rollout, require the corresponding phase gates. Before production deployment or destructive database changes, request explicit action-specific approval with a concrete reviewed release/change plan.
 
-If approved, the first PR should commit the requirements matrix, backlog, ADRs and release checklist, then establish locked toolchains, a single migration baseline and CI test harness. It should not add a broad set of unfinished product screens or represent fixtures as live integrations. Keep decisions versioned as evidence changes.
+Subsequent PRs should preserve the single migration history and regression evidence. Review standalone wireframes as design artifacts before expanding actual product routes; do not represent them or fixtures as live integrations. Keep decisions versioned as evidence changes.
