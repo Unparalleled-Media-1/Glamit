@@ -17,13 +17,18 @@
     "check:client-runtime": "node scripts/check-client-runtime.mjs",
     "contracts:generate": "openapi-typescript packages/contracts/openapi.json -o packages/contracts/api.d.ts",
     "test:client": "node tests/client/product.test.cjs",
-    "test:web": "node tests/client/application.cjs"
+    "test:web": "node tests/client/application.cjs",
+    "build:preview": "node scripts/build-interactive-preview.mjs",
+    "test:preview": "node tests/client/preview.cjs",
+    "preview:serve": "node scripts/serve-interactive-preview.mjs",
+    "typecheck:preview": "tsc --noEmit -p preview/tsconfig.json"
   },
   "devDependencies": {
-    "typescript": "5.9.3",
-    "@types/react": "19.3.0",
     "@types/node": "24.10.0",
-    "openapi-typescript": "7.13.0"
+    "@types/react": "19.3.0",
+    "esbuild": "0.28.2",
+    "openapi-typescript": "7.13.0",
+    "typescript": "5.9.3"
   },
   "overrides": {
     "react": "19.3.0",

@@ -1,5 +1,7 @@
 # Goal-led GLAM application preview
 
+**Interactive preview:** [Run the phone/desktop review hub](interactive-preview.md). It mounts the actual app in a responsive frame and includes all nine journeys. The standalone build supports the GitHub Pages repository path and retains only the explicitly approved local metadata. See [all eight pushed build snapshots](published-build-snapshots.json).
+
 **Latest visual revision:** [See the actual phone capture sheet](visual-review.png), [desktop Home](web-home.png), [editorial Studio](studio-editorial-preview.png) and [color explorer](color-palette-explorer.png). Home, Analysis and Studio now have a portrait-led charcoal/blush design with category choices, private capture entry, reference thumbnails and color controls. These are real application screens; their portraits/palettes are labeled inspiration, not completed AI output. Compare the prior edition in `comparison/`. Run `node scripts/capture-beauty-board.cjs` after `npm run test:web` to regenerate the sheet via a narrowly scoped loopback server.
 
 

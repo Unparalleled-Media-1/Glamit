@@ -1,0 +1,70 @@
+{
+  "repository": "Unparalleled-Media-1/Glamit",
+  "request": "Builds from the past 24 hours",
+  "snapshots": [
+    {
+      "branch": "docs/mobile-first-product-surfaces",
+      "commit": "51207db59e1ab5df6e2368e4ec9a0416e9c54a09",
+      "committed_at": "2026-11-05T05:52:24Z",
+      "subject": "Record mobile app surfaces and local preview instructions",
+      "github_url": "https://github.com/Unparalleled-Media-1/Glamit/tree/docs/mobile-first-product-surfaces",
+      "remote_verified": true
+    },
+    {
+      "branch": "docs/master-specification-and-design-blueprint",
+      "commit": "d700a0d820926c88f63cc2c911b2efebeec346e7",
+      "committed_at": "2026-11-05T08:32:43Z",
+      "subject": "Reconcile master specification and add product design previews",
+      "github_url": "https://github.com/Unparalleled-Media-1/Glamit/tree/docs/master-specification-and-design-blueprint",
+      "remote_verified": true
+    },
+    {
+      "branch": "docs/global-master-prd-v2",
+      "commit": "f48f3e0659ed53852bf9e5c4ed1b70ac414425cb",
+      "committed_at": "2026-11-05T09:15:43Z",
+      "subject": "Consolidate global PRD v2 and style companion opportunities",
+      "github_url": "https://github.com/Unparalleled-Media-1/Glamit/tree/docs/global-master-prd-v2",
+      "remote_verified": true
+    },
+    {
+      "branch": "design/editorial-ui-ux-brief",
+      "commit": "80d21a7df361ff9c5331df6ff3da46cc53fde3f9",
+      "committed_at": "2026-11-05T10:35:00Z",
+      "subject": "design: add editorial UI review and screen-family handoff",
+      "github_url": "https://github.com/Unparalleled-Media-1/Glamit/tree/design/editorial-ui-ux-brief",
+      "remote_verified": true
+    },
+    {
+      "branch": "feat/analysis-first-platform",
+      "commit": "30804917b62f4a80ea3c400e7cb4535ddcc28258",
+      "committed_at": "2026-11-05T15:33:52Z",
+      "subject": "feat: build analysis-first apps and scoped workspace foundation",
+      "github_url": "https://github.com/Unparalleled-Media-1/Glamit/tree/feat/analysis-first-platform",
+      "remote_verified": true
+    },
+    {
+      "branch": "feat/contextual-catalog-snap-list",
+      "commit": "5c65ec350810ff63269143cb08090212d2646b37",
+      "committed_at": "2026-11-05T16:48:26Z",
+      "subject": "feat: add contextual catalog matching and merchant snap listing",
+      "github_url": "https://github.com/Unparalleled-Media-1/Glamit/tree/feat/contextual-catalog-snap-list",
+      "remote_verified": true
+    },
+    {
+      "branch": "feat/goal-led-styling-experience",
+      "commit": "c323190c143d37e1416c29aab3f5a7f0b186dbba",
+      "committed_at": "2026-11-05T17:25:22Z",
+      "subject": "feat: build goal-led styling journeys and private profile memory",
+      "github_url": "https://github.com/Unparalleled-Media-1/Glamit/tree/feat/goal-led-styling-experience",
+      "remote_verified": true
+    },
+    {
+      "branch": "feat/visual-beauty-experience",
+      "commit": "79c4afa530a30e6d0343847b043c8aa4a0ef8ea8",
+      "committed_at": "2026-11-05T20:55:20Z",
+      "subject": "feat: rebuild core journeys as a visual beauty experience",
+      "github_url": "https://github.com/Unparalleled-Media-1/Glamit/tree/feat/visual-beauty-experience",
+      "remote_verified": true
+    }
+  ]
+}

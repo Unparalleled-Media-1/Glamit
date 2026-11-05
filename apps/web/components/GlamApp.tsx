@@ -1,5 +1,6 @@
 "use client";
 
+import { appPath, sectionFromPath, capabilitiesPath } from "../lib/paths";
 import { useEffect, useReducer, useRef, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import {
@@ -225,7 +226,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
 
   useEffect(() => {
     const pop = () => {
-      const p = location.pathname.slice(1) || "home";
+      const p = sectionFromPath(location.pathname);
       if (pages.includes(p as Page))
         dispatch({ type: "navigate", page: p as Page });
     };
@@ -254,7 +255,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
     dispatch({ type: "navigate", page: next });
     setError("");
     setMessage("");
-    history.pushState(null, "", next === "home" ? "/" : "/" + next);
+    history.pushState(null, "", appPath(next === "home" ? "/" : "/" + next));
     mainRef.current?.focus();
     window.scrollTo({ top: 0, behavior: "instant" });
   }
@@ -329,7 +330,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
       "Checking service availability only. No analysis job is running.",
     );
     try {
-      const r = await fetch("/api/capabilities", { cache: "no-store" });
+      const r = await fetch(capabilitiesPath(), { cache: "no-store" });
       if (!r.ok) throw Error();
       await r.json();
       setMessage(capabilityReasons.analysis);
@@ -935,7 +936,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
                   setMessage(
                     "All app-session photo previews, interests and routines cleared.",
                   );
-                  history.replaceState(null, "", "/");
+                  history.replaceState(null, "", appPath("/"));
                 }}
               >
                 Clear all session data
@@ -1131,7 +1132,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
         Skip to content
       </a>
       <header className="site-header">
-        <a href="/" className="brand" aria-label="GLAM AI home">
+        <a href={appPath("/")} className="brand" aria-label="GLAM AI home">
           <Icon name="spark" /> GLAM <span>AI</span>
         </a>
         <nav className="desktop-nav" aria-label="Main navigation">
@@ -1232,14 +1233,14 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
         )}
       </main>
       <footer className="site-footer">
-        <a className="brand" href="/">
+        <a className="brand" href={appPath("/")}>
           GLAM AI
         </a>
         <span>Understand your features. Explore your possibilities.</span>
         <div>
           <button onClick={() => go("privacy")}>Privacy</button>
-          <a href="/business">Business portal</a>
-          <a href="/admin">Admin</a>
+          <a href={appPath("/business")}>Business portal</a>
+          <a href={appPath("/admin")}>Admin</a>
         </div>
       </footer>
       <nav className="mobile-nav" aria-label="Personal navigation">
@@ -1284,7 +1285,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
         <Notice>
           {capabilityReasons.account} No business workspaces are authorized.
         </Notice>
-        <a className="button secondary" href="/business">
+        <a className="button secondary" href={appPath("/business")}>
           View business tools & requirements
         </a>
       </dialog>

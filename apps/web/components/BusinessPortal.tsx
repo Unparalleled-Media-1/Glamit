@@ -1,4 +1,5 @@
 "use client";
+import { appPath } from "../lib/paths";
 import MerchantSnapList from "./MerchantSnapList";
 import type { MerchantDraft } from "../../../packages/product/catalog";
 import { useState } from "react";
@@ -11,10 +12,21 @@ import {
 import type { Role } from "../../../packages/product/platform";
 
 /** Public task inventory and session drafts. Actual tenant records require the canonical API. */
-export default function BusinessPortal({ admin = false }: { admin?: boolean }) {
+export default function BusinessPortal({
+  admin = false,
+  startModule,
+}: {
+  admin?: boolean;
+  startModule?: string;
+}) {
   const [catalogDrafts, setCatalogDrafts] = useState<MerchantDraft[]>([]);
   const [role, setRole] = useState<Role>("merchant");
-  const [module, setModule] = useState(0);
+  const [module, setModule] = useState(() =>
+    Math.max(
+      0,
+      workspaces.merchant.modules.findIndex((m) => m.name === startModule),
+    ),
+  );
   const [drafts, setDrafts] = useState<
     { id: string; title: string; notes: string }[]
   >([]);
@@ -80,7 +92,7 @@ export default function BusinessPortal({ admin = false }: { admin?: boolean }) {
       </a>
       <div className="business-shell">
         <aside className="business-sidebar">
-          <a className="brand" href="/">
+          <a className="brand" href={appPath("/")}>
             ✧ GLAM <span>AI</span>
           </a>
           <p className="eyebrow">
@@ -135,7 +147,7 @@ export default function BusinessPortal({ admin = false }: { admin?: boolean }) {
               ),
             )}
           </nav>
-          <a href="/profile" className="personal-link">
+          <a href={appPath("/profile")} className="personal-link">
             ← Return to Personal
           </a>
           <p className="fine">
@@ -424,7 +436,10 @@ export default function BusinessPortal({ admin = false }: { admin?: boolean }) {
                           </li>
                         ))}
                       </ul>
-                      <a href="/profile" className="button secondary">
+                      <a
+                        href={appPath("/profile")}
+                        className="button secondary"
+                      >
                         Account & workspace switching
                       </a>
                     </section>

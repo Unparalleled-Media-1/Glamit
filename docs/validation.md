@@ -1,5 +1,14 @@
 # Current-instance validation
 
+## Interactive preview and authorized GitHub push — 5 November 2026
+
+All eight source/build snapshots from the requested previous 24 hours were pushed to matching GitHub branches with remote hashes verified. Five branches were new uploads; three older branches were already present. The default branch was not merged or force-updated. A filename/content scan checked 674 unique historical blobs for private-key/token patterns and tracked local-environment files; no potential secret paths were found. This is a targeted publication check, not a comprehensive secret-security audit. Eight source ZIP archives were generated and checked to exclude local env/dependencies/build caches.
+
+The new static interactive review hub uses the actual React app, phone/desktop switching and nine journeys. The GitHub repository-path build and browser smoke test pass, including consented local photo preparation inside the iframe, Studio color selection/correct Look Builder handoff, Merchant Snap & List, denied workspace switching, direct static routes and a permanently disconnected capabilities document. No external requests or runtime page errors were observed. The existing Next production build and 10 Chromium application groups also pass; 8 shared client/render tests, TypeScript (including the preview entry), shared React runtime, Ruff lint/format and production dependency audit pass. No backend or native domain implementation was changed.
+
+Source on GitHub is not itself a hosted preview. Direct GitHub API calls returned Forbidden in this environment; local build results do not prove Pages configuration, remote workflow success or a live URL. The Pages workflow/artifact and explicit activation instructions are supplied in [interactive preview](application-preview/interactive-preview.md). AI/account/catalog/payment/booking/native-device qualification remains unchanged. This request authorizes the disconnected review preview, not a production service or live-commerce release.
+
+
 ## Beauty-led visual revision — 5 November 2026
 
 The user rejected the prior visual hierarchy. Home/Analysis/Studio and the color explorer are revised in actual web/native components; the latest visual authority is [beauty-led experience](specification/beauty-led-visual-pass.md).

@@ -1,5 +1,10 @@
 # Implementation evidence and remaining gates
 
+## Interactive preview and GitHub publication
+
+The user explicitly authorized pushing the past 24 hours' builds and creating an interactive preview. All eight earlier snapshots now have verified GitHub branch hashes; see [published build inventory](application-preview/published-build-snapshots.json). The default branch was not merged. A new static review hub mounts the actual consumer/business components with phone/desktop viewport and nine journey entries; repository-prefix routing and local-photo/privacy/access gates are browser-tested. [Preview build and hosting instructions](application-preview/interactive-preview.md) distinguish tested local/static artifacts from unverified Pages deployment. API-based GitHub Pages management was Forbidden locally. No live AI, merchant, booking or payment activation follows from publication.
+
+
 ## Latest beauty-led visual revision
 
 Actual web/native Home, Analyze and Studio now use original portrait-led campaign/editor layouts with charcoal/blush styling. Home keeps immediate analysis/stylist entry and all six goals. Analysis has a framed editorial reference with permission-first entry, not an active scan. Studio provides tool-specific directions, reference thumbnails, color families/swatches and original-preserving controls; selected makeup mood enters the correct Look Builder component. Color has an illustrative palette explorer. See [visual revision](specification/beauty-led-visual-pass.md) and [actual capture sheet](application-preview/visual-review.png).
