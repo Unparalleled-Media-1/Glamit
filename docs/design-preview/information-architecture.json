@@ -1,0 +1,128 @@
+{
+  "version": "ui-ux-1.0",
+  "applications": [
+    {
+      "id": "ios",
+      "type": "native consumer design",
+      "navigation": [
+        "Home",
+        "Discover",
+        "Studio",
+        "Shop",
+        "Profile"
+      ]
+    },
+    {
+      "id": "android",
+      "type": "native consumer design",
+      "navigation": [
+        "Home",
+        "Discover",
+        "Studio",
+        "Shop",
+        "Profile"
+      ]
+    },
+    {
+      "id": "consumer",
+      "type": "responsive consumer web",
+      "navigation": [
+        "Discover",
+        "AI Studio",
+        "Hair & Beauty",
+        "Fashion",
+        "Shop the Look",
+        "Professionals",
+        "Creators"
+      ]
+    },
+    {
+      "id": "merchant",
+      "type": "role-specific web",
+      "navigation": [
+        "Overview",
+        "Catalog",
+        "Inventory",
+        "Orders / Leads",
+        "Promotions",
+        "Advertising",
+        "Analytics",
+        "Payouts",
+        "Storefront",
+        "Settings",
+        "Support"
+      ]
+    },
+    {
+      "id": "advertiser",
+      "type": "role-specific web",
+      "navigation": [
+        "Campaign Overview",
+        "Create Campaign",
+        "Ad Groups",
+        "Creative Library",
+        "Sponsored Looks",
+        "Targeting",
+        "Budgets & Bids",
+        "Attribution",
+        "Reporting",
+        "Billing",
+        "Brand Safety"
+      ]
+    },
+    {
+      "id": "professional",
+      "type": "role-specific web",
+      "navigation": [
+        "Dashboard",
+        "Services",
+        "Portfolio",
+        "Booking Calendar",
+        "Quote Requests",
+        "Clients",
+        "Promotions",
+        "Reviews",
+        "Earnings",
+        "Settings"
+      ]
+    },
+    {
+      "id": "creator",
+      "type": "role-specific web",
+      "navigation": [
+        "Published Looks",
+        "Shoppable Collections",
+        "Affiliate Links",
+        "Attributed Sales",
+        "Commissions",
+        "Campaign Invitations",
+        "Payouts"
+      ]
+    },
+    {
+      "id": "admin",
+      "type": "role-specific web",
+      "navigation": [
+        "Executive Overview",
+        "User Management",
+        "AI Operations",
+        "Beauty Content",
+        "Merchant Management",
+        "Professional Management",
+        "Advertising",
+        "Commerce",
+        "Subscriptions",
+        "Creators",
+        "Regional Operations",
+        "Trust & Safety",
+        "Privacy",
+        "Analytics",
+        "System Configuration"
+      ]
+    }
+  ],
+  "advisor": "contextual; no sixth primary tab",
+  "legacySurfaceRule": "Landing-only/mobile-only non-admin design restriction superseded by latest explicit brief",
+  "runtimeApplication": "unchanged foundation; no new service authorization",
+  "inventory": "screen-catalog.json"
+}

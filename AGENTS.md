@@ -1,5 +1,7 @@
 # GLAM AI engineering rules
 
+- Read docs/specification/ui-ux-design-handoff.md for the latest eight-application design scope, five mobile destinations, contextual Advisor and 15-group admin crosswalk. Older mobile-only design boundaries are superseded. Do not begin expanded application implementation before the primary flows/design system and revised architecture/criteria are approved; design artifacts are not service implementations.
+
 - Read docs/approvals.md, docs/specification/README.md and docs/implementation-status.md.
 - Master PRD v2 defines globally inclusive product scope and age-specific experiences; read its global policy/commerce plans before expanding implementation. Revised production architecture/acceptance criteria await the approval explicitly requested by the user's 5 November directive. No global/age mode is enabled by planning approval alone.
 - Use the existing checkout; do not create Git worktrees unless explicitly requested.

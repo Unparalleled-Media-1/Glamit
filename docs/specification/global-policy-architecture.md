@@ -1,5 +1,7 @@
 # Global eligibility, age permissions and localization architecture
 
+The latest [UI/UX design brief](ui-ux-design-handoff.md) supersedes older surface/navigation/palette proposals **for design scope**: iOS, Android, responsive consumer web and separate merchant, advertiser, professional, creator and admin web workspaces. Mobile tabs are Home, Discover, Studio, Shop, Profile; Advisor is contextual. Fifteen admin UI groups map to the retained A01–A16 requirement IDs. Application implementation still awaits the required primary-flow/design-system and expanded-architecture review. Older mobile-only descriptions below record the preceding architecture baseline; the linked handoff governs current design scope.
+
 5 November 2026 · Proposed PRD v2 implementation plan; no runtime policy or database migration is installed by this document. Governing scope: [Master PRD v2](master-prd-v2.md).
 
 ## Policy composition and lifecycle

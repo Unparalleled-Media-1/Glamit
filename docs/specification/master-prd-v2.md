@@ -10,7 +10,7 @@ This consolidates the [v1 master](sources/2026-11-master-product-specification.t
 
 ## Scope and approval boundary
 
-- Public web is informational and directs visitors to app downloads. `/admin` is the web control panel for the whole platform, including mobile apps. Every non-admin product/business workflow runs in iOS/Android apps.
+- The later [UI/UX brief](ui-ux-design-handoff.md) expands design scope to iOS/Android, responsive consumer web and merchant, advertiser, professional, creator and admin web workspaces. This supersedes the previous landing-only/mobile-only design restriction. `/admin` controls the whole platform. Primary flows/design system and expanded production architecture await review; no production portals are implemented by the design package.
 - Google through Supabase Auth and Supabase PostgreSQL remain selected; connection remains deferred. No new identity provider, raw-token storage or alternate migration system is implied.
 - Global-ready architecture does not activate every country or age band. Restricted teen and guardian-managed child experiences are required planned capabilities. Their assurance, consent, platform rules and jurisdiction policies must be reviewed and implemented before activation. Missing policy means unavailable capability, not adult access.
 - The user explicitly requires approval of the revised architecture/acceptance criteria before production implementation. This PRD and visual proposal do not implement youth access, commerce, AI, admin authorization or global release. Earlier foundation approval is preserved and does not automatically approve the expanded production scope. Deployment/destructive operations retain separate action-specific approval.

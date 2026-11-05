@@ -1,0 +1,26 @@
+{
+  "version":"ui-ux-1.0",
+  "nativeFigmaLibrary":"outstanding",
+  "components":[
+    {"name":"Button","variants":["primary","secondary","light","rose","icon"],"states":["default","focus","pressed","disabled"],"contract":"44px minimum target; 48px primary; visible label or accessible name; disabled never submits"},
+    {"name":"Navigation/Mobile","items":["Home","Discover","Studio","Shop","Profile"],"contract":"Five items, current-page semantics; Advisor is contextual outside the tabs"},
+    {"name":"Navigation/Web","items":["Discover","AI Studio","Hair & Beauty","Fashion","Shop the Look","Professionals","Creators"],"contract":"Desktop workspace navigation with independent responsive composition"},
+    {"name":"Navigation/RoleWorkspace","variants":["merchant","advertiser","professional","creator","admin"],"contract":"Separate role workspaces; admin role layouts are not backend authorization"},
+    {"name":"Card/Look","states":["concept","saved-layout","empty"],"contract":"Original illustrative assets; no measured trend or generated-user-result claim"},
+    {"name":"Card/Product","states":["illustrative","verified-future","stale-future","unknown"],"contract":"Price/stock/delivery require source evidence; prototype uses unavailable/unverified/unknown"},
+    {"name":"Disclosure/Sponsored","states":["adult-layout","suppressed-age-mode"],"contract":"Separate from organic matching; identity and evidence needed for real placement"},
+    {"name":"Studio/Compare","states":["original-layout","comparison-layout"],"contract":"Labeled slider, unchanged illustrative source on both sides; never claims actual transformation"},
+    {"name":"Studio/BottomSheet","states":["expanded","collapsed"],"contract":"Image-led preview with collapsible controls and safe undo/save-state demonstrations"},
+    {"name":"StatePanel","states":["loading","empty","error","offline","denied","success-layout"],"contract":"Real completion requires authoritative server confirmation; state inspector is design-only"},
+    {"name":"Dialog","states":["open","closed"],"contract":"Named modal, focus containment, Escape close, focus restoration; no data submission"},
+    {"name":"Form/Field","states":["default","focus","disabled","error-design"],"contract":"Persistent label, type/unit/help, no placeholder-only instructions; no stored sensitive data"},
+    {"name":"Quote/Summary","states":["incomplete","verified-future","changed-future","expired-future"],"contract":"Full delivered obligation, unknown costs visible; no firm within-budget claim until verified"},
+    {"name":"Wizard/Occasion","steps":["occasion","date-location","budget","concept-directions"],"contract":"Explicit choices and no sensitive inference; example directions are not generated priced proposals"},
+    {"name":"Wizard/Campaign","steps":["objective","eligible-products","placement","budget","creative","review","launch"],"contract":"Rights/stock/budget/measurement prerequisites; launch unavailable without evidence"},
+    {"name":"Professional/Request","states":["draft-layout","summary-preview","pending-qualification"],"contract":"Feasibility/full price/materials/availability before booking; preview request is not sent"},
+    {"name":"Preference/StyleDNA","states":["optional","selected-in-preview","cleared"],"contract":"Inspect/edit/reset; no storage, inferred protected identity or ad reuse"},
+    {"name":"Metric/Operational","states":["disconnected","qualified-data-future"],"contract":"Em dash for unknown data, not fabricated zero/revenue/growth"},
+    {"name":"Locale/Direction","states":["ltr","rtl-layout"],"contract":"Logical spacing; partial Arabic navigation is a layout study, not a reviewed translation"},
+    {"name":"Audience/Restriction","states":["adult-layout","teen","guardian-child","unknown"],"contract":"Unknown/unqualified capabilities blocked; initial youth processing/commerce/public sharing not enabled"}
+  ]
+}

@@ -37,7 +37,9 @@ The web and mobile screens are explicitly labeled development shells. Expo can b
 
 The standalone design artifact in `docs/design-preview` now reflects the proposed global PRD v2/Style Companion direction. It remains separate from application routes; global/age/guardian/agent/twin capabilities are not enabled. The revised architecture/criteria await the review required in `docs/approvals.md`.
 
-The target public website is informational and directs visitors to the mobile apps; administrative control belongs at `/admin`. All other product features belong in mobile, per the 5 November clarification in `approvals.md`. Currently both clients contain foundation screens; `/admin`, login, scanning, analysis and commerce screens are not implemented, and there are no configured store listings.
+The latest [UI/UX design handoff](specification/ui-ux-design-handoff.md) expands design scope to consumer and business web apps alongside iOS/Android and platform-wide `/admin`. This supersedes the earlier landing-only/mobile-only design rule. Application clients still contain foundation screens; actual admin, login, scanning, analysis and commerce remain unimplemented.
+
+For the independent design prototype, run `npm start --prefix docs/design-preview` and open `http://127.0.0.1:3345` **on the same machine**. Select iOS, Android, consumer web, one of five role workspaces, Design system or Screen-family library. The toolbar includes lifecycle states, audience restrictions, wireframes and partial RTL. See [preview instructions](design-preview/README.md) for screenshots and repeatable checks. This loopback address is not a public cloud or phone preview link.
 
 For a phone preview, use a checkout on your own computer on the same network as the phone:
 

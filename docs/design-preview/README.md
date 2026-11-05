@@ -1,18 +1,37 @@
-# Product design preview
+# GLAM AI design review
 
-`index.html` is a standalone design file with embedded styles/scripts and no build step, external fonts or images. View it in a local browser, or serve this directory using `python -m http.server 3344 --bind 127.0.0.1` and open it in the same machine's browser. Choose Website, Mobile app or Web /admin at the top. The mobile preview has five selectable bottom tabs; the admin sidebar has 16 selectable module headings, including Mobile app controls.
+Open the [mobile screenshot](mobile.png), [consumer web screenshot](website.png) or [admin screenshot](admin.png) to review the visual direction. The full [UI/UX handoff](../specification/ui-ux-design-handoff.md) records scope, journeys, states, acceptance and remaining work.
 
-This is a design proposal informed by the uploaded master and [screen blueprint](../specification/screen-blueprint.md). The running app still contains the earlier foundation screens. No API, camera, login, chat, purchase, catalog, metrics or admin authorization is connected. Downloads and other unavailable operations are disabled. An admin module selection changes the explanatory heading; it is not a working business module.
-
-The current copy reflects [global Master PRD v2](../specification/master-prd-v2.md) and the [style-companion extension](../specification/style-companion-extension.md): Every Look. Every Style. Everyone.; editable Style DNA; occasion/budget proposals; age/guardian/market boundaries and explicit transaction confirmation. These capabilities remain proposed. The preview is an LTR layout concept; it does not implement RTL localization, age assurance, real memory, shopping-agent tools or any other expanded production behavior. Revised architecture/acceptance criteria await approval.
-
-Visual checks performed in Chromium include surface switching, all five mobile tabs, 16 admin module headings, keyboard selection, disabled unavailable actions, no external network requests, no browser runtime errors and desktop/phone screenshots. Native device appearance, VoiceOver/TalkBack and full accessibility testing remain unverified.
-
-To repeat the automated interaction checks and refresh screenshots from this directory:
+For the interactive prototype, serve this directory on the same machine as your browser:
 
 ```sh
-npm ci --ignore-scripts
-npm test
+npm start --prefix docs/design-preview
 ```
 
-The test starts a temporary loopback server and closes it and the browser when complete. It uses installed `/usr/bin/chromium` when present, or `CHROMIUM_EXECUTABLE_PATH`, otherwise Playwright's installed Chromium. If a local browser is absent, install the version required by the locked Playwright release using its normal verified browser-install workflow. This preview tooling is isolated from the application's root workspace/dependencies. The managed browser blocks `file:` URLs, so its checks use HTTP on loopback; an ordinary local browser can open the standalone file directly.
+Open `http://127.0.0.1:3345`. This is a local address, not a public cloud or phone link. Set `GLAM_DESIGN_PORT` if needed. This prototype uses separate local HTML/CSS/JS/assets; it is not a single embedded HTML file. The provided server adds static-only/security headers; the prototype makes no API requests.
+
+Choose iOS, Android, Consumer web, Merchant, Advertiser, Professional, Creator or Web /admin. Two additional review tools are Design system and Screen-family library. Mobile has Home, Discover, Studio, Shop and Profile; Advisor is contextual. The toolbar selects lifecycle states, restricted-audience layouts, wireframes and a partial Arabic RTL study.
+
+Review these interactions:
+
+- Discover → look → Studio → Complete the Look → compare → merchant handoff review.
+- Shop → illustrative product detail → look plan.
+- Home → Occasion Concierge → date/location/budget → three concept directions.
+- Contextual Advisor, profile preference reset and professional quote-request summary.
+- Merchant draft review, seven-step advertiser wizard and creator/customer placement.
+- Fifteen admin module groups and seven role layouts, including platform-wide mobile controls.
+- Screen-family library: 71 consumer, eight web and 54 workspace task studies. Select a family for dedicated fields, a related flow and acceptance/dependency notes. These are combined requirement families, not 133 complete service implementations.
+
+Images are original AI-generated editorial/product illustrations, not private user inputs, real try-on results or verified inventory. No login/camera/AI/catalog/payment/booking/business-data service is connected. No business metrics are fabricated. Inputs and preferences are ephemeral; unavailable publication/financial actions stay disabled. Layout audience/role selection is not backend authorization.
+
+Reproduce the exports and checks:
+
+```sh
+npm ci --ignore-scripts --prefix docs/design-preview
+npm run export:frames --prefix docs/design-preview
+npm test --prefix docs/design-preview
+```
+
+The isolated test uses `/usr/bin/chromium`, `CHROMIUM_EXECUTABLE_PATH`, or Playwright's installed Chromium. It starts and closes its own temporary loopback server/browser. Browser installation, if needed, must use the locked Playwright version's verified installer. Current results: [test-results.json](test-results.json); 25 primary PNG captures and 133 task JPEG captures in [frames](frames/).
+
+Handoff includes [tokens](tokens.json), [component contracts](components.json), [IA](information-architecture.json), [screen catalog](screen-catalog.json), five editable primary SVG studies and 133 task wireframes in [figma-ready](figma-ready/). SVG text/shapes are editable; photos are raster fills. **No native Figma file, auto-layout/component library or Figma import verification was produced: no Figma authoring tool is connected.** Native device, complete localization, assistive-technology, usability and real-service validation remain outstanding. The brief requires primary-flow/design-system approval before application implementation.

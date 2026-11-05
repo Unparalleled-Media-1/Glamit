@@ -1,5 +1,18 @@
 # Current-instance validation
 
+## Editorial UI/UX review — latest 5 November 2026 update
+
+The [new UI/UX brief](specification/sources/2026-11-ui-ux-design-brief.txt) is archived byte-for-byte. The [handoff](specification/ui-ux-design-handoff.md) supersedes earlier surface/navigation/palette design notes. Earlier preview checks below describe historical revisions.
+
+- `npm run export:frames --prefix docs/design-preview`: eight application definitions and 133 unique screen-family studies (71 consumer, eight web, 54 workspaces), each with task layout, dependency, journey and acceptance notes; 138 SVGs parsed successfully as XML, including 133 editable task wireframes. Catalog/token/component JSON and local handoff links are valid.
+- `npm test --prefix docs/design-preview`: **14 check groups passed; 158 review frames captured** (25 primary PNGs, 133 task JPEGs). Evidence includes core discovery/Studio/Complete/comparison/handoff, occasion wizard, product/plan, contextual Advisor, merchant publication guard, seven-step campaign guard, professional request summary, all business/admin modules, seven admin role layouts, lifecycle states, restricted audience, wireframes, partial RTL, keyboard modal focus, reduced motion and responsive 320–1920 px. All family headings/task fields rendered, no external requests, mutations, popups, failed assets or browser runtime errors occurred. See [machine-readable result](design-preview/test-results.json).
+- Original generated assets and encoding/source hashes are recorded in [provenance](design-preview/assets/provenance.json). Primary mobile/desktop and selected task/admin captures were visually inspected. Measured token contrast and outstanding audit work are documented in the handoff; this is not a WCAG/native-device certification.
+- `UV_CACHE_DIR=/tmp/glam-ui-uv-cache uv run --offline ruff check .`, `npm run typecheck` and `NEXT_TELEMETRY_DISABLED=1 npm run build:web` passed. The web build is local only. Initial cache/config writes hit the read-only user home; task-scoped cache and disabled telemetry resolved them without changing application files.
+
+Backend regression suite: `GLAM_TEST_DATABASE_URL=.../glam_test UV_CACHE_DIR=/tmp/glam-ui-uv-cache uv run --offline pytest -q --tb=short` passed **32 tests**, no skips (one existing Starlette/httpx deprecation warning). The first attempt produced 15 passes and 17 setup errors because local PostgreSQL was stopped. The existing managed-local Compose PostgreSQL container was restarted without changing its configuration; the dedicated `_test` database suite then passed. No production database operation occurred.
+
+No application source, migration, API contract or root dependency changes are included. The design-only server is static GET/HEAD with `connect-src 'none'`; no live identity, camera, provider, catalog, payment, booking or admin authority is asserted. Native Figma file/component/auto-layout authoring and import verification remain outstanding because no authoring tool is connected. Real service acceptance, complete localization, native devices, assistive technology and usability validation remain open. No Git push, PR publication, merge, deployment or environment publication was performed.
+
 ## Global PRD v2 and companion consolidation — 5 November 2026
 
 Branch `docs/global-master-prd-v2`. Both new uploads were preserved byte-for-byte; all 15 V2 capability IDs, 12 opportunity IDs, 71 consumer screen-family IDs, three business additions and 16 admin IDs were checked for completeness/uniqueness. Referenced relative documentation paths and authored-file whitespace checks passed. The verbatim source archives retain their original whitespace/line endings.

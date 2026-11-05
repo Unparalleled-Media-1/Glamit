@@ -4,37 +4,39 @@
 
 Current direction: [Master PRD v2](master-prd-v2.md) and the [12-opportunity companion extension](style-companion-extension.md). Globally inclusive beauty/grooming/fashion, user-controlled Style DNA, occasion/budget planning and a confirmation-based Shopping Agent supersede an exclusively African/adults-only target product. African categories retain full support. Restricted teen/guardian-managed child flows are planned under the [age matrix](global-policy-architecture.md#age-specific-permission-matrix); no new age/country/capability is enabled. Expanded production architecture/criteria await approval.
 
+The latest [UI/UX design brief](ui-ux-design-handoff.md) supersedes older surface/navigation/palette proposals **for design scope**: iOS, Android, responsive consumer web and separate merchant, advertiser, professional, creator and admin web workspaces. Mobile tabs are Home, Discover, Studio, Shop, Profile; Advisor is contextual. Fifteen admin UI groups map to the retained A01–A16 requirement IDs. Application implementation still awaits the required primary-flow/design-system and expanded-architecture review.
+
 ## Product surfaces
 
-Public web `/` explains the product and directs visitors to real app-store listings once available. It has privacy/support/legal links and truthful download availability. No public consumer web app or web checkout is planned. `/admin` is a responsive web control panel for the entire platform, including all mobile operations; it is not an admin dashboard limited to website content. All non-admin roles operate inside the iOS/Android apps, with authorized role-specific workspaces.
+The latest brief requests iOS and Android consumer apps, responsive consumer web, and separate merchant, advertiser, professional, creator and admin web designs. `/admin` manages every platform surface. Current application code remains a limited foundation; none of these studies creates production routes.
 
-Mobile's five persistent destinations are **Home · Analyze · Studio · AI Advisor · Profile**. Commerce enters through Home recommendations or Complete the Look; saved looks are reachable through Studio and Profile. An active capture/job/payment flow can temporarily hide bottom navigation to protect confirmation/state; leaving must not silently submit or charge.
+Mobile destinations: **Home · Discover · Studio · Shop · Profile**. Analysis is nested in Studio; AI Advisor is contextual. Desktop uses independent discovery, Studio, beauty, fashion, Complete, professional and creator layouts. Active capture/job/payment transitions must preserve explicit confirmation and accepted state.
 
 ## Visual tokens and components
 
 | Token | Value / use |
 |---|---|
-| Rose | `#F46F98`, brand highlight and primary background with Plum text |
-| Blush | `#FBE7ED`, secondary panels and selected backgrounds |
-| Ivory | `#FFF9F6`, page background |
-| Plum | `#382633`, primary text and high-contrast surfaces |
-| Bronze | `#B48A64`, decoration; not small text on Ivory |
-| Action Rose | `#9F3457`, accessible dark action background with white text |
-| Typography | System sans-serif for controls/body; optional editorial display face for headings after licensing/availability review |
-| Layout | 8-point spacing system, 20–24 px mobile gutters, 16–24 px card radius; large portrait/results area only after consent or using clearly licensed inspiration |
-| Interaction | At least 44 pt iOS / 48 dp Android targets; visible keyboard focus; reduced-motion behavior; no undisclosed automatic camera start |
+| Ink | `#17151A`, text and primary surfaces |
+| Ivory | `#F8F4F0`, page background |
+| Rose | `#D96B95`, restrained highlight with Ink text |
+| Lilac | `#A98ABD`, accent with Ink text |
+| Gold | `#C9A46A`, accent with Ink text |
+| Action Rose | `#8F3157`, dark action/focus accent |
+| Typography | Editorial serif for campaign moments; system sans-serif for tasks |
+| Layout | Image-led layouts, logical spacing, restrained cards; licensed or clearly illustrative imagery |
+| Interaction | Minimum 44 pt iOS / 48 dp Android targets; visible focus; reduced motion; explicit capture consent |
 
-Computed WCAG sRGB contrast: Plum/Ivory 13.48:1; Plum/Rose 5.07:1; white/Action Rose 6.77:1; white/Rose 2.77:1 and Bronze/Ivory 2.98:1 fail normal-text AA. Use the accessible pairs for body text/buttons. This arithmetic does not replace rendered screen-reader, text-scaling, focus and device testing.
+Computed contrast: Ink/Ivory 16.56:1; muted/Ivory 5.33:1; Ink/Rose 5.60:1; white/Action Rose 7.65:1. White/Rose 3.24:1 fails normal-text AA. Full screen/device accessibility remains unverified. See the [current design handoff](ui-ux-design-handoff.md) and typed tokens for complete contracts.
 
 Core components: safe-area shell, bottom tabs, feature/inspiration card, purpose-specific consent sheet, capture guide/countdown/cancel, quality warning/retake, expiring server quote, job progress/cancel, original-versus-simulation comparison, editable uncertainty explanation, owned saved-look card, organic versus Sponsored offer groups, unavailable/empty/error panels and verified purchase/restore state. No sliders or scores implying numerical attractiveness.
 
-V2 components add verified age/guardian context and safe blocked states, locale/RTL/units/size-chart controls, Exact/Similar evidence cards, itemized delivered-cost proposals, professional feasibility/quote states, editable memory provenance/reset, private wardrobe/twin expiry/revoke, occasion checklist/reminders and group invite/share permissions. Any actual simulation keeps identity/complexion/body proportions/visible features; style choices never infer or restrict ethnicity, religion, gender identity or disability. The visual preview remains an LTR concept; RTL, large-text and assistive-technology qualification is future work.
+V2 components add verified age/guardian context and safe blocked states, locale/RTL/units/size-chart controls, Exact/Similar evidence cards, itemized delivered-cost proposals, professional feasibility/quote states, editable memory provenance/reset, private wardrobe/twin expiry/revoke, occasion checklist/reminders and group invite/share permissions. Any actual simulation keeps identity/complexion/body proportions/visible features; style choices never infer or restrict ethnicity, religion, gender identity or disability. The preview includes a partial Arabic RTL layout study; complete translation, large-text/native and assistive-technology qualification remain future work.
 
 ## Consumer screen families
 
 The source says **47 screens**, but its category counts sum to **50**: 13 + 6 + 7 + 7 + 12 + 5. Use the 50 screen-family IDs below for planning (45 core + 5 expansion). This is a proposed normalization, not a claim that the source specified every missing title. Combined families can contain nested screens; final route count follows wireframe review. Guest/account-recovery families retain the selected Google-first constraint instead of introducing local credentials.
 
-V2 extends this retained v1 inventory with M51–M71 below, for **71 proposed consumer screen families**, plus B01–B03 explicit business-workspace additions and the existing business-role inventory. These are planning families across stages, not 71 implemented routes or an all-at-once MVP promise. Website remains informational/download-only; admin stays on web.
+V2 extends this retained v1 inventory with M51–M71 below, for **71 proposed consumer screen families**, plus B01–B03 explicit business-workspace additions and the existing business-role inventory. These are planning families across stages, not 71 implemented routes or an all-at-once MVP promise. The later UI brief adds responsive consumer and role-specific web designs; retained IDs continue to identify requirements.
 
 | ID | Family | Entry / gate |
 |---|---|---|
@@ -117,7 +119,7 @@ V2 extends this retained v1 inventory with M51–M71 below, for **71 proposed co
 
 Screen order does not authorize anonymous capture: M12 or the reviewed restricted guardian route, plus age/market/purpose/rights/quote gates, precede any permitted M08 submission. Unknown or unqualified age mode cannot submit. Denied camera, expired quotes, lost network, no matches, refusal/abstention, provider failure, cancellation and deletion-in-progress are designed states, not separate count inflation.
 
-### Non-admin mobile business workspaces
+### Business workspace requirements
 
 | Audience | Workspace / screens beyond consumer count | Permission boundary |
 |---|---|---|
@@ -126,17 +128,17 @@ Screen order does not authorize anonymous capture: M12 or the reviewed restricte
 | Creator | Profile/rights/licensed posts, shoppable collections, affiliate agreements, verified commissions and payout statements | Published content separated from private consumer inputs |
 | Advertiser | Verification/catalog linkage, campaigns/ad groups/creative/bids, budget/frequency/schedule, click/conversion reports, invoices/appeals | Organization/billing authority, privacy-filtered aggregates only |
 
-These workflows stay in mobile; they are additional planned role routes, not hidden inside the source's consumer count. Admin can control eligibility and review them without impersonating their users or bypassing commerce rules.
+The latest UI brief gives these roles distinct web workspace designs; they remain additional requirements beyond the consumer count. Admin can control eligibility and review them without impersonating their users or bypassing commerce rules.
 
-| V2 business ID | Added mobile workspace family | Gate |
+| V2 business ID | Added business workspace family | Gate |
 |---|---|---|
 | B01 | AI-assisted catalog drafts/review | Merchant rights/verification and approval before canonical publication; no generated price/stock/claims |
 | B02 | Merchant/advertiser aggregate intelligence | Approved dimensions, consent/suppression/anti-differencing, no private profiles/lists or youth commercial events |
 | B03 | Later B2B API clients/scopes/usage | Verified organization/contracts/vendor rights, tenant/region/age scope, quotas/rotation and reconciled billing |
 
-## Sixteen web admin modules
+## Retained sixteen admin requirement IDs
 
-The upload names six modules, then an unexpanded “Show all 16 modules” control. A01–A06 preserve the named modules; A07–A16 are proposed completions derived from the remaining platform requirements, not recovered hidden source content.
+The earlier master upload names six modules, then an unexpanded “Show all 16 modules” control. The latest UI brief names 15 UI groups; use the [crosswalk](ui-ux-design-handoff.md#screen-library-and-grouping-crosswalk), retaining these authority IDs. A01–A06 preserve the earlier named modules; A07–A16 are proposed completions derived from the remaining platform requirements, not recovered hidden source content.
 
 | ID | Module / representative route | Controls and safeguards |
 |---|---|---|
@@ -161,6 +163,6 @@ Roles: Super Admin, Finance, Customer Support, Content Editor, AI Operations, Co
 
 ## Preview and acceptance boundary
 
-The standalone preview has public web, five mobile-tab layouts and admin-module navigation with disconnected/empty states. It makes no API requests, activates no camera, accepts no payments, seeds no approved consent and displays no fabricated business metrics/catalog. It uses abstract brand artwork rather than private selfies or unlicensed portraits. Backend/auth, actual native navigation, provider outputs, store downloads and measured product quality remain implementation/integration work.
+The standalone preview has iOS/Android concepts, consumer web, five mobile destinations, five separate role workspaces, design-system inspection and 133 screen-family studies. It makes no API requests, activates no camera, accepts no payments, seeds no approved consent and displays no fabricated business metrics/catalog. It uses original AI-generated editorial/product illustrations, explicitly distinct from customer results and merchant inventory. Backend/auth, actual native navigation, provider outputs, store downloads and measured product quality remain implementation/integration work.
 
 Review checks: five tab labels and clear selection, keyboard/focus behavior, screen-family traceability, visible preview state, disabled downloads/processing while unavailable, admin control coverage including mobile, responsive layouts, contrast and reduced-motion behavior. Live device, VoiceOver/TalkBack and full WCAG testing remain release gates.

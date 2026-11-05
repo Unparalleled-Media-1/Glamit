@@ -1,5 +1,7 @@
 # GLAM AI architecture approval package
 
+The latest [UI/UX design brief](ui-ux-design-handoff.md) supersedes older surface/navigation/palette proposals **for design scope**: iOS, Android, responsive consumer web and separate merchant, advertiser, professional, creator and admin web workspaces. Mobile tabs are Home, Discover, Studio, Shop, Profile; Advisor is contextual. Fifteen admin UI groups map to the retained A01–A16 requirement IDs. Application implementation still awaits the required primary-flow/design-system and expanded-architecture review.
+
 **Current revision:** [Master PRD v2.0](master-prd-v2.md) governs globally inclusive positioning, age-specific experiences and the three engines. Its revised production architecture and acceptance criteria await approval under the user's latest directive. [Global policy/schema/APIs](global-policy-architecture.md) and [commerce operations](commerce-operations-v2.md) supersede conflicting older adults-only/exclusively African/launch-auction assumptions. Existing foundation approval remains recorded separately.
 
 Prepared 3 November 2026; reconciled with the uploaded master specification on 5 November. The foundation and Complete the Look planning baseline were approved on 3 November; provider integrations, commercial activation and production release keep their separate evidence gates. See [approval history](../approvals.md) and [actual implementation status](../implementation-status.md).
@@ -13,8 +15,8 @@ This package answers the master build instruction for a worldwide beauty, groomi
 | [Commerce operations v2](commerce-operations-v2.md) | Referral/booking versus settlement, supply/trust/returns, event contracts, budget/search and advertiser pilots |
 | [Style companion extension](style-companion-extension.md) | All 12 opportunities, core companion journey, private memory/wardrobe/twin, agent confirmation, staged schema/API/backlog |
 | [Master alignment](master-alignment.md) | Uploaded-source traceability, decisions carried forward, API/model gaps, release targets and next work |
-| [Screen/design blueprint](screen-blueprint.md) | Five mobile tabs, normalized screen families, 16 admin modules, palette/accessibility and platform boundaries |
-| [Visual design preview](../design-preview/index.html) | Standalone, interactive website/mobile/admin layout proposals; no live integrations |
+| [Screen/design blueprint](screen-blueprint.md) | Retained M01–M71/A01–A16 IDs; current five mobile tabs, 15-group admin crosswalk and latest palette |
+| [Visual design preview](../design-preview/index.html) | Editorial mobile, consumer web and five role workspaces; screen-family library, states and wireframes; no live integrations |
 | [Architecture](architecture.md) | System boundaries, repository layout, AI orchestration, payments, subscriptions, credits, marketplace and advertising |
 | [Data model](data-model.md) | Canonical entity catalogue, relationships, invariants and retention boundaries |
 | [Product and delivery](product-delivery.md) | Screen inventory, requirements traceability, phased backlog, dependencies, tests and release gates |

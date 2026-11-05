@@ -1,0 +1,22 @@
+{
+  "assets": [
+    {
+      "file": "editorial.webp",
+      "sha256": "b683504a26f710b35afdd294bc96880af0bf93d1fd5fe5711459d1b95689a7b3",
+      "source_original": "/workspace/generated_images/exec-54cec9f8-6b37-408a-82c5-7e09ff29b109.png",
+      "source_sha256": "64188834ae9f9484e1cb5b061334ed8b01b085a59fb2b6b1a3746a76485265ef",
+      "origin": "Session image generation; original illustrative contact sheet",
+      "encoding": "ImageMagick WebP quality 86; no semantic edits",
+      "production_evidence": false
+    },
+    {
+      "file": "products.webp",
+      "sha256": "53fa1142ad1f559b5aeb5a5975fccde124179a7f7bcb52ca15f05ad89d409fd3",
+      "source_original": "/workspace/generated_images/exec-e016ef5e-c3ad-4a90-8007-aef055688a1d.png",
+      "source_sha256": "27cddf438066341e65f3f83f8b11e2f358e194610236bc50f6eab809873c15a5",
+      "origin": "Session image generation; original illustrative contact sheet",
+      "encoding": "ImageMagick WebP quality 86; no semantic edits",
+      "production_evidence": false
+    }
+  ]
+}

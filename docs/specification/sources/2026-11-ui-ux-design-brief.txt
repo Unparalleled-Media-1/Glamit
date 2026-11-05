@@ -1,0 +1,484 @@
+# GLAM AI — Complete UI/UX Design Brief
+
+Mobile Applications + Web Platform | Global Product | Design Specification v1.0
+
+# Every Look. Every Style. Everyone.
+
+Product vision: Design a premium, inclusive, AI-powered beauty, grooming, fashion and lifestyle platform where users can discover a look, try it virtually, find the products needed to recreate it, shop from relevant merchants and book professionals.
+
+Primary experience: Discover → Try → Personalize → Complete the Look → Shop / Book → Share.
+
+The design must feel like a combination of a premium fashion editorial, an intuitive AI creative studio and a seamless shopping experience—not a cluttered super-app.
+
+The product will serve all genders, ethnicities, skin tones, hair textures, body types, abilities, budgets and cultures globally. Age-specific experiences must be designed with appropriate protections.
+
+# 1. Visual identity and design language
+
+![Glossier Mobile App by Julia Nasser on Dribbble](https://images.openai.com/static-rsc-4/Dv8Y7197WTZ19XAZvpG3B2jmKv3_-tGSIBMKkk8PyYcshMmHqHWis4T7DOXstMjSdp-zX8Big0Za3J3qPB7ahgQk68ldRirIyH1cVWjTQIhUcqsYGYl9_3qGyr-PG8ftpGEipLvqmDcvg5Ja6KeNTTsCMFEVz5BorbM-U96r46I?purpose=inline)
+
+Add to Favorites
+
+![Beauty Make Up AI Mobile - Magic Cam by Jëlly for Odama on Dribbble](https://images.openai.com/static-rsc-4/R80HDJ0Jd3jpnh_NOsdmQSSs0iCRvX6pM7pZjgz6FXYbFhlOs08i1SMz70x93oFGeb0AOmfJ_aA-9BjWtqhSH14PbElVW_P58nOjPtaboed5BtbWGOAFERJ1tjQre7ES82UudhLFbCk3YzAk7IxfthVlsEYBVUAsAnLFZ1138wI?purpose=inline)
+
+Add to Favorites
+
+![Hyeja Skincare | 1/1 Studio](https://images.openai.com/static-rsc-4/gObXitGAGInmyj-Z-wPL0Bj63IW6b96rb7ZgIpuwg9vSrrfpvhDvVGWNRsxfJDC7anf_KpBjL-x1m5vKdfvF0XUZ2ubLKa1Qk7TwBsGPQZxJzGoZvJh3_OTdKxRyyBBIhsOqEijIUcWYnXb271ki6L2mfvANRdxEguRI-9LjXhM?purpose=inline)
+
+13
+
+Add to Favorites
+
+## Brand personality
+
+GLAM AI should feel:
+
+* Premium but accessible: Fashion-editorial quality without excluding affordable shoppers.
+
+* Inclusive: Real representation of different people and personal styles.
+
+* Intelligent: AI functionality feels useful and effortless.
+
+* Expressive: Bold imagery, elegant typography and customizable style experiences.
+
+* Trustworthy: Clear prices, sponsorship labels, privacy controls and reliable shopping information.
+
+## Proposed color system
+
+Ink
+
+#17151A
+
+Ivory
+
+#F8F4F0
+
+Rose
+
+#D96B95
+
+Lilac
+
+#A98ABD
+
+Gold
+
+#C9A46A
+
+Use warm ivory backgrounds, deep charcoal text, restrained rose accents and occasional gold for premium collections. Lilac may be used for AI-specific elements. Never use color alone to indicate meaning.
+
+Typography should pair an expressive editorial serif for large campaign headlines with a highly legible modern sans-serif for navigation, forms and product information. The interface must support international scripts and right-to-left layouts.
+
+# 2. Mobile consumer application
+
+The mobile application is the flagship product, designed for iOS and Android using a shared design system.
+
+## Primary navigation
+
+Home
+
+Discover
+
+Studio
+
+Shop
+
+Profile
+
+The AI Advisor should be available through a persistent contextual assistant entry point, not consume a permanent sixth tab.
+
+## Mobile screen architecture
+
+| Section            | Required screens                                                                                                           |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| Onboarding         | Splash, welcome, region/language, age-appropriate entry, login, signup, consent, style preferences, optional photo setup   |
+| Home               | Personalized dashboard, search, trending looks, occasions, recommended collections, recently saved                         |
+| Discover           | Explore feed, category browser, creator looks, visual search, look details, trending collections                           |
+| AI Studio          | Selfie upload, camera capture, analysis, hairstyle try-on, makeup try-on, fashion try-on, before/after, generation history |
+| Complete the Look  | Component breakdown, product matches, sponsored matches, price comparison, budget planner, shopping list                   |
+| Shop               | Product discovery, product details, merchant storefront, cart or affiliate handoff, order tracking where supported         |
+| Professionals      | Salon discovery, service details, professional profile, quote request, availability, booking and review                    |
+| Style DNA          | Preferences, color palette, wardrobe preferences, size profiles, style history, recommendations                            |
+| Occasion Concierge | Occasion selection, budget, date, look generation, preparation checklist                                                   |
+| Creator            | Creator profiles, shoppable collections, follows, sharing, creator storefront                                              |
+| AI Advisor         | Chat, style recommendations, shopping assistance, saved conversations                                                      |
+| Account            | Profile, subscriptions, credits, purchases, notifications, privacy, help, accessibility, deletion                          |
+
+### Screen concept A — Home
+
+![Modern Fashion eCommerce Mobile App UI by Minhaj Tavish on Dribbble](https://images.openai.com/static-rsc-4/qDAFyA5b2SkZslTg9SpLpb4tTF3aDeWAVFuLoTf9Ka2_5i1lfsgoWWAHcGGav4wucodC4QJ3jjtqoQihZwROnPCT1O467JGZ-XJ1nKEVuaPNRMExRnJNv-wEKeA6lAQCGkNyZO3e4yQorG6FqiiyYAP22rrb3WM-Q0AHAWxtnas?purpose=inline)
+
+Add to Favorites
+
+Layout requirements
+
+Top: GLAM AI logo, location/currency selector, search and notification icon.
+
+Hero: Personalized inspiration image with the headline Find Your Next Look and a prominent Try a Look CTA.
+
+Below the hero: horizontally scrollable category chips such as Hair, Makeup, Fashion, Grooming, Modest Style, Accessories and Occasions.
+
+Then display Trending Looks, Complete the Look collections, For Your Budget, nearby professionals and creator inspiration.
+
+The home screen should prioritize visual discovery over dense information.
+
+### Screen concept B — AI Studio
+
+![10 Best Hair Cutting Apps for Virtual Hair Makeovers](https://images.openai.com/static-rsc-4/hSt5yvvRU_OMSa4ZqkhTFFRsyqFS3WG0wpbDJHBP29wUVWWr4VGlPlmdJnAlc-ztkuRRmRcFhbP48oIk3CgHu31TZI59XRFzFuuYWrFqzZtPmiV7bRbFVUj72lZ-eq884l8DiQ7DNslz90ocs6f24LuXyNq20Xo-9nGJZiFUlv0?purpose=inline)
+
+Add to Favorites
+
+The studio must be immersive and image-led.
+
+The main preview occupies most of the screen. Controls appear in a collapsible bottom panel.
+
+Key actions: Hair, Makeup, Outfit, Accessories, Compare, Save and Complete the Look.
+
+Users must be able to compare the original and generated images, undo changes, change individual components and view AI generation status.
+
+A generation should never appear completed before the server confirms the output is ready.
+
+### Screen concept C — Complete the Look
+
+![Venn Apps | TOTEME](https://images.openai.com/static-rsc-4/jjYRwsMjgovm6iT7oi9rjtp9n_IrdWCO59cBktQgaNTY3WOAJ7MVoeA84DX1_2lPXXfudqd9noxqdM_4RZPLQ3gXUxms9RRbbhkddEFISiO3io7giWK_MlKcUTrnOXoSFg6HVHdWtOcQzgPz8lB60Lg6y3WH2FUAmZPY6ItEDxY?purpose=inline)
+
+Add to Favorites
+
+This is the platform's most important commercial screen.
+
+At the top, show the complete look. Beneath it, display a breakdown of hairstyle, makeup, clothing, shoes, accessories and services.
+
+Each component must offer a relevant merchant match, price, stock status, delivery or pickup information and alternative products.
+
+Sponsored results must be labeled. Users should be able to switch between Best Match, Lowest Total Cost and Fastest Available.
+
+A sticky bottom action bar should provide Save Look, Compare Offers and Shop the Look.
+
+### Screen concept D — Occasion Concierge
+
+![Firefox Shake to Summarize: The Best Inventions of 2025: Special Mentions](https://images.openai.com/static-rsc-4/Qq2OTVhC37DFtJne-ykEnCwC3QNe8S7HyHiWv5TnJZidXDQDVBHWH5OgxXMvnvH-j0-1JfR4rfkWI2iFsQyXz9cL_T52Th5laS17a_1P1ANyr0XaAj6Jagg2Ub-P_9xKsUWsxKl_3zE-JzVLK7T3nfvTMDs7mbEjI8ZiXU_n6NA?purpose=inline)
+
+Add to Favorites
+
+Use a conversational wizard rather than a long form.
+
+Ask for occasion, date, location, budget and style preferences. Present three complete looks and allow users to customize one.
+
+The final screen becomes a preparation plan with products, professionals, appointments and delivery deadlines.
+
+# 3. Web consumer application
+
+The web experience must not be a stretched mobile interface. It should be optimized for browsing, comparison, shopping and detailed editing.
+
+![Maison Website by Adeyi Olamide on Dribbble](https://images.openai.com/static-rsc-4/EFYJPaSYpS9OdXXm5gEcR4B9WmhZQYXX7foyK9DgoJgLQw98iweLKlio3FVfgpCvXU-27NlOwqNV9dCnY-CpluJd4dS6fSiw_sz7l9qVA3yCOwM6Vc7lGl4V0hBZoCtnCsIV1k2pL8wH76Oi870JZ80JrbO0xOuwUk3uXU5B4-g?purpose=inline)
+
+Add to Favorites
+
+[dribbble](https://dribbble.com/shots/26889680-Maison-Website?utm_source=chatgpt.com)
+
+## Web navigation
+
+Top-level navigation:
+
+Discover | AI Studio | Hair & Beauty | Fashion | Shop the Look | Professionals | Creators
+
+Right side: Search, region/currency, saved looks, account and cart.
+
+The desktop AI Studio should use a three-column layout: controls on the left, large preview in the center, products and look components on the right.
+
+The desktop Complete the Look page should show a large interactive look image, a product breakdown and a comparison panel without requiring excessive scrolling.
+
+Web users should be able to upload inspiration images, generate looks, save collections and continue the same session on mobile.
+
+# 4. Merchant and advertiser web portals
+
+Merchants, advertisers and professionals require dedicated workspaces. Do not combine every business role into one cluttered dashboard.
+
+## Merchant portal
+
+![Ecomora Admin Dashboard - E-commerce Analytics UI by Md Foysal ✪ for ZERO STUDIO on Dribbble](https://images.openai.com/static-rsc-4/XYl05bFib2zlXMqrPtPGQnpmr7crzhpkvQ0BG74r_A4KyHOv6trizgDrBeQKd6eL4yGXncZ3wS4AZ5xKpQz9fGW1kQT9riZDBbfQga4DMKEH-RYQnwIZgjjaA2Ftb3KLySNWtNu4o7uQffolH7A6xg-lZ9v5qNEIBnzOSXyEEjY?purpose=inline)
+
+Add to Favorites
+
+[dribbble](https://dribbble.com/shots/27013566-Ecomora-Admin-Dashboard-E-commerce-Analytics-UI?utm_source=chatgpt.com)
+
+Required modules: Overview, Catalog, Inventory, Orders/Leads, Promotions, Advertising, Analytics, Payouts, Storefront, Settings and Support.
+
+Merchant onboarding should support manual product creation, CSV import and approved API catalog synchronization.
+
+The product editor must include images, variants, sizes, colors, stock, price, shipping eligibility and return policy.
+
+## Advertiser portal
+
+![GrowthX AI OS | Built with Blink](https://images.openai.com/static-rsc-4/5P0-LegDXXK3qkcgL3CeojHo7uhkiws-ilRN5aRql9zHGhulwH3gseWBQjAt2Cs02KzCj6ba1iIoZLYGbWyKxFEpCpeUxpJmIxGQskKnGX1wckVSnp6Z5uzz0uC9JTCPpbyUcllWPKUPpc2jBMf0k_SFuqLoaWZ-0or3_P-yRSE?purpose=inline)
+
+Add to Favorites
+
+[blink](https://blink.new/p/growthx-ai-os-tkeqmkiq?utm_source=chatgpt.com)
+
+Required modules: Campaign Overview, Create Campaign, Ad Groups, Creative Library, Sponsored Looks, Targeting, Budgets & Bids, Attribution, Reporting, Billing and Brand Safety.
+
+Campaign creation should use a guided flow:
+
+Objective → Eligible products → Placement → Budget → Creative → Review → Launch
+
+Advertisers must preview exactly how sponsored placements appear to customers.
+
+## Professional portal
+
+For salons, barbers, stylists and makeup artists:
+
+Dashboard, Services, Portfolio, Booking Calendar, Quote Requests, Clients, Promotions, Reviews, Earnings and Settings.
+
+A professional should be able to receive a customer's selected look and respond with feasibility, price, required materials and available appointment slots.
+
+## Creator portal
+
+Creators need a dashboard for published looks, shoppable collections, affiliate links, attributed sales, commissions, campaign invitations and payouts.
+
+# 5. Administrative web application
+
+The GLAM AI administration system should be operational rather than merely analytical.
+
+![Pokecut - AI Platform Admin Dashboard UI/UX Design by Rakibul Ism on Dribbble](https://images.openai.com/static-rsc-4/4LkWhePsh0yOFDSArqhS7Tl5d5shOCstO7Kdt0yNiUVvLJqSDatN6Dht18nfhTrDgvRVYoyjfnLqbbOirwpD4lD9QFKnaEZiQ0nF8w7K8yu_1c-3ou4XgemdM8dYQxk2TgfADQrp316ujEjpp6AR6ahWFEjb7o9pbkGZi-3K86A?purpose=inline)
+
+Add to Favorites
+
+[dribbble](https://dribbble.com/shots/27114606-Pokecut-AI-Platform-Admin-Dashboard-UI-UX-Design?utm_source=chatgpt.com)
+
+| Module                  | Core functionality                                              |
+| ----------------------- | --------------------------------------------------------------- |
+| Executive Overview      | Revenue, users, generations, commerce, advertising and bookings |
+| User Management         | Accounts, permissions, support and account actions              |
+| AI Operations           | Model usage, costs, errors, generation queues and quality       |
+| Beauty Content          | Looks, presets, tutorials and moderation                        |
+| Merchant Management     | Onboarding, verification, catalogs and compliance               |
+| Professional Management | Services, bookings, disputes and verification                   |
+| Advertising             | Campaign approval, budgets, fraud monitoring and billing        |
+| Commerce                | Orders, commissions, refunds and reconciliation                 |
+| Subscriptions           | Plans, entitlements, credits and billing events                 |
+| Creators                | Applications, content, campaigns and commissions                |
+| Regional Operations     | Countries, languages, currencies and feature availability       |
+| Trust & Safety          | Reports, age-specific controls, impersonation and fraud         |
+| Privacy                 | Consent, data exports, deletion requests and retention          |
+| Analytics               | Funnels, retention, conversion and cohort reporting             |
+| System Configuration    | Feature flags, roles, integrations and audit logs               |
+
+Use role-based navigation so each administrator sees only the modules they are authorized to access.
+
+# 6. Responsive design and accessibility
+
+The design system should use shared components and tokens across mobile and web while respecting each platform's native interaction patterns.
+
+| Device        | UX approach                                                   |
+| ------------- | ------------------------------------------------------------- |
+| Small mobile  | Single-column, bottom navigation, full-screen AI preview      |
+| Large mobile  | Larger cards, flexible grids, accessible controls             |
+| Tablet        | Two-column layouts, split-view studio                         |
+| Desktop       | Multi-column workspaces, persistent filters and comparisons   |
+| Large desktop | Wider editorial imagery, efficient data tables and dashboards |
+
+Target WCAG 2.2 AA where applicable. Include scalable typography, keyboard navigation, screen-reader labels, sufficient contrast, reduced-motion support, accessible touch targets and right-to-left localization.
+
+# 7. Critical UX principles
+
+1. Show value before the paywall. Let users explore looks and understand the product before being asked to subscribe.
+
+2. Make AI progress transparent. Display queued, processing, completed and failed states with retry options.
+
+3. Preserve user identity. Do not automatically lighten skin, reshape bodies or alter facial characteristics.
+
+4. Keep shopping honest. Never invent product prices, stock or delivery promises.
+
+5. Separate sponsored recommendations. Commercial placement must be clearly disclosed.
+
+6. Design for all ages safely. Teen and child experiences require appropriate feature restrictions.
+
+7. Protect privacy by default. Selfies and generated looks remain private unless explicitly shared.
+
+8. Reduce friction. A user should be able to go from inspiration to a shoppable look in a small number of clear steps.
+
+9. Support low-bandwidth markets. Optimize images, provide progressive loading and avoid unnecessary downloads.
+
+10. Use consistent design patterns. Mobile, web, merchant and admin experiences should feel like one product family.
+
+# 8. Design deliverables required before development
+
+The UI/UX team should produce a complete Figma design system and screen library covering:
+
+* Brand identity, typography, color tokens, icons and component states.
+
+* Consumer mobile app screens and clickable prototypes.
+
+* Consumer desktop and tablet layouts.
+
+* Merchant, advertiser, professional and creator portals.
+
+* Admin dashboard.
+
+* Onboarding, AI Studio, Complete the Look, checkout/handoff and booking journeys.
+
+* Empty, loading, error, offline, permission-denied and success states.
+
+* Accessibility and localization variants.
+
+* Design-to-development specifications for Codex.
+
+* Usability test scenarios and acceptance criteria.
+
+Every important screen must be linked to a user journey and backend capability. Do not approve attractive mockups that cannot support real product workflows.
+
+# 9. Master UI/UX instruction for the designer or Codex
+
+GLAM AI — Global Mobile & Web UI/UX Design Brief
+
+# GLAM AI — Global Mobile & Web UI/UX Design Brief
+
+You are the lead product designer and design systems architect for GLAM AI.
+
+Design a premium, inclusive, global AI-powered beauty, grooming, fashion and lifestyle commerce platform.
+
+## Product positioning
+
+Tagline: Every Look. Every Style. Everyone.
+
+The platform allows users to discover styles, upload inspiration, try looks virtually, personalize them, identify the products and professionals required, compare offers, shop, book services and share collections.
+
+## Platforms
+
+Design the following connected applications:
+
+1. iOS consumer application.
+
+2. Android consumer application.
+
+3. Responsive consumer website.
+
+4. Merchant web portal.
+
+5. Advertiser web portal.
+
+6. Beauty professional web portal.
+
+7. Creator web portal.
+
+8. Administrative web application.
+
+## Design direction
+
+Create an editorial luxury aesthetic that remains accessible to everyday shoppers.
+
+Use warm ivory, charcoal, restrained rose and complementary accent colors. Prioritize large, authentic lifestyle photography, clean typography, whitespace, polished cards and subtle motion.
+
+Do not copy an existing app's proprietary layouts, illustrations or brand assets.
+
+## Mandatory user experiences
+
+* Inclusive onboarding and optional Style DNA.
+
+* Visual inspiration discovery.
+
+* AI hairstyle, makeup and fashion try-on.
+
+* Screenshot to Shop.
+
+* Complete the Look.
+
+* Budget-based styling and shopping.
+
+* Occasion Concierge.
+
+* Product and merchant comparison.
+
+* Beauty professional booking and quotation.
+
+* Creator storefronts and shoppable looks.
+
+* Subscription and AI credit management.
+
+* Transparent sponsored recommendations.
+
+* Privacy, consent and accessibility controls.
+
+## Mobile navigation
+
+Home, Discover, Studio, Shop, Profile.
+
+Provide contextual access to the AI Advisor, saved looks, shopping lists and notifications.
+
+## Web navigation
+
+Discover, AI Studio, Hair & Beauty, Fashion, Shop the Look, Professionals and Creators.
+
+Optimize desktop for visual browsing, comparison and detailed AI editing.
+
+## Commercial dashboard requirements
+
+Create role-specific dashboards for merchants, advertisers, professionals, creators and administrators.
+
+Advertiser tools must support campaign creation, sponsored placement previews, budgets, bids, performance reporting and billing.
+
+Merchant tools must support product catalogs, inventory, orders/leads, promotions and analytics.
+
+## Inclusivity
+
+Represent a broad range of ethnicities, ages, genders, body types, hair textures, disabilities and cultural styles.
+
+Do not infer protected or sensitive identities from photographs.
+
+Design age-appropriate experiences and prevent appearance-ranking features.
+
+## UX quality standards
+
+* Responsive across supported screen sizes.
+
+* Accessible interactions and typography.
+
+* Consistent reusable components.
+
+* Clear AI loading and failure states.
+
+* Transparent prices and sponsored labels.
+
+* Private-by-default media.
+
+* Realistic checkout and booking flows.
+
+* Localization and RTL support.
+
+* Graceful behavior under slow network conditions.
+
+## Required deliverables
+
+Before implementation, produce:
+
+1. Information architecture for every application.
+
+2. Complete screen inventory.
+
+3. User journey maps.
+
+4. Low-fidelity wireframes.
+
+5. High-fidelity Figma designs.
+
+6. Responsive design variants.
+
+7. Reusable component library and design tokens.
+
+8. Interactive prototypes of critical flows.
+
+9. Empty, loading, error and success states.
+
+10. Accessibility audit checklist.
+
+11. Design-to-code specifications.
+
+12. Screen-by-screen acceptance criteria.
+
+Prioritize the complete Discover → Try → Complete the Look → Shop / Book journey.
+
+Do not begin implementation until the primary flows and design system are approved.
+
+My recommendation: Have the designer complete the mobile consumer experience and the desktop Complete the Look flow first. Once those are approved, use the same design system for the merchant, advertiser, professional, creator and admin portals.
+
+That will establish a coherent visual identity while ensuring the platform's most important commercial journey is designed before Codex begins building it.

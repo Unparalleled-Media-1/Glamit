@@ -1,5 +1,7 @@
 # Proposed architecture
 
+The latest [UI/UX design brief](ui-ux-design-handoff.md) supersedes older surface/navigation/palette proposals **for design scope**: iOS, Android, responsive consumer web and separate merchant, advertiser, professional, creator and admin web workspaces. Mobile tabs are Home, Discover, Studio, Shop, Profile; Advisor is contextual. Fifteen admin UI groups map to the retained A01–A16 requirement IDs. Application implementation still awaits the required primary-flow/design-system and expanded-architecture review. Older mobile-only descriptions below record the preceding architecture baseline; the linked handoff governs current design scope.
+
 Revision authority: [Master PRD v2](master-prd-v2.md), [global policy/schema/API plan](global-policy-architecture.md) and [commerce operations](commerce-operations-v2.md) govern global inclusion, age-specific/guardian access and revised referral-first rollout. These changes are proposed for approval before expanded production implementation. Existing engineering invariants remain.
 
 ## System boundaries
