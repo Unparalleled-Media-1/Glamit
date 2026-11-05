@@ -1,0 +1,13 @@
+{
+  "repository": "Unparalleled-Media-1/Glamit",
+  "historical_snapshots_verified": 8,
+  "preview_source_branch": "feat/interactive-preview",
+  "preview_build_source_commit": "624910c0e35f53f93c0f2a504410302974cde598",
+  "prebuilt_site_branch": "gh-pages",
+  "prebuilt_site_commit": "fe0c513319ecddbda650f3de9bdcc189135b73b4",
+  "remote_hashes_verified": true,
+  "public_hosting_verified": false,
+  "hosting_workflow": ".github/workflows/interactive-preview.yml",
+  "expected_url_after_successful_pages_deployment": "https://unparalleled-media-1.github.io/Glamit/",
+  "verification_boundary": "Direct GitHub API calls returned Forbidden; the preview-host CONNECT request was denied with HTTP 403 by the environment proxy. These errors do not establish the remote deployment status."
+}
