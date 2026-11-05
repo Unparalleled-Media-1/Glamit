@@ -163,7 +163,7 @@ const net = require("node:net");
     await page
       .getByRole("button", { name: "Makeup Match", exact: true })
       .click();
-    await page.getByLabel("Style direction").selectOption("Locs");
+    await page.getByLabel("Style direction").selectOption("Soft bronze");
     await page.getByRole("slider", { name: "Comparison handle" }).focus();
     await page.keyboard.press("End");
     assert.match(await page.locator(".canvas-label").innerText(), /Unchanged/);
@@ -206,6 +206,87 @@ const net = require("node:net");
       .click();
     assert.match(await page.locator("main").innerText(), /No photo selected/);
     assert.deepEqual((await context.storageState()).origins, []);
+    // New visual controls are real selections, not fabricated photo effects.
+    await page.goto(origin + "/");
+    await page.getByRole("button", { name: "Hair", exact: true }).click();
+    assert.equal(
+      await page
+        .getByRole("button", { name: "Hair", exact: true })
+        .getAttribute("aria-pressed"),
+      "true",
+    );
+    await page
+      .getByRole("button", { name: "Explore hair", exact: true })
+      .click();
+    await page
+      .getByRole("button", { name: "Makeup Match", exact: true })
+      .click();
+    await page.getByRole("button", { name: "Berry", exact: true }).click();
+    await page
+      .getByRole("button", { name: "Berry swatch 4", exact: true })
+      .click();
+    assert.match(
+      await page.locator(".shade-description").innerText(),
+      /Berry \/ 04/,
+    );
+    assert.match(
+      await page.locator(".canvas-label").innerText(),
+      /Not your result/,
+    );
+    assert(
+      await page
+        .getByRole("button", { name: /Generate — connection required/ })
+        .isDisabled(),
+    );
+    await page
+      .getByRole("button", { name: "Rose after hours", exact: true })
+      .click();
+    const favorite = page.getByRole("button", {
+      name: "Favorite this inspiration for this session",
+      exact: true,
+    });
+    await favorite.click();
+    assert.equal(
+      await page
+        .getByRole("button", {
+          name: "Remove session inspiration favorite",
+          exact: true,
+        })
+        .getAttribute("aria-pressed"),
+      "true",
+    );
+    await capture("studio-editorial-preview");
+    assert(
+      !(
+        await page
+          .getByLabel("Style direction")
+          .locator("option")
+          .allTextContents()
+      ).includes("Locs"),
+    );
+    await page
+      .getByRole("button", { name: "Use direction in my look", exact: false })
+      .click();
+    assert.match(
+      await page.locator(".look-summary").innerText(),
+      /Berry color mood 04/,
+    );
+
+    await page.goto(origin + "/color");
+    await page
+      .getByRole("button", { name: "Cool expression", exact: true })
+      .click();
+    await page
+      .getByRole("button", { name: "Cool expression color 3", exact: true })
+      .click();
+    assert.match(
+      await page.locator(".color-explorer-copy").innerText(),
+      /#797996/,
+    );
+    await capture("color-palette-explorer");
+    pass(
+      "Beauty category routing, Studio reference/shade selection and session favorite, illustrative color explorer, no fabricated transformation",
+    );
     pass(
       "Unsent Advisor, unauthorized workspace switcher, focus restoration, photo deletion and no persisted private data",
     );
@@ -716,6 +797,11 @@ const net = require("node:net");
           ["Home", "Analyze", "AI Studio", "AI Advisor", "Profile"],
         );
         await capture("mobile-home");
+        for (const node of await page.locator(".palette-teaser h3").all())
+          assert(
+            await node.evaluate((n) => n.scrollWidth <= n.clientWidth),
+            "Palette teaser text must fit inside its card",
+          );
         for (const label of ["Analyze My Face", "Ask My Personal Stylist"]) {
           const b = await page
             .getByRole("button", { name: label, exact: true })
@@ -741,6 +827,10 @@ const net = require("node:net");
           footer.y + footer.height <= nav.y,
           "Last content must scroll clear of navigation",
         );
+        await page.goto(origin + "/studio");
+        await capture("mobile-beauty-studio");
+        await page.goto(origin + "/analyze");
+        await capture("mobile-beauty-analysis");
         await page.goto(origin + "/builder");
         await capture("mobile-look-builder");
         await page.goto(origin + "/event");

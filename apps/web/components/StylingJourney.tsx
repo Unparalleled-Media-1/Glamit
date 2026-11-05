@@ -1,4 +1,5 @@
 "use client";
+import { BeautyHome } from "./BeautyExperience";
 import { useEffect, useRef, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import type { Page } from "../../../packages/product/platform";
@@ -254,127 +255,14 @@ export default function StylingJourney({ page, data: s, setData, go }: Props) {
   );
   if (page === "home")
     return (
-      <div className="goal-home">
-        <div className="home-welcome">
-          <span className="eyebrow">
-            YOUR PERSONAL BEAUTY & STYLE COMPANION
-          </span>
-          <span className="quiet-pill">Personal workspace</span>
-        </div>
-        <section className="goal-hero">
-          <div>
-            <p className="edition">A little more you.</p>
-            <h1>
-              {s.onboarded
-                ? "Welcome back" + (s.name ? ", " + s.name : "") + "."
-                : "Your next look, " + "beautifully personal."}
-            </h1>
-            <p>
-              Understand what suits you. Explore what moves you. Make it your
-              own.
-            </p>
-            <div className="hero-primary">
-              {act("Analyze My Face", "analyze")}
-              {act("Ask My Personal Stylist", "advisor", true)}
-            </div>
-            <p className="privacy-line">
-              Your choices lead. Your photos stay private.
-            </p>
-          </div>
-          <div className="home-art">
-            <Portrait panel={0} />
-            <div className="art-label">
-              THE ART OF BEING YOU <span>GLAM / 01</span>
-            </div>
-            <div className="floating-note">
-              <span>✧</span> Your beauty.
-              <br />
-              Your point of view.
-            </div>
-          </div>
-        </section>
-        <section aria-label="Choose a styling goal">
-          <div className="goal-section-title">
-            <div>
-              <p className="eyebrow">START WITH A FEELING</p>
-              <h2>What would you like to explore?</h2>
-            </div>
-            <span>One goal. A whole world of possibility.</span>
-          </div>
-          <div className="goal-grid">
-            {goalJourneys.map((g, i) => (
-              <button
-                className={"goal-tile goal-tone-" + i}
-                key={g.title}
-                onClick={() => go(g.page)}
-              >
-                <span className="goal-index">
-                  {letters[i]}{" "}
-                  <JourneyIcon
-                    kind={
-                      ["face", "spark", "camera", "wave", "wardrobe", "arrow"][
-                        i
-                      ]
-                    }
-                  />
-                </span>
-                <h3>{g.title}</h3>
-                <p>{g.copy}</p>
-                <span className="tile-arrow" aria-hidden="true">
-                  <JourneyIcon />
-                </span>
-              </button>
-            ))}
-          </div>
-        </section>
-        {!s.onboarded ? (
-          <section className="welcome-strip">
-            <div>
-              <p className="eyebrow">MAKE YOURSELF AT HOME</p>
-              <h2>A companion that starts with you.</h2>
-              <p>
-                Pick a goal above, or add your own preferences. You can explore
-                before choosing a photo.
-              </p>
-            </div>
-            <button
-              className="button secondary"
-              onClick={() => {
-                patch("onboarded", true);
-                go("profile");
-              }}
-            >
-              Set up my GLAM Profile <JourneyIcon />
-            </button>
-          </section>
-        ) : (
-          <section className="welcome-strip">
-            <div>
-              <p className="eyebrow">PICK UP WHERE YOU LEFT OFF</p>
-              <h2>{s.look.title}</h2>
-              <p>
-                {selections.length} of 5 look components chosen ·{" "}
-                {s.saved.length} saved looks · {s.wardrobe.length} wardrobe
-                items
-              </p>
-            </div>
-            {act("Continue my look", "builder", true)}
-          </section>
-        )}
-        <section className="editorial-strip">
-          <Portrait panel={2} />
-          <div>
-            <p className="eyebrow">YOUR LOOK, CONNECTED</p>
-            <h2>
-              From inspiration
-              <br />
-              <em>to your everyday.</em>
-            </h2>
-            <p>Hair. Makeup. Style. A complete look that changes with you.</p>
-            {act("Open Live Look Builder", "builder", true)}
-          </div>
-        </section>
-      </div>
+      <BeautyHome
+        data={s}
+        go={go}
+        setup={() => {
+          patch("onboarded", true);
+          go("profile");
+        }}
+      />
     );
   if (page === "advisor" || page === "event" || page === "screenshot")
     return (

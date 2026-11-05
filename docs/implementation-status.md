@@ -1,5 +1,12 @@
 # Implementation evidence and remaining gates
 
+## Latest beauty-led visual revision
+
+Actual web/native Home, Analyze and Studio now use original portrait-led campaign/editor layouts with charcoal/blush styling. Home keeps immediate analysis/stylist entry and all six goals. Analysis has a framed editorial reference with permission-first entry, not an active scan. Studio provides tool-specific directions, reference thumbnails, color families/swatches and original-preserving controls; selected makeup mood enters the correct Look Builder component. Color has an illustrative palette explorer. See [visual revision](specification/beauty-led-visual-pass.md) and [actual capture sheet](application-preview/visual-review.png).
+
+The prior goal-led data/privacy/RBAC/catalog behavior is retained. No personal model output, provider, authentication sync, inventory, product compatibility, booking or payment is claimed live. Physical-device and human competitor usability benchmarks remain open. This is a visual/interaction revision, not completion of every platform module or a competitive-parity claim.
+
+
 ## Latest goal-led UX update
 
 [Goal-led experience](specification/goal-led-experience.md) replaces the tool-led home with six goal journeys and immediate Face Analysis/Personal Stylist actions. Actual web/native components share a user-authored event/conversation brief, independent five-component Look Builder, snapshot save/edit/delete, owned-wardrobe notes/reuse, Get This Look breakdown and opt-in editable/deletable device profile metadata. Raw photos, inspiration files, conversation text, grants and uncomputed reports are excluded from durable memory. Google/Supabase account sync and actual approved analysis-report persistence remain unconnected. Web nav is fixed with reserved safe-area space; native uses measured safe-area context.

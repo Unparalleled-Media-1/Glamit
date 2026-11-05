@@ -1,5 +1,8 @@
 # Review the nine journeys
 
+The latest [beauty-led visual pass](../specification/beauty-led-visual-pass.md) replaces Home/Analyze/Studio layouts. Also test Makeup/Hair/Skincare/Clothing category routing; reference thumbnail selection; Rose/Bronze/Berry swatches; makeup versus hair/outfit direction choices; correct Look Builder component handoff; reference palettes without personal-season claims. An editorial reference or swatch choice does not alter a user's original photograph.
+
+
 Run the actual app with `npm run dev:web`, using the local URL printed by Next. Review each task at a phone viewport (320/390px) and desktop (1440px). The Expo app supplies native versions of the same journeys; compatible physical devices remain required. These are interactive, user-authored previews, with no invented AI or merchant results.
 
 | Journey | Start / task | Expected completion and boundary |

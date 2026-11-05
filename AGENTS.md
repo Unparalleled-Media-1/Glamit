@@ -1,5 +1,7 @@
 # GLAM AI engineering rules
 
+- Read docs/specification/beauty-led-visual-pass.md for the latest portrait-led Home/Analysis/Studio/color UX. Editorial portraits and reference swatches must never become fabricated personal results; tool-specific directions hand off only to the corresponding look component.
+
 - Read docs/specification/goal-led-experience.md and goal-led-backlog.md for the latest goal-led UX, continuous brief, independent Look Builder, opt-in metadata memory and fixed server-only item commission. Never persist photos/conversations/tokens in that device profile or pretend disconnected AI/commerce is live.
 
 - Read docs/specification/contextual-catalog-build.md for the permanent analysis-to-commerce requirement and Snap & List. Every relevant result/guide/Studio flow embeds organic and separately labeled sponsored matches or an honest no-match state. Commerce remains integrated, never hidden behind a mandatory Shop tab. Relevance, source facts, stock, freshness, market/age policy and rights precede bids; AI suggestions never publish without factual/version approval.

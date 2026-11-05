@@ -1,8 +1,9 @@
 {
-  "run_at": "2026-11-05T17:22:35.678Z",
+  "run_at": "2026-11-05T20:52:04.543Z",
   "checks": [
     "Consent-gated photo selection, invalid-file rejection, technical review, goals and honest uncomputed report",
     "Editable routine save/checklist, dedicated Makeup Match, original-preserving Studio and reset",
+    "Beauty category routing, Studio reference/shade selection and session favorite, illustrative color explorer, no fabricated transformation",
     "Unsent Advisor, unauthorized workspace switcher, focus restoration, photo deletion and no persisted private data",
     "Event brief continuity, independent look components, wardrobe reuse, returning profile, approved metadata persistence and deletion; no fabricated AI or offers",
     "All business role modules, isolated session draft save/reset and evidence-gated campaign wizard",
@@ -19,6 +20,8 @@
     "color-report.png",
     "glow-up-guide.png",
     "ai-studio.png",
+    "studio-editorial-preview.png",
+    "color-palette-explorer.png",
     "live-look-builder.png",
     "get-this-look.png",
     "returning-user.png",
@@ -32,6 +35,8 @@
     "hair-contextual-recommendations.png",
     "merchant-snap-list-review.png",
     "mobile-home.png",
+    "mobile-beauty-studio.png",
+    "mobile-beauty-analysis.png",
     "mobile-look-builder.png",
     "mobile-event-stylist.png",
     "mobile-face-report.png"

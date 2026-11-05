@@ -1,5 +1,7 @@
 # Goal-led GLAM companion
 
+**Latest visual revision:** [Beauty-led experience](beauty-led-visual-pass.md) replaces the prior text-led home and core tool layouts with portrait-led charcoal/blush Home, Analysis and Studio, plus interactive color exploration. Existing goal, state, consent and integration boundaries remain. The user has not approved this new revision.
+
 Current implementation authority, 5 November 2026, Africa/Johannesburg. The latest explicit UX directive supersedes tool-led home layouts. It continues the user's code/build-now authorization; external connections remain deferred. No Git publication, environment publication, production migration, spend or commercial activation is authorized.
 
 GLAM AI is a personal AI beauty, grooming and styling companion: **Understand → Personalize → Try → Get This Look**. The six entry points route to understanding features, event styling, recreating inspiration, hairstyle/makeup exploration, owned wardrobe and product/professional sourcing. Personal navigation remains Home · Analyze · AI Studio · AI Advisor · Profile. Existing canonical auth, organization RBAC, catalog/market policy, staff authority, privacy and migrations remain authoritative.

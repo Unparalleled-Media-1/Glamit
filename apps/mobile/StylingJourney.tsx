@@ -1,3 +1,4 @@
+import { BeautyHome } from "./BeautyExperience";
 import { useEffect, useRef, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import {
@@ -244,71 +245,17 @@ export default function StylingJourney({ page, data: d, setData, go }: Props) {
   const chosen = lookParts.filter((k) => d.look.parts[k]);
   let content;
   if (page === "home")
-    content = (
-      <>
-        {heading(
-          "YOUR PERSONAL BEAUTY & STYLE COMPANION",
-          d.onboarded
-            ? "Welcome back" + (d.name ? ", " + d.name : "") + "."
-            : "Your next look, beautifully personal.",
-          "Understand what suits you. Explore what moves you. Make it your own.",
-        )}
-        <View style={s.primaryRow}>
-          <View style={{ flex: 1 }}>
-            {button("Analyze My Face", "analyze")}
-          </View>
-          <View style={{ flex: 1 }}>
-            {button("Ask My Personal Stylist", "advisor", true)}
-          </View>
-        </View>
-        <Text style={s.small}>
-          Your choices lead. Your photos stay private.
-        </Text>
-        <Text style={s.section}>What would you like to explore?</Text>
-        <View style={s.goals}>
-          {goalJourneys.map((g, i) => (
-            <Pressable
-              accessibilityRole="button"
-              key={g.title}
-              onPress={() => go(g.page)}
-              style={[s.goal, i % 2 === 1 && { backgroundColor: "#eee8ef" }]}
-            >
-              <Text style={s.goalIndex}>
-                0{i + 1} {g.icon}
-              </Text>
-              <Text style={s.goalTitle}>{g.title}</Text>
-              <Text style={s.goalCopy}>{g.copy}</Text>
-            </Pressable>
-          ))}
-        </View>
-        <View style={s.card}>
-          <Text style={s.section}>
-            {d.onboarded
-              ? "Pick up where you left off."
-              : "A companion that starts with you."}
-          </Text>
-          <Text style={s.body}>
-            {d.onboarded
-              ? d.look.title +
-                " · " +
-                chosen.length +
-                "/5 elements · " +
-                d.saved.length +
-                " saved looks"
-              : "Choose a goal, or introduce yourself. You can explore before choosing a photo."}
-          </Text>
-          <Action
-            title={d.onboarded ? "Continue my look" : "Set up my GLAM Profile"}
-            secondary
-            onPress={() => {
-              patch("onboarded", true);
-              go(d.onboarded ? "builder" : "profile");
-            }}
-          />
-        </View>
-      </>
+    return (
+      <BeautyHome
+        data={d}
+        go={go}
+        setup={() => {
+          patch("onboarded", true);
+          go("profile");
+        }}
+      />
     );
-  else if (["advisor", "event", "screenshot"].includes(page))
+  if (["advisor", "event", "screenshot"].includes(page))
     content = (
       <>
         {heading(

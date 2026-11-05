@@ -1,5 +1,17 @@
 # Current-instance validation
 
+## Beauty-led visual revision — 5 November 2026
+
+The user rejected the prior visual hierarchy. Home/Analysis/Studio and the color explorer are revised in actual web/native components; the latest visual authority is [beauty-led experience](specification/beauty-led-visual-pass.md).
+
+- **10 Chromium journey groups passed**, with **27 application screenshots** plus a separate actual-capture review sheet. Added coverage verifies category routing, editorial-reference selection, color families/swatches, reference marking, tool-appropriate makeup choices, corresponding Look Builder component handoff, color exploration, internal mobile-card text fit and original-image preservation. Existing first/returning, consent, routine, profile memory/deletion, workspace isolation, catalog/Snap & List, 320–1920px and 320/390×640/nav geometry tests still pass. No runtime page errors or external network requests were observed.
+- **104 backend tests and 8 shared client/render tests passed**. Backend implementation is unchanged; one known Starlette/httpx deprecation warning remains. Tests used only the dedicated local PostgreSQL `_test` database.
+- Ruff lint/format, TypeScript, React runtime checks, canonical OpenAPI consistency, Next production build and final iOS/Android Hermes JS exports passed. No dependency or migration history changes were made in this revision.
+- The new mobile Home/Analysis/Studio sheet and desktop Home were visually inspected and refined for portrait cropping, reachable actions, card text fit and editor density. The review sheet is built from real application screenshots using a narrowly scoped loopback HTTP server; it is not a synthesized UI mock.
+
+The competitor screenshots are visual references, not a validated competitor benchmark. Human task completion/satisfaction, a full accessibility audit, physical iOS/Android rendering/gestures/safe areas, live AI fidelity and real merchant matching remain unverified. All portraits/palettes are explicitly editorial references. No personal result, camera stream, official event theme, live inventory, payment, booking, commercial activation, public Git push or deployment is asserted. Earlier records below describe prior revisions.
+
+
 ## Goal-led UX verification — 5 November 2026
 
 - **104 backend tests passed** on the dedicated local PostgreSQL `glam_test` database, including the new fixed item-commission/cancellation/cumulative-refund/rounding policy. Existing canonical RBAC/catalog/market-policy regressions remain covered. One known Starlette/httpx deprecation warning remains. No hosted database was touched.

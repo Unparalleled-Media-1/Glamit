@@ -598,5 +598,12 @@
     "/event",
     "/builder"
   ],
-  "memory": "Explicit opt-in device metadata only; photos/attachments/conversations/reports/tokens/grants excluded; account sync unconnected"
+  "memory": "Explicit opt-in device metadata only; photos/attachments/conversations/reports/tokens/grants excluded; account sync unconnected",
+  "visualRevision": "beauty-led-2026-11",
+  "visualSurfaces": [
+    "Portrait/category Home",
+    "Framed permission-first Analysis",
+    "Reference/shade Studio",
+    "Illustrative color explorer"
+  ]
 }

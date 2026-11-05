@@ -36,6 +36,8 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
+import { BeautyAnalysis, BeautyStudio, BeautyColor } from "./BeautyExperience";
+import { studioPart } from "../../packages/product/beauty";
 import StylingJourney from "./StylingJourney";
 import {
   durableJourney,
@@ -394,30 +396,7 @@ function PersonalApp() {
       );
     switch (state.page) {
       case "analyze":
-        return (
-          <>
-            {heading(
-              "Your features. Your possibilities.",
-              "Face and personal color guidance, without a beauty score.",
-            )}
-            <Card>
-              <Text style={s.h2}>Face Analysis</Text>
-              {reportFields.map((n) => (
-                <Text style={s.listItem} key={n}>
-                  {n}
-                </Text>
-              ))}
-              {nav("Start Face Analysis", "consent")}
-              {nav("Hair Analysis", "hair", true)}
-              {nav("Skin Appearance Analysis", "skin", true)}
-              {nav("Body & Fit Styling", "body-fit", true)}
-              {nav("Open Color Analysis", "color", true)}
-              <Text style={s.fine}>
-                No diagnosis, face identification or attractiveness ranking.
-              </Text>
-            </Card>
-          </>
-        );
+        return <BeautyAnalysis go={go} />;
       case "consent":
         return (
           <>
@@ -559,6 +538,7 @@ function PersonalApp() {
               "Find your colors.",
               "Color guidance depends on lighting and a qualified analysis, never a universal beauty standard.",
             )}
+            <BeautyColor photo={photo} />
             <Text accessibilityRole="header" style={s.h2}>
               Your Results
             </Text>
@@ -655,112 +635,34 @@ function PersonalApp() {
         );
       case "studio":
         return (
-          <>
-            {heading(
-              "Explore your look.",
-              "Keep your identity, complexion and original. Choose the styling direction yourself.",
-            )}
-            <Text accessibilityRole="header" style={s.h2}>
-              Your Results
-            </Text>
-            {photo ? localPhoto() : hero(2)}
-            <Text style={s.badge}>
-              {photo
-                ? "Original · No generated result"
-                : "Editorial inspiration · Not your result"}
-            </Text>
-            <View style={s.chips}>
-              {tools.map((n) => (
-                <Pressable
-                  accessibilityRole="button"
-                  accessibilityState={{ selected: state.tool === n }}
-                  key={n}
-                  style={[s.chip, state.tool === n && s.selected]}
-                  onPress={() => dispatch({ type: "tool", value: n })}
-                >
-                  <Text style={state.tool === n ? s.white : s.small}>{n}</Text>
-                </Pressable>
-              ))}
-            </View>
-            <Card>
-              <Text style={s.h2}>{state.tool}</Text>
-              <View style={s.chips}>
-                {directions.map((n) => (
-                  <Pressable
-                    accessibilityRole="button"
-                    accessibilityState={{ selected: state.style === n }}
-                    key={n}
-                    style={[s.chip, state.style === n && s.selected]}
-                    onPress={() => dispatch({ type: "style", value: n })}
-                  >
-                    <Text style={state.style === n ? s.white : s.small}>
-                      {n}
-                    </Text>
-                  </Pressable>
-                ))}
-              </View>
-              <Text style={s.label}>
-                Requested intensity: {state.intensity}%
-              </Text>
-              <View style={s.switchRow}>
-                <Button
-                  title="Less"
-                  secondary
-                  onPress={() =>
-                    dispatch({ type: "intensity", value: state.intensity - 10 })
-                  }
-                />
-                <Button
-                  title="More"
-                  secondary
-                  onPress={() =>
-                    dispatch({ type: "intensity", value: state.intensity + 10 })
-                  }
-                />
-              </View>
-              <Button
-                title={compare ? "View original" : "Compare availability"}
-                secondary
-                onPress={() => {
-                  setCompare(!compare);
-                  setMessage(
-                    "No AI result exists to compare. The original has not been edited.",
-                  );
-                }}
-              />
-              <Note text={capabilityReasons.studio} />
-              <Button title="Generate — connection required" disabled />
-              {nav("Choose / change photo", "consent", true)}
-              <Button
-                title="Reset controls"
-                secondary
-                onPress={() => {
-                  dispatch({ type: "style", value: directions[0] });
-                  dispatch({ type: "intensity", value: 35 });
-                  setCompare(false);
-                }}
-              />
-            </Card>
-            <Button
-              title="Use this direction in my look"
-              secondary
-              onPress={() => {
-                setJourney((p) => ({
-                  ...p,
-                  look: {
-                    ...p.look,
-                    parts: {
-                      ...p.look.parts,
-                      [state.tool === "Makeup Match" ? "Makeup" : "Hair"]:
-                        state.style,
-                    },
+          <BeautyStudio
+            photo={photo}
+            tool={state.tool}
+            direction={state.style}
+            intensity={state.intensity}
+            onTool={(value) => dispatch({ type: "tool", value })}
+            onDirection={(value) => dispatch({ type: "style", value })}
+            onIntensity={(value) => dispatch({ type: "intensity", value })}
+            reset={() => {
+              dispatch({ type: "style", value: directions[0] });
+              dispatch({ type: "intensity", value: 35 });
+              setCompare(false);
+            }}
+            carry={(value) => {
+              setJourney((p) => ({
+                ...p,
+                look: {
+                  ...p.look,
+                  parts: {
+                    ...p.look.parts,
+                    [studioPart(state.tool)]: value,
                   },
-                }));
-                go("builder");
-              }}
-            />
-            {nav("Optional Complete the Look", "complete", true)}
-          </>
+                },
+              }));
+              go("builder");
+            }}
+            go={go}
+          />
         );
       case "profile":
         return (
@@ -963,10 +865,13 @@ function PersonalApp() {
     }
   }
   const activeTab = reviewRole ? workspaces[reviewRole].mobile : mobileTabs;
+  const beautyPage =
+    !reviewRole && ["home", "analyze", "studio"].includes(state.page);
   return (
     <View
       style={[
         s.app,
+        beautyPage && { backgroundColor: "#151717" },
         {
           paddingTop: insets.top + 8,
           paddingLeft: insets.left,
@@ -975,7 +880,9 @@ function PersonalApp() {
       ]}
     >
       <View style={s.topbar}>
-        <Text style={s.brand}>✧ GLAM AI</Text>
+        <Text style={[s.brand, beautyPage && { color: "#fff0f5" }]}>
+          ✧ GLAM AI
+        </Text>
         <Pressable
           accessibilityRole="button"
           accessibilityLabel="Change shopping location"
@@ -999,8 +906,10 @@ function PersonalApp() {
           <Text>○</Text>
         </Pressable>
       </View>
-      <View style={s.connection}>
-        <Text style={s.fine}>
+      <View
+        style={[s.connection, beautyPage && { backgroundColor: "#222123" }]}
+      >
+        <Text style={[s.fine, beautyPage && { color: "#c5adbc" }]}>
           {reviewRole
             ? "Business tools review · No authorized workspace"
             : "Private development build · Connections pending"}
@@ -1122,7 +1031,11 @@ function PersonalApp() {
       </ScrollView>
       <View
         accessibilityRole="tablist"
-        style={[s.bottomNav, { paddingBottom: Math.max(insets.bottom, 10) }]}
+        style={[
+          s.bottomNav,
+          beautyPage && { backgroundColor: "#242124", borderColor: "#523e4a" },
+          { paddingBottom: Math.max(insets.bottom, 10) },
+        ]}
       >
         {activeTab.map((n, i) => (
           <Pressable
@@ -1147,10 +1060,25 @@ function PersonalApp() {
             style={[
               s.tab,
               !reviewRole && state.page === tabPage[n] && s.activeTab,
+              beautyPage &&
+                state.page === tabPage[n] && { backgroundColor: "#f4b5d0" },
             ]}
           >
-            <Text style={s.tabSymbol}>{["⌂", "⌖", "✧", "☰", "○"][i]}</Text>
-            <Text numberOfLines={2} style={s.tabText}>
+            <Text
+              style={[
+                s.tabSymbol,
+                beautyPage && state.page !== tabPage[n] && { color: "#cdb3c2" },
+              ]}
+            >
+              {["⌂", "⌖", "✧", "☰", "○"][i]}
+            </Text>
+            <Text
+              numberOfLines={2}
+              style={[
+                s.tabText,
+                beautyPage && state.page !== tabPage[n] && { color: "#cdb3c2" },
+              ]}
+            >
               {n}
             </Text>
           </Pressable>

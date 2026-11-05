@@ -18,6 +18,8 @@ import {
 } from "../../../packages/product/platform";
 import type { Page, Photo } from "../../../packages/product/platform";
 
+import { BeautyAnalysis, BeautyStudio, BeautyColor } from "./BeautyExperience";
+import { studioPart } from "../../../packages/product/beauty";
 import StylingJourney from "./StylingJourney";
 import {
   durableJourney,
@@ -414,47 +416,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
       );
     switch (page) {
       case "analyze":
-        return (
-          <>
-            {heading(
-              "Your features. Your possibilities.",
-              "A personal guide to facial features, colors and styling — without a beauty score.",
-            )}
-            <div className="secondary-links">
-              {btn("Hair Analysis", "hair", true)}
-              {btn("Skin Appearance Analysis", "skin", true)}
-              {btn("Body & Fit Styling", "body-fit", true)}
-            </div>
-            <div className="split analysis-intro">
-              <Editorial panel={1} />
-              <section className="panel">
-                <p className="eyebrow">Face & personal color</p>
-                <h2>
-                  One starting point.
-                  <br />
-                  Your own direction.
-                </h2>
-                {btn("Start Face Analysis", "consent")}
-                <p className="analysis-steps">
-                  01 Choose a photo · 02 Set your goals · 03 Explore guidance
-                </p>
-                <ul className="list">
-                  {reportFields.map((n) => (
-                    <li key={n}>
-                      {n}
-                      <span>Guidance, with uncertainty</span>
-                    </li>
-                  ))}
-                </ul>
-                {btn("Open Color Analysis", "color", true)}
-                <p className="fine">
-                  Cosmetic styling guidance only. No diagnosis, identification
-                  or attractiveness ranking.
-                </p>
-              </section>
-            </div>
-          </>
-        );
+        return <BeautyAnalysis go={go} />;
       case "consent":
         return (
           <>
@@ -658,6 +620,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
               "Find your colors.",
               "Personal color suggestions depend on lighting, camera and a qualified analysis. They are not rules about what you can wear.",
             )}
+            <BeautyColor photo={photo} />
             <h2>Your Results</h2>
             <div className="split">
               <section className="palette-art">
@@ -778,142 +741,39 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
         );
       case "studio":
         return (
-          <>
-            {heading(
-              "Explore your look.",
-              "Hair, makeup and grooming choices — while keeping your original, your complexion and your identity.",
-            )}
-            <h2>Your Results</h2>
-            <div className="studio-layout">
-              <aside className="panel">
-                <h2>Your studio</h2>
-                <div className="tool-list">
-                  {tools.map((n) => (
-                    <button
-                      aria-pressed={state.tool === n}
-                      className={state.tool === n ? "selected" : ""}
-                      key={n}
-                      onClick={() => dispatch({ type: "tool", value: n })}
-                    >
-                      {n}
-                    </button>
-                  ))}
-                </div>
-                <label>
-                  Style direction
-                  <select
-                    value={state.style}
-                    onChange={(e) =>
-                      dispatch({ type: "style", value: e.target.value })
-                    }
-                  >
-                    {styles.map((n) => (
-                      <option key={n}>{n}</option>
-                    ))}
-                  </select>
-                </label>
-                <label>
-                  Requested intensity: {state.intensity}%
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={state.intensity}
-                    onChange={(e) =>
-                      dispatch({
-                        type: "intensity",
-                        value: Number(e.target.value),
-                      })
-                    }
-                  />
-                </label>
-              </aside>
-              <section className="studio-canvas">
-                {photo ? (
-                  <img
-                    src={photo.uri}
-                    alt="Your unchanged local original. No makeover generated."
-                  />
-                ) : (
-                  <Editorial panel={2} />
-                )}
-                <div className="canvas-label">
-                  {photo
-                    ? "Original · Unchanged"
-                    : "Editorial inspiration · Not your result"}
-                </div>
-                <div className="compare-line" style={{ left: compare + "%" }} />
-                <div className="canvas-bottom">
-                  <h2>{state.tool}</h2>
-                  <p>No generated comparison yet</p>
-                </div>
-              </section>
-              <aside className="panel">
-                <h2>Your original comes first.</h2>
-                {unavailable(capabilityReasons.studio)}
-                {state.tool === "Makeup Match" && (
-                  <p>
-                    Select inspiration only after reviewing image rights. Makeup
-                    matching is not face identification.
-                  </p>
-                )}
-                {state.tool === "Look Remix" && (
-                  <p>
-                    Hair, makeup and outfit references require separate rights
-                    and user selection.
-                  </p>
-                )}
-                {btn("Choose / change photo", "consent", true)}
-                <label>
-                  Comparison handle
-                  <input
-                    type="range"
-                    aria-label="Comparison handle"
-                    min="0"
-                    max="100"
-                    value={compare}
-                    onChange={(e) => setCompare(Number(e.target.value))}
-                  />
-                </label>
-                <button className="button" disabled>
-                  Generate — connection required
-                </button>
-                <button
-                  className="text-button"
-                  onClick={() => {
-                    dispatch({ type: "intensity", value: 35 });
-                    dispatch({ type: "style", value: styles[0] });
-                    setCompare(50);
-                    setMessage(
-                      "Controls reset. The original image was never changed.",
-                    );
-                  }}
-                >
-                  Reset to original
-                </button>
-                <button
-                  className="button secondary"
-                  onClick={() => {
-                    setJourney((p) => ({
-                      ...p,
-                      look: {
-                        ...p.look,
-                        parts: {
-                          ...p.look.parts,
-                          [state.tool === "Makeup Match" ? "Makeup" : "Hair"]:
-                            state.style,
-                        },
-                      },
-                    }));
-                    go("builder");
-                  }}
-                >
-                  Use this direction in my look
-                </button>
-                {btn("Optional Complete the Look", "complete", true)}
-              </aside>
-            </div>
-          </>
+          <BeautyStudio
+            photo={photo}
+            tool={state.tool}
+            style={state.style}
+            intensity={state.intensity}
+            compare={compare}
+            onTool={(value) => dispatch({ type: "tool", value })}
+            onStyle={(value) => dispatch({ type: "style", value })}
+            onIntensity={(value) => dispatch({ type: "intensity", value })}
+            onCompare={setCompare}
+            reset={() => {
+              dispatch({ type: "style", value: styles[0] });
+              dispatch({ type: "intensity", value: 35 });
+              setCompare(50);
+              setMessage(
+                "Controls reset. The original image was never changed.",
+              );
+            }}
+            carry={(value) => {
+              setJourney((p) => ({
+                ...p,
+                look: {
+                  ...p.look,
+                  parts: {
+                    ...p.look.parts,
+                    [studioPart(state.tool)]: value,
+                  },
+                },
+              }));
+              go("builder");
+            }}
+            go={go}
+          />
         );
       case "profile":
         return (
@@ -1260,7 +1120,13 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
     }
   }
   return (
-    <>
+    <div
+      className={
+        ["home", "analyze", "studio"].includes(page)
+          ? "beauty-shell"
+          : "app-shell"
+      }
+    >
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
@@ -1422,6 +1288,6 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
           View business tools & requirements
         </a>
       </dialog>
-    </>
+    </div>
   );
 }
