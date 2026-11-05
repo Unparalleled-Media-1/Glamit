@@ -1,0 +1,32 @@
+[
+  {
+    "source": "docs/specification/sources/2026-11-final-commercial-model.txt",
+    "sha256": "61d75a3f76a6a6270e80762283a969437583922d83beb5385fc5b15fcc93d501",
+    "bytes": 14050
+  },
+  {
+    "source": "docs/specification/sources/2026-11-personal-stylist-event-themes.txt",
+    "sha256": "280163bd29900b357171deffe8b65819a23c031f9b445ea3b1389483486cc0b1",
+    "bytes": 12052
+  },
+  {
+    "source": "docs/specification/sources/2026-11-competitive-audit-revenue.txt",
+    "sha256": "fb1a0d8a2937746b213c8fe3eba45286c1b9b9628710f8f27285fd1087f8d2e7",
+    "bytes": 13371
+  },
+  {
+    "source": "docs/specification/sources/2026-11-ux-differentiation-directive.txt",
+    "sha256": "2c531f2aae4a9ff8654c073f180e14ec7abb4bd9ad0386c54eccc79111ac6fff",
+    "bytes": 12662
+  },
+  {
+    "source": "docs/specification/sources/2026-11-location-based-discovery.txt",
+    "sha256": "db916b8abee911e5d0dd5c66091ac9e6ddcf0a3f8f74c73bb56bfb58f162bed6",
+    "bytes": 7856
+  },
+  {
+    "source": "docs/specification/sources/2026-11-merchant-snap-and-list.txt",
+    "duplicate_upload_identical": true,
+    "sha256": "acd2ee11a5955e36bfb5f8fd0893cd84c50b5aba9b7c94d7f73e451fcf7fccba"
+  }
+]

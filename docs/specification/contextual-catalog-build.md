@@ -1,5 +1,7 @@
 # Contextual commerce and Merchant Snap & List
 
+**Latest UX authority:** [Goal-led GLAM companion](goal-led-experience.md) and [phased gaps](goal-led-backlog.md). Compact goal-led home, shared styling brief, independent Look Builder and opt-in device profile metadata extend this build; live AI/account/commerce remain deferred. Older tool-led and session-only-for-all-metadata wording below is historical where it conflicts.
+
 Current addendum, 5 November 2026 (Africa/Johannesburg). The [analysis-to-commerce directive](sources/2026-11-analysis-to-commerce-integration.txt) and [Snap & List directive](sources/2026-11-merchant-snap-and-list.txt) extend the authorized application build. Analysis stays primary; commerce belongs inside every relevant result, routine and tutorial, not behind a required Shop tab. Older wording describing commerce as optional must not hide contextual matching.
 
 Every Face, Hair, Skin Appearance, Body & Fit, Color, Makeup Match and Makeover workspace has **Your Results → Personalized Recommendations → Where to Buy / Book**, separate **Best Matches / Sponsored Matches**, explicit no-match states, saving and Complete the Look. Uncomputed findings must not be turned into invented recommendations. Users may prepare and save their own requirements while providers are disconnected. Unknown or restricted age does not activate advertising or commerce.

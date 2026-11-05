@@ -18,6 +18,12 @@ import {
 } from "../../../packages/product/platform";
 import type { Page, Photo } from "../../../packages/product/platform";
 
+import StylingJourney from "./StylingJourney";
+import {
+  durableJourney,
+  freshJourney,
+  restoreJourney,
+} from "../../../packages/product/journey";
 import ContextualRecommendations from "./ContextualRecommendations";
 import {
   contextualReportFields,
@@ -30,6 +36,8 @@ import type {
 
 const pages: Page[] = [
   "home",
+  "event",
+  "builder",
   "analyze",
   "hair",
   "skin",
@@ -138,6 +146,36 @@ function Notice({ children }: { children: React.ReactNode }) {
   );
 }
 export default function GlamApp({ start = "home" }: { start?: Page }) {
+  const [journey, setJourney] = useState(freshJourney);
+  const [memoryReady, setMemoryReady] = useState(false);
+  const [memoryError, setMemoryError] = useState("");
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem("glam.approved-profile.v1");
+      if (raw) setJourney(restoreJourney(raw));
+    } catch {
+      setMemoryError(
+        "Browser memory is unavailable. Your plan remains session-only.",
+      );
+    }
+    setMemoryReady(true);
+  }, []);
+  useEffect(() => {
+    if (!memoryReady) return;
+    try {
+      if (journey.remember)
+        localStorage.setItem(
+          "glam.approved-profile.v1",
+          durableJourney(journey),
+        );
+      else localStorage.removeItem("glam.approved-profile.v1");
+      setMemoryError("");
+    } catch {
+      setMemoryError(
+        "Your changes could not be remembered. Keep this tab open; browser storage may be full or restricted.",
+      );
+    }
+  }, [journey, memoryReady]);
   const [state, dispatch] = useReducer(personalReducer, {
     ...initialPersonal,
     page: start,
@@ -355,113 +393,26 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
     </div>
   );
   function content() {
+    if (
+      [
+        "home",
+        "advisor",
+        "event",
+        "screenshot",
+        "builder",
+        "complete",
+        "wardrobe",
+      ].includes(page)
+    )
+      return (
+        <StylingJourney
+          page={page}
+          data={journey}
+          setData={setJourney}
+          go={go}
+        />
+      );
     switch (page) {
-      case "home":
-        return (
-          <>
-            <section className="hero">
-              <div className="hero-copy">
-                <p className="eyebrow">Understand. Explore. Express.</p>
-                <h1>
-                  Discover What
-                  <br />
-                  <em>Suits You.</em>
-                </h1>
-                <p>
-                  Understand your features. Discover your colors. Explore your
-                  look. Learn how to achieve it.
-                </p>
-                <div className="actions">
-                  {btn("Analyze My Face", "analyze")}
-                  {btn("Explore AI Studio", "studio", true)}
-                </div>
-                <p className="fine">
-                  Private by default · Your photo, your choice
-                </p>
-              </div>
-              <Editorial className="hero-image" />
-              <div className="hero-caption">
-                Every look. Every style. Everyone.
-              </div>
-            </section>
-            <div className="quick-grid">
-              {[
-                ["Face Analysis", "Understand your features", "analyze"],
-                ["Color Analysis", "Discover your palette", "color"],
-                ["AI Makeover", "Explore a chosen style", "studio"],
-                ["Makeup Match", "Recreate inspiration", "studio"],
-              ].map(([title, copy, target], i) => (
-                <button
-                  className="quick-card"
-                  key={title}
-                  onClick={() => {
-                    if (i === 3)
-                      dispatch({ type: "tool", value: "Makeup Match" });
-                    go(target as Page);
-                  }}
-                >
-                  <span className="number">0{i + 1}</span>
-                  <Icon name={i === 0 ? "analyze" : "spark"} />
-                  <h2>{title}</h2>
-                  <p>{copy}</p>
-                  <Arrow />
-                </button>
-              ))}
-            </div>
-            <section className="journey">
-              <div>
-                <p className="eyebrow">Your glow-up journey</p>
-                <h2>
-                  A little guidance.
-                  <br />A style of your own.
-                </h2>
-                <p>Useful advice before any product recommendation.</p>
-              </div>
-              <ol>
-                {[
-                  "Complete your personal analysis",
-                  "Explore your colors and chosen looks",
-                  "Build a practical routine",
-                ].map((n, i) => (
-                  <li key={n}>
-                    <span>0{i + 1}</span>
-                    {n}
-                  </li>
-                ))}
-              </ol>
-            </section>
-            <section className="section-head">
-              <div>
-                <p className="eyebrow">Unlimited personal styles</p>
-                <h2>Follow interests. Skip the labels.</h2>
-              </div>
-            </section>
-            <div className="chips">
-              {interests.map((n) => (
-                <button
-                  key={n}
-                  className={
-                    state.interests.includes(n) ? "chip selected" : "chip"
-                  }
-                  aria-pressed={state.interests.includes(n)}
-                  onClick={() =>
-                    dispatch({ type: "toggle", key: "interests", value: n })
-                  }
-                >
-                  {n}
-                </button>
-              ))}
-            </div>
-            <p className="fine">
-              Optional session preferences. No personality or identity is
-              inferred from a photo.
-            </p>
-            <div className="secondary-links">
-              {btn("Plan a routine", "guide", true)}
-              {btn("Optional looks & products", "explore", true)}
-            </div>
-          </>
-        );
       case "analyze":
         return (
           <>
@@ -474,7 +425,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
               {btn("Skin Appearance Analysis", "skin", true)}
               {btn("Body & Fit Styling", "body-fit", true)}
             </div>
-            <div className="split">
+            <div className="split analysis-intro">
               <Editorial panel={1} />
               <section className="panel">
                 <p className="eyebrow">Face & personal color</p>
@@ -483,6 +434,10 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
                   <br />
                   Your own direction.
                 </h2>
+                {btn("Start Face Analysis", "consent")}
+                <p className="analysis-steps">
+                  01 Choose a photo · 02 Set your goals · 03 Explore guidance
+                </p>
                 <ul className="list">
                   {reportFields.map((n) => (
                     <li key={n}>
@@ -491,7 +446,6 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
                     </li>
                   ))}
                 </ul>
-                {btn("Start Face Analysis", "consent")}
                 {btn("Open Color Analysis", "color", true)}
                 <p className="fine">
                   Cosmetic styling guidance only. No diagnosis, identification
@@ -937,63 +891,28 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
                 >
                   Reset to original
                 </button>
+                <button
+                  className="button secondary"
+                  onClick={() => {
+                    setJourney((p) => ({
+                      ...p,
+                      look: {
+                        ...p.look,
+                        parts: {
+                          ...p.look.parts,
+                          [state.tool === "Makeup Match" ? "Makeup" : "Hair"]:
+                            state.style,
+                        },
+                      },
+                    }));
+                    go("builder");
+                  }}
+                >
+                  Use this direction in my look
+                </button>
                 {btn("Optional Complete the Look", "complete", true)}
               </aside>
             </div>
-          </>
-        );
-      case "advisor":
-        return (
-          <>
-            {heading(
-              "A little guidance, whenever you need it.",
-              "Your beauty and grooming questions, routines and technique guidance — without pressure to buy.",
-            )}
-            <section className="advisor-panel">
-              <div className="advisor-intro">
-                <Icon name="spark" />
-                <h2>What would you like to explore?</h2>
-                <p>
-                  Prepare a question for the future connected advisor, or build
-                  your own routine today.
-                </p>
-                <div className="chips">
-                  {[
-                    "A five-minute routine",
-                    "How do I recreate this makeup?",
-                    "Hair care for my chosen style",
-                  ].map((n) => (
-                    <button
-                      className="chip"
-                      key={n}
-                      onClick={() => setAdvisor(n)}
-                    >
-                      {n}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setMessage(capabilityReasons.advisor);
-                }}
-              >
-                <label htmlFor="advisor-question">Your question</label>
-                <textarea
-                  id="advisor-question"
-                  value={advisor}
-                  onChange={(e) => setAdvisor(e.target.value)}
-                  maxLength={2000}
-                  rows={3}
-                  placeholder="What would you like help with?"
-                />
-                <button className="button" disabled={!advisor.trim()}>
-                  Check advisor connection
-                </button>
-              </form>
-              {btn("Build my own routine", "guide", true)}
-            </section>
           </>
         );
       case "profile":
@@ -1003,6 +922,12 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
               "Your space. Your choices.",
               "Your goals, private routines, saved results and authorized workspaces.",
             )}
+            <StylingJourney
+              page="profile"
+              data={journey}
+              setData={setJourney}
+              go={go}
+            />
             <div className="split">
               <section className="panel">
                 <h2>Personal account</h2>
@@ -1146,6 +1071,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
                   clearPhoto();
                   dispatch({ type: "reset" });
                   setSavedRequirements([]);
+                  setJourney(freshJourney());
                   setMessage(
                     "All app-session photo previews, interests and routines cleared.",
                   );
@@ -1193,64 +1119,6 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
               {btn("Screenshot to Shop", "screenshot", true)}
               {btn("Plan within my budget", "budget", true)}
               {btn("Book the Exact Look", "booking", true)}
-            </div>
-          </>
-        );
-      case "complete":
-        return (
-          <>
-            {heading(
-              "Complete the Look.",
-              "An optional checklist for recreating a chosen style. No purchases, personal results or verified matches are implied.",
-            )}
-            <div className="complete-layout">
-              <Editorial />
-              <section className="panel">
-                <h2>Everything that makes the look</h2>
-                {[
-                  "Hair & grooming",
-                  "Makeup",
-                  "Clothing",
-                  "Shoes & bag",
-                  "Accessories",
-                  "Professional service",
-                ].map((n, i) => (
-                  <div className="component-line" key={n}>
-                    <div className={`product product-${i % 4}`} />
-                    <div>
-                      <h3>{n}</h3>
-                      <p>
-                        {i === 0 || i === 5
-                          ? "Feasibility / quote needed"
-                          : "Price pending · Availability unverified"}
-                      </p>
-                    </div>
-                    <span className="badge">Unknown</span>
-                  </div>
-                ))}
-              </section>
-              <aside className="panel">
-                <h2>The whole cost.</h2>
-                <ul className="list">
-                  {[
-                    "Items & materials",
-                    "Delivery / tax / duties",
-                    "Full service price",
-                    "Delivered total",
-                  ].map((n) => (
-                    <li key={n}>
-                      {n}
-                      <span>Unconfirmed</span>
-                    </li>
-                  ))}
-                </ul>
-                {unavailable(capabilityReasons.commerce)}
-                <button className="button" disabled>
-                  Verified merchant handoff unavailable
-                </button>
-                {btn("Plan within a budget", "budget", true)}
-                {btn("Request a professional quote", "booking", true)}
-              </aside>
             </div>
           </>
         );
@@ -1412,6 +1280,14 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
           ))}
         </nav>
         <button
+          className="market-trigger"
+          onClick={() => go("complete")}
+          aria-label="Change shopping location"
+        >
+          {journey.city || journey.country || "Shopping destination"} ·{" "}
+          {journey.currency}
+        </button>
+        <button
           className="account-button"
           aria-label="Open profile"
           onClick={() => go("profile")}
@@ -1421,7 +1297,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
       </header>
       <div className="connection-bar">
         <span className="status-dot" />
-        Private development build · AI & account connections pending
+        Interactive preview · AI, account & commerce connections pending
       </div>
       {!online && (
         <Notice>
@@ -1441,7 +1317,33 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
           </div>
         )}
         {message && <Notice>{message}</Notice>}
-        {content()}
+        {memoryError && (
+          <div role="alert" className="error">
+            {memoryError}
+          </div>
+        )}
+        {memoryReady ? (
+          content()
+        ) : (
+          <p role="status" className="inline-status">
+            Opening your private GLAM space…
+          </p>
+        )}
+        {[
+          "report",
+          "hair",
+          "skin",
+          "body-fit",
+          "color",
+          "guide",
+          "studio",
+        ].includes(page) && (
+          <div className="result-next">
+            <span>Keep your journey connected.</span>
+            {btn("Shape my complete look", "builder", true)}
+            {btn("Get This Look", "complete")}
+          </div>
+        )}
         {[
           "report",
           "hair",

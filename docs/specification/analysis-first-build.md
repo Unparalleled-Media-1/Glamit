@@ -1,5 +1,7 @@
 # Analysis-first application build
 
+**Latest UX authority:** [Goal-led GLAM companion](goal-led-experience.md) and [phased gaps](goal-led-backlog.md). Compact goal-led home, shared styling brief, independent Look Builder and opt-in device profile metadata extend this build; live AI/account/commerce remain deferred. Older tool-led and session-only-for-all-metadata wording below is historical where it conflicts.
+
 **Current catalog addendum:** [Contextual commerce and Snap & List](contextual-catalog-build.md). Analysis stays first; every relevant result includes recommendations, organic and separately labeled sponsored opportunities or an honest no-match state. Optional purchase does not mean hidden recommendations. Merchant AI suggestions require factual review and version approval before publication.
 
 5 November 2026, Africa/Johannesburg. The user's instruction to code/build the supplied briefs authorizes application development now, with external tools and hosted databases connected afterward. It supersedes earlier waiting-for-design-approval text for this build. No release, provider spend, marketplace/advertising activation, Git publication or environment publication is implied.

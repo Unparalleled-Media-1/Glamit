@@ -1,5 +1,7 @@
 # Development environment
 
+The latest goal-led `/event` and `/builder` journeys, opt-in device profile metadata and full review runbook are in [application preview](application-preview/README.md). No external provider or hosted database is connected.
+
 The current client implementation is the [analysis-first application build](specification/analysis-first-build.md), superseding the older foundation-shell/design-only preview notes below. Run `npm run dev:web` and open `http://localhost:3000` on the same machine; `/analyze`, `/report`, `/color`, `/guide`, `/studio`, `/business` and `/admin` are actual app routes. Run `npm run dev:mobile` for Expo. Native photo/camera modules need an SDK-compatible Expo Go or development build; physical-device behavior remains unverified. See [current preview guide](application-preview/README.md).
 
 For UI tests run `npm run test:client`; after `npm run build:web`, run `npm run test:web` (requires the isolated Playwright install in `docs/design-preview` and Chromium). New APIs are in generated contracts. Apply canonical migrations to a deliberately selected development database before using them; tests use only a dedicated `_test` database. No hosted connection is activated by this code update.

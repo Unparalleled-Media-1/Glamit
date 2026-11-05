@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import GlamApp from "../../components/GlamApp";
 import type { Page } from "../../../../packages/product/platform";
 const sections = [
+  "event",
+  "builder",
   "analyze",
   "hair",
   "skin",

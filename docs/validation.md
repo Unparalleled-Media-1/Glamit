@@ -1,5 +1,16 @@
 # Current-instance validation
 
+## Goal-led UX verification — 5 November 2026
+
+- **104 backend tests passed** on the dedicated local PostgreSQL `glam_test` database, including the new fixed item-commission/cancellation/cumulative-refund/rounding policy. Existing canonical RBAC/catalog/market-policy regressions remain covered. One known Starlette/httpx deprecation warning remains. No hosted database was touched.
+- **8 shared client/render tests passed**, including independent component editing/clearing, immutable saved snapshots, allowlisted device metadata and corrupt/unapproved memory rejection.
+- **9 actual Next.js Chromium journey groups passed; 23 screenshots** in `application-preview/test-results.json`: first visitor/analysis, returning user, event brief, unchanged-original Studio, builder, Get This Look, Snap & List and denied workspace switching. New checks cover component preservation, wardrobe reuse, save/edit/delete/reload, opt-in/out/deletion, attachment exclusion, user-controlled destination/currency, 320–1920px overflow, 320/390×640 entry actions above navigation, fixed-nav geometry and final content scrolling clear. No external network requests or runtime page errors were observed.
+- Ruff lint/format, OpenAPI export consistency, TypeScript, shared React runtime checks and Next production build passed. iOS/Android Hermes JavaScript exports passed with the pinned Expo-compatible safe-area context dependency. No new API endpoint or migration was introduced.
+- Desktop home/first analysis/builder and mobile home captures were visually inspected. The nine-journey [human review runbook](application-preview/review-tasks.md) is supplied; **human usability, full WCAG/screen-reader, actual native device/notch/keyboard behavior and real AI/catalog/matching/commerce quality are not verified**. Opt-in device text memory is not authenticated cloud profile/report synchronization. Commission calculation tests are not settlement or payment evidence.
+
+Earlier records below describe earlier commits. Current limitations and all six source briefs' gaps remain tracked in [goal-led backlog](specification/goal-led-backlog.md). No push, deployment, environment publication or commercial activation was performed.
+
+
 ## Contextual catalog and Merchant Snap & List — current 5 November 2026 update
 
 Current scope is [the contextual catalog addendum](specification/contextual-catalog-build.md), extending the authorized analysis-first build. The two latest source uploads were preserved byte-for-byte. Prior validation entries below describe earlier revisions.

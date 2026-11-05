@@ -1,5 +1,7 @@
 # GLAM AI architecture approval package
 
+**Latest UX authority:** [Goal-led GLAM companion](goal-led-experience.md) and [phased gaps](goal-led-backlog.md). Compact goal-led home, shared styling brief, independent Look Builder and opt-in device profile metadata extend this build; live AI/account/commerce remain deferred. Older tool-led and session-only-for-all-metadata wording below is historical where it conflicts.
+
 **Current catalog addendum:** [Contextual commerce and Snap & List](contextual-catalog-build.md). Analysis stays first; every relevant result includes recommendations, organic and separately labeled sponsored opportunities or an honest no-match state. Optional purchase does not mean hidden recommendations. Merchant AI suggestions require factual review and version approval before publication.
 
 **Current authority:** [Analysis-first build](analysis-first-build.md). The latest user instruction authorizes implementation now, then external connections. Face Analysis, Color Analysis, Glow-Up Guide and makeover lead the experience; Home · Analyze · AI Studio · AI Advisor · Profile replaces the earlier shopping-first navigation. One Expo app, consumer web, unified business portal and restricted admin share canonical identity/RBAC/backend/migrations. Older design-approval waiting and surface/navigation descriptions below are historical where they conflict; production activation/release gates remain.

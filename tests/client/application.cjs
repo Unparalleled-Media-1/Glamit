@@ -78,11 +78,12 @@ const net = require("node:net");
       screenshots.push(name + ".png");
     };
     await page.goto(origin);
-    assert.match(await page.locator("h1").innerText(), /Discover What/);
+    assert.match(await page.locator("h1").innerText(), /Your next look/);
     await capture("web-home");
     await page
       .getByRole("button", { name: "Analyze My Face", exact: true })
       .click();
+    await capture("first-face-analysis");
     await page
       .getByRole("button", { name: "Start Face Analysis", exact: true })
       .click();
@@ -176,11 +177,11 @@ const net = require("node:net");
       "Editable routine save/checklist, dedicated Makeup Match, original-preserving Studio and reset",
     );
     await page.getByRole("button", { name: "AI Advisor", exact: true }).click();
-    await page.getByLabel("Your question").fill("A five-minute routine");
     await page
-      .getByRole("button", { name: "Check advisor connection" })
-      .click();
-    assert.match(await page.getByRole("status").innerText(), /not been sent/);
+      .getByLabel("Your styling goal or refinement")
+      .fill("A five-minute routine");
+    await page.getByRole("button", { name: "Add to my brief" }).click();
+    assert.match(await page.getByRole("status").innerText(), /No AI reply/);
     await page.getByRole("button", { name: "Open profile" }).click();
     await page
       .getByRole("button", { name: "Switch workspace", exact: true })
@@ -207,6 +208,177 @@ const net = require("node:net");
     assert.deepEqual((await context.storageState()).origins, []);
     pass(
       "Unsent Advisor, unauthorized workspace switcher, focus restoration, photo deletion and no persisted private data",
+    );
+    // One continuous plan: no request is sent to an AI, merchant or payment service.
+    await page.goto(origin + "/event");
+    await page
+      .getByLabel("Occasion / event", { exact: true })
+      .fill("Cape Town wedding");
+    await page
+      .getByLabel("Theme or dress code (your input)")
+      .fill("Emerald, relaxed formal");
+    await page.getByLabel("Event date", { exact: true }).fill("2027-05-22");
+    await page.getByLabel("Needed by", { exact: true }).fill("2027-05-15");
+    await page.getByLabel("Total budget, including delivery").fill("4000");
+    await page
+      .getByLabel("Your styling goal or refinement")
+      .fill("Use my own gold earrings");
+    await page
+      .getByRole("button", { name: "Add to my brief", exact: true })
+      .click();
+    assert.match(
+      await page.locator(".conversation-messages").innerText(),
+      /gold earrings/,
+    );
+    await page
+      .getByRole("button", { name: "Shape my look", exact: true })
+      .click();
+    await page.getByLabel("Look name", { exact: true }).fill("My wedding look");
+    await page
+      .getByRole("button", { name: "Sculpted braids", exact: true })
+      .click();
+    await page.getByRole("tab", { name: /Makeup/ }).click();
+    await page
+      .getByRole("button", { name: "Soft bronze", exact: true })
+      .click();
+    await page.getByRole("tab", { name: /Clothing/ }).click();
+    await page
+      .getByRole("button", { name: "An emerald dress", exact: true })
+      .click();
+    await page.getByRole("tab", { name: /Hair/ }).click();
+    await page
+      .getByRole("button", { name: "Sleek low bun", exact: true })
+      .click();
+    assert.match(
+      await page.locator(".look-summary").innerText(),
+      /Soft bronze/,
+    );
+    assert.match(
+      await page.locator(".look-summary").innerText(),
+      /An emerald dress/,
+    );
+    await page
+      .getByRole("button", { name: "Save this look", exact: false })
+      .click();
+    await capture("live-look-builder");
+    await page
+      .getByRole("button", { name: "Get This Look", exact: true })
+      .click();
+    assert.match(
+      await page.locator(".look-breakdown").innerText(),
+      /Sleek low bun/,
+    );
+    await page.getByLabel("Shopping country").fill("ZA");
+    await page.getByLabel("Delivery / service city").fill("Johannesburg");
+    await page.getByLabel("Currency", { exact: true }).selectOption("ZAR");
+    assert.match(
+      await page.locator(".cost-summary").innerText(),
+      /Not yet known/,
+    );
+    await capture("get-this-look");
+    await page.getByRole("button", { name: "Open profile" }).click();
+    await page.getByLabel("What should we call you?").fill("Alex");
+    await page
+      .getByRole("checkbox", { name: /Remember my approved plan/ })
+      .check();
+    await page.reload();
+    assert.equal(
+      await page.getByLabel("What should we call you?").inputValue(),
+      "Alex",
+    );
+    await page.getByRole("button", { name: "Open & edit look" }).click();
+    assert.equal(
+      await page.getByLabel("Look name", { exact: true }).inputValue(),
+      "My wedding look",
+    );
+    await page.getByRole("tab", { name: /Accessories/ }).click();
+    await page
+      .getByRole("button", { name: "Gold accents", exact: true })
+      .click();
+    await page.getByRole("button", { name: /Save this look/ }).click();
+    await page.getByRole("button", { name: "Open profile" }).click();
+    assert.match(
+      await page.locator(".glam-profile").innerText(),
+      /Saved looks \(1\)/,
+    );
+    await page
+      .getByRole("button", { name: "Digital Wardrobe", exact: true })
+      .click();
+    await page
+      .getByLabel("Wardrobe item", { exact: true })
+      .fill("My black blazer");
+    await page.getByRole("button", { name: "Add item", exact: false }).click();
+    await page
+      .getByRole("button", { name: "Style this piece", exact: false })
+      .click();
+    assert.match(
+      await page.locator(".look-summary").innerText(),
+      /My black blazer/,
+    );
+    assert.match(
+      await page.locator(".look-summary").innerText(),
+      /Sleek low bun/,
+    );
+    await page
+      .getByRole("button", { name: "Home", exact: true })
+      .first()
+      .click();
+    assert.match(await page.locator("h1").innerText(), /Welcome back, Alex/);
+    await capture("returning-user");
+    await page
+      .getByRole("button", { name: "Ask My Personal Stylist", exact: true })
+      .click();
+    // Context survived navigation and approved metadata reload; conversation did not persist.
+    assert.equal(
+      await page.getByLabel("Occasion / event", { exact: true }).inputValue(),
+      "Cape Town wedding",
+    );
+    assert.equal(await page.locator(".user-message").count(), 0);
+    await capture("event-stylist");
+    await page
+      .getByRole("checkbox", { name: /I have permission to preview/ })
+      .check();
+    await page
+      .getByLabel("Add inspiration or invitation", { exact: true })
+      .setInputFiles(
+        path.resolve(__dirname, "../../apps/web/public/images/editorial.webp"),
+      );
+    await page.locator(".attached img").waitFor();
+    const persisted = await page.evaluate(() =>
+      localStorage.getItem("glam.approved-profile.v1"),
+    );
+    assert(
+      !persisted.includes("blob:") &&
+        !persisted.includes("messages") &&
+        !persisted.includes("editorial.webp"),
+    );
+    await page.getByRole("button", { name: "Remove attachment" }).click();
+    await page.getByRole("button", { name: "Open profile" }).click();
+    await page
+      .getByRole("checkbox", { name: /Remember my approved plan/ })
+      .uncheck();
+    assert.deepEqual((await context.storageState()).origins, []);
+    await page
+      .getByRole("checkbox", { name: /Remember my approved plan/ })
+      .check();
+    await page
+      .getByRole("button", { name: "Delete saved look", exact: true })
+      .click();
+    await page.reload();
+    assert.match(
+      await page.locator(".glam-profile").innerText(),
+      /Saved looks \(0\)/,
+    );
+    await page
+      .getByRole("button", {
+        name: "Delete my GLAM Profile on this device",
+        exact: true,
+      })
+      .click();
+    await page.reload();
+    assert.deepEqual((await context.storageState()).origins, []);
+    pass(
+      "Event brief continuity, independent look components, wardrobe reuse, returning profile, approved metadata persistence and deletion; no fabricated AI or offers",
     );
     await page.goto(origin + "/business");
     const configs = await page
@@ -500,9 +672,12 @@ const net = require("node:net");
       "Snap & List originals, unavailable AI, manual factual review, duplicate rejection, session catalog health and publication guard",
     );
     for (const width of [320, 390, 768, 1440, 1920]) {
-      await page.setViewportSize({ width, height: 1000 });
+      await page.setViewportSize({ width, height: width <= 390 ? 844 : 1000 });
       for (const route of [
         "/",
+        "/event",
+        "/builder",
+        "/wardrobe",
         "/analyze",
         "/report",
         "/color",
@@ -522,6 +697,18 @@ const net = require("node:net");
           route + " overflow " + width,
         );
       }
+      if (width <= 390) {
+        await page.setViewportSize({ width, height: 640 });
+        await page.goto(origin);
+        const nav = await page.locator(".mobile-nav").boundingBox();
+        for (const label of ["Analyze My Face", "Ask My Personal Stylist"]) {
+          const b = await page
+            .getByRole("button", { name: label, exact: true })
+            .boundingBox();
+          assert(b.y + b.height < nav.y, "Entry actions at " + width + "x640");
+        }
+        await page.setViewportSize({ width, height: 844 });
+      }
       if (width === 390) {
         await page.goto(origin);
         assert.deepEqual(
@@ -529,6 +716,35 @@ const net = require("node:net");
           ["Home", "Analyze", "AI Studio", "AI Advisor", "Profile"],
         );
         await capture("mobile-home");
+        for (const label of ["Analyze My Face", "Ask My Personal Stylist"]) {
+          const b = await page
+            .getByRole("button", { name: label, exact: true })
+            .boundingBox();
+          const nav = await page.locator(".mobile-nav").boundingBox();
+          assert(
+            b.y + b.height < nav.y,
+            "Primary action must be above bottom navigation",
+          );
+        }
+        assert.equal(
+          await page
+            .locator(".mobile-nav")
+            .evaluate((n) => getComputedStyle(n).position),
+          "fixed",
+        );
+        await page.evaluate(() =>
+          window.scrollTo(0, document.body.scrollHeight),
+        );
+        const footer = await page.locator(".site-footer").boundingBox();
+        const nav = await page.locator(".mobile-nav").boundingBox();
+        assert(
+          footer.y + footer.height <= nav.y,
+          "Last content must scroll clear of navigation",
+        );
+        await page.goto(origin + "/builder");
+        await capture("mobile-look-builder");
+        await page.goto(origin + "/event");
+        await capture("mobile-event-stylist");
         await page.goto(origin + "/report");
         await capture("mobile-face-report");
       }

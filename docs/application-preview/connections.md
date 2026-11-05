@@ -1,3 +1,7 @@
+# Current UX connection boundary
+
+The goal-led redesign is interactive user-authored planning. Device metadata memory is opt-in; cloud profile/report/wardrobe sync, real conversation generation, invitation OCR/official-theme verification and combined look rendering need qualified identity/storage/provider integrations. No device location is collected; manual destination and currency do not activate a market or convert prices. The 10% server item-fee policy is a calculation, not a payment/order/settlement ledger. See [all remaining gaps](../specification/goal-led-backlog.md).
+
 # Deferred connections and activation
 
 The user requested code/build first, tools and hosted databases afterward. No credentials are needed to run the current local UI or isolated tests. No paid vendor calls or production changes were performed.

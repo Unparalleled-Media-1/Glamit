@@ -205,3 +205,53 @@ test("qualified match renderer labels sources and sponsorship, preserves unknown
   assert.match(expired, /no longer current/);
   assert.doesNotMatch(expired, /Test merchant/);
 });
+
+const J = load("journey.ts");
+test("editing or clearing one look element preserves unrelated components and saved snapshots", () => {
+  let s = J.freshJourney();
+  s = J.changePart(s, "Hair", "Braids");
+  s = J.changePart(s, "Clothing", "Owned blazer");
+  s = J.changePart(s, "Makeup", "Bronze");
+  s = J.saveLook(s, "one");
+  s = J.changePart(s, "Hair", "");
+  assert.equal(s.look.parts.Clothing, "Owned blazer");
+  assert.equal(s.look.parts.Makeup, "Bronze");
+  assert.equal(s.saved[0].parts.Hair, "Braids");
+  s = J.saveLook(s, "one");
+  assert.equal(s.saved.length, 1);
+  assert.equal(s.saved[0].parts.Hair, "");
+});
+test("durable approved profile allowlists metadata and rejects corrupt or unapproved persistence", () => {
+  let s = J.freshJourney();
+  s.remember = true;
+  s.name = "Alex";
+  s.messages = ["private session conversation"];
+  s = J.changePart(s, "Hair", "Natural");
+  s = J.saveLook(s, "one");
+  s.attachment = "blob:secret";
+  s.token = "secret";
+  // Serializer must whitelist at source, not rely on the restore function.
+  const raw = J.durableJourney(s);
+  assert(!raw.includes("conversation"));
+  assert(!raw.includes("blob:secret"));
+  assert(!raw.includes("token"));
+  const restored = J.restoreJourney(raw);
+  assert.equal(restored.name, "Alex");
+  assert.equal(restored.saved.length, 1);
+  assert.equal(restored.messages.length, 0);
+  for (const raw of [
+    "not JSON",
+    "null",
+    "[]",
+    '{"version":1,"remember":false,"name":"No"}',
+  ])
+    assert.equal(J.restoreJourney(raw).remember, false);
+  const altered = JSON.parse(raw);
+  altered.currency = "INVALID";
+  altered.roles = ["super_admin"];
+  altered.look.parts.Religion = "inferred";
+  const safe = J.restoreJourney(JSON.stringify(altered));
+  assert.equal(safe.currency, "ZAR");
+  assert.equal("roles" in safe, false);
+  assert.equal("Religion" in safe.look.parts, false);
+});

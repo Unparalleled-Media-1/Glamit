@@ -1,5 +1,12 @@
 # Implementation evidence and remaining gates
 
+## Latest goal-led UX update
+
+[Goal-led experience](specification/goal-led-experience.md) replaces the tool-led home with six goal journeys and immediate Face Analysis/Personal Stylist actions. Actual web/native components share a user-authored event/conversation brief, independent five-component Look Builder, snapshot save/edit/delete, owned-wardrobe notes/reuse, Get This Look breakdown and opt-in editable/deletable device profile metadata. Raw photos, inspiration files, conversation text, grants and uncomputed reports are excluded from durable memory. Google/Supabase account sync and actual approved analysis-report persistence remain unconnected. Web nav is fixed with reserved safe-area space; native uses measured safe-area context.
+
+A pure central server policy calculates the fixed 10% eligible item-sale fee and cumulative refund reversals; no order ledger, checkout, settlement or service commission is activated. Existing canonical catalog/RBAC/migrations remain unchanged. No external connection, market activation or production database migration is made. The [phased gap backlog](specification/goal-led-backlog.md) preserves all six briefs' remaining requirements. Provider-generated recommendations/previews, invitation extraction, real matching accuracy, device/human usability, live catalog/booking/payment evidence remain open.
+
+
 ## Current contextual-catalog update
 
 The [catalog addendum](specification/contextual-catalog-build.md) implements embedded recommendations across Face/Hair/Skin/Body & Fit/Color/Makeup Match/Makeover/routines in web and native. Users can save/delete chosen requirements; disconnected views say no verified matches. Qualified-response cards distinguish organic/Sponsored, Exact/Similar, source condition, known/unknown cost and fresh handoff/quote review. No merchants or paid placements are seeded.

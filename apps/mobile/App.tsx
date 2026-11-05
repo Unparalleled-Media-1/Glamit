@@ -32,6 +32,16 @@ import {
 } from "../../packages/product/platform";
 import type { Page, Photo, Role } from "../../packages/product/platform";
 
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
+import StylingJourney from "./StylingJourney";
+import {
+  durableJourney,
+  freshJourney,
+  restoreJourney,
+} from "../../packages/product/journey";
 import ContextualRecommendations from "./ContextualRecommendations";
 import MerchantSnapList from "./MerchantSnapList";
 import {
@@ -101,6 +111,53 @@ function Title({ title, copy }: { title: string; copy: string }) {
   );
 }
 export default function App() {
+  return (
+    <SafeAreaProvider>
+      <PersonalApp />
+    </SafeAreaProvider>
+  );
+}
+function PersonalApp() {
+  const insets = useSafeAreaInsets();
+  const [journey, setJourney] = useState(freshJourney);
+  const [memoryReady, setMemoryReady] = useState(false);
+  const [memoryError, setMemoryError] = useState("");
+  useEffect(() => {
+    let mounted = true;
+    const file = new File(Paths.document, "glam-approved-profile-v1.json");
+    (async () => {
+      try {
+        if (file.exists) {
+          const raw = await file.text();
+          if (mounted) setJourney(restoreJourney(raw));
+        }
+      } catch {
+        if (mounted)
+          setMemoryError(
+            "Device memory could not be read. This plan is session-only.",
+          );
+      } finally {
+        if (mounted) setMemoryReady(true);
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+  useEffect(() => {
+    if (!memoryReady) return;
+    try {
+      const file = new File(Paths.document, "glam-approved-profile-v1.json");
+      if (journey.remember) {
+        file.write(durableJourney(journey));
+      } else if (file.exists) file.delete();
+      setMemoryError("");
+    } catch {
+      setMemoryError(
+        "Your changes could not be remembered. Device storage may be full or unavailable.",
+      );
+    }
+  }, [journey, memoryReady]);
   const [state, dispatch] = useReducer(personalReducer, initialPersonal);
   const [savedRequirements, setSavedRequirements] = useState<
     RequirementDraft[]
@@ -316,80 +373,26 @@ export default function App() {
                   : "makeover"
                 : "face";
   function content() {
+    if (
+      [
+        "home",
+        "advisor",
+        "event",
+        "screenshot",
+        "builder",
+        "complete",
+        "wardrobe",
+      ].includes(state.page)
+    )
+      return (
+        <StylingJourney
+          page={state.page}
+          data={journey}
+          setData={setJourney}
+          go={go}
+        />
+      );
     switch (state.page) {
-      case "home":
-        return (
-          <>
-            {hero()}
-            <Text style={s.eyebrow}>UNDERSTAND. EXPLORE. EXPRESS.</Text>
-            <Text accessibilityRole="header" style={s.heroTitle}>
-              Discover What{"\n"}Suits You.
-            </Text>
-            <Text style={s.body}>
-              Understand your features. Discover your colors. Explore your look.
-              Learn how to achieve it.
-            </Text>
-            {nav("Analyze My Face", "analyze")}
-            <Text style={s.fine}>
-              Private by default · Your photo, your choice
-            </Text>
-            <View style={s.quickGrid}>
-              {[
-                ["Face Analysis", "analyze"],
-                ["Color Analysis", "color"],
-                ["AI Makeover", "studio"],
-                ["Makeup Match", "studio"],
-              ].map(([n, p], i) => (
-                <Pressable
-                  accessibilityRole="button"
-                  key={n}
-                  style={s.quickCard}
-                  onPress={() => {
-                    if (i === 3)
-                      dispatch({ type: "tool", value: "Makeup Match" });
-                    go(p as Page);
-                  }}
-                >
-                  <Text style={s.eyebrow}>0{i + 1} ↗</Text>
-                  <Text style={s.h2}>{n}</Text>
-                  <Text style={s.small}>Your choices. Your direction.</Text>
-                </Pressable>
-              ))}
-            </View>
-            <Card>
-              <Text style={s.h2}>Your Glow-Up Journey</Text>
-              {[
-                "Complete your personal analysis",
-                "Explore colors and chosen looks",
-                "Build your practical routine",
-              ].map((n, i) => (
-                <Text style={s.listItem} key={n}>
-                  0{i + 1} {n}
-                </Text>
-              ))}
-              {nav("Build a routine", "guide", true)}
-            </Card>
-            <Text style={s.h2}>Follow interests. Skip labels.</Text>
-            <View style={s.chips}>
-              {interests.map((n) => (
-                <Pressable
-                  key={n}
-                  accessibilityRole="button"
-                  accessibilityState={{ selected: state.interests.includes(n) }}
-                  onPress={() =>
-                    dispatch({ type: "toggle", key: "interests", value: n })
-                  }
-                  style={[s.chip, state.interests.includes(n) && s.selected]}
-                >
-                  <Text style={state.interests.includes(n) ? s.white : s.small}>
-                    {n}
-                  </Text>
-                </Pressable>
-              ))}
-            </View>
-            {nav("Optional inspiration & products", "explore", true)}
-          </>
-        );
       case "analyze":
         return (
           <>
@@ -738,39 +741,36 @@ export default function App() {
                 }}
               />
             </Card>
+            <Button
+              title="Use this direction in my look"
+              secondary
+              onPress={() => {
+                setJourney((p) => ({
+                  ...p,
+                  look: {
+                    ...p.look,
+                    parts: {
+                      ...p.look.parts,
+                      [state.tool === "Makeup Match" ? "Makeup" : "Hair"]:
+                        state.style,
+                    },
+                  },
+                }));
+                go("builder");
+              }}
+            />
             {nav("Optional Complete the Look", "complete", true)}
-          </>
-        );
-      case "advisor":
-        return (
-          <>
-            {heading(
-              "A little guidance.",
-              "Questions, routines and technique guidance without pressure to buy.",
-            )}
-            <Card>
-              <Text style={s.h2}>What would you like to explore?</Text>
-              <TextInput
-                accessibilityLabel="Your advisor question"
-                style={[s.input, s.textarea]}
-                placeholder="A five-minute getting-ready routine?"
-                value={question}
-                maxLength={2000}
-                multiline
-                onChangeText={setQuestion}
-              />
-              <Button
-                title="Check advisor connection"
-                disabled={!question.trim()}
-                onPress={() => setMessage(capabilityReasons.advisor)}
-              />
-              {nav("Build my own routine", "guide", true)}
-            </Card>
           </>
         );
       case "profile":
         return (
           <>
+            <StylingJourney
+              page="profile"
+              data={journey}
+              setData={setJourney}
+              go={go}
+            />
             {heading(
               "Your space. Your choices.",
               "Your private goals, session routines and authorized workspaces.",
@@ -882,6 +882,7 @@ export default function App() {
                           if (clearPhoto()) {
                             dispatch({ type: "reset" });
                             setSavedRequirements([]);
+                            setJourney(freshJourney());
                             setMessage("Session cleared.");
                           }
                         },
@@ -908,35 +909,6 @@ export default function App() {
             {nav("Complete the Look", "complete")}
             {nav("Screenshot to Shop", "screenshot", true)}
             {nav("Plan within a budget", "budget", true)}
-            {nav("Book the Exact Look", "booking", true)}
-          </>
-        );
-      case "complete":
-        return (
-          <>
-            {heading(
-              "Complete the Look.",
-              "An optional checklist, never a fabricated offer.",
-            )}
-            {[
-              "Hair & grooming",
-              "Makeup",
-              "Clothing",
-              "Shoes & bag",
-              "Accessories",
-              "Professional service",
-            ].map((n) => (
-              <Card key={n}>
-                <Text style={s.h2}>{n}</Text>
-                <Text style={s.body}>
-                  Price pending · Availability unverified · Feasibility / quote
-                  needed
-                </Text>
-              </Card>
-            ))}
-            <Note text={capabilityReasons.commerce} />
-            <Button title="Merchant handoff — unavailable" disabled />
-            {nav("Plan within my budget", "budget", true)}
             {nav("Book the Exact Look", "booking", true)}
           </>
         );
@@ -992,9 +964,29 @@ export default function App() {
   }
   const activeTab = reviewRole ? workspaces[reviewRole].mobile : mobileTabs;
   return (
-    <View style={s.app}>
+    <View
+      style={[
+        s.app,
+        {
+          paddingTop: insets.top + 8,
+          paddingLeft: insets.left,
+          paddingRight: insets.right,
+        },
+      ]}
+    >
       <View style={s.topbar}>
         <Text style={s.brand}>✧ GLAM AI</Text>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Change shopping location"
+          style={{ minHeight: 44, justifyContent: "center", maxWidth: 140 }}
+          onPress={() => go("complete")}
+        >
+          <Text style={s.fine}>
+            {journey.city || journey.country || "Destination"} ·{" "}
+            {journey.currency}
+          </Text>
+        </Pressable>
         <Pressable
           accessibilityRole="button"
           accessibilityLabel="Open profile"
@@ -1016,6 +1008,7 @@ export default function App() {
       </View>
       <ScrollView
         ref={scroll}
+        automaticallyAdjustKeyboardInsets
         contentContainerStyle={[
           s.content,
           { maxWidth: 740, alignSelf: "center", width: "100%" },
@@ -1033,6 +1026,7 @@ export default function App() {
           </View>
         )}
         {!!message && <Note text={message} />}
+        {!!memoryError && <Note text={memoryError} />}
         {reviewRole ? (
           <>
             <Title
@@ -1078,7 +1072,29 @@ export default function App() {
           </>
         ) : (
           <>
-            {content()}
+            {memoryReady ? (
+              content()
+            ) : (
+              <Note text="Opening your private GLAM space…" />
+            )}
+            {[
+              "report",
+              "hair",
+              "skin",
+              "body-fit",
+              "color",
+              "guide",
+              "studio",
+            ].includes(state.page) && (
+              <>
+                <Button
+                  title="Shape my complete look"
+                  secondary
+                  onPress={() => go("builder")}
+                />
+                <Button title="Get This Look" onPress={() => go("complete")} />
+              </>
+            )}
             {[
               "report",
               "hair",
@@ -1104,7 +1120,10 @@ export default function App() {
           </>
         )}
       </ScrollView>
-      <View accessibilityRole="tablist" style={s.bottomNav}>
+      <View
+        accessibilityRole="tablist"
+        style={[s.bottomNav, { paddingBottom: Math.max(insets.bottom, 10) }]}
+      >
         {activeTab.map((n, i) => (
           <Pressable
             key={n}
@@ -1187,7 +1206,6 @@ const s = StyleSheet.create({
   app: {
     flex: 1,
     backgroundColor: "#f8f4f0",
-    paddingTop: Platform.OS === "ios" ? 55 : 35,
   },
   topbar: {
     flexDirection: "row",
