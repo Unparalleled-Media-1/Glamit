@@ -1,0 +1,25 @@
+
+> @glam/mobile@0.1.0 export
+> expo export --platform android --platform ios
+
+Expo Autolinking module resolution enabled
+Starting Metro Bundler
+
+iOS Bundled 7375ms apps/mobile/index.ts (667 modules)
+Android Bundled 13131ms apps/mobile/index.ts (541 modules)
+
+› Assets (3):
+assets/beauty-editorial.webp (214KB)
+assets/beauty-products.webp (121KB)
+assets/editorial.webp (211KB)
+
+› ios bundles (1):
+_expo/static/js/ios/index-f77b8028be116595884f43e71d14cce3.hbc (1.8MB)
+
+› android bundles (1):
+_expo/static/js/android/index-7e0f1ae32579899c59b3c5d679bdc107.hbc (1.8MB)
+
+› Files (1):
+metadata.json (626B)
+
+Exported: dist

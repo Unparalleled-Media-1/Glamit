@@ -1,0 +1,123 @@
+[
+  {
+    "id": "G0-001",
+    "severity": "Critical",
+    "feature": "Credential exposure",
+    "reproduction": "A database URL containing a password was supplied in the conversation.",
+    "root_cause": "Secret disclosed outside the environment secret manager; rotation not evidenced.",
+    "owner": "Project security owner",
+    "fix": "Rotate/revoke out of band; audit access and dependent secrets. Never reuse the pasted password.",
+    "retest": "Obtain rotation evidence without secret values; verify old credential revoked externally.",
+    "state": "OPEN"
+  },
+  {
+    "id": "G0-002",
+    "severity": "High",
+    "feature": "Release governance",
+    "reproduction": "List remote heads: no main. PR/ruleset API returns Forbidden.",
+    "root_cause": "No approved consolidation target or auditable approval/check metadata.",
+    "owner": "Repository maintainer",
+    "fix": "Resolve main/bootstrap policy and restore authorized review access; approved PR merges only.",
+    "retest": "Clean main clone, required CI/reviews and recorded tag.",
+    "state": "OPEN"
+  },
+  {
+    "id": "G0-003",
+    "severity": "High",
+    "feature": "Migration portability",
+    "reproduction": "Inspect0009; upgrade rejects database names without _test.",
+    "root_cause": "Sandbox revision is in canonical application migration chain. This is a safety guard, not a guard to remove.",
+    "owner": "Backend/finance maintainer",
+    "fix": "Separately review sandbox migration isolation before any Supabase rollout.",
+    "retest": "Migration plan and clean disposable nonproduction deployment approved; no production test.",
+    "state": "OPEN"
+  },
+  {
+    "id": "G0-004",
+    "severity": "High",
+    "feature": "AI end-to-end journey",
+    "reproduction": "Choose analysis/try-on without configured adapters: unavailable states, no real report/render.",
+    "root_cause": "Provider classes are unmounted; no authenticated live pipeline/evaluation.",
+    "owner": "AI/backend owner",
+    "fix": "Wire consented server jobs and validated adapters; evaluate real diverse inputs.",
+    "retest": "Demonstrate user-specific analysis/corrections -> Studio with uncertainty and deletion.",
+    "state": "OPEN"
+  },
+  {
+    "id": "G0-005",
+    "severity": "High",
+    "feature": "Marketplace and payments",
+    "reproduction": "No verified local supply/provider credentials; checkout cannot create a real verified order.",
+    "root_cause": "Contracts and sandbox doubles are not an operational merchant/payment pipeline.",
+    "owner": "Commerce/finance owner",
+    "fix": "Verify test accounts, server catalog/stock and actual processor evidence; maintain test-only operation.",
+    "retest": "Real Stripe test IDs, balance transactions/fees/transfers/reconciliation and refund/dispute cases.",
+    "state": "OPEN"
+  },
+  {
+    "id": "G0-006",
+    "severity": "High",
+    "feature": "Image retention and deletion",
+    "reproduction": "Local photo removal works; no verified storage/vendor/backup deletion job evidence.",
+    "root_cause": "Private-image lifecycle and retention ownership incomplete.",
+    "owner": "Privacy/backend owner",
+    "fix": "Approve retention/storage consent and implement audited deletion lifecycle.",
+    "retest": "Trace user deletion through storage/vendor/jobs and documented backup expiration.",
+    "state": "OPEN"
+  },
+  {
+    "id": "G0-007",
+    "severity": "High",
+    "feature": "API abuse controls",
+    "reproduction": "Source review found no demonstrated deployable request/paid-operation rate limiter.",
+    "root_cause": "Contract/error tests do not enforce abuse quotas.",
+    "owner": "Platform security owner",
+    "fix": "Implement separately reviewed per-identity/tenant/IP quotas and spend/job concurrency limits.",
+    "retest": "Burst/concurrency/tenant isolation tests return bounded429 and Retry-After without spending twice.",
+    "state": "OPEN"
+  },
+  {
+    "id": "G0-008",
+    "severity": "High",
+    "feature": "Schema and tenant release gate",
+    "reproduction": "Future booking/consumer/commerce schema and approved RLS matrix absent.",
+    "root_cause": "Foundation RLS tests cover current tables only; future relations not implemented/approved.",
+    "owner": "Database/security owner",
+    "fix": "Review proposed schema/RLS/storage plan and migration isolation; do not connect yet.",
+    "retest": "Explicit schema/RLS and G0 approval plus future-table tenant negative tests.",
+    "state": "OPEN"
+  },
+  {
+    "id": "G0-009",
+    "severity": "Medium",
+    "feature": "Native UX validation",
+    "reproduction": "Existing recordings are browser desktop/mobile emulation; Hermes export is not device execution.",
+    "root_cause": "No actual iOS/Android screen recordings or assistive technology task evidence.",
+    "owner": "Mobile/UX owner",
+    "fix": "Run all six patterns on real supported native targets and assistive technology.",
+    "retest": "Device/OS/browser details, task success, screenshots and actual recordings.",
+    "state": "OPEN"
+  },
+  {
+    "id": "G0-010",
+    "severity": "Medium",
+    "feature": "Incomplete workspace operations",
+    "reproduction": "Creator/advertiser/tailor surfaces show modules; bookings/affiliate/reviews lack full operations.",
+    "root_cause": "Navigation and contracts precede operational engines.",
+    "owner": "Product/business owner",
+    "fix": "Complete scoped workflows and durable server authorization; retain honest labels.",
+    "retest": "Role/organization-specific task completion and denial regressions.",
+    "state": "OPEN"
+  },
+  {
+    "id": "G0-011",
+    "severity": "Medium",
+    "feature": "Fairness, minors and accuracy",
+    "reproduction": "No recorded diverse-input analysis/product-match accuracy study or enforced minor policy.",
+    "root_cause": "Provider mocks and browser tests cannot measure model or human usability outcomes.",
+    "owner": "AI safety/product owner",
+    "fix": "Define consented evaluation cohorts, uncertainty/abstention criteria and age policy.",
+    "retest": "Publish measured precision/recall, calibration, subgroup results and policy tests.",
+    "state": "OPEN"
+  }
+]
