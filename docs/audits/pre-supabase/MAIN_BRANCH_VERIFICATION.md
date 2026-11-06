@@ -1,5 +1,7 @@
 # Main and baseline verification
 
+> Historical audit snapshot. The user has since designated `feat/platform-foundations` as main. Read [current status](CURRENT_STATUS.md); a literal `main` branch is no longer a prerequisite. Other release gates remain in force.
+
 - Remote repository: https://github.com/Unparalleled-Media-1/Glamit
 - Remote default: `feat/platform-foundations` at `d03f6d45a8ffb99a26fd1a5a7df6c51689185ffb`.
 - Main branch: **ABSENT** locally and remotely at inventory time. Main SHA: **NOT AVAILABLE**.

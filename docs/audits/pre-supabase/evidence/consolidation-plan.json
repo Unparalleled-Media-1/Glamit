@@ -1,0 +1,108 @@
+{
+  "user_designated_main": "feat/platform-foundations",
+  "previous_remote_sha": "d03f6d45a8ffb99a26fd1a5a7df6c51689185ffb",
+  "source_base_sha": "b1621de4c62489f007eb0f83c8efccbc633bd9a9",
+  "operation": "authorized normal fast-forward; no force/protection bypass",
+  "github_pr_metadata": "unavailable: GraphQL API Forbidden",
+  "pr_state_not_inferred_from_ancestry": true,
+  "branches": [
+    {
+      "branch": "audit/pre-supabase-g0",
+      "observed_sha": "b1621de4c62489f007eb0f83c8efccbc633bd9a9",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "design/editorial-ui-ux-brief",
+      "observed_sha": "80d21a7df361ff9c5331df6ff3da46cc53fde3f9",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "docs/global-master-prd-v2",
+      "observed_sha": "f48f3e0659ed53852bf9e5c4ed1b70ac414425cb",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "docs/master-specification-and-design-blueprint",
+      "observed_sha": "d700a0d820926c88f63cc2c911b2efebeec346e7",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "docs/mobile-first-product-surfaces",
+      "observed_sha": "51207db59e1ab5df6e2368e4ec9a0416e9c54a09",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "feat/analysis-first-platform",
+      "observed_sha": "30804917b62f4a80ea3c400e7cb4535ddcc28258",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "feat/contextual-catalog-snap-list",
+      "observed_sha": "5c65ec350810ff63269143cb08090212d2646b37",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "feat/goal-led-styling-experience",
+      "observed_sha": "c323190c143d37e1416c29aab3f5a7f0b186dbba",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "feat/golden-screen-recovery",
+      "observed_sha": "240de1acf676963276fd19599289bd3c2f74fb33",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "feat/interactive-preview",
+      "observed_sha": "4fc0b3ad7a9bcd2e9d554d63d0f85ba2892cda0e",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "feat/personalized-results-journey",
+      "observed_sha": "b97f1d6db1ad96b78d62e451c88a7bffbd212da4",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "feat/platform-foundations",
+      "observed_sha": "d03f6d45a8ffb99a26fd1a5a7df6c51689185ffb",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "feat/stripe-connect-test",
+      "observed_sha": "1060e34263f0a980ba8ef66a8c148077a4a1355e",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "feat/visual-beauty-experience",
+      "observed_sha": "79c4afa530a30e6d0343847b043c8aa4a0ef8ea8",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "fix/reproducible-client-toolchain",
+      "observed_sha": "e5bddf5683db571b9d0d2b4e0dbc9e87678063ca",
+      "included_in_source_base": true,
+      "disposition": "included by ancestry; preserve branch"
+    },
+    {
+      "branch": "gh-pages",
+      "observed_sha": "fe0c513319ecddbda650f3de9bdcc189135b73b4",
+      "included_in_source_base": false,
+      "disposition": "separate generated publishing history; do not merge into application source"
+    }
+  ],
+  "production_changes": false,
+  "supabase_connected": false
+}

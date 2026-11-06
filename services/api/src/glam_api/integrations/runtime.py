@@ -137,8 +137,13 @@ class ProviderConfig:
     def from_environment(cls):
         # Do not read .env, invent credentials, change auth or initialize Supabase.
         names = {name for spec in SERVICES for name in spec.secrets}
+        values = {k: SecretStr(os.environ[k]) for k in names if os.environ.get(k, "").strip()}
+        # Managed environments reserve OPENAI_* binding names. Keep the normal
+        # deployment convention while accepting a server-only secret alias.
+        if "OPENAI_API_KEY" not in values and os.environ.get("GLAM_OPENAI_API_KEY", "").strip():
+            values["OPENAI_API_KEY"] = SecretStr(os.environ["GLAM_OPENAI_API_KEY"])
         return cls(
-            values={k: SecretStr(os.environ[k]) for k in names if os.environ.get(k, "").strip()},
+            values=values,
             openai_model=os.environ.get("GLAM_OPENAI_MODEL", ""),
             fashn_model=os.environ.get("GLAM_FASHN_MODEL", ""),
             private_image_origins=tuple(

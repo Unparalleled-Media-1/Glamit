@@ -1,5 +1,7 @@
 # G0 decision: NO-GO
 
+> Historical audit snapshot. The user has since designated `feat/platform-foundations` as main. Read [current status](CURRENT_STATUS.md); a literal `main` branch is no longer a prerequisite. Other release gates remain in force.
+
 Do not connect development or production Supabase. No live payments or production mutations are authorized by this audit.
 
 | Gate                                              | Status  | Evidence / reason                                                                                    |

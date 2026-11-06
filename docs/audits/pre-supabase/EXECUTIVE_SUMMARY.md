@@ -1,5 +1,7 @@
 # GLAM AI pre-Supabase audit
 
+> Historical audit snapshot. The user has since designated `feat/platform-foundations` as main. Read [current status](CURRENT_STATUS.md); a literal `main` branch is no longer a prerequisite. Other release gates remain in force.
+
 **G0: NO-GO.** Audit date: 6 November 2026 UTC. Supabase remains disconnected; no main, approved PR merges, live payments, production data or financial-rule changes were created. Preserve the approved five visual patterns; sixth Results remains subject to functional/native approval.
 
 1. **Repository/main SHA:** [Unparalleled-Media-1/Glamit](https://github.com/Unparalleled-Media-1/Glamit); no main exists. Actual default `feat/platform-foundations` at `d03f6d45a8ffb99a26fd1a5a7df6c51689185ffb`. Audited candidate `1060e34263f0a980ba8ef66a8c148077a4a1355e`; proposed core consolidation `b97f1d6db1ad96b78d62e451c88a7bffbd212da4`.

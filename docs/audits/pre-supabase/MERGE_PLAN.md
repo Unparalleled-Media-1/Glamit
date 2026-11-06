@@ -1,5 +1,7 @@
 # Consolidation plan — blocked pending review
 
+> Historical audit snapshot. The user has since designated `feat/platform-foundations` as main. Read [current status](CURRENT_STATUS.md); a literal `main` branch is no longer a prerequisite. Other release gates remain in force.
+
 No merges or branch deletions were performed. No PR is asserted approved; GitHub metadata and protection access returned Forbidden. There is no main branch to merge into.
 
 1. A repository maintainer must decide whether to establish `main` from the existing default `d03f6d45a8ffb99a26fd1a5a7df6c51689185ffb` and obtain the applicable review/protection/check requirements. This is a proposal, not authorization to bypass them.

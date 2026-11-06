@@ -2,7 +2,7 @@ name: Foundation checks
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [feat/platform-foundations, main]
 permissions:
   contents: read
 jobs:

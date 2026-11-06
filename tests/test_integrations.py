@@ -96,6 +96,25 @@ def test_health_requires_authenticated_valid_response_and_does_not_imply_model_q
     assert "secret-filled" not in json.dumps(result.public())
 
 
+@pytest.mark.parametrize("canonical", [None, "", "canonical-fixture"])
+def test_managed_openai_secret_alias_preserves_canonical_priority_and_stays_private(
+    monkeypatch, canonical
+):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    if canonical is not None:
+        monkeypatch.setenv("OPENAI_API_KEY", canonical)
+    monkeypatch.setenv("GLAM_OPENAI_API_KEY", "alias-fixture")
+    monkeypatch.setenv("GLAM_OPENAI_MODEL", "qualified-test-model")
+    cfg = ProviderConfig.from_environment()
+    assert cfg.secret("OPENAI_API_KEY") == (canonical or "alias-fixture")
+    double = Double({"data": []})
+    adapter = OpenAI(cfg, double)
+    assert adapter.health().state == State.CONNECTED
+    assert double.calls[0][2]["Authorization"] == "Bearer " + (canonical or "alias-fixture")
+    public = repr(cfg) + json.dumps([r.public() for r in readiness(cfg)])
+    assert "alias-fixture" not in public and "canonical-fixture" not in public
+
+
 def test_analysis_consent_before_call_structured_schema_store_false_and_no_sensitive_schema():
     double = Double(response(sample()))
     adapter = OpenAI(config(), double)

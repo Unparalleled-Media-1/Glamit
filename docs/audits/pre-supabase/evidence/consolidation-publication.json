@@ -1,0 +1,12 @@
+{
+  "status": "MAIN_MERGE_BLOCKED_BY_AUTOMATIC_REVIEW",
+  "target_branch": "feat/platform-foundations",
+  "remote_sha": null,
+  "github_pr_state": "UNKNOWN",
+  "clean_target_build": "PENDING",
+  "supabase_connected": false,
+  "review_branch": "chore/consolidate-foundations-secrets",
+  "review_branch_published": false,
+  "main_updated": false,
+  "reason": "Required review/protection/green-CI evidence unavailable; ordinary PR required. Direct main operation rejected before execution."
+}

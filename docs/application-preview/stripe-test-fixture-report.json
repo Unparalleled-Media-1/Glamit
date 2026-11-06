@@ -3,7 +3,7 @@
   "actual_stripe_api_verified": false,
   "fees_are": "Synthetic fixture amounts returned by test double; not actual Stripe fees",
   "mode": "test",
-  "order_id": "03b607bf-6433-49c5-853c-6161e5d13c9e",
+  "order_id": "93d86450-4a8f-46b5-a4c0-8d1d2c0b89b7",
   "payment_id": "pi_fixture1",
   "charge_id": "ch_fixture2",
   "state": "paid",
@@ -11,7 +11,7 @@
   "currency": "usd",
   "lines": [
     {
-      "line_id": "31b895e4-106f-4917-9f6a-5c0628f8951e",
+      "line_id": "1812ad29-5208-430a-8eef-f03c15cb5287",
       "merchant": "acct_merchantB",
       "quantity": 1,
       "eligible_item_minor": 20000,
@@ -27,7 +27,7 @@
       "policy_version": "item-sale-10pct-v1"
     },
     {
-      "line_id": "f646e272-f4d0-4193-9ee8-a9173c76c09f",
+      "line_id": "d81bb90a-fd0f-4037-93f2-9d8b14b2ab32",
       "merchant": "acct_merchantA",
       "quantity": 1,
       "eligible_item_minor": 10000,
@@ -97,39 +97,7 @@
   "commission_earned": 667,
   "ledger": [
     {
-      "id": "28f6bd79-4c96-4a1d-b531-9956dd5acfc3",
-      "kind": "capture",
-      "key": "capture:ch_fixture2",
-      "evidence": {
-        "entries": [
-          [
-            "merchant_hold:31b895e4-106f-4917-9f6a-5c0628f8951e",
-            -22000
-          ],
-          [
-            "merchant_hold:f646e272-f4d0-4193-9ee8-a9173c76c09f",
-            -11000
-          ],
-          [
-            "stripe_cash",
-            35400
-          ],
-          [
-            "tax_liability:31b895e4-106f-4917-9f6a-5c0628f8951e",
-            -1600
-          ],
-          [
-            "tax_liability:f646e272-f4d0-4193-9ee8-a9173c76c09f",
-            -800
-          ]
-        ],
-        "evidence": {
-          "charge": "ch_fixture2"
-        }
-      }
-    },
-    {
-      "id": "41265c71-8ad2-45e1-bd4a-bbdfc063fa00",
+      "id": "166b6680-ec91-4811-a3bb-1005c6f19999",
       "kind": "processor_fee",
       "key": "fee:txn_fixture3",
       "evidence": {
@@ -149,9 +117,41 @@
       }
     },
     {
-      "id": "ea355e49-a66f-4c76-bfbb-2128f75d8623",
+      "id": "c9fa2eaa-e0d5-45c7-81b1-26105aa9d996",
+      "kind": "capture",
+      "key": "capture:ch_fixture2",
+      "evidence": {
+        "entries": [
+          [
+            "merchant_hold:1812ad29-5208-430a-8eef-f03c15cb5287",
+            -22000
+          ],
+          [
+            "merchant_hold:d81bb90a-fd0f-4037-93f2-9d8b14b2ab32",
+            -11000
+          ],
+          [
+            "stripe_cash",
+            35400
+          ],
+          [
+            "tax_liability:1812ad29-5208-430a-8eef-f03c15cb5287",
+            -1600
+          ],
+          [
+            "tax_liability:d81bb90a-fd0f-4037-93f2-9d8b14b2ab32",
+            -800
+          ]
+        ],
+        "evidence": {
+          "charge": "ch_fixture2"
+        }
+      }
+    },
+    {
+      "id": "050f568f-2bf1-4617-92d5-830f9d02b882",
       "kind": "commission_earned",
-      "key": "commission:f646e272-f4d0-4193-9ee8-a9173c76c09f",
+      "key": "commission:d81bb90a-fd0f-4037-93f2-9d8b14b2ab32",
       "evidence": {
         "entries": [
           [
@@ -159,24 +159,24 @@
             -1000
           ],
           [
-            "merchant_hold:f646e272-f4d0-4193-9ee8-a9173c76c09f",
+            "merchant_hold:d81bb90a-fd0f-4037-93f2-9d8b14b2ab32",
             1000
           ]
         ],
         "evidence": {
-          "line": "f646e272-f4d0-4193-9ee8-a9173c76c09f",
+          "line": "d81bb90a-fd0f-4037-93f2-9d8b14b2ab32",
           "policy": "item-sale-10pct-v1"
         }
       }
     },
     {
-      "id": "7319fbac-246b-4308-a43e-2795a85d3bd7",
+      "id": "1ae3777c-a8d0-4c34-a8bd-c0502c1f136d",
       "kind": "transfer",
       "key": "transfer:tr_fixture4",
       "evidence": {
         "entries": [
           [
-            "merchant_hold:f646e272-f4d0-4193-9ee8-a9173c76c09f",
+            "merchant_hold:d81bb90a-fd0f-4037-93f2-9d8b14b2ab32",
             10000
           ],
           [
@@ -191,7 +191,7 @@
       }
     },
     {
-      "id": "e6c4977d-e9e5-4bef-b592-3d7a2e5f2ce3",
+      "id": "6190052d-b1c5-4c2b-af2e-3ede8ea9ddaa",
       "kind": "refund",
       "key": "refund:re_fixture6",
       "evidence": {
@@ -201,7 +201,7 @@
             333
           ],
           [
-            "merchant_recoverable:f646e272-f4d0-4193-9ee8-a9173c76c09f",
+            "merchant_recoverable:d81bb90a-fd0f-4037-93f2-9d8b14b2ab32",
             3200
           ],
           [
@@ -209,7 +209,7 @@
             -3633
           ],
           [
-            "tax_liability:f646e272-f4d0-4193-9ee8-a9173c76c09f",
+            "tax_liability:d81bb90a-fd0f-4037-93f2-9d8b14b2ab32",
             100
           ]
         ],
@@ -226,13 +226,13 @@
       }
     },
     {
-      "id": "fdf96b20-d618-4604-9716-1c4704a122f2",
+      "id": "4f1dd329-c641-49be-8109-bb1e5f3bbef9",
       "kind": "transfer_reversal",
       "key": "reversal:trr_fixture8",
       "evidence": {
         "entries": [
           [
-            "merchant_recoverable:f646e272-f4d0-4193-9ee8-a9173c76c09f",
+            "merchant_recoverable:d81bb90a-fd0f-4037-93f2-9d8b14b2ab32",
             -3200
           ],
           [
@@ -249,13 +249,13 @@
   ],
   "posting_balances": {
     "commission_revenue": -667,
-    "merchant_hold:31b895e4-106f-4917-9f6a-5c0628f8951e": -22000,
-    "merchant_hold:f646e272-f4d0-4193-9ee8-a9173c76c09f": 0,
-    "merchant_recoverable:f646e272-f4d0-4193-9ee8-a9173c76c09f": 0,
+    "merchant_hold:1812ad29-5208-430a-8eef-f03c15cb5287": -22000,
+    "merchant_hold:d81bb90a-fd0f-4037-93f2-9d8b14b2ab32": 0,
+    "merchant_recoverable:d81bb90a-fd0f-4037-93f2-9d8b14b2ab32": 0,
     "stripe_cash": 23907,
     "stripe_fee_expense": 1060,
-    "tax_liability:31b895e4-106f-4917-9f6a-5c0628f8951e": -1600,
-    "tax_liability:f646e272-f4d0-4193-9ee8-a9173c76c09f": -700
+    "tax_liability:1812ad29-5208-430a-8eef-f03c15cb5287": -1600,
+    "tax_liability:d81bb90a-fd0f-4037-93f2-9d8b14b2ab32": -700
   },
   "cash_reconciliation_gap": 0,
   "cash_reconciled": true,
