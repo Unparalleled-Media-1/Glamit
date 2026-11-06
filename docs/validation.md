@@ -1,5 +1,17 @@
 # Current-instance validation
 
+## Stripe test sandbox verification — 6 November 2026
+
+- Required check script passed: Ruff check/format, **155 backend tests** on dedicated disposable PostgreSQL `glam_test` (including **31 Stripe financial/transport tests with explicit doubles**), unchanged main OpenAPI, client runtime and web/native TypeScript.
+- Next production-mode build and all 13 shared client tests passed without Stripe credentials. No consumer screen or production API/auth file changed.
+- Canonical additive head `0009_stripe_test_ledger` was applied only on the explicitly selected local test database. Original migrations, existing commerce/credit code and production records remain unchanged. Persistent actual Stripe sandbox must use a different local `_test` database; regression harness refuses the same database name.
+- Actual Stripe readiness is NOT CONFIGURED: credentials absent and Stripe network draft not published. No actual Stripe PaymentIntent, transfer, fee, onboarding, dispute or reconciliation evidence exists. The $97 reported balance is not commission evidence.
+- [Financial report](payments/PAYMENT_REGRESSION_REPORT.md), [actual-provider status](application-preview/stripe-test-actual-report.json), [labeled fixture ledger](application-preview/stripe-test-fixture-report.json) and [protected source hashes](application-preview/stripe-protected-source-report.json). One existing Starlette test-client deprecation warning remains. No remote CI or live payment qualification is claimed.
+
+
+**Latest payment authority — 6 November 2026:** Zanzu Technologies Inc. operates GLAM AI. The user authorized **Stripe Connect test mode only**, including additive sandbox financial tables and the existing 10% completed physical-item policy. Existing production financial records, live payment activation and production Supabase remain protected. See [payment architecture](payments/PAYMENT_ARCHITECTURE.md), [readiness](payments/STRIPE_CONNECT_READINESS.md) and [financial regression](payments/PAYMENT_REGRESSION_REPORT.md). Isolated tests pass; actual Stripe acceptance is blocked and integration is not complete.
+
+
 **Latest authority — 6 November 2026:** The user approved the five golden patterns as the visual direction, subject to functional/usability validation, and authorized the sixth Personalized Results pattern, missing journey completion and the selected provider preparations. Preserve the five patterns and existing navigation; keep Supabase disconnected pending G0 and payments inactive. Existing financial/authentication/migration code and production data must not change. See [current scope](specification/ux-completion-and-integrations.md), [regression report](ux-regression-report.md) and [service readiness](service-integration-readiness.md). Live end-to-end and native-device acceptance remain blocked.
 
 

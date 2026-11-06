@@ -1,5 +1,8 @@
 # Service integration readiness
 
+**Latest payment authority — 6 November 2026:** Zanzu Technologies Inc. operates GLAM AI. The user authorized **Stripe Connect test mode only**, including additive sandbox financial tables and the existing 10% completed physical-item policy. Existing production financial records, live payment activation and production Supabase remain protected. See [payment architecture](payments/PAYMENT_ARCHITECTURE.md), [readiness](payments/STRIPE_CONNECT_READINESS.md) and [financial regression](payments/PAYMENT_REGRESSION_REPORT.md). Isolated tests pass; actual Stripe acceptance is blocked and integration is not complete.
+
+
 6 November 2026, Africa/Johannesburg. [Observed configuration-only report](application-preview/service-readiness.json). No configured provider secrets or identities were observed in this managed environment. No external provider calls, messages, image processing, payment or booking were executed. All live services are **NOT CONFIGURED**, never CONNECTED based on a mock.
 
 | Service | Prepared/tested locally | Remaining activation evidence |

@@ -1,0 +1,104 @@
+That clarifies an important part of GLAM AI's payment and operating structure.
+
+Based on the certificate you uploaded, Zanzu Technologies Inc. is identified as a Delaware corporation, with a broad corporate purpose allowing it to engage in lawful business activities. The certificate is dated November 6, 2025.
+
+Zanzu Technologies Inc. Certificate of Incorporation (1).pdf
+
+Zanzu Technologies Inc. Certificate of Incorporation (1).pdf
+
+I recommend structuring GLAM AI as a product operated by Zanzu Technologies Inc., rather than creating another company immediately.
+
+## Recommended corporate and payment structure
+
+ZANZU TECHNOLOGIES INC.
+
+US legal entity · Delaware
+
+GLAM AI
+
+Consumer AI styling platform and global marketplace
+
+AI Services
+
+OpenAI · FASHN
+
+Commerce
+
+Stripe Connect
+
+Operations
+
+Supabase · Bookings
+
+This makes Stripe Connect a stronger primary candidate for GLAM's marketplace payments, subject to Stripe approving the company's account, business model, beneficial owners and seller geography.
+
+The key limitation is that a US company does not automatically permit payouts to merchants in every country. We should design global discovery now but activate payments country by country as supported.
+
+## Updated provider decisions for GLAM AI
+
+| Function                      | Primary choice                 | Implementation decision                                        |
+| ----------------------------- | ------------------------------ | -------------------------------------------------------------- |
+| US merchant account           | Stripe                         | Apply under Zanzu Technologies Inc.                            |
+| Marketplace payments          | Stripe Connect                 | Evaluate destination charges vs separate charges and transfers |
+| International sellers         | Stripe Connect where supported | Verify seller-country eligibility before onboarding            |
+| South African payment methods | Peach Payments, if needed      | Secondary local integration, not automatically required        |
+| AI analysis                   | OpenAI                         | Server-side integration                                        |
+| Hair and beauty generation    | Replicate                      | Evaluate quality, rights and costs                             |
+| Fashion try-on                | FASHN AI                       | Dedicated virtual try-on provider                              |
+| Database                      | Supabase                       | Connect after G0 approval                                      |
+| Booking engine                | GLAM-owned                     | Use Stripe payments and optional calendar synchronization      |
+| Location and weather          | Google Maps + Open-Meteo       | Destination-aware styling and discovery                        |
+
+## What Zanzu needs before payment activation
+
+The incorporation document is a useful starting point, but it does not establish that the corporation has an active EIN, bank account, good standing, or an approved Stripe account.
+
+For payment onboarding, prepare the company's EIN confirmation, US business bank details, current corporate information, beneficial-owner identification, business website, marketplace terms, refund policy and merchant onboarding rules. Stripe may request additional documentation.
+
+For GLAM, I would use Zanzu Technologies Inc. as the contracting platform operator and initially the marketplace payment account holder, subject to the final Merchant of Record and Connect charge-model decisions.
+
+## Updated instruction for Codex
+
+GLAM AI — US Corporate Entity and Payment Architecture Update
+
+# GLAM AI — US Corporate Entity and Payment Architecture Update
+
+The intended legal operating entity for GLAM AI is:
+
+ZANZU TECHNOLOGIES INC.
+Jurisdiction: Delaware, United States.
+Product/trading brand: GLAM AI.
+
+Update the platform's architecture, legal entity configuration and integration readiness documentation accordingly.
+
+Use Stripe Connect as the preferred marketplace payment architecture, subject to approval and supported seller countries.
+
+Requirements:
+
+1. Maintain one central legal-entity configuration for GLAM AI.
+
+2. Support international currencies, merchant countries and settlement rules.
+
+3. Implement a country eligibility matrix for seller onboarding and payouts.
+
+4. Preserve the agreed 10% commission on eligible physical product sales.
+
+5. Keep professional booking commission rules configurable and unapproved until explicitly decided.
+
+6. Implement merchant KYC/KYB onboarding boundaries through the approved payment provider.
+
+7. Maintain accurate order, payment, refund, commission and payout ledgers.
+
+8. Do not assume GLAM is the Merchant of Record for every transaction until the charge and contracting model is approved.
+
+9. Keep all credentials in the environment's secret manager.
+
+10. Do not activate live payments or connect production Supabase until the relevant release gates pass.
+
+Continue implementing typed provider interfaces and mocked regression tests.
+
+Produce an updated PAYMENT_ARCHITECTURE.md and COUNTRY_ELIGIBILITY_MATRIX.md.
+
+Do not claim that Stripe onboarding, international payouts or payment processing is approved until verified.
+
+One question will determine how we configure Stripe: Does Zanzu Technologies Inc. already have a US EIN, US business bank account and active Stripe account, or do we need to complete that onboarding first?

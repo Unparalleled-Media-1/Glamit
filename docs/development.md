@@ -1,5 +1,7 @@
 # Development environment
 
+**Stripe sandbox branch:** [Read the explicit test runbook](payments/STRIPE_CONNECT_READINESS.md) before migrating. New canonical 0009 refuses non-`_test` databases and is not authorized for production. Keep persistent Stripe evidence in `glam_stripe_sandbox_test` and disposable regression fixtures in a different database such as `glam_test`; normal non-test setup cannot silently apply this sandbox revision.
+
 The latest goal-led `/event` and `/builder` journeys, opt-in device profile metadata and full review runbook are in [application preview](application-preview/README.md). No external provider or hosted database is connected.
 
 The current client implementation is the [analysis-first application build](specification/analysis-first-build.md), superseding the older foundation-shell/design-only preview notes below. Run `npm run dev:web` and open `http://localhost:3000` on the same machine; `/analyze`, `/report`, `/color`, `/guide`, `/studio`, `/business` and `/admin` are actual app routes. Run `npm run dev:mobile` for Expo. Native photo/camera modules need an SDK-compatible Expo Go or development build; physical-device behavior remains unverified. See [current preview guide](application-preview/README.md).

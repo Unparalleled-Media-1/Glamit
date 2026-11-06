@@ -1,5 +1,8 @@
 # Approval record
 
+**Latest payment authority — 6 November 2026:** Zanzu Technologies Inc. operates GLAM AI. The user authorized **Stripe Connect test mode only**, including additive sandbox financial tables and the existing 10% completed physical-item policy. Existing production financial records, live payment activation and production Supabase remain protected. See [payment architecture](payments/PAYMENT_ARCHITECTURE.md), [readiness](payments/STRIPE_CONNECT_READINESS.md) and [financial regression](payments/PAYMENT_REGRESSION_REPORT.md). Isolated tests pass; actual Stripe acceptance is blocked and integration is not complete.
+
+
 **Latest authority — 6 November 2026:** The user approved the five golden patterns as the visual direction, subject to functional/usability validation, and authorized the sixth Personalized Results pattern, missing journey completion and the selected provider preparations. Preserve the five patterns and existing navigation; keep Supabase disconnected pending G0 and payments inactive. Existing financial/authentication/migration code and production data must not change. See [current scope](specification/ux-completion-and-integrations.md), [regression report](ux-regression-report.md) and [service readiness](service-integration-readiness.md). Live end-to-end and native-device acceptance remain blocked.
 
 

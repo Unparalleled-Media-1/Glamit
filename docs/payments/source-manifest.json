@@ -1,0 +1,12 @@
+[
+  {
+    "source": "docs/specification/sources/2026-11-zanzu-payment-entity.txt",
+    "sha256": "65712f0f540903b930eda52587eda62dd2a8a1776b2af18e55eeaca3113fb505",
+    "bytes": 5579
+  },
+  {
+    "source": "docs/specification/sources/2026-11-stripe-connect-preparation.txt",
+    "sha256": "c6eaa771d7702545a25db2b732222e8a4a9f4268cd073621676b9c4818f0f4bd",
+    "bytes": 5098
+  }
+]

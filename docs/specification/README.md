@@ -1,5 +1,7 @@
 # GLAM AI architecture approval package
 
+**Latest payment scope:** The user authorizes isolated Stripe Connect test integration under Zanzu Technologies Inc. See [architecture](../payments/PAYMENT_ARCHITECTURE.md), [country eligibility](../payments/COUNTRY_ELIGIBILITY_MATRIX.md), [readiness](../payments/STRIPE_CONNECT_READINESS.md) and [financial regression](../payments/PAYMENT_REGRESSION_REPORT.md). Existing policy/auth/production data and original migrations are preserved. New additive sandbox tables are test-database-only. Actual Stripe financial verification is blocked, not complete.
+
 **Latest authority — 6 November 2026:** The user approved the five golden patterns as the visual direction, subject to functional/usability validation, and authorized the sixth Personalized Results pattern, missing journey completion and the selected provider preparations. Preserve the five patterns and existing navigation; keep Supabase disconnected pending G0 and payments inactive. Existing financial/authentication/migration code and production data must not change. See [current scope](ux-completion-and-integrations.md), [regression report](../ux-regression-report.md) and [service readiness](../service-integration-readiness.md). Live end-to-end and native-device acceptance remain blocked.
 
 

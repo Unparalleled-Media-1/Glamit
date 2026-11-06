@@ -1,0 +1,75 @@
+{
+  "scope": "Existing financial/auth/API code and original migrations unchanged; additive 0009 is test-only",
+  "files": [
+    {
+      "file": "services/api/src/glam_api/commerce_policy.py",
+      "unchanged": true,
+      "sha256": "34286dcd8ab36a72cd01be093d6dda95db108cee0f61188f332c46969976ac34"
+    },
+    {
+      "file": "services/api/src/glam_api/credits.py",
+      "unchanged": true,
+      "sha256": "d99cfe9cf143484050626860176c40f7435b6750faff21ee0095fbc0c6bea38a"
+    },
+    {
+      "file": "services/api/src/glam_api/auth.py",
+      "unchanged": true,
+      "sha256": "48aae22c2e9a223c67caaf0d13c52ff2a2085458bbc6a20284606ba62968b795"
+    },
+    {
+      "file": "services/api/src/glam_api/main.py",
+      "unchanged": true,
+      "sha256": "77a1aae2189ed925c354dfb9bc3fd76530b752943bc2a54e71e3ef3a21296166"
+    },
+    {
+      "file": "services/api/src/glam_api/config.py",
+      "unchanged": true,
+      "sha256": "67a85ae497e363231ebe979a230ed4df7f0cad9f83b8e59d85a68990c886e8c3"
+    },
+    {
+      "file": "db/migrations/versions/0001_foundations.py",
+      "unchanged": true,
+      "sha256": "cacbb66a16253b2058a3b3a617302762d86358bfa12e4180e66af08ad0a7f1ef"
+    },
+    {
+      "file": "db/migrations/versions/0001_foundations.sql",
+      "unchanged": true,
+      "sha256": "e38ccde698b49b661cb12a6a8d9594c5b34f7233a13b3544d6a9ccabee41a369"
+    },
+    {
+      "file": "db/migrations/versions/0002_credit_safety.py",
+      "unchanged": true,
+      "sha256": "06af2b198ead5940aa61fafe809aaf9396426f0316e40a8a6e9aaa83c2d3b5d3"
+    },
+    {
+      "file": "db/migrations/versions/0003_server_only_access.py",
+      "unchanged": true,
+      "sha256": "d1ff935b7f5cd120d014b9a3aa842e1f7109c40dc76f4524b11196b644cb0d20"
+    },
+    {
+      "file": "db/migrations/versions/0004_analysis_workspaces.py",
+      "unchanged": true,
+      "sha256": "44511886ab3a27de455722a84b58e1712cd2ad1b2e06fe36b95449bf1d980159"
+    },
+    {
+      "file": "db/migrations/versions/0005_workspace_invitations.py",
+      "unchanged": true,
+      "sha256": "73316c2f14713e4a1c3629a69fa99c043b426d5bdd983472bf2b918c80cada40"
+    },
+    {
+      "file": "db/migrations/versions/0006_staff_context.py",
+      "unchanged": true,
+      "sha256": "51d968048c7fd51dd85a9a76942fe98fdb950b74789382844e65a89e7ec98081"
+    },
+    {
+      "file": "db/migrations/versions/0007_contextual_catalog.py",
+      "unchanged": true,
+      "sha256": "de5670f34d6a2720669111601d2cbaaef0c5720bb6721accc966d79ccef27f96"
+    },
+    {
+      "file": "db/migrations/versions/0008_catalog_market_policy.py",
+      "unchanged": true,
+      "sha256": "c405c3395f90a7c87cdbabddf38f4776f75eca34b6be38f0635bd4913a24c54e"
+    }
+  ]
+}
