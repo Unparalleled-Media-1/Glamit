@@ -16,7 +16,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 1440,
+        "height": 1050
+      },
+      "durationSeconds": 2.2
     },
     {
       "file": "desktop-analyze.webm",
@@ -29,7 +34,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 1440,
+        "height": 1050
+      },
+      "durationSeconds": 2.24
     },
     {
       "file": "desktop-studio.webm",
@@ -42,7 +52,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 1440,
+        "height": 1050
+      },
+      "durationSeconds": 1.84
     },
     {
       "file": "desktop-shop.webm",
@@ -55,7 +70,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 1440,
+        "height": 1050
+      },
+      "durationSeconds": 2.12
     },
     {
       "file": "desktop-product.webm",
@@ -68,7 +88,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 1440,
+        "height": 1050
+      },
+      "durationSeconds": 2.16
     },
     {
       "file": "desktop-results.webm",
@@ -81,7 +106,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 1440,
+        "height": 1050
+      },
+      "durationSeconds": 1.92
     },
     {
       "file": "ios-browser-emulation-home.webm",
@@ -94,7 +124,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "durationSeconds": 1.96
     },
     {
       "file": "ios-browser-emulation-analyze.webm",
@@ -107,7 +142,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "durationSeconds": 1.72
     },
     {
       "file": "ios-browser-emulation-studio.webm",
@@ -120,7 +160,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "durationSeconds": 1.92
     },
     {
       "file": "ios-browser-emulation-shop.webm",
@@ -133,7 +178,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "durationSeconds": 2.32
     },
     {
       "file": "ios-browser-emulation-product.webm",
@@ -146,7 +196,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "durationSeconds": 1.68
     },
     {
       "file": "ios-browser-emulation-results.webm",
@@ -159,7 +214,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "durationSeconds": 1.8
     },
     {
       "file": "android-browser-emulation-home.webm",
@@ -172,7 +232,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 412,
+        "height": 914
+      },
+      "durationSeconds": 2.04
     },
     {
       "file": "android-browser-emulation-analyze.webm",
@@ -185,7 +250,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 412,
+        "height": 914
+      },
+      "durationSeconds": 1.72
     },
     {
       "file": "android-browser-emulation-studio.webm",
@@ -198,7 +268,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 412,
+        "height": 914
+      },
+      "durationSeconds": 2.04
     },
     {
       "file": "android-browser-emulation-shop.webm",
@@ -211,7 +286,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 412,
+        "height": 914
+      },
+      "durationSeconds": 2.2
     },
     {
       "file": "android-browser-emulation-product.webm",
@@ -224,7 +304,12 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 412,
+        "height": 914
+      },
+      "durationSeconds": 1.84
     },
     {
       "file": "android-browser-emulation-results.webm",
@@ -237,7 +322,13 @@
       },
       "nativeDevice": false,
       "liveAI": false,
-      "liveCommerce": false
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 412,
+        "height": 914
+      },
+      "durationSeconds": 1.72
     }
-  ]
+  ],
+  "encodingNote": "Video encoding may round odd viewport dimensions by one pixel; encoded dimensions are recorded separately."
 }

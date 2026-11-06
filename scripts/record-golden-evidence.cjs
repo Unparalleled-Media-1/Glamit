@@ -2,7 +2,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const http = require("node:http");
-const { spawn } = require("node:child_process");
+const { spawn, execFileSync } = require("node:child_process");
 const assert = require("node:assert/strict");
 process.env.PLAYWRIGHT_BROWSERS_PATH = "/tmp/glam-pw-video-runtime";
 const { registry } =
@@ -152,7 +152,30 @@ const { chromium } = require("../docs/design-preview/node_modules/playwright");
         const original = await video.path();
         if (path.resolve(original) !== path.resolve(out, file))
           fs.rmSync(original, { force: true });
+        const probe = JSON.parse(
+          execFileSync(
+            "ffprobe",
+            [
+              "-v",
+              "error",
+              "-show_entries",
+              "format=duration:stream=width,height",
+              "-of",
+              "json",
+              path.join(out, file),
+            ],
+            { encoding: "utf8" },
+          ),
+        );
+        const encoded = probe.streams[0];
+        assert(Number(probe.format.duration) > 0);
+        assert(
+          Math.abs(encoded.width - device.width) <= 1 &&
+            Math.abs(encoded.height - device.height) <= 1,
+        );
         evidence.push({
+          encodedDimensions: { width: encoded.width, height: encoded.height },
+          durationSeconds: Number(probe.format.duration),
           file,
           pattern: screen,
           platform: device.name,
@@ -170,6 +193,8 @@ const { chromium } = require("../docs/design-preview/node_modules/playwright");
       JSON.stringify(
         {
           recordedAt: new Date().toISOString(),
+          encodingNote:
+            "Video encoding may round odd viewport dimensions by one pixel; encoded dimensions are recorded separately.",
           source: "actual local application interaction",
           nativeIOS: "BLOCKED: no Apple runtime/device available",
           nativeAndroid: "BLOCKED: no Android runtime/device available",
