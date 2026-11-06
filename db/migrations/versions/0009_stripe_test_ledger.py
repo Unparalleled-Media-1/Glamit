@@ -97,10 +97,10 @@ def upgrade():
         CREATE FUNCTION stripe_test_immutable_operation() RETURNS trigger LANGUAGE plpgsql AS $$
         BEGIN
             IF NEW.key IS DISTINCT FROM OLD.key OR NEW.order_id IS DISTINCT FROM OLD.order_id
-               
+
                 OR NEW.kind IS DISTINCT FROM OLD.kind
                 OR NEW.request_hash IS DISTINCT FROM OLD.request_hash
-               
+
                 OR NEW.fields IS DISTINCT FROM OLD.fields
                 OR NEW.created_at IS DISTINCT FROM OLD.created_at
                 OR (OLD.state='complete' AND NEW IS DISTINCT FROM OLD) THEN
@@ -117,10 +117,10 @@ def upgrade():
             IF NEW.id IS DISTINCT FROM OLD.id OR NEW.owner_ref IS DISTINCT FROM OLD.owner_ref
                 OR NEW.request_key IS DISTINCT FROM OLD.request_key
                 OR NEW.request_hash IS DISTINCT FROM OLD.request_hash
-               
+
                 OR NEW.currency IS DISTINCT FROM OLD.currency
                 OR NEW.amount IS DISTINCT FROM OLD.amount
-               
+
                 OR NEW.flow IS DISTINCT FROM OLD.flow
                 OR NEW.created_at IS DISTINCT FROM OLD.created_at THEN
                 RAISE EXCEPTION 'Immutable order price and owner';
