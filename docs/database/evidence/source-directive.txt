@@ -1,0 +1,849 @@
+Now that GLAM AI has a connected Supabase project, you can instruct Codex to start building the complete database schema, create the required tables, apply migrations to Supabase, and connect the existing application to the database.
+
+However, because you've already experienced AI-builder regressions, I would make this a controlled migration process rather than allowing Codex to generate hundreds of tables and deploy them without verification.
+
+The instruction below covers GLAM AI's AI analysis, virtual try-ons, styling, marketplace, merchants, bookings, location-aware discovery, advertising, Stripe Connect and the 10% commission structure.
+
+## Copy and paste this into Codex
+
+GLAM AI — SUPABASE DATABASE CREATION, MIGRATION & APPLICATION INTEGRATION
+
+# GLAM AI — SUPABASE DATABASE CREATION, MIGRATION & APPLICATION INTEGRATION
+
+## OBJECTIVE
+
+Begin implementing the complete production-oriented PostgreSQL database architecture for GLAM AI using the Supabase project already connected to this development environment.
+
+GLAM AI operates under Zanzu Technologies Inc., a US-based company.
+
+The application combines:
+
+* AI-powered beauty, face, hair and color analysis
+
+* AI makeup and hairstyle transformations
+
+* AI Personal Stylist and conversational advisor
+
+* Fashion styling, outfit recommendations and virtual try-on
+
+* Weather-, destination- and occasion-based styling
+
+* Digital wardrobe and Style Passport
+
+* Beauty, cosmetics, haircare, fashion and accessories marketplace
+
+* Multi-merchant shopping and checkout
+
+* Salons, hairstylists, makeup artists, tailors and other professionals
+
+* Professional appointment bookings
+
+* Merchant and creator dashboards
+
+* Geo-targeted advertising and sponsored placements
+
+* Stripe Connect marketplace payments
+
+* A 10% GLAM AI commission on eligible physical-product sales
+
+* International merchants, currencies, languages and delivery destinations
+
+* Organization-scoped admin dashboards and platform operations
+
+The goal is to establish a reliable, secure and extensible database foundation that supports the existing web and mobile application without breaking completed functionality.
+
+## PHASE 0 — MANDATORY PRE-MIGRATION AUDIT
+
+Before creating or modifying any tables:
+
+1. Inspect the entire repository and all existing branches.
+
+2. Identify the canonical application architecture and current database configuration.
+
+3. Identify all existing SQL migrations, Prisma schemas, ORM models, API contracts and Supabase references.
+
+4. Inventory every implemented and planned feature that requires persistent data.
+
+5. Identify duplicate tables, inconsistent naming, missing relationships and conflicting database implementations.
+
+6. Check whether the connected Supabase project already contains tables, functions, policies, storage buckets or data.
+
+7. Identify whether this is a development, staging or production project.
+
+8. Confirm that the project connection has the required migration permissions.
+
+9. Verify that the working branch is up to date with main and that required feature branches have been reviewed and merged.
+
+10. Do not force-push, overwrite unrelated changes or delete existing data.
+
+Produce DATABASE_PRE_MIGRATION_AUDIT.md.
+
+If the connected project is production or contains valuable existing data, stop before applying migrations and request approval.
+
+## PHASE 1 — DATABASE DESIGN
+
+Use PostgreSQL as the primary relational database and Supabase Auth, Storage and Row Level Security where appropriate.
+
+Organize the schema into these functional domains.
+
+### 1. Identity, accounts and permissions
+
+Create or reconcile tables for:
+
+* User profiles
+
+* User preferences
+
+* Account roles
+
+* Organizations
+
+* Organization memberships
+
+* Organization roles and permissions
+
+* Merchant and professional organizations
+
+* User verification status
+
+* Consent records
+
+* Privacy preferences
+
+* Account deletion requests
+
+* Audit logs
+
+Use Supabase Auth as the canonical authentication identity provider where compatible with the existing authentication architecture.
+
+Do not create a parallel password database.
+
+### 2. Style Passport and AI personalization
+
+Create tables for:
+
+* Style passports
+
+* User-declared skin and hair preferences
+
+* Face-analysis sessions and results
+
+* Hair-analysis sessions and results
+
+* Personal color-analysis sessions and results
+
+* Body and fit preferences
+
+* Size profiles
+
+* Styling preferences
+
+* AI recommendations
+
+* Saved looks
+
+* Look components
+
+* Analysis history
+
+* AI conversation sessions and messages
+
+* User corrections and feedback
+
+* AI processing jobs and model metadata
+
+Treat AI-derived results as estimates, not medical diagnoses or objective attractiveness scores.
+
+Use explicit consent and appropriate retention controls for face imagery and sensitive personal data.
+
+### 3. AI Studio and virtual transformations
+
+Create tables for:
+
+* Transformation sessions
+
+* Hairstyle presets
+
+* Hair color presets
+
+* Makeup presets
+
+* Product shade references
+
+* Virtual try-on sessions
+
+* Generated media assets
+
+* Before-and-after comparisons
+
+* Saved transformation variants
+
+* Look collections
+
+* Processing status and error tracking
+
+Store large images and generated media in private Supabase Storage buckets rather than directly inside PostgreSQL.
+
+### 4. Weather, travel and destination styling
+
+Create tables for:
+
+* User-selected locations
+
+* Saved travel destinations
+
+* Styling trips
+
+* Styling occasions
+
+* Event requirements
+
+* Weather snapshots and source timestamps
+
+* Climate and weather recommendations
+
+* Destination outfit recommendations
+
+* Packing lists
+
+* Outfit suitability rules
+
+* User-selected comfort and coverage preferences
+
+Examples:
+
+* Cape Town beach outfits
+
+* Miami summer outfits
+
+* Iceland winter clothing
+
+* Rainy-day styling
+
+* Hot-weather fashion
+
+* Cold-weather layering
+
+* Event-specific outfit recommendations
+
+Weather must come from a supported weather provider. Do not fabricate live weather data.
+
+Allow users to choose a destination different from their current location.
+
+### 5. Merchant marketplace and catalogue
+
+Create tables for:
+
+* Merchant profiles
+
+* Merchant verification
+
+* Merchant locations
+
+* Delivery and service coverage areas
+
+* Merchant storefronts
+
+* Product categories
+
+* Products
+
+* Product variants
+
+* Product images
+
+* Product attributes
+
+* Product inventory
+
+* Stock movements
+
+* Product pricing
+
+* Product discounts
+
+* Product reviews
+
+* Product moderation
+
+* Product authenticity and trust signals
+
+* Merchant catalog import jobs
+
+* AI Snap & List drafts
+
+* Wishlists
+
+* Price and restock alerts
+
+Merchants must own and manage their own product catalogues.
+
+Support AI-assisted product listing creation, but require merchant confirmation before publishing.
+
+### 6. Shopping carts, checkout and orders
+
+Create tables for:
+
+* Shopping carts
+
+* Cart items
+
+* Checkout sessions
+
+* Orders
+
+* Order items
+
+* Merchant suborders
+
+* Shipping addresses
+
+* Shipping methods
+
+* Fulfillment records
+
+* Shipment tracking
+
+* Order status history
+
+* Returns
+
+* Refunds
+
+* Disputes
+
+* Customer support cases
+
+Support customers purchasing from multiple merchants in a single checkout.
+
+Each merchant must only access its own order lines, fulfillment records and permitted customer delivery information.
+
+### 7. Stripe Connect and financial accounting
+
+Create tables for:
+
+* Payment provider configurations
+
+* Merchant connected-account references
+
+* Payment intents
+
+* Payment transactions
+
+* Payment events
+
+* Transfer allocations
+
+* Transfers
+
+* Payout records
+
+* Platform commissions
+
+* Commission reversals
+
+* Refund allocations
+
+* Financial ledger entries
+
+* Reconciliation runs
+
+* Financial exceptions
+
+* Webhook processing records
+
+The GLAM AI platform commission is 10% on eligible physical-product sales.
+
+Calculate commissions from server-authoritative order-line amounts after applicable discounts, excluding separately charged shipping and tax unless a subsequently approved policy changes this.
+
+Do not automatically apply the same commission to professional bookings without approval.
+
+Use integer minor currency units or another appropriate exact monetary representation. Never use floating-point arithmetic for financial calculations.
+
+Make webhook processing idempotent.
+
+Do not store Stripe secret keys or payment card information in database tables.
+
+Use environment secrets for payment credentials.
+
+Do not initiate real transfers or payouts during schema deployment.
+
+### 8. Professional services and bookings
+
+Create tables for:
+
+* Professional profiles
+
+* Professional services
+
+* Service categories
+
+* Service locations
+
+* Availability schedules
+
+* Appointment slots
+
+* Bookings
+
+* Booking status history
+
+* Booking payments
+
+* Cancellation policies
+
+* Professional portfolios
+
+* Professional reviews
+
+* Tailoring and custom-design requests
+
+* Quotes
+
+* Fittings
+
+* Delivery deadlines
+
+Support salons, hairstylists, makeup artists, personal stylists, fashion designers and tailors.
+
+Keep service booking commission rules configurable until approved.
+
+### 9. Creators, referrals and affiliates
+
+Create tables for:
+
+* Creator profiles
+
+* Creator storefronts
+
+* Creator content
+
+* Shoppable looks
+
+* Product associations
+
+* Referral codes
+
+* Referral attribution
+
+* Affiliate campaigns
+
+* Affiliate commission rules
+
+* Affiliate earnings
+
+* Creator payouts
+
+* Attribution events
+
+Do not pay referral or affiliate commissions without validated attribution and approved commission rules.
+
+### 10. Advertising and geographic targeting
+
+Create tables for:
+
+* Advertiser organizations
+
+* Advertising campaigns
+
+* Advertising creatives
+
+* Campaign budgets
+
+* Geographic targeting
+
+* Category and contextual targeting
+
+* Sponsored placements
+
+* Ad impressions
+
+* Ad clicks
+
+* Conversion attribution
+
+* Advertising invoices
+
+* Campaign reporting aggregates
+
+Support country, region, city and merchant service-radius targeting.
+
+Do not permit targeting based on biometric data or sensitive traits inferred from photographs.
+
+Clearly distinguish sponsored results from organic AI recommendations.
+
+### 11. Notifications and engagement
+
+Create tables for:
+
+* Notification templates
+
+* Notification preferences
+
+* Notification events
+
+* Delivery attempts
+
+* In-app notifications
+
+* Email and push delivery records
+
+* Saved searches
+
+* Follow-up reminders
+
+* Product alerts
+
+### 12. Administration and operations
+
+Create tables for:
+
+* Admin roles
+
+* Admin permissions
+
+* Moderation cases
+
+* Merchant approvals
+
+* Professional approvals
+
+* Platform settings
+
+* Feature flags
+
+* AI usage metering
+
+* AI cost tracking
+
+* Provider integration status
+
+* Support tickets
+
+* Operational incidents
+
+* Compliance records
+
+* Data retention jobs
+
+Do not duplicate existing tables if an equivalent canonical table already exists.
+
+## PHASE 2 — MIGRATIONS
+
+Generate version-controlled Supabase SQL migrations.
+
+Requirements:
+
+1. Every schema change must be reproducible from a clean database.
+
+2. All primary keys, foreign keys, constraints and indexes must be defined.
+
+3. Use appropriate unique constraints and check constraints.
+
+4. Use consistent timestamps and timezone handling.
+
+5. Use explicit database relationships.
+
+6. Create necessary indexes for frequent queries.
+
+7. Avoid unnecessary JSON fields where relational structures are appropriate.
+
+8. Use PostGIS only if geographic query requirements justify it and the extension is supported.
+
+9. Use pgvector only if vector retrieval is needed and supported.
+
+10. Never use destructive DROP or TRUNCATE operations without explicit approval.
+
+11. Never silently overwrite existing tables or policies.
+
+12. Keep migration history synchronized with the repository.
+
+Produce a documented migration manifest.
+
+## PHASE 3 — ROW LEVEL SECURITY
+
+Enable and validate RLS on all application tables exposed through Supabase APIs.
+
+Enforce:
+
+* Consumers can access only their own private records.
+
+* Merchants can manage only their own authorized catalogue and orders.
+
+* Professionals can access only their own appointments and business data.
+
+* Advertisers can manage only campaigns belonging to their organizations.
+
+* Creators can manage only their own storefronts and content.
+
+* Financial records cannot be modified directly by ordinary clients.
+
+* Admin privileges must be verified server-side.
+
+* Service-role access must never be exposed to client applications.
+
+Create automated tests for unauthorized cross-user and cross-organization access.
+
+A table must not be considered ready merely because RLS is enabled; its policies must be tested.
+
+## PHASE 4 — STORAGE
+
+Create appropriate private and public Supabase Storage buckets for:
+
+* User profile images
+
+* Face-analysis uploads
+
+* AI transformation outputs
+
+* Digital wardrobe images
+
+* Merchant product images
+
+* Professional portfolios
+
+* Creator content
+
+* Advertising creatives
+
+* Verification documents
+
+Apply file type restrictions, size limits, access policies and retention controls.
+
+Verification documents and private facial imagery must not be publicly accessible.
+
+## PHASE 5 — APPLY TO CONNECTED SUPABASE
+
+After the pre-migration audit and migration validation:
+
+1. Confirm the connected Supabase project reference.
+
+2. Confirm the target environment is authorized for development migrations.
+
+3. Back up any existing schema and valuable data.
+
+4. Validate migrations against a disposable local or test database.
+
+5. Apply migrations to the connected development Supabase project in controlled batches.
+
+6. Verify every table, foreign key, index, policy and storage bucket.
+
+7. Run integration and security tests.
+
+8. Report actual migration results.
+
+Do not claim deployment success unless Supabase confirms successful execution.
+
+If credentials, network permissions or database migration access are missing, stop and report the exact blocker.
+
+Never ask for database passwords or API keys in chat or commit them to Git.
+
+## PHASE 6 — CONNECT APPLICATION
+
+Integrate the existing GLAM AI frontend and backend with the canonical Supabase database.
+
+Replace mock data only where the corresponding backend functionality is ready and verified.
+
+Implement:
+
+* Typed database access
+
+* Server-side API endpoints
+
+* Authentication integration
+
+* Role and organization authorization
+
+* Product catalogue queries
+
+* Inventory management
+
+* AI analysis history
+
+* Saved looks and Style Passport
+
+* Professional bookings
+
+* Cart and order persistence
+
+* Payment and commission ledger persistence
+
+* Advertising campaign management
+
+* Location-aware discovery
+
+* Admin reporting
+
+Maintain existing API contracts or introduce versioned changes.
+
+Do not break existing web or mobile screens.
+
+## PHASE 7 — TESTING AND REGRESSION CONTROL
+
+Run:
+
+* Clean database migration tests
+
+* Migration replay and drift checks
+
+* Database integrity tests
+
+* Foreign key and unique constraint tests
+
+* RLS security tests
+
+* Organization isolation tests
+
+* Storage access tests
+
+* API integration tests
+
+* Checkout and commission calculation tests
+
+* Webhook idempotency tests
+
+* Refund and reversal tests
+
+* Multi-merchant order tests
+
+* Booking conflict tests
+
+* Location and currency tests
+
+* Existing frontend regression tests
+
+Fix failures without deleting or bypassing existing tests.
+
+## PHASE 8 — GIT AND MAIN BRANCH
+
+Create a dedicated database implementation branch.
+
+Commit:
+
+* SQL migrations
+
+* Schema documentation
+
+* Database types
+
+* API integration changes
+
+* RLS policies
+
+* Automated tests
+
+* Deployment runbooks
+
+Open a pull request against main.
+
+Run CI and request review for high-risk changes.
+
+Merge only when required checks pass and the repository's approval rules are satisfied.
+
+Do not force-push or bypass branch protection.
+
+After merging, verify that main contains the migrations actually applied to the development Supabase project.
+
+## REQUIRED DELIVERABLES
+
+Generate:
+
+1. DATABASE_PRE_MIGRATION_AUDIT.md
+
+2. GLAM_DATABASE_ARCHITECTURE.md
+
+3. GLAM_DATABASE_ERD.md
+
+4. SUPABASE_MIGRATION_MANIFEST.md
+
+5. SUPABASE_RLS_SECURITY_AUDIT.md
+
+6. SUPABASE_STORAGE_CONFIGURATION.md
+
+7. DATABASE_APPLICATION_INTEGRATION_REPORT.md
+
+8. STRIPE_FINANCIAL_SCHEMA_AUDIT.md
+
+9. DATABASE_REGRESSION_RESULTS.md
+
+10. DATABASE_DEPLOYMENT_REPORT.md
+
+## FINAL ACCEPTANCE CRITERIA
+
+Do not report completion unless:
+
+* The authorized Supabase development project contains the expected tables.
+
+* All migrations are committed and reproducible.
+
+* Schema drift has been checked.
+
+* RLS policies pass authorization tests.
+
+* Storage policies pass access tests.
+
+* Application reads and writes work.
+
+* Existing application functionality remains intact.
+
+* Financial records are protected.
+
+* No secrets are exposed.
+
+* Main contains the approved database implementation.
+
+* No production payment or payout has been initiated.
+
+Start with Phase 0 immediately, then implement and deploy verified migration batches to the connected development project. Report blockers and progress after each batch.
+
+Do not create a second competing database architecture.
+
+## How I would sequence the actual Supabase deployment
+
+Don't deploy all domains simultaneously. Have Codex use the following migration batches so that each layer is tested before the next is introduced.
+
+Batch 1
+
+Foundation
+
+Users, authentication integration, organizations, roles, permissions and RLS
+
+Batch 2
+
+AI & personalization
+
+Style Passport, analysis history, AI Studio, saved looks and wardrobe
+
+Batch 3
+
+Marketplace
+
+Merchants, products, variants, inventory, location coverage and catalogues
+
+Batch 4
+
+Commerce & finance
+
+Carts, orders, Stripe Connect references, commission ledger and refunds
+
+Batch 5
+
+Services & growth
+
+Professional bookings, creators, referrals, ads and notifications
+
+Batch 6
+
+Operations
+
+Admin, analytics, moderation, compliance and integration monitoring
+
+### Before you run this prompt
+
+Make sure the Supabase connection in Codex points to a development project, not the eventual live production database. A connected integration does not necessarily mean Codex has permission to execute migrations.
+
+Also, because you previously wanted all branches consolidated before connecting Supabase, the prompt makes the Git branch audit a mandatory first step.
+
+The key instruction is: Codex should not stop after generating SQL files. It must apply the approved migrations to the connected development Supabase project, verify the resulting database, test application connectivity and report what was actually deployed.
+
+That will give GLAM AI a database foundation without repeating the uncontrolled migration and regression problems you've encountered in other projects.

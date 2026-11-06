@@ -1,0 +1,25 @@
+
+> glam-ai@0.1.0 test:client
+> node tests/client/product.test.cjs
+
+✔ personal journey state keeps routines editable without deriving identity or fabricating results (1.259888ms)
+✔ photo technical limits reject oversized or low-resolution files without facial classification (0.235886ms)
+✔ API port refuses missing identity, insecure destinations and redirect credential forwarding (21.531172ms)
+✔ recommendation requirements are explicit and merchant facts cannot bypass review or duplicate checks (0.523128ms)
+✔ bulk draft import resets review and media authority and rejects duplicate batches atomically (0.547865ms)
+✔ qualified match renderer labels sources and sponsorship, preserves unknown costs and never opens a destination automatically (63.463352ms)
+✔ editing or clearing one look element preserves unrelated components and saved snapshots (0.29898ms)
+✔ durable approved profile allowlists metadata and rejects corrupt or unapproved persistence (0.760806ms)
+✔ Studio undo snapshots are independent, bounded and never include private media (0.306842ms)
+✔ analysis accepts only owner/photo-bound complete findings with explicit uncertainty (0.448816ms)
+✔ preview requires the exact corrections, direction, identity, photo and approved image origin (0.283928ms)
+✔ travel dates reject invalid calendar days and unknown or mismatched weather never becomes a forecast (1.529985ms)
+✔ checkout never calculates commission and requires a server quote covering every selected variant (0.361014ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 149.737927

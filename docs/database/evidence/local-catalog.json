@@ -1,0 +1,423 @@
+{
+  "scope": "DISPOSABLE LOCAL glam_test only; not Supabase",
+  "migration_head": "0009_stripe_test_ledger",
+  "table_count": 42,
+  "tables": [
+    {
+      "name": "account_eligibility",
+      "rls_enabled": true
+    },
+    {
+      "name": "alembic_version",
+      "rls_enabled": true
+    },
+    {
+      "name": "app_user",
+      "rls_enabled": true
+    },
+    {
+      "name": "audit_event",
+      "rls_enabled": true
+    },
+    {
+      "name": "catalog_ai_job",
+      "rls_enabled": true
+    },
+    {
+      "name": "catalog_approval",
+      "rls_enabled": true
+    },
+    {
+      "name": "catalog_listing",
+      "rls_enabled": true
+    },
+    {
+      "name": "catalog_media",
+      "rls_enabled": true
+    },
+    {
+      "name": "catalog_projection",
+      "rls_enabled": true
+    },
+    {
+      "name": "catalog_revision",
+      "rls_enabled": true
+    },
+    {
+      "name": "consent_event",
+      "rls_enabled": true
+    },
+    {
+      "name": "credit_account",
+      "rls_enabled": true
+    },
+    {
+      "name": "credit_journal",
+      "rls_enabled": true
+    },
+    {
+      "name": "credit_posting",
+      "rls_enabled": true
+    },
+    {
+      "name": "credit_reservation",
+      "rls_enabled": true
+    },
+    {
+      "name": "idempotency_record",
+      "rls_enabled": true
+    },
+    {
+      "name": "look",
+      "rls_enabled": true
+    },
+    {
+      "name": "look_revision",
+      "rls_enabled": true
+    },
+    {
+      "name": "market_policy_version",
+      "rls_enabled": true
+    },
+    {
+      "name": "organization",
+      "rls_enabled": true
+    },
+    {
+      "name": "organization_member",
+      "rls_enabled": true
+    },
+    {
+      "name": "outbox_event",
+      "rls_enabled": true
+    },
+    {
+      "name": "personal_routine",
+      "rls_enabled": true
+    },
+    {
+      "name": "policy_document",
+      "rls_enabled": true
+    },
+    {
+      "name": "saved_requirement",
+      "rls_enabled": true
+    },
+    {
+      "name": "staff_grant",
+      "rls_enabled": true
+    },
+    {
+      "name": "stripe_test_balance_evidence",
+      "rls_enabled": true
+    },
+    {
+      "name": "stripe_test_event",
+      "rls_enabled": true
+    },
+    {
+      "name": "stripe_test_fulfillment",
+      "rls_enabled": true
+    },
+    {
+      "name": "stripe_test_journal",
+      "rls_enabled": true
+    },
+    {
+      "name": "stripe_test_line",
+      "rls_enabled": true
+    },
+    {
+      "name": "stripe_test_offer",
+      "rls_enabled": true
+    },
+    {
+      "name": "stripe_test_operation",
+      "rls_enabled": true
+    },
+    {
+      "name": "stripe_test_order",
+      "rls_enabled": true
+    },
+    {
+      "name": "stripe_test_posting",
+      "rls_enabled": true
+    },
+    {
+      "name": "stripe_test_refund",
+      "rls_enabled": true
+    },
+    {
+      "name": "stripe_test_reversal",
+      "rls_enabled": true
+    },
+    {
+      "name": "stripe_test_transfer",
+      "rls_enabled": true
+    },
+    {
+      "name": "workspace_capability",
+      "rls_enabled": true
+    },
+    {
+      "name": "workspace_draft",
+      "rls_enabled": true
+    },
+    {
+      "name": "workspace_invitation",
+      "rls_enabled": true
+    },
+    {
+      "name": "workspace_role",
+      "rls_enabled": true
+    }
+  ],
+  "foreign_keys": [
+    {
+      "source": "account_eligibility",
+      "target": "app_user",
+      "name": "account_eligibility_user_id_fkey"
+    },
+    {
+      "source": "audit_event",
+      "target": "app_user",
+      "name": "audit_event_actor_id_fkey"
+    },
+    {
+      "source": "catalog_ai_job",
+      "target": "catalog_revision",
+      "name": "catalog_ai_job_listing_id_base_revision_fkey"
+    },
+    {
+      "source": "catalog_ai_job",
+      "target": "app_user",
+      "name": "catalog_ai_job_requester_id_fkey"
+    },
+    {
+      "source": "catalog_approval",
+      "target": "catalog_revision",
+      "name": "catalog_approval_listing_id_revision_fkey"
+    },
+    {
+      "source": "catalog_approval",
+      "target": "app_user",
+      "name": "catalog_approval_reviewer_id_fkey"
+    },
+    {
+      "source": "catalog_listing",
+      "target": "catalog_revision",
+      "name": "catalog_listing_id_current_revision_fkey"
+    },
+    {
+      "source": "catalog_listing",
+      "target": "catalog_revision",
+      "name": "catalog_listing_id_published_revision_fkey"
+    },
+    {
+      "source": "catalog_listing",
+      "target": "organization",
+      "name": "catalog_listing_organization_id_fkey"
+    },
+    {
+      "source": "catalog_media",
+      "target": "catalog_listing",
+      "name": "catalog_media_listing_id_organization_id_fkey"
+    },
+    {
+      "source": "catalog_media",
+      "target": "catalog_media",
+      "name": "catalog_media_original_id_fkey"
+    },
+    {
+      "source": "catalog_projection",
+      "target": "catalog_listing",
+      "name": "catalog_projection_listing_id_fkey"
+    },
+    {
+      "source": "catalog_revision",
+      "target": "app_user",
+      "name": "catalog_revision_author_id_fkey"
+    },
+    {
+      "source": "catalog_revision",
+      "target": "catalog_listing",
+      "name": "catalog_revision_listing_id_fkey"
+    },
+    {
+      "source": "consent_event",
+      "target": "policy_document",
+      "name": "consent_event_policy_id_fkey"
+    },
+    {
+      "source": "consent_event",
+      "target": "app_user",
+      "name": "consent_event_user_id_fkey"
+    },
+    {
+      "source": "credit_account",
+      "target": "app_user",
+      "name": "credit_account_user_id_fkey"
+    },
+    {
+      "source": "credit_journal",
+      "target": "credit_account",
+      "name": "credit_journal_user_id_fkey"
+    },
+    {
+      "source": "credit_posting",
+      "target": "credit_journal",
+      "name": "credit_posting_journal_id_fkey"
+    },
+    {
+      "source": "credit_posting",
+      "target": "credit_account",
+      "name": "credit_posting_user_id_fkey"
+    },
+    {
+      "source": "credit_reservation",
+      "target": "credit_account",
+      "name": "credit_reservation_user_id_fkey"
+    },
+    {
+      "source": "idempotency_record",
+      "target": "app_user",
+      "name": "idempotency_record_user_id_fkey"
+    },
+    {
+      "source": "look",
+      "target": "app_user",
+      "name": "look_owner_id_fkey"
+    },
+    {
+      "source": "look_revision",
+      "target": "look",
+      "name": "look_revision_look_id_fkey"
+    },
+    {
+      "source": "market_policy_version",
+      "target": "app_user",
+      "name": "market_policy_version_reviewed_by_fkey"
+    },
+    {
+      "source": "organization_member",
+      "target": "organization",
+      "name": "organization_member_organization_id_fkey"
+    },
+    {
+      "source": "organization_member",
+      "target": "app_user",
+      "name": "organization_member_user_id_fkey"
+    },
+    {
+      "source": "personal_routine",
+      "target": "app_user",
+      "name": "personal_routine_owner_id_fkey"
+    },
+    {
+      "source": "saved_requirement",
+      "target": "app_user",
+      "name": "saved_requirement_owner_id_fkey"
+    },
+    {
+      "source": "staff_grant",
+      "target": "app_user",
+      "name": "staff_grant_user_id_fkey"
+    },
+    {
+      "source": "stripe_test_balance_evidence",
+      "target": "stripe_test_order",
+      "name": "stripe_test_balance_evidence_order_id_fkey"
+    },
+    {
+      "source": "stripe_test_fulfillment",
+      "target": "stripe_test_line",
+      "name": "stripe_test_fulfillment_line_id_fkey"
+    },
+    {
+      "source": "stripe_test_journal",
+      "target": "stripe_test_order",
+      "name": "stripe_test_journal_order_id_fkey"
+    },
+    {
+      "source": "stripe_test_line",
+      "target": "stripe_test_offer",
+      "name": "stripe_test_line_offer_id_fkey"
+    },
+    {
+      "source": "stripe_test_line",
+      "target": "stripe_test_order",
+      "name": "stripe_test_line_order_id_fkey"
+    },
+    {
+      "source": "stripe_test_operation",
+      "target": "stripe_test_order",
+      "name": "stripe_test_operation_order_id_fkey"
+    },
+    {
+      "source": "stripe_test_posting",
+      "target": "stripe_test_journal",
+      "name": "stripe_test_posting_journal_id_fkey"
+    },
+    {
+      "source": "stripe_test_refund",
+      "target": "stripe_test_line",
+      "name": "stripe_test_refund_line_id_fkey"
+    },
+    {
+      "source": "stripe_test_reversal",
+      "target": "stripe_test_refund",
+      "name": "stripe_test_reversal_refund_id_fkey"
+    },
+    {
+      "source": "stripe_test_reversal",
+      "target": "stripe_test_transfer",
+      "name": "stripe_test_reversal_transfer_id_fkey"
+    },
+    {
+      "source": "stripe_test_transfer",
+      "target": "stripe_test_line",
+      "name": "stripe_test_transfer_line_id_fkey"
+    },
+    {
+      "source": "workspace_capability",
+      "target": "organization",
+      "name": "workspace_capability_organization_id_fkey"
+    },
+    {
+      "source": "workspace_draft",
+      "target": "app_user",
+      "name": "workspace_draft_author_id_fkey"
+    },
+    {
+      "source": "workspace_draft",
+      "target": "workspace_capability",
+      "name": "workspace_draft_organization_id_workspace_fkey"
+    },
+    {
+      "source": "workspace_invitation",
+      "target": "app_user",
+      "name": "workspace_invitation_invited_by_fkey"
+    },
+    {
+      "source": "workspace_invitation",
+      "target": "workspace_capability",
+      "name": "workspace_invitation_organization_id_workspace_fkey"
+    },
+    {
+      "source": "workspace_invitation",
+      "target": "app_user",
+      "name": "workspace_invitation_recipient_id_fkey"
+    },
+    {
+      "source": "workspace_role",
+      "target": "organization_member",
+      "name": "workspace_role_organization_id_user_id_fkey"
+    },
+    {
+      "source": "workspace_role",
+      "target": "workspace_capability",
+      "name": "workspace_role_organization_id_workspace_fkey"
+    }
+  ],
+  "remote_sql_executed": false
+}

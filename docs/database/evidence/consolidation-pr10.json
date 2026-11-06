@@ -1,0 +1,41 @@
+{
+  "baseRefName": "feat/platform-foundations",
+  "headRefOid": "9b9286194cd40c7e0405481d1a46da1e61e54c6a",
+  "isDraft": true,
+  "mergeStateStatus": "CLEAN",
+  "number": 10,
+  "reviewDecision": "",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T09:15:01Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42193433307/job/127810731315",
+      "name": "backend",
+      "startedAt": "2026-11-06T09:13:45Z",
+      "status": "COMPLETED",
+      "workflowName": "Foundation checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T09:15:53Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42193433307/job/127810731273",
+      "name": "clients",
+      "startedAt": "2026-11-06T09:13:44Z",
+      "status": "COMPLETED",
+      "workflowName": "Foundation checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T09:13:48Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://supabase.com/dashboard/project/bkkmsbxrxkqaveymcrgi/settings/integrations",
+      "name": "Supabase Preview",
+      "startedAt": "2026-11-06T09:13:48Z",
+      "status": "COMPLETED",
+      "workflowName": ""
+    }
+  ],
+  "url": "https://github.com/Unparalleled-Media-1/Glamit/pull/10"
+}

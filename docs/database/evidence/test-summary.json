@@ -1,0 +1,19 @@
+{
+  "local_backend_tests": 180,
+  "local_backend_result": "PASS",
+  "metadata_double_tests": 6,
+  "product_tests": 13,
+  "browser_groups": 13,
+  "approved_visual_comparisons": 20,
+  "approved_visual_change_fraction": 0,
+  "initial_local_environment_failure": {
+    "passed": 70,
+    "database_setup_errors": 110,
+    "cause": "local PostgreSQL stopped after environment restoration",
+    "resolution": "existing local container restarted, full required suite rerun successfully"
+  },
+  "remote_migrations": 0,
+  "remote_rls_tests": "BLOCKED",
+  "remote_storage_tests": "BLOCKED",
+  "remote_application_read_write_tests": "BLOCKED"
+}

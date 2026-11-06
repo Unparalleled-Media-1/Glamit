@@ -1,0 +1,29 @@
+{
+  "observed_at": "2026-11-06T09:16:41.080147+00:00",
+  "project": "bkkmsbxrxkqaveymcrgi",
+  "scope": "PostgREST metadata, HEAD counts and storage bucket metadata only",
+  "mutation_requests": 0,
+  "sql_executed": false,
+  "migration_permission": "UNVERIFIED: no migration DSN or management credential configured",
+  "private_schema_functions_policies": "UNVERIFIED: SQL catalog access required",
+  "backup": "NOT CREATED: migration/database access unavailable",
+  "valuable_data": "UNKNOWN; absence of exposed rows is not proof of an empty project",
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/rest/v1/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/storage/v1/bucket",
+      "status": 200
+    }
+  ],
+  "tables": [],
+  "buckets": [],
+  "exposed_table_count": 0,
+  "exposed_rpc_names": ["rls_auto_enable"],
+  "counts_truncated": false,
+  "state": "PARTIAL_READ_ONLY_INVENTORY"
+}
