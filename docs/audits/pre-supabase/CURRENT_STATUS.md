@@ -30,3 +30,9 @@ Current full backend/core check: **158 tests passed** (including three secret-al
 ## Automatic review gate
 
 Automatic approval review rejected the direct commit/push/fast-forward sequence to the shared user-designated main because required approval/protection/green-CI evidence was unavailable. The rejected command did not execute. A separate review branch and a normal PR targeting `feat/platform-foundations` are the safe path; no retry by an indirect push or bypass is authorized. Application consolidation into main remains **BLOCKED** until that review path passes.
+
+## Review-branch publication
+
+Review branch `chore/consolidate-foundations-secrets` was successfully pushed at `16364bf`; the default/main branch remains unchanged at `d03f6d45a8ffb99a26fd1a5a7df6c51689185ffb`. Creating the draft PR through GitHub GraphQL was attempted and returned Forbidden. No PR number, approval or remote green-CI result is claimed. [Open the base/head comparison to create the PR](https://github.com/Unparalleled-Media-1/Glamit/compare/feat%2Fplatform-foundations...chore%2Fconsolidate-foundations-secrets?expand=1); the [prepared PR body](../../integrations/FOUNDATIONS_PR.md) describes the full consolidated change. Later evidence-only commits remain on the same review branch.
+
+Fresh Git clone of published review commit `16364bf` passes `npm ci --ignore-scripts`, frozen `uv sync`, both client typechecks and the Next production build. [Build log](evidence/consolidation-fresh-review-build.txt). This verifies the proposed review branch, not a merged main release. A normal main merge and remote required-check verification are still outstanding.
