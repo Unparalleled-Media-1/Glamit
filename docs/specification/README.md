@@ -1,5 +1,8 @@
 # GLAM AI architecture approval package
 
+**Latest authority — 6 November 2026:** The user approved the five golden patterns as the visual direction, subject to functional/usability validation, and authorized the sixth Personalized Results pattern, missing journey completion and the selected provider preparations. Preserve the five patterns and existing navigation; keep Supabase disconnected pending G0 and payments inactive. Existing financial/authentication/migration code and production data must not change. See [current scope](ux-completion-and-integrations.md), [regression report](../ux-regression-report.md) and [service readiness](../service-integration-readiness.md). Live end-to-end and native-device acceptance remain blocked.
+
+
 **Latest directive — golden-screen recovery and feature freeze (5 November 2026):** [Visual gap report](visual-gap-report.md), [review and design system](golden-screen-review.md), [frozen feature contracts](feature-freeze-contracts.md) and [proposed Destination Stylist](destination-stylist-contracts.md) govern this revision. Five golden patterns are implemented as review candidates. Primary navigation remains Home / Analyze / AI Studio / AI Advisor / Profile. Visual approval is pending; no external integration or production readiness is claimed.
 
 

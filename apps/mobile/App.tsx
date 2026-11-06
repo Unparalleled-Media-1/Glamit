@@ -114,14 +114,31 @@ function Title({ title, copy }: { title: string; copy: string }) {
     </View>
   );
 }
+import {
+  PersonalResults,
+  PersonalPreview,
+  Destination,
+  Marketplace,
+} from "./CompanionViews";
+import { usePersonalResults } from "../../packages/product/use-personal-results";
+import { useDestination } from "../../packages/product/use-destination";
+import { useMarketplace } from "../../packages/product/use-marketplace";
+import type { CompanionConnection } from "../../packages/product/companion";
 export default function App() {
+  return <ConnectedApp />;
+}
+export function ConnectedApp({
+  connection,
+}: {
+  connection?: CompanionConnection;
+}) {
   return (
     <SafeAreaProvider>
-      <PersonalApp />
+      <PersonalApp connection={connection} />
     </SafeAreaProvider>
   );
 }
-function PersonalApp() {
+function PersonalApp({ connection }: { connection?: CompanionConnection }) {
   const insets = useSafeAreaInsets();
   const [journey, setJourney] = useState(freshJourney);
   const [memoryReady, setMemoryReady] = useState(false);
@@ -168,6 +185,9 @@ function PersonalApp() {
   >([]);
   const [editorialProduct, setEditorialProduct] = useState(0);
   const [photo, setPhoto] = useState<Photo | null>(null);
+  const personal = usePersonalResults(connection, photo?.uri, state.goals);
+  const trip = useDestination(connection);
+  const marketplace = useMarketplace(connection, journey);
   const photoRef = useRef<Photo | null>(null);
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -378,6 +398,33 @@ function PersonalApp() {
                   : "makeover"
                 : "face";
   function content() {
+    if (state.page === "results")
+      return (
+        <PersonalResults
+          photo={photo}
+          personal={personal}
+          connection={connection}
+          go={go}
+          onDirection={(d) => {
+            personal.choose(d);
+            dispatch({ type: "tool", value: d.tool });
+            dispatch({ type: "style", value: d.style });
+            go("studio");
+          }}
+        />
+      );
+    if (state.page === "destination")
+      return <Destination trip={trip} connection={connection} go={go} />;
+    if (["offer", "cart", "checkout", "orders"].includes(state.page))
+      return (
+        <Marketplace
+          page={state.page}
+          market={marketplace}
+          connection={connection}
+          go={go}
+        />
+      );
+
     if (state.page === "shop" || state.page === "product")
       return (
         <GoldenCommerce
@@ -524,6 +571,7 @@ function PersonalApp() {
               <Note text={capabilityReasons.analysis} />
               <Button title="Run analysis — connection required" disabled />
               {nav("View report workspace", "report", true)}
+              {nav("Open Personalized Results", "results", true)}
             </Card>
           </>
         );
@@ -662,34 +710,41 @@ function PersonalApp() {
         );
       case "studio":
         return (
-          <BeautyStudio
-            photo={photo}
-            tool={state.tool}
-            direction={state.style}
-            intensity={state.intensity}
-            onTool={(value) => dispatch({ type: "tool", value })}
-            onDirection={(value) => dispatch({ type: "style", value })}
-            onIntensity={(value) => dispatch({ type: "intensity", value })}
-            reset={() => {
-              dispatch({ type: "style", value: directions[0] });
-              dispatch({ type: "intensity", value: 35 });
-              setCompare(false);
-            }}
-            carry={(value) => {
-              setJourney((p) => ({
-                ...p,
-                look: {
-                  ...p.look,
-                  parts: {
-                    ...p.look.parts,
-                    [studioPart(state.tool)]: value,
+          <>
+            <PersonalPreview
+              personal={personal}
+              connection={connection}
+              photo={photo}
+            />
+            <BeautyStudio
+              photo={photo}
+              tool={state.tool}
+              direction={state.style}
+              intensity={state.intensity}
+              onTool={(value) => dispatch({ type: "tool", value })}
+              onDirection={(value) => dispatch({ type: "style", value })}
+              onIntensity={(value) => dispatch({ type: "intensity", value })}
+              reset={() => {
+                dispatch({ type: "style", value: directions[0] });
+                dispatch({ type: "intensity", value: 35 });
+                setCompare(false);
+              }}
+              carry={(value) => {
+                setJourney((p) => ({
+                  ...p,
+                  look: {
+                    ...p.look,
+                    parts: {
+                      ...p.look.parts,
+                      [studioPart(state.tool)]: value,
+                    },
                   },
-                },
-              }));
-              go("builder");
-            }}
-            go={go}
-          />
+                }));
+                go("builder");
+              }}
+              go={go}
+            />
+          </>
         );
       case "profile":
         return (
@@ -1013,6 +1068,9 @@ function PersonalApp() {
             ) : (
               <Note text="Opening your private GLAM space…" />
             )}
+            {state.page === "report" &&
+              nav("Open Personalized Results", "results", true)}
+            {state.page === "complete" && nav("Open my cart", "cart", true)}
             {["report", "hair", "skin", "body-fit", "color", "guide"].includes(
               state.page,
             ) && (
@@ -1026,6 +1084,8 @@ function PersonalApp() {
               </>
             )}
             {[
+              "results",
+              "complete",
               "report",
               "hair",
               "skin",
@@ -1045,6 +1105,19 @@ function PersonalApp() {
                   )
                 }
                 onComplete={() => go("complete")}
+                connection={connection}
+                location={journey}
+                onLocation={(location) =>
+                  setJourney((s) => ({ ...s, ...location }))
+                }
+                onReview={async (match, requirement) => {
+                  if (match.service_quote_required) {
+                    go("booking");
+                    return;
+                  }
+                  go("offer");
+                  await marketplace.request("offer", match, requirement);
+                }}
               />
             )}
           </>

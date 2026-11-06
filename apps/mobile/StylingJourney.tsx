@@ -267,6 +267,15 @@ export default function StylingJourney({ page, data: d, setData, go }: Props) {
               : "Let’s make it feel like you.",
           "One styling brief, from first idea to finishing touch.",
         )}
+        <View style={{ gap: 8 }}>
+          <Action title="AI Personal Stylist" onPress={() => go("advisor")} />
+          <Action title="Event Stylist" onPress={() => go("event")} />
+          <Action
+            title="Destination & Weather Stylist"
+            onPress={() => go("destination")}
+          />
+          <Action title="Personalized Results" onPress={() => go("results")} />
+        </View>
         <View style={s.card}>
           <Text style={s.symbol}>✧</Text>
           <Text style={s.section}>Start anywhere.</Text>

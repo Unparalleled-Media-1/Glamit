@@ -1,5 +1,7 @@
 # GLAM AI engineering rules
 
+- Latest user authority (6 November): read docs/specification/ux-completion-and-integrations.md, docs/ux-regression-report.md and docs/service-integration-readiness.md. Five golden patterns are visually approved subject to function/usability; preserve them and the color/layout system. Sixth Results, destination and requested missing journeys/provider preparations are authorized, superseding the earlier feature-freeze wait for that scope. Keep Supabase disconnected pending G0, payments inactive, existing finance/auth/migrations/production data unchanged. Test doubles/browser emulation are not live services/native-device evidence.
+
 - Latest authority: read docs/specification/golden-screen-review.md, visual-gap-report.md and feature-freeze-contracts.md. Freeze major feature expansion; submit the five golden patterns for visual approval before redesigning the remainder. Destination/weather contracts are proposals, not enabled services. Keep current primary navigation and preserve backend/auth/canonical migrations.
 
 - Read docs/specification/beauty-led-visual-pass.md for the latest portrait-led Home/Analysis/Studio/color UX. Editorial portraits and reference swatches must never become fabricated personal results; tool-specific directions hand off only to the corresponding look component.

@@ -7,6 +7,7 @@ import type { Page } from "../packages/product/platform";
 import "../apps/web/app/styles.css";
 import "../apps/web/app/golden-tokens.css";
 import "../apps/web/app/golden-screens.css";
+import "../apps/web/app/personal-results.css";
 import "./preview.css";
 const base = process.env.PREVIEW_SITE_BASE || "";
 const tasks = [
@@ -65,6 +66,21 @@ const tasks = [
     path: "/product",
     copy: "Explore an illustrative color, Studio and your saved-look reference. Purchase remains gated.",
   },
+  {
+    title: "Golden / Personalized Results",
+    path: "/results",
+    copy: "Sixth pattern: uncertainty, your corrections and Studio handoff. No personal analysis is fabricated.",
+  },
+  {
+    title: "Destination & Weather Stylist",
+    path: "/destination",
+    copy: "Trip dates, activities, packing and honest weather availability. No forecast is fabricated.",
+  },
+  {
+    title: "Cart, checkout & order status",
+    path: "/cart",
+    copy: "Verified variants and server quotes are required. No completed order is simulated.",
+  },
 ];
 function PreviewHub() {
   const [task, setTask] = useState(0);
@@ -79,7 +95,7 @@ function PreviewHub() {
         </a>
         <span className="preview-label">INTERACTIVE DESIGN REVIEW</span>
         <a
-          href="https://github.com/Unparalleled-Media-1/Glamit/tree/feat/interactive-preview"
+          href="https://github.com/Unparalleled-Media-1/Glamit/tree/feat/personalized-results-journey"
           target="_blank"
           rel="noreferrer"
         >

@@ -23,6 +23,14 @@ import { BeautyAnalysis, BeautyStudio, BeautyColor } from "./BeautyExperience";
 import { studioPart } from "../../../packages/product/beauty";
 import { editorialProducts } from "../../../packages/product/editorial-products";
 import GoldenCommerce from "./GoldenCommerce";
+import PersonalizedResults from "./PersonalizedResults";
+import VerifiedProductDetail from "./VerifiedProductDetail";
+import DestinationStylist from "./DestinationStylist";
+import MarketplaceJourney from "./MarketplaceJourney";
+import { usePersonalResults } from "../../../packages/product/use-personal-results";
+import { useDestination } from "../../../packages/product/use-destination";
+import { useMarketplace } from "../../../packages/product/use-marketplace";
+import type { CompanionConnection } from "../../../packages/product/companion";
 import StylingJourney from "./StylingJourney";
 import {
   durableJourney,
@@ -40,6 +48,12 @@ import type {
 } from "../../../packages/product/catalog";
 
 const pages: Page[] = [
+  "offer",
+  "results",
+  "destination",
+  "cart",
+  "checkout",
+  "orders",
   "shop",
   "product",
   "home",
@@ -152,7 +166,13 @@ function Notice({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
-export default function GlamApp({ start = "home" }: { start?: Page }) {
+export default function GlamApp({
+  start = "home",
+  connection,
+}: {
+  start?: Page;
+  connection?: CompanionConnection;
+}) {
   const [journey, setJourney] = useState(freshJourney);
   const [memoryReady, setMemoryReady] = useState(false);
   const [memoryError, setMemoryError] = useState("");
@@ -192,6 +212,9 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
   >([]);
   const [editorialProduct, setEditorialProduct] = useState(0);
   const [photo, setPhoto] = useState<Photo | null>(null);
+  const personal = usePersonalResults(connection, photo?.uri, state.goals);
+  const trip = useDestination(connection);
+  const marketplace = useMarketplace(connection, journey);
   const photoRef = useRef<Photo | null>(null);
   const selection = useRef(0);
   const [consent, setConsent] = useState(false);
@@ -401,6 +424,34 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
     </div>
   );
   function content() {
+    if (page === "offer")
+      return <VerifiedProductDetail market={marketplace} go={go} />;
+    if (page === "results")
+      return (
+        <PersonalizedResults
+          photo={photo}
+          personal={personal}
+          connection={connection}
+          go={go}
+          onDirection={(d) => {
+            personal.choose(d);
+            dispatch({ type: "tool", value: d.tool });
+            dispatch({ type: "style", value: d.style });
+            go("studio");
+          }}
+        />
+      );
+    if (page === "destination")
+      return <DestinationStylist trip={trip} connection={connection} go={go} />;
+    if (["cart", "checkout", "orders"].includes(page))
+      return (
+        <MarketplaceJourney
+          page={page}
+          market={marketplace}
+          connection={connection}
+          go={go}
+        />
+      );
     if (page === "shop" || page === "product")
       return (
         <GoldenCommerce
@@ -588,6 +639,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
                   : "Check analysis availability"}
               </button>
               {btn("View report workspace", "report", true)}
+              {btn("Open Personalized Results", "results", true)}
             </section>
           </>
         );
@@ -625,6 +677,7 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
                 </span>
               </div>
             )}
+            {btn("Open Personalized Results", "results", true)}
             <h2>Your Results</h2>
             <div className="report-layout">
               <section className="panel report-visual">
@@ -830,6 +883,8 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
               go("builder");
             }}
             go={go}
+            personal={personal}
+            connection={connection}
           />
         );
       case "profile":
@@ -1252,6 +1307,16 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
             Opening your private GLAM space…
           </p>
         )}
+        {page === "complete" && (
+          <div className="companion-link-row">
+            <button className="button secondary" onClick={() => go("cart")}>
+              Open my cart
+            </button>
+            <button className="button secondary" onClick={() => go("orders")}>
+              Check order status
+            </button>
+          </div>
+        )}
         {["report", "hair", "skin", "body-fit", "color", "guide"].includes(
           page,
         ) && (
@@ -1262,6 +1327,8 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
           </div>
         )}
         {[
+          "results",
+          "complete",
           "report",
           "hair",
           "skin",
@@ -1279,6 +1346,15 @@ export default function GlamApp({ start = "home" }: { start?: Page }) {
               setSavedRequirements(savedRequirements.filter((r) => r.id !== id))
             }
             onComplete={() => go("complete")}
+            connection={connection}
+            location={journey}
+            onLocation={(location) =>
+              setJourney((s) => ({ ...s, ...location }))
+            }
+            onReview={async (match, requirement) => {
+              go("cart");
+              await marketplace.request("offer", match, requirement);
+            }}
           />
         )}
       </main>

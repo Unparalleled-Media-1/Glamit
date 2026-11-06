@@ -944,6 +944,113 @@ const net = require("node:net");
         await capture("mobile-face-report");
       }
     }
+    await page.goto(origin + "/results");
+    const portraitContrast = await page
+      .locator(".personal-results-portrait")
+      .evaluate((node) => {
+        const rgb = (s) =>
+          s
+            .match(/[\d.]+/g)
+            .slice(0, 3)
+            .map(Number)
+            .map((x) => {
+              x /= 255;
+              return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
+            });
+        const lum = (s) => {
+          const c = rgb(s);
+          return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+        };
+        const a = lum(getComputedStyle(node.querySelector("p")).color),
+          b = lum(getComputedStyle(node).backgroundColor);
+        return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+      });
+    assert(
+      portraitContrast >= 4.5,
+      "Results portrait body text must meet normal-text contrast",
+    );
+
+    await page.getByRole("heading", { name: /Your features/ }).waitFor();
+    assert(
+      await page
+        .getByRole("button", {
+          name: "Analysis connection required",
+          exact: true,
+        })
+        .isDisabled(),
+    );
+    await page
+      .getByRole("button", { name: "Add my perspective", exact: true })
+      .first()
+      .click();
+    await page.getByLabel("Your face shape note").fill("My own description");
+    assert.match(
+      await page.locator(".personal-findings").innerText(),
+      /Your correction/,
+    );
+    assert.match(
+      await page.locator(".personal-result-status").innerText(),
+      /No personal analysis yet/,
+    );
+    await page.goto(origin + "/advisor");
+    await page
+      .getByRole("button", {
+        name: "Destination & Weather Stylist",
+        exact: true,
+      })
+      .click();
+    await page.getByLabel("Destination city or region").fill("Cape Town");
+    await page.getByLabel("Destination country code").fill("ZA");
+    await page.getByLabel("Arrival date").fill("2026-12-01");
+    await page.getByLabel("Departure date").fill("2026-12-03");
+    await page.getByLabel("Add a packing item").fill("My linen shirt");
+    await page
+      .getByRole("button", { name: "Add to packing list", exact: true })
+      .click();
+    await page
+      .getByRole("checkbox", { name: "My linen shirt", exact: true })
+      .check();
+    await page.getByLabel("Departure date").fill("2026-12-04");
+    assert(
+      await page
+        .getByRole("checkbox", { name: "My linen shirt", exact: true })
+        .isChecked(),
+    );
+    await page
+      .getByRole("button", { name: "Check weather availability", exact: true })
+      .click();
+    assert.match(
+      await page.locator("main").innerText(),
+      /Weather service is not connected/,
+    );
+    await page.goto(origin + "/cart");
+    assert.match(await page.locator("main").innerText(), /cart is waiting/);
+    assert(
+      await page
+        .getByRole("button", { name: "Request checkout quote", exact: true })
+        .isDisabled(),
+    );
+    await page
+      .getByRole("button", { name: "02 / Checkout", exact: true })
+      .click();
+    assert(
+      await page
+        .getByRole("button", {
+          name: "Checkout connection required",
+          exact: true,
+        })
+        .isDisabled(),
+    );
+    await page
+      .getByRole("button", { name: "03 / Order status", exact: true })
+      .click();
+    assert.match(
+      await page.locator("main").innerText(),
+      /No order is confirmed/,
+    );
+    pass(
+      "Sixth Results pattern: separate user corrections, honest analysis/checkout gates, destination checklist continuity and no fabricated order",
+    );
     const goldenDir = path.join(out, "golden");
     fs.mkdirSync(goldenDir, { recursive: true });
     const goldenViews = [
@@ -953,6 +1060,7 @@ const net = require("node:net");
       { name: "desktop", width: 1440, height: 1050 },
     ];
     const goldenRoutes = {
+      results: "/results",
       home: "/",
       analyze: "/analyze",
       report: "/report",
@@ -1008,7 +1116,7 @@ const net = require("node:net");
         {
           approved: false,
           approval_required:
-            "User review of five golden patterns before redesigning remaining screens",
+            "Five patterns visually approved; new sixth Results pattern and functional/device validation pending",
           browser: browser.version(),
           files: goldenFiles,
         },
@@ -1017,7 +1125,7 @@ const net = require("node:net");
       ) + "\n",
     );
     pass(
-      "Five golden patterns plus uncomputed report captured at iPhone, Android-sized phone, tablet and desktop; candidate baselines await visual approval",
+      "Six golden patterns plus uncomputed report captured at iPhone, Android-sized phone, tablet and desktop; candidate baselines await visual approval",
     );
     await context.setOffline(true);
     await page.goto(origin + "/goals").catch(() => {});

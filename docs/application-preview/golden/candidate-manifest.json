@@ -1,8 +1,17 @@
 {
   "approved": false,
-  "approval_required": "User review of five golden patterns before redesigning remaining screens",
+  "approval_required": "Five patterns visually approved; new sixth Results pattern and functional/device validation pending",
   "browser": "155.0.8059.79",
   "files": [
+    {
+      "file": "iphone-results.png",
+      "viewport": {
+        "name": "iphone",
+        "width": 390,
+        "height": 844
+      },
+      "screen": "results"
+    },
     {
       "file": "iphone-home.png",
       "viewport": {
@@ -56,6 +65,15 @@
         "height": 844
       },
       "screen": "product"
+    },
+    {
+      "file": "android-results.png",
+      "viewport": {
+        "name": "android",
+        "width": 412,
+        "height": 915
+      },
+      "screen": "results"
     },
     {
       "file": "android-home.png",
@@ -112,6 +130,15 @@
       "screen": "product"
     },
     {
+      "file": "tablet-results.png",
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screen": "results"
+    },
+    {
       "file": "tablet-home.png",
       "viewport": {
         "name": "tablet",
@@ -164,6 +191,15 @@
         "height": 1024
       },
       "screen": "product"
+    },
+    {
+      "file": "desktop-results.png",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1050
+      },
+      "screen": "results"
     },
     {
       "file": "desktop-home.png",

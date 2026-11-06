@@ -276,6 +276,7 @@ export default function StylingJourney({ page, data: s, setData, go }: Props) {
               : "Let’s make it feel like you.",
           "One styling brief, from the first idea to the finishing touch.",
         )}
+        <nav className="companion-link-row" aria-label="Styling experiences"><button className="button secondary" onClick={()=>go("advisor")}>AI Personal Stylist</button><button className="button secondary" onClick={()=>go("event")}>Event Stylist</button><button className="button secondary" onClick={()=>go("destination")}>Destination & Weather Stylist</button><button className="button secondary" onClick={()=>go("results")}>Personalized Results</button></nav>
         <div className="stylist-layout">
           <section className="conversation">
             <div className="stylist-greeting">

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import type { CompanionConnection } from "../../packages/product/companion";
+import { useState, useEffect, useRef } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import {
   analysisContexts,
@@ -20,6 +21,9 @@ export default function ContextualRecommendations({
   onComplete,
   results,
   onReview,
+  connection,
+  location,
+  onLocation,
 }: {
   context: AnalysisContext;
   saved: RequirementDraft[];
@@ -27,14 +31,91 @@ export default function ContextualRecommendations({
   onDelete: (id: string) => void;
   onComplete: () => void;
   results?: RecommendationResult;
-  onReview?: (match: RecommendationMatch) => void;
+  onReview?: (
+    match: RecommendationMatch,
+    requirement: RequirementDraft,
+  ) => void;
+  connection?: CompanionConnection;
+  location?: { country: string; city: string; currency: string };
+  onLocation?: (location: {
+    country: string;
+    city: string;
+    currency: string;
+  }) => void;
 }) {
   const config = analysisContexts.find((n) => n.id === context)!;
   const [category, setCategory] = useState<string>(config.category);
   const [tags, setTags] = useState("");
-  const [country, setCountry] = useState("");
-  const [currency, setCurrency] = useState("ZAR");
+  const [country, setCountry] = useState(location?.country || "");
+  const [city, setCity] = useState(location?.city || "");
+  const [currency, setCurrency] = useState(location?.currency || "ZAR");
   const [message, setMessage] = useState("");
+  const [received, setReceived] = useState<RecommendationResult>();
+  const [requested, setRequested] = useState<RequirementDraft | null>(null);
+  const [busy, setBusy] = useState(false);
+  const sequence = useRef(0),
+    abort = useRef<AbortController | null>(null);
+  useEffect(() => {
+    sequence.current++;
+    abort.current?.abort();
+    setReceived(undefined);
+    setRequested(null);
+    setBusy(false);
+    return () => {
+      sequence.current++;
+      abort.current?.abort();
+    };
+  }, [tags, country, city, currency, category, connection]);
+  const shown = received || results;
+  async function search() {
+    if (busy) return;
+    const values = tags
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean),
+      issue = requirementProblem(values, country);
+    if (issue) {
+      setMessage(issue);
+      return;
+    }
+    if (!connection?.matches) {
+      setMessage(
+        "Catalog matching is not connected. No local availability is confirmed.",
+      );
+      return;
+    }
+    onLocation?.({ country, city, currency });
+    const id = ++sequence.current,
+      controller = new AbortController();
+    abort.current = controller;
+    setBusy(true);
+    setMessage("");
+    const request = {
+      id: String(Date.now()),
+      context,
+      category,
+      tags: values,
+      country,
+      city,
+      currency,
+    };
+    try {
+      const result = await connection.matches(request, controller.signal);
+      if (sequence.current !== id) return;
+      if (!Array.isArray(result.organic) || !Array.isArray(result.sponsored))
+        throw Error();
+      setReceived(result);
+      setRequested(request);
+    } catch {
+      if (sequence.current === id)
+        setMessage(
+          "Matching could not be verified. No price, inventory or booking is confirmed.",
+        );
+    } finally {
+      if (sequence.current === id) setBusy(false);
+    }
+  }
+
   const button = (title: string, action: () => void) => (
     <Pressable accessibilityRole="button" style={s.button} onPress={action}>
       <Text style={s.white}>{title}</Text>
@@ -72,10 +153,12 @@ export default function ContextualRecommendations({
           </Text>
           <Pressable
             accessibilityRole="button"
-            accessibilityState={{ disabled: !onReview }}
-            disabled={!onReview}
+            accessibilityState={{ disabled: !onReview || !requested }}
+            disabled={!onReview || !requested}
             style={s.button}
-            onPress={() => onReview?.(m)}
+            onPress={() => {
+              if (requested) onReview?.(m, requested);
+            }}
           >
             <Text style={s.white}>
               {m.service_quote_required
@@ -178,11 +261,11 @@ export default function ContextualRecommendations({
       <Text accessibilityRole="header" style={s.heading}>
         Where to Buy / Book
       </Text>
-      {results && matchCards(results.organic)}
-      {results && matchCards(results.sponsored, true)}
+      {shown && matchCards(shown.organic)}
+      {shown && matchCards(shown.sponsored, true)}
       <View style={s.card}>
         <Text style={s.eyebrow}>BEST MATCHES · ORGANIC</Text>
-        {!results?.organic.some(
+        {!shown?.organic.some(
           (m) => Date.parse(m.offer_expires_at) > Date.now(),
         ) && (
           <Text style={s.heading}>
@@ -197,11 +280,11 @@ export default function ContextualRecommendations({
       </View>
       <View style={[s.card, s.sponsored]}>
         <Text style={s.eyebrow}>SPONSORED MATCHES</Text>
-        {!results?.sponsored.some(
+        {!shown?.sponsored.some(
           (m) => Date.parse(m.offer_expires_at) > Date.now(),
         ) && <Text style={s.heading}>No qualified sponsored placements.</Text>}
         <Text style={s.body}>
-          {results?.sponsored.length
+          {shown?.sponsored.length
             ? "Paid placements must pass the same suitability checks. "
             : "Suppressed until eligibility, consent and ad delivery qualify. "}
           Payment never changes an analysis or makes an irrelevant product a

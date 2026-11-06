@@ -1,0 +1,188 @@
+{
+  "approved": true,
+  "approval_record": "User: GLAM AI \u2014 Visual Approval and UX Completion, 6 November 2026. Five golden patterns approved as visual design direction, subject to functional and usability validation.",
+  "source_commit": "240de1acf676963276fd19599289bd3c2f74fb33",
+  "browser": "155.0.8059.79",
+  "files": [
+    {
+      "file": "iphone-home.png",
+      "viewport": {
+        "name": "iphone",
+        "width": 390,
+        "height": 844
+      },
+      "screen": "home"
+    },
+    {
+      "file": "iphone-analyze.png",
+      "viewport": {
+        "name": "iphone",
+        "width": 390,
+        "height": 844
+      },
+      "screen": "analyze"
+    },
+    {
+      "file": "iphone-studio.png",
+      "viewport": {
+        "name": "iphone",
+        "width": 390,
+        "height": 844
+      },
+      "screen": "studio"
+    },
+    {
+      "file": "iphone-shop.png",
+      "viewport": {
+        "name": "iphone",
+        "width": 390,
+        "height": 844
+      },
+      "screen": "shop"
+    },
+    {
+      "file": "iphone-product.png",
+      "viewport": {
+        "name": "iphone",
+        "width": 390,
+        "height": 844
+      },
+      "screen": "product"
+    },
+    {
+      "file": "android-home.png",
+      "viewport": {
+        "name": "android",
+        "width": 412,
+        "height": 915
+      },
+      "screen": "home"
+    },
+    {
+      "file": "android-analyze.png",
+      "viewport": {
+        "name": "android",
+        "width": 412,
+        "height": 915
+      },
+      "screen": "analyze"
+    },
+    {
+      "file": "android-studio.png",
+      "viewport": {
+        "name": "android",
+        "width": 412,
+        "height": 915
+      },
+      "screen": "studio"
+    },
+    {
+      "file": "android-shop.png",
+      "viewport": {
+        "name": "android",
+        "width": 412,
+        "height": 915
+      },
+      "screen": "shop"
+    },
+    {
+      "file": "android-product.png",
+      "viewport": {
+        "name": "android",
+        "width": 412,
+        "height": 915
+      },
+      "screen": "product"
+    },
+    {
+      "file": "tablet-home.png",
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screen": "home"
+    },
+    {
+      "file": "tablet-analyze.png",
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screen": "analyze"
+    },
+    {
+      "file": "tablet-studio.png",
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screen": "studio"
+    },
+    {
+      "file": "tablet-shop.png",
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screen": "shop"
+    },
+    {
+      "file": "tablet-product.png",
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screen": "product"
+    },
+    {
+      "file": "desktop-home.png",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1050
+      },
+      "screen": "home"
+    },
+    {
+      "file": "desktop-analyze.png",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1050
+      },
+      "screen": "analyze"
+    },
+    {
+      "file": "desktop-studio.png",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1050
+      },
+      "screen": "studio"
+    },
+    {
+      "file": "desktop-shop.png",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1050
+      },
+      "screen": "shop"
+    },
+    {
+      "file": "desktop-product.png",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1050
+      },
+      "screen": "product"
+    }
+  ]
+}

@@ -88,6 +88,12 @@ export type Page =
   | "agent"
   | "event"
   | "builder"
+  | "offer"
+  | "results"
+  | "destination"
+  | "cart"
+  | "checkout"
+  | "orders"
   | "shop"
   | "product";
 export const tabPage: Record<string, Page> = {

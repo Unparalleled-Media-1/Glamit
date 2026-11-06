@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./styles.css";
 import "./golden-tokens.css";
 import "./golden-screens.css";
+import "./personal-results.css";
 
 export const viewport: Viewport = {
   width: "device-width",

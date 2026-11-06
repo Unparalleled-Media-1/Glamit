@@ -10,12 +10,12 @@ const sharp = require("sharp");
   );
   assert.equal(
     manifest.files.length,
-    24,
-    "Six substates across four viewports are required",
+    28,
+    "Seven states across four viewports are required",
   );
   for (const row of manifest.files) {
     assert(
-      /^(iphone|android|tablet|desktop)-(home|analyze|report|studio|shop|product)\.png$/.test(
+      /^(iphone|android|tablet|desktop)-(home|analyze|report|studio|shop|product|results)\.png$/.test(
         row.file,
       ),
     );
@@ -25,7 +25,7 @@ const sharp = require("sharp");
   }
   if (!process.argv.includes("--compare-approved")) {
     console.log(
-      "PASS 24 golden candidate capture dimensions. Visual approval and approved-baseline comparison are still pending.",
+      "PASS 28 golden capture dimensions. Sixth-pattern approval and native-device validation remain pending.",
     );
     return;
   }
@@ -47,7 +47,8 @@ const sharp = require("sharp");
     manifest.browser,
     "Review matching browser/font/platform baselines before comparison",
   );
-  for (const row of manifest.files) {
+  const comparisons = [];
+  for (const row of approved.files) {
     const expected = await sharp(path.join(approvedRoot, row.file))
       .removeAlpha()
       .raw()
@@ -70,11 +71,23 @@ const sharp = require("sharp");
           delta = true;
       if (delta) changed++;
     }
+    comparisons.push({
+      file: row.file,
+      changedFraction: changed / (actual.info.width * actual.info.height),
+    });
     assert(
       changed / (actual.info.width * actual.info.height) <= 0.002,
       row.file + " exceeds the approved visual-difference threshold",
     );
   }
+  fs.writeFileSync(
+    path.join(root, "approved-regression.json"),
+    JSON.stringify(
+      { approval: approved.approval_record, compared: comparisons },
+      null,
+      2,
+    ) + "\n",
+  );
   console.log(
     "PASS approved golden-screen pixel regressions. This does not verify native devices, provider fidelity or commercial readiness.",
   );

@@ -1,5 +1,8 @@
 # Current-instance validation
 
+**Latest authority — 6 November 2026:** The user approved the five golden patterns as the visual direction, subject to functional/usability validation, and authorized the sixth Personalized Results pattern, missing journey completion and the selected provider preparations. Preserve the five patterns and existing navigation; keep Supabase disconnected pending G0 and payments inactive. Existing financial/authentication/migration code and production data must not change. See [current scope](specification/ux-completion-and-integrations.md), [regression report](ux-regression-report.md) and [service readiness](service-integration-readiness.md). Live end-to-end and native-device acceptance remain blocked.
+
+
 ## Golden-screen candidate verification — 5 November 2026
 
 - Required check script passed: Ruff check/format, 104 real-PostgreSQL tests on the dedicated local `glam_test` database, implemented OpenAPI drift check, client runtime checks and web/native TypeScript. One existing Starlette test-client deprecation warning remains.

@@ -1,5 +1,7 @@
 # Goal-led GLAM application preview
 
+**6 November review:** [Six-pattern phone board](golden-iphone-review.html), [desktop board](golden-desktop-review.html), [18 browser interaction recordings](recordings/index.html), [regression report](../ux-regression-report.md) and [readiness](../service-integration-readiness.md). Five original patterns are visually approved. The fourteenth-journey interactive export includes Results, destination and checkout gates. Mobile recordings are Chromium emulation, not native device evidence.
+
 **Latest five-screen review:** [Phone](golden-iphone-review.html), [desktop](golden-desktop-review.html), [uncomputed report](golden/iphone-report.png) and [scope/validation boundaries](../specification/golden-screen-review.md). These supersede the earlier visual board as current candidates. The static interactive hub now has eleven journeys; new Shop and Product Detail routes remain secondary to the retained five primary tabs.
 
 

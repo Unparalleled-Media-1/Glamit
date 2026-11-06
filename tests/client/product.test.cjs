@@ -280,3 +280,187 @@ test("Studio undo snapshots are independent, bounded and never include private m
   assert.equal("photo" in H.undoChoice(history).choice, false);
   assert.equal(H.undoChoice([]).choice, null);
 });
+
+const Companion = load("companion.ts");
+function analysisFixture() {
+  return {
+    id: "test-analysis",
+    subject: "test-user",
+    photoRevision: 2,
+    completedAt: new Date().toISOString(),
+    provider: "TEST DOUBLE",
+    model: "test",
+    findings: Companion.featureKeys.map((key) => ({
+      key,
+      estimate: null,
+      certainty: "unavailable",
+      uncertainty: "Test: no observation.",
+    })),
+    directions: [],
+  };
+}
+test("analysis accepts only owner/photo-bound complete findings with explicit uncertainty", () => {
+  const r = analysisFixture();
+  assert(Companion.validAnalysis(r, "test-user", 2));
+  assert(!Companion.validAnalysis(r, "other-user", 2));
+  assert(!Companion.validAnalysis(r, "test-user", 3));
+  r.findings[0].certainty = "certain";
+  assert(!Companion.validAnalysis(r, "test-user", 2));
+  r.findings[0].certainty = "tentative";
+  assert(!Companion.validAnalysis(r, "test-user", 2));
+  r.findings[0].estimate = "Test estimate";
+  assert(Companion.validAnalysis(r, "test-user", 2));
+  r.findings[0].key = "religion";
+  assert(!Companion.validAnalysis(r, "test-user", 2));
+});
+test("preview requires the exact corrections, direction, identity, photo and approved image origin", () => {
+  const a = analysisFixture(),
+    c = {
+      subject: "test-user",
+      imageOrigins: ["https://private.example"],
+      checkoutOrigins: [],
+    };
+  const p = {
+    id: "test-preview",
+    subject: "test-user",
+    photoRevision: 2,
+    analysisId: a.id,
+    correctionRevision: 1,
+    directionId: "d",
+    imageUrl: "https://private.example/a.png",
+    expiresAt: new Date(Date.now() + 60000).toISOString(),
+    provider: "TEST DOUBLE",
+  };
+  assert(Companion.validPreview(p, c, a, 1, "d"));
+  assert(!Companion.validPreview(p, c, a, 2, "d"));
+  assert(!Companion.validPreview(p, c, a, 1, "other"));
+  assert(!Companion.validPreview({ ...p, subject: "other" }, c, a, 1, "d"));
+  assert(
+    !Companion.validPreview(
+      { ...p, imageUrl: "https://evil.example/a.png" },
+      c,
+      a,
+      1,
+      "d",
+    ),
+  );
+  assert(
+    !Companion.validPreview({ ...p, expiresAt: "2000-01-01" }, c, a, 1, "d"),
+  );
+  assert(
+    !Companion.allowedUrl(
+      "https://name:secret@private.example/a",
+      c.imageOrigins,
+    ),
+  );
+});
+test("travel dates reject invalid calendar days and unknown or mismatched weather never becomes a forecast", () => {
+  const p = {
+    destination: "Cape Town",
+    country: "ZA",
+    start: "2026-12-01",
+    end: "2026-12-02",
+    activities: "",
+    preferences: "",
+    sourcing: "before-departure",
+  };
+  assert.equal(Companion.travelProblem(p), null);
+  assert(Companion.travelProblem({ ...p, start: "2026-02-30" }));
+  assert(Companion.travelProblem({ ...p, end: "2026-11-01" }));
+  const w = {
+    destination: p.destination,
+    country: "ZA",
+    start: p.start,
+    end: p.end,
+    timezone: "Africa/Johannesburg",
+    provider: "TEST DOUBLE",
+    retrievedAt: new Date().toISOString(),
+    expiresAt: new Date(Date.now() + 60000).toISOString(),
+    days: [p.start, p.end].map((date) => ({
+      date,
+      status: "unavailable",
+      lowC: null,
+      highC: null,
+      rainChance: null,
+      note: "No weather evidence.",
+    })),
+  };
+  assert(Companion.validWeather(w, p));
+  assert(!Companion.validWeather({ ...w, timezone: "bad/timezone" }, p));
+  assert(!Companion.validWeather({ ...w, destination: "Miami" }, p));
+  w.days[0].highC = 30;
+  assert(!Companion.validWeather(w, p));
+});
+test("checkout never calculates commission and requires a server quote covering every selected variant", () => {
+  const c = {
+    subject: "test-user",
+    imageOrigins: [],
+    checkoutOrigins: ["https://checkout.example"],
+  };
+  const offer = {
+    listing_id: "listing",
+    category: "cosmetics",
+    source: "reviewed_merchant_assertion",
+    price_minor: 1000,
+    currency: "ZAR",
+    delivered_total_minor: 1200,
+    variant_id: "medium",
+    merchant: "Test merchant",
+    country: "ZA",
+    quantity_available: 1,
+    service_quote_required: false,
+    checked_at: new Date().toISOString(),
+    offer_expires_at: new Date(Date.now() + 60000).toISOString(),
+  };
+  assert(Companion.eligibleOffer(offer, "ZA"));
+  assert(!Companion.eligibleOffer(offer, "US"));
+  assert(
+    !Companion.eligibleOffer({ ...offer, service_quote_required: true }, "ZA"),
+  );
+  const items = [{ offer, quantity: 1 }],
+    q = {
+      id: "quote",
+      subject: "test-user",
+      expiresAt: new Date(Date.now() + 60000).toISOString(),
+      currency: "ZAR",
+      totalMinor: 1000,
+      delivery: "Test server delivery facts",
+      returns: "Test merchant policy",
+      lines: [
+        {
+          listingId: "listing",
+          variantId: "medium",
+          quantity: 1,
+          merchant: "Test merchant",
+          totalMinor: 1000,
+        },
+      ],
+      hostedUrl: "https://checkout.example/session",
+    };
+  assert(Companion.validQuote(q, c, items, "ZAR"));
+  assert(!Companion.validQuote({ ...q, lines: [] }, c, items, "ZAR"));
+  assert(!Companion.validQuote({ ...q, subject: "other" }, c, items, "ZAR"));
+  assert(
+    !Companion.validQuote(
+      { ...q, hostedUrl: "https://evil.example" },
+      c,
+      items,
+      "ZAR",
+    ),
+  );
+  assert(
+    !Companion.validReceipt(
+      {
+        id: "order",
+        subject: "other",
+        quoteId: q.id,
+        state: "paid",
+        currency: "ZAR",
+        totalMinor: 1000,
+        merchantOrders: [{ id: "o", merchant: "Test", state: "pending" }],
+      },
+      q,
+      "test-user",
+    ),
+  );
+});

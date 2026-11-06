@@ -23,7 +23,10 @@
     "preview:serve": "node scripts/serve-interactive-preview.mjs",
     "typecheck:preview": "tsc --noEmit -p preview/tsconfig.json",
     "design:tokens": "node scripts/generate-consumer-tokens.mjs",
-    "test:golden": "node scripts/check-golden-visuals.cjs --verify-candidates"
+    "test:golden": "node scripts/check-golden-visuals.cjs --verify-candidates",
+    "test:connections": "node tests/client/connected-contracts.cjs",
+    "record:golden": "node scripts/record-golden-evidence.cjs",
+    "test:approved-visuals": "node scripts/check-golden-visuals.cjs --compare-approved"
   },
   "devDependencies": {
     "@types/node": "24.10.0",

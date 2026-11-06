@@ -4,7 +4,8 @@ import type {
   RecommendationResult,
   RecommendationMatch,
 } from "../../../packages/product/catalog";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import type { CompanionConnection } from "../../../packages/product/companion";
 import {
   analysisContexts,
   categories,
@@ -22,6 +23,9 @@ export default function ContextualRecommendations({
   onComplete,
   results,
   onReview,
+  connection,
+  location,
+  onLocation,
 }: {
   context: AnalysisContext;
   saved: RequirementDraft[];
@@ -29,14 +33,95 @@ export default function ContextualRecommendations({
   onDelete: (id: string) => void;
   onComplete: () => void;
   results?: RecommendationResult;
-  onReview?: (match: RecommendationMatch) => void;
+  onReview?: (
+    match: RecommendationMatch,
+    requirement: RequirementDraft,
+  ) => void;
+  connection?: CompanionConnection;
+  location?: { country: string; city: string; currency: string };
+  onLocation?: (location: {
+    country: string;
+    city: string;
+    currency: string;
+  }) => void;
 }) {
   const config = analysisContexts.find((n) => n.id === context)!;
   const [tags, setTags] = useState("");
-  const [country, setCountry] = useState("");
-  const [currency, setCurrency] = useState("ZAR");
+  const [country, setCountry] = useState(location?.country || "");
+  const [city, setCity] = useState(location?.city || "");
+  const [currency, setCurrency] = useState(location?.currency || "ZAR");
   const [category, setCategory] = useState<string>(config.category);
   const [message, setMessage] = useState("");
+  const [received, setReceived] = useState<RecommendationResult | undefined>(
+    undefined,
+  );
+  const [requested, setRequested] = useState<RequirementDraft | null>(null);
+  const [busy, setBusy] = useState(false);
+  const sequence = useRef(0),
+    abort = useRef<AbortController | null>(null);
+  useEffect(() => {
+    sequence.current++;
+    abort.current?.abort();
+    setReceived(undefined);
+    setRequested(null);
+    setBusy(false);
+    return () => {
+      sequence.current++;
+      abort.current?.abort();
+    };
+  }, [tags, country, city, currency, category, connection]);
+  const shown = received || results;
+  async function search() {
+    const values = tags
+        .split(",")
+        .map((n) => n.trim())
+        .filter(Boolean),
+      issue = requirementProblem(values, country);
+    if (issue) {
+      setMessage(issue);
+      return;
+    }
+    if (!connection?.matches) {
+      setMessage(
+        "Catalog matching is not connected. No local availability is confirmed.",
+      );
+      return;
+    }
+    onLocation?.({ country, city, currency });
+    const id = ++sequence.current,
+      controller = new AbortController();
+    abort.current = controller;
+    setBusy(true);
+    setMessage("");
+    const request = {
+      id: crypto.randomUUID(),
+      context,
+      category,
+      tags: values,
+      country,
+      currency,
+      city,
+    };
+    try {
+      const response = await connection.matches(request, controller.signal);
+      if (sequence.current !== id) return;
+      if (
+        !Array.isArray(response.organic) ||
+        !Array.isArray(response.sponsored)
+      )
+        throw Error();
+      setRequested(request);
+      setReceived(response);
+    } catch {
+      if (sequence.current === id)
+        setMessage(
+          "Matching could not be verified. No price, inventory or booking is confirmed.",
+        );
+    } finally {
+      if (sequence.current === id) setBusy(false);
+    }
+  }
+
   function save() {
     const values = tags
       .split(",")
@@ -118,6 +203,23 @@ export default function ContextualRecommendations({
               </select>
             </label>
           </div>
+          <label>
+            Shopping city (optional)
+            <input
+              value={city}
+              maxLength={160}
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </label>
+          <button className="button" disabled={busy} onClick={search}>
+            {busy ? "Finding verified matches…" : "Find verified local matches"}
+          </button>
+          <p className="fine">
+            Only your explicit product requirements and chosen shopping location
+            are used. No photo, analysis report or sensitive preference enters
+            this request. City-level coverage must be qualified by the catalog
+            adapter.
+          </p>
           <button className="button" onClick={save}>
             Save recommendation requirements
           </button>
@@ -131,13 +233,20 @@ export default function ContextualRecommendations({
           <h2>Where to Buy / Book</h2>
           <div className="panel">
             <span className="badge">Best Matches · Organic</span>
-            {results?.organic.length ? (
-              <VerifiedMatches matches={results.organic} onReview={onReview} />
+            {shown?.organic.length ? (
+              <VerifiedMatches
+                matches={shown.organic}
+                onReview={
+                  requested && onReview
+                    ? (match) => onReview(match, requested)
+                    : undefined
+                }
+              />
             ) : (
               <h3>No verified matching listings currently available.</h3>
             )}
             <p>
-              {results
+              {shown
                 ? "Source assertions and final availability require fresh revalidation before handoff."
                 : "A live catalog is not connected. Merchant names, variant suitability, fresh prices, stock, delivery and service availability will appear only when verified."}
             </p>
@@ -149,17 +258,21 @@ export default function ContextualRecommendations({
           </div>
           <div className="panel sponsored-panel">
             <span className="badge">Sponsored Matches</span>
-            {results?.sponsored.length ? (
+            {shown?.sponsored.length ? (
               <VerifiedMatches
-                matches={results.sponsored}
+                matches={shown.sponsored}
                 sponsored
-                onReview={onReview}
+                onReview={
+                  requested && onReview
+                    ? (match) => onReview(match, requested)
+                    : undefined
+                }
               />
             ) : (
               <h3>No qualified sponsored placements.</h3>
             )}
             <p>
-              {results?.sponsored.length
+              {shown?.sponsored.length
                 ? "Paid placements must pass the same eligibility and suitability checks as organic offers."
                 : "Suppressed until eligibility, consent and advertising delivery are qualified."}{" "}
               Payment never changes your analysis or makes an unsuitable product

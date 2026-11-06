@@ -1,5 +1,7 @@
 # Five golden screens — review candidate
 
+**Approval update — 6 November 2026:** The user approved these five patterns as the design direction, subject to functional/usability validation. [Current scope](ux-completion-and-integrations.md) adds the sixth Results candidate without redesigning the five. [Regression evidence](../ux-regression-report.md) records unchanged original-pattern captures and the live/native blockers. Earlier pending-approval language below is historical.
+
 5 November 2026. Branch `feat/golden-screen-recovery`. Next.js web and the existing Expo app remain separate implementations sharing product state and tokens.
 
 ## Review the actual UI

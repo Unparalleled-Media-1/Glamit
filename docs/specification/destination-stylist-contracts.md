@@ -1,5 +1,7 @@
 # Destination Stylist: proposed contracts and fallback rules
 
+**6 November update:** Destination UI and provider preparation are now authorized by the user and implemented as a session planner/packing checklist plus typed evidence boundary; [current scope](ux-completion-and-integrations.md) and [regression](../ux-regression-report.md). Actual weather, geocoding, AI travel recommendations and canonical persistence remain unconnected. Earlier module-approval wait below is historical; proposed API routes are still not implemented.
+
 5 November 2026, Africa/Johannesburg. Source: [Destination & Weather-Aware Personal Stylist](sources/2026-11-destination-stylist-directive.txt). **Design/contract candidate pending the feature-freeze and five-golden-screen review; no new destination module, weather integration or live forecast is implemented.** It belongs inside Personal Stylist/Studio/Get This Look, with no new primary tab and no new identity/catalog/ledger.
 
 ## Proposed visual flow

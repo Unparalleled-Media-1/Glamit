@@ -1,0 +1,151 @@
+{
+  "base": "240de1acf676963276fd19599289bd3c2f74fb33",
+  "allUnchanged": true,
+  "files": [
+    {
+      "file": "apps/web/app/golden-screens.css",
+      "sha256": "67aa98ced434c586ee4592a02df44bd96242d7987aec4d3a4bca365816a05542",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/app/styles.css",
+      "sha256": "972b8debcbb4f6bebb4cab2772bfbd8b50319fffc81caf6d2ce79cc3fbc6bbed",
+      "unchanged": true
+    },
+    {
+      "file": "db/migrations/env.py",
+      "sha256": "941d1f5924bcf3e554bed491e1872b537d660ddab212bae7efb80c4c2dec75b1",
+      "unchanged": true
+    },
+    {
+      "file": "db/migrations/script.py.mako",
+      "sha256": "94ae7b3b4d984e1a07c91ea1d643d3b8076e62c32ee37b3d12fd864d3d370e40",
+      "unchanged": true
+    },
+    {
+      "file": "db/migrations/versions/0001_foundations.py",
+      "sha256": "cacbb66a16253b2058a3b3a617302762d86358bfa12e4180e66af08ad0a7f1ef",
+      "unchanged": true
+    },
+    {
+      "file": "db/migrations/versions/0001_foundations.sql",
+      "sha256": "e38ccde698b49b661cb12a6a8d9594c5b34f7233a13b3544d6a9ccabee41a369",
+      "unchanged": true
+    },
+    {
+      "file": "db/migrations/versions/0002_credit_safety.py",
+      "sha256": "06af2b198ead5940aa61fafe809aaf9396426f0316e40a8a6e9aaa83c2d3b5d3",
+      "unchanged": true
+    },
+    {
+      "file": "db/migrations/versions/0003_server_only_access.py",
+      "sha256": "d1ff935b7f5cd120d014b9a3aa842e1f7109c40dc76f4524b11196b644cb0d20",
+      "unchanged": true
+    },
+    {
+      "file": "db/migrations/versions/0004_analysis_workspaces.py",
+      "sha256": "44511886ab3a27de455722a84b58e1712cd2ad1b2e06fe36b95449bf1d980159",
+      "unchanged": true
+    },
+    {
+      "file": "db/migrations/versions/0005_workspace_invitations.py",
+      "sha256": "73316c2f14713e4a1c3629a69fa99c043b426d5bdd983472bf2b918c80cada40",
+      "unchanged": true
+    },
+    {
+      "file": "db/migrations/versions/0006_staff_context.py",
+      "sha256": "51d968048c7fd51dd85a9a76942fe98fdb950b74789382844e65a89e7ec98081",
+      "unchanged": true
+    },
+    {
+      "file": "db/migrations/versions/0007_contextual_catalog.py",
+      "sha256": "de5670f34d6a2720669111601d2cbaaef0c5720bb6721accc966d79ccef27f96",
+      "unchanged": true
+    },
+    {
+      "file": "db/migrations/versions/0008_catalog_market_policy.py",
+      "sha256": "c405c3395f90a7c87cdbabddf38f4776f75eca34b6be38f0635bd4913a24c54e",
+      "unchanged": true
+    },
+    {
+      "file": "packages/product/consumer-design.json",
+      "sha256": "8daffb7ad39f10a31c7c9fbc82da84d52e6bf0850088caba5a1f76f716709263",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/__init__.py",
+      "sha256": "28c80b7f841c418921438cc70ab82b53a1eb721d3e4a15f370f31e81c965c5e4",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/auth.py",
+      "sha256": "48aae22c2e9a223c67caaf0d13c52ff2a2085458bbc6a20284606ba62968b795",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/catalog.py",
+      "sha256": "dfedae046ffa3800d79d296490eeca69ab8aee34087416f5213cbb57b742dd07",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/catalog_contracts.py",
+      "sha256": "cc2c38ad876a7a848e9738599c4d295d8f10781bc8d60f1196892bce86429cd6",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/catalog_jobs.py",
+      "sha256": "46585a522984d1212a32f16f0da9fb257b786c3f7c424daa663ca9b31ba72af9",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/commerce_policy.py",
+      "sha256": "34286dcd8ab36a72cd01be093d6dda95db108cee0f61188f332c46969976ac34",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/config.py",
+      "sha256": "67a85ae497e363231ebe979a230ed4df7f0cad9f83b8e59d85a68990c886e8c3",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/contracts.py",
+      "sha256": "44ab258288ec2bcc9287c5cd7b8bd61419c72815d9536ff5021815e74c069856",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/credits.py",
+      "sha256": "d99cfe9cf143484050626860176c40f7435b6750faff21ee0095fbc0c6bea38a",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/db.py",
+      "sha256": "41cf709d389826880c14bf204a0c45d14dba3721f3d8ff7bdb1f293825b486d5",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/main.py",
+      "sha256": "77a1aae2189ed925c354dfb9bc3fd76530b752943bc2a54e71e3ef3a21296166",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/observability.py",
+      "sha256": "d1e92d9fb470c9e53895bd04231d4289ff6d9b95c106b4c7ca4a6431a863cfdd",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/ranking.py",
+      "sha256": "8432e1d78d73d506f887a2ddebffdf1e5a1042000a8f9b587d24a0c0e7bf5e25",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/worker.py",
+      "sha256": "16133e9dcc4bbd172a0595d0f3d362f434fb7a99a1aa652f87e62602e0cbb7b0",
+      "unchanged": true
+    },
+    {
+      "file": "services/api/src/glam_api/workspaces.py",
+      "sha256": "be9d69948d8cc01b4e279879fa7155f6aaee2409e7d10896f0d50059e3ebdc24",
+      "unchanged": true
+    }
+  ]
+}

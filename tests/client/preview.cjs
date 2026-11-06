@@ -154,6 +154,12 @@ const assert = require("node:assert/strict");
       "app/studio/",
       "app/shop/",
       "app/product/",
+      "app/results/",
+      "app/offer/",
+      "app/destination/",
+      "app/cart/",
+      "app/checkout/",
+      "app/orders/",
     ])
       assert.equal((await fetch(origin + base + "/" + route)).status, 200);
     await page.getByLabel("Preview journey").selectOption("9");
@@ -166,6 +172,29 @@ const assert = require("node:assert/strict");
       .getByRole("heading", { name: "The velvet lip.", exact: true })
       .waitFor();
     assert.match(await app.locator("main").innerText(), /Offer not verified/);
+    await page.getByLabel("Preview journey").selectOption("11");
+    app = page.frameLocator("iframe");
+    await app.getByRole("heading", { name: /Your features/ }).waitFor();
+    assert(
+      await app
+        .getByRole("button", {
+          name: "Analysis connection required",
+          exact: true,
+        })
+        .isDisabled(),
+    );
+    await page.getByLabel("Preview journey").selectOption("12");
+    app = page.frameLocator("iframe");
+    await app
+      .getByRole("heading", { name: "Away, in your own style.", exact: true })
+      .waitFor();
+    await page.getByLabel("Preview journey").selectOption("13");
+    app = page.frameLocator("iframe");
+    assert(
+      await app
+        .getByRole("button", { name: "Request checkout quote", exact: true })
+        .isDisabled(),
+    );
     await page.getByLabel("Preview journey").selectOption("0");
     await page.getByRole("button", { name: "Phone", exact: true }).click();
     await app
