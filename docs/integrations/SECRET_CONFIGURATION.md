@@ -1,5 +1,7 @@
 # Service credentials and secure environment setup
 
+> Latest Supabase request: development-only API connection preparation is now authorized for the selected project. See [current connection guide](SUPABASE_DEVELOPMENT_CONNECTION.md). Earlier deferred entries below remain historical for application/schema integration; the scoped read-only Supabase API check is now verified; no database/application integration is claimed.
+
 6 November 2026. Integration branch / user-designated main: `feat/platform-foundations`.
 
 The current environment has no configured service credentials. The user has confirmed an activated Stripe **test** account. Activation of other providers is not yet confirmed. Save only required credential names now; the owner enters values through secure environment settings. Never paste them in chat, commit `.env`, put server keys in browser bundles, or call configuration a successful authenticated connection.
