@@ -1,0 +1,144 @@
+{
+  "observed_at": "2026-11-07T14:15:15.192851+00:00",
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "method": "controlled email/password Auth sessions; no messages sent",
+  "sms_test": "BLOCKED_PROVIDER_NOT_CONFIGURED",
+  "oauth_test": "BLOCKED_PROVIDERS_NOT_CONFIGURED",
+  "native_biometric_test": "BLOCKED_REAL_DEVICE_VALIDATION",
+  "checks": [
+    {
+      "name": "controlled_user_created",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "controlled_user_created",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "controlled_login",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "controlled_login",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "controlled_login",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "profile_provisioned",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "profile_provisioning_idempotent",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "notifications_default_private",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "notification_preference_saved",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "device_metadata_only_upsert",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "device_secret_field_rejected",
+      "http_status": 422,
+      "expected": 422,
+      "passed": true
+    },
+    {
+      "name": "cross_user_devices_empty",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "cross_user_profile_rls_denied",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "current_session_logout",
+      "http_status": 204,
+      "expected": 204,
+      "passed": true
+    },
+    {
+      "name": "revoked_jwt_rpc_denied",
+      "http_status": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "name": "other_session_same_user_remains_valid",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "revoked_jwt_direct_data_api_denied",
+      "http_status": 200,
+      "passed": true
+    },
+    {
+      "name": "all_sessions_logout",
+      "http_status": 204,
+      "expected": 204,
+      "passed": true
+    },
+    {
+      "name": "global_revocation_denied",
+      "http_status": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "name": "unrelated_user_remains_valid",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    }
+  ],
+  "controlled_auth_ids": [
+    "4f3d68f4-7cb2-4597-b655-eb7856d442ba",
+    "d120c6d3-2c45-4fa8-9b84-6e77c86a112a"
+  ],
+  "cleanup": [
+    {
+      "id": "4f3d68f4-7cb2-4597-b655-eb7856d442ba",
+      "http_status": 200
+    },
+    {
+      "id": "d120c6d3-2c45-4fa8-9b84-6e77c86a112a",
+      "http_status": 200
+    }
+  ],
+  "status": "PASSED_SESSION_CORE_ONLY"
+}

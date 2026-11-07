@@ -3,6 +3,10 @@
 import { useRef, useState } from "react";
 import type { Dispatch, FormEvent, SetStateAction } from "react";
 
+import AccountSecurity from "./AccountSecurity";
+import PasswordlessSignIn from "./PasswordlessSignIn";
+import { clearWebSession, webAuth } from "../lib/passwordless";
+
 const url = "https://bkkmsbxrxkqaveymcrgi.supabase.co";
 const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 export const hostedAccountConfigured = Boolean(key);
@@ -70,59 +74,6 @@ export default function HostedAccount({ session, setSession }: {
     return r.status === 204 ? undefined : r.json();
   }
 
-  async function signIn(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
-    setBusy(true);
-    setStatus("Signing in securely…");
-    let access: string | null = null;
-    try {
-      const r = await fetch(url + "/auth/v1/token?grant_type=password", {
-        method: "POST",
-        headers: { apikey: key, "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: data.get("email"),
-          password: data.get("password"),
-        }),
-        credentials: "omit",
-        cache: "no-store",
-        redirect: "error",
-        signal: AbortSignal.timeout(30000),
-      });
-      form.reset();
-      if (!r.ok) {
-        throw new Error(
-          "Sign-in was not confirmed. Check your details and try again.",
-        );
-      }
-      const session = await r.json();
-      if (typeof session.access_token !== "string") {
-        throw new Error("Sign-in was not confirmed.");
-      }
-      access = session.access_token;
-      const p: Profile = await api("GET", "/v1/me/profile", access!);
-      const saved: Routine[] = await api("GET", "/v1/me/routines", access!);
-      setSession({ token: access!, profile: p, routines: saved });
-      setName(p.display_name || "");
-      setStatus(
-        "Signed in. Profile changes are saved to your GLAM account. Reloading ends this browser session.",
-      );
-    } catch (e) {
-      if (access) {
-        await fetch(url + "/auth/v1/logout?scope=local", {
-          method: "POST",
-          headers: { apikey: key, Authorization: "Bearer " + access },
-        }).catch(() => undefined);
-      }
-      setStatus(
-        e instanceof Error ? e.message : "Sign-in could not be confirmed.",
-      );
-    } finally {
-      setBusy(false);
-    }
-  }
-
   async function save(event: FormEvent) {
     event.preventDefault();
     if (!token) return;
@@ -145,13 +96,8 @@ export default function HostedAccount({ session, setSession }: {
     if (!token) return;
     setBusy(true);
     try {
-      const r = await fetch(url + "/auth/v1/logout?scope=local", {
-        method: "POST",
-        headers: { apikey: key, Authorization: "Bearer " + token },
-        credentials: "omit",
-        redirect: "error",
-        signal: AbortSignal.timeout(20000),
-      });
+      const { error } = await webAuth().auth.signOut({ scope: "local" });
+      const r = { ok: !error };
       setStatus(
         r.ok
           ? "Signed out."
@@ -160,6 +106,7 @@ export default function HostedAccount({ session, setSession }: {
     } catch {
       setStatus("Local session cleared. Server sign-out was not confirmed.");
     } finally {
+      clearWebSession();
       setSession(null);
       setName("");
       setRoutineTitle("");
@@ -240,32 +187,7 @@ export default function HostedAccount({ session, setSession }: {
             </button>
           </form>
         )
-        : (
-          <form method="post" onSubmit={signIn}>
-            <p>Sign in with your existing GLAM account.</p>
-            <label htmlFor="account-email">Email</label>
-            <input
-              id="account-email"
-              name="email"
-              type="email"
-              autoComplete="username"
-              required
-              disabled={busy}
-            />
-            <label htmlFor="account-password">Password</label>
-            <input
-              id="account-password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              required
-              disabled={busy}
-            />
-            <button className="button" disabled={busy}>
-              {busy ? "Signing in…" : "Sign in"}
-            </button>
-          </form>
-        )}
+        : <PasswordlessSignIn />}
       {profile && (
         <section aria-label="Account routines">
           <h3>Your saved routines</h3>
@@ -331,6 +253,13 @@ export default function HostedAccount({ session, setSession }: {
             </button>
           </form>
         </section>
+      )}
+      {profile && (
+        <AccountSecurity
+          userId={profile.id}
+          accessToken={token!}
+          onSignedOut={() => setSession(null)}
+        />
       )}
       <p role="status" aria-live="polite">{status}</p>
     </>

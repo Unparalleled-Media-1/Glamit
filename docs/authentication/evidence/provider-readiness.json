@@ -1,0 +1,38 @@
+{
+  "observed_at": "2026-11-07T14:08:24.295045+00:00",
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "provider_activation_requested": false,
+  "credentials_written": false,
+  "preserved_provider_enablement": {
+    "external_phone_enabled": false,
+    "external_google_enabled": false,
+    "external_apple_enabled": false,
+    "external_facebook_enabled": false
+  },
+  "verified_settings": {
+    "uri_allow_list": "https://www.glamit.beauty/auth/callback,glamai://auth/callback",
+    "security_manual_linking_enabled": true,
+    "sms_max_frequency": 60,
+    "sms_otp_exp": 300,
+    "sms_otp_length": 6
+  },
+  "provider_credential_presence": {
+    "sms_twilio_account_sid": false,
+    "sms_twilio_auth_token": false,
+    "sms_twilio_message_service_sid": false,
+    "external_google_client_id": false,
+    "external_google_secret": false,
+    "external_apple_client_id": false,
+    "external_apple_secret": false,
+    "external_facebook_client_id": false,
+    "external_facebook_secret": false
+  },
+  "captcha_enabled": false,
+  "unchanged_rate_limits": {
+    "rate_limit_sms_sent": 30,
+    "rate_limit_verify": 30
+  },
+  "webotp_domain_template_prepared": true,
+  "sms_provider": "twilio",
+  "sms_provider_enabled_after_template": false
+}

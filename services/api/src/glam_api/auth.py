@@ -17,6 +17,7 @@ class Principal:
     subject: str
     assurance: str = "aal1"
     authenticated_at: int | None = None
+    session_id: str | None = None
 
 
 @lru_cache
@@ -41,6 +42,7 @@ def verify_token(token: str, key, issuer: str, audience: str) -> Principal:
         subject=claims["sub"],
         assurance="aal2" if claims.get("aal") == "aal2" else "aal1",
         authenticated_at=auth_time if type(auth_time) is int else None,
+        session_id=claims.get("session_id") if isinstance(claims.get("session_id"), str) else None,
     )
 
 

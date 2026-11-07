@@ -5,6 +5,6 @@ const handler = createHandler({
   origins: (Deno.env.get("GLAM_ALLOWED_ORIGINS") ||
     "https://unparalleled-media-1.github.io").split(",").map((v) => v.trim())
     .filter(Boolean),
-  build: "glam-hosted-api-0012",
+  build: "glam-hosted-api-0013",
 });
 Deno.serve(handler);

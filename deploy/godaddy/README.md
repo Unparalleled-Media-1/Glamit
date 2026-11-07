@@ -2,7 +2,7 @@
 
 This package runs the existing approved GLAM application as static HTML/CSS/JavaScript, with the authenticated account core served by the original Supabase project. It requires HTTPS static-file hosting, supported by the user's confirmed GoDaddy cPanel / Web Hosting plan. It does not require Node or Python on the web host.
 
-The connected account supports existing-user password sign-in, profile display-name editing and durable routine CRUD. Auth tokens remain in app memory across navigation. Browser-stored styling plans are separate from account records. AI, private-image processing, merchant publication, booking and payment execution remain unavailable; reference images and products are not live results or inventory.
+The account source includes primary phone/SMS OTP, optional Google/Apple/Facebook PKCE and secure account linking, profile display-name editing and durable routine CRUD. SMS and social providers remain disabled until configured and tested; existing-user password sign-in remains an optional compatibility path. Auth tokens remain in app memory across navigation. Browser-stored styling plans are separate from account records. AI, private-image processing, merchant publication, booking and payment execution remain unavailable; reference images and products are not live results or inventory.
 
 ## Build and validation
 
@@ -19,11 +19,12 @@ The output is `dist/godaddy-web`. `build.json` identifies its source commit; `.h
 
 ## Live Supabase configuration verified
 
-- Project: `bkkmsbxrxkqaveymcrgi`; application migration `0012_hosted_routines`.
+- Project: `bkkmsbxrxkqaveymcrgi`; application migration `0013_passwordless_accounts`.
 - Auth site URL: `https://www.glamit.beauty`.
 - Edge secret name: `GLAM_ALLOWED_ORIGINS`; allowed origins are the canonical website and the previously allowed GitHub Pages origin.
 - Real website-origin preflight: HTTP204, exact allow-origin header. Untrusted origin: HTTP403.
-- Existing Auth providers and email verification requirements are preserved. This stage does not verify signup, recovery delivery or OAuth callbacks.
+- Phone/Google/Apple/Facebook remain disabled. Exact web callback `/auth/callback` and native `glamai://auth/callback` are prepared. Real SMS/OAuth callbacks and recovery delivery remain unverified.
+- See [authentication rollout and regression report](../../docs/authentication/PASSWORDLESS_AUTH_REPORT.md).
 
 ## Upload procedure
 

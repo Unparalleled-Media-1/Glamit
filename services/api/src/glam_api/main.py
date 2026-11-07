@@ -47,6 +47,19 @@ def digest(value) -> str:
 
 
 def user(db: Session, identity: Principal) -> UUID:
+    if identity.issuer == "https://bkkmsbxrxkqaveymcrgi.supabase.co/auth/v1":
+        try:
+            sid, subject = UUID(identity.session_id or ""), UUID(identity.subject)
+        except ValueError:
+            raise HTTPException(401, "Active Supabase session required") from None
+        if not db.scalar(
+            text(
+                "SELECT EXISTS(SELECT 1 FROM auth.sessions WHERE id=:id AND user_id=:u "
+                "AND (not_after IS NULL OR not_after>now()))"
+            ),
+            {"id": sid, "u": subject},
+        ):
+            raise HTTPException(401, "Session was revoked or expired")
     db.execute(
         text(
             "INSERT INTO app_user(id,issuer,subject) VALUES (:id,:i,:s) "
@@ -137,7 +150,7 @@ def ready(db: Db):
     from glam_api.config import get_settings
 
     applied = set(db.scalars(text("SELECT version_num FROM alembic_version")))
-    if "0012_hosted_routines" not in applied:
+    if "0013_passwordless_accounts" not in applied:
         raise HTTPException(503, "Database migration is not current")
     if not get_settings().oidc_issuer:
         raise HTTPException(503, "Identity provider is not configured")

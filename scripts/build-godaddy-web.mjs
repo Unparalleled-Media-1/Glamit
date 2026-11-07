@@ -55,6 +55,8 @@ await cp("apps/web/public/images", path.join(root, "images"), {
 // Explicit files also support static hosts that do not use Apache rewrites.
 for (
   const route of [
+    "login",
+    "auth/callback",
     "profile",
     "analyze",
     "studio",

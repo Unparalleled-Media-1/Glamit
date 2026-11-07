@@ -1,0 +1,73 @@
+{
+  "observed_at": "2026-11-07T14:27:49.736256+00:00",
+  "checks": {
+    "postgresql_regression": {
+      "status": "PASSED",
+      "tests": 233,
+      "scope": "fresh local dedicated test database"
+    },
+    "ruff_and_openapi": {
+      "status": "PASSED"
+    },
+    "edge_security": {
+      "status": "PASSED",
+      "tests": 6
+    },
+    "client_types": {
+      "status": "PASSED",
+      "targets": [
+        "web",
+        "mobile",
+        "cPanel"
+      ]
+    },
+    "web_build": {
+      "status": "PASSED"
+    },
+    "mobile_exports": {
+      "status": "PASSED",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "scope": "Metro JavaScript exports with public Supabase key; not signed binaries"
+    },
+    "auth_ui": {
+      "status": "PASSED",
+      "scope": "intercepted HTTP doubles, no SMS sent"
+    },
+    "native_gate": {
+      "status": "PASSED",
+      "scope": "SDK/AppState/SecureStore doubles; no physical device"
+    },
+    "existing_web_regression": {
+      "status": "PASSED",
+      "groups": 13
+    },
+    "cpanel_package": {
+      "status": "PASSED",
+      "routes": 8,
+      "scope": "local Chromium; disabled-provider and navigation checks"
+    },
+    "production_dependency_audit": {
+      "status": "PASSED",
+      "vulnerabilities": 0
+    },
+    "privileged_environment_value_scan": {
+      "status": "PASSED",
+      "scope": "tracked/untracked nonignored repository files; public build keys intentionally allowed"
+    },
+    "real_sms_oauth": {
+      "status": "BLOCKED",
+      "reason": "providers disabled and unconfigured"
+    },
+    "real_ios_android_biometrics": {
+      "status": "BLOCKED",
+      "reason": "physical devices/signing/application identifiers pending"
+    },
+    "frontend_publication": {
+      "status": "BLOCKED",
+      "reason": "cPanel access and applied host network grants absent"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 """Official Supabase Management API multipart deployment; no credentials in source or output."""
 
+import argparse
 import hashlib
 import json
 import os
@@ -9,7 +10,7 @@ import httpx
 from deploy_application_foundation import PROJECT
 
 
-def deploy():
+def deploy(report_path="docs/database/evidence/hosted-api/edge-deployment.json"):
     source = Path("supabase/functions/glam-api")
     paths = sorted(source.glob("*.ts"))
     files = [
@@ -49,9 +50,7 @@ def deploy():
             "legacy gateway verification disabled for ES256 compatibility."
         ),
     }
-    Path("docs/database/evidence/hosted-api/edge-deployment.json").write_text(
-        json.dumps(report, indent=2) + "\n"
-    )
+    Path(report_path).write_text(json.dumps(report, indent=2) + "\n")
     print(
         json.dumps(
             {
@@ -64,4 +63,8 @@ def deploy():
 
 
 if __name__ == "__main__":
-    deploy()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--report", default="docs/database/evidence/hosted-api/edge-deployment.json"
+    )
+    deploy(parser.parse_args().report)
