@@ -1,0 +1,17 @@
+{
+  "artifacts": [
+    {
+      "created_at": "2026-11-07T20:26:52Z",
+      "digest": "sha256:da696dd9cfe3820d76dfdcc76e977bf35c4b353c5bc20559b5ffbfa99e0b06ae",
+      "expired": false,
+      "id": 13589039085,
+      "name": "railway-deployed-evidence-42410985870",
+      "size_in_bytes": 18068530
+    }
+  ],
+  "run_url": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42410985870",
+  "runner_commit": "4a77355b2d2e8d0dfbe5b905ee5a3d95ff6b4743",
+  "receipt_source": "https://api.github.com/repos/Unparalleled-Media-1/Glamit/check-runs/128518864010/annotations",
+  "artifact_download_from_workspace": "BLOCKED_BY_MANAGED_EGRESS",
+  "full_artifact_contents": "Per-route screenshots, Playwright trace.zip and report.json retained by GitHub; not downloaded or visually inspected here"
+}

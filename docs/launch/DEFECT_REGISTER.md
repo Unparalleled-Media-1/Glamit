@@ -1,6 +1,18 @@
 # Defect register
 
-07 November 2026 21:46 SAST. **NO-GO — no public launch or service mutation.** Machine evidence uses UTC timestamps.
+07 November 2026 22:30 SAST. **NO-GO — no public launch or service mutation.** Machine evidence uses UTC timestamps.
+
+## Latest deployed CI evidence
+
+Observed 2026-11-07T20:26:00.185Z by the [read-only GitHub runner](https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42410985870). Result: **ANONYMOUS_ROUTE_PROBE_ONLY**. 78 route/viewport responses collected; 78 returned HTTP success. Critical journeys remain **0 / 31 passed**. Deployed SHA: `d846b94c2fe6f0b4394be2b74c27734cde4533bf`.
+
+Health observations: `/api/health/live` HTTP 200, `/api/health/ready` HTTP 503, `/health/live` HTTP 404, `/health/ready` HTTP 404.
+
+The web readiness response is `not_configured`; this commit checks `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Configure the original project's public client key for the web build/runtime and rebuild only through the approved release workflow. Never substitute a service-role key. Actual Railway variable/build settings still require token-based inspection.
+
+The CI home page observed no favicon link or logo image. Exact supplied artwork files remain unavailable in this workspace; PR28's photo repair is not included in the observed default-branch deployment.
+
+This new evidence supersedes only the earlier workspace-only anonymous network-access result. The baseline sections below retain that earlier attempt for audit history. HTTP success is not a completed business journey. Railway runtime/build logs, source configuration, qualified authentication, financial acceptance and rollback remain unverified. No deployment or production mutation was performed. Full screenshots/trace are retained in the workflow artifact; this workspace's proxy also blocks its artifact/log download hosts. [Machine receipt](evidence/railway-rescue/railway-ci-receipt.json).
 
 | ID | Severity | Status | Issue / evidence or next action |
 |---|---|---|---|
@@ -18,7 +30,7 @@
 | D108 | P1 | OPEN | Bookings workflow incomplete: Implement/verify atomic availability, booking, changes and notifications; no booking rate invented. |
 | D109 | P1 | OPEN | Creator, ads and admin execution incomplete: Qualified role-specific persistent operations and authorization tests required. |
 | D110 | P1 | OPEN | Notification delivery not configured: Preferences save; actual SMS/email/push and order/booking delivery unverified. |
-| D111 | P1 | OPEN | Public hosting/monitoring/recovery unverified: Railway token was configured in service settings, not this Codex environment. Agent token absent; proxy blocks deployed navigation. Actual Railway runtime/source/logs/rollback remain unverified. |
+| D111 | P1 | OPEN | Public hosting/monitoring/recovery unverified: CI reached Railway: served SHA d846b94c2fe6f0b4394be2b74c27734cde4533bf, 78/78 anonymous route responses HTTP200; live200, readiness503 not_configured. Web public Supabase key is unavailable to readiness. Runtime/source settings, logs and rollback remain unverified without agent token. |
 | D112 | P1 | OPEN | Legal and complete recovery/deletion gates incomplete: Terms publication, legal/retention approval and lost-all-methods recovery/deletion workflow required. |
 | D113 | P1 | FIXED | Reviewed main consolidation incomplete: Approved feature PRs21–26 merged into actual default; main absent. Clean default CI passes. Dependency PRs remain separately reviewed. |
 | D201 | P1 | FIXED | Release lock omitted G12 and deployed Railway evidence: Four new structural fixtures failed before repair; eight release-lock tests pass after repair. No synthetic receipt or provider fixture counts as live evidence. |

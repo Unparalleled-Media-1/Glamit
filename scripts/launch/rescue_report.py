@@ -24,7 +24,44 @@ def write(name, title, body):
     now = datetime.now(ZoneInfo("Africa/Johannesburg")).strftime("%d %B %Y %H:%M SAST")
     (DOC / name).write_text(
         f"# {title}\n\n{now}. **NO-GO — no public launch or service mutation.** "
-        "Machine evidence uses UTC timestamps.\n\n" + body + "\n"
+        "Machine evidence uses UTC timestamps.\n\n" + ci_recovery_note() + body + "\n"
+    )
+
+
+def ci_recovery_note():
+    receipt = E / "railway-ci-receipt.json"
+    if not receipt.exists():
+        return ""
+    ci = json.loads(receipt.read_text())
+    counts = ci["counts"]
+    health = ", ".join(
+        f"`{check['endpoint']}` HTTP {check.get('http_status', 'unavailable')}"
+        for check in ci["health"]
+    )
+    return (
+        "## Latest deployed CI evidence\n\n"
+        f"Observed {ci['observed_at']} by the [read-only GitHub runner]({ci['run_url']}). "
+        f"Result: **{ci['status']}**. {counts['http_routes_checked']} route/viewport "
+        f"responses collected; {counts['http_routes_success']} returned HTTP success. "
+        f"Critical journeys remain **{counts.get('critical_passed', 0)} / 31 passed**. "
+        f"Deployed SHA: `{ci.get('deployed_commit') or 'UNVERIFIED'}`.\n\n"
+        f"Health observations: {health}.\n\n"
+        "The web readiness response is `not_configured`; this commit checks "
+        "`NEXT_PUBLIC_SUPABASE_ANON_KEY`. Configure the original project's public "
+        "client key for the web build/runtime and rebuild only through the approved "
+        "release workflow. Never substitute a service-role key. Actual Railway "
+        "variable/build settings still require token-based inspection.\n\n"
+        "The CI home page observed no favicon link or logo image. Exact supplied "
+        "artwork files remain unavailable in this workspace; PR28's photo repair "
+        "is not included in the observed default-branch deployment.\n\n"
+        "This new evidence supersedes only the earlier workspace-only anonymous "
+        "network-access result. The baseline sections below retain that earlier "
+        "attempt for audit history. HTTP success is not a completed business journey. "
+        "Railway runtime/build logs, source configuration, qualified authentication, "
+        "financial acceptance and rollback remain unverified. No deployment or "
+        "production mutation was performed. Full screenshots/trace are retained in "
+        "the workflow artifact; this workspace's proxy also blocks its artifact/log "
+        "download hosts. [Machine receipt](evidence/railway-rescue/railway-ci-receipt.json).\n\n"
     )
 
 
@@ -43,6 +80,8 @@ def main():
         ]
     )
     checks = read("default-branch-checks.json")
+    ci_path = E / "railway-ci-receipt.json"
+    ci = json.loads(ci_path.read_text()) if ci_path.exists() else None
     regression = (ART / "pytest.log").read_text()
     matched = re.search(r"(\d+) passed", regression)
     passed = int(matched.group(1)) if matched else None
@@ -266,6 +305,33 @@ def main():
             },
         },
     }
+    ci_path = E / "railway-ci-receipt.json"
+    if ci_path.exists():
+        ci = json.loads(ci_path.read_text())
+        health = {c["endpoint"]: c for c in ci["health"]}
+        summary["railway"].update(
+            evidence_kind="deployed_read_only_ci",
+            observed_at=ci["observed_at"],
+            deployed_commit=ci["deployed_commit"],
+            live_status=health.get("/api/health/live", {}).get("http_status"),
+            ready_status=health.get("/api/health/ready", {}).get("http_status"),
+            ci_receipt="railway-ci-receipt.json",
+        )
+        for workflow in workflows:
+            workflow["reason"] = (
+                "Qualified deployed journey remains unexecuted; anonymous CI HTTP "
+                "route success is not authentication, provider or business acceptance."
+            )
+        for defect in defects:
+            if defect["id"] == "D111":
+                defect["resolution"] = (
+                    f"CI reached Railway: served SHA {ci['deployed_commit']}, "
+                    f"{ci['counts']['http_routes_success']}/{ci['counts']['http_routes_checked']} "
+                    "anonymous route responses HTTP200; live200, readiness503 "
+                    "not_configured. Web "
+                    "public Supabase key is unavailable to readiness. Runtime/source "
+                    "settings, logs and rollback remain unverified without agent token."
+                )
     for destination in [E / "launch-summary.json", DOC / "evidence/launch-summary.json"]:
         destination.write_text(json.dumps(summary, indent=2) + "\n")
     (E / "workflow-results.json").write_text(json.dumps(workflows, indent=2) + "\n")
@@ -298,6 +364,21 @@ def main():
         "build/runtime log or GitHub integration authorization evidence was "
         "obtained."
     )
+    if ci:
+        access = access.replace(
+            "Actual deployed commit **unknown**.",
+            f"Served health endpoint reports deployed commit `{ci['deployed_commit']}`; "
+            "Railway API source settings remain unverified.",
+        )
+        blocked = (
+            "This workspace has no Railway token and its managed proxy rejects the "
+            "Railway CONNECT tunnel with HTTP403 before an application response. "
+            "The authorized GitHub runner bypasses that workspace limitation: "
+            "78/78 anonymous desktop/mobile route responses succeeded, live200, "
+            "readiness503 not_configured. No Railway deployment/build/runtime logs "
+            "or source settings were accessed. Critical journeys remain 0/31; "
+            "HTTP route success is not business acceptance."
+        )
     prerequisite = (
         "Required access: the existing project's environment-scoped "
         "`RAILWAY_TOKEN` in **this Codex environment's secure settings**, "
@@ -360,10 +441,19 @@ def main():
             [
                 (
                     "Deployed SHA / branch",
-                    "UNKNOWN; GitHub source SHA does not establish deployment",
+                    (
+                        f"Served SHA {ci['deployed_commit']}; source branch settings unverified"
+                        if ci
+                        else "UNKNOWN; GitHub source SHA does not establish deployment"
+                    ),
                 ),
                 ("Build/startup/runtime logs", "BLOCKED — Railway access"),
-                ("HTTP health / readiness / assets", "BLOCKED — proxy denied navigation"),
+                (
+                    "HTTP health / readiness / assets",
+                    "CI live200, readiness503; no favicon/logo image observed"
+                    if ci
+                    else "BLOCKED — proxy denied navigation",
+                ),
                 ("Frontend→backend / hosted Supabase", "UNVERIFIED"),
                 ("OAuth / live click-through / role journeys", "BLOCKED"),
                 ("Restart / recovery / previous-release rollback", "NOT RUN"),
@@ -681,7 +771,9 @@ def main():
                 "open_high": open_high,
                 "backend_passed": passed,
                 "local_visits": crawl["counts"]["route_viewport_visits"],
-                "deployed_routes_blocked": len(source["routes"]),
+                "deployed_routes_blocked": ci["counts"]["blocked_routes"]
+                if ci
+                else len(source["routes"]),
             }
         )
     )

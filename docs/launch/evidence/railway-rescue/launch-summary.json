@@ -1,6 +1,6 @@
 {
   "release_evidence_version": 2,
-  "observed_at": "2026-11-07T19:46:18.119675+00:00",
+  "observed_at": "2026-11-07T20:30:15.648534+00:00",
   "decision": "NO-GO",
   "candidate_base_commit": "d846b94c2fe6f0b4394be2b74c27734cde4533bf",
   "candidate_branch": "audit/railway-rescue-release-lock",
@@ -8,6 +8,7 @@
     ".github/workflows/ci.yml": "fbe68f1d4bb70dd34111ea28d688542a457cb585be9674e3e560d06e71bd75c8",
     ".github/workflows/interactive-preview.yml": "078ef067b03569ddf87da1bea7d10d521b82d7df0ac2032549d330f2f4d5965d",
     ".github/workflows/native-store-build.yml": "f907bc9711ff8c0b8ac11e3010eff44637d3ed0d21a55ace5c13665352004e98",
+    ".github/workflows/railway-deployed-evidence.yml": "9ba0e64842ddcefe70a0101547b283652b5030f9ff0123e16b08498fd7637cb4",
     "alembic.ini": "403bbabbc68305b13e0432585bc12197b22b661fde7ff3683c6184cbd3434f06",
     "apps/mobile/App.tsx": "21cf33401dd0e040372eea672a2e35c2627fc7d930de2c75aa7ad6916a60135d",
     "apps/mobile/BeautyExperience.tsx": "74e8b193cb0c10996348f48f5c6f1beff1e530ce65d88556030222c827d0289d",
@@ -149,10 +150,11 @@
     "scripts/launch/merge_interactions.py": "feb1db2e25300e4851ff36ed0166eef61e16d0fe3aace3fa8e87c8a2b758ed52",
     "scripts/launch/package_evidence.py": "5ac427ad76b1fd07d81070a8c05405f802ab5f3959025f00982817831034423a",
     "scripts/launch/performance.cjs": "959fa3fea50a43cad3cb4a7bf12b2063b22d6a71d3a134d0e2487602bd7e3ec3",
+    "scripts/launch/railway-ci-probe.cjs": "74d806b6ea72e6058dd559c4cd1d16cd759229b1e3dd46fde23f8cd630edb89b",
     "scripts/launch/release-gates.cjs": "59b916d3a7a8cccdc162c1ef530220ca89dd1a6b5b000a47ddee495ea64dd99a",
     "scripts/launch/remote_probe.py": "218a7811714b83f0ebe1c668af6e991879f6e9c3a3f0e1f9a06b8e28cec1de42",
     "scripts/launch/report.py": "bcfba1e52d149842acdd5d8f4bc3b051637fa3919b632a2c2dbfebcc43f66472",
-    "scripts/launch/rescue_report.py": "c692d0ac3cf52bb912d75e2866e73d4434ee53ad65435a5de456628467827fb3",
+    "scripts/launch/rescue_report.py": "280ea1b2ae89f307331d46d98362bc6b45f0b88334ae2d12ecab21ce4be99e74",
     "scripts/launch/run_checks.py": "133b653ee27dde279da74cb672587225fdb2255742251ef5227d87b5e132c1b8",
     "scripts/launch/secret_scan.py": "ef05e70b1e27e982d8332899b77dbf4870e5bdb0acb62b712ebb8f2f55c46ac8",
     "scripts/launch/verify_cleanup.py": "b061d6c9a4c9f631bdc2ef14c799dfb26fee72214095e39b0433032755562ce4",
@@ -199,14 +201,14 @@
       "scope": "Local web UI; no live inventory claimed",
       "evidence": "clickthrough.json",
       "prior_or_local_status": "PASSED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped."
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance."
     },
     {
       "id": "W02",
       "domain": "Authentication",
       "name": "SMS registration, login, delivery and throttling",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -215,7 +217,7 @@
       "domain": "Authentication",
       "name": "Google, Apple, Facebook and secure linking",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -224,7 +226,7 @@
       "domain": "Mobile",
       "name": "iOS and Android biometric reauthentication",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "regression-checks.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -236,14 +238,14 @@
       "scope": "Real controlled Supabase Auth session and scoped persistent records",
       "evidence": "live-core-regression.json",
       "prior_or_local_status": "PASSED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped."
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance."
     },
     {
       "id": "W06",
       "domain": "Account",
       "name": "Account deletion and lost-all-methods recovery",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "../../authentication/PASSWORDLESS_AUTH_REPORT.md",
       "prior_or_local_status": "BLOCKED"
     },
@@ -252,7 +254,7 @@
       "domain": "AI",
       "name": "Authorized face analysis operation and personal result",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "live-core-regression.json",
       "prior_or_local_status": "FAILED"
     },
@@ -261,7 +263,7 @@
       "domain": "AI",
       "name": "Hair/grooming analysis and recommendations",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -270,7 +272,7 @@
       "domain": "AI",
       "name": "Skin appearance analysis without diagnosis",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -279,7 +281,7 @@
       "domain": "AI",
       "name": "Personal color/undertone and real product matching",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -288,7 +290,7 @@
       "domain": "AI",
       "name": "AI Studio transformation, compare, save and reopen",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -297,7 +299,7 @@
       "domain": "AI",
       "name": "AI Advisor conversation, memory and history",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -306,7 +308,7 @@
       "domain": "AI",
       "name": "Personal Stylist, complete outfit and virtual preview",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "regression-checks.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -315,7 +317,7 @@
       "domain": "AI",
       "name": "Event invitation extraction, styling and shopping",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "regression-checks.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -324,7 +326,7 @@
       "domain": "AI",
       "name": "Destination weather, outfits and packing recommendations",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -333,7 +335,7 @@
       "domain": "AI",
       "name": "Digital Wardrobe durable uploads and outfits",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -342,7 +344,7 @@
       "domain": "Marketplace",
       "name": "Real search, variants, inventory and eligible offers",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "regression-checks.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -351,7 +353,7 @@
       "domain": "Marketplace",
       "name": "Local/destination discovery and shipping feasibility",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -360,7 +362,7 @@
       "domain": "Merchant",
       "name": "Merchant onboarding, Snap & List, publish and orders",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "workspace-layouts.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -369,7 +371,7 @@
       "domain": "Payments",
       "name": "Multi-merchant checkout and 10% reconciliation",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -378,7 +380,7 @@
       "domain": "Orders",
       "name": "Order fulfillment, tracking, refund and ledger reversal",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -387,7 +389,7 @@
       "domain": "Bookings",
       "name": "Professional availability, booking conflict and changes",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "workspace-layouts.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -396,7 +398,7 @@
       "domain": "Creator",
       "name": "Creator storefront, shoppable looks and attribution",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "workspace-layouts.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -405,7 +407,7 @@
       "domain": "Advertising",
       "name": "Campaign targeting, budgets and reporting",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "workspace-layouts.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -414,7 +416,7 @@
       "domain": "Administration",
       "name": "Real admin approvals, moderation and finance controls",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "workspace-layouts.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -423,7 +425,7 @@
       "domain": "Notifications",
       "name": "OTP, order, booking, email and push delivery",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -435,14 +437,14 @@
       "scope": "Real scoped Supabase records, optimistic revisions, idempotency and cleanup",
       "evidence": "live-core-regression.json",
       "prior_or_local_status": "PASSED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped."
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance."
     },
     {
       "id": "W28",
       "domain": "Workspaces",
       "name": "Authorized multi-role business switching and actions",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "workspace-layouts.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -454,14 +456,14 @@
       "scope": "Controlled real Auth users plus local access-control regressions; not every future role permission",
       "evidence": "live-session-regression.json",
       "prior_or_local_status": "PASSED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped."
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance."
     },
     {
       "id": "W30",
       "domain": "UX",
       "name": "Responsive accessibility including real native and screen readers",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "clickthrough.json",
       "prior_or_local_status": "BLOCKED"
     },
@@ -470,7 +472,7 @@
       "domain": "Deployment",
       "name": "Public HTTPS, monitoring, rollback and pilot UAT",
       "status": "BLOCKED",
-      "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+      "reason": "Qualified deployed journey remains unexecuted; anonymous CI HTTP route success is not authentication, provider or business acceptance.",
       "evidence": "remote-readiness.json",
       "prior_or_local_status": "BLOCKED"
     }
@@ -579,7 +581,7 @@
       "severity": "P1",
       "title": "Public hosting/monitoring/recovery unverified",
       "status": "OPEN",
-      "resolution": "Railway token was configured in service settings, not this Codex environment. Agent token absent; proxy blocks deployed navigation. Actual Railway runtime/source/logs/rollback remain unverified."
+      "resolution": "CI reached Railway: served SHA d846b94c2fe6f0b4394be2b74c27734cde4533bf, 78/78 anonymous route responses HTTP200; live200, readiness503 not_configured. Web public Supabase key is unavailable to readiness. Runtime/source settings, logs and rollback remain unverified without agent token."
     },
     {
       "id": "D112",
@@ -711,13 +713,13 @@
   "workspace_layout_visits": 99,
   "backend_tests_passed": 260,
   "railway": {
-    "evidence_kind": "unverified",
+    "evidence_kind": "deployed_read_only_ci",
     "url": "https://glamit-web-production.up.railway.app",
-    "observed_at": "2026-11-07T19:29:46.371Z",
+    "observed_at": "2026-11-07T20:26:00.185Z",
     "deployment_id": null,
-    "deployed_commit": null,
-    "live_status": null,
-    "ready_status": null,
+    "deployed_commit": "d846b94c2fe6f0b4394be2b74c27734cde4533bf",
+    "live_status": 200,
+    "ready_status": 503,
     "supabase_verified": false,
     "frontend_backend_verified": false,
     "oauth_cors_verified": false,
@@ -731,6 +733,7 @@
       "failed": 0,
       "blocked": 31,
       "skipped": 0
-    }
+    },
+    "ci_receipt": "railway-ci-receipt.json"
   }
 }
