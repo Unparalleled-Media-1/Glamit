@@ -1,0 +1,179 @@
+{
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "status": "ACTIVE_HEALTHY",
+  "observed_at": "2026-11-07T18:10:25.418855+00:00",
+  "branch_inventory_count": 0,
+  "history": [
+    {
+      "version_num": "0013_passwordless_accounts"
+    }
+  ],
+  "public_table_count": 41,
+  "tables": [
+    {
+      "name": "account_eligibility",
+      "rls": true
+    },
+    {
+      "name": "alembic_version",
+      "rls": true
+    },
+    {
+      "name": "api_request_counters",
+      "rls": true
+    },
+    {
+      "name": "app_user",
+      "rls": true
+    },
+    {
+      "name": "audit_event",
+      "rls": true
+    },
+    {
+      "name": "catalog_ai_job",
+      "rls": true
+    },
+    {
+      "name": "catalog_approval",
+      "rls": true
+    },
+    {
+      "name": "catalog_listing",
+      "rls": true
+    },
+    {
+      "name": "catalog_media",
+      "rls": true
+    },
+    {
+      "name": "catalog_projection",
+      "rls": true
+    },
+    {
+      "name": "catalog_revision",
+      "rls": true
+    },
+    {
+      "name": "consent_event",
+      "rls": true
+    },
+    {
+      "name": "credit_account",
+      "rls": true
+    },
+    {
+      "name": "credit_journal",
+      "rls": true
+    },
+    {
+      "name": "credit_posting",
+      "rls": true
+    },
+    {
+      "name": "credit_reservation",
+      "rls": true
+    },
+    {
+      "name": "device_auth_preferences",
+      "rls": true
+    },
+    {
+      "name": "idempotency_record",
+      "rls": true
+    },
+    {
+      "name": "look",
+      "rls": true
+    },
+    {
+      "name": "look_revision",
+      "rls": true
+    },
+    {
+      "name": "market_policy_version",
+      "rls": true
+    },
+    {
+      "name": "merchant_profiles",
+      "rls": true
+    },
+    {
+      "name": "notification_preferences",
+      "rls": true
+    },
+    {
+      "name": "organization_members",
+      "rls": true
+    },
+    {
+      "name": "organizations",
+      "rls": true
+    },
+    {
+      "name": "outbox_event",
+      "rls": true
+    },
+    {
+      "name": "personal_routine",
+      "rls": true
+    },
+    {
+      "name": "policy_document",
+      "rls": true
+    },
+    {
+      "name": "product_categories",
+      "rls": true
+    },
+    {
+      "name": "product_variants",
+      "rls": true
+    },
+    {
+      "name": "products",
+      "rls": true
+    },
+    {
+      "name": "professional_profiles",
+      "rls": true
+    },
+    {
+      "name": "profiles",
+      "rls": true
+    },
+    {
+      "name": "saved_requirement",
+      "rls": true
+    },
+    {
+      "name": "staff_grant",
+      "rls": true
+    },
+    {
+      "name": "style_passports",
+      "rls": true
+    },
+    {
+      "name": "user_preferences",
+      "rls": true
+    },
+    {
+      "name": "workspace_capability",
+      "rls": true
+    },
+    {
+      "name": "workspace_draft",
+      "rls": true
+    },
+    {
+      "name": "workspace_invitation",
+      "rls": true
+    },
+    {
+      "name": "workspace_role",
+      "rls": true
+    }
+  ],
+  "production_modified": false
+}

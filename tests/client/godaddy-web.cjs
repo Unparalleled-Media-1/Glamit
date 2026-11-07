@@ -99,7 +99,7 @@ const assert = require("node:assert/strict");
       );
     }
     await page.goto(origin + "/login/");
-    await page.getByRole("heading", { name: "Sign in to GLAM AI", exact: true })
+    await page.getByRole("heading", { name: "Sign in to GLAM Beauty", exact: true })
       .waitFor();
     await page.getByText("SMS sign-in isn’t available right now.", {
       exact: false,
@@ -130,7 +130,7 @@ const assert = require("node:assert/strict");
     });
     await page.setViewportSize({ width: 390, height: 844 });
     await page.getByRole("link", {
-      name: "Explore GLAM AI as a guest",
+      name: "Explore GLAM Beauty as a guest",
       exact: true,
     }).click();
     await page.getByRole("heading", { name: /Your next look/ }).waitFor();

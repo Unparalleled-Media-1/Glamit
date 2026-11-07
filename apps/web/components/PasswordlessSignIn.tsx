@@ -166,7 +166,7 @@ export default function PasswordlessSignIn() {
     }
   }
   return (
-    <section className="auth-surface" aria-label="Sign in to GLAM AI">
+    <section className="auth-surface" aria-label="Sign in to GLAM Beauty">
       <p className="auth-intro">
         Your personal beauty and style journey starts here.
       </p>

@@ -91,7 +91,7 @@ function PreviewHub() {
     <div className="preview-hub">
       <header className="preview-header">
         <a href={base + "/"} className="preview-wordmark">
-          ✧ GLAM <span>AI</span>
+          ✧ GLAM <span>Beauty</span>
         </a>
         <span className="preview-label">INTERACTIVE DESIGN REVIEW</span>
         <a
@@ -106,7 +106,7 @@ function PreviewHub() {
         <div className="preview-intro">
           <div>
             <p>THE BEAUTY EXPERIENCE</p>
-            <h1>Explore GLAM AI.</h1>
+            <h1>Explore GLAM Beauty.</h1>
           </div>
           <span className="preview-status">
             Responsive web preview · Live connections off
@@ -169,7 +169,7 @@ function PreviewHub() {
         <div className="preview-stage">
           <div className={"preview-frame " + device}>
             <iframe
-              title="GLAM AI interactive application"
+              title="GLAM Beauty interactive application"
               key={task + ":" + reload}
               src={appPath(t.path)}
               allow="camera 'none'; microphone 'none'; geolocation 'none'"

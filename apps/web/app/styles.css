@@ -4407,3 +4407,10 @@ body:has(.beauty-shell) {
     bottom: 30px;
   }
 }
+
+/* Creator drafts share the canonical light account surface. */
+.creator-studio { min-width: 0; }
+.creator-studio form { display: grid; gap: 14px; margin-block: 20px; }
+.creator-studio input:not([type=checkbox]), .creator-studio textarea, .creator-studio select { width: 100%; min-width: 0; min-height: 48px; }
+.creator-studio .draft { overflow-wrap: anywhere; }
+.creator-studio :is(input, textarea, select):focus-visible { outline: 2px solid var(--glam-palette-rose); outline-offset: 2px; }

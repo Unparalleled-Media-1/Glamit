@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "Profile save and manual link labeling",
+    "Rights and sponsorship forms save private drafts",
+    "desktop: no horizontal overflow; automated WCAG A/AA checks pass",
+    "mobile: no horizontal overflow; automated WCAG A/AA checks pass",
+    "compact: no horizontal overflow; automated WCAG A/AA checks pass",
+    "Owned draft deletion",
+    "Unavailable service clears previous records and reports failure"
+  ],
+  "evidence": "Browser emulation with intercepted HTTP; not native devices or live providers"
+}

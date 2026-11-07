@@ -29,6 +29,7 @@ def deploy(apply=False, release="0011"):
         "0011": ("0010_supabase_foundation", "0011_hosted_api"),
         "0012": ("0011_hosted_api", "0012_hosted_routines"),
         "0013": ("0012_hosted_routines", "0013_passwordless_accounts"),
+        "0014": ("0013_passwordless_accounts", "0014_creator_studio"),
     }
     predecessor, revision = lineage[release]
     artifact = Path(f"db/migrations/releases/{release}_application.sql")
@@ -103,7 +104,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply-production-approved", action="store_true")
     parser.add_argument("--report", required=True)
-    parser.add_argument("--release", choices=["0011", "0012", "0013"], default="0011")
+    parser.add_argument("--release", choices=["0011", "0012", "0013", "0014"], default="0011")
     args = parser.parse_args()
     try:
         result = deploy(args.apply_production_approved, args.release)

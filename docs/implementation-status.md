@@ -1,3 +1,7 @@
+## 7 November — GLAM Beauty / Creator Studio draft
+
+Confirmed display name: **GLAM Beauty**. Active web/mobile UI, metadata and build titles updated; canonical visual tokens and auth schemes preserved. Exact inline brand artwork still needs downloadable source files. Private Creator Studio draft flows are implemented and tested locally; migration 0014 and the clients are not deployed. No live social provider, shoppable publication, campaign execution, referral earnings or payouts are operational. See [implementation and provider report](creator-studio/IMPLEMENTATION_REPORT.md) for 251-test regression evidence and open gates.
+
 # Implementation evidence and remaining gates
 
 **Latest payment authority — 6 November 2026:** Zanzu Technologies Inc. operates GLAM AI. The user authorized **Stripe Connect test mode only**, including additive sandbox financial tables and the existing 10% completed physical-item policy. Existing production financial records, live payment activation and production Supabase remain protected. See [payment architecture](payments/PAYMENT_ARCHITECTURE.md), [readiness](payments/STRIPE_CONNECT_READINESS.md) and [financial regression](payments/PAYMENT_REGRESSION_REPORT.md). Isolated tests pass; actual Stripe acceptance is blocked and integration is not complete.

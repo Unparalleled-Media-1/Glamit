@@ -308,7 +308,7 @@ export default function NativeAccount({ auth }: Props) {
   }
   return (
     <View style={s.card}>
-      <AuthText style={s.heading}>Welcome to GLAM AI</AuthText>
+      <AuthText style={s.heading}>Welcome to GLAM Beauty</AuthText>
       <AuthText>Your personal beauty and style journey starts here.</AuthText>
       {available.phone || target
         ? (!target
@@ -445,7 +445,7 @@ export default function NativeAccount({ auth }: Props) {
           ))
         : (
           <AuthText>
-            SMS sign-in isn’t available right now. Explore GLAM AI without
+            SMS sign-in isn’t available right now. Explore GLAM Beauty without
             signing in.
           </AuthText>
         )}
