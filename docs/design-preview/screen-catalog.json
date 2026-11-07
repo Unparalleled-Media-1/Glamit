@@ -1,0 +1,4476 @@
+{
+  "version": "ui-ux-1.0",
+  "authority": "2026-11 UI/UX brief; prototype-only, approval before implementation",
+  "consumerFamilies": [
+    {
+      "id": "M01",
+      "title": "Initialization and service availability",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "identity / capabilities / preferences / media consent",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J00",
+      "preview": "?surface=ios&screen=onboarding",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Start; no private processing",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "progress",
+        "heading": "A considered beginning.",
+        "copy": "Initialization and capability discovery precede private or commercial features.",
+        "fields": [
+          "App availability",
+          "Market policy",
+          "Session / assurance"
+        ],
+        "cta": "Continue when qualified"
+      },
+      "study": "?surface=library&family=M01"
+    },
+    {
+      "id": "M02",
+      "title": "Welcome/value proposition",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "identity / capabilities / preferences / media consent",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J00",
+      "preview": "?surface=ios&screen=onboarding",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "First visit",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "welcome",
+        "heading": "Every Look. Every Style. Everyone.",
+        "copy": "Discover a point of view, make it yours, then consider the real-world details.",
+        "fields": [
+          "Explore without pressure",
+          "Optional preferences",
+          "Private by default"
+        ],
+        "cta": "Start exploring"
+      },
+      "study": "?surface=library&family=M02"
+    },
+    {
+      "id": "M03",
+      "title": "Feature introduction",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "identity / capabilities / preferences / media consent",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J00",
+      "preview": "?surface=ios&screen=onboarding",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Honest capability/availability labels",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "journey",
+        "heading": "From inspiration to possibility.",
+        "copy": "A few clear steps, with meaningful value before a paywall.",
+        "fields": [
+          "Discover",
+          "Try and personalize",
+          "Complete",
+          "Shop / Book / Share"
+        ],
+        "cta": "Continue introduction"
+      },
+      "study": "?surface=library&family=M03"
+    },
+    {
+      "id": "M04",
+      "title": "Country/language and age-appropriate eligibility",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "identity / capabilities / preferences / media consent",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J00",
+      "preview": "?surface=ios&screen=onboarding",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Jurisdiction-specific assurance/guardian capabilities; missing policy does not grant adult access",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "form",
+        "heading": "A world of different details.",
+        "copy": "Locale, delivery market and age policy are separate, reviewed inputs.",
+        "fields": [
+          "Region / market",
+          "Language and direction",
+          "Display currency",
+          "Age-appropriate entry"
+        ],
+        "cta": "Verify eligible entry"
+      },
+      "study": "?surface=library&family=M04"
+    },
+    {
+      "id": "M05",
+      "title": "Beauty goals",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "identity / capabilities / preferences / media consent",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J00",
+      "preview": "?surface=ios&screen=onboarding",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Optional preferences, not processing consent",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "preferences",
+        "heading": "What brings you here?",
+        "copy": "Goals are optional choices, not assumptions about identity.",
+        "fields": [
+          "Hair and grooming",
+          "Makeup and cosmetic style",
+          "Fashion and outfits",
+          "Occasions",
+          "Use what I own"
+        ],
+        "cta": "Review optional goals"
+      },
+      "study": "?surface=library&family=M05"
+    },
+    {
+      "id": "M06",
+      "title": "Style/hair preferences",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "identity / capabilities / preferences / media consent",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J00",
+      "preview": "?surface=ios&screen=onboarding",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Inclusive natural/braid/loc/wig/protective choices; user corrections",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "preferences",
+        "heading": "Your style, in your words.",
+        "copy": "Preferences remain editable, optional and private.",
+        "fields": [
+          "Comfort and fit",
+          "Coverage preferences",
+          "Hair goals",
+          "Favorite colors",
+          "Budget range"
+        ],
+        "cta": "Review preferences"
+      },
+      "study": "?surface=library&family=M06"
+    },
+    {
+      "id": "M07",
+      "title": "Capture guidance",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "identity / capabilities / preferences / media consent",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J00",
+      "preview": "?surface=ios&screen=onboarding",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "After sign-in, purpose disclosure first",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "journey",
+        "heading": "A little guidance before the camera.",
+        "copy": "Explain purpose, processor, retention, uncertainty, price and alternatives first.",
+        "fields": [
+          "Even lighting",
+          "Clear framing",
+          "Explicit permission",
+          "Manual alternative"
+        ],
+        "cta": "Review photo purpose"
+      },
+      "study": "?surface=library&family=M07"
+    },
+    {
+      "id": "M08",
+      "title": "Camera/manual capture or supported upload alternative",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "identity / capabilities / preferences / media consent",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J00",
+      "preview": "?surface=ios&screen=onboarding",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Explicit permission and Start scan; cancel/countdown/retake",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "capture",
+        "heading": "Your photo. Your permission.",
+        "copy": "Illustrative framing only. No camera or photo upload is active.",
+        "fields": [
+          "Purpose and rights",
+          "Age / guardian eligibility",
+          "Camera permission",
+          "Cancel or manual alternative"
+        ],
+        "cta": "Camera unavailable"
+      },
+      "study": "?surface=library&family=M08"
+    },
+    {
+      "id": "M09",
+      "title": "Quality review",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "identity / capabilities / preferences / media consent",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J00",
+      "preview": "?surface=ios&screen=onboarding",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Blur/light/occlusion uncertainty; do not retain rejected frames",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "capture",
+        "heading": "Take another look.",
+        "copy": "No actual quality assessment has been run on this illustrative image.",
+        "fields": [
+          "Lighting: not evaluated",
+          "Blur / occlusion: not evaluated",
+          "Retake",
+          "Keep only an authorized still"
+        ],
+        "cta": "Review eligible still"
+      },
+      "study": "?surface=library&family=M09"
+    },
+    {
+      "id": "M10",
+      "title": "Privacy and processing consent",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "identity / capabilities / preferences / media consent",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J00",
+      "preview": "?surface=ios&screen=onboarding",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Separate camera, processor, storage and marketing purposes",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "checks",
+        "heading": "Clear choices, separate purposes.",
+        "copy": "A checked prototype box cannot create approved policy or processing authority.",
+        "fields": [
+          "Capture / cosmetic analysis",
+          "External processor disclosure",
+          "Save results separately",
+          "Marketing is optional"
+        ],
+        "cta": "Consent connection required"
+      },
+      "study": "?surface=library&family=M10"
+    },
+    {
+      "id": "M11",
+      "title": "Guest results introduction",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "identity / capabilities / preferences / media consent",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J00",
+      "preview": "?surface=ios&screen=onboarding",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Deferred alternate flow; no guest photo processing in selected baseline",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "blocked",
+        "heading": "Guest processing is deferred.",
+        "copy": "The selected baseline is Google/Supabase with eligibility before private processing.",
+        "fields": [
+          "Generic exploration",
+          "Provider-owned identity",
+          "No anonymous face processing"
+        ],
+        "cta": "Qualified account required"
+      },
+      "study": "?surface=library&family=M11"
+    },
+    {
+      "id": "M12",
+      "title": "Google sign-in/account entry",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "identity / capabilities / preferences / media consent",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J00",
+      "preview": "?surface=ios&screen=onboarding",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Supabase browser/PKCE callback; no Google password collection",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "identity",
+        "heading": "A space that is yours.",
+        "copy": "Google through Supabase remains selected. No Google password is collected here.",
+        "fields": [
+          "Exact-project sign-in",
+          "Age / guardian qualification",
+          "Optional profile setup"
+        ],
+        "cta": "Google sign-in unavailable"
+      },
+      "study": "?surface=library&family=M12"
+    },
+    {
+      "id": "M13",
+      "title": "Account-access help/recovery",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "identity / capabilities / preferences / media consent",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J00",
+      "preview": "?surface=ios&screen=onboarding",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Provider-owned recovery; no parallel password system",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "identity",
+        "heading": "A safe way back.",
+        "copy": "Recovery follows the identity provider. No parallel password system is introduced.",
+        "fields": [
+          "Provider-owned recovery",
+          "Account help",
+          "Session security"
+        ],
+        "cta": "Recovery connection required"
+      },
+      "study": "?surface=library&family=M13"
+    },
+    {
+      "id": "M14",
+      "title": "Home",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "analysis jobs / private media / feedback",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J01",
+      "preview": "?surface=ios&screen=home",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Goals, inspiration, honest unavailable/empty states",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "welcome",
+        "heading": "Find Your Next Look.",
+        "copy": "Visual discovery first, contextual assistance when useful.",
+        "fields": [
+          "Selected inspiration",
+          "Categories",
+          "Occasions",
+          "Complete the Look",
+          "For your budget"
+        ],
+        "cta": "Open discovery flow"
+      },
+      "study": "?surface=library&family=M14"
+    },
+    {
+      "id": "M15",
+      "title": "Analysis confirmation/quote",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "analysis jobs / private media / feedback",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J01",
+      "preview": "?surface=ios&screen=studio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Exact server price, purpose and expiry before submission",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "quote",
+        "heading": "Know the obligation first.",
+        "copy": "A server-issued price, purpose and expiry must be accepted before dispatch.",
+        "fields": [
+          "Feature and parameters",
+          "Exact credit quote: unavailable",
+          "Processor / purpose",
+          "Expiry: not issued"
+        ],
+        "cta": "Quote unavailable"
+      },
+      "study": "?surface=library&family=M15"
+    },
+    {
+      "id": "M16",
+      "title": "Analysis progress/cancel",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "analysis jobs / private media / feedback",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J01",
+      "preview": "?surface=ios&screen=studio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Provider-independent job lifecycle and reconnect",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "progress",
+        "heading": "Clear progress. Safe outcomes.",
+        "copy": "Queued / processing / cancellation states do not imply a completed result.",
+        "fields": [
+          "Job lineage: not created",
+          "Original protected",
+          "Cancel / retry semantics",
+          "No unauthorized failure charge"
+        ],
+        "cta": "Job not connected"
+      },
+      "study": "?surface=library&family=M16"
+    },
+    {
+      "id": "M17",
+      "title": "Beauty report",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "analysis jobs / private media / feedback",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J01",
+      "preview": "?surface=ios&screen=studio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Cosmetic guidance, confidence and limits; no diagnosis/attractiveness score",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "report",
+        "heading": "Guidance, with room for uncertainty.",
+        "copy": "No face analysis has been run. This is a report-structure study.",
+        "fields": [
+          "Cosmetic observations: not provided",
+          "Lighting limitations",
+          "Confidence / abstention",
+          "User corrections"
+        ],
+        "cta": "Analysis connection required"
+      },
+      "study": "?surface=library&family=M17"
+    },
+    {
+      "id": "M18",
+      "title": "Personal color palette",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "analysis jobs / private media / feedback",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J01",
+      "preview": "?surface=ios&screen=studio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Lighting uncertainty and user correction",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "palette",
+        "heading": "Color, thoughtfully considered.",
+        "copy": "These are brand swatches, not a personal color result or a skin-tone determination.",
+        "fields": [
+          "Lighting uncertainty",
+          "Editable preferences",
+          "Source and model version"
+        ],
+        "cta": "Qualified color result required"
+      },
+      "study": "?surface=library&family=M18"
+    },
+    {
+      "id": "M19",
+      "title": "Analysis feedback",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "analysis jobs / private media / feedback",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J01",
+      "preview": "?surface=ios&screen=studio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Owner-scoped correction; separate evaluation consent",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "form",
+        "heading": "Your feedback matters.",
+        "copy": "Correction and evaluation permissions remain distinct from analysis consent.",
+        "fields": [
+          "Feedback category",
+          "What needs correction?",
+          "Optional evaluation permission"
+        ],
+        "cta": "Feedback service unavailable"
+      },
+      "study": "?surface=library&family=M19"
+    },
+    {
+      "id": "M20",
+      "title": "Studio overview",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "generation jobs / private looks / quotes",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J01",
+      "preview": "?surface=ios&screen=studio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Original input remains accessible",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "studio",
+        "heading": "Your own creative studio.",
+        "copy": "Large preview, collapsible controls, original access and explicit quote.",
+        "fields": [
+          "Hair",
+          "Makeup",
+          "Outfit",
+          "Accessories"
+        ],
+        "cta": "Qualified generation required"
+      },
+      "study": "?surface=library&family=M20"
+    },
+    {
+      "id": "M21",
+      "title": "Makeup/cosmetic style/intensity",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "generation jobs / private looks / quotes",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J01",
+      "preview": "?surface=ios&screen=studio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Qualified purpose/age/market parameters; no complexion normalization",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "preferences",
+        "heading": "Makeup, on your terms.",
+        "copy": "Cosmetic parameters do not authorize complexion normalization or an unpriced edit.",
+        "fields": [
+          "Style direction",
+          "Intensity",
+          "Finish",
+          "Original access"
+        ],
+        "cta": "Review server quote"
+      },
+      "study": "?surface=library&family=M21"
+    },
+    {
+      "id": "M22",
+      "title": "Hair/grooming/beard/color selection",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "generation jobs / private looks / quotes",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J01",
+      "preview": "?surface=ios&screen=studio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Straight/wavy/curly/coily/thinning/absent hair, natural/protective/wig/barber and localized coverage",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "preferences",
+        "heading": "Every kind of expression.",
+        "copy": "Inclusive hair and grooming choices come from the user.",
+        "fields": [
+          "Straight / wavy / curly / coily",
+          "Natural / protective / wigs",
+          "Thinning or absent hair",
+          "Beard / barber styling"
+        ],
+        "cta": "Qualified hair provider required"
+      },
+      "study": "?surface=library&family=M22"
+    },
+    {
+      "id": "M23",
+      "title": "Complete makeover configuration",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "generation jobs / private looks / quotes",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J01",
+      "preview": "?surface=ios&screen=studio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Explicit components and complexion-preservation disclosure",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "preferences",
+        "heading": "Consider the complete direction.",
+        "copy": "Preserve identity, natural skin tone, body proportions and visible features.",
+        "fields": [
+          "Selected components",
+          "Style intensity",
+          "Preservation and limits",
+          "Accepted quote"
+        ],
+        "cta": "Review generation obligation"
+      },
+      "study": "?surface=library&family=M23"
+    },
+    {
+      "id": "M24",
+      "title": "Generation quote/progress",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "generation jobs / private looks / quotes",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J01",
+      "preview": "?surface=ios&screen=studio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Confirm first; success-only consumption; failure/cancel release",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "quote",
+        "heading": "A quote before a generation.",
+        "copy": "No progress animation can substitute for server verification.",
+        "fields": [
+          "Current quote: unavailable",
+          "Required consent",
+          "Queue and expiry",
+          "Verified outcome"
+        ],
+        "cta": "Generation unavailable"
+      },
+      "study": "?surface=library&family=M24"
+    },
+    {
+      "id": "M25",
+      "title": "Before/after comparison",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "generation jobs / private looks / quotes",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J01",
+      "preview": "?surface=ios&screen=studio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Mark output as simulation, retain original access",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "studio",
+        "heading": "Original, always in reach.",
+        "copy": "Comparison-layout study using unchanged editorial imagery, not a real transformation.",
+        "fields": [
+          "Original / simulation labels",
+          "Accessible comparison slider",
+          "Undo",
+          "Save by explicit choice"
+        ],
+        "cta": "Open comparison study"
+      },
+      "study": "?surface=library&family=M25"
+    },
+    {
+      "id": "M26",
+      "title": "Saved looks/detail",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "generation jobs / private looks / quotes",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J01",
+      "preview": "?surface=ios&screen=studio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Consent, retention and deletion; no automatic public sharing",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "empty",
+        "heading": "A space for your saved looks.",
+        "copy": "No personal results are loaded. Saving, renewal and deletion are explicit.",
+        "fields": [
+          "Private retention",
+          "Owned look detail",
+          "Delete / withdraw"
+        ],
+        "cta": "No saved content connected"
+      },
+      "study": "?surface=library&family=M26"
+    },
+    {
+      "id": "M27",
+      "title": "Advisor conversation list",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "advisor / conversations / routines",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Owned history and purpose controls",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "empty",
+        "heading": "Conversations, kept in context.",
+        "copy": "No conversation history is loaded or fabricated.",
+        "fields": [
+          "Owned history",
+          "Purpose and expiry",
+          "Delete conversation"
+        ],
+        "cta": "Conversation service unavailable"
+      },
+      "study": "?surface=library&family=M27"
+    },
+    {
+      "id": "M28",
+      "title": "Advisor chat",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "advisor / conversations / routines",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Policy-checked recommendations, no invented products/medical advice",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "chat",
+        "heading": "Ask GLAM, in context.",
+        "copy": "A layout example, not a live model response or tool execution.",
+        "fields": [
+          "User-selected goal",
+          "Permitted context",
+          "Source-backed suggestions",
+          "Confirm before any obligation"
+        ],
+        "cta": "Advisor not connected"
+      },
+      "study": "?surface=library&family=M28"
+    },
+    {
+      "id": "M29",
+      "title": "Routine/beauty plan",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "advisor / conversations / routines",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Clear steps and sources/limitations",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "journey",
+        "heading": "A plan you can make your own.",
+        "copy": "Cosmetic routine structure only; no medical treatment or invented product recommendation.",
+        "fields": [
+          "Your chosen goal",
+          "Qualified guidance",
+          "Clear limitations",
+          "Optional reminders"
+        ],
+        "cta": "Routine service unavailable"
+      },
+      "study": "?surface=library&family=M29"
+    },
+    {
+      "id": "M30",
+      "title": "Routine progress",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "advisor / conversations / routines",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Optional tracking and deletable history",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "checks",
+        "heading": "Progress, without pressure.",
+        "copy": "Tracking is optional and can be corrected or deleted.",
+        "fields": [
+          "A chosen routine step",
+          "Optional completion",
+          "Pause reminders",
+          "Clear history"
+        ],
+        "cta": "Progress connection required"
+      },
+      "study": "?surface=library&family=M30"
+    },
+    {
+      "id": "M31",
+      "title": "Product recommendations",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "catalog / matching / full-cost quote / referrals / professional feasibility",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J02",
+      "preview": "?surface=ios&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Actual eligible catalog only; separate organic/Sponsored",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "products",
+        "heading": "Consider the useful details.",
+        "copy": "Illustrative items are not verified recommendations or stock.",
+        "fields": [
+          "Organic relevance",
+          "Separate sponsorship",
+          "Regional eligibility"
+        ],
+        "cta": "Verified catalog required"
+      },
+      "study": "?surface=library&family=M31"
+    },
+    {
+      "id": "M32",
+      "title": "Product details/offer comparison",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "catalog / matching / full-cost quote / referrals / professional feasibility",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J02",
+      "preview": "?surface=ios&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Fresh stock/price/region and disclosed external destination",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "product",
+        "heading": "Know what you are considering.",
+        "copy": "Unbranded image study. All commercial facts require source evidence.",
+        "fields": [
+          "Variants / size: unknown",
+          "Price: unavailable",
+          "Stock: unverified",
+          "Delivery / returns: unknown"
+        ],
+        "cta": "Verified merchant required"
+      },
+      "study": "?surface=library&family=M32"
+    },
+    {
+      "id": "M33",
+      "title": "Saved products/shopping list",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "catalog / matching / full-cost quote / referrals / professional feasibility",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J02",
+      "preview": "?surface=ios&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Owned list; totals estimates until quote",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "quote",
+        "heading": "A plan, not a promise.",
+        "copy": "A shopping list is not an authoritative quote or inventory hold.",
+        "fields": [
+          "Component quantities",
+          "Owned items",
+          "Known subtotal / unknown costs",
+          "Source freshness"
+        ],
+        "cta": "Review evidenced offers"
+      },
+      "study": "?surface=library&family=M33"
+    },
+    {
+      "id": "M34",
+      "title": "Profile overview",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "profile / consent / privacy",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Account state and owned shortcuts",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "identity",
+        "heading": "Your account. Your choices.",
+        "copy": "Identity, plans, private content and rights remain separate controls.",
+        "fields": [
+          "Style DNA",
+          "Private saves",
+          "Plans and credits",
+          "Privacy / accessibility"
+        ],
+        "cta": "Account not connected"
+      },
+      "study": "?surface=library&family=M34"
+    },
+    {
+      "id": "M35",
+      "title": "Edit goals/preferences",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "profile / consent / privacy",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "No role/entitlement edits",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "preferences",
+        "heading": "Preferences can change.",
+        "copy": "Inspect and correct explicit choices; learning needs separate permission.",
+        "fields": [
+          "Goals",
+          "Colors / fits",
+          "Optional measurements",
+          "Memory learning controls"
+        ],
+        "cta": "Review preference changes"
+      },
+      "study": "?surface=library&family=M35"
+    },
+    {
+      "id": "M36",
+      "title": "Plans/benefit comparison",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "profile / consent / privacy",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Approved localized store price; no hardcoded commercial promises",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "plans",
+        "heading": "Value before a paywall.",
+        "copy": "No unapproved prices, allowances or unlimited promises.",
+        "fields": [
+          "Free exploration where supported",
+          "Premium generation: price pending",
+          "Advanced tools: price pending",
+          "Store renewal terms required"
+        ],
+        "cta": "Store pricing unavailable"
+      },
+      "study": "?surface=library&family=M36"
+    },
+    {
+      "id": "M37",
+      "title": "Store purchase confirmation/result",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "profile / consent / privacy",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "User consent; server verification before entitlement",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "quote",
+        "heading": "Confirm the exact store purchase.",
+        "copy": "No purchase or entitlement is created by this design.",
+        "fields": [
+          "Localized store product",
+          "Price / renewal terms",
+          "Server verification",
+          "Explicit confirmation"
+        ],
+        "cta": "Purchase unavailable"
+      },
+      "study": "?surface=library&family=M37"
+    },
+    {
+      "id": "M38",
+      "title": "Subscription status/manage/restore",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "profile / consent / privacy",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Renewal/grace/refund/cancellation and verified restore",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "empty",
+        "heading": "Your plan, clearly managed.",
+        "copy": "Restore and entitlement state require verified store evidence.",
+        "fields": [
+          "Current state: not loaded",
+          "Restore purchases",
+          "Manage cancellation",
+          "Grace / refunds"
+        ],
+        "cta": "Store connection required"
+      },
+      "study": "?surface=library&family=M38"
+    },
+    {
+      "id": "M39",
+      "title": "Credit balance/lots",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "profile / consent / privacy",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Purchased versus included units, disclosed expiry/priority",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "quote",
+        "heading": "Credits, with clear lineage.",
+        "copy": "Balances derive from authorized journals, not a client field.",
+        "fields": [
+          "Available balance: unknown",
+          "Held units: unknown",
+          "Purchased / included lots",
+          "Expiry and priority"
+        ],
+        "cta": "Verified account required"
+      },
+      "study": "?surface=library&family=M39"
+    },
+    {
+      "id": "M40",
+      "title": "Credit history/receipts",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "profile / consent / privacy",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Server-derived ledger and per-job lineage",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "empty",
+        "heading": "A history that adds up.",
+        "copy": "No journal entries or receipts are fabricated.",
+        "fields": [
+          "Source and business event",
+          "Reserve / consume / release",
+          "Refund / reversal",
+          "Reconciliation"
+        ],
+        "cta": "Ledger not connected"
+      },
+      "study": "?surface=library&family=M40"
+    },
+    {
+      "id": "M41",
+      "title": "Notifications/settings",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "profile / consent / privacy",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Consent and platform permission controls",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "checks",
+        "heading": "Useful reminders, your choice.",
+        "copy": "No notifications are sent. Respect timezone, quiet hours and opt-out.",
+        "fields": [
+          "Occasion preparation",
+          "Routine reminders",
+          "Account security",
+          "Marketing separately"
+        ],
+        "cta": "Notification service unavailable"
+      },
+      "study": "?surface=library&family=M41"
+    },
+    {
+      "id": "M42",
+      "title": "Privacy/consent center",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "profile / consent / privacy",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Purpose withdrawal and consequences",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "checks",
+        "heading": "Private, by purpose.",
+        "copy": "A policy and verified authority are required; prototype choices grant neither.",
+        "fields": [
+          "Processing purpose",
+          "Save / memory separately",
+          "Explicit publication",
+          "Withdraw consent"
+        ],
+        "cta": "Consent service unavailable"
+      },
+      "study": "?surface=library&family=M42"
+    },
+    {
+      "id": "M43",
+      "title": "Data export/status",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "profile / consent / privacy",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Verified owner; auditable request",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "identity",
+        "heading": "Your data, under your control.",
+        "copy": "Export requires appropriate owner/guardian verification and scoped evidence.",
+        "fields": [
+          "Request scope",
+          "Verification",
+          "Status / due date",
+          "Protected delivery"
+        ],
+        "cta": "Export not connected"
+      },
+      "study": "?surface=library&family=M43"
+    },
+    {
+      "id": "M44",
+      "title": "Account deletion/status",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "profile / consent / privacy",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Confirm, revoke sessions, track object/provider completion",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "checks",
+        "heading": "A clear path to deletion.",
+        "copy": "Explain private-content cleanup and any lawful minimum retained records before confirmation.",
+        "fields": [
+          "Confirm request scope",
+          "Revoke sessions / pending work",
+          "Track object / vendor deletion",
+          "Completion evidence"
+        ],
+        "cta": "Deletion request unavailable"
+      },
+      "study": "?surface=library&family=M44"
+    },
+    {
+      "id": "M45",
+      "title": "Help/support/security",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "profile / consent / privacy",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Redacted support, session/device controls",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "identity",
+        "heading": "Help, without unnecessary exposure.",
+        "copy": "Support sees redacted information by default, not every private image.",
+        "fields": [
+          "Account access help",
+          "Session / device review",
+          "Scoped support request",
+          "Exceptional access reason"
+        ],
+        "cta": "Support connection required"
+      },
+      "study": "?surface=library&family=M45"
+    },
+    {
+      "id": "M46",
+      "title": "Complete Look checklist",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "catalog / matching / full-cost quote / referrals / professional feasibility",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J02",
+      "preview": "?surface=ios&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Immutable decomposition, confirmed quantities/requirements",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "components",
+        "heading": "Complete the Look.",
+        "copy": "Break down the look without pretending that sample imagery is live inventory.",
+        "fields": [
+          "Hair / makeup",
+          "Clothing / shoes",
+          "Accessories / services",
+          "Alternatives and source evidence"
+        ],
+        "cta": "Verified handoff required"
+      },
+      "study": "?surface=library&family=M46"
+    },
+    {
+      "id": "M47",
+      "title": "Shop/compare/within-budget assembly",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "catalog / matching / full-cost quote / referrals / professional feasibility",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J02",
+      "preview": "?surface=ios&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Actual offers, unfilled components visible; no imaginary price fits",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "quote",
+        "heading": "Compare the whole obligation.",
+        "copy": "Do not call an incomplete estimate complete or within budget.",
+        "fields": [
+          "Items / materials",
+          "Grouped shipping / tax / duties",
+          "Full service obligation",
+          "Known versus unknown"
+        ],
+        "cta": "Compare evidenced offers"
+      },
+      "study": "?surface=library&family=M47"
+    },
+    {
+      "id": "M48",
+      "title": "Book the Look/professionals",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "catalog / matching / full-cost quote / referrals / professional feasibility",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J02",
+      "preview": "?surface=ios&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Real availability/quote/deposit and regional rules",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "professional",
+        "heading": "Find someone who can make it real.",
+        "copy": "Qualification and actual availability precede booking.",
+        "fields": [
+          "Verified capability",
+          "Service area / duration",
+          "Feasibility and materials",
+          "Quote and actual slot"
+        ],
+        "cta": "Professional not connected"
+      },
+      "study": "?surface=library&family=M48"
+    },
+    {
+      "id": "M49",
+      "title": "Creator looks/collections",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "catalog / matching / full-cost quote / referrals / professional feasibility",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J02",
+      "preview": "?surface=ios&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Licensing, moderation and sponsorship/affiliate disclosures",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "gallery",
+        "heading": "A point of view, thoughtfully shared.",
+        "copy": "No creator identity, commission or published customer result is invented.",
+        "fields": [
+          "Licensed collections",
+          "Disclosure",
+          "Permitted audience",
+          "Verified attribution"
+        ],
+        "cta": "Qualified creator required"
+      },
+      "study": "?surface=library&family=M49"
+    },
+    {
+      "id": "M50",
+      "title": "Fashion/wardrobe stylist",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "catalog / matching / full-cost quote / referrals / professional feasibility",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J02",
+      "preview": "?surface=ios&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Qualified garment preservation, fit limitations and rights",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "gallery",
+        "heading": "A wardrobe of possibilities.",
+        "copy": "Garment fidelity and fit limitations remain visible.",
+        "fields": [
+          "Fashion direction",
+          "Modest / adaptive choices",
+          "Optional user measurements",
+          "Source rights"
+        ],
+        "cta": "Qualified styling required"
+      },
+      "study": "?surface=library&family=M50"
+    },
+    {
+      "id": "M51",
+      "title": "Screenshot upload/rights and component confirmation",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "catalog / matching / full-cost quote / referrals / professional feasibility",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J02",
+      "preview": "?surface=ios&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Safe private upload, explicit permitted source/purpose; no arbitrary social scraping",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "capture",
+        "heading": "Screenshot to Shop.",
+        "copy": "Use permitted source material, minimize unrelated faces, and never fetch arbitrary URLs.",
+        "fields": [
+          "Rights / purpose",
+          "Private upload",
+          "Component confirmation",
+          "Exact / Similar evidence"
+        ],
+        "cta": "Upload not connected"
+      },
+      "study": "?surface=library&family=M51"
+    },
+    {
+      "id": "M52",
+      "title": "Visual search Exact/Similar/Unknown results",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "catalog / matching / full-cost quote / referrals / professional feasibility",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J02",
+      "preview": "?surface=ios&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Independent identity evidence for Exact; real offer freshness/eligibility",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "products",
+        "heading": "Similar is not identical.",
+        "copy": "Exact item claims need independent source/SKU identity evidence.",
+        "fields": [
+          "Exact: not verified",
+          "Similar: not computed",
+          "Stock / price freshness",
+          "Honest no-match state"
+        ],
+        "cta": "Retrieval not connected"
+      },
+      "study": "?surface=library&family=M52"
+    },
+    {
+      "id": "M53",
+      "title": "Global occasion discovery",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "catalog / matching / full-cost quote / referrals / professional feasibility",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J02",
+      "preview": "?surface=ios&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Voluntary event/cultural/coverage/preferences; no sensitive identity inference",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "preferences",
+        "heading": "What is the occasion?",
+        "copy": "Cultural and coverage preferences are chosen, never inferred from a photograph.",
+        "fields": [
+          "Everyday",
+          "Work / interview",
+          "Wedding / celebration",
+          "Cultural occasion",
+          "Your own description"
+        ],
+        "cta": "Continue occasion planning"
+      },
+      "study": "?surface=library&family=M53"
+    },
+    {
+      "id": "M54",
+      "title": "Full delivered-cost budget builder",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "catalog / matching / full-cost quote / referrals / professional feasibility",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J02",
+      "preview": "?surface=ios&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Item/merchant shipping/tax/duty/full service obligations and explicit unknowns",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "quote",
+        "heading": "Within budget means the full cost.",
+        "copy": "Shipping, taxes, fees, materials and full service obligations all count.",
+        "fields": [
+          "Budget / currency",
+          "Destination",
+          "Owned items",
+          "Unpriced components"
+        ],
+        "cta": "Evidence required for total"
+      },
+      "study": "?surface=library&family=M54"
+    },
+    {
+      "id": "M55",
+      "title": "Book the Exact Look feasibility/quote",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "catalog / matching / full-cost quote / referrals / professional feasibility",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J02",
+      "preview": "?surface=ios&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Scoped reference sharing, verified skill, materials/duration/terms; request is not booking",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "professional",
+        "heading": "Book the Exact Look.",
+        "copy": "A request, quote acceptance and a confirmed booking are distinct.",
+        "fields": [
+          "Authorized reference",
+          "Feasibility / materials",
+          "Full price / duration",
+          "Real slot / terms"
+        ],
+        "cta": "Request connection required"
+      },
+      "study": "?surface=library&family=M55"
+    },
+    {
+      "id": "M56",
+      "title": "Guardian/family hub",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "age / guardian / fit / publication / verified rewards",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Verified limited authority; no sibling/other-household access",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "identity",
+        "heading": "Explore together, with verified authority.",
+        "copy": "A self-asserted relationship cannot grant a child context or household access.",
+        "fields": [
+          "Guardian verification",
+          "Relationship scope",
+          "Per-child permissions",
+          "Revoke / rights support"
+        ],
+        "cta": "Guardian service unavailable"
+      },
+      "study": "?surface=library&family=M56"
+    },
+    {
+      "id": "M57",
+      "title": "Managed child context/permissions",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "age / guardian / fit / publication / verified rewards",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Curated restricted styling; no adult session inheritance, child public profile or launch photorealistic twin",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "blocked",
+        "heading": "A carefully limited space.",
+        "copy": "Curated guardian-managed styling only after policy qualification; no child public profile or launch photorealistic twin.",
+        "fields": [
+          "No adult-session inheritance",
+          "No public photo sharing",
+          "No initial ads",
+          "Private rights handling"
+        ],
+        "cta": "Guardian qualification required"
+      },
+      "study": "?surface=library&family=M57"
+    },
+    {
+      "id": "M58",
+      "title": "Teen eligibility/privacy/consent and access help",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "age / guardian / fit / publication / verified rewards",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Approved jurisdiction route; no appearance profiling/pressure or initial ads",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "identity",
+        "heading": "Your style, without pressure.",
+        "copy": "Restricted teen capability depends on jurisdiction, assurance and consent; no appearance ranking or profiling.",
+        "fields": [
+          "Eligibility help",
+          "Age-appropriate guidance",
+          "Private preferences",
+          "Export / delete / support"
+        ],
+        "cta": "Age policy not connected"
+      },
+      "study": "?surface=library&family=M58"
+    },
+    {
+      "id": "M59",
+      "title": "Size/fit/adaptive/modest preferences",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "age / guardian / fit / publication / verified rewards",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Optional declared measurements/units/size charts; no guaranteed fit or inferred identity",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "form",
+        "heading": "Fit information you can correct.",
+        "copy": "A photo is not a guaranteed size, body identity or physical-fit measurement.",
+        "fields": [
+          "Merchant size-chart source",
+          "Measurement units",
+          "Optional declared measurements",
+          "Coverage / adaptive preferences"
+        ],
+        "cta": "Qualified size evidence required"
+      },
+      "study": "?surface=library&family=M59"
+    },
+    {
+      "id": "M60",
+      "title": "Share/try a style template and rights preview",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "age / guardian / fit / publication / verified rewards",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Private by default, explicit asset allowlist, revocable tokens, no youth publication initially",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "checks",
+        "heading": "Choose exactly what to share.",
+        "copy": "Private inputs are excluded by default. Publication needs rights and an eligible audience.",
+        "fields": [
+          "Non-personal style template",
+          "Explicit asset allowlist",
+          "Revocable link",
+          "No implicit selfie publication"
+        ],
+        "cta": "Publication unavailable"
+      },
+      "study": "?surface=library&family=M60"
+    },
+    {
+      "id": "M61",
+      "title": "Optional loyalty/referral controls",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "age / guardian / fit / publication / verified rewards",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J05",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Verified eligible events, reversible accounting and no coercive appearance streaks",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "empty",
+        "heading": "Useful rewards, without pressure.",
+        "copy": "No reward balance or earnings are fabricated; real eligible events need verification and reversals.",
+        "fields": [
+          "Approved rule version",
+          "Verified qualifying event",
+          "Age eligibility",
+          "Opt-out / abuse review"
+        ],
+        "cta": "Reward program not connected"
+      },
+      "study": "?surface=library&family=M61"
+    },
+    {
+      "id": "M62",
+      "title": "Style DNA/memory review/edit/reset",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "companion memory / wardrobe / twin / occasion / group / agent / later commerce",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Explicit choices versus permitted learned suggestions; inspect/delete provenance and consent",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "preferences",
+        "heading": "Your Style DNA, under your control.",
+        "copy": "Not literal DNA or a faceprint. Separate explicit preferences from permitted learned suggestions.",
+        "fields": [
+          "Colors / fits / goals",
+          "Inspect provenance",
+          "Accept / reject suggestions",
+          "Reset / delete learning"
+        ],
+        "cta": "Memory service unavailable"
+      },
+      "study": "?surface=library&family=M62"
+    },
+    {
+      "id": "M63",
+      "title": "Private Digital Wardrobe",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "companion memory / wardrobe / twin / occasion / group / agent / later commerce",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "User-confirmed owned items, editable attributes, face/background minimization and deletion",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "empty",
+        "heading": "Use what you already own.",
+        "copy": "Owned-item confirmation and private media remain distinct from merchant inventory.",
+        "fields": [
+          "Owned garments / shoes",
+          "Editable attributes",
+          "Background minimization",
+          "Delete derived representations"
+        ],
+        "cta": "Wardrobe upload unavailable"
+      },
+      "study": "?surface=library&family=M63"
+    },
+    {
+      "id": "M64",
+      "title": "Private Style Twin setup/reuse/revoke",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "companion memory / wardrobe / twin / occasion / group / agent / later commerce",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Separately qualified purpose/model/age/region/retention; no persistent photorealistic child twin at launch",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "identity",
+        "heading": "A private representation, by choice.",
+        "copy": "Separate consent, expiry, model/region qualification and revocation are required; no persistent photorealistic child twin at launch.",
+        "fields": [
+          "Explicit reuse purpose",
+          "Private asset manifest",
+          "Expiry and original access",
+          "Revoke / vendor cleanup"
+        ],
+        "cta": "Style Twin unavailable"
+      },
+      "study": "?surface=library&family=M64"
+    },
+    {
+      "id": "M65",
+      "title": "Occasion Concierge itinerary/checklist",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "companion memory / wardrobe / twin / occasion / group / agent / later commerce",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=home",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Source-backed arrival/service evidence, reminders opt-in and local timezone",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "journey",
+        "heading": "A plan for the moment.",
+        "copy": "An itinerary needs real product arrival and professional evidence, not plausible promises.",
+        "fields": [
+          "Occasion / date / timezone",
+          "Location / budget",
+          "Three qualified directions",
+          "Preparation / reminders"
+        ],
+        "cta": "Qualified proposal required"
+      },
+      "study": "?surface=library&family=M65"
+    },
+    {
+      "id": "M66",
+      "title": "Group styling organizer/invites",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "companion memory / wardrobe / twin / occasion / group / agent / later commerce",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Theme/palette only; no authority over others' private media or transactions",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "form",
+        "heading": "Coordinate, without taking over.",
+        "copy": "An organizer controls a theme, not another person’s media, consent or financial authority.",
+        "fields": [
+          "Group theme / palette",
+          "Shared budget guidance",
+          "Expiring invite",
+          "Member permissions"
+        ],
+        "cta": "Group service unavailable"
+      },
+      "study": "?surface=library&family=M66"
+    },
+    {
+      "id": "M67",
+      "title": "Group participant choice/leave/revoke",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "companion memory / wardrobe / twin / occasion / group / agent / later commerce",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Per-member rights/age/guardian and explicit sharing controls",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "checks",
+        "heading": "Your place in the shared look.",
+        "copy": "Choose what you contribute. Leaving or revoking must remove permitted access.",
+        "fields": [
+          "Accept invitation",
+          "Select a private or shared style",
+          "Explicit reference permission",
+          "Leave / revoke"
+        ],
+        "cta": "Verified invitation required"
+      },
+      "study": "?surface=library&family=M67"
+    },
+    {
+      "id": "M68",
+      "title": "AI Shopping Agent proposal/review/confirm",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "companion memory / wardrobe / twin / occasion / group / agent / later commerce",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=home",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Read-only planning; exact current total/obligations require human confirmation before side effects",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "chat",
+        "heading": "A proposal, not a payer.",
+        "copy": "The Shopping Agent searches approved sources and prepares obligations; only the user confirms a transaction.",
+        "fields": [
+          "Goal / date / budget",
+          "Deterministic total and uncertainty",
+          "Source / quote versions",
+          "Explicit confirmation"
+        ],
+        "cta": "Agent tools not connected"
+      },
+      "study": "?surface=library&family=M68"
+    },
+    {
+      "id": "M69",
+      "title": "Resale/rental/refurbished offer and terms",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "companion memory / wardrobe / twin / occasion / group / agent / later commerce",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Condition/authenticity, rental period/deposit/damage/return/full-cost evidence; later stage",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "product",
+        "heading": "A second life, with clear terms.",
+        "copy": "Condition, authenticity, rental dates, returns and full obligations need evidence.",
+        "fields": [
+          "Condition / source",
+          "Real single-item availability",
+          "Rental / cleaning / damage terms",
+          "Delivery / return cost"
+        ],
+        "cta": "Circular offer not connected"
+      },
+      "study": "?surface=library&family=M69"
+    },
+    {
+      "id": "M70",
+      "title": "Creator challenge participation/privacy",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "companion memory / wardrobe / twin / occasion / group / agent / later commerce",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Rights/moderation, no appearance-ranking contests, no implicit image reuse or unqualified youth publication",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "checks",
+        "heading": "Create together, without ranking people.",
+        "copy": "Rights-cleared, moderated challenges exclude appearance contests and unqualified youth publication.",
+        "fields": [
+          "Participation choice",
+          "Disclosure / rights",
+          "Private result by default",
+          "Verified commissions only"
+        ],
+        "cta": "Challenge service unavailable"
+      },
+      "study": "?surface=library&family=M70"
+    },
+    {
+      "id": "M71",
+      "title": "Daily outfit/product-use/maintenance planning",
+      "stage": "proposed",
+      "platforms": [
+        "ios",
+        "android",
+        "consumer-web-as-qualified"
+      ],
+      "backend": "companion memory / wardrobe / twin / occasion / group / agent / later commerce",
+      "contractStatus": "proposed / no new endpoint implemented",
+      "journey": "J03",
+      "preview": "?surface=ios&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Optional useful non-shopping guidance, correction/reminders/deletion; no medical claims",
+        "Owner/role/age/market/consent/rights gates before private or commercial effects",
+        "Loading, empty, error, offline, denied and authoritative-success states",
+        "No fabricated price/stock/delivery, no unconfirmed charge/booking, explicit sponsored separation",
+        "Accessible labels/focus/touch targets, scalable text, RTL/locale/device review before release"
+      ],
+      "layout": {
+        "kind": "journey",
+        "heading": "Useful even when you are not buying.",
+        "copy": "Optional outfit planning, maintenance and product-use tracking, without medical claims or appearance pressure.",
+        "fields": [
+          "Reuse owned items",
+          "A chosen maintenance reminder",
+          "Optional product-use note",
+          "Correct / delete"
+        ],
+        "cta": "Routine connection required"
+      },
+      "study": "?surface=library&family=M71"
+    }
+  ],
+  "webFamilies": [
+    {
+      "id": "W01",
+      "title": "Consumer discovery",
+      "platforms": [
+        "consumer-web",
+        "tablet"
+      ],
+      "stage": "design proposal",
+      "journey": "J02",
+      "backend": "Shared qualified API domains; web session/CSRF/continuity contracts require review",
+      "preview": "?surface=consumer&screen=discover",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Independent desktop/tablet composition",
+        "Private session and owner/tenant isolation; no local media cache leakage",
+        "Same source/quote/policy versions across devices; no cross-device auto-charge",
+        "Keyboard, focus, responsive comparison, uncertainty and unavailable-state coverage"
+      ],
+      "layout": {
+        "kind": "gallery",
+        "heading": "Find your next direction.",
+        "copy": "Curated inspiration with explicit source and commercial disclosure.",
+        "fields": [
+          "Category / occasion",
+          "Optional preferences",
+          "Saved concepts",
+          "Sponsored separation"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=W01"
+    },
+    {
+      "id": "W02",
+      "title": "Desktop AI Studio",
+      "platforms": [
+        "consumer-web",
+        "tablet"
+      ],
+      "stage": "design proposal",
+      "journey": "J02",
+      "backend": "Shared qualified API domains; web session/CSRF/continuity contracts require review",
+      "preview": "?surface=consumer&screen=studio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Independent desktop/tablet composition",
+        "Private session and owner/tenant isolation; no local media cache leakage",
+        "Same source/quote/policy versions across devices; no cross-device auto-charge",
+        "Keyboard, focus, responsive comparison, uncertainty and unavailable-state coverage"
+      ],
+      "layout": {
+        "kind": "studio",
+        "heading": "Your look. Your controls.",
+        "copy": "Independent desktop editing and comparison.",
+        "fields": [
+          "Original reference / permission",
+          "Hair / Makeup / Outfit",
+          "Before and after comparison",
+          "Quote acceptance before dispatch"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=W02"
+    },
+    {
+      "id": "W03",
+      "title": "Hair & Beauty",
+      "platforms": [
+        "consumer-web",
+        "tablet"
+      ],
+      "stage": "design proposal",
+      "journey": "J02",
+      "backend": "Shared qualified API domains; web session/CSRF/continuity contracts require review",
+      "preview": "?surface=consumer&screen=discover",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Independent desktop/tablet composition",
+        "Private session and owner/tenant isolation; no local media cache leakage",
+        "Same source/quote/policy versions across devices; no cross-device auto-charge",
+        "Keyboard, focus, responsive comparison, uncertainty and unavailable-state coverage"
+      ],
+      "layout": {
+        "kind": "gallery",
+        "heading": "Beauty, on your terms.",
+        "copy": "Explore styles without medical or universal suitability claims.",
+        "fields": [
+          "Hair / texture / grooming",
+          "Makeup / beauty",
+          "Optional preferences",
+          "Professional feasibility"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=W03"
+    },
+    {
+      "id": "W04",
+      "title": "Fashion",
+      "platforms": [
+        "consumer-web",
+        "tablet"
+      ],
+      "stage": "design proposal",
+      "journey": "J02",
+      "backend": "Shared qualified API domains; web session/CSRF/continuity contracts require review",
+      "preview": "?surface=consumer&screen=shop",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Independent desktop/tablet composition",
+        "Private session and owner/tenant isolation; no local media cache leakage",
+        "Same source/quote/policy versions across devices; no cross-device auto-charge",
+        "Keyboard, focus, responsive comparison, uncertainty and unavailable-state coverage"
+      ],
+      "layout": {
+        "kind": "products",
+        "heading": "A wardrobe of possibilities.",
+        "copy": "Browse illustrative styling directions; stock and fit remain unverified.",
+        "fields": [
+          "Category / size context",
+          "Materials / source",
+          "Full-cost comparison",
+          "Exact versus similar"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=W04"
+    },
+    {
+      "id": "W05",
+      "title": "Complete the Look / comparisons / handoff",
+      "platforms": [
+        "consumer-web",
+        "tablet"
+      ],
+      "stage": "design proposal",
+      "journey": "J02",
+      "backend": "Shared qualified API domains; web session/CSRF/continuity contracts require review",
+      "preview": "?surface=consumer&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Independent desktop/tablet composition",
+        "Private session and owner/tenant isolation; no local media cache leakage",
+        "Same source/quote/policy versions across devices; no cross-device auto-charge",
+        "Keyboard, focus, responsive comparison, uncertainty and unavailable-state coverage"
+      ],
+      "layout": {
+        "kind": "components",
+        "heading": "Complete the Look.",
+        "copy": "Compare the whole cost before a handoff.",
+        "fields": [
+          "Six look components",
+          "Items / delivery / tax",
+          "Professional service quote",
+          "Unconfirmed total"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=W05"
+    },
+    {
+      "id": "W06",
+      "title": "Professionals / quote request",
+      "platforms": [
+        "consumer-web",
+        "tablet"
+      ],
+      "stage": "design proposal",
+      "journey": "J02",
+      "backend": "Shared qualified API domains; web session/CSRF/continuity contracts require review",
+      "preview": "?surface=consumer&screen=complete",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Independent desktop/tablet composition",
+        "Private session and owner/tenant isolation; no local media cache leakage",
+        "Same source/quote/policy versions across devices; no cross-device auto-charge",
+        "Keyboard, focus, responsive comparison, uncertainty and unavailable-state coverage"
+      ],
+      "layout": {
+        "kind": "professional",
+        "heading": "A real professional, a clear proposal.",
+        "copy": "Feasibility precedes quote acceptance and booking confirmation.",
+        "fields": [
+          "Permitted reference",
+          "Qualified service / region",
+          "Full quote and materials",
+          "Verified slot / cancellation"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=W06"
+    },
+    {
+      "id": "W07",
+      "title": "Creators / collections",
+      "platforms": [
+        "consumer-web",
+        "tablet"
+      ],
+      "stage": "design proposal",
+      "journey": "J02",
+      "backend": "Shared qualified API domains; web session/CSRF/continuity contracts require review",
+      "preview": "?surface=consumer&screen=discover",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Independent desktop/tablet composition",
+        "Private session and owner/tenant isolation; no local media cache leakage",
+        "Same source/quote/policy versions across devices; no cross-device auto-charge",
+        "Keyboard, focus, responsive comparison, uncertainty and unavailable-state coverage"
+      ],
+      "layout": {
+        "kind": "gallery",
+        "heading": "Original voices. Thoughtful collections.",
+        "copy": "Rights-cleared collections with explicit affiliate disclosure.",
+        "fields": [
+          "Creator rights",
+          "Collection / original source",
+          "Qualified offers",
+          "Disclosure and moderation"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=W07"
+    },
+    {
+      "id": "W08",
+      "title": "Web account / cross-device session boundary",
+      "platforms": [
+        "consumer-web",
+        "tablet"
+      ],
+      "stage": "design proposal",
+      "journey": "J02",
+      "backend": "Shared qualified API domains; web session/CSRF/continuity contracts require review",
+      "preview": "?surface=consumer&screen=profile",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Independent desktop/tablet composition",
+        "Private session and owner/tenant isolation; no local media cache leakage",
+        "Same source/quote/policy versions across devices; no cross-device auto-charge",
+        "Keyboard, focus, responsive comparison, uncertainty and unavailable-state coverage"
+      ],
+      "layout": {
+        "kind": "identity",
+        "heading": "Your account, across devices.",
+        "copy": "Re-authenticate safely; do not transfer raw tokens or private media URLs.",
+        "fields": [
+          "Google sign-in through Supabase",
+          "Owner-scoped saved state",
+          "Permission and session expiry",
+          "Privacy / export / deletion"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=W08"
+    }
+  ],
+  "workspaceFamilies": [
+    {
+      "id": "MER01",
+      "title": "Overview",
+      "platforms": [
+        "merchant-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=merchant&module=Overview",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Overview",
+        "copy": "Your catalog. Your business.",
+        "fields": [
+          "Verified catalog coverage",
+          "Unresolved stock updates",
+          "Qualified leads",
+          "Exceptions needing review"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=MER01"
+    },
+    {
+      "id": "MER02",
+      "title": "Catalog",
+      "platforms": [
+        "merchant-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=merchant&module=Catalog",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Catalog",
+        "copy": "Your catalog. Your business.",
+        "fields": [
+          "Title / category / description",
+          "Variants / size / materials",
+          "Image ownership and claims",
+          "Publish review and source revision"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=MER02"
+    },
+    {
+      "id": "MER03",
+      "title": "Inventory",
+      "platforms": [
+        "merchant-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=merchant&module=Inventory",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Inventory",
+        "copy": "Your catalog. Your business.",
+        "fields": [
+          "SKU / location",
+          "Available quantity / revision",
+          "Reservation and reconciliation",
+          "Last source verification"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=MER03"
+    },
+    {
+      "id": "MER04",
+      "title": "Orders / Leads",
+      "platforms": [
+        "merchant-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=merchant&module=Orders%20%2F%20Leads",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Orders / Leads",
+        "copy": "Your catalog. Your business.",
+        "fields": [
+          "Reference and customer permission",
+          "Referral versus platform order",
+          "Seller / support responsibility",
+          "Verified order or lead status"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=MER04"
+    },
+    {
+      "id": "MER05",
+      "title": "Promotions",
+      "platforms": [
+        "merchant-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=merchant&module=Promotions",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Promotions",
+        "copy": "Your catalog. Your business.",
+        "fields": [
+          "Eligible offer set",
+          "Start / end and region",
+          "Terms and total cost",
+          "Disclosure and approval"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=MER05"
+    },
+    {
+      "id": "MER06",
+      "title": "Advertising",
+      "platforms": [
+        "merchant-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=merchant&module=Advertising",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Advertising",
+        "copy": "Your catalog. Your business.",
+        "fields": [
+          "Permitted placement",
+          "Eligible catalog offers",
+          "Spend authority and cap",
+          "Attribution evidence"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=MER06"
+    },
+    {
+      "id": "MER07",
+      "title": "Analytics",
+      "platforms": [
+        "merchant-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=merchant&module=Analytics",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Analytics",
+        "copy": "Your catalog. Your business.",
+        "fields": [
+          "Verified event definition",
+          "Reporting interval and timezone",
+          "Aggregation / privacy threshold",
+          "Freshness and export permission"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=MER07"
+    },
+    {
+      "id": "MER08",
+      "title": "Payouts",
+      "platforms": [
+        "merchant-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=merchant&module=Payouts",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Payouts",
+        "copy": "Your catalog. Your business.",
+        "fields": [
+          "Recognized eligible balance",
+          "Settlement and refund holds",
+          "Verified payout destination",
+          "Reconciliation and audit"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=MER08"
+    },
+    {
+      "id": "MER09",
+      "title": "Storefront",
+      "platforms": [
+        "merchant-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=merchant&module=Storefront",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Storefront",
+        "copy": "Your catalog. Your business.",
+        "fields": [
+          "Public name / regions",
+          "Verified contact / support",
+          "Brand assets and rights",
+          "Preview before publication"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=MER09"
+    },
+    {
+      "id": "MER10",
+      "title": "Settings",
+      "platforms": [
+        "merchant-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=merchant&module=Settings",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Settings",
+        "copy": "Your catalog. Your business.",
+        "fields": [
+          "Organization / team scope",
+          "Roles and privileged access",
+          "Regional capability policy",
+          "Change review / audit"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=MER10"
+    },
+    {
+      "id": "MER11",
+      "title": "Support",
+      "platforms": [
+        "merchant-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=merchant&module=Support",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Support",
+        "copy": "Your catalog. Your business.",
+        "fields": [
+          "Case category / reference",
+          "Minimum necessary context",
+          "Assigned owner and escalation",
+          "Private evidence permissions"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=MER11"
+    },
+    {
+      "id": "ADV01",
+      "title": "Campaign Overview",
+      "platforms": [
+        "advertiser-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J06",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=advertiser&module=Campaign%20Overview",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Campaign Overview",
+        "copy": "Relevant placements. Clear outcomes.",
+        "fields": [
+          "Campaign state and interval",
+          "Qualified spend / conversions",
+          "Budget pacing and freshness",
+          "Exceptions and policy review"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADV01"
+    },
+    {
+      "id": "ADV02",
+      "title": "Create Campaign",
+      "platforms": [
+        "advertiser-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J06",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=advertiser&module=Create%20Campaign",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Create Campaign",
+        "copy": "Relevant placements. Clear outcomes.",
+        "fields": [
+          "Objective / eligible products",
+          "Permitted placement / audience",
+          "Budget / creative / disclosure",
+          "Review before launch"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADV02"
+    },
+    {
+      "id": "ADV03",
+      "title": "Ad Groups",
+      "platforms": [
+        "advertiser-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J06",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=advertiser&module=Ad%20Groups",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Ad Groups",
+        "copy": "Relevant placements. Clear outcomes.",
+        "fields": [
+          "Campaign and group scope",
+          "Eligible offer set",
+          "Context / frequency limits",
+          "Group state and approval"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADV03"
+    },
+    {
+      "id": "ADV04",
+      "title": "Creative Library",
+      "platforms": [
+        "advertiser-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J06",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=advertiser&module=Creative%20Library",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Creative Library",
+        "copy": "Relevant placements. Clear outcomes.",
+        "fields": [
+          "Original asset / rights",
+          "Disclosure / destination",
+          "Accessible label and formats",
+          "Moderation / expiry revision"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADV04"
+    },
+    {
+      "id": "ADV05",
+      "title": "Sponsored Looks",
+      "platforms": [
+        "advertiser-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J06",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=advertiser&module=Sponsored%20Looks",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Sponsored Looks",
+        "copy": "Relevant placements. Clear outcomes.",
+        "fields": [
+          "Original look rights",
+          "Explicit sponsored placement",
+          "Eligible product references",
+          "Organic separation and review"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADV05"
+    },
+    {
+      "id": "ADV06",
+      "title": "Targeting",
+      "platforms": [
+        "advertiser-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J06",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=advertiser&module=Targeting",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Targeting",
+        "copy": "Relevant placements. Clear outcomes.",
+        "fields": [
+          "Permitted contextual category",
+          "Qualified region and age rules",
+          "Frequency cap",
+          "Private face / profile data excluded"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADV06"
+    },
+    {
+      "id": "ADV07",
+      "title": "Budgets & Bids",
+      "platforms": [
+        "advertiser-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J06",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=advertiser&module=Budgets%20%26%20Bids",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Budgets & Bids",
+        "copy": "Relevant placements. Clear outcomes.",
+        "fields": [
+          "Authorized account currency",
+          "Hard spend cap / pacing",
+          "Qualified bid rule",
+          "Review / reservation authority"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADV07"
+    },
+    {
+      "id": "ADV08",
+      "title": "Attribution",
+      "platforms": [
+        "advertiser-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J06",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=advertiser&module=Attribution",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Attribution",
+        "copy": "Relevant placements. Clear outcomes.",
+        "fields": [
+          "Verified source event",
+          "Attribution window and rule",
+          "Deduplication / refunds",
+          "Consent and aggregate reporting"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADV08"
+    },
+    {
+      "id": "ADV09",
+      "title": "Reporting",
+      "platforms": [
+        "advertiser-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J06",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=advertiser&module=Reporting",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Reporting",
+        "copy": "Relevant placements. Clear outcomes.",
+        "fields": [
+          "Defined metrics and interval",
+          "Event evidence and freshness",
+          "Timezone / currency",
+          "Authorized aggregate export"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADV09"
+    },
+    {
+      "id": "ADV10",
+      "title": "Billing",
+      "platforms": [
+        "advertiser-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J06",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=advertiser&module=Billing",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Billing",
+        "copy": "Relevant placements. Clear outcomes.",
+        "fields": [
+          "Recognized charge evidence",
+          "Invoice / credit references",
+          "Dispute and refund state",
+          "Ledger reconciliation"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADV10"
+    },
+    {
+      "id": "ADV11",
+      "title": "Brand Safety",
+      "platforms": [
+        "advertiser-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J06",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=advertiser&module=Brand%20Safety",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Brand Safety",
+        "copy": "Relevant placements. Clear outcomes.",
+        "fields": [
+          "Category / rights qualification",
+          "Sensitive context exclusions",
+          "Moderation and appeal",
+          "Placement review history"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADV11"
+    },
+    {
+      "id": "PRO01",
+      "title": "Dashboard",
+      "platforms": [
+        "professional-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J04",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=professional&module=Dashboard",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Dashboard",
+        "copy": "From inspiration to a feasible appointment.",
+        "fields": [
+          "Pending feasibility requests",
+          "Confirmed bookings only",
+          "Required qualification updates",
+          "Exceptions and service hours"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=PRO01"
+    },
+    {
+      "id": "PRO02",
+      "title": "Services",
+      "platforms": [
+        "professional-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J04",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=professional&module=Services",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Services",
+        "copy": "From inspiration to a feasible appointment.",
+        "fields": [
+          "Service and permitted region",
+          "Materials / full-price rules",
+          "Duration / feasibility",
+          "Qualification and publication"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=PRO02"
+    },
+    {
+      "id": "PRO03",
+      "title": "Portfolio",
+      "platforms": [
+        "professional-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J04",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=professional&module=Portfolio",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Portfolio",
+        "copy": "From inspiration to a feasible appointment.",
+        "fields": [
+          "Owned / authorized images",
+          "Client permission scope",
+          "Service and accessibility copy",
+          "Moderation / publication review"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=PRO03"
+    },
+    {
+      "id": "PRO04",
+      "title": "Booking Calendar",
+      "platforms": [
+        "professional-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J04",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=professional&module=Booking%20Calendar",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Booking Calendar",
+        "copy": "From inspiration to a feasible appointment.",
+        "fields": [
+          "Timezone and working hours",
+          "Verified available slots",
+          "Hold / confirmation state",
+          "Conflict / cancellation rules"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=PRO04"
+    },
+    {
+      "id": "PRO05",
+      "title": "Quote Requests",
+      "platforms": [
+        "professional-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J04",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=professional&module=Quote%20Requests",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Quote Requests",
+        "copy": "From inspiration to a feasible appointment.",
+        "fields": [
+          "Authorized style reference",
+          "Feasibility / materials",
+          "Expiring full-price quote",
+          "Acceptance before confirmation"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=PRO05"
+    },
+    {
+      "id": "PRO06",
+      "title": "Clients",
+      "platforms": [
+        "professional-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J04",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=professional&module=Clients",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Clients",
+        "copy": "From inspiration to a feasible appointment.",
+        "fields": [
+          "Authorized relationship",
+          "Minimum service context",
+          "Communication preference",
+          "Retention and access scope"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=PRO06"
+    },
+    {
+      "id": "PRO07",
+      "title": "Promotions",
+      "platforms": [
+        "professional-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J04",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=professional&module=Promotions",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Promotions",
+        "copy": "From inspiration to a feasible appointment.",
+        "fields": [
+          "Eligible offer set",
+          "Start / end and region",
+          "Terms and total cost",
+          "Disclosure and approval"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=PRO07"
+    },
+    {
+      "id": "PRO08",
+      "title": "Reviews",
+      "platforms": [
+        "professional-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J04",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=professional&module=Reviews",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Reviews",
+        "copy": "From inspiration to a feasible appointment.",
+        "fields": [
+          "Verified completed service",
+          "Review provenance",
+          "Moderation / appeal",
+          "No fabricated ratings"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=PRO08"
+    },
+    {
+      "id": "PRO09",
+      "title": "Earnings",
+      "platforms": [
+        "professional-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J04",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=professional&module=Earnings",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Earnings",
+        "copy": "From inspiration to a feasible appointment.",
+        "fields": [
+          "Recognized service event",
+          "Refund / fee adjustments",
+          "Settlement eligibility",
+          "Reconciliation evidence"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=PRO09"
+    },
+    {
+      "id": "PRO10",
+      "title": "Settings",
+      "platforms": [
+        "professional-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J04",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=professional&module=Settings",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Settings",
+        "copy": "From inspiration to a feasible appointment.",
+        "fields": [
+          "Organization / team scope",
+          "Roles and privileged access",
+          "Regional capability policy",
+          "Change review / audit"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=PRO10"
+    },
+    {
+      "id": "CRE01",
+      "title": "Published Looks",
+      "platforms": [
+        "creator-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=creator&module=Published%20Looks",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Published Looks",
+        "copy": "Your point of view, thoughtfully shared.",
+        "fields": [
+          "Original look rights",
+          "Moderation / disclosure",
+          "Published revision",
+          "Unpublish and referral effects"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=CRE01"
+    },
+    {
+      "id": "CRE02",
+      "title": "Shoppable Collections",
+      "platforms": [
+        "creator-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=creator&module=Shoppable%20Collections",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Shoppable Collections",
+        "copy": "Your point of view, thoughtfully shared.",
+        "fields": [
+          "Collection rights / layout",
+          "Verified eligible offers",
+          "Affiliate disclosure",
+          "Preview and publication review"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=CRE02"
+    },
+    {
+      "id": "CRE03",
+      "title": "Affiliate Links",
+      "platforms": [
+        "creator-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=creator&module=Affiliate%20Links",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Affiliate Links",
+        "copy": "Your point of view, thoughtfully shared.",
+        "fields": [
+          "Approved destination / merchant",
+          "Disclosure label",
+          "Attribution contract",
+          "Expiry and link status"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=CRE03"
+    },
+    {
+      "id": "CRE04",
+      "title": "Attributed Sales",
+      "platforms": [
+        "creator-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=creator&module=Attributed%20Sales",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Attributed Sales",
+        "copy": "Your point of view, thoughtfully shared.",
+        "fields": [
+          "Verified deduplicated event",
+          "Refund / attribution window",
+          "Qualified source revision",
+          "Aggregate privacy boundary"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=CRE04"
+    },
+    {
+      "id": "CRE05",
+      "title": "Commissions",
+      "platforms": [
+        "creator-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=creator&module=Commissions",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Commissions",
+        "copy": "Your point of view, thoughtfully shared.",
+        "fields": [
+          "Recognized eligible event",
+          "Commission contract revision",
+          "Refund / hold adjustment",
+          "Reconciliation status"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=CRE05"
+    },
+    {
+      "id": "CRE06",
+      "title": "Campaign Invitations",
+      "platforms": [
+        "creator-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=creator&module=Campaign%20Invitations",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Campaign Invitations",
+        "copy": "Your point of view, thoughtfully shared.",
+        "fields": [
+          "Brand and scope",
+          "Rights / deliverables / disclosure",
+          "Compensation terms",
+          "Explicit acceptance"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=CRE06"
+    },
+    {
+      "id": "CRE07",
+      "title": "Payouts",
+      "platforms": [
+        "creator-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=creator&module=Payouts",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Payouts",
+        "copy": "Your point of view, thoughtfully shared.",
+        "fields": [
+          "Recognized eligible balance",
+          "Settlement and refund holds",
+          "Verified payout destination",
+          "Reconciliation and audit"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=CRE07"
+    },
+    {
+      "id": "ADM01",
+      "title": "Executive Overview",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=Executive%20Overview",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Executive Overview",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Qualified active users",
+          "Verified service health",
+          "Recognized commercial events",
+          "Freshness and incident context"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM01"
+    },
+    {
+      "id": "ADM02",
+      "title": "User Management",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=User%20Management",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "User Management",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Owner-scoped account reference",
+          "Authorized support purpose",
+          "Age / guardian policy status",
+          "Privileged access audit"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM02"
+    },
+    {
+      "id": "ADM03",
+      "title": "AI Operations",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=AI%20Operations",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "AI Operations",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Provider capability / region",
+          "Job lifecycle and cost evidence",
+          "Quality / deletion exceptions",
+          "Kill switch and approval"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM03"
+    },
+    {
+      "id": "ADM04",
+      "title": "Beauty Content",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=Beauty%20Content",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Beauty Content",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Taxonomy and applicability",
+          "Original / licensed assets",
+          "Claims and age suitability",
+          "Reviewed publication revision"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM04"
+    },
+    {
+      "id": "ADM05",
+      "title": "Merchant Management",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=Merchant%20Management",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Merchant Management",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Organization verification",
+          "Source offer quality",
+          "Support / trust exceptions",
+          "Capability review and audit"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM05"
+    },
+    {
+      "id": "ADM06",
+      "title": "Professional Management",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=Professional%20Management",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Professional Management",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Qualification and region",
+          "Service feasibility evidence",
+          "Booking / dispute exceptions",
+          "Permission / review history"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM06"
+    },
+    {
+      "id": "ADM07",
+      "title": "Advertising",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=Advertising",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Advertising",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Permitted placement",
+          "Eligible catalog offers",
+          "Spend authority and cap",
+          "Attribution evidence"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM07"
+    },
+    {
+      "id": "ADM08",
+      "title": "Commerce",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=Commerce",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Commerce",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Referral / settlement boundary",
+          "Verified order and obligations",
+          "Refund / dispute state",
+          "Append-only reconciliation"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM08"
+    },
+    {
+      "id": "ADM09",
+      "title": "Subscriptions",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=Subscriptions",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Subscriptions",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Store / PSP source revision",
+          "Entitlement event evidence",
+          "Refund / expiry / duplicate handling",
+          "Server-authoritative grant"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM09"
+    },
+    {
+      "id": "ADM10",
+      "title": "Creators",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=Creators",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Creators",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Rights / disclosure review",
+          "Verified attributed events",
+          "Commission exception evidence",
+          "Scoped moderation and audit"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM10"
+    },
+    {
+      "id": "ADM11",
+      "title": "Regional Operations",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=Regional%20Operations",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Regional Operations",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Country / currency / timezone",
+          "Age / guardian / processor rules",
+          "Qualified provider / supply",
+          "Effective policy and rollback"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM11"
+    },
+    {
+      "id": "ADM12",
+      "title": "Trust & Safety",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=Trust%20%26%20Safety",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Trust & Safety",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Restricted report evidence",
+          "Assigned authorized reviewer",
+          "Moderation / appeal decision",
+          "Proportional scoped action"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM12"
+    },
+    {
+      "id": "ADM13",
+      "title": "Privacy",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=Privacy",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Privacy",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Consent and purpose reference",
+          "Owner-authorized request",
+          "Processor deletion / backup tombstone",
+          "Retention and completion evidence"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM13"
+    },
+    {
+      "id": "ADM14",
+      "title": "Analytics",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=Analytics",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "Analytics",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Verified event definition",
+          "Reporting interval and timezone",
+          "Aggregation / privacy threshold",
+          "Freshness and export permission"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM14"
+    },
+    {
+      "id": "ADM15",
+      "title": "System Configuration",
+      "platforms": [
+        "admin-web"
+      ],
+      "stage": "design proposal",
+      "journey": "J07",
+      "backend": "Organization/admin permissions and corresponding canonical business domain",
+      "preview": "?surface=admin&module=System%20Configuration",
+      "coverage": "Dedicated HTML frame study + editable SVG wireframe; primary interactions linked separately; native Figma outstanding",
+      "acceptance": [
+        "Correct isolated role workspace and scoped navigation",
+        "Real records/metrics show evidence and freshness; unknown is not zero",
+        "Privileged operations require backend authority/MFA/audit; no client-only grants",
+        "Explicit review/confirmation and no publication/booking/charge before qualification",
+        "Responsive, keyboard, error/denied/offline states and safe exports"
+      ],
+      "layout": {
+        "kind": "operations",
+        "heading": "System Configuration",
+        "copy": "The whole platform, including mobile.",
+        "fields": [
+          "Mobile / web capability versions",
+          "Feature flags / minimum app version",
+          "Privileged review and MFA",
+          "Auditable change / rollback"
+        ],
+        "cta": "Verified connection required"
+      },
+      "study": "?surface=library&family=ADM15"
+    }
+  ],
+  "nativeFigmaFile": "outstanding",
+  "completeHighFidelityScreenLibrary": "133 dedicated HTML frame studies; not native Figma screens or complete service implementations",
+  "allAcceptanceTestsForRealServices": "unimplemented / unrun"
+}

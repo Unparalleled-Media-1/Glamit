@@ -2,6 +2,8 @@
 
 These are engineering requirements and review inputs, not a legal opinion or compliance certification. An accountable privacy lead and qualified local counsel must finalize obligations for enabled countries and providers. Global availability should be staged, not assumed from the word global.
 
+The [Master PRD v2](master-prd-v2.md) supersedes an adults-only target product while keeping age-specific capabilities disabled until qualified. [Global policy/guardian architecture](global-policy-architecture.md) and the [companion extension](style-companion-extension.md) add reviewed per-jurisdiction age assurance, verified limited guardian contexts, private editable memory, wardrobe/twin/group isolation, explicit agent confirmations and B2B data/rights boundaries. No inference of ethnicity, religion, gender identity, disability or age from beauty photos; no sensitive profiling or advertising exposure of private profiles. Child photorealistic twins/public profiles and initial youth advertising are excluded. These are proposed expanded controls, not implemented protections or legal certification.
+
 ## Data and access requirements
 
 Complete the Look inherits these controls. Private components, matching embeddings and shopping lists are purpose-bound customer data. Commercial ranking receives only approved coarse context and eligible IDs; reports cannot expose private images, facial measurements, inferred skin/hair/body traits, private look IDs or exclusion reasons. Sponsored collections need public-content rights and disclosure. [Commercial rules](look-ranking-commerce.md) define this boundary; [acceptance gates](look-delivery-economics.md) require noninterference, data-contract, reporting and deletion tests. Catalog text is untrusted; model output cannot publish prices, inventory or delivery promises.
@@ -27,14 +29,14 @@ Maintain deletion tombstones through backup lifetime. A restore must replay tomb
 
 | Area | Required decision/evidence |
 |---|---|
-| South Africa planning launch | POPIA lawful processing and purpose/retention review, Information Officer responsibilities, operator contracts, section 72 cross-border transfer assessment, rights and breach response; confirm whether intended processing needs additional authorization |
+| South Africa candidate pilot | POPIA lawful processing and purpose/retention review, Information Officer responsibilities, operator contracts, section 72 cross-border transfer assessment, rights and breach response; qualify age/guardian/capability rules and confirm any additional authorization. Candidate status is not market activation |
 | EU/EEA and UK expansion | GDPR/UK GDPR territorial applicability, DPIA, processors/subprocessors, lawful basis and explicit consent where needed, international transfer mechanisms, representative/DPO duties as applicable; assess EU AI Act role/classification and phased obligations for actual features |
 | African expansion | Country-by-country matrix, including Nigeria NDPA and Kenya Data Protection Act as candidates; registration, cross-border, consumer, tax, marketing and payment localization requirements before activation |
 | Other global markets | Country/state privacy/biometric laws, targeted advertising opt-outs, consumer rules, data localization and sanctions; assess US state biometric rules if processing changes. Disable unsupported markets |
 | Payments/consumer protection | Licensed PSP coverage, KYC/AML responsibilities, tax/VAT invoicing, marketplace facilitator duties, returns/refunds, salon cancellation/no-show terms, chargeback handling; define merchant of record per product |
 | Advertising/creators | Sponsored and affiliate disclosures, substantiation of beauty claims, consent/opt-out, prohibited targeting, ad archive/transparency obligations where applicable, invalid-traffic policy and advertiser complaints |
 | Stores/platforms | Digital versus physical billing policy by storefront, subscriptions/cancellation/restore, privacy nutrition/data-safety declarations, account deletion and tracking permission obligations |
-| Minors | Propose adults only at first launch with proportionate eligibility controls; no children's face processing, child-directed advertising or underage merchant/creator accounts. Revisit with dedicated child-safety/privacy review before expansion |
+| Minors | Required restricted teen and guardian-managed child designs follow the global policy matrix; missing/unknown/expired assurance or policy denies risky capabilities. Initial youth modes exclude facial processing/public sharing/ads until separately qualified; no persistent photorealistic child twin at launch, no child public profile, no sensitive targeted ads, no unrestricted youth business roles. Jurisdiction/legal/store/provider review precedes activation; no universal age thresholds are assumed |
 | Content/licensing | Creator likeness and garment/style reference rights, copyright/trademarks, commercial model output terms, prohibited sexual/nonconsensual edits, misleading endorsements, counterfeit products and safety claims |
 
 ## Abuse and product safety

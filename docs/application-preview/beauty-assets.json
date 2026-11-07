@@ -1,0 +1,15 @@
+{
+  "asset": "beauty-editorial.webp",
+  "copies": [
+    "apps/web/public/images/beauty-editorial.webp",
+    "apps/mobile/assets/beauty-editorial.webp"
+  ],
+  "webp_sha256": "6dd1271800f04b2014cd344c362ce11ff2bcb2d14ea476388d3b58ca9bc98008",
+  "bytes": 213804,
+  "original_generation_file": "exec-2ed0c66d-a5f6-4b8a-bb49-2accb610f953.png",
+  "original_sha256": "10c47a8830fd6e8ed263c61b11eff5c05fa5740138a4c2b30cab7da7eae9aa05",
+  "generation_brief": "Four independent fictional adult beauty portraits, natural skin texture, diverse hair and skin tones, charcoal/blush studio campaign; no branding, text, celebrities or before/after pairs.",
+  "optimization": "Format conversion to WebP at quality 90; original generation retained unchanged in workspace.",
+  "meaning": "Editorial inspiration only. No customer photograph, completed analysis, generated personal transformation or product compatibility evidence.",
+  "reference_boundary": "User-supplied competitor screenshots informed visual hierarchy only; no competitor photographs, logos, marketing statistics or ratings were copied."
+}

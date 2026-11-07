@@ -1,0 +1,2112 @@
+GLAM AI — Complete AI-Builder Product Specification
+
+Master Product Requirements Document • Version 1.0 • November 2026
+
+Product: AI Beauty, Grooming, Makeover & Personal Styling Platform
+Target market: Global, with African specialization
+Platforms: iOS, Android and web-based administration
+Development approach: AI-assisted development using Emergent or a comparable builder
+Business model: Freemium subscriptions, AI credits, beauty commerce and marketplace commissions
+
+This specification is designed to guide the development of a production-ready competitor to Glam Up, rather than a demonstration app.
+
+The central product promise is:
+
+Discover your best look, visualize it realistically, learn how to achieve it, and find the products and professionals who can help.
+
+The application must support diverse skin tones, facial features, hair textures, cultural aesthetics and beauty preferences. African specialization must be a core product capability, not a separate, lower-quality experience.
+
+The working name GLAM AI is provisional. Trademark, domain and app-store name availability must be checked before committing to it.
+
+1. Product strategy and scope
+Core differentiation
+
+Dimension
+
+	
+
+Our approach
+
+
+
+
+Facial analysis
+
+	
+
+Personalized feature descriptions without numerical attractiveness ratings
+
+
+
+
+Skin tone
+
+	
+
+Broad representation of undertones and complexions
+
+
+
+
+Hair
+
+	
+
+Straight, wavy, curly, coily, natural and protective styles
+
+
+
+
+AI makeover
+
+	
+
+Photorealistic transformations that preserve the user's identity
+
+
+
+
+Recommendations
+
+	
+
+Actionable routines, tutorials and purchasable products
+
+
+
+
+Global commerce
+
+	
+
+Region-aware product availability, currencies and retailers
+
+
+
+
+African specialization
+
+	
+
+Locally relevant beauty brands, hairstyles, salons and styling preferences
+
+
+
+
+Monetization
+
+	
+
+Useful free results, transparent premium upgrades
+
+
+
+
+Trust
+
+	
+
+Explicit photo consent, deletion controls and AI-result transparency
+
+Product audiences
+
+The platform should accommodate five principal audiences: beauty enthusiasts, people seeking a makeover, hair and grooming customers, beauty content creators, and professional stylists or salons.
+
+For the first release, prioritize adult consumers. Professional marketplace accounts and commerce partners follow in later releases. Underage use should remain restricted until dedicated age-appropriate safeguards, policies and consent mechanisms have been implemented.
+
+2. Complete application screen inventory
+
+The following is the target screen architecture. Not every screen should be built in the MVP.
+
+Consumer mobile app
+
+47 screens
+
+Onboarding and authentication
+
+13 screens
+Splash and initialization
+Welcome and value proposition
+Feature introduction
+Country and language selection
+Beauty goals selection
+Style preference questionnaire
+Photo capture guidance
+Camera capture
+Photo quality review
+Privacy and photo consent
+Guest results introduction
+Sign in / register
+Email verification / password reset
+
+Home and AI analysis
+
+6 screens
+
+Makeovers and hair
+
+7 screens
+
+Beauty assistant and commerce
+
+7 screens
+
+Subscriptions and account
+
+12 screens
+
+Expansion modules
+
+5 screens
+
+Screen counts include expansion modules; reusable modals, system permission sheets and error states are specified separately.
+
+Navigation
+
+The main application should have five bottom navigation destinations: Home, Analyze, Studio, AI Advisor and Profile. Commerce can be reached through recommendations and a shopping section within Home. Saved looks should be available through Studio and Profile.
+
+User flows
+
+Flow A — First-time visitor
+
+Open app and select country/language.
+
+Choose beauty interests and desired outcomes.
+
+Review photography and privacy information.
+
+Capture or upload a selfie.
+
+Run a basic analysis.
+
+Reveal meaningful free results.
+
+Offer account creation to save results.
+
+Introduce premium features without hiding previously promised free results.
+
+Flow B — AI makeover
+
+Open Studio and select a selfie.
+
+Choose makeup, hairstyle or complete makeover.
+
+Select intensity and style preferences.
+
+Display expected credit usage before generation.
+
+Generate a realistic preview.
+
+Compare original and transformed image.
+
+Save, regenerate or request an actionable beauty plan.
+
+Flow C — AI beauty advisor
+
+Open chat and choose a beauty goal.
+
+Ask a question or reference an existing analysis.
+
+Receive structured recommendations with explanations.
+
+Save suggested routines or products.
+
+Follow up without repeating profile information, subject to consent.
+
+Flow D — Subscription
+
+View free and premium benefits.
+
+See the exact price, billing frequency and renewal terms.
+
+Purchase through the applicable app-store payment system.
+
+Validate purchase server-side.
+
+Activate entitlements.
+
+Allow restoration and cancellation through the platform's supported flows.
+
+Flow E — Account deletion
+
+Request account deletion.
+
+Clearly explain what will be deleted and any legally required retention.
+
+Confirm the request.
+
+Revoke sessions and remove or queue personal content for deletion.
+
+Record an auditable deletion job and confirm completion.
+
+3. AI capabilities and acceptance criteria
+
+AI service
+
+	
+
+Input
+
+	
+
+Output
+
+	
+
+Quality requirement
+
+
+
+
+Face geometry
+
+	
+
+Consented selfie
+
+	
+
+Landmarks and approximate shape
+
+	
+
+No unsupported precision claims
+
+
+
+
+Skin tone
+
+	
+
+Quality-controlled selfie
+
+	
+
+Estimated tone and undertone
+
+	
+
+Lighting uncertainty disclosed
+
+
+
+
+Color analysis
+
+	
+
+Photo and preferences
+
+	
+
+Suggested color palettes
+
+	
+
+User can correct the result
+
+
+
+
+Makeup advisor
+
+	
+
+Profile and goals
+
+	
+
+Step-by-step guidance
+
+	
+
+Adapted to skin tone and preferences
+
+
+
+
+Hair advisor
+
+	
+
+Hair type and preferences
+
+	
+
+Styles and maintenance guidance
+
+	
+
+Inclusive of protective hairstyles
+
+
+
+
+Makeover generator
+
+	
+
+Selfie and style parameters
+
+	
+
+Edited preview
+
+	
+
+Identity and complexion preserved
+
+
+
+
+Hair simulation
+
+	
+
+Selfie and hairstyle
+
+	
+
+Hairstyle preview
+
+	
+
+Plausible hairline and texture
+
+
+
+
+Product matching
+
+	
+
+User needs and catalog
+
+	
+
+Ranked recommendations
+
+	
+
+Region, price and stock considered
+
+
+
+
+Conversational stylist
+
+	
+
+Profile and conversation
+
+	
+
+Personalized guidance
+
+	
+
+No fabricated product claims
+
+All image-generation jobs must have a provider-independent lifecycle: created, queued, processing, succeeded, failed, cancelled or expired.
+
+The system must not charge a user's credit balance for a failed generation. Reserve credits when a job starts, consume them on verified success, and release the reservation on failure or cancellation. All credit mutations must be idempotent.
+
+AI model orchestration
+
+Use separate adapters for:
+
+Computer vision and landmark detection.
+
+Multimodal image interpretation.
+
+Generative image editing.
+
+Conversational recommendations.
+
+Product matching and retrieval.
+
+Image moderation and quality assessment.
+
+The provider registry must support versioning, fallbacks, timeouts, retry limits, unit-cost tracking and controlled model upgrades.
+
+Do not build the product around an unverified assumption that one image-generation model can reliably perform accurate virtual makeup, preserve identity and reproduce every hairstyle.
+
+Before committing to a provider, conduct a comparative evaluation with consented test images representing different complexions, lighting conditions, facial characteristics and hair textures.
+
+4. Backend and infrastructure architecture
+
+React Native + Expo
+
+iOS / Android consumer experience
+
+API gateway and authentication
+
+Token validation • Rate limits • Abuse protection
+
+FastAPI application layer
+
+Profiles • Analysis • Studio • Billing • Recommendations
+
+PostgreSQL
+
+User and business data
+
+Object storage
+
+Private image assets
+
+Redis / queue
+
+Jobs and throttling
+
+AI workers
+
+Analysis and generation
+
+RevenueCat
+
+Subscription events
+
+Observability
+
+Logs, metrics and tracing
+Database specification
+
+Create version-controlled migrations for the following tables.
+
+Domain
+
+	
+
+Tables
+
+
+
+
+Identity
+
+	
+
+users, profiles, user_roles, user_sessions
+
+
+
+
+Preferences
+
+	
+
+beauty_preferences, beauty_goals, user_consents
+
+
+
+
+Photos
+
+	
+
+media_assets, media_access_logs, deletion_jobs
+
+
+
+
+Analysis
+
+	
+
+analysis_jobs, analysis_results, analysis_feedback
+
+
+
+
+AI Studio
+
+	
+
+generation_jobs, generated_looks, look_presets
+
+
+
+
+Chat
+
+	
+
+ai_conversations, ai_messages
+
+
+
+
+Beauty plans
+
+	
+
+beauty_routines, routine_steps, routine_progress
+
+
+
+
+Catalog
+
+	
+
+brands, products, product_variants, retailer_offers
+
+
+
+
+Subscriptions
+
+	
+
+subscription_products, subscriptions, entitlements, billing_events
+
+
+
+
+Credits
+
+	
+
+credit_accounts, credit_ledger, credit_reservations
+
+
+
+
+Engagement
+
+	
+
+notifications, referrals, saved_items
+
+
+
+
+Administration
+
+	
+
+admin_users, admin_roles, audit_logs, feature_flags, support_tickets
+
+
+
+
+AI operations
+
+	
+
+model_registry, model_versions, ai_usage_events, provider_incidents
+
+
+
+
+Marketplace expansion
+
+	
+
+professionals, services, availability_slots, appointments, commission_entries
+
+Every relevant table must have ownership rules, timestamps, foreign keys, indexes, validation constraints and documented retention policies.
+
+API endpoints
+
+Required API groups
+
+Representative endpoints; finalize request/response schemas in OpenAPI.
+
+POST   /v1/auth/guest
+POST   /v1/auth/register
+GET    /v1/me
+PATCH  /v1/me/preferences
+POST   /v1/media/upload-intent
+POST   /v1/analyses
+GET    /v1/analyses/{id}
+POST   /v1/generations
+GET    /v1/generations/{id}
+POST   /v1/generations/{id}/cancel
+GET    /v1/looks
+POST   /v1/chat/conversations
+POST   /v1/chat/conversations/{id}/messages
+GET    /v1/routines
+GET    /v1/products/recommendations
+GET    /v1/billing/entitlements
+GET    /v1/billing/credits
+POST   /v1/billing/restore
+POST   /v1/webhooks/revenuecat
+POST   /v1/privacy/export
+POST   /v1/privacy/delete
+GET    /v1/admin/metrics
+GET    /v1/admin/audit-logs
+
+All protected endpoints must validate identity and authorization on the server. Never accept user-supplied prices, entitlement states, credit balances or job ownership as authoritative.
+
+5. Visual design system
+
+The app should feel like a premium international beauty brand: elegant, welcoming, youthful and polished without resembling a generic AI chatbot.
+
+Rose
+
+#F46F98
+
+Blush
+
+#FBE7ED
+
+Ivory
+
+#FFF9F6
+
+Plum
+
+#382633
+
+Bronze
+
+#B48A64
+Proposed brand palette. Final contrast and accessibility testing is required.
+Design principles
+
+Use a modern sans-serif typeface for navigation and functional text, with an optional elegant editorial display face for campaign headings.
+
+The design should feature large portrait previews, soft backgrounds, restrained gradients, rounded cards and clear progress indicators. Maintain WCAG 2.2 AA accessibility targets for applicable interface elements, including readable text, screen-reader labels and adequate touch targets.
+
+The original selfie should remain accessible in makeover comparisons. Every AI-generated image should be identified as a simulation, not a guaranteed real-world outcome.
+
+Example mobile interface direction
+Home and beauty analysis direction
+Makeover studio direction
+
+These are visual references, not approved application screens or evidence of an implemented product.
+
+6. Subscription and credit economy
+Subscription plans
+
+Entitlement
+
+	
+
+Free
+
+	
+
+Plus
+
+	
+
+Pro
+
+
+
+
+Basic analysis
+
+	
+
+1
+
+	
+
+Unlimited refreshes within fair-use limits
+
+	
+
+Unlimited refreshes within fair-use limits
+
+
+
+
+Personal color guide
+
+	
+
+Basic
+
+	
+
+Full
+
+	
+
+Full
+
+
+
+
+Monthly makeover renders
+
+	
+
+1 starter
+
+	
+
+20
+
+	
+
+60
+
+
+
+
+AI advisor messages/month
+
+	
+
+10
+
+	
+
+150
+
+	
+
+500
+
+
+
+
+Hair simulations
+
+	
+
+Starter render only
+
+	
+
+Uses render allowance
+
+	
+
+Uses render allowance
+
+
+
+
+Saved looks
+
+	
+
+3
+
+	
+
+100
+
+	
+
+500
+
+
+
+
+Advanced beauty routines
+
+	
+
+—
+
+	
+
+Yes
+
+	
+
+Yes
+
+
+
+
+Wardrobe stylist, when launched
+
+	
+
+—
+
+	
+
+Limited
+
+	
+
+Full
+
+
+
+
+Product recommendations
+
+	
+
+Yes
+
+	
+
+Yes
+
+	
+
+Yes
+
+These are proposed commercial entitlements. The final allowances must be validated against AI unit costs, customer behavior and app-store economics.
+
+Suggested pricing: Plus at $4.99/month or $34.99/year; Pro at $9.99/month or $69.99/year. Configure local prices through App Store Connect and Google Play rather than performing a simplistic currency conversion at checkout.
+
+Credit architecture
+
+Separate subscription entitlements from consumable generation credits.
+
+A credit ledger should record the source of credits, reservation, consumption, refund, expiry where applicable, and a unique transaction reference. Credit balances must be derived from authorized ledger transactions, not editable directly by the client.
+
+For example, a standard makeover could cost one render credit and an advanced multi-look generation three credits. Show the exact amount before submission.
+
+Purchased consumable credits and subscription-included credits should be tracked separately, with transparent usage priority and expiry policies. Refunds, renewals, upgrades, downgrades, grace periods and chargebacks must all have explicit server-side rules.
+
+Additional monetization
+
+In Phase 2, introduce affiliate product links with clear commercial disclosure. In Phase 3, introduce professional booking commissions, potentially starting at 10–15% as a commercial hypothesis to test.
+
+Do not assume that digital subscriptions and real-world salon services follow identical Apple or Google payment rules. Each payment flow needs its own store-policy review.
+
+7. Complete admin dashboard
+
+The admin console should be a separate responsive web application with role-based access control and mandatory multifactor authentication for privileged users.
+
+Administration modules
+
+16 modules
+
+1
+
+Executive dashboard
+
+DAU, MAU, revenue, conversion, retention, AI cost and incident status
+
+2
+
+User management
+
+Search, account status, support actions and privacy requests
+
+3
+
+Subscription management
+
+Entitlements, billing events, refunds and reconciliation
+
+4
+
+Credit management
+
+Ledger inspection, adjustments and fraud controls
+
+5
+
+AI operations
+
+Provider health, latency, error rate, model versions and cost
+
+6
+
+Analysis quality
+
+Consent-safe feedback, error categories and evaluation results
+Show all 16 modules
+Admin roles
+
+Implement distinct roles for Super Admin, Finance, Customer Support, Content Editor, AI Operations, Compliance and Read-Only Analyst.
+
+Financial adjustments, personal data exports and high-risk administrative actions must require elevated permissions. Credit adjustments should require a reason, audit trail and, above a configurable threshold, dual approval.
+
+Admin users must not have unrestricted access to customers' private selfies. Support workflows should use redacted metadata by default, with narrowly scoped, consent-aware access for exceptional investigations.
+
+8. Security, privacy and responsible AI
+
+The following requirements are release blockers, not optional enhancements.
+
+Identity and access: Secure authentication, server-side RBAC, signed media URLs, session revocation, rate limiting and protection against account enumeration.
+
+Media protection: Private storage, encryption in transit and at rest, EXIF metadata stripping where appropriate, upload validation, short-lived access URLs and configurable deletion schedules.
+
+AI privacy: Explicit disclosure of external AI processors, documented data processing arrangements, restrictions on model training using customer images, and no biometric identity matching.
+
+Consumer protection: Transparent subscriptions, visible renewal terms, cancellation instructions, accessible support and clear refund handling.
+
+Responsible recommendations: Avoid medical diagnosis, harmful appearance judgments, unsupported product efficacy claims and misleading promises about cosmetic results.
+
+Global compliance: Design for POPIA and applicable GDPR, UK GDPR and other regional privacy obligations. Legal counsel should review the actual processing activities and launch territories before release.
+
+Children: The initial product is adult-focused. Implement age eligibility controls and do not introduce child-specific appearance scoring or cosmetic-pressure features.
+
+Operational reliability
+
+Target 99.9% monthly availability for the core application API after stabilization, with separately measured AI-provider availability.
+
+Use managed database backups, tested restoration procedures, infrastructure-as-code, alerting, error budgets and documented incident response. Production secrets must never be stored in the mobile app or repository.
+
+9. Phased development and implementation plan
+
+I recommend six controlled development phases, with explicit acceptance gates between them. Do not ask the AI builder to implement the entire product in one uncontrolled prompt.
+
+Phase 0
+
+Week 1–2
+
+Architecture and product foundation
+
+Finalize wireframes and design system
+
+Create repositories, environments and migration baseline
+
+Define API contracts, roles and privacy architecture
+
+Select and benchmark AI providers
+
+Exit gate: Approved architecture, working CI and documented provider benchmarks
+
+Phase 1
+
+Week 3–6
+
+Functional consumer MVP
+
+Build onboarding, guest access and account management
+
+Implement selfie capture and basic analysis
+
+Build color analysis and beauty report
+
+Build makeover studio and saved looks
+
+Implement AI beauty advisor
+
+Exit gate: End-to-end user journey passes on real iOS and Android devices
+
+Phase 2
+
+Week 7–9
+
+Monetization and operational controls
+
+Implement subscription products and purchase verification
+
+Build credit ledger and generation reservations
+
+Build core admin dashboard and support functions
+
+Implement analytics, monitoring and privacy deletion
+
+Exit gate: Payments reconcile, entitlements are correct and security tests pass
+
+Phase 3
+
+Week 10–13
+
+Launch hardening and beta
+
+Test diverse skin tones and hair textures
+
+Conduct load, security and disaster recovery testing
+
+Complete App Store and Play Store compliance
+
+Run closed beta and resolve critical issues
+
+Exit gate: Formal go/no-go sign-off with zero unresolved release blockers
+
+Phase 4
+
+Post-launch
+
+Commerce and advanced styling
+
+Add affiliate catalogs and product matching
+
+Expand hairstyle library and virtual makeup try-on
+
+Introduce wardrobe styling and localized commerce
+
+Exit gate: Commercial viability and quality metrics justify expansion
+
+Phase 5
+
+Post-launch
+
+Marketplace and international scaling
+
+Introduce verified salons and stylists
+
+Build appointments, payouts and marketplace support
+
+Expand languages, currencies and regional content
+
+Exit gate: Operational, legal and unit-economics approval
+
+The 13-week timeline is a planning target, not a guaranteed delivery date. Provider integration, AI quality evaluation and app-store review may extend it.
+
+10. Release QA and acceptance framework
+
+Because AI-generated fixes can introduce regressions, every release must pass automated and human-reviewed gates.
+
+Release readiness checklist
+
+0/9
+
+Use this as a planning checklist. Checking a gate does not constitute independent verification.
+
+G1 — Requirements and design
+
+All MVP requirements trace to approved screens, API contracts and test cases
+
+G2 — Identity and permissions
+
+Guest, registered, subscriber and admin access are isolated correctly
+
+G3 — AI quality
+
+Representative image tests pass identity, complexion, hair and artifact criteria
+
+G4 — Billing and credits
+
+Purchase, renewal, cancellation, refund, retry and concurrency tests pass
+
+G5 — Security and privacy
+
+Authorization, media access, deletion, consent and dependency scans pass
+
+G6 — Mobile compatibility
+
+Supported iOS/Android devices pass critical journeys and accessibility checks
+
+G7 — Reliability and recovery
+
+Load, backups, restoration, rollback and monitoring are verified
+
+G8 — Beta UAT
+
+Real users complete critical flows; launch-blocking issues resolved
+
+G9 — Go/no-go
+
+Product, engineering, security and business owners approve the release
+Copy QA checklist
+Mandatory automated tests
+
+Unit tests: Pricing, credits, entitlements, permissions, validation and business logic.
+
+Integration tests: Real PostgreSQL migrations, API contracts, AI provider adapters, queues and webhooks.
+
+End-to-end tests: Onboarding, analysis, makeover, purchases, account recovery and deletion.
+
+Security tests: Cross-account access, privilege escalation, malicious uploads, replayed webhooks and concurrent credit spending.
+
+AI evaluation: Consented test dataset covering diverse complexions, hair textures, lighting and image quality.
+
+Regression tests: All previously passing critical journeys must remain green after every change.
+
+Required release thresholds
+
+Metric
+
+	
+
+Proposed acceptance threshold
+
+
+
+
+Critical/blocker defects
+
+	
+
+0 open
+
+
+
+
+High-severity security vulnerabilities
+
+	
+
+0 unresolved
+
+
+
+
+Critical E2E journeys
+
+	
+
+100% passing
+
+
+
+
+Subscription reconciliation
+
+	
+
+100% for tested billing scenarios
+
+
+
+
+Credit ledger consistency
+
+	
+
+100% for tested transactions
+
+
+
+
+API p95 latency excluding AI processing
+
+	
+
+Under 500 ms at agreed test load
+
+
+
+
+Crash-free mobile sessions
+
+	
+
+At least 99.5% in beta
+
+
+
+
+AI generation success
+
+	
+
+At least 95% under supported conditions
+
+
+
+
+Backup restore
+
+	
+
+Successful documented recovery test
+
+The AI quality threshold must be determined through a reviewed evaluation rubric, not a single subjective beauty score.
+
+11. Master implementation prompt for Emergent
+
+This is the first instruction I would give the AI builder. It deliberately requires architecture and validation before implementation, preventing the common cycle where new features repeatedly break previously working functionality.
+
+Copy into your AI builder
+
+Copy prompt
+
+The builder must first produce a complete technical plan, then wait for approval before making production changes.
+
+12. Product success metrics
+
+Track the business through a clear funnel:
+
+Primary activation and revenue funnel
+
+App install
+
+100%
+
+Onboarding completed
+
+70%
+
+First analysis completed
+
+55%
+
+First makeover generated
+
+35%
+
+Paid subscription
+
+4%
+
+Illustrative planning funnel, not observed performance or validated targets.
+
+The principal KPIs should be first-analysis completion, first-makeover completion, D1/D7/D30 retention, free-to-paid conversion, subscriber churn, net revenue retention, average AI cost per active user, contribution margin, referral activation and customer acquisition cost.
+
+For quality, monitor failed generations, identity-preservation complaints, skin-tone mismatch reports, hairstyle accuracy complaints and image-processing latency.
+
+13. Decisions to lock before coding
+Working product name
+GLAM AI
+GLOW AI
+Decide later
+Initial platform scope
+iOS + Android
+iOS first
+iOS + Android + consumer web
+Development environment
+Emergent
+Another AI builder
+Launch geography
+Global, phased by region
+South Africa first, then global
+Beauty shopping at launch
+Phase 2 after subscriptions
+Include affiliate shopping in MVP
+Finalize architecture and Phase 0 build prompts
+
+Final recommendation: Build the core AI beauty experience first, establish technical and financial reliability second, and expand into commerce only when users repeatedly return for advice and makeovers. This gives the business a realistic route to a globally competitive product without turning the initial launch into an unmanageable superapp.
+
+Codex can’t build it for us? Based on all of the above.
+
+Hair and make up and fast fashion are big business in africa as well. Advertising could be substantial revenue
+
+Yes. Codex can be the primary development engine for this application. In fact, I would prefer a Codex-led development workflow over asking an AI builder to generate the entire application in one enormous prompt.
+
+And I agree with your commercial direction: hair, makeup, fast fashion and advertising should be central to the business model, especially for African markets.
+
+That changes the opportunity considerably.
+
+Instead of building another Glam Up competitor that primarily earns subscription revenue, we can build a global AI beauty, fashion and social-commerce platform with African specialization.
+
+1. What Codex can build for us
+
+Component
+
+	
+
+Can Codex build it?
+
+
+
+
+iOS and Android mobile apps
+
+	
+
+Yes
+
+
+
+
+Complete backend and database
+
+	
+
+Yes
+
+
+
+
+AI facial and color analysis integrations
+
+	
+
+Yes
+
+
+
+
+AI makeup and hairstyle simulation integrations
+
+	
+
+Yes
+
+
+
+
+Fashion recommendations and virtual try-on
+
+	
+
+Yes, with appropriate AI models
+
+
+
+
+Beauty and fashion marketplace
+
+	
+
+Yes
+
+
+
+
+Advertising management platform
+
+	
+
+Yes
+
+
+
+
+Subscription and credit billing
+
+	
+
+Yes
+
+
+
+
+Salon, stylist and merchant dashboards
+
+	
+
+Yes
+
+
+
+
+Influencer and affiliate systems
+
+	
+
+Yes
+
+
+
+
+Automated testing and deployment pipelines
+
+	
+
+Yes
+
+
+
+
+Custom foundation AI model from scratch
+
+	
+
+Not realistically as an initial build
+
+
+
+
+Guaranteed photorealistic AI results
+
+	
+
+Requires provider evaluation and testing
+
+
+
+
+App Store approval and regulatory sign-off
+
+	
+
+Requires external review
+
+Codex can write, test, refactor and maintain the application code. It can also work through GitHub repositories, implement database migrations and build automated release checks.
+
+It cannot independently guarantee that external AI models will produce excellent results, that payment-provider approvals will be granted, or that the finished app will pass real-world testing.
+
+The right approach is to use Codex to build the product while keeping ownership of the codebase, infrastructure, data and commercial relationships.
+
+2. Why the African market changes the strategy
+
+The market evidence supports your observation.
+
+Middle East & Africa beauty market, 2025
+
+$44B
+Euromonitor regional estimate
+
+Haircare growth, 2024–2025
+
+17%
+Euromonitor regional estimate
+
+Euromonitor also projects the region's haircare sector to reach $17 billion by 2029. These figures include the Middle East, so they should not be presented as Africa-only market sizes. 
+euromonitor.com
+
+NielsenIQ's 2026 analysis reports beauty-sector value growth of 16% across Africa and the Middle East versus 10% globally, while emphasizing that purchasing preferences differ significantly by country. 
+NIQ
+
+That makes localization, affordable fashion, protective hairstyles and region-specific beauty products important commercial differentiators.
+
+3. I would expand the platform into five connected businesses
+
+1. AI Beauty & Hair Studio
+
+Selfie analysis, makeup simulation, wig try-ons, braids, locs, natural hairstyles, hair colors, tutorials and personalized routines.
+
+Revenue: subscriptions, AI credits, sponsored recommendations and product referrals.
+
+2. AI Fast Fashion Stylist
+
+Users upload a photograph, choose an occasion and visualize outfits. They can then shop similar available clothing, compare prices and build wardrobes.
+
+Revenue: fashion affiliate commissions, marketplace commissions and promoted products.
+
+3. Beauty Professionals Marketplace
+
+Hairstylists, makeup artists, nail technicians, barbers and salons list services, showcase portfolios, receive appointments and advertise.
+
+Revenue: booking commissions, professional subscriptions and sponsored listings.
+
+4. Creator & Influencer Commerce
+
+Creators publish looks, tutorials and shoppable collections. Followers can try a look on themselves and purchase recommended products.
+
+Revenue: affiliate commissions, creator partnerships and brand campaigns.
+
+5. Beauty & Fashion Advertising Network
+
+Brands, salons and fashion retailers create campaigns to reach relevant audiences through sponsored discovery, promoted looks and shoppable placements.
+
+Revenue: CPC, CPM, sponsored placements and campaign packages.
+
+The real differentiator would be connecting all five.
+
+A customer could photograph herself, try a braided hairstyle, find a local stylist, book an appointment, and purchase a matching outfit—all from one personalized experience.
+
+4. Advertising could become a major revenue engine
+
+I would build an advertising platform from the beginning at the architectural level, even if the full self-service advertiser dashboard launches later.
+
+The advertising inventory could include:
+
+Placement
+
+	
+
+Advertiser
+
+	
+
+Pricing model
+
+
+
+
+Sponsored beauty products
+
+	
+
+Cosmetics brands
+
+	
+
+CPC / CPA
+
+
+
+
+Sponsored hairstyles
+
+	
+
+Hair brands, wig sellers
+
+	
+
+CPC
+
+
+
+
+Featured salons
+
+	
+
+Beauty professionals
+
+	
+
+Monthly / CPC
+
+
+
+
+Sponsored outfit collections
+
+	
+
+Fashion retailers
+
+	
+
+CPC / CPA
+
+
+
+
+Beauty challenge sponsorship
+
+	
+
+Major brands
+
+	
+
+Fixed campaign
+
+
+
+
+Creator-sponsored looks
+
+	
+
+Brands and creators
+
+	
+
+Campaign / commission
+
+Important: Advertising should never secretly change the AI's analysis of a person's face or skin. Sponsored results must be clearly labeled and distinguishable from organic recommendations. Sensitive facial imagery and inferred biometric characteristics should not be exposed to advertisers or used for targeting without an appropriate lawful basis.
+
+Illustrative advertising revenue
+
+Monthly advertising revenue simulator
+
+Monthly active users
+
+350,000
+
+Ad opportunities per user/month
+
+35
+
+Paid ad fill rate
+
+60%
+
+Effective CPM (USD)
+
+$3.00
+
+Estimated monthly gross advertising revenue
+$22,050
+Before ad-serving costs, sales commissions, taxes and other expenses. These are scenario assumptions, not verified African beauty-app CPMs.
+
+At scale, advertising can be meaningful, but reaching large monthly audiences and attracting paying advertisers are separate challenges. I would initially sell sponsored placements directly to beauty and fashion businesses rather than depend entirely on generic display-ad networks.
+
+5. The new business model
+
+Proposed revenue mix at maturity
+
+Advertising and sponsorships
+
+30%
+
+Beauty and fashion commerce
+
+25%
+
+Subscriptions and AI credits
+
+20%
+
+Professional bookings
+
+15%
+
+Creator and merchant tools
+
+10%
+
+Strategic target mix only—not a forecast or industry benchmark.
+
+I would also make the app genuinely useful without a subscription. A free customer should be able to discover looks, browse products, follow creators and find professionals. That creates the audience needed for advertising and commerce.
+
+Premium users pay for more advanced AI capabilities and higher generation allowances, not for basic access to the marketplace.
+
+6. How I would organize Codex development
+
+OpenAI's official documentation confirms that Codex can work with repositories, implement features, run tests and prepare pull requests. Its newer development tools also support broader workflows across computer interfaces and connected tools. 
+OpenAI
++1
+
+I would use one GitHub organization and a structured monorepo:
+
+glam-platform/
+  apps/
+    mobile/
+    admin/
+    merchant-portal/
+    creator-portal/
+  services/
+    api/
+    ai-orchestrator/
+    media-workers/
+    ads-engine/
+    commerce/
+  packages/
+    ui/
+    shared-types/
+    api-client/
+    configuration/
+  infrastructure/
+    migrations/
+    deployment/
+    monitoring/
+  docs/
+    product/
+    architecture/
+    security/
+    qa/
+  AGENTS.md
+
+Codex should work through small, reviewable pull requests with independent tests. The advertising system should have its own campaign, inventory, targeting, impression, click, billing and reporting services. It should not be tightly coupled to facial-analysis code.
+
+Recommended delivery order
+
+Foundation: Mobile shell, authentication, design system, database, backend, CI and release controls.
+
+AI beauty MVP: Selfie analysis, color analysis, makeup advice, hairstyles and makeover generation.
+
+Commercial MVP: Subscriptions, AI credits, product catalogs and affiliate links.
+
+Advertising: Sponsored products, campaign management, tracking and advertiser reporting.
+
+Fashion: Outfit recommendations, virtual try-on and retailer integrations.
+
+Marketplace: Salons, creators, bookings and self-service merchant advertising.
+
+Each stage must have a defined release gate. We should avoid the pattern where a new feature breaks three existing ones and another full audit restarts development.
+
+7. Start Codex with this instruction
+GLAM AI — Codex Master Build Instruction
+GLAM AI — Codex Master Build Instruction
+
+You are the principal engineering team responsible for building a production-grade global AI beauty, hair, makeup, fashion and social-commerce platform, with African specialization.
+
+Product objective
+
+Create a consumer platform combining:
+
+AI facial feature and personal color analysis.
+Realistic makeup and hairstyle simulations.
+African hair specialization, including natural hair, braids, locs, wigs and protective hairstyles.
+AI fashion styling and outfit visualization.
+Personalized beauty and fashion product discovery.
+Beauty professional and salon marketplace.
+Creator-led shopping and affiliate commerce.
+An advertising network for beauty brands, fashion merchants and professionals.
+Freemium subscriptions and AI generation credits.
+Secure merchant, creator, advertiser and administrator dashboards.
+Technical architecture
+
+Use React Native/Expo for mobile, React/Next.js for web dashboards, FastAPI for backend services, PostgreSQL for transactional storage, private object storage for images, and asynchronous workers for AI operations.
+
+Implement a provider-independent AI orchestration layer, server-authoritative billing, transactional credit accounting, role-based access control, consent management and production observability.
+
+Engineering rules
+Maintain a single canonical database migration history.
+Require automated tests for every completed feature.
+Protect existing functionality against regressions.
+Implement all commercial calculations on the server.
+Keep customer facial images private.
+Do not expose biometric characteristics or private images to advertisers.
+Label sponsored content clearly.
+Require explicit approval before production deployments or destructive database changes.
+Maintain a continuously updated product requirements matrix, engineering backlog, architecture decisions and release-gate checklist.
+Use isolated feature branches and reviewable pull requests.
+Do not substitute mock data for completed production integrations.
+Do not declare a feature production-ready without verifiable evidence.
+First task
+
+Do not attempt to build the entire platform immediately.
+
+First produce:
+
+Full architecture and repository structure.
+Complete database entity relationship model.
+Screen inventory for consumers, merchants, creators, advertisers and administrators.
+AI provider evaluation and cost model.
+Subscription, credit and marketplace transaction architecture.
+Advertising platform architecture, including campaign management, sponsored placements, attribution and reporting.
+Phased implementation backlog with dependencies.
+Security, privacy and compliance requirements.
+Automated test and release strategy.
+Estimated infrastructure and AI operating costs.
+
+Identify unresolved decisions and request approval before beginning implementation.
+
+The objective is a commercially deployable application, not a prototype.
+
+8. One further commercial opportunity
+
+Given your existing Dress 4 Less business, there is a potential advantage in having a real fashion inventory available to the platform rather than relying entirely on external affiliate merchants.
+
+For example, the AI stylist could recommend a complete outfit and link directly to matching Dress 4 Less products. That could provide an initial merchant catalog while the platform recruits additional fashion sellers.
+
+However, I would keep the beauty platform commercially independent and allow competing fashion retailers to participate. Otherwise, restricting product recommendations to one retailer could reduce the platform's long-term appeal to users and advertisers.
+
+My recommendation is to use Codex to build this as an independent, global AI beauty-and-fashion commerce business, with advertising designed into the architecture from day one. The first public release should still focus on excellent AI beauty and hair functionality, followed by fashion commerce and advertising as soon as usage and product quality justify expansion.
+
+The immediate next step is to create the GitHub repository and give Codex the master instruction above. The first deliverable should be its architecture and implementation plan—not thousands of lines of unreviewed code.
+
+when you choose a look, reccomendations of where to buy based on advertisers so your look is complete: I would expand the platform into five connected businesses
+30 Afro Braid Styles for Thick Hair - Bold Hairstyles
+
+1. AI Beauty & Hair Studio
+
+Selfie analysis, makeup simulation, wig try-ons, braids, locs, natural hairstyles, hair colors, tutorials and personalized routines.
+
+Revenue: subscriptions, AI credits, sponsored recommendations and product referrals.
+
+2025 African Fashion Style Trends You’ll Actually Want to Try
+
+2. AI Fast Fashion Stylist
+
+Users upload a photograph, choose an occasion and visualize outfits. They can then shop similar available clothing, compare prices and build wardrobes.
+
+Revenue: fashion affiliate commissions, marketplace commissions and promoted products.
+
+GlamsGo ??? Book Trusted Hair Professionals
+
+3. Beauty Professionals Marketplace
+
+Hairstylists, makeup artists, nail technicians, barbers and salons list services, showcase portfolios, receive appointments and advertise.
+
+Revenue: booking commissions, professional subscriptions and sponsored listings.
+
+An African American beauty artist teaches how to create a perfect smoky eye look. She films the video at home with her makeup accessories neatly arranged in front.
+
+4. Creator & Influencer Commerce
+
+Creators publish looks, tutorials and shoppable collections. Followers can try a look on themselves and purchase recommended products.
+
+Revenue: affiliate commissions, creator partnerships and brand campaigns.
+
+Collections – RR MakeUp Products
+
+5. Beauty & Fashion Advertising Network
+
+Brands, salons and fashion retailers create campaigns to reach relevant audiences through sponsored discovery, promoted looks and shoppable placements.
+
+Revenue: CPC, CPM, sponsored placements and campaign packages.
+
+GLAM AI — Complete the Look™
+
+New core feature: AI-powered shoppable beauty and fashion looks
+
+This should become the central feature of the entire platform. Rather than users simply choosing a hairstyle, makeup style or outfit, GLAM AI should identify everything required to recreate that look and show them where to buy it or which professional can deliver it.
+
+Advertisers become the businesses fulfilling those recommendations, turning the AI makeover experience into a shopping and booking engine.
+
+1. How Complete the Look works
+
+Upload your selfie
+
+Or choose a look from the inspiration gallery
+
+Try the complete look
+
+AI hairstyle + makeup + outfit + accessories
+
+AI creates your shopping and service checklist
+
+Matches the look to actual advertiser products and available professionals
+
+Buy products
+
+Hair, makeup, clothing
+
+Book professionals
+
+Salons and makeup artists
+
+Compare offers
+
+Prices and promotions
+
+Save the look
+
+Wishlist and shopping plan
+2. Example: A user selects an African-inspired glam look
+The Braided Soft Glam Look
+
+AI identifies the components needed to recreate this style.
+
+Hair
+
+Braiding extensions, styling products and professional braiding appointment.
+
+Sponsored matches available
+
+Makeup
+
+Foundation, concealer, lip color, lashes and makeup artist services.
+
+Sponsored matches available
+
+Fashion
+
+Cream blazer, coordinated trousers and complementary wardrobe pieces.
+
+Sponsored matches available
+
+Accessories
+
+Earrings, necklaces, handbag and shoes matched to the outfit.
+
+Sponsored matches available
+Conceptual example. Product availability, sponsorships and pricing would come from live merchant catalogs, not the images above.
+
+The user could buy individual components, compare merchants, or select Shop the Entire Look to assemble a multi-merchant shopping basket.
+
+3. How advertisers should influence recommendations
+
+I recommend a hybrid system rather than showing only whoever pays the most.
+
+The AI first determines what is needed for the selected look. The commercial matching engine then identifies available products and professionals.
+
+Recommendation ranking logic
+
+Visual and functional match
+
+35%
+
+Advertiser relevance and bid
+
+25%
+
+Price and affordability
+
+15%
+
+Availability and delivery
+
+15%
+
+Merchant quality
+
+10%
+
+Proposed weighting for sponsored placement ranking, not a trained recommendation model. Eligibility, safety, stock and relevance are mandatory filters before bidding is considered.
+
+I would present two clearly distinguishable sections: Best Matches and Sponsored Matches. Advertisers can compete for relevant sponsored positions, but cannot buy their way into a completely unrelated recommendation.
+
+For example, a hair-extension supplier could advertise when a user selects knotless braids. A fashion retailer could promote a matching blazer. A nearby salon could sponsor a booking suggestion.
+
+4. New advertiser business model
+
+Pay per click (CPC)
+
+Merchants bid to appear in relevant look recommendations and pay when users click through to their products or services.
+
+Commission per sale (CPA)
+
+GLAM AI earns an affiliate or marketplace commission when a purchase is attributed to its recommendation.
+
+Sponsored Complete Looks
+
+Brands sponsor curated styles, seasonal campaigns, celebrity-inspired aesthetics or fashion collections. Paid sponsorship is disclosed.
+
+Merchant and salon subscriptions
+
+Businesses pay for advanced storefronts, analytics, product-feed integrations, campaign tools and appointment management.
+
+Example revenue from one completed look
+
+Suppose a user buys the following:
+
+Item
+
+	
+
+Example transaction
+
+	
+
+GLAM AI revenue
+
+
+
+
+Hair extensions
+
+	
+
+R450
+
+	
+
+R45 affiliate commission
+
+
+
+
+Makeup products
+
+	
+
+R650
+
+	
+
+R65 affiliate commission
+
+
+
+
+Clothing
+
+	
+
+R900
+
+	
+
+R90 affiliate commission
+
+
+
+
+Salon appointment
+
+	
+
+R700
+
+	
+
+R105 booking commission
+
+
+
+
+Sponsored clicks
+
+	
+
+—
+
+	
+
+R15 advertising revenue
+
+
+
+
+Total
+
+	
+
+R2,700
+
+	
+
+R320
+
+This illustrates a potential blended revenue model, assuming 10% affiliate commissions on products, 15% on services and R15 in attributable advertising revenue. These are hypothetical commercial terms, not confirmed partner agreements. Actual attribution, payment costs and merchant margins would affect the result.
+
+5. What Codex needs to add to the specification
+
+The Complete the Look engine should become a dedicated backend domain, not just another screen in the mobile app.
+
+New database entities
+looks
+look_components
+look_component_requirements
+look_product_matches
+look_service_matches
+merchant_catalogs
+merchant_products
+merchant_inventory
+merchant_offers
+advertiser_accounts
+advertising_campaigns
+advertising_ad_groups
+advertising_creatives
+advertising_bids
+sponsored_placements
+ad_impressions
+ad_clicks
+ad_conversions
+attribution_events
+shopping_lists
+shopping_list_items
+multi_merchant_carts
+merchant_orders
+commission_ledger
+New user-facing screens
+
+Complete Look result page
+
+Shop the Look
+
+Compare product offers
+
+Book the Look
+
+Full-look budget planner
+
+Shopping basket and merchant checkout
+
+Saved looks and shopping lists
+
+Sponsored look collections
+
+New advertiser dashboard capabilities
+
+Advertisers should be able to upload products, sync stock, set budgets, choose eligible look categories, bid for sponsored placements, review conversions and see advertising return on spend.
+
+The system must validate stock and price freshness, avoid duplicate products, handle out-of-stock substitutions and prevent merchants from manipulating recommendation relevance through misleading product metadata.
+
+6. Codex implementation instruction
+GLAM AI — Complete the Look Engine
+GLAM AI — Complete the Look Engine
+
+Extend the existing GLAM AI product specification with a first-class AI-powered shoppable-look system.
+
+Core objective
+
+Whenever a user selects or generates a beauty, hairstyle, makeup or fashion look, the platform must identify all relevant components required to recreate that look in real life.
+
+It must then match those components to actual products, merchants, advertisers and beauty professionals.
+
+Functional requirements
+Analyze each selected look and produce a structured list of required products, fashion items, accessories and professional services.
+Match those requirements to merchant product catalogs and available professional services.
+Support global markets with localized pricing, currencies, inventory, delivery eligibility and regional preferences.
+Include specialized matching for African hair textures, protective hairstyles, wigs, braiding extensions and locally relevant beauty products.
+Show organic recommendations separately from clearly labeled sponsored recommendations.
+Implement sponsored-placement eligibility, relevance scoring, bidding, budget controls and frequency caps.
+Support CPC advertising, affiliate sales attribution, marketplace commissions and sponsored look collections.
+Allow users to compare offers, save shopping lists, assemble complete looks and book beauty professionals.
+Provide a full advertiser dashboard for campaigns, catalogs, budgets, clicks, conversions and reporting.
+Support merchant catalog ingestion through APIs, CSV feeds and approved manual uploads.
+Never fabricate merchant inventory, prices, delivery promises or product availability.
+Prevent paid advertising from modifying the underlying AI analysis or misleading the user.
+Do not expose facial images, biometric measurements or sensitive personal inferences to advertisers.
+Make all commercial events auditable and implement fraud detection, idempotency and reconciliation.
+Design for future creator storefronts and affiliate commissions.
+Required architecture
+
+Implement a Look Decomposition Service, Product Matching Service, Professional Matching Service, Sponsored Ranking Service, Attribution Service, Advertising Billing Service and Shopping Orchestration Service.
+
+Use provider-independent AI adapters and server-authoritative commercial calculations.
+
+Initial deliverables
+
+Produce the revised product requirements, database schema, API contracts, recommendation ranking design, advertising auction logic, advertiser dashboard specification, shopping user flows, unit-economics model and phased development backlog.
+
+Integrate this feature into the existing GLAM AI architecture rather than creating a disconnected second application.
+
+Do not begin production implementation until the architecture, commercial rules and acceptance criteria have been reviewed and approved.
+
+7. The strategic opportunity
+
+This makes the five businesses reinforce one another:
+
+AI creates the inspiration → users try the look → advertisers supply the products → professionals deliver the services → creators drive discovery → GLAM AI earns from the resulting transactions.
+
+I would make Complete the Look the flagship commercial feature and prioritize it ahead of a general-purpose advertising feed.
+
+One additional feature could be especially powerful for African markets: Complete My Look Within My Budget. A user could enter R500, R1,500 or R5,000, and the platform would assemble the closest achievable hairstyle, makeup and outfit combination from actual available offers.
+
+That gives users a practical reason to return and gives advertisers access to customers who are already expressing purchase intent—without requiring the platform to manufacture that intent through intrusive advertising.

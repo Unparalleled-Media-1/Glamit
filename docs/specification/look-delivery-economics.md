@@ -1,5 +1,7 @@
 # Complete the Look — delivery, acceptance and unit economics
 
+V2 authority: [Master PRD](master-prd-v2.md), [global policy](global-policy-architecture.md), [commerce operations](commerce-operations-v2.md) and [companion extension](style-companion-extension.md). Earlier scenarios are hypothetical inputs, not global economics. V2-B06 qualifies referral/professional leads before platform settlement, while CTL-06 full checkout and CTL-08 complex auctions remain later disabled capabilities. Add global cohort/age/localization/supply evidence to applicable AC gates; add private memory/wardrobe/twin/agent review costs without double counting. Existing foundation approval remains; revised expanded architecture/acceptance criteria await approval.
+
 Status: proposed. No rates, revenue, inventory, partner integration or quality outcomes here have been observed in production. All scenarios are hypothetical USD inputs for commercial review; no vendor trial or deployment is authorized.
 
 ## Incremental cost and revenue model

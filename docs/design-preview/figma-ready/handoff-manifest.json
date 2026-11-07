@@ -1,0 +1,17 @@
+{
+  "version": "ui-ux-1.0",
+  "nativeFigmaFile": "not created; no Figma authoring tool connected",
+  "tokens": "../tokens.json",
+  "components": "../components.json",
+  "editableVectorFrames": [
+    "mobile-home.svg",
+    "desktop-complete-look.svg",
+    "components.svg",
+    "wireframe-mobile-home.svg",
+    "wireframe-desktop-complete-look.svg"
+  ],
+  "format": "SVG text/shapes with embedded original WebP image fills; not native Figma components/auto-layout",
+  "figmaImportVerification": "not performed",
+  "primaryHighFidelity": "HTML/CSS prototype and captured frames",
+  "fullScreenLibrary": "133 dedicated HTML frame studies and screen-families/*.svg wireframe studies; native Figma library outstanding"
+}

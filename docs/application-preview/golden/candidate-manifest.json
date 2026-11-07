@@ -1,0 +1,259 @@
+{
+  "approved": false,
+  "approval_required": "Five patterns visually approved; new sixth Results pattern and functional/device validation pending",
+  "browser": "155.0.8059.79",
+  "files": [
+    {
+      "file": "iphone-results.png",
+      "viewport": {
+        "name": "iphone",
+        "width": 390,
+        "height": 844
+      },
+      "screen": "results"
+    },
+    {
+      "file": "iphone-home.png",
+      "viewport": {
+        "name": "iphone",
+        "width": 390,
+        "height": 844
+      },
+      "screen": "home"
+    },
+    {
+      "file": "iphone-analyze.png",
+      "viewport": {
+        "name": "iphone",
+        "width": 390,
+        "height": 844
+      },
+      "screen": "analyze"
+    },
+    {
+      "file": "iphone-report.png",
+      "viewport": {
+        "name": "iphone",
+        "width": 390,
+        "height": 844
+      },
+      "screen": "report"
+    },
+    {
+      "file": "iphone-studio.png",
+      "viewport": {
+        "name": "iphone",
+        "width": 390,
+        "height": 844
+      },
+      "screen": "studio"
+    },
+    {
+      "file": "iphone-shop.png",
+      "viewport": {
+        "name": "iphone",
+        "width": 390,
+        "height": 844
+      },
+      "screen": "shop"
+    },
+    {
+      "file": "iphone-product.png",
+      "viewport": {
+        "name": "iphone",
+        "width": 390,
+        "height": 844
+      },
+      "screen": "product"
+    },
+    {
+      "file": "android-results.png",
+      "viewport": {
+        "name": "android",
+        "width": 412,
+        "height": 915
+      },
+      "screen": "results"
+    },
+    {
+      "file": "android-home.png",
+      "viewport": {
+        "name": "android",
+        "width": 412,
+        "height": 915
+      },
+      "screen": "home"
+    },
+    {
+      "file": "android-analyze.png",
+      "viewport": {
+        "name": "android",
+        "width": 412,
+        "height": 915
+      },
+      "screen": "analyze"
+    },
+    {
+      "file": "android-report.png",
+      "viewport": {
+        "name": "android",
+        "width": 412,
+        "height": 915
+      },
+      "screen": "report"
+    },
+    {
+      "file": "android-studio.png",
+      "viewport": {
+        "name": "android",
+        "width": 412,
+        "height": 915
+      },
+      "screen": "studio"
+    },
+    {
+      "file": "android-shop.png",
+      "viewport": {
+        "name": "android",
+        "width": 412,
+        "height": 915
+      },
+      "screen": "shop"
+    },
+    {
+      "file": "android-product.png",
+      "viewport": {
+        "name": "android",
+        "width": 412,
+        "height": 915
+      },
+      "screen": "product"
+    },
+    {
+      "file": "tablet-results.png",
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screen": "results"
+    },
+    {
+      "file": "tablet-home.png",
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screen": "home"
+    },
+    {
+      "file": "tablet-analyze.png",
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screen": "analyze"
+    },
+    {
+      "file": "tablet-report.png",
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screen": "report"
+    },
+    {
+      "file": "tablet-studio.png",
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screen": "studio"
+    },
+    {
+      "file": "tablet-shop.png",
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screen": "shop"
+    },
+    {
+      "file": "tablet-product.png",
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screen": "product"
+    },
+    {
+      "file": "desktop-results.png",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1050
+      },
+      "screen": "results"
+    },
+    {
+      "file": "desktop-home.png",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1050
+      },
+      "screen": "home"
+    },
+    {
+      "file": "desktop-analyze.png",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1050
+      },
+      "screen": "analyze"
+    },
+    {
+      "file": "desktop-report.png",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1050
+      },
+      "screen": "report"
+    },
+    {
+      "file": "desktop-studio.png",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1050
+      },
+      "screen": "studio"
+    },
+    {
+      "file": "desktop-shop.png",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1050
+      },
+      "screen": "shop"
+    },
+    {
+      "file": "desktop-product.png",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1050
+      },
+      "screen": "product"
+    }
+  ]
+}

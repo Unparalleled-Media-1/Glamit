@@ -1,6 +1,21 @@
 # GLAM AI engineering rules
 
+- Latest Stripe authority: read docs/payments/PAYMENT_ARCHITECTURE.md, STRIPE_CONNECT_READINESS.md and PAYMENT_REGRESSION_REPORT.md. User authorizes isolated Stripe Connect TEST integration under Zanzu Technologies Inc. and new canonical sandbox tables; never modify production financial records, existing commission/auth logic or original migrations. New 0009 refuses non-_test databases; persistent Stripe sandbox must differ from disposable pytest DB. Live Stripe and production Supabase remain prohibited. Actual Stripe IDs/fees cannot be replaced with test doubles; report integration incomplete until actual financial acceptance passes.
+
+- Latest user authority (6 November): read docs/specification/ux-completion-and-integrations.md, docs/ux-regression-report.md and docs/service-integration-readiness.md. Five golden patterns are visually approved subject to function/usability; preserve them and the color/layout system. Sixth Results, destination and requested missing journeys/provider preparations are authorized, superseding the earlier feature-freeze wait for that scope. Keep Supabase disconnected pending G0, payments inactive, existing finance/auth/migrations/production data unchanged. Test doubles/browser emulation are not live services/native-device evidence.
+
+- Latest authority: read docs/specification/golden-screen-review.md, visual-gap-report.md and feature-freeze-contracts.md. Freeze major feature expansion; submit the five golden patterns for visual approval before redesigning the remainder. Destination/weather contracts are proposals, not enabled services. Keep current primary navigation and preserve backend/auth/canonical migrations.
+
+- Read docs/specification/beauty-led-visual-pass.md for the latest portrait-led Home/Analysis/Studio/color UX. Editorial portraits and reference swatches must never become fabricated personal results; tool-specific directions hand off only to the corresponding look component.
+
+- Read docs/specification/goal-led-experience.md and goal-led-backlog.md for the latest goal-led UX, continuous brief, independent Look Builder, opt-in metadata memory and fixed server-only item commission. Never persist photos/conversations/tokens in that device profile or pretend disconnected AI/commerce is live.
+
+- Read docs/specification/contextual-catalog-build.md for the permanent analysis-to-commerce requirement and Snap & List. Every relevant result/guide/Studio flow embeds organic and separately labeled sponsored matches or an honest no-match state. Commerce remains integrated, never hidden behind a mandatory Shop tab. Relevance, source facts, stock, freshness, market/age policy and rights precede bids; AI suggestions never publish without factual/version approval.
+
+- Read docs/specification/analysis-first-build.md first. The latest explicit user instruction authorizes code/build now, with external tools and hosted databases connected afterward. Earlier design-wait instructions are superseded for this implementation; deployment, provider spend and commercial activation still require their own evidence/authorization. Consumer navigation is Home, Analyze, AI Studio, AI Advisor, Profile; commerce is secondary. One native app, unified web/business platform and restricted admin use canonical identities/RBAC/migrations.
+
 - Read docs/approvals.md, docs/specification/README.md and docs/implementation-status.md.
+- Master PRD v2 defines globally inclusive product scope and age-specific experiences; read its global policy/commerce plans before expanding implementation. The later explicit code/build instruction authorizes implementation of the corrected analysis-first architecture. No global/age mode is enabled by planning approval alone.
 - Use the existing checkout; do not create Git worktrees unless explicitly requested.
 - Work on isolated feature branches and use reviewable PRs. Update requirement/backlog status with evidence.
 - Keep db/migrations the sole canonical migration history. No alternate ORM migration system.

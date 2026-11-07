@@ -1,0 +1,11 @@
+{
+  "extends": "../apps/web/tsconfig.json",
+  "compilerOptions": { "noEmit": true, "incremental": false },
+  "include": [
+    "entry.tsx",
+    "../apps/web/components/**/*.tsx",
+    "../apps/web/lib/**/*.ts",
+    "../packages/**/*.ts"
+  ],
+  "exclude": ["../node_modules"]
+}

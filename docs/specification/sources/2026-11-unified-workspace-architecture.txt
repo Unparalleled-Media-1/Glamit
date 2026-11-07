@@ -1,0 +1,998 @@
+GLAM AI — Complete Dashboard & Platform Architecture
+
+Yes. Besides the Super Admin dashboard, GLAM AI needs dedicated dashboards for advertisers, merchants, beauty professionals, creators and consumers.
+
+However, because we've repositioned GLAM AI as an AI face-analysis, personal color, makeover and glow-up application first, we should avoid building a complicated super-app.
+
+My recommendation is one consumer mobile app, one consumer website, and one unified business portal with role-specific dashboards.
+
+Business users should also have mobile access, but we do not need separate downloadable apps for every business role.
+
+1. Recommended dashboard structure
+
+Dashboard
+
+	
+
+Web
+
+	
+
+Mobile
+
+	
+
+Priority
+
+
+
+
+Super Admin
+
+	
+
+Full dashboard
+
+	
+
+Responsive emergency access
+
+	
+
+Essential
+
+
+
+
+Consumer
+
+	
+
+Full experience
+
+	
+
+Full native app
+
+	
+
+Essential
+
+
+
+
+Advertiser
+
+	
+
+Full dashboard
+
+	
+
+Responsive companion
+
+	
+
+Essential
+
+
+
+
+Merchant / Brand
+
+	
+
+Full dashboard
+
+	
+
+Responsive companion
+
+	
+
+Essential
+
+
+
+
+Beauty Professional / Salon
+
+	
+
+Full dashboard
+
+	
+
+Mobile-first companion
+
+	
+
+Phase 2
+
+
+
+
+Creator / Influencer
+
+	
+
+Full dashboard
+
+	
+
+Creator tools inside consumer app
+
+	
+
+Phase 2
+
+
+
+
+Affiliate / Partner
+
+	
+
+Full dashboard
+
+	
+
+Responsive companion
+
+	
+
+Phase 2
+
+
+
+
+Support Agent
+
+	
+
+Full dashboard
+
+	
+
+Not initially needed
+
+	
+
+Essential
+
+
+
+
+Regional Manager
+
+	
+
+Full dashboard
+
+	
+
+Responsive monitoring
+
+	
+
+Phase 3
+
+Important: Support Agent and Regional Manager should be restricted roles within the Admin system, not separate applications. Similarly, the Affiliate dashboard can initially be part of the Creator/Partner workspace.
+
+That leaves us with six core experiences, rather than nine independent applications.
+
+2. Recommended platform architecture
+
+GLAM AI — Shared Backend
+
+Users · AI analysis · Looks · Catalogs · Advertising · Billing · Permissions
+
+Consumer Mobile
+
+iOS + Android
+
+Consumer Web
+
+Browser experience
+
+Business Portal
+
+Role-specific dashboards
+
+Admin Console
+
+Operations and governance
+
+A user can hold multiple roles. For example, a makeup artist could be a regular GLAM AI consumer, run a professional profile and promote a beauty product collection.
+
+They should use one account with secure role switching, not register three times.
+
+3. Advertiser dashboard
+
+Primary platform: Web
+
+Mobile: Responsive monitoring, notifications and basic campaign controls.
+
+Release 1
+
+Advertisers include cosmetics companies, haircare brands, fashion retailers, beauty equipment suppliers and relevant service providers.
+
+Required modules: Overview, Campaigns, Create Campaign, Sponsored Products, Sponsored Looks, Creative Library, Audiences & Placements, Budgets, Billing, Performance Reports, Conversion Tracking and Account Settings.
+
+Key advertising placements
+
+Consumer experience
+
+	
+
+Advertiser opportunity
+
+
+
+
+Personal color analysis
+
+	
+
+Clearly labeled matching makeup and fashion products
+
+
+
+
+Hairstyle recommendations
+
+	
+
+Hair products, extensions and relevant salons
+
+
+
+
+Makeup tutorials
+
+	
+
+Sponsored cosmetic products and makeup kits
+
+
+
+
+AI makeover results
+
+	
+
+Optional Shop This Look recommendations
+
+
+
+
+AI Advisor
+
+	
+
+Clearly disclosed sponsored product suggestions where relevant
+
+
+
+
+Discover Looks
+
+	
+
+Sponsored collections and brand campaigns
+
+Advertising must not change the underlying facial-analysis results or give brands access to users' private facial data. For minors, use an age-appropriate advertising policy with no behavioral profiling.
+
+Why web first? Advertisers need room for charts, campaign setup, budgets, creative uploads, billing and detailed reporting. Those workflows are much easier on desktop.
+
+4. Merchant / Brand dashboard
+
+Primary platform: Web
+
+Mobile: Product updates, lead notifications, stock alerts and performance snapshots.
+
+Release 1
+
+Merchants are businesses selling cosmetics, hair products, grooming items, clothing, accessories or other relevant products.
+
+Required modules: Overview, Storefront, Product Catalog, Inventory, Product Variants, Offers, Orders/Referrals, Advertising, Analytics, Billing, Integrations, Reviews and Settings.
+
+Critical distinction
+
+A merchant and an advertiser are not always the same.
+
+A merchant supplies products to GLAM AI. An advertiser pays to promote products or campaigns.
+
+A cosmetics brand might do both, so one business account should support both roles.
+
+The merchant portal should support three selling modes:
+
+External retailer: Product recommendations link to the merchant's website.
+
+Lead-generation merchant: GLAM AI sends qualified inquiries or referral traffic.
+
+Marketplace seller: GLAM AI processes supported orders, introduced in a later phase.
+
+This allows the commercial ecosystem to launch without immediately requiring full marketplace checkout.
+
+5. Beauty Professional / Salon dashboard
+
+Primary platform: Mobile-responsive web
+
+Full web dashboard for owners; quick daily operations on phones.
+
+Release 2
+
+This serves hairstylists, barbers, makeup artists, nail technicians, wig specialists and other relevant beauty professionals.
+
+Required modules: Profile, Portfolio, Services & Prices, Availability, Bookings, Look Requests, Client Messages, Reviews, Promotions, Earnings and Settings.
+
+The most important feature is Recreate This Look.
+
+A consumer selects a hairstyle or makeup result and requests a quote from a professional. The professional can review the reference, confirm feasibility, quote a price and offer appointment times.
+
+A mobile-first experience matters because many independent professionals operate primarily from their phones.
+
+6. Creator / Influencer dashboard
+
+Primary platform: Mobile + Web
+
+Creation and publishing on mobile; analytics, campaigns and earnings on web.
+
+Release 2
+
+Required modules: Creator Profile, My Looks, Tutorials, Shoppable Collections, Affiliate Links, Brand Campaigns, Audience Analytics, Earnings, Payouts and Settings.
+
+Creators should be able to publish a makeup or hairstyle tutorial and let followers try a similar look using GLAM AI.
+
+This creates a natural growth loop without turning the app into a full social network from day one.
+
+7. Consumer dashboard
+
+This should not look like an enterprise dashboard.
+
+It is the user's personal beauty and grooming space.
+
+Recommended mobile navigation
+
+Home
+
+Analyze
+
+AI Studio
+
+AI Advisor
+
+Profile
+
+The consumer experience must prioritize Face Analysis, Personal Color Analysis, Glow-Up Guides, Makeup Match, AI Hairstyle Studio, personalized routines and AI Advisor.
+
+Shopping remains contextual and optional.
+
+The consumer website should support the same account, analysis history, saved looks and subscription entitlements as the mobile application.
+
+8. Should we build separate mobile apps for businesses?
+
+Not initially.
+
+Business role
+
+	
+
+Recommended approach
+
+
+
+
+Advertisers
+
+	
+
+Responsive web portal
+
+
+
+
+Merchants
+
+	
+
+Responsive web portal
+
+
+
+
+Salons/professionals
+
+	
+
+Mobile-first web portal; consider dedicated app after demand
+
+
+
+
+Creators
+
+	
+
+Tools inside consumer mobile app + web dashboard
+
+
+
+
+Admin
+
+	
+
+Secure desktop-first web console
+
+
+
+
+Consumers
+
+	
+
+Native iOS/Android app + consumer web
+
+This avoids maintaining six separate mobile applications.
+
+Later, if professional booking volume becomes substantial, a dedicated GLAM AI Pro app could combine salon operations, appointments and customer messaging.
+
+9. Unified business portal navigation
+
+Instead of separate codebases for each business type, use a common business application with permissions controlling the visible modules.
+
+Business Workspace
+
+Role-based
+Advertiser
+
+Overview
+
+Campaigns
+
+Ad Creatives
+
+Placements
+
+Budgets
+
+Analytics
+
+Billing
+
+Illustrative workspace navigation. A business with multiple approved roles can switch between workspaces without creating a new account.
+10. Final instruction for Codex
+GLAM AI — Final Role-Based Dashboard Architecture
+GLAM AI — Final Role-Based Dashboard Architecture
+
+Build GLAM AI with four primary application surfaces:
+
+Consumer mobile application — React Native/Expo for iOS and Android.
+Consumer web application — responsive web.
+Unified business web portal — advertiser, merchant, beauty professional, creator and affiliate workspaces.
+Secure administration web console — Super Admin, Support, Finance, AI Operations, Compliance and Regional Operations.
+
+All applications must use one shared backend, identity system, authorization model and canonical database.
+
+Core consumer product
+
+The consumer application is primarily an AI face-analysis, personal color, glow-up, makeup, hairstyle and grooming platform.
+
+Shopping, product recommendations, professional bookings and advertising are secondary, contextual experiences.
+
+Mobile navigation:
+Home | Analyze | AI Studio | AI Advisor | Profile
+
+Business role architecture
+
+Support:
+
+Advertiser
+Merchant / Brand
+Beauty Professional / Salon
+Creator / Influencer
+Affiliate / Partner
+
+A single account may hold multiple approved roles and multiple business memberships.
+
+Implement tenant-scoped RBAC, business verification, role-switching, audit logging and secure data isolation.
+
+Advertiser dashboard
+
+Campaigns, creatives, sponsored placements, budgets, billing, attribution, analytics and account management.
+
+Merchant dashboard
+
+Catalog, inventory, storefront, offers, referrals, optional marketplace orders, advertising and integrations.
+
+Professional dashboard
+
+Services, portfolio, availability, appointments, look requests, customer messaging, reviews and earnings.
+
+Creator dashboard
+
+Looks, tutorials, shoppable collections, brand campaigns, affiliate attribution, earnings and payouts.
+
+Administrative roles
+
+Super Admin, Support, Finance, AI Operations, Content Moderation, Trust & Safety, Compliance and Regional Operations.
+
+Do not expose the full admin console inside the consumer mobile app.
+
+Mobile strategy
+
+Do not create separate native applications for advertisers, merchants or professionals in Release 1.
+
+Make the unified business portal fully responsive and optimized for mobile browsers.
+
+Provide creator publishing and account-switching capabilities inside the consumer mobile app where appropriate.
+
+Consider a separate GLAM AI Pro app only after professional operational demand is validated.
+
+Required deliverables
+
+Before coding, produce:
+
+Application architecture.
+Role and permission matrix.
+Business account and membership schema.
+Dashboard screen inventories.
+Mobile/web access matrix.
+Multi-role switching flows.
+API authorization contracts.
+Responsive UI/UX specifications.
+Security and tenant-isolation tests.
+Phased implementation backlog.
+
+Implement and test every role without duplicating authentication, billing or user records.
+
+My final recommendation: Build one consumer mobile app, one consumer website, one unified business portal and one admin console. This gives GLAM AI the full commercial infrastructure it needs without distracting from its main purpose: helping people understand their features, discover suitable looks and receive personalized AI beauty and grooming guidance.
+
+NOT BETTER TO HAVE ROLE SWITCHING AMONGST LIKE WHAT TIKTOK DOES AND DIFFERENT RBAC ?
+
+Advertiser
+
+Full dashboard
+
+Responsive companion
+
+Essential
+
+svg Merchant / Brand
+
+Full dashboard
+
+Responsive companion
+
+Essential
+
+svg Beauty Professional / Salon
+
+Full dashboard
+
+Mobile-first companion
+
+Phase 2
+
+svg Creator / Influencer
+
+Full dashboard
+
+Creator tools inside consumer app
+
+Phase 2
+
+svg Affiliate / Partner
+
+Full dashboard
+
+Responsive companion
+
+Phase 2
+
+GLAM AI — Unified Role Switching + RBAC Architecture
+
+Yes. I would adopt a TikTok-style account-switching model rather than make users operate separate applications for every business role.
+
+This is a better fit for GLAM AI because a consumer could simultaneously be a beauty creator, salon owner, product merchant, affiliate and advertiser.
+
+However, I would distinguish between two things:
+
+Account switching: Moving between personal and business identities.
+
+Role switching: Changing which authorized workspace or business function is active.
+
+Both should be supported, but they must not create duplicate user accounts.
+
+1. One app, multiple identities
+
+My GLAM AI Account
+
+One login · Multiple approved roles
+
+Switch workspace
+
+Personal
+
+Face analysis, AI Studio, saved looks
+
+Creator
+
+Publish looks and track commissions
+
+Beauty Professional
+
+Bookings, clients and services
+
+Merchant
+
+Catalog, orders and promotions
+
+Advertiser
+
+Campaigns, budgets and reporting
+
+Affiliate Partner
+
+Links, referrals and earnings
+
+Active: Personal
+
+Consumer navigation: Home · Analyze · AI Studio · AI Advisor · Profile
+Illustrative switcher. Actual workspaces appear only after authorization and any required verification.
+
+The user should be able to move between workspaces without signing out.
+
+2. Role-specific navigation inside the same mobile app
+
+The primary navigation changes depending on the active workspace.
+
+Active workspace
+
+	
+
+Mobile navigation
+
+
+
+
+Personal
+
+	
+
+Home · Analyze · AI Studio · AI Advisor · Profile
+
+
+
+
+Creator
+
+	
+
+Dashboard · Create · My Looks · Earnings · Profile
+
+
+
+
+Beauty Professional
+
+	
+
+Dashboard · Bookings · Portfolio · Clients · Profile
+
+
+
+
+Merchant
+
+	
+
+Dashboard · Products · Orders/Leads · Promotions · Profile
+
+
+
+
+Advertiser
+
+	
+
+Dashboard · Campaigns · Analytics · Billing · Profile
+
+
+
+
+Affiliate
+
+	
+
+Dashboard · Links · Conversions · Earnings · Profile
+
+This makes the experience feel purpose-built for each role while retaining one mobile application.
+
+A professional can receive a booking notification, switch to their professional workspace, accept the booking, then switch back to their personal AI beauty experience.
+
+3. What happens on the web?
+
+I would use the same identity and workspace-switching model on web.
+
+Mobile — Unified GLAM AI app
+
+Personal AI features and streamlined business operations, with dynamic navigation.
+
+Web — Unified GLAM AI platform
+
+Full business dashboards, detailed analytics, bulk catalog management, campaign creation and advanced configuration.
+
+Admin — Restricted web console
+
+Internal administration, compliance, finance, moderation and system operations.
+
+No separate merchant, advertiser, creator or salon mobile apps are necessary initially. We can offer all authorized roles in one GLAM AI mobile application, with full-featured desktop workspaces for complex business tasks.
+
+4. RBAC must support multiple businesses and teams
+
+A simple user.role = "merchant" column is not sufficient.
+
+Consider a user who owns two salons, manages an online beauty store and works with an advertising agency.
+
+The account should support separate organizations and permissions.
+
+Example: One person, multiple organizations
+
+Personal Account
+
+Global user identity
+
+Salon A
+
+Owner
+
+Salon B
+
+Manager
+
+Beauty Store
+
+Merchant Admin
+
+Ad Agency
+
+Campaign Manager
+Recommended permission model
+
+Use RBAC + organization scoping + attribute-based restrictions.
+
+Role
+
+	
+
+Example permissions
+
+
+
+
+Organization Owner
+
+	
+
+Manage organization, staff, billing and approved services
+
+
+
+
+Organization Admin
+
+	
+
+Manage business settings and operational users
+
+
+
+
+Campaign Manager
+
+	
+
+Create and manage authorized advertising campaigns
+
+
+
+
+Finance Manager
+
+	
+
+View billing, invoices and financial reports
+
+
+
+
+Catalog Manager
+
+	
+
+Manage products, prices and stock
+
+
+
+
+Booking Manager
+
+	
+
+Manage appointments and service requests
+
+
+
+
+Creator
+
+	
+
+Publish authorized content and manage personal collections
+
+
+
+
+Analyst
+
+	
+
+View permitted reports without editing commercial records
+
+
+
+
+Support Staff
+
+	
+
+Access assigned operational tasks with limited personal data
+
+The backend must check permissions on every API request. Hiding a menu item is not security.
+
+5. Role activation and verification
+
+Users should not receive commercial privileges merely because they select a workspace.
+
+Personal account created: Consumer features become available according to age and consent settings.
+
+Apply for a business role: Choose Creator, Professional, Merchant, Advertiser or Affiliate.
+
+Provide required information: Business details, portfolio, contact information and relevant verification documents.
+
+Verification: Automated checks and manual review where appropriate.
+
+Role activated: The workspace appears in the switcher with approved permissions.
+
+Additional team members: Organization owners invite employees and assign restricted roles.
+
+A user can request multiple roles. Approval, suspension or revocation of one business role should not automatically disable their unrelated personal account unless platform-wide safety rules require it.
+
+6. How to prevent the app becoming cluttered
+
+This is the most important UI/UX rule.
+
+The default experience remains GLAM AI's personal beauty and face-analysis application.
+
+Business tools should not appear throughout the consumer interface.
+
+For example:
+
+A personal user sees Face Analysis, Color Analysis, AI Studio and Glow-Up Guides.
+
+A creator sees content publishing and earnings only after switching to Creator.
+
+A salon owner sees bookings and clients only in Professional.
+
+An advertiser sees campaigns and analytics only in Advertiser.
+
+The app remembers the last active workspace, but first-time users start in Personal.
+
+Cross-workspace notifications can appear in one inbox with clear organization labels, while respecting role permissions and age restrictions.
+
+7. Codex implementation instruction
+GLAM AI — Unified Account Switching and Multi-Tenant RBAC
+GLAM AI — Unified Account Switching and Multi-Tenant RBAC
+
+Replace the previous separate mobile-role strategy with a unified TikTok-style workspace-switching architecture.
+
+Primary requirements
+One global user identity and authentication system.
+One consumer mobile application supporting personal and approved business workspaces.
+One responsive web platform with the same workspace-switching capability.
+A separate, restricted web administration console.
+Users may hold multiple business roles across multiple organizations.
+No duplicate accounts are required for switching workspaces.
+Workspaces
+Personal Consumer
+Creator / Influencer
+Beauty Professional / Salon
+Merchant / Brand
+Advertiser
+Affiliate / Partner
+
+Each workspace must have its own navigation, dashboard, permissions and feature entitlements.
+
+Authentication and authorization
+
+Implement:
+
+Global user identities.
+Organizations and organization memberships.
+Role definitions and permission grants.
+Scoped resource ownership.
+Role activation and verification.
+Workspace-switching state.
+Tenant-aware backend authorization.
+Audit logs for sensitive actions.
+Role suspension and revocation.
+Team invitations and permission management.
+
+Use server-enforced RBAC with organization and resource-level checks.
+
+Do not rely on client-side navigation visibility for authorization.
+
+Mobile UX
+
+Implement a workspace switcher accessible from the profile menu.
+
+Personal navigation:
+Home | Analyze | AI Studio | AI Advisor | Profile.
+
+Business navigation must adapt to the selected workspace.
+
+Keep the consumer experience uncluttered and focused on AI face analysis, color analysis, glow-up guidance and makeover tools.
+
+Provide mobile-friendly business workflows for bookings, product updates, creator publishing, campaign monitoring and notifications.
+
+Web UX
+
+Support full role-specific dashboards for advertisers, merchants, professionals, creators and affiliates.
+
+Provide advanced web functionality for analytics, bulk operations, campaign setup, finance and staff administration.
+
+Security requirements
+Every request must be authorized against the active organization and granted permissions.
+A workspace identifier supplied by the client must never grant privileges.
+Prevent cross-tenant data access.
+Revalidate permissions after membership changes.
+Protect private consumer images and analysis reports.
+Require additional verification for sensitive financial operations.
+Test role switching, multi-organization memberships, suspension, invitation and tenant isolation.
+Ensure minors cannot activate restricted commercial roles without satisfying applicable eligibility requirements.
+Deliverables
+
+Before implementation, produce:
+
+Identity and organization ERD.
+RBAC and permissions matrix.
+Workspace-switching state machine.
+Mobile and web navigation by role.
+API authorization design.
+Role verification workflows.
+Multi-tenant isolation tests.
+Security audit checklist.
+Phased implementation plan.
+
+Preserve one canonical backend and database migration history.
+
+Do not create separate mobile applications for each business role.
+
+My final recommendation
+
+One GLAM AI mobile app
+
+One unified web platform
+
+One shared identity and RBAC system
+
+One restricted admin console
+
+This gives GLAM AI the flexibility of TikTok-style account switching without the cost and maintenance burden of multiple business apps.
+
+It also means a beauty creator can grow into a merchant, advertiser or professional without leaving the GLAM AI ecosystem.
+
+I would lock this architecture into the master PRD before Codex starts building.

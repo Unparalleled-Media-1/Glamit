@@ -1,0 +1,280 @@
+# GLAM AI — Final Commercial Model & Missing Critical Features
+
+Agreed. GLAM AI will charge a 10% platform commission on every item sold through the platform. This should be built into the central commerce and settlement engine, not implemented separately for each merchant category.
+
+I would also make the commission consistent across consumer mobile, web, Snap & List products, Complete the Look, AI Personal Stylist and event outfit recommendations.
+
+## 1. GLAM AI's 10% commission model
+
+PLATFORM COMMISSION
+
+# 10%
+
+Of the eligible item selling price on a completed transaction
+
+Example: R1,000 product sale
+
+Customer's item price R1,000
+
+GLAM AI commission (10%) R100
+
+Merchant proceeds before other deductions R900
+
+Illustration excludes taxes, delivery, payment processing and other applicable costs.
+
+The commercial policy should be:
+
+* 10% commission on every completed item sale through GLAM AI, including organically recommended and sponsored products.
+
+* Commission calculated on the final eligible item value after discounts, excluding separately charged delivery and taxes unless the commercial policy explicitly defines otherwise.
+
+* Cancelled transactions incur no earned commission; refunds and partial refunds reverse the corresponding commission.
+
+* The merchant sees the fee before accepting the transaction.
+
+* Advertising fees are separate from the 10% sales commission.
+
+* No duplicate commission if the same item appears in several recommendation journeys.
+
+One important distinction: if GLAM AI sends a buyer to an external retailer's checkout, the platform cannot automatically deduct 10%. That requires a retailer agreement, attributable order reporting and settlement or invoicing. To guarantee collection, GLAM AI needs an integrated checkout or contracted marketplace-payment arrangement.
+
+For tailor and salon services, I would keep the 10% product-sale rule fixed and explicitly decide whether service bookings also attract 10%, rather than silently extending an item-sale policy to services.
+
+## 2. Crucial features I believe are still missing
+
+We have covered most of the consumer AI and merchant experience. The biggest remaining gaps are commerce execution, trust, retention and marketplace operations.
+
+I would add the following before finalizing the master specification.
+
+| Feature                                            | Why GLAM AI needs it                                                                | Priority |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------- | -------- |
+| 1. Integrated checkout and split settlements       | Collect the 10% fee and pay merchants accurately                                    | Critical |
+| 2. Unified order management                        | Track purchases, shipping, cancellations, refunds and returns                       | Critical |
+| 3. Merchant KYC/KYB and payouts                    | Verify sellers and payment beneficiaries                                            | Critical |
+| 4. Buyer protection and disputes                   | Handle wrong items, non-delivery, counterfeit products and complaints               | Critical |
+| 5. AI sizing and fit assistant                     | Reduce incorrect clothing sizes and costly returns                                  | High     |
+| 6. Virtual wardrobe and owned-products library     | Recommend outfits using items users already own                                     | High     |
+| 7. Event deadline and availability engine          | Ensure a Durban July outfit or wedding dress arrives in time                        | Critical |
+| 8. Tailor quote and milestone management           | Manage custom clothing from design through fittings and delivery                    | High     |
+| 9. Wishlist, price-drop and restock alerts         | Bring users back when products become available                                     | High     |
+| 10. Product authenticity and safety checks         | Reduce counterfeit cosmetics, unsafe claims and misleading listings                 | Critical |
+| 11. Merchant inventory synchronization             | Prevent purchases of unavailable products                                           | Critical |
+| 12. Creator looks and attributable storefronts     | Let influencers publish complete looks and drive purchases                          | High     |
+| 13. Product reviews and verified purchase feedback | Improve trust and matching quality                                                  | High     |
+| 14. AI stylist memory and preferences              | Remember voluntarily saved sizes, budgets, favorite styles and coverage preferences | Critical |
+| 15. Commercial fraud and commission reconciliation | Detect fraudulent orders, duplicate payouts and missing commissions                 | Critical |
+
+I would also add two especially valuable differentiators.
+
+### A. AI Wardrobe — Shop your closet first
+
+![How to Build a Capsule Wardrobe That Boosts Your Beauty Routine | ThePinkLady](https://images.openai.com/static-rsc-4/q06JVTqGu5icSComh_BtNVJO8qiW4ouXoiZfdhJYf8mYIU0R3iugBe46IGaRYBRTbNZXAXqRzeTspJaRl0Y1ozWgpRSXKNbOeVbXyQKliKhki3LsplOARv0DZGx_LBh4GCjAGg8058GqbDA9rD_DgfT-WoUhpTGQAkekIRDCRdg?purpose=inline)
+
+Add to Favorites
+
+My Digital Wardrobe
+
+Users photograph clothes they already own. AI organizes them into a searchable personal wardrobe.
+
+![Costum Damă Elegant 2026: Ghid de Stil și Calitate Premium
+– Atelier AXD](https://images.openai.com/static-rsc-4/s9v_z8Q8r56gQHkL48bsO6pNgwrgE8R8_mJtmNwKYkAnh_pWlyXBtpYhBp294-ocMW6PjZ1pGS0sJuyqBv6HDRK9TKm2wwnMM8THKojZBmD9UHChHopOE75CQoPWJnaiecnGz67YxZP19D2VwXDJmJAau8GrU4wA_B8JsUt2u-k?purpose=inline)
+
+Add to Favorites
+
+Complete My Outfit
+
+AI builds looks using owned items, then recommends only missing pieces from relevant merchants.
+
+This is commercially useful because users are more likely to trust recommendations that account for what they already own.
+
+### B. AI Design-to-Tailor
+
+![Myrtle Wilson's Gatsby Dress: A Sewing Pattern | AI Art Generator | Easy-Peasy.AI](https://images.openai.com/static-rsc-4/tUl8RPc-pb2q3YSvskKfdekEk1IJv2n3MU26kr0AdzDDaRjP90wQrGs6l5D3TfUW5fivXkYxV3xqukHLfer5rX-Gi8cLanWIBGn92YonhoEF0eznIGrjcOiR2PY97fC7f6qQ44tTA-31PdBCkngJPSIZZQIMzAee4LSbUz_-VaM?purpose=inline)
+
+Add to Favorites
+
+AI Outfit Design
+
+Users describe a theme, choose colors and coverage preferences, and generate custom outfit concepts.
+
+![The Artistry of Luxury Clothing Manufacturing - Luxury Stitch](https://images.openai.com/static-rsc-4/5N9yAFhCu-88rQhQBisyd2WFew6HEhufEQBsNulWM5fSzzv9RVhTClpfnXvvPteI6syIXd6La2Cp9oyLXgRLxI8vkoZCOiG1OfFyw2ZwbqCI0RpRBuZmaheEFw8-t8l-tYGwjlV8cmKNu7he_I2hHlZjwfVQuYubcNZ2U6oSP0s?purpose=inline)
+
+Add to Favorites
+
+Get It Made
+
+Send the concept to suitable designers for feasibility review, quotes, fittings and delivery.
+
+The differentiator is that GLAM AI doesn't stop at generating an attractive picture. It helps the user turn a concept into something wearable.
+
+## 3. The marketplace transaction architecture
+
+I would build one central transaction engine for all product categories.
+
+GLAM AI Consumer
+
+Analysis · Personal Stylist · AI Studio · Complete the Look
+
+Unified Product Catalog
+
+Merchant listings · Snap & List · Inventory · Variants
+
+Checkout & Order Engine
+
+Payments · Taxes · Delivery · Refunds · Disputes
+
+GLAM AI
+
+# 10%
+
+Platform commission
+
+Merchant
+
+# 90%
+
+Before other deductions
+
+The system needs a proper financial ledger, payment-provider reconciliation, refunds, chargebacks, payout schedules and merchant statements.
+
+Because GLAM AI is intended to operate internationally, marketplace payments, taxes, consumer protection, privacy and seller-verification requirements must be configured by jurisdiction. The payment architecture should use appropriately authorized partners rather than assuming GLAM AI can hold merchant funds itself.
+
+## 4. What generates the most revenue?
+
+With the 10% commission fixed, transaction volume becomes especially important.
+
+## Marketplace Revenue Calculator
+
+Monthly completed product sales (GMV)
+
+R1 000 000
+
+GLAM AI monthly commission
+
+# R100 000
+
+Annualized commission
+
+# R1 200 000
+
+Gross commission before operating costs, refunds, payment costs and applicable taxes. Annualized figure assumes twelve months at the selected sales volume.
+
+My revenue priorities would be:
+
+1. 10% transaction commissions: The main long-term commerce revenue opportunity if GLAM AI achieves substantial sales volume.
+
+2. Premium subscriptions and AI credits: The most controllable early recurring revenue stream.
+
+3. Sponsored merchant recommendations: Monetize relevant product discovery while keeping paid placement separate from organic analysis.
+
+4. Professional bookings: Additional revenue if a clear service commission is approved.
+
+5. B2B AI licensing: Potentially valuable once GLAM AI's technology is validated.
+
+The combination of subscriptions, commerce and advertising is stronger than relying on one revenue source.
+
+## 5. Final Codex instruction
+
+GLAM AI — Final Commerce Policy and Missing Feature Requirements
+
+# GLAM AI — Final Commerce Policy and Missing Feature Requirements
+
+## Mandatory commercial policy
+
+GLAM AI charges a fixed 10% platform commission on every completed item sale processed through the platform.
+
+Apply the same commission policy across mobile, web, AI analysis recommendations, Complete the Look, Personal Stylist, event styling, merchant catalogs and Snap & List products.
+
+Calculate commission from the eligible final item selling price, after item discounts, excluding separately stated delivery charges and applicable taxes unless a formally approved policy specifies otherwise.
+
+Support:
+
+* Multi-merchant carts and orders.
+
+* Accurate commission allocation per order line.
+
+* Merchant settlement and payout reconciliation.
+
+* Partial refunds and corresponding commission reversals.
+
+* Chargebacks and disputes.
+
+* Merchant transaction statements.
+
+* Platform financial reporting.
+
+* Audit logs and idempotent payment processing.
+
+* Country-specific taxes and payment requirements.
+
+* Separately accounted advertising fees.
+
+Do not assume external affiliate checkouts automatically provide GLAM AI with 10% commission. Require a contracted attribution and settlement arrangement.
+
+Service booking commissions must remain separately configurable until approved.
+
+## Additional required capabilities
+
+1. Integrated marketplace checkout.
+
+2. Merchant identity and business verification.
+
+3. Order, return, refund and dispute management.
+
+4. Product authenticity and safety moderation.
+
+5. Inventory synchronization and availability verification.
+
+6. AI size and fit recommendations.
+
+7. Digital wardrobe and owned-product library.
+
+8. Event styling with deadline-aware sourcing.
+
+9. Custom design-to-tailor quotation and production tracking.
+
+10. Wishlist, restock and price-drop alerts.
+
+11. Verified product reviews.
+
+12. Creator storefronts and attributable sales.
+
+13. Persistent, consent-based personal stylist preferences.
+
+14. Financial fraud monitoring and commission reconciliation.
+
+15. Unified analytics covering analysis-to-purchase conversion.
+
+## Architecture
+
+Use one canonical product catalog, recommendation engine, order system, commission ledger and merchant settlement layer.
+
+All consumer and business workspaces must share the same underlying services with organization-scoped RBAC.
+
+Maintain privacy boundaries between consumer facial-analysis data and advertiser targeting.
+
+## Release controls
+
+Before launch, test the full flow:
+
+AI Analysis → Product Recommendation → Verified Merchant Listing → Cart → Payment → Order → Commission → Merchant Settlement → Refund or Return.
+
+Block production release if any financial, privacy, authorization or settlement control is unverified.
+
+Do not represent mocked payment, inventory, shipping or merchant integrations as live.
+
+Produce a final gap analysis and phased backlog before implementing additional modules.
+
+## 6. My recommendation before freezing the build
+
+I would classify the product into three release stages:
+
+| Release                        | Scope                                                                                                                                                                                   |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Release 1 — Core GLAM AI       | Face, hair and color analysis; AI makeover; personal stylist; event styling; merchant Snap & List; product recommendations; checkout; 10% commission; essential security and operations |
+| Release 2 — Marketplace Growth | Virtual wardrobe, designer/tailor workflows, professional bookings, creator storefronts, advanced advertising and merchant analytics                                                    |
+| Release 3 — Global Scale       | Enterprise AI APIs, international merchant integrations, advanced sizing, regional expansion and sophisticated advertising optimization                                                 |
+
+One final commercial decision is needed: Should the same 10% commission apply to completed salon, makeup artist, tailor and fashion designer service bookings, or only to physical products?
+
+My recommendation is to apply 10% to both completed product sales and completed service bookings for simplicity, while keeping subscriptions and advertising fees separate. But the service-booking rate should be explicitly approved before Codex hardcodes it.

@@ -1,0 +1,999 @@
+/* Five-screen recovery. Shared values come from consumer-design.json. */
+.golden-commerce {
+  color: var(--glam-palette-ink);
+  padding: 8px 0 24px;
+}
+.golden-overline {
+  font:
+    600 9px/1.6 Arial,
+    sans-serif;
+  letter-spacing: 2px;
+  color: var(--glam-palette-mauve);
+  margin-bottom: 14px;
+}
+.golden-shop-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+  margin: 10px 0 34px;
+}
+.golden-shop-heading h1 {
+  font:
+    400 clamp(40px, 4.7vw, 66px) / 1.03 Georgia,
+    serif;
+  letter-spacing: -2px;
+  margin: 0 0 22px;
+}
+.golden-shop-heading h1 em {
+  color: var(--glam-palette-mauve);
+}
+.golden-shop-heading > div > p:last-child {
+  font-size: 13px;
+  margin: 0;
+  color: var(--glam-palette-muted);
+}
+.golden-location {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  min-height: 56px;
+  background: var(--glam-palette-white);
+  border: 1px solid var(--glam-palette-line);
+  padding: 12px 18px;
+  border-radius: var(--glam-radius-control);
+  font-size: 12px;
+  text-align: left;
+  max-width: 340px;
+  overflow-wrap: anywhere;
+}
+.golden-location > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+.golden-location small {
+  display: block;
+  font-size: 9px;
+  color: var(--glam-palette-muted);
+  margin-top: 4px;
+}
+.golden-location-dot {
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--glam-palette-mauve);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.golden-product-art {
+  background-image: url("/images/beauty-products.webp");
+  background-size: 400% auto;
+  background-repeat: no-repeat;
+  background-color: #e7d8d0;
+  background-position: 0% 50%;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.product-study-1 {
+  background-position: 33.3333% 50%;
+}
+.product-study-2 {
+  background-position: 66.6667% 50%;
+}
+.product-study-3 {
+  background-position: 100% 50%;
+}
+.golden-shop-feature {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 420px;
+  background: #efdfd6;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 45px;
+}
+.golden-shop-feature-copy {
+  padding: 45px;
+  width: 56%;
+  z-index: 2;
+  pointer-events: none;
+}
+.golden-shop-feature-copy > button {
+  pointer-events: auto;
+}
+.golden-shop-feature-copy h2 {
+  font:
+    400 clamp(30px, 3.6vw, 48px) / 1.06 Georgia,
+    serif;
+  letter-spacing: -1.2px;
+  margin: 14px 0 20px;
+}
+.golden-shop-feature-copy p {
+  font-size: 12px;
+  max-width: 260px;
+  color: #846571;
+}
+.golden-shop-feature > .golden-product-art {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: auto;
+  width: 52%;
+  height: 100%;
+}
+.golden-shop-feature:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #efdfd6 10%,
+    #efdfd6e0 42%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+.golden-dark-button,
+.golden-outline-button,
+.golden-unavailable {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 50px;
+  padding: 13px 21px;
+  border-radius: 28px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+}
+.golden-dark-button {
+  background: var(--glam-palette-charcoal);
+  color: var(--glam-palette-white);
+  border: 1px solid var(--glam-palette-charcoal);
+}
+.golden-outline-button {
+  background: transparent;
+  color: var(--glam-palette-mauve);
+  border: 1px solid #bd9bad;
+}
+.golden-unavailable:disabled {
+  background: #eee7e5;
+  color: #7d6e75;
+  border: 1px solid #d3c4ca;
+  justify-content: center;
+  font-size: 11px;
+}
+.golden-sample-label {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  border: 1px solid #fff9;
+  background: #fff9f4d9;
+  color: #775868;
+  border-radius: 24px;
+  padding: 7px 11px;
+  font-size: 8px;
+  letter-spacing: 1.1px;
+  z-index: 3;
+}
+.golden-collection-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 25px;
+  margin: 25px 0;
+}
+.golden-collection-header h2 {
+  font:
+    400 33px/1.08 Georgia,
+    serif;
+  letter-spacing: -0.8px;
+  margin: 0;
+}
+.golden-collection-header h2 em {
+  color: var(--glam-palette-mauve);
+}
+.golden-collection-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.golden-collection-tabs button {
+  border: 1px solid #d2bac5;
+  border-radius: 25px;
+  padding: 10px 19px;
+  min-height: 44px;
+  background: none;
+  color: #886479;
+  font-size: 11px;
+}
+.golden-collection-tabs button[aria-pressed="true"] {
+  background: #34242d;
+  color: #fff0f5;
+  border-color: #34242d;
+}
+.golden-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+.golden-product-card {
+  display: block;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  padding: 0;
+}
+.golden-product-picture {
+  position: relative;
+  height: 300px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ead9d1;
+}
+.golden-product-picture > span {
+  display: grid;
+  place-items: center;
+  height: 35px;
+  width: 35px;
+  background: #fffbf3bb;
+  border: 1px solid #fff9;
+  border-radius: 50%;
+  position: absolute;
+  right: 13px;
+  bottom: 13px;
+  color: #76546a;
+}
+.golden-product-card > p {
+  font-size: 9px;
+  margin: 16px 0 6px;
+  color: #997487;
+}
+.golden-product-card > h3 {
+  font:
+    400 22px/1.2 Georgia,
+    serif;
+  color: #3b2a34;
+  margin-bottom: 8px;
+}
+.golden-product-card > span {
+  font-size: 10px;
+  color: #87707e;
+}
+.golden-offer-boundary {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 20px;
+  padding: 30px 0;
+  border-block: 1px solid #dacbd1;
+  margin: 45px 0 0;
+}
+.golden-offer-boundary h3 {
+  font:
+    400 24px Georgia,
+    serif;
+  margin: 14px 0;
+}
+.golden-offer-boundary p {
+  font-size: 12px;
+  max-width: 430px;
+  margin: 0;
+}
+.golden-offer-boundary > div:nth-child(2) {
+  display: grid;
+  gap: 8px;
+  font-size: 11px;
+}
+.golden-offer-boundary strong {
+  font-size: 11px;
+  font-weight: 500;
+  color: #765268;
+}
+.golden-offer-boundary span {
+  color: #89707e;
+}
+.golden-offer-boundary > .golden-text-button {
+  grid-column: 1/-1;
+  justify-content: start;
+}
+.golden-text-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 44px;
+  background: none;
+  border: 0;
+  color: #8e5b77;
+  padding: 8px 0;
+  font-size: 11px;
+  text-decoration: none;
+}
+.golden-product-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin: 5px 0 25px;
+}
+.golden-product-topline > span {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #99778b;
+}
+.golden-detail-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 65px;
+  align-items: start;
+}
+.golden-detail-visual {
+  height: 670px;
+  position: sticky;
+  top: 22px;
+  overflow: hidden;
+  border-radius: 26px;
+  background: #e8d8d0;
+}
+.golden-detail-visual > .golden-product-art {
+  height: 100%;
+}
+.golden-art-index {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #8b657a;
+}
+.golden-detail-copy {
+  padding: 24px 0 0;
+}
+.golden-detail-copy h1 {
+  font:
+    400 clamp(38px, 4.5vw, 60px) / 1.02 Georgia,
+    serif;
+  letter-spacing: -1.7px;
+  margin: 15px 0 24px;
+}
+.golden-detail-description {
+  font-size: 13px;
+  line-height: 1.9;
+  max-width: 420px;
+}
+.golden-price-status {
+  display: grid;
+  gap: 8px;
+  padding: 20px 0;
+  border-block: 1px solid #d7c8cf;
+  margin: 25px 0;
+}
+.golden-price-status > strong {
+  font:
+    400 22px Georgia,
+    serif;
+}
+.golden-price-status > span {
+  font-size: 10px;
+  color: #98798a;
+}
+.golden-detail-moods > span {
+  font-size: 12px;
+  font-weight: 500;
+}
+.golden-detail-moods > div {
+  display: flex;
+  gap: 13px;
+  margin: 17px 0;
+}
+.golden-detail-moods button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--reference-color);
+  border: 5px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 0 0 1px #dfcfd6;
+}
+.golden-detail-moods button[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px #87566e;
+}
+.golden-detail-moods > p {
+  font-size: 10px;
+  line-height: 1.8;
+  max-width: 400px;
+}
+.golden-detail-copy > .golden-location {
+  width: 100%;
+  max-width: none;
+  margin: 25px 0;
+}
+.golden-product-actions {
+  display: grid;
+  gap: 11px;
+  margin: 25px 0;
+}
+.golden-product-disclosure {
+  border-top: 1px solid #d6c5ce;
+  padding: 16px 0;
+}
+.golden-product-disclosure summary {
+  font-size: 12px;
+  color: #725266;
+  min-height: 32px;
+  cursor: pointer;
+}
+.golden-product-disclosure p {
+  font-size: 11px;
+  line-height: 1.9;
+  margin: 10px 0 0;
+}
+.golden-location-dialog {
+  max-width: min(510px, calc(100% - 30px));
+  border: 1px solid #d5bcc8;
+  padding: 30px;
+  border-radius: 26px;
+  background: #fff8f4;
+  color: #49313f;
+}
+.golden-dialog-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 18px;
+}
+.golden-dialog-heading h2 {
+  font:
+    400 29px/1.15 Georgia,
+    serif;
+  max-width: 320px;
+}
+.golden-location-dialog > p {
+  font-size: 12px;
+  line-height: 1.8;
+}
+.golden-location-dialog label {
+  font-size: 11px;
+  color: #8b6278;
+}
+.golden-location-dialog input,
+.golden-location-dialog select {
+  border-color: #c6a8b7;
+  min-height: 48px;
+}
+.golden-location-dialog .golden-caption {
+  font-size: 10px;
+}
+.golden-location-dialog > .golden-dark-button {
+  width: 100%;
+  margin-top: 20px;
+}
+.golden-studio-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px solid #664457;
+}
+.golden-studio-toolbar button {
+  min-height: 44px;
+  font-size: 11px;
+  border: 0;
+  background: transparent;
+  color: #eec3d8;
+  padding: 9px;
+}
+.golden-studio-toolbar button:disabled {
+  background: transparent;
+  color: #9b8592;
+  border: 0;
+}
+.golden-studio-controls {
+  margin-top: 15px;
+  border-top: 1px solid #5d4052;
+  padding-top: 15px;
+}
+.golden-studio-controls summary {
+  font-size: 11px;
+  color: #eab1ce;
+  cursor: pointer;
+  min-height: 44px;
+  padding: 10px 0;
+}
+.golden-studio-controls label {
+  margin-top: 15px;
+}
+.golden-compare-pending {
+  border: 1px solid #5d4252;
+  border-radius: 14px;
+  padding: 15px;
+  margin: 18px 0;
+}
+.golden-compare-pending strong {
+  font-size: 11px;
+  font-weight: 500;
+  color: #ecc9dc;
+}
+.golden-compare-pending p {
+  font-size: 10px;
+  color: #bba4b2;
+  line-height: 1.7;
+  margin: 8px 0 0;
+}
+.golden-studio-result-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+.golden-studio-result-action > button {
+  flex: 1;
+}
+.golden-studio-result-action .beauty-outline {
+  font-size: 10px;
+  min-height: 48px;
+  border-radius: 25px;
+}
+.golden-studio-live-status {
+  color: #ebbed3;
+  font-size: 10px;
+  line-height: 1.7;
+  margin: 15px 0 0;
+}
+.golden-studio-actions-primary {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+.golden-studio-actions-primary .beauty-primary {
+  font-size: 11px;
+  width: 100%;
+}
+.golden-studio-actions-primary .beauty-outline {
+  font-size: 11px;
+  width: 100%;
+}
+@media (max-width: 1000px) {
+  .golden-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .golden-product-picture {
+    height: 330px;
+  }
+  .golden-detail-layout {
+    gap: 30px;
+  }
+  .golden-detail-visual {
+    height: 600px;
+  }
+  .golden-shop-feature-copy {
+    padding: 35px;
+  }
+  .golden-shop-heading h1 {
+    font-size: 50px;
+  }
+}
+@media (max-width: 600px) {
+  .golden-commerce {
+    padding-top: 0;
+  }
+  .golden-shop-heading {
+    display: block;
+    margin: 0 0 22px;
+  }
+  .golden-overline {
+    font-size: 8px;
+    letter-spacing: 1.6px;
+    margin-bottom: 12px;
+  }
+  .golden-shop-heading h1 {
+    font-size: 39px;
+    letter-spacing: -1.2px;
+    margin-bottom: 15px;
+  }
+  .golden-shop-heading > div > p:last-child {
+    font-size: 11px;
+    line-height: 1.8;
+    max-width: 300px;
+  }
+  .golden-shop-heading > .golden-location {
+    margin-top: 20px;
+    width: 100%;
+    max-width: none;
+    min-height: 50px;
+    padding: 10px 15px;
+  }
+  .golden-location {
+    font-size: 11px;
+  }
+  .golden-location small {
+    font-size: 9px;
+  }
+  .golden-shop-feature {
+    min-height: 300px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+  .golden-shop-feature-copy {
+    padding: 24px 20px;
+    width: 72%;
+  }
+  .golden-shop-feature-copy h2 {
+    font-size: 31px;
+    letter-spacing: -0.8px;
+    margin: 12px 0 15px;
+  }
+  .golden-shop-feature-copy .golden-overline {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .golden-shop-feature-copy p {
+    font-size: 10px;
+    max-width: 170px;
+    line-height: 1.7;
+  }
+  .golden-shop-feature-copy > .golden-dark-button {
+    font-size: 10px;
+    min-height: 44px;
+    padding: 10px 15px;
+    gap: 12px;
+  }
+  .golden-shop-feature > .golden-product-art {
+    width: 70%;
+  }
+  .golden-shop-feature:after {
+    background: linear-gradient(
+      90deg,
+      #efdfd6 0%,
+      #efdfd6cf 35%,
+      transparent 85%
+    );
+  }
+  .golden-sample-label {
+    font-size: 6px;
+    letter-spacing: 1px;
+    padding: 5px 8px;
+    right: 13px;
+    bottom: 13px;
+  }
+  .golden-collection-header {
+    display: block;
+    margin: 20px 0;
+  }
+  .golden-collection-header h2 {
+    font-size: 28px;
+  }
+  .golden-collection-tabs {
+    gap: 6px;
+    margin-top: 20px;
+  }
+  .golden-collection-tabs button {
+    flex: 1;
+    font-size: 10px;
+    padding: 9px 11px;
+  }
+  .golden-product-grid {
+    gap: 22px 12px;
+  }
+  .golden-product-picture {
+    height: 210px;
+    border-radius: 15px;
+  }
+  .golden-product-picture > span {
+    height: 29px;
+    width: 29px;
+    right: 10px;
+    bottom: 10px;
+  }
+  .golden-product-picture svg {
+    width: 16px;
+  }
+  .golden-product-card > p {
+    font-size: 8px;
+    margin: 12px 0 7px;
+  }
+  .golden-product-card > h3 {
+    font-size: 20px;
+    margin-bottom: 7px;
+  }
+  .golden-product-card > span {
+    font-size: 9px;
+    line-height: 1.7;
+    display: block;
+  }
+  .golden-offer-boundary {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 25px 0;
+    margin-top: 30px;
+  }
+  .golden-offer-boundary h3 {
+    font-size: 23px;
+  }
+  .golden-offer-boundary p {
+    font-size: 11px;
+  }
+  .golden-offer-boundary > div:nth-child(2) {
+    font-size: 10px;
+    line-height: 1.8;
+  }
+  .golden-product-topline {
+    margin: 0 0 15px;
+    gap: 10px;
+  }
+  .golden-product-topline > span {
+    font-size: 7px;
+    letter-spacing: 1px;
+    max-width: 100px;
+    text-align: right;
+  }
+  .golden-product-topline .golden-text-button {
+    font-size: 10px;
+  }
+  .golden-detail-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .golden-detail-visual {
+    position: relative;
+    top: 0;
+    height: 380px;
+    border-radius: 22px;
+  }
+  .golden-art-index {
+    left: 20px;
+    top: 20px;
+    font-size: 8px;
+  }
+  .golden-detail-copy {
+    padding: 0;
+  }
+  .golden-detail-copy h1 {
+    font-size: 43px;
+    margin: 14px 0 20px;
+    letter-spacing: -1.2px;
+  }
+  .golden-detail-description {
+    font-size: 12px;
+    line-height: 1.9;
+  }
+  .golden-price-status {
+    margin: 20px 0;
+    padding: 18px 0;
+  }
+  .golden-price-status > strong {
+    font-size: 23px;
+  }
+  .golden-price-status > span {
+    font-size: 10px;
+    line-height: 1.8;
+  }
+  .golden-detail-moods > span {
+    font-size: 11px;
+  }
+  .golden-detail-moods > p {
+    font-size: 10px;
+  }
+  .golden-product-actions .golden-dark-button,
+  .golden-product-actions .golden-outline-button {
+    font-size: 11px;
+    min-height: 49px;
+  }
+  .golden-product-disclosure summary {
+    font-size: 11px;
+  }
+  .golden-location-dialog {
+    padding: 23px 20px;
+  }
+  .golden-dialog-heading h2 {
+    font-size: 27px;
+  }
+  .golden-studio-toolbar {
+    gap: 8px;
+  }
+  .golden-studio-toolbar button {
+    font-size: 10px;
+  }
+  .golden-studio-result-action {
+    gap: 8px;
+  }
+  .golden-studio-result-action .beauty-outline {
+    font-size: 10px;
+  }
+  .golden-studio-live-status {
+    font-size: 10px;
+  }
+  .golden-compare-pending {
+    padding: 13px;
+  }
+  .golden-studio-actions-primary .beauty-primary,
+  .golden-studio-actions-primary .beauty-outline {
+    font-size: 11px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .golden-commerce *,
+  .beauty-studio * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+.golden-report-progress {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 24px 0 30px;
+  padding-block: 20px;
+  border-block: 1px solid #dbcbd3;
+}
+.golden-report-progress > span {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #927386;
+}
+.golden-report-progress strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #5d3e51;
+  margin-top: 8px;
+}
+.golden-analysis-report .report-layout {
+  grid-template-columns: 0.9fr 1.3fr 0.9fr;
+  gap: 24px;
+}
+.golden-analysis-report .panel {
+  border-radius: 18px;
+  background: #fffcf9;
+}
+.golden-analysis-report .report-fields {
+  display: block;
+  border-block: 1px solid #dbcbd3;
+}
+.golden-analysis-report .report-fields .panel {
+  border: 0;
+  border-bottom: 1px solid #dbcbd3;
+  border-radius: 0;
+  background: transparent;
+  padding: 18px 5px;
+  margin: 0;
+}
+.golden-analysis-report .report-fields .panel:last-child {
+  border-bottom: 0;
+}
+.golden-analysis-report .report-fields h2 {
+  font:
+    400 19px Georgia,
+    serif;
+  display: inline-block;
+  margin-right: 15px;
+}
+.golden-analysis-report .report-fields p {
+  font-size: 11px;
+  margin: 0;
+}
+.golden-analysis-report .report-fields .badge {
+  font-size: 9px;
+}
+.golden-report-reference {
+  height: 260px;
+  background-image: url("/images/beauty-editorial.webp");
+  background-size: 400% auto;
+  background-position: 0% 20%;
+  border-radius: 16px;
+  margin: 20px 0;
+}
+.golden-analysis-report .report-visual img {
+  max-height: 320px;
+  object-fit: contain;
+}
+.golden-analysis-report .page-heading h1 {
+  font-size: 54px;
+}
+.golden-analysis-report .page-heading > p:last-child {
+  font-size: 13px;
+}
+.golden-analysis-report .report-visual > h2 {
+  font:
+    400 26px Georgia,
+    serif;
+}
+.golden-analysis-report .report-visual > p {
+  font-size: 12px;
+}
+@media (max-width: 1000px) {
+  .golden-analysis-report .report-layout {
+    grid-template-columns: 1fr 1.3fr;
+  }
+  .golden-analysis-report .report-layout > aside {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 600px) {
+  .golden-report-progress {
+    gap: 12px;
+  }
+  .golden-report-progress > span {
+    font-size: 8px;
+  }
+  .golden-report-progress strong {
+    font-size: 10px;
+  }
+  .golden-analysis-report .report-layout {
+    grid-template-columns: 1fr;
+  }
+  .golden-analysis-report .page-heading h1 {
+    font-size: 37px;
+  }
+  .golden-analysis-report .report-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+  .golden-analysis-report .report-visual > svg {
+    grid-column: 1/-1;
+  }
+  .golden-analysis-report .report-visual > h2 {
+    font-size: 25px;
+    margin: 0;
+  }
+  .golden-analysis-report .report-visual > p {
+    font-size: 10px;
+    margin: 0;
+  }
+  .golden-report-reference,
+  .golden-analysis-report .report-visual img {
+    grid-column: 1/-1;
+    width: 100%;
+    height: 260px;
+    margin: 0;
+  }
+  .golden-analysis-report .report-visual > .button {
+    grid-column: 1/-1;
+  }
+  .golden-analysis-report .report-fields .panel {
+    padding: 18px 4px;
+  }
+  .golden-analysis-report .report-fields h2 {
+    font-size: 21px;
+  }
+  .golden-analysis-report .report-layout > aside {
+    grid-column: auto;
+  }
+}
+.beauty-shell {
+  --beauty-pink: var(--glam-palette-blush);
+  background: var(--glam-palette-charcoal);
+}
+.beauty-shell .beauty-primary:not(:disabled),
+.beauty-shell .mobile-nav button[aria-current],
+.beauty-shell .analysis-focus button[aria-pressed="true"] {
+  background: var(--glam-palette-blush);
+}
+.golden-commerce .golden-dark-button,
+.golden-commerce .golden-outline-button {
+  min-height: var(--glam-interaction-touch);
+}
+.beauty-studio .beauty-swatches > button {
+  width: 44px;
+  height: 44px;
+}
+.beauty-studio .beauty-swatches {
+  gap: 4px;
+}
+.beauty-studio .shade-families button {
+  min-height: 44px;
+}
+.golden-studio-controls summary:focus-visible,
+.golden-product-disclosure summary:focus-visible {
+  outline: 3px solid var(--glam-palette-rose);
+  outline-offset: 4px;
+}

@@ -1,0 +1,311 @@
+/* Sixth pattern extends, and does not replace, the approved golden styles. */
+.personal-results {
+  color: var(--glam-palette-ink);
+  padding-top: 28px;
+}
+.personal-results-heading {
+  margin: 0 0 32px;
+}
+.personal-results-heading h1 {
+  font:
+    400 clamp(38px, 4vw, 60px) / 1.07 Georgia,
+    serif;
+  letter-spacing: -1.8px;
+  margin: 14px 0 20px;
+}
+.personal-results h1 em {
+  color: var(--glam-palette-mauve);
+}
+.personal-results-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.3fr);
+  gap: 32px;
+  align-items: start;
+}
+.personal-results-portrait {
+  position: sticky;
+  top: 24px;
+  overflow: hidden;
+  border-radius: var(--glam-radius-card);
+  background: #30252d;
+  color: #fffcfa;
+}
+.personal-results-portrait > img,
+.personal-results-reference {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  display: block;
+}
+.personal-results-reference {
+  background: url("/images/beauty-editorial.webp") 0 20%/400% auto;
+}
+.personal-results-portrait > span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1.3px;
+  padding: 16px 24px;
+  color: #f6c6d8;
+}
+.personal-results-portrait > div:last-child {
+  padding: 0 24px 24px;
+}
+.personal-results h2 {
+  font:
+    400 30px/1.13 Georgia,
+    serif;
+}
+.personal-results p {
+  line-height: 1.7;
+}
+.personal-results-content {
+  display: grid;
+  gap: 24px;
+}
+.personal-result-status,
+.personal-result-next,
+.personal-look-directions {
+  padding: 24px;
+  border: 1px solid #dfd1d5;
+  border-radius: 24px;
+  background: #fffcfa;
+}
+.personal-processing-permission {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  margin-top: 24px;
+  line-height: 1.6;
+}
+.personal-processing-permission input {
+  width: 22px;
+  height: 44px;
+  flex-shrink: 0;
+}
+.personal-findings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.personal-finding {
+  padding: 24px;
+  border: 1px solid #dfd1d5;
+  border-radius: 24px;
+  background: #f8f3ef;
+  min-width: 0;
+}
+.personal-finding h3 {
+  font:
+    400 26px/1.2 Georgia,
+    serif;
+  overflow-wrap: anywhere;
+  margin: 12px 0;
+}
+.personal-finding p {
+  font-size: 13px;
+}
+.personal-certainty {
+  display: inline-block;
+  font-size: 11px;
+  background: #f6e4eb;
+  border-radius: 20px;
+  padding: 7px 10px;
+  color: #5f3f53;
+}
+.personal-finding textarea {
+  width: 100%;
+  min-height: 100px;
+  margin: 12px 0;
+}
+.personal-results button {
+  min-height: 44px;
+}
+.personal-results .text-button {
+  color: #78546c;
+  text-align: left;
+}
+.personal-look-directions article {
+  padding: 12px 0 24px;
+  border-bottom: 1px solid #dfd1d5;
+}
+.personal-look-directions article + button {
+  margin-top: 16px;
+}
+.personal-result-next {
+  background: #f6e4eb;
+}
+.personal-results .fine {
+  font-size: 12px;
+  color: #65535e;
+}
+.personal-results .button.secondary {
+  border-color: #a67f93;
+}
+.personal-results-portrait .button.secondary {
+  color: #fff;
+  border-color: #b790a4;
+}
+.companion-link-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0 24px;
+}
+.companion-link-row button {
+  min-height: 44px;
+}
+.destination-board {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 24px;
+}
+.destination-board > section {
+  min-width: 0;
+}
+.destination-board input,
+.destination-board select,
+.destination-board textarea {
+  max-width: 100%;
+  width: 100%;
+}
+.travel-packing {
+  display: grid;
+  gap: 10px;
+}
+.travel-packing label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+}
+.travel-packing input {
+  width: 20px;
+}
+.commerce-checkpoint {
+  max-width: 860px;
+  margin: 32px auto;
+}
+.commerce-checkpoint .panel {
+  margin: 24px 0;
+}
+.commerce-checkpoint button {
+  min-height: 44px;
+}
+.commerce-checkpoint h1 {
+  font:
+    400 44px/1.12 Georgia,
+    serif;
+}
+.commerce-checkpoint .checkout-steps {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+.personal-preview-panel {
+  margin-bottom: 24px;
+  padding: 24px;
+  border: 1px solid #78546c;
+  border-radius: 24px;
+  background: #30252d;
+  color: #fffcfa;
+}
+.personal-preview-panel label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 1.5;
+}
+.personal-preview-panel input[type="checkbox"] {
+  width: 22px;
+  height: 44px;
+}
+.personal-actual-comparison {
+  position: relative;
+  max-width: 560px;
+  height: 560px;
+  overflow: hidden;
+  border-radius: 24px;
+}
+.personal-actual-comparison img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #181719;
+}
+.personal-actual-comparison input {
+  position: absolute;
+  bottom: 12px;
+  left: 5%;
+  width: 90%;
+  min-height: 44px;
+}
+.personal-actual-comparison span {
+  position: absolute;
+  top: 12px;
+  padding: 8px;
+  background: #181719;
+  color: white;
+  font-size: 12px;
+}
+.personal-actual-comparison span:last-of-type {
+  right: 0;
+}
+@media (max-width: 760px) {
+  .personal-results-layout,
+  .destination-board {
+    grid-template-columns: 1fr;
+  }
+  .personal-results-portrait {
+    position: static;
+  }
+  .personal-results-portrait > img,
+  .personal-results-reference {
+    height: 360px;
+  }
+  .personal-results-heading h1 {
+    font-size: 40px;
+  }
+  .personal-findings {
+    grid-template-columns: 1fr;
+  }
+  .personal-actual-comparison {
+    height: 440px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .personal-results * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+.verified-product-image-pending {
+  display: flex;
+  min-height: 400px;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px;
+  background: #f0e0d6;
+  color: #30252d;
+}
+.verified-product-image-pending h2 {
+  font:
+    400 42px/1.1 Georgia,
+    serif;
+}
+.verified-product-image-pending p {
+  line-height: 1.8;
+}
+.verified-product-image-pending .badge {
+  align-self: flex-start;
+}
+.personal-results-portrait p {
+  color: #eadce4;
+}
+.personal-results-portrait h2 {
+  color: #fffcfa;
+}

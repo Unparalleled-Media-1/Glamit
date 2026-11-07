@@ -1,0 +1,272 @@
+{
+  "evidence_source": "ISOLATED STRIPE DOUBLE \u2014 NOT ACTUAL STRIPE",
+  "actual_stripe_api_verified": false,
+  "fees_are": "Synthetic fixture amounts returned by test double; not actual Stripe fees",
+  "mode": "test",
+  "order_id": "ad04f6d7-9332-4c2a-b66a-9e102aac9618",
+  "payment_id": "pi_fixture1",
+  "charge_id": "ch_fixture2",
+  "state": "paid",
+  "gross": 35400,
+  "currency": "usd",
+  "lines": [
+    {
+      "line_id": "9f67e124-0921-4d7c-8c0f-27cf2ef854b2",
+      "merchant": "acct_merchantB",
+      "quantity": 1,
+      "eligible_item_minor": 20000,
+      "shipping_minor": 2000,
+      "tax_minor": 1600,
+      "refunded_item_minor": 0,
+      "refunded_shipping_minor": 0,
+      "refunded_tax_minor": 0,
+      "fulfilled": false,
+      "earned_commission_minor": 0,
+      "commission_reversal_minor": 0,
+      "unearned_potential_commission_minor": 2000,
+      "policy_version": "item-sale-10pct-v1"
+    },
+    {
+      "line_id": "b1a0d5fe-6709-4ba5-bd03-32202dd5c300",
+      "merchant": "acct_merchantA",
+      "quantity": 1,
+      "eligible_item_minor": 10000,
+      "shipping_minor": 1000,
+      "tax_minor": 800,
+      "refunded_item_minor": 3333,
+      "refunded_shipping_minor": 200,
+      "refunded_tax_minor": 100,
+      "fulfilled": true,
+      "earned_commission_minor": 667,
+      "commission_reversal_minor": 333,
+      "unearned_potential_commission_minor": 0,
+      "policy_version": "item-sale-10pct-v1"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "tr_fixture4",
+      "amount": 10000,
+      "destination": "acct_merchantA"
+    }
+  ],
+  "balance_transactions": [
+    {
+      "id": "txn_fixture3",
+      "source": "ch_fixture2",
+      "kind": "charge",
+      "amount": 35400,
+      "fee": 1060,
+      "net": 34340,
+      "fee_details": [
+        {
+          "type": "stripe_fee",
+          "amount": 1060
+        }
+      ]
+    },
+    {
+      "id": "txn_fixture5",
+      "source": "tr_fixture4",
+      "kind": "transfer",
+      "amount": -10000,
+      "fee": 0,
+      "net": -10000,
+      "fee_details": []
+    },
+    {
+      "id": "txn_fixture7",
+      "source": "re_fixture6",
+      "kind": "refund",
+      "amount": -3633,
+      "fee": 0,
+      "net": -3633,
+      "fee_details": []
+    },
+    {
+      "id": "txn_fixture9",
+      "source": "trr_fixture8",
+      "kind": "transfer_reversal",
+      "amount": 3200,
+      "fee": 0,
+      "net": 3200,
+      "fee_details": []
+    }
+  ],
+  "stripe_actual_fees": 1060,
+  "commission_earned": 667,
+  "ledger": [
+    {
+      "id": "3b574c73-cd48-4d52-ad43-0a0645e05540",
+      "kind": "capture",
+      "key": "capture:ch_fixture2",
+      "evidence": {
+        "entries": [
+          [
+            "merchant_hold:9f67e124-0921-4d7c-8c0f-27cf2ef854b2",
+            -22000
+          ],
+          [
+            "merchant_hold:b1a0d5fe-6709-4ba5-bd03-32202dd5c300",
+            -11000
+          ],
+          [
+            "stripe_cash",
+            35400
+          ],
+          [
+            "tax_liability:9f67e124-0921-4d7c-8c0f-27cf2ef854b2",
+            -1600
+          ],
+          [
+            "tax_liability:b1a0d5fe-6709-4ba5-bd03-32202dd5c300",
+            -800
+          ]
+        ],
+        "evidence": {
+          "charge": "ch_fixture2"
+        }
+      }
+    },
+    {
+      "id": "ed1ca2ee-ac1d-4f49-9bf7-563f7a35e5ee",
+      "kind": "processor_fee",
+      "key": "fee:txn_fixture3",
+      "evidence": {
+        "entries": [
+          [
+            "stripe_cash",
+            -1060
+          ],
+          [
+            "stripe_fee_expense",
+            1060
+          ]
+        ],
+        "evidence": {
+          "balance_transaction": "txn_fixture3"
+        }
+      }
+    },
+    {
+      "id": "1b51b965-9f89-41a4-a10c-9e7450cb9312",
+      "kind": "commission_earned",
+      "key": "commission:b1a0d5fe-6709-4ba5-bd03-32202dd5c300",
+      "evidence": {
+        "entries": [
+          [
+            "commission_revenue",
+            -1000
+          ],
+          [
+            "merchant_hold:b1a0d5fe-6709-4ba5-bd03-32202dd5c300",
+            1000
+          ]
+        ],
+        "evidence": {
+          "line": "b1a0d5fe-6709-4ba5-bd03-32202dd5c300",
+          "policy": "item-sale-10pct-v1"
+        }
+      }
+    },
+    {
+      "id": "9bdb720a-ff5f-40e9-8c6c-8b649aa55c1c",
+      "kind": "transfer",
+      "key": "transfer:tr_fixture4",
+      "evidence": {
+        "entries": [
+          [
+            "merchant_hold:b1a0d5fe-6709-4ba5-bd03-32202dd5c300",
+            10000
+          ],
+          [
+            "stripe_cash",
+            -10000
+          ]
+        ],
+        "evidence": {
+          "transfer": "tr_fixture4",
+          "balance_transaction": "txn_fixture5"
+        }
+      }
+    },
+    {
+      "id": "14bf7df1-94bc-45d4-be47-2ad17b2d20f5",
+      "kind": "refund",
+      "key": "refund:re_fixture6",
+      "evidence": {
+        "entries": [
+          [
+            "commission_revenue",
+            333
+          ],
+          [
+            "merchant_recoverable:b1a0d5fe-6709-4ba5-bd03-32202dd5c300",
+            3200
+          ],
+          [
+            "stripe_cash",
+            -3633
+          ],
+          [
+            "tax_liability:b1a0d5fe-6709-4ba5-bd03-32202dd5c300",
+            100
+          ]
+        ],
+        "evidence": {
+          "refund": "re_fixture6",
+          "allocation": [
+            3333,
+            200,
+            100
+          ],
+          "balance_transaction": "txn_fixture7",
+          "commission_reversal": 333
+        }
+      }
+    },
+    {
+      "id": "b149134a-b5ac-4565-babd-c2afc0996883",
+      "kind": "transfer_reversal",
+      "key": "reversal:trr_fixture8",
+      "evidence": {
+        "entries": [
+          [
+            "merchant_recoverable:b1a0d5fe-6709-4ba5-bd03-32202dd5c300",
+            -3200
+          ],
+          [
+            "stripe_cash",
+            3200
+          ]
+        ],
+        "evidence": {
+          "reversal": "trr_fixture8",
+          "balance_transaction": "txn_fixture9"
+        }
+      }
+    }
+  ],
+  "posting_balances": {
+    "commission_revenue": -667,
+    "merchant_hold:9f67e124-0921-4d7c-8c0f-27cf2ef854b2": -22000,
+    "merchant_hold:b1a0d5fe-6709-4ba5-bd03-32202dd5c300": 0,
+    "merchant_recoverable:b1a0d5fe-6709-4ba5-bd03-32202dd5c300": 0,
+    "stripe_cash": 23907,
+    "stripe_fee_expense": 1060,
+    "tax_liability:9f67e124-0921-4d7c-8c0f-27cf2ef854b2": -1600,
+    "tax_liability:b1a0d5fe-6709-4ba5-bd03-32202dd5c300": -700
+  },
+  "cash_reconciliation_gap": 0,
+  "cash_reconciled": true,
+  "allocation_review_required": false,
+  "pending_operations": 0,
+  "unknown_transfers": [],
+  "absent_transfers": [],
+  "unknown_refunds": [],
+  "missing_dispute_balance_transactions": [],
+  "transfer_reversals_match": true,
+  "reconciled": true,
+  "integration_complete": false,
+  "local_financial_tests_passed": true
+}

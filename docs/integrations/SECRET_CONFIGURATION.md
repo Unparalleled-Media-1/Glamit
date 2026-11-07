@@ -1,0 +1,55 @@
+# Service credentials and secure environment setup
+
+> Latest Supabase request: development-only API connection preparation is now authorized for the selected project. See [current connection guide](SUPABASE_DEVELOPMENT_CONNECTION.md). Earlier deferred entries below remain historical for application/schema integration; the scoped read-only Supabase API check is now verified; no database/application integration is claimed.
+
+6 November 2026. Integration branch / user-designated main: `feat/platform-foundations`.
+
+The current environment has no configured service credentials. The user has confirmed an activated Stripe **test** account. Activation of other providers is not yet confirmed. Save only required credential names now; the owner enters values through secure environment settings. Never paste them in chat, commit `.env`, put server keys in browser bundles, or call configuration a successful authenticated connection.
+
+## Prepared now: Stripe TEST requirements
+
+The environment draft records direct runtime requirements for the names below, with no values or suggested credentials. Direct runtime injection is required for local HMAC verification and the existing strict test-key validation. A network proxy placeholder is not proof of a usable local signing secret.
+
+| Name                                         | Scope / requirement                                                                                                             |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| STRIPE_SECRET_KEY                            | Server secret; `sk_test_` or eligible `rk_test_` only. Never a live key.                                                        |
+| STRIPE_WEBHOOK_SECRET                        | Server secret; exact test endpoint `whsec_` signing value, available to local HMAC verification.                                |
+| STRIPE_PUBLISHABLE_KEY                       | Optional test client key; hosted Checkout does not require it. Never substitute the secret key.                                 |
+| STRIPE_ACCOUNT_ID                            | Non-secret platform account ID; server verifies actual platform binding.                                                        |
+| STRIPE_TEST_CONNECTED_ACCOUNT_ID             | Non-secret eligible test merchant account ID.                                                                                   |
+| STRIPE_TEST_ADDITIONAL_CONNECTED_ACCOUNT_IDS | Optional comma-separated test accounts; at least two eligible merchants for multi-merchant acceptance.                          |
+| STRIPE_TEST_DATABASE_URL                     | Server secret; persistent local PostgreSQL `_test` database, different from disposable pytest DB. Supabase is not this sandbox. |
+| STRIPE_TEST_RETURN_URL                       | Fixed HTTPS onboarding return endpoint under the approved test application origin.                                              |
+| STRIPE_TEST_REFRESH_URL                      | Fixed HTTPS onboarding refresh endpoint under the approved test application origin.                                             |
+
+No defaults, IDs or credentials are invented. Existing `deploy/stripe-test/.env.example` is documentation only. No actual webhook endpoint, Stripe account capability, payment, transfer, fee or reconciliation is verified by saving these names. Supply values, publish/apply the environment and recheck readiness before authenticated test checks. User-reported active capabilities must still be verified by API.
+
+## Activation checklist for the remaining approved stack
+
+These are reference names, **not additional activated services or saved credential bindings**. Only add a provider after the owner confirms it is activated.
+
+| Requested name            | Service     | Where it belongs                         | Additional decision / condition                                                                                                                                                                                                                                                                             |
+| ------------------------- | ----------- | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| OPENAI_API_KEY            | OpenAI      | Server only                              | This managed environment reserves `OPENAI_*` targets; configure `GLAM_OPENAI_API_KEY` here. The adapter accepts that fallback when canonical `OPENAI_API_KEY` is absent. Standard deployments can retain the canonical name. Set a qualified `GLAM_OPENAI_MODEL`; configuration is not model qualification. |
+| REPLICATE_API_TOKEN       | Replicate   | Server only                              | Select qualified models/versions, rights, private-image origins and spend controls.                                                                                                                                                                                                                         |
+| FASHN_API_KEY             | FASHN       | Server only                              | Configure qualified `GLAM_FASHN_MODEL` and private image delivery requirements.                                                                                                                                                                                                                             |
+| GOOGLE_MAPS_API_KEY       | Google Maps | Server restricted key                    | Enable the selected Places/Geocoding APIs and billing. Use separate restricted browser keys if needed; do not expose this privileged server key.                                                                                                                                                            |
+| RESEND_API_KEY            | Resend      | Server only                              | Verify sender/domain; no messages are sent merely by configuration.                                                                                                                                                                                                                                         |
+| TWILIO_ACCOUNT_SID        | Twilio      | Server identifier                        | Confirm project/sender and applicable destination capability.                                                                                                                                                                                                                                               |
+| TWILIO_AUTH_TOKEN         | Twilio      | Server secret                            | No SMS/WhatsApp messages or OTP flow is activated by setting it.                                                                                                                                                                                                                                            |
+| PEACH_ENTITY_ID           | Peach       | Server identifier                        | Activate only approved test/acquiring/settlement capability; API host/auth scheme must be confirmed.                                                                                                                                                                                                        |
+| PEACH_ACCESS_TOKEN        | Peach       | Server secret                            | No live processing; marketplace settlement is not assumed.                                                                                                                                                                                                                                                  |
+| SENTRY_DSN                | Sentry      | Appropriate client/server project        | DSN alone does not install monitoring. Confirm project ingestion hostname and exclude private photos, analyses, chat and payment data from telemetry.                                                                                                                                                       |
+| SUPABASE_URL              | Supabase    | Deferred                                 | No project connection until remaining G0 gates and explicit development-only approval.                                                                                                                                                                                                                      |
+| SUPABASE_ANON_KEY         | Supabase    | Deferred public client key if applicable | Public key is not authorization; reviewed RLS required.                                                                                                                                                                                                                                                     |
+| SUPABASE_SERVICE_ROLE_KEY | Supabase    | Deferred server-only secret              | Never client-exposed; production Supabase remains prohibited.                                                                                                                                                                                                                                               |
+
+Non-secret model/feature settings belong in environment variables; secrets belong in secure runtime settings. Open-Meteo normally needs no key for eligible access, but commercial license/entitlement review remains a gate. Booking is a GLAM-owned service, not a fabricated booking API key.
+
+## Network and readiness
+
+The saved draft retains `api.stripe.com` and `docs.stripe.com` and adds `api.github.com` for PR/check/protection inspection. Current running-network policy is separate; saving a draft does not activate network access. No Supabase destination or TCP permission was added. Add exact provider destinations when activated rather than opening unrestricted egress.
+
+Use `uv run --frozen python scripts/integration_readiness.py` for safe configuration-only status. It never performs health checks and cannot report operational connectivity from key presence. Use the test Stripe runbook for explicitly authorized authenticated checks after runtime injection. `CONNECTED` requires an authenticated successful health check; `DEGRADED` means a configured provider fails; absent configuration stays `NOT CONFIGURED`. Never fabricate results as fallback.
+
+The previous pasted database password remains an unresolved exposure until its owner proves external rotation/revocation. Do not reuse or configure it. Main branch naming clarification is not Supabase authorization.

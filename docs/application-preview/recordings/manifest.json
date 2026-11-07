@@ -1,0 +1,334 @@
+{
+  "recordedAt": "2026-11-06T04:46:31.176Z",
+  "source": "actual local application interaction",
+  "nativeIOS": "BLOCKED: no Apple runtime/device available",
+  "nativeAndroid": "BLOCKED: no Android runtime/device available",
+  "endToEnd": "BLOCKED: provider credentials, private storage/auth G0, verified marketplace inventory and payment/order activation unavailable",
+  "files": [
+    {
+      "file": "desktop-home.webm",
+      "pattern": "home",
+      "platform": "desktop",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 1440,
+        "height": 1050
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 1440,
+        "height": 1050
+      },
+      "durationSeconds": 2.2
+    },
+    {
+      "file": "desktop-analyze.webm",
+      "pattern": "analyze",
+      "platform": "desktop",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 1440,
+        "height": 1050
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 1440,
+        "height": 1050
+      },
+      "durationSeconds": 2.24
+    },
+    {
+      "file": "desktop-studio.webm",
+      "pattern": "studio",
+      "platform": "desktop",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 1440,
+        "height": 1050
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 1440,
+        "height": 1050
+      },
+      "durationSeconds": 1.84
+    },
+    {
+      "file": "desktop-shop.webm",
+      "pattern": "shop",
+      "platform": "desktop",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 1440,
+        "height": 1050
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 1440,
+        "height": 1050
+      },
+      "durationSeconds": 2.12
+    },
+    {
+      "file": "desktop-product.webm",
+      "pattern": "product",
+      "platform": "desktop",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 1440,
+        "height": 1050
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 1440,
+        "height": 1050
+      },
+      "durationSeconds": 2.16
+    },
+    {
+      "file": "desktop-results.webm",
+      "pattern": "results",
+      "platform": "desktop",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 1440,
+        "height": 1050
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 1440,
+        "height": 1050
+      },
+      "durationSeconds": 1.92
+    },
+    {
+      "file": "ios-browser-emulation-home.webm",
+      "pattern": "home",
+      "platform": "ios-browser-emulation",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "durationSeconds": 1.96
+    },
+    {
+      "file": "ios-browser-emulation-analyze.webm",
+      "pattern": "analyze",
+      "platform": "ios-browser-emulation",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "durationSeconds": 1.72
+    },
+    {
+      "file": "ios-browser-emulation-studio.webm",
+      "pattern": "studio",
+      "platform": "ios-browser-emulation",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "durationSeconds": 1.92
+    },
+    {
+      "file": "ios-browser-emulation-shop.webm",
+      "pattern": "shop",
+      "platform": "ios-browser-emulation",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "durationSeconds": 2.32
+    },
+    {
+      "file": "ios-browser-emulation-product.webm",
+      "pattern": "product",
+      "platform": "ios-browser-emulation",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "durationSeconds": 1.68
+    },
+    {
+      "file": "ios-browser-emulation-results.webm",
+      "pattern": "results",
+      "platform": "ios-browser-emulation",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "durationSeconds": 1.8
+    },
+    {
+      "file": "android-browser-emulation-home.webm",
+      "pattern": "home",
+      "platform": "android-browser-emulation",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 412,
+        "height": 914
+      },
+      "durationSeconds": 2.04
+    },
+    {
+      "file": "android-browser-emulation-analyze.webm",
+      "pattern": "analyze",
+      "platform": "android-browser-emulation",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 412,
+        "height": 914
+      },
+      "durationSeconds": 1.72
+    },
+    {
+      "file": "android-browser-emulation-studio.webm",
+      "pattern": "studio",
+      "platform": "android-browser-emulation",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 412,
+        "height": 914
+      },
+      "durationSeconds": 2.04
+    },
+    {
+      "file": "android-browser-emulation-shop.webm",
+      "pattern": "shop",
+      "platform": "android-browser-emulation",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 412,
+        "height": 914
+      },
+      "durationSeconds": 2.2
+    },
+    {
+      "file": "android-browser-emulation-product.webm",
+      "pattern": "product",
+      "platform": "android-browser-emulation",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 412,
+        "height": 914
+      },
+      "durationSeconds": 1.84
+    },
+    {
+      "file": "android-browser-emulation-results.webm",
+      "pattern": "results",
+      "platform": "android-browser-emulation",
+      "engine": "Chromium",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "nativeDevice": false,
+      "liveAI": false,
+      "liveCommerce": false,
+      "encodedDimensions": {
+        "width": 412,
+        "height": 914
+      },
+      "durationSeconds": 1.72
+    }
+  ],
+  "encodingNote": "Video encoding may round odd viewport dimensions by one pixel; encoded dimensions are recorded separately."
+}

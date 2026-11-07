@@ -1,0 +1,51 @@
+
+> glam-ai@0.1.0 typecheck
+> npm run typecheck --workspaces
+
+
+> @glam/mobile@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @glam/web@0.1.0 typecheck
+> tsc --noEmit
+
+
+> glam-ai@0.1.0 build:web
+> npm run build --workspace=@glam/web
+
+
+> @glam/web@0.1.0 build
+> next build
+
+▲ Next.js 16.4.5 (Turbopack)
+✓ Running next.config.ts took 34ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 4.4s
+  Running TypeScript ...
+  Finished TypeScript in 3.6s ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/40) ...
+  Generating static pages using 4 workers (10/40)
+  Generating static pages using 4 workers (20/40)
+  Generating static pages using 4 workers (30/40)
+✓ Generating static pages using 4 workers (40/40) in 401ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├   /[section]
+│ ├ ● /offer
+│ ├ ● /results
+│ ├ ● /destination
+│ └ ● [+31 more paths]
+├ ○ /admin
+├ ƒ /api/capabilities
+└ ○ /business
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand

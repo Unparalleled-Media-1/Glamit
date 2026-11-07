@@ -1,0 +1,89 @@
+{
+  "mode": "configuration_only_no_provider_calls",
+  "observed_at": "2026-11-06T04:47:20.809303+00:00",
+  "services": [
+    {
+      "service": "openai",
+      "configured": false,
+      "state": "NOT CONFIGURED",
+      "reason": "credentials absent; blocked: qualified analysis model configuration"
+    },
+    {
+      "service": "replicate",
+      "configured": false,
+      "state": "NOT CONFIGURED",
+      "reason": "credentials absent"
+    },
+    {
+      "service": "fashn",
+      "configured": false,
+      "state": "NOT CONFIGURED",
+      "reason": "credentials absent; blocked: qualified try-on model configuration"
+    },
+    {
+      "service": "supabase",
+      "configured": false,
+      "state": "NOT CONFIGURED",
+      "reason": "credentials absent; blocked: G0 approval"
+    },
+    {
+      "service": "stripe",
+      "configured": false,
+      "state": "NOT CONFIGURED",
+      "reason": "credentials absent; blocked: commercial activation"
+    },
+    {
+      "service": "peach",
+      "configured": false,
+      "state": "NOT CONFIGURED",
+      "reason": "credentials absent; blocked: commercial activation"
+    },
+    {
+      "service": "google_maps",
+      "configured": false,
+      "state": "NOT CONFIGURED",
+      "reason": "credentials absent"
+    },
+    {
+      "service": "open_meteo",
+      "configured": false,
+      "state": "NOT CONFIGURED",
+      "reason": "blocked: weather license and commercial entitlement"
+    },
+    {
+      "service": "resend",
+      "configured": false,
+      "state": "NOT CONFIGURED",
+      "reason": "credentials absent"
+    },
+    {
+      "service": "twilio",
+      "configured": false,
+      "state": "NOT CONFIGURED",
+      "reason": "credentials absent"
+    },
+    {
+      "service": "sentry",
+      "configured": false,
+      "state": "NOT CONFIGURED",
+      "reason": "credentials absent"
+    },
+    {
+      "service": "booking",
+      "configured": false,
+      "state": "NOT CONFIGURED",
+      "reason": "blocked: GLAM booking engine and canonical schema approval"
+    },
+    {
+      "service": "google_calendar",
+      "configured": false,
+      "state": "NOT CONFIGURED",
+      "reason": "blocked: optional professional OAuth consent"
+    }
+  ],
+  "gates": [
+    "Supabase G0",
+    "live commercial activation",
+    "provider qualification"
+  ]
+}

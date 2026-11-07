@@ -1,0 +1,7 @@
+{
+  "name": "glam-design-preview",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": { "start": "node server.cjs", "test": "node check-editorial.cjs", "export:frames": "node export-frames.cjs" },
+  "devDependencies": { "playwright": "1.62.1" }
+}

@@ -1,5 +1,7 @@
 # Look recommendation ranking and commercial rules
 
+V2 rollout/privacy authority: [Master PRD v2](master-prd-v2.md), [global policy](global-policy-architecture.md) and [commerce operations](commerce-operations-v2.md). First-price auction design below remains the eventual baseline; initial real-demand pilots may use reviewed fixed sponsorship and defer complex auctions. Unknown/teen/child ad contexts are suppressed in the initial policy. Even explicit style context may require suppression if sensitive; no targeting from inferred identity, private memory/wardrobe/twin/images/traits, age/guardian evidence or user-level intelligence. [Companion intelligence](style-companion-extension.md) requires consented aggregate projections and anti-differencing. No capability is activated by this design revision.
+
 Status: proposed, version every applied policy. No production auction/billing system exists. Read alongside the existing money ledger, attribution and privacy designs.
 
 ## Separate analysis, organic matching and paid delivery

@@ -1,8 +1,14 @@
 # Canonical logical database model
 
+PRD v2 delta: [global policy architecture](global-policy-architecture.md#logical-schema-delta) defines market/age/guardian/assurance/decision, localization/sizing, visual search/evidence, professional feasibility, sharing, verification and supply records. Its canonical-user/managed-child distinction needs a reviewed future migration; current `app_user` constraints do not implement it. Existing age eligibility fields alone cannot authorize cross-jurisdiction capabilities. [Commerce operations](commerce-operations-v2.md) preserve existing catalog, outbox, orders and journals rather than duplicating them. These are proposed schema changes, not installed tables.
+
+The [companion schema/API delta](style-companion-extension.md#logical-schema-api-and-events-delta) adds versioned explicit/learned preference provenance, wardrobe items, privately consented twin manifests, occasion/preparation/group plans, shopping proposals/confirmations, catalog suggestions, challenges and scoped API usage. Existing routines, report snapshots, offers/orders/journals remain canonical; rental terms extend their authorities. Private memory/twin/wardrobe/group data never becomes advertiser reporting input. All are logical proposals, not migrations executed by this update.
+
 This is a complete logical entity inventory for the proposed scope, not executable migrations. Phase 1 must translate approved invariants into PostgreSQL constraints and migration tests. One Alembic history under `db/migrations` governs all transactional modules. An analytical warehouse is a derived projection, never an alternative authority for billing.
 
 Canonical scope includes the [Complete the Look schema delta](look-schema-api.md): look/component revisions, verified market offers/feed evidence, matching, shopping lists/assemblies, checkout orchestration, sponsored collections and auction/budget/frequency records. These extend this database/history without parallel ledgers, inventory or recommendation authorities.
+
+The uploaded master adds explicit advisor/routine/feedback/session/incident domains. [Master alignment](master-alignment.md#upload-specific-model-additions) specifies their columns, FKs, invariants and deletion boundaries: analysis_result, analysis_feedback, ai_conversation, ai_message, beauty_routine, routine_step, routine_progress, referral, provider_incident and user_session. These are proposed logical extensions under this same history, not installed tables. `user_session` is a revocation/audit projection of Supabase sessions, not a second identity authority; shared `ai_job` and balanced journals remain canonical.
 
 Notation: every entity has UUID `id`, `created_at`, and appropriate audit/version fields unless a composite key is stated. `→` identifies an FK; `?` is nullable. All references below target the named entity's `id` unless specified. Money is integer minor units plus ISO currency; rates use fixed precision decimals, never binary floats. Times are timezone-aware UTC; business timezone and original local appointment date are recorded separately. Junction FKs are unique pairs unless otherwise stated. Sensitive fields are minimized and encrypted where needed. No image bytes or persistent face identity embeddings belong in PostgreSQL.
 
@@ -171,7 +177,7 @@ erDiagram
   MEDIA_ASSET ||--o{ AI_JOB_INPUT : referenced_by
   AI_JOB ||--o{ AI_ATTEMPT : executes
   AI_JOB ||--o{ AI_JOB_OUTPUT : produces
-  USER ||--|| CREDIT_ACCOUNT : holds
+  USER ||--o| CREDIT_ACCOUNT : may_hold
   CREDIT_ACCOUNT ||--o{ CREDIT_LOT : receives
   CREDIT_ACCOUNT ||--o{ CREDIT_RESERVATION : reserves
   AI_JOB ||--|| CREDIT_RESERVATION : consumes

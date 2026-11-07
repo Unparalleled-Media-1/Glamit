@@ -1,0 +1,18 @@
+{
+  "service": "supabase",
+  "scope": "development_auth_settings_api_only",
+  "state": "CONNECTED",
+  "reason": "authenticated_development_api_check_passed",
+  "database_connected": false,
+  "application_connected": false,
+  "migrations_applied": false,
+  "production_activation": false,
+  "observed_at": "2026-11-06T09:11:17.380087+00:00",
+  "project_reference": "bkkmsbxrxkqaveymcrgi",
+  "method": "GET",
+  "endpoint_path": "/auth/v1/settings",
+  "key_scope": "public API key only; service-role/database password not read",
+  "real_provider_request": true,
+  "password_rotation": "NOT VERIFIED",
+  "development_marker": "per-command; persistent setting suggested in saved draft"
+}

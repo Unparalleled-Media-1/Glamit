@@ -1,13 +1,24 @@
 # Proposed architecture
 
+**Current authority:** [Analysis-first build](analysis-first-build.md). The latest user instruction authorizes implementation now, then external connections. Face Analysis, Color Analysis, Glow-Up Guide and makeover lead the experience; Home · Analyze · AI Studio · AI Advisor · Profile replaces the earlier shopping-first navigation. One Expo app, consumer web, unified business portal and restricted admin share canonical identity/RBAC/backend/migrations. Older design-approval waiting and surface/navigation descriptions below are historical where they conflict; production activation/release gates remain.
+
+The latest [UI/UX design brief](ui-ux-design-handoff.md) supersedes older surface/navigation/palette proposals **for design scope**: iOS, Android, responsive consumer web and separate merchant, advertiser, professional, creator and admin web workspaces. Mobile tabs are Home, Discover, Studio, Shop, Profile; Advisor is contextual. Fifteen admin UI groups map to the retained A01–A16 requirement IDs. Application implementation still awaits the required primary-flow/design-system and expanded-architecture review. Older mobile-only descriptions below record the preceding architecture baseline; the linked handoff governs current design scope.
+
+Revision authority: [Master PRD v2](master-prd-v2.md), [global policy/schema/API plan](global-policy-architecture.md) and [commerce operations](commerce-operations-v2.md) govern global inclusion, age-specific/guardian access and revised referral-first rollout. These changes are proposed for approval before expanded production implementation. Existing engineering invariants remain.
+
 ## System boundaries
 
 Start with a modular monolith and independently scalable workers. Distributed microservices would add operational and transactional complexity before traffic or team boundaries justify it. Modules own their tables and service APIs; a single migration directory owns the complete schema. Web/mobile clients never write commercial or authorization data directly.
 
+The three logical engines are AI Inspiration, Commerce Fulfillment, and Advertising/Growth. They share canonical identity, consent, policy decisions, catalog/inventory, quotes, ledgers and outbox; they do not create separate applications or financial histories. Authoritative market/age/guardian/rights/provider eligibility gates API actions, private media, quotes, asynchronous dispatch and publication. Locale is independent of legal/delivery market; unknown or unqualified policy/capability is unavailable. Global distribution does not automatically replicate private images across regions.
+
+The [style-companion extension](style-companion-extension.md) adds editable preference/memory projections, private wardrobe/twin manifests, occasion/group plans and a constrained Shopping Agent over approved server tools. These reuse identity/consent/media/catalog/quote/financial authorities. AI merchant extraction remains unapproved drafts until review. Later privacy-preserving intelligence and B2B APIs require qualified rights/tenant/age/region contracts; no new merchant web portal or unrestricted model tool access is introduced.
+
 ```mermaid
 flowchart TD
-  M[Expo consumer mobile] --> E[Edge / WAF / API ingress]
-  W[Next.js consumer web and role dashboards] --> E
+  M[Expo mobile apps - all non-admin product workflows] --> E[Edge / WAF / API ingress]
+  W[Next.js administrative control at /admin] --> E
+  L[Public informational landing page] --> M
   E --> A[FastAPI modular API]
   A --> P[(PostgreSQL + transactional outbox)]
   A --> O[Private object storage / signed uploads]
@@ -31,9 +42,9 @@ The database outbox is the authoritative work handoff; the API transaction write
 | Component | Responsibilities / constraints |
 |---|---|
 | Expo / React Native | Camera permissions, guided capture, consent, upload, progress, results, commerce; secure OS token storage; no secret API keys |
-| Next.js | Consumer discovery/web checkout where permitted; merchant, professional, creator, advertiser and admin portals; server-side session handling; no shared cached private responses |
+| Next.js | Public informational landing page directing visitors to app downloads; administrative control at `/admin` only; secure server-side admin sessions/MFA; no shared cached private responses. All non-admin workflows run in mobile apps, per the 5 November clarification in approvals.md |
 | Identity integration | Google through Supabase Auth, OIDC/OAuth with PKCE; exact-project token validation at API; server organization memberships/scopes; MFA required for privileged roles; connection deferred |
-| FastAPI modules | Identity, consent/media, analysis, catalog/recommendations, subscriptions/credits, orders/marketplace, creators, ads, trust/support |
+| FastAPI modules | Identity/age/guardian/market policy, consent/media, analysis/grooming/styling, visual search/catalog/recommendations, budget/fit/occasion, subscriptions/credits, referrals/professional feasibility, later orders/marketplace, creators/growth, ads, trust/support |
 | Complete the Look modules | Look Decomposition, Product Matching, Professional Matching, Sponsored Ranking, Attribution, Advertising Billing and Shopping Orchestration in the same backend; existing identity, catalog, consent, ledgers and orders remain canonical |
 | Workers | Image validation/sanitization, analysis/generation, reconciliation, deletion, notifications; isolated credentials and resource pools |
 | PostgreSQL | Supabase-managed PostgreSQL selected; local PostgreSQL until connection setup. Canonical Alembic migrations, server-only financial/private tables, row constraints/locking, backups and restore |
@@ -48,8 +59,8 @@ Initially use one write region and redundant availability zones. Prefer the laun
 ```text
 Glamit/
   apps/
-    mobile/                         # Expo consumer application
-    web/                            # Next.js consumer web + scoped dashboards
+    mobile/                         # Expo apps: consumer and non-admin business workflows
+    web/                            # Next.js informational/download landing page + /admin
   services/
     api/app/modules/                # FastAPI domain modules
     worker/app/                     # task execution + provider adapter runtime

@@ -15,6 +15,8 @@ bearer = HTTPBearer(auto_error=False)
 class Principal:
     issuer: str
     subject: str
+    assurance: str = "aal1"
+    authenticated_at: int | None = None
 
 
 @lru_cache
@@ -33,7 +35,13 @@ def verify_token(token: str, key, issuer: str, audience: str) -> Principal:
     )
     if not isinstance(claims["sub"], str) or not claims["sub"].strip():
         raise jwt.InvalidTokenError("Missing subject")
-    return Principal(issuer=claims["iss"], subject=claims["sub"])
+    auth_time = claims.get("auth_time")
+    return Principal(
+        issuer=claims["iss"],
+        subject=claims["sub"],
+        assurance="aal2" if claims.get("aal") == "aal2" else "aal1",
+        authenticated_at=auth_time if type(auth_time) is int else None,
+    )
 
 
 def get_principal(

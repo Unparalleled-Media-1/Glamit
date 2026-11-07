@@ -19,6 +19,11 @@ def engine():
     url = os.environ.get("GLAM_TEST_DATABASE_URL")
     if not url or not (make_url(url).database or "").endswith("_test"):
         pytest.fail("Set GLAM_TEST_DATABASE_URL to a dedicated PostgreSQL database ending in _test")
+    persistent_sandbox = os.environ.get("STRIPE_TEST_DATABASE_URL")
+    if persistent_sandbox and make_url(persistent_sandbox).database == make_url(url).database:
+        pytest.fail(
+            "Disposable regression database must differ from the persistent Stripe test sandbox"
+        )
     previous = os.environ.get("GLAM_DATABASE_URL")
     os.environ["GLAM_DATABASE_URL"] = url
     get_settings.cache_clear()

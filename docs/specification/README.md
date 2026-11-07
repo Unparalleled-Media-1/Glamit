@@ -1,11 +1,38 @@
 # GLAM AI architecture approval package
 
-Status: proposed; no implementation or production-readiness claim. Prepared 3 November 2026.
+**Latest payment scope:** The user authorizes isolated Stripe Connect test integration under Zanzu Technologies Inc. See [architecture](../payments/PAYMENT_ARCHITECTURE.md), [country eligibility](../payments/COUNTRY_ELIGIBILITY_MATRIX.md), [readiness](../payments/STRIPE_CONNECT_READINESS.md) and [financial regression](../payments/PAYMENT_REGRESSION_REPORT.md). Existing policy/auth/production data and original migrations are preserved. New additive sandbox tables are test-database-only. Actual Stripe financial verification is blocked, not complete.
 
-This package answers the master build instruction for a commercially deployable beauty, hair, fashion and social-commerce platform with African specialization. It proposes a bounded path to that objective, not a claim that integrations or features exist.
+**Latest authority — 6 November 2026:** The user approved the five golden patterns as the visual direction, subject to functional/usability validation, and authorized the sixth Personalized Results pattern, missing journey completion and the selected provider preparations. Preserve the five patterns and existing navigation; keep Supabase disconnected pending G0 and payments inactive. Existing financial/authentication/migration code and production data must not change. See [current scope](ux-completion-and-integrations.md), [regression report](../ux-regression-report.md) and [service readiness](../service-integration-readiness.md). Live end-to-end and native-device acceptance remain blocked.
+
+
+**Latest directive — golden-screen recovery and feature freeze (5 November 2026):** [Visual gap report](visual-gap-report.md), [review and design system](golden-screen-review.md), [frozen feature contracts](feature-freeze-contracts.md) and [proposed Destination Stylist](destination-stylist-contracts.md) govern this revision. Five golden patterns are implemented as review candidates. Primary navigation remains Home / Analyze / AI Studio / AI Advisor / Profile. Visual approval is pending; no external integration or production readiness is claimed.
+
+
+**Latest visual revision:** [Beauty-led experience](beauty-led-visual-pass.md) replaces the prior text-led home and core tool layouts with portrait-led charcoal/blush Home, Analysis and Studio, plus interactive color exploration. Existing goal, state, consent and integration boundaries remain. The user has not approved this new revision.
+
+**Latest UX authority:** [Goal-led GLAM companion](goal-led-experience.md) and [phased gaps](goal-led-backlog.md). Compact goal-led home, shared styling brief, independent Look Builder and opt-in device profile metadata extend this build; live AI/account/commerce remain deferred. Older tool-led and session-only-for-all-metadata wording below is historical where it conflicts.
+
+**Current catalog addendum:** [Contextual commerce and Snap & List](contextual-catalog-build.md). Analysis stays first; every relevant result includes recommendations, organic and separately labeled sponsored opportunities or an honest no-match state. Optional purchase does not mean hidden recommendations. Merchant AI suggestions require factual review and version approval before publication.
+
+**Current authority:** [Analysis-first build](analysis-first-build.md). The latest user instruction authorizes implementation now, then external connections. Face Analysis, Color Analysis, Glow-Up Guide and makeover lead the experience; Home · Analyze · AI Studio · AI Advisor · Profile replaces the earlier shopping-first navigation. One Expo app, consumer web, unified business portal and restricted admin share canonical identity/RBAC/backend/migrations. Older design-approval waiting and surface/navigation descriptions below are historical where they conflict; production activation/release gates remain.
+
+The latest [UI/UX design brief](ui-ux-design-handoff.md) supersedes older surface/navigation/palette proposals **for design scope**: iOS, Android, responsive consumer web and separate merchant, advertiser, professional, creator and admin web workspaces. Mobile tabs are Home, Discover, Studio, Shop, Profile; Advisor is contextual. Fifteen admin UI groups map to the retained A01–A16 requirement IDs. Application implementation still awaits the required primary-flow/design-system and expanded-architecture review.
+
+**Current revision:** [Master PRD v2.0](master-prd-v2.md) governs globally inclusive positioning, age-specific experiences and the three engines. Its revised production architecture and acceptance criteria await approval under the user's latest directive. [Global policy/schema/APIs](global-policy-architecture.md) and [commerce operations](commerce-operations-v2.md) supersede conflicting older adults-only/exclusively African/launch-auction assumptions. Existing foundation approval remains recorded separately.
+
+Prepared 3 November 2026; reconciled with the uploaded master specification on 5 November. The foundation and Complete the Look planning baseline were approved on 3 November; provider integrations, commercial activation and production release keep their separate evidence gates. See [approval history](../approvals.md) and [actual implementation status](../implementation-status.md).
+
+This package answers the master build instruction for a worldwide beauty, grooming, fashion and lifestyle discovery/commerce platform, serving diverse audiences with age-appropriate safeguards. African beauty/hair/fashion remain fully supported categories. These are bounded plans, not integration or readiness claims.
 
 | Read | Contents |
 |---|---|
+| [Master PRD v2.0](master-prd-v2.md) | All 15 gaps, globally inclusive scope, three engines, flagship journeys, staged rollout, strict acceptance and review decisions |
+| [Global policy architecture](global-policy-architecture.md) | Age/guardian permissions, jurisdiction/localization, schema/API delta, policy revocation and tests |
+| [Commerce operations v2](commerce-operations-v2.md) | Referral/booking versus settlement, supply/trust/returns, event contracts, budget/search and advertiser pilots |
+| [Style companion extension](style-companion-extension.md) | All 12 opportunities, core companion journey, private memory/wardrobe/twin, agent confirmation, staged schema/API/backlog |
+| [Master alignment](master-alignment.md) | Uploaded-source traceability, decisions carried forward, API/model gaps, release targets and next work |
+| [Screen/design blueprint](screen-blueprint.md) | Retained M01–M71/A01–A16 IDs; current five mobile tabs, 15-group admin crosswalk and latest palette |
+| [Visual design preview](../design-preview/index.html) | Editorial mobile, consumer web and five role workspaces; screen-family library, states and wireframes; no live integrations |
 | [Architecture](architecture.md) | System boundaries, repository layout, AI orchestration, payments, subscriptions, credits, marketplace and advertising |
 | [Data model](data-model.md) | Canonical entity catalogue, relationships, invariants and retention boundaries |
 | [Product and delivery](product-delivery.md) | Screen inventory, requirements traceability, phased backlog, dependencies, tests and release gates |
@@ -19,18 +46,18 @@ This package answers the master build instruction for a commercially deployable 
 
 ## Context and scope
 
-The requested `Unparalleled-Media-1/Glamit` remote currently advertises no refs; fetching `main` returned `couldn't find remote ref main`. The local checkout has no commits, source, manifests or tests. No application files were changed, no dependencies were selected or installed, and no production integrations were exercised. These documents are outside the checkout to preserve the onboarding constraint against source changes. They can enter an initial documentation pull request after repository initialization is authorized. No PR exists yet.
+The repository now contains the approved planning package and a tested foundation implementation: locked workspaces, API/credit/privacy primitives and web/mobile shells. The earlier empty-remote observation was historical and no longer describes this checkout. Most product workflows and all real provider/catalog/payment integrations remain unimplemented. Current-instance results are recorded in [validation](../validation.md), with feature scope in [implementation status](../implementation-status.md).
 
-The referenced ChatGPT conversation could not be read because no conversation-reading tool is available in this session. The supplied master instruction is the authoritative product input. Pricing below is scenario modelling with explicitly hypothetical rates, not current vendor quotations. No prototype data or test substitute is proposed as a completed integration.
+The referenced ChatGPT conversation could not be read because no conversation-reading tool is available in this session. The user has now supplied a [verbatim master-specification upload](sources/2026-11-master-product-specification.txt); its proposals and earlier conversation excerpts are reconciled in [master alignment](master-alignment.md). Explicit decisions in the current conversation/approval history govern conflicting alternatives. Pricing remains scenario modelling with hypothetical rates, not current vendor quotations. Design previews do not constitute implemented integrations.
 
 ## Proposed first commercial release
 
-Use South Africa as the planning launch market, adults only, with English and ZAR first, while designing currencies, localization and country rules for expansion. These are approval decisions. Launch consumer analysis and try-on, curated product discovery, subscriptions/credits and a bounded set of verified professionals. Introduce creator commerce and advertising only after consent, commercial reconciliation and attribution controls pass their gates. Keep the full product in the requirements matrix throughout.
+The revised target is global, with country/capability activation staged by supply, payments, localization, compliance and operating evidence. South Africa is a possible pilot, not the exclusive product identity. Required teen and guardian-managed child designs do not enable those modes before qualification. PRD v2 proposes verified affiliate/referral commerce and professional look requests first, with simplified sponsored pilots and later platform checkout/complex auctions. Review the revised architecture/criteria before expanded production implementation; no country/age/partner capability is currently claimed ready.
 
 Consumer analysis is cosmetic guidance, not diagnosis. Avoid identity recognition and persistent facial identity templates. Skin tone/color suitability data may itself be sensitive: retain only with consent, limit its purpose and exclude it from advertising. Realism, African hair coverage, lawful processing and positive unit economics must be demonstrated before commercial claims.
 
-## Approval requested
+## Approval and release boundaries
 
-Review [decisions.md](decisions.md). Approve or amend launch scope, image consent/retention, launch jurisdictions, provider/payment qualification budgets and phased delivery. Approval should authorize Phase 0 and Phase 1 only; later commercial integrations and production deployment have separate release gates. No implementation will begin before that approval. Production deployment and destructive database changes always require explicit approval.
+The user already approved the planning baseline and Phase 0/1 foundation work; see [decisions](decisions.md) for remaining external/vendor/commercial choices. Work within that scope can continue without requesting the same approval again. Launch scope, final retention, qualification spend and paid releases still require their applicable decisions/evidence. Production deployment and destructive database changes always require explicit action-specific approval.
 
-Complete the Look adds R13–R27 and CTL-00–CTL-10 to that baseline. Its architecture, commercial rules and AC-01–AC-12 acceptance criteria require review/approval before production implementation. The extension is specification work only; numbers are illustrative and no partner inventory is asserted.
+Complete the Look adds R13–R27 and CTL-00–CTL-10. Its architecture, commercial rules and AC-01–AC-12 baseline were included in the recorded approval. Actual rollout remains gated by qualified providers, verified catalogs, privacy/commercial tests and release authorization; numerical scenarios are illustrative and no partner inventory is asserted.

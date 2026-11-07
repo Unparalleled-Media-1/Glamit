@@ -38,6 +38,74 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/admin/catalog/review-queue": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Review Queue */
+        get: operations["review_queue_v1_admin_catalog_review_queue_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/catalog/{lid}/revisions/{revision}/review": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Review */
+        post: operations["review_v1_admin_catalog__lid__revisions__revision__review_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/context": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Staff Context */
+        get: operations["staff_context_v1_admin_context_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/analysis/requests": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Analysis Unavailable */
+        post: operations["analysis_unavailable_v1_analysis_requests_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/looks": {
         parameters: {
             query?: never;
@@ -140,6 +208,128 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/me/routines": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Routines */
+        get: operations["routines_v1_me_routines_get"];
+        put?: never;
+        /** Save Routine */
+        post: operations["save_routine_v1_me_routines_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/routines/{routine}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Update Routine */
+        put: operations["update_routine_v1_me_routines__routine__put"];
+        post?: never;
+        /** Delete Routine */
+        delete: operations["delete_routine_v1_me_routines__routine__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/saved-requirements": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Saved */
+        get: operations["saved_v1_me_saved_requirements_get"];
+        put?: never;
+        /** Save Requirement */
+        post: operations["save_requirement_v1_me_saved_requirements_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/saved-requirements/{sid}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete Saved */
+        delete: operations["delete_saved_v1_me_saved_requirements__sid__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/workspace-invitations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Invitations */
+        get: operations["invitations_v1_me_workspace_invitations_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/workspace-invitations/{invitation}/accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Accept */
+        post: operations["accept_v1_me_workspace_invitations__invitation__accept_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/me/workspaces": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Workspaces */
+        get: operations["list_workspaces_v1_me_workspaces_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/organizations": {
         parameters: {
             query?: never;
@@ -169,6 +359,264 @@ export interface paths {
         put?: never;
         post?: never;
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/catalog/listings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Owned */
+        get: operations["list_owned_v1_organizations__org__catalog_listings_get"];
+        put?: never;
+        /** Create */
+        post: operations["create_v1_organizations__org__catalog_listings_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/catalog/listings/bulk": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Bulk Create */
+        post: operations["bulk_create_v1_organizations__org__catalog_listings_bulk_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/catalog/listings/{lid}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Detail */
+        get: operations["detail_v1_organizations__org__catalog_listings__lid__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/catalog/listings/{lid}/enhancements": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Enhance */
+        post: operations["enhance_v1_organizations__org__catalog_listings__lid__enhancements_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/catalog/listings/{lid}/enhancements/{jid}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Job */
+        get: operations["job_v1_organizations__org__catalog_listings__lid__enhancements__jid__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/catalog/listings/{lid}/publish": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Publish */
+        post: operations["publish_v1_organizations__org__catalog_listings__lid__publish_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/catalog/listings/{lid}/revisions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Revise */
+        post: operations["revise_v1_organizations__org__catalog_listings__lid__revisions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/catalog/listings/{lid}/rollback": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Rollback */
+        post: operations["rollback_v1_organizations__org__catalog_listings__lid__rollback_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/catalog/listings/{lid}/withdraw": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Withdraw */
+        post: operations["withdraw_v1_organizations__org__catalog_listings__lid__withdraw_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/catalog/publish-bulk": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Publish Bulk */
+        post: operations["publish_bulk_v1_organizations__org__catalog_publish_bulk_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/workspaces/{workspace}/drafts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Drafts */
+        get: operations["drafts_v1_organizations__org__workspaces__workspace__drafts_get"];
+        put?: never;
+        /** Create Draft */
+        post: operations["create_draft_v1_organizations__org__workspaces__workspace__drafts_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/workspaces/{workspace}/drafts/{draft}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Update Draft */
+        put: operations["update_draft_v1_organizations__org__workspaces__workspace__drafts__draft__put"];
+        post?: never;
+        /** Delete Draft */
+        delete: operations["delete_draft_v1_organizations__org__workspaces__workspace__drafts__draft__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/workspaces/{workspace}/invitations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Invite */
+        post: operations["invite_v1_organizations__org__workspaces__workspace__invitations_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/workspaces/{workspace}/invitations/{invitation}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Revoke Invite */
+        delete: operations["revoke_invite_v1_organizations__org__workspaces__workspace__invitations__invitation__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org}/workspaces/{workspace}/roles/{member}/{role}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Revoke Role */
+        delete: operations["revoke_role_v1_organizations__org__workspaces__workspace__roles__member___role__delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -208,10 +656,64 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/recommendations/listings/{lid}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Qualified Detail */
+        post: operations["qualified_detail_v1_recommendations_listings__lid__post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/recommendations/matches": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Match Requirements */
+        post: operations["match_requirements_v1_recommendations_matches_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** BulkListings */
+        BulkListings: {
+            /** Listings */
+            listings: components["schemas"]["NewListing"][];
+        };
+        /** BulkPublication */
+        BulkPublication: {
+            /** Listings */
+            listings: components["schemas"]["BulkPublicationItem"][];
+        };
+        /** BulkPublicationItem */
+        BulkPublicationItem: {
+            /**
+             * Listing Id
+             * Format: uuid
+             */
+            listing_id: string;
+            /** Revision */
+            revision: number;
+        };
         /** Component */
         "Component-Input": {
             /** Category */
@@ -304,10 +806,239 @@ export interface components {
             /** Held */
             held: number;
         };
+        /** Derivative */
+        Derivative: {
+            /**
+             * Advertising
+             * @default false
+             */
+            advertising: boolean;
+            /**
+             * Original Id
+             * Format: uuid
+             */
+            original_id: string;
+            /** Sha256 */
+            sha256: string;
+            /** Storage Ref */
+            storage_ref: string;
+        };
+        /** Draft */
+        Draft: {
+            /**
+             * Notes
+             * @default
+             */
+            notes: string;
+            /** Title */
+            title: string;
+        };
+        /** DraftRead */
+        DraftRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Notes
+             * @default
+             */
+            notes: string;
+            /** Revision */
+            revision: number;
+            /** Title */
+            title: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /** DraftUpdate */
+        DraftUpdate: {
+            /** Expected Revision */
+            expected_revision: number;
+            /**
+             * Notes
+             * @default
+             */
+            notes: string;
+            /** Title */
+            title: string;
+        };
+        /** EnhancementRequest */
+        EnhancementRequest: {
+            /** Expected Revision */
+            expected_revision: number;
+            /** Features */
+            features: ("background" | "lighting" | "description" | "tags" | "ocr" | "translation" | "advertising")[];
+        };
         /** HTTPValidationError */
         HTTPValidationError: {
             /** Detail */
             detail?: components["schemas"]["ValidationError"][];
+        };
+        /** InvitationSummary */
+        InvitationSummary: {
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /**
+             * Organization Id
+             * Format: uuid
+             */
+            organization_id: string;
+            /** Role */
+            role: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "pending" | "accepted" | "revoked";
+            /**
+             * Workspace
+             * @enum {string}
+             */
+            workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+        };
+        /** Invite */
+        Invite: {
+            /**
+             * Recipient Id
+             * Format: uuid
+             */
+            recipient_id: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "catalog_manager" | "campaign_manager" | "booking_manager" | "creator" | "affiliate" | "analyst";
+        };
+        /** InviteRead */
+        InviteRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "pending" | "accepted" | "revoked";
+        };
+        /** JobRead */
+        JobRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "queued" | "processing" | "review_ready" | "failed" | "cancelled";
+            suggestions?: components["schemas"]["Suggestions"] | null;
+        };
+        /** ListingFacts */
+        ListingFacts: {
+            /**
+             * Accepting Requests
+             * @default false
+             */
+            accepting_requests: boolean;
+            /**
+             * Category
+             * @enum {string}
+             */
+            category: "cosmetics" | "hair" | "skincare" | "clothing" | "footwear" | "accessories" | "tool" | "service";
+            /**
+             * Condition
+             * @default new
+             * @enum {string}
+             */
+            condition: "new" | "used" | "refurbished" | "rental";
+            /** Countries */
+            countries: string[];
+            /**
+             * Currency
+             * @enum {string}
+             */
+            currency: "ZAR" | "USD" | "EUR" | "GBP";
+            /**
+             * Description
+             * @default
+             */
+            description: string;
+            /**
+             * Offer Expires At
+             * Format: date-time
+             */
+            offer_expires_at: string;
+            /** Other Costs Minor */
+            other_costs_minor?: number | null;
+            /** Price Minor */
+            price_minor: number;
+            /**
+             * Purchase Url
+             * Format: uri
+             */
+            purchase_url: string;
+            /** Shipping Minor */
+            shipping_minor?: number | null;
+            /** Source Ref */
+            source_ref: string;
+            /** Source Sku */
+            source_sku: string;
+            /**
+             * Stock Quantity
+             * @default 0
+             */
+            stock_quantity: number;
+            /** Tags */
+            tags: string[];
+            /** Tax Minor */
+            tax_minor?: number | null;
+            /** Title */
+            title: string;
+        };
+        /** ListingRead */
+        ListingRead: {
+            /** Current Revision */
+            current_revision: number;
+            /** Decision */
+            decision: string | null;
+            facts: components["schemas"]["ListingFacts"];
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Merchant Reviewed */
+            merchant_reviewed: boolean;
+            /**
+             * Organization Id
+             * Format: uuid
+             */
+            organization_id: string;
+            /** Published Revision */
+            published_revision: number | null;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "draft" | "published" | "withdrawn";
         };
         /** LookResult */
         LookResult: {
@@ -324,6 +1055,72 @@ export interface components {
             source_type: "user_authored";
             /** Title */
             title: string;
+        };
+        /** Match */
+        Match: {
+            /**
+             * Category
+             * @enum {string}
+             */
+            category: "cosmetics" | "hair" | "skincare" | "clothing" | "footwear" | "accessories" | "tool" | "service";
+            /** Condition */
+            condition: ("new" | "used" | "refurbished") | null;
+            /**
+             * Currency
+             * @enum {string}
+             */
+            currency: "ZAR" | "USD" | "EUR" | "GBP";
+            /** Delivered Total Minor */
+            delivered_total_minor: number | null;
+            /**
+             * Listing Id
+             * Format: uuid
+             */
+            listing_id: string;
+            /**
+             * Match Type
+             * @enum {string}
+             */
+            match_type: "Exact" | "Similar";
+            /** Merchant */
+            merchant: string;
+            /**
+             * Offer Expires At
+             * Format: date-time
+             */
+            offer_expires_at: string;
+            /** Price Minor */
+            price_minor: number;
+            /**
+             * Purchase Url
+             * Format: uri
+             */
+            purchase_url: string;
+            /** Revision */
+            revision: number;
+            /** Service Quote Required */
+            service_quote_required: boolean;
+            /**
+             * Source
+             * @default reviewed_merchant_assertion
+             * @constant
+             */
+            source: "reviewed_merchant_assertion";
+            /** Title */
+            title: string;
+        };
+        /** MatchResult */
+        MatchResult: {
+            /** Message */
+            message: string;
+            /** Organic */
+            organic: components["schemas"]["Match"][];
+            /** Sponsored */
+            sponsored: components["schemas"]["Match"][];
+        };
+        /** NewListing */
+        NewListing: {
+            facts: components["schemas"]["ListingFacts"];
         };
         /** NewLook */
         NewLook: {
@@ -387,6 +1184,63 @@ export interface components {
             /** Version */
             version: string;
         };
+        /** PublishChoice */
+        PublishChoice: {
+            /** Revision */
+            revision: number;
+        };
+        /** Requirement */
+        Requirement: {
+            /** Budget Minor */
+            budget_minor?: number | null;
+            /**
+             * Category
+             * @enum {string}
+             */
+            category: "cosmetics" | "hair" | "skincare" | "clothing" | "footwear" | "accessories" | "tool" | "service";
+            /**
+             * Context
+             * @enum {string}
+             */
+            context: "face" | "hair" | "skin" | "body-fit" | "color" | "makeup-match" | "makeover" | "routine";
+            /** Country */
+            country: string;
+            /**
+             * Currency
+             * @enum {string}
+             */
+            currency: "ZAR" | "USD" | "EUR" | "GBP";
+            /** Source Organization Id */
+            source_organization_id?: string | null;
+            /** Source Sku */
+            source_sku?: string | null;
+            /** Tags */
+            tags: string[];
+        };
+        /** ReviewChoice */
+        ReviewChoice: {
+            /**
+             * Decision
+             * @enum {string}
+             */
+            decision: "approved" | "rejected";
+            /**
+             * Identifier Verified
+             * @default false
+             */
+            identifier_verified: boolean;
+        };
+        /** RevisionChoice */
+        RevisionChoice: {
+            /** Expected Revision */
+            expected_revision: number;
+            facts: components["schemas"]["ListingFacts"];
+            /**
+             * Merchant Reviewed
+             * @constant
+             */
+            merchant_reviewed: true;
+        };
         /** RevisionRead */
         RevisionRead: {
             /** Components */
@@ -413,6 +1267,100 @@ export interface components {
             /** Revision No */
             revision_no: number;
         };
+        /** Routine */
+        Routine: {
+            /** Steps */
+            steps: components["schemas"]["RoutineStep"][];
+            /** Title */
+            title: string;
+        };
+        /** RoutineRead */
+        RoutineRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Revision */
+            revision: number;
+            /** Steps */
+            steps: components["schemas"]["RoutineStep"][];
+            /** Title */
+            title: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /** RoutineStep */
+        RoutineStep: {
+            /**
+             * Done
+             * @default false
+             */
+            done: boolean;
+            /** Text */
+            text: string;
+        };
+        /** RoutineUpdate */
+        RoutineUpdate: {
+            /** Expected Revision */
+            expected_revision: number;
+            /** Steps */
+            steps: components["schemas"]["RoutineStep"][];
+            /** Title */
+            title: string;
+        };
+        /** SavedRead */
+        SavedRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            requirement: components["schemas"]["Requirement"];
+        };
+        /** StaffContext */
+        StaffContext: {
+            /**
+             * Catalog Review Enabled
+             * @default false
+             */
+            catalog_review_enabled: boolean;
+            /** Modules */
+            modules: string[];
+            /**
+             * Operational Actions Enabled
+             * @default false
+             * @constant
+             */
+            operational_actions_enabled: false;
+            /** Roles */
+            roles: string[];
+        };
+        /** Suggestions */
+        Suggestions: {
+            /** Completed Features */
+            completed_features: ("background" | "lighting" | "description" | "tags" | "ocr" | "translation" | "advertising")[];
+            /** Derivatives */
+            derivatives?: components["schemas"]["Derivative"][];
+            /** Description */
+            description: string;
+            /** Tags */
+            tags: string[];
+            /** Title */
+            title: string;
+            /** Warnings */
+            warnings: string[];
+        };
+        /** UnavailableResult */
+        UnavailableResult: {
+            /** Code */
+            code: string;
+            /** Detail */
+            detail: string;
+        };
         /** UserResult */
         UserResult: {
             /**
@@ -433,6 +1381,23 @@ export interface components {
             msg: string;
             /** Error Type */
             type: string;
+        };
+        /** WorkspaceRead */
+        WorkspaceRead: {
+            /** Can Write */
+            can_write: boolean;
+            /** Name */
+            name: string;
+            /**
+             * Organization Id
+             * Format: uuid
+             */
+            organization_id: string;
+            /**
+             * Workspace
+             * @enum {string}
+             */
+            workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
         };
     };
     responses: never;
@@ -479,6 +1444,104 @@ export interface operations {
                 };
                 content: {
                     "application/json": unknown;
+                };
+            };
+        };
+    };
+    review_queue_v1_admin_catalog_review_queue_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListingRead"][];
+                };
+            };
+        };
+    };
+    review_v1_admin_catalog__lid__revisions__revision__review_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path: {
+                lid: string;
+                revision: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReviewChoice"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReviewChoice"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    staff_context_v1_admin_context_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StaffContext"];
+                };
+            };
+        };
+    };
+    analysis_unavailable_v1_analysis_requests_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UnavailableResult"];
                 };
             };
         };
@@ -656,6 +1719,280 @@ export interface operations {
             };
         };
     };
+    routines_v1_me_routines_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoutineRead"][];
+                };
+            };
+        };
+    };
+    save_routine_v1_me_routines_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Routine"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoutineRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_routine_v1_me_routines__routine__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                routine: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RoutineUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RoutineRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_routine_v1_me_routines__routine__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                routine: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    saved_v1_me_saved_requirements_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SavedRead"][];
+                };
+            };
+        };
+    };
+    save_requirement_v1_me_saved_requirements_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Requirement"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SavedRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_saved_v1_me_saved_requirements__sid__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sid: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    invitations_v1_me_workspace_invitations_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InvitationSummary"][];
+                };
+            };
+        };
+    };
+    accept_v1_me_workspace_invitations__invitation__accept_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                invitation: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InviteRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_workspaces_v1_me_workspaces_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WorkspaceRead"][];
+                };
+            };
+        };
+    };
     create_organization_v1_organizations_post: {
         parameters: {
             query?: never;
@@ -722,6 +2059,630 @@ export interface operations {
             };
         };
     };
+    list_owned_v1_organizations__org__catalog_listings_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListingRead"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_v1_organizations__org__catalog_listings_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path: {
+                org: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["NewListing"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListingRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    bulk_create_v1_organizations__org__catalog_listings_bulk_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path: {
+                org: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkListings"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListingRead"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    detail_v1_organizations__org__catalog_listings__lid__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                lid: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListingRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    enhance_v1_organizations__org__catalog_listings__lid__enhancements_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path: {
+                org: string;
+                lid: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EnhancementRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    job_v1_organizations__org__catalog_listings__lid__enhancements__jid__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                lid: string;
+                jid: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    publish_v1_organizations__org__catalog_listings__lid__publish_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                lid: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PublishChoice"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListingRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    revise_v1_organizations__org__catalog_listings__lid__revisions_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path: {
+                org: string;
+                lid: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RevisionChoice"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListingRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    rollback_v1_organizations__org__catalog_listings__lid__rollback_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                lid: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PublishChoice"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListingRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    withdraw_v1_organizations__org__catalog_listings__lid__withdraw_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                lid: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListingRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    publish_bulk_v1_organizations__org__catalog_publish_bulk_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkPublication"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListingRead"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    drafts_v1_organizations__org__workspaces__workspace__drafts_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DraftRead"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_draft_v1_organizations__org__workspaces__workspace__drafts_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Draft"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DraftRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_draft_v1_organizations__org__workspaces__workspace__drafts__draft__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+                draft: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DraftUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DraftRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_draft_v1_organizations__org__workspaces__workspace__drafts__draft__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+                draft: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    invite_v1_organizations__org__workspaces__workspace__invitations_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Invite"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InviteRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    revoke_invite_v1_organizations__org__workspaces__workspace__invitations__invitation__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+                invitation: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    revoke_role_v1_organizations__org__workspaces__workspace__roles__member___role__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org: string;
+                workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
+                member: string;
+                role: "catalog_manager" | "campaign_manager" | "booking_manager" | "creator" | "affiliate" | "analyst";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     policies_v1_policies_get: {
         parameters: {
             query?: never;
@@ -766,6 +2727,74 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ConsentResult"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    qualified_detail_v1_recommendations_listings__lid__post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                lid: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Requirement"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MatchResult"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    match_requirements_v1_recommendations_matches_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Requirement"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MatchResult"];
                 };
             };
             /** @description Validation Error */

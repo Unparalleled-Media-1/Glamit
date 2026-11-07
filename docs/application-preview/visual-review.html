@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>GLAM AI — Beauty Experience Review</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 50px 60px 30px;
+        background: #f3eae5;
+        color: #231b20;
+        font:
+          14px Arial,
+          sans-serif;
+      }
+      .masthead {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .brand {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+      .edition {
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: #785b6c;
+      }
+      .intro {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin: 30px 0;
+      }
+      .intro h1 {
+        font:
+          400 42px/1.05 Georgia,
+          serif;
+        letter-spacing: -1.3px;
+        margin: 0;
+      }
+      .intro h1 em {
+        color: #a15d7d;
+      }
+      .intro p {
+        font-size: 11px;
+        line-height: 1.7;
+        color: #765f6d;
+        text-align: right;
+        margin: 0;
+      }
+      .screens {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 36px;
+      }
+      .screen {
+        min-width: 0;
+      }
+      .screen img {
+        display: block;
+        width: 100%;
+        border-radius: 27px;
+        border: 6px solid #211d20;
+        box-shadow: 0 15px 30px #42253215;
+      }
+      .caption {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 18px 3px;
+        font-size: 11px;
+      }
+      .caption strong {
+        font-weight: 500;
+      }
+      .caption span {
+        color: #936a81;
+        font-size: 9px;
+      }
+      footer {
+        border-top: 1px solid #d6c5cd;
+        padding-top: 18px;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 9px;
+        color: #7c6372;
+        line-height: 1.7;
+      }
+      @media (max-width: 700px) {
+        body {
+          padding: 25px;
+        }
+        .screens {
+          grid-template-columns: 1fr;
+        }
+        .intro {
+          display: block;
+        }
+        .intro p {
+          text-align: left;
+          margin-top: 18px;
+        }
+        .screen img {
+          max-width: 390px;
+        }
+        .caption {
+          max-width: 390px;
+        }
+        footer {
+          display: block;
+        }
+        .edition {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="masthead">
+      <span class="brand">✧ GLAM AI</span
+      ><span class="edition">BEAUTY EXPERIENCE / DESIGN REVIEW</span>
+    </div>
+    <div class="intro">
+      <h1>Beauty you can see.<br /><em>Choices you can make.</em></h1>
+      <p>
+        Portrait-led home. Private photo preparation.<br />A visual studio with
+        room to explore.
+      </p>
+    </div>
+    <main class="screens">
+      <article class="screen">
+        <img
+          src="mobile-home.png"
+          alt="Actual mobile home with charcoal and pink portrait-led beauty cards"
+        />
+        <div class="caption">
+          <strong>01 / Your daily beauty edit</strong><span>HOME</span>
+        </div>
+      </article>
+      <article class="screen">
+        <img
+          src="mobile-beauty-analysis.png"
+          alt="Actual photo preparation screen with editorial portrait, framing and permission entry"
+        />
+        <div class="caption">
+          <strong>02 / A personal starting point</strong><span>ANALYZE</span>
+        </div>
+      </article>
+      <article class="screen">
+        <img
+          src="mobile-beauty-studio.png"
+          alt="Actual Studio with editorial references and interactive selection controls"
+        />
+        <div class="caption">
+          <strong>03 / Your expression lab</strong><span>AI STUDIO</span>
+        </div>
+      </article>
+    </main>
+    <footer>
+      <span
+        >Actual responsive application captures · Original fictional adult
+        editorial imagery</span
+      ><span>AI generation and personal analysis remain unconnected.</span>
+    </footer>
+  </body>
+</html>

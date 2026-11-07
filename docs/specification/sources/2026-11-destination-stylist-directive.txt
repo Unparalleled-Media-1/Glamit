@@ -1,0 +1,176 @@
+Absolutely. GLAM AI should have an AI Destination Stylist that recommends what to wear based on where someone is going, when they're travelling, the weather, the occasion and their personal style.
+
+This could become one of GLAM AI's strongest differentiators: moving beyond “What suits my face?” to “What should I wear, how will it look on me, and where can I buy it?”
+
+It should be a major feature of the Personal Stylist, connected to AI Studio and the marketplace.
+
+## 1. How the feature should work
+
+GLAM AI — Destination Stylist
+
+Proposed feature
+
+Where are you going?
+
+Cape Town, South Africa
+
+Miami, Florida
+
+Iceland
+
+When?12/15/26
+
+Occasion
+
+Beach day
+
+Sightseeing
+
+Evening event
+
+Outdoor adventure
+
+Preferred styleChic & elegant
+
+Budget
+
+Budget
+
+Mid-range
+
+Luxury
+
+Generate my destination style guide
+
+The real application should additionally let users enter any destination, travel dates, multiple activities, preferred coverage, sizes and shopping location.
+
+## 2. Three different destinations, three different looks
+
+![Paros Pinafore Dress
+– La Luna Lifestyle](https://images.openai.com/static-rsc-4/oQBBlzgZLIuSLl1Zd4ZW7ZWJ1ieHzBGDtNPd0J0SnJmDWXAS6Ug8xobNVr8Q4vPM_W5Gk1TB_KqAYYCeRYHy8NI3OmGHtXrRqRRnfON9Rp5uWye865TRVXV_FJ_Bo-b1zkqZTIN6ZmQLRmGCEUQVOoqr1TovzWlMz3VS2AesJAk?purpose=inline)
+
+Add to Favorites
+
+Cape Town — Beach day
+
+Light linen outfits, swimwear or modest beachwear, sandals, sunglasses, sun protection and wind-friendly hairstyles.
+
+Account for Cape Town's often windy coastal conditions and changing temperatures, not just the season.
+
+![Sunset Skies Dress – Vestique](https://images.openai.com/static-rsc-4/tHmPvpVbQRk_HP_dNvOw8iJfU09oEvKN-84YgvK232mgeKxdfV1KT_27DlDsJApwCPJsuSqJFAMQfdt98Q8yV0Q8QjDAyKkiyCDTQsC4z94pc8Sj0q2bQpfNypbGKR1Xw6LvZv2RhG0U0L4RRUHDrDVSifCYXbYtHly-Edf_ZnQ?purpose=inline)
+
+Add to Favorites
+
+Miami, Florida — Holiday
+
+Breathable fabrics, colorful resortwear, comfortable footwear, humidity-resistant hairstyles and lightweight makeup.
+
+Include rain-ready options when relevant, particularly during the wetter months.
+
+![Þórsmörk
+– 66°North](https://images.openai.com/static-rsc-4/Y_NtKIWNQsamKdJ8a-EOr16MZb1rf-PVMWF90Icp55Ctc0VBcKEF35SLzO0ggEn0fWTzyT72lCbYiSmHANGLTxW8nl1fd7IqRpPTLzA6Wfw9I1TNDnH98JqR__uSjVXk5vD9FqvO-DCDQHdQjhUOteqBvldtSLqws3bTawM3UlM?purpose=inline)
+
+Add to Favorites
+
+Iceland — Winter adventure
+
+Thermal base layers, insulating midlayers, windproof and waterproof outerwear, suitable boots, gloves and protective lip care.
+
+Prioritize safety and warmth over aesthetics for outdoor activities.
+
+These are illustrative seasonal looks, not live forecasts. The actual recommendations should change with the user's travel dates and forecast conditions.
+
+## 3. Features I would include in the final build
+
+| Feature                                | How it works                                                          | Priority  |
+| -------------------------------------- | --------------------------------------------------------------------- | --------- |
+| Live Weather Styling                   | Outfit suggestions based on temperature, wind, humidity, rain and UV  | Essential |
+| Destination Outfit Planner             | Complete looks for selected cities, beaches and destinations          | Essential |
+| AI Packing Assistant                   | Creates a packing list for each day of a trip                         | Essential |
+| Virtual Outfit Try-On                  | Previews the recommended look on the user                             | Essential |
+| Shop Near Me / Destination             | Finds relevant products from verified merchant listings               | Essential |
+| Religious & Cultural Dress Preferences | Respects voluntarily selected coverage and dress requirements         | Essential |
+| Event Theme Stylist                    | Recommends outfits for events such as Durban July, weddings and galas | Essential |
+| Tailor & Stylist Matching              | Finds professionals who can create or alter the outfit                | Phase 2   |
+| Weather Change Alerts                  | Suggests alternative outfits if forecasts change                      | Phase 2   |
+| Group Styling                          | Coordinates outfits for couples, families and groups                  | Phase 2   |
+
+## 4. Connect the styling engine to GLAM AI's marketplace
+
+The ideal GLAM AI journey
+
+Destination + Dates + Occasion
+
+Weather + Personal Style + Preferences
+
+AI Outfit + Hair + Makeup Recommendations
+
+Virtual Try-On + Complete the Look
+
+Buy Locally / Deliver to Destination / Book Tailor
+
+GLAM AI's agreed 10% marketplace commission applies to eligible completed item sales through its platform.
+
+The merchant recommendation engine should consider both the user's shopping location and their travel destination. For example, someone travelling from Johannesburg to Miami could choose to buy before departure or find products available in Miami.
+
+Organic results should prioritize suitability, real inventory, delivery feasibility, price and location. Sponsored results can receive clearly labeled advertising placements, but should not override unsuitable products.
+
+## 5. Weather integration
+
+For development, [Open-Meteo](https://open-meteo.com/en/docs?utm_source=chatgpt.com) is one potential provider. Its documentation supports temperature, apparent temperature, rainfall, wind, humidity and UV data, with forecasts up to 16 days. Commercial licensing and service terms must be checked before launch.
+
+![](https://www.google.com/s2/favicons?domain=https://open-meteo.com\&sz=32)
+
+Open Meteo+1
+
+For trips beyond the forecast window, GLAM AI should use historical seasonal patterns, clearly marked as estimates, and refresh recommendations when forecasts become available.
+
+## 6. Add this instruction to Codex
+
+GLAM AI — Destination & Weather-Aware Personal Stylist
+
+# GLAM AI — Destination & Weather-Aware Personal Stylist
+
+Add a global AI Destination Stylist to the existing Personal Stylist, AI Studio and marketplace ecosystem.
+
+Users must be able to enter any city, beach, resort, country, landmark or event location, along with travel dates, activities, occasion, budget, personal style, size preferences and optional cultural or religious dress requirements.
+
+The engine must:
+
+1. Resolve destination and local time zone accurately.
+
+2. Retrieve weather forecasts where available; otherwise use clearly labeled seasonal estimates.
+
+3. Generate complete daily outfit recommendations covering clothing, footwear, accessories, hairstyles, makeup and practical weather protection.
+
+4. Offer multiple looks: casual, elegant, luxury, modest, sporty and budget-friendly.
+
+5. Respect user-selected cultural, religious and coverage preferences without inferring religion or identity from photographs.
+
+6. Allow users to virtually preview selected outfits using GLAM AI Studio.
+
+7. Match every recommended item to actual eligible merchant listings, considering price, size, stock, location and delivery feasibility.
+
+8. Support buying before departure, buying at the destination and booking verified tailors or beauty professionals.
+
+9. Show organic recommendations separately from clearly labeled sponsored listings.
+
+10. Generate packing lists and optionally notify users when a forecast change materially affects planned outfits.
+
+11. Preserve GLAM AI's agreed 10% platform commission for eligible completed marketplace item sales.
+
+12. Support web and mobile through shared backend services, APIs and account data.
+
+UX REQUIREMENT:
+
+This must be a premium visual styling experience with destination photography, editorial outfit boards, swipeable looks, virtual try-on and shoppable product cards.
+
+Do not implement it as a text-only chatbot, generic form or spreadsheet-like dashboard.
+
+Integrate it into the existing navigation without adding another primary tab.
+
+Provide screen designs, API contracts, weather fallback rules, merchant matching logic, tests and visual verification before marking the feature complete.
+
+My recommendation: Make Destination Stylist + Event Stylist + Personal Analysis + Virtual Try-On + Local Shopping one connected GLAM AI capability.
+
+That creates a compelling recurring use case: users can return whenever they're travelling, attending an event, shopping for a season or simply deciding what to wear tomorrow.

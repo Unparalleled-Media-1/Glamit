@@ -70,7 +70,11 @@ def main():
     args = parser.parse_args()
     engine = get_engine()
     while True:
+        from glam_api.catalog_jobs import process_ai_one, process_index_one
+
         processed = process_one(engine)
+        processed = process_index_one(engine) or processed
+        processed = process_ai_one(engine) or processed
         if not processed:
             if args.once:
                 return

@@ -1,0 +1,197 @@
+YES. Absolutely. That remains a core requirement of GLAM AI, and it must not be removed or deprioritized.
+
+The clarification we made earlier was that GLAM AI is an AI analysis and makeover application first, with shopping integrated directly into the results—not a standalone shopping app.
+
+In fact, the combination of AI analysis and advertiser-backed recommendations is one of GLAM AI's most important commercial differentiators.
+
+## 1. The correct user journey
+
+Analyze
+
+Face · Hair · Body styling · Skin appearance · Personal colors
+
+Personalized AI Results
+
+Features, styling advice, suggested looks and routines
+
+Where to Get It
+
+Exact products, available merchants, prices and professionals
+
+Buy or Book
+
+Compare advertisers, purchase from listings or book a service
+
+The user should never receive only a generic recommendation such as "Try a moisturizing shampoo" without also being offered specific matching products from the catalog, where available.
+
+## 2. Recommendations for every analysis type
+
+| Analysis                 | AI recommendations                                                | Commercial matching                                             |
+| ------------------------ | ----------------------------------------------------------------- | --------------------------------------------------------------- |
+| Face Analysis            | Makeup techniques, brow styles, glasses, hairstyles               | Cosmetics, eyewear, hair products, makeup artists               |
+| Hair Analysis            | Haircare routines, hairstyles, color and styling options          | Shampoos, conditioners, wigs, extensions, salons                |
+| Skin Appearance Analysis | Cosmetic skincare routines and product-type guidance              | Skincare products and qualified professionals where appropriate |
+| Body & Fit Styling       | Outfit silhouettes, sizes, fit preferences and style combinations | Clothing, shoes, accessories, tailors                           |
+| Personal Color Analysis  | Makeup shades, clothing palettes and hair colors                  | Foundation, lipstick, clothing, hair color products             |
+| Makeup Match             | Products and steps needed to recreate an inspiration look         | Exact or similar cosmetics and makeup artists                   |
+| AI Makeover              | Hairstyle, makeup and fashion components                          | Complete the Look product bundles and services                  |
+
+Body styling should focus on clothing fit, comfort and self-expression, not body attractiveness scores. Skin analysis must avoid unsupported medical diagnoses.
+
+## 3. How advertisers and listings work together
+
+For every recommendation, the engine should search the relevant merchant and professional listings.
+
+Example: AI recommends a braided hairstyle
+
+![Knotless Braids Guide Pretoria East | What They Are, Sizes & Booking | Booked & Beautiful](https://images.openai.com/static-rsc-4/mg0ROacPs9odqCy3FgvPVpMCPVUAgknh-jz8JGuW-AwLWBBSiFQs4_-Je99lZGwVucI3UasJGtebLODbWEe1Y1zEWsB3rqwupJr0hvemxWys6nOjEnumF_MvRDDxp0Iani9x7OdzUgFLvl56uh72QtFvTDPWuSj94fblHkppgco?purpose=inline)
+
+Add to Favorites
+
+Recommended for this look
+
+![One Million Braid 20" - Premium Synthetic Hair | Brand Name – Cosmetic Connection](https://images.openai.com/static-rsc-4/ysL_2LDmtMiiZj30nrdwX015nGTqc-QoNK43eaN3IFS8J8EaTViG7rDWgGbEmiitKpkz__1eoKrh0EMINmpaKh9ymDLDi7GNh-uUqKZvc8SEuVVYDBi4KHcXIWJTFerckNVjnZ_-EXLsee2cnurSJh1RSruk6xqabM29YKMuDgA?purpose=inline)
+
+Add to Favorites
+
+Braiding Extensions
+
+Sponsored
+
+Exact merchant, live price and delivery availability displayed once verified.
+
+![GlamsGo ??? Book Trusted Hair Professionals](https://images.openai.com/static-rsc-4/a7_jUXTVgOfPUe6PlrG1BUlv1ZZSZXEwXDa1l3TUpv85HdYFJr0Ndj3ZT_XPWnKCOUs8AiUYeB1nhwZBJs9TMEV58vAJN5bNw1pSmejzuQR_qNnfKO0kDrnaFFNms3LdzibbCyfXDBMCV7gwXopPTt2w8FDRBu-bhBOncsb-ifY?purpose=inline)
+
+Add to Favorites
+
+Find a Braiding Professional
+
+Relevant listed professionals, service prices, booking availability and location.
+
+Illustrative layout, not live product or salon listings.
+
+The ranking should work as follows:
+
+1. Match the recommendation: The product or service must genuinely help achieve the result.
+
+2. Check eligibility: Confirm relevant variants, stock, delivery region, service availability and price freshness.
+
+3. Rank organic matches: Show suitable listings based on relevance, affordability, quality and availability.
+
+4. Rank sponsored matches: Allow eligible advertisers to compete for clearly labeled positions.
+
+5. Show alternatives: Offer affordable, premium, local and other relevant options.
+
+Advertisers should receive prominent opportunities, but paying more must never allow an irrelevant or unsuitable product to be presented as the best match.
+
+## 4. Where recommendations must appear in the UI
+
+This is important: recommendations should be embedded inside every relevant analysis report, not hidden behind a separate Shop tab.
+
+## Your Hair Analysis
+
+Your personalized haircare guidance
+
+Suggested styling techniques, routine steps and products based on your selected goals.
+
+Products for Your Routine
+
+Best Matches
+
+Relevant verified listings
+
+Sponsored
+
+Relevant paid placements
+
+Where to BuyComplete the Look
+
+Every analysis should have three clear sections: Your Results, What We Recommend, and Where to Get It.
+
+If there are no verified listings for a recommendation, the app should say so and allow the user to save it or receive a future availability notification. It must not fabricate merchants or product matches.
+
+## 5. Exact instruction to lock into Codex
+
+GLAM AI — Mandatory Analysis-to-Commerce Integration
+
+# GLAM AI — Mandatory Analysis-to-Commerce Integration
+
+This is a permanent core product requirement and supersedes any previous instructions that suggest removing or deprioritizing commercial recommendations from AI analysis results.
+
+GLAM AI remains an AI-first beauty, grooming and styling application. However, every relevant analysis, makeover, tutorial and personalized routine must include contextual product and professional recommendations from the platform's verified merchant, advertiser and service-provider listings.
+
+## Required integration
+
+For Face Analysis, Hair Analysis, Skin Appearance Analysis, Body & Fit Styling, Personal Color Analysis, Makeup Match and AI Makeover:
+
+1. Generate personalized analysis and styling guidance.
+
+2. Convert recommendations into structured product and service requirements.
+
+3. Match requirements against approved merchant catalogs and professional listings.
+
+4. Validate product suitability, variant, availability, region, currency and price.
+
+5. Return relevant organic matches and separately labeled sponsored matches.
+
+6. Show merchant names, verified prices, delivery/pickup options and purchase links where available.
+
+7. Show professional profiles, service prices and booking options where supported.
+
+8. Allow users to compare alternatives and save recommended items.
+
+9. Provide Complete the Look for recommendations involving multiple products or services.
+
+10. Track advertising impressions, clicks and attributable conversions with appropriate privacy safeguards.
+
+## UI requirements
+
+Every relevant analysis report must include:
+
+* Your Results
+
+* Personalized Recommendations
+
+* Where to Buy / Book
+
+* Sponsored Matches, clearly labeled
+
+* Save Recommendations
+
+* Complete the Look, when applicable
+
+Do not force users to visit a separate shopping application or navigation tab to access recommended products.
+
+## Commercial requirements
+
+Advertisers and merchants use the unified GLAM AI business workspace with organization-scoped RBAC.
+
+Approved merchants may list products and services. Approved advertisers may sponsor eligible placements.
+
+The recommendation engine must prioritize genuine relevance and safety before advertising bids.
+
+Do not modify underlying AI analysis findings based on advertiser payments.
+
+Do not disclose private facial imagery, biometric data or sensitive inferred characteristics to advertisers.
+
+Apply stricter age-appropriate advertising and commerce controls for minors.
+
+## Acceptance criteria
+
+A completed analysis must either:
+
+* Show relevant, verified merchant/product/professional matches; or
+
+* Clearly indicate that no verified matching listings are currently available.
+
+No fake prices, stock levels, merchants, service availability or product claims are permitted.
+
+Test the entire journey:
+
+Analysis → Recommendation → Merchant Match → Product Detail → Purchase Handoff or Booking.
+
+This requirement applies consistently to both consumer mobile and web applications.
+
+Final decision: GLAM AI is AI analysis first, commerce integrated into every relevant result.
+
+That gives us the best of both models: users come for facial analysis, hair analysis, personal color guidance and AI makeovers, while merchants and advertisers pay to help users obtain the products and services needed to achieve their chosen looks.

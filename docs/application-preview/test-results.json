@@ -1,0 +1,52 @@
+{
+  "run_at": "2026-11-06T06:19:13.848Z",
+  "checks": [
+    "Consent-gated photo selection, invalid-file rejection, technical review, goals and honest uncomputed report",
+    "Editable routine save/checklist, dedicated Makeup Match, original-preserving Studio and reset",
+    "Beauty category routing, Studio reference/shade selection and session favorite, illustrative color explorer, no fabricated transformation",
+    "Unsent Advisor, unauthorized workspace switcher, focus restoration, photo deletion and no persisted private data",
+    "Event brief continuity, independent look components, wardrobe reuse, returning profile, approved metadata persistence and deletion; no fabricated AI or offers",
+    "Golden commerce studies: optional destination save/cancel, category/detail selection, no fabricated offer, component-preserving reference handoff and reversible Studio controls",
+    "All business role modules, isolated session draft save/reset and evidence-gated campaign wizard",
+    "Public admin inventory reveals no privileged controls or business data",
+    "Embedded organic/sponsored no-match sections across all report contexts and saved user requirements",
+    "Snap & List originals, unavailable AI, manual factual review, duplicate rejection, session catalog health and publication guard",
+    "Sixth Results pattern: separate user corrections, honest analysis/checkout gates, destination checklist continuity and no fabricated order",
+    "Six golden patterns plus uncomputed report captured at iPhone, Android-sized phone, tablet and desktop; candidate baselines await visual approval",
+    "Responsive 320–1920px, five analysis-first mobile destinations, offline guard, reduced motion and no external requests/errors"
+  ],
+  "screenshots": [
+    "web-home.png",
+    "first-face-analysis.png",
+    "photo-quality.png",
+    "face-report.png",
+    "color-report.png",
+    "glow-up-guide.png",
+    "ai-studio.png",
+    "studio-editorial-preview.png",
+    "color-palette-explorer.png",
+    "live-look-builder.png",
+    "get-this-look.png",
+    "returning-user.png",
+    "event-stylist.png",
+    "merchant-workspace.png",
+    "advertiser-workspace.png",
+    "professional-workspace.png",
+    "creator-workspace.png",
+    "affiliate-workspace.png",
+    "admin.png",
+    "hair-contextual-recommendations.png",
+    "merchant-snap-list-review.png",
+    "mobile-home.png",
+    "mobile-beauty-studio.png",
+    "mobile-beauty-analysis.png",
+    "mobile-look-builder.png",
+    "mobile-event-stylist.png",
+    "mobile-face-report.png"
+  ],
+  "limits": [
+    "No native-device/camera validation",
+    "No provider, identity, storage, catalog, payment or business activation",
+    "Browser tests use actual Next.js application; report fields remain uncomputed"
+  ]
+}

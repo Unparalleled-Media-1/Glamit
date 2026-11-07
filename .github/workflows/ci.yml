@@ -2,7 +2,7 @@ name: Foundation checks
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [feat/platform-foundations, main]
 permissions:
   contents: read
 jobs:
@@ -42,10 +42,18 @@ jobs:
           node-version-file: .node-version
           cache: npm
       - run: npm ci --ignore-scripts
+      - run: npm run check:client-runtime
+      - run: npm run test:client
       - run: npm audit --omit=dev --audit-level=moderate
       - run: npm run contracts:generate
       - run: git diff --exit-code -- packages/contracts
       - run: npm run typecheck
       - run: npm run build:web
+      - run: npm ci --ignore-scripts --prefix docs/design-preview
+      - run: node docs/design-preview/node_modules/playwright/cli.js install --with-deps chromium
+      - run: npm run test:web
+      - run: npm run test:golden
+      - run: npm run test:connections
+      - run: node scripts/generate-consumer-tokens.mjs --check
       - run: npm exec --workspace=@glam/mobile -- expo install --check
       - run: npm run export --workspace=@glam/mobile

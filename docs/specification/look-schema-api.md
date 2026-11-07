@@ -1,5 +1,7 @@
 # Complete the Look — schema and API contracts
 
+V2 schema/API deltas are in [global policy architecture](global-policy-architecture.md#logical-schema-delta) and the [companion extension](style-companion-extension.md#logical-schema-api-and-events-delta). They add age/guardian/market capabilities, visual search/evidence, professional feasibility, sharing/memory/wardrobe/twin/occasion/group/proposal and later B2B records under this same migration/ownership/financial history. Contracts remain proposals; generated OpenAPI describes implemented endpoints only. [Commerce operations](commerce-operations-v2.md) separates initial referral/request status from later order/booking/settlement authority.
+
 Status: logical schema and reviewable wire-contract proposal, not executable migrations or implemented endpoints. Reuses the [canonical data model](data-model.md); all future changes enter its single Alembic history. IDs are UUIDs, timestamps UTC/RFC3339, money `{amount_minor: integer, currency: ISO4217}` and quantity decimal strings plus units. Country codes use ISO3166-1 alpha-2, timezone IANA, language BCP47. No raw image bytes, embeddings or secrets in public contracts.
 
 ## Schema delta

@@ -1,12 +1,16 @@
 # Product scope, delivery and release strategy
 
+Current authority: [Master PRD v2](master-prd-v2.md), [global age/localization policy](global-policy-architecture.md), [commerce workflows](commerce-operations-v2.md) and the [12-opportunity companion backlog](style-companion-extension.md). V2-B00–B11 and OPP-B01–B07 extend the existing Bxx/CTL dependencies; they do not reset the backlog or enable production capabilities. The revised architecture/criteria await approval under the user's directive. African specialization remains fully supported inside a globally inclusive product; restricted youth/family experiences require their own readiness evidence.
+
 All requirements below are proposed and unimplemented. The matrix and backlog must be version-controlled and updated in every feature PR with evidence links. Completed means acceptance criteria, relevant automated tests, documentation and actual integration evidence all exist; a screen with fixtures does not count as a completed integration.
 
 ## Screen inventory
 
+The [screen/design blueprint](screen-blueprint.md) retains the v1 source-count reconciliation and adds global/companion families: M01–M71, business additions B01–B03, existing role workspaces and 16 platform-wide web admin modules. Five mobile tabs remain. The [master alignment](master-alignment.md) records earlier G1–G9/source traceability; PRD v2 adds strict current acceptance. The earlier 13-week schedule is illustrative, not a commitment.
+
 Complete the Look adds component confirmation, organic/sponsored panels, offer comparison, private lists/assembly coverage, child quote/partial-checkout status and professional material/slot coordination. Merchants gain catalog feed/error/freshness views; advertisers gain catalog-linked auction/holds/invalid-traffic/collection controls. Details: [look flows](complete-the-look.md), [advertiser dashboard](look-ranking-commerce.md).
 
-Each flow includes loading, empty, denied, expired, offline, retry, error and accessibility states. Mobile owns consumer camera flows; responsive web supports discovery/account and dashboards. Shared business operations use the same API. Desktop dashboard permissions are distinct from consumer entitlements.
+Each flow includes loading, empty, denied, expired, offline, retry, error and accessibility states. Per the user's 5 November 2026 clarification, all non-admin product flows run in the mobile apps, including consumer, merchant, professional, creator and advertiser workflows. The public web is an informational landing page directing visitors to app downloads; web control is restricted to administrative workflows at `/admin`. This supersedes earlier consumer-web, web-checkout and non-admin web-dashboard proposals throughout the design package. Shared business operations use the same API; administrative permissions remain distinct from mobile entitlements. Real store destinations must be configured before claiming app downloads are available.
 
 | Audience | Screens / flows |
 |---|---|

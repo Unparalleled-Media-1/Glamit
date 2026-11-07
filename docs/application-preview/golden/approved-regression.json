@@ -1,0 +1,85 @@
+{
+  "approval": "User: GLAM AI — Visual Approval and UX Completion, 6 November 2026. Five golden patterns approved as visual design direction, subject to functional and usability validation.",
+  "compared": [
+    {
+      "file": "iphone-home.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "iphone-analyze.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "iphone-studio.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "iphone-shop.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "iphone-product.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "android-home.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "android-analyze.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "android-studio.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "android-shop.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "android-product.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "tablet-home.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "tablet-analyze.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "tablet-studio.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "tablet-shop.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "tablet-product.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "desktop-home.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "desktop-analyze.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "desktop-studio.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "desktop-shop.png",
+      "changedFraction": 0
+    },
+    {
+      "file": "desktop-product.png",
+      "changedFraction": 0
+    }
+  ]
+}

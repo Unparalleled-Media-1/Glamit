@@ -1,5 +1,7 @@
 # ADR 015 — Supabase, Google sign-in and guided beauty capture
 
+V2 eligibility overlay: the selected identity/database and explicit capture-consent flow remain. [Global policy](specification/global-policy-architecture.md) adds age/guardian/market/rights/provider qualification before any capture/processing; no minor/unknown-age access follows from Google sign-in alone. Managed-child contexts do not require inventing an independent Google account. The [companion extension](specification/style-companion-extension.md) requires separate consent/expiry for reusable twins and excludes persistent photorealistic child twins at launch. These are proposed expanded contracts, not connected runtime features.
+
 Status: user-selected architecture, 4 November 2026. Supersedes the unresolved identity/database-host choices. Service connection/provisioning is explicitly deferred by the user; no Supabase project or Google OAuth integration is represented as connected.
 
 ## Identity and transactional database

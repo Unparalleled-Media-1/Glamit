@@ -3,6 +3,13 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule: {interval: weekly}
+    ignore:
+      # openapi-typescript uses the TypeScript 5 compiler API. Upgrade them together.
+      - dependency-name: typescript
+        versions: [">=6"]
+    groups:
+      react-runtime:
+        patterns: ["react", "react-dom", "react-native", "expo"]
   - package-ecosystem: uv
     directory: /
     schedule: {interval: weekly}

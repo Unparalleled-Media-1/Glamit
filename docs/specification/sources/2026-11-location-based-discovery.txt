@@ -1,0 +1,241 @@
+# GLAM AI — Location-Based Advertising & Merchant Discovery
+
+Yes. GLAM AI should automatically localize advertisements, shops, products, prices and professional recommendations based on where the user is accessing the platform.
+
+I would make this a core requirement of the advertising and recommendation engines, rather than a separate optional feature.
+
+The principle is:
+
+Global AI styling. Local shopping. Relevant advertising.
+
+A user accessing GLAM AI from Johannesburg should primarily see merchants, salons, tailors and advertisers that can serve Johannesburg. Someone accessing it from London, Dubai or New York should see relevant options for their market.
+
+## 1. How location targeting should work
+
+Shopping location
+
+Johannesburg, South Africa
+
+Market
+
+South Africa
+
+Currency
+
+ZAR
+
+Prioritized recommendations
+
+Johannesburg-based shops, salons and tailors
+
+South African merchants delivering to Johannesburg
+
+Eligible advertisers targeting this market
+
+Illustrative market selector. It does not detect your actual location or retrieve live merchant listings.
+
+## 2. Location detection hierarchy
+
+GLAM AI should determine the user's shopping market using the following order:
+
+1. User-selected location: The user's explicitly chosen shopping or delivery destination takes priority.
+
+2. Saved delivery address: For signed-in users, use their selected delivery area for product availability.
+
+3. Device location: Optional, permission-based location for nearby salons, designers and shops.
+
+4. IP-based country or approximate region: Use as an initial estimate when no location has been selected.
+
+5. Manual selection: Always allow users to change country, city and currency.
+
+A person visiting Dubai but shopping for delivery to Johannesburg should be able to select Johannesburg without being forced to see Dubai-only merchants.
+
+## 3. Location-based advertiser controls
+
+Advertisers should be able to configure geographic targeting from their dashboard.
+
+| Targeting option       | Example                                 |
+| ---------------------- | --------------------------------------- |
+| Country                | South Africa                            |
+| Province / state       | Gauteng                                 |
+| City                   | Johannesburg                            |
+| Service radius         | Within 15 km of an eligible salon       |
+| Delivery coverage      | Nationwide shipping                     |
+| International shipping | Countries supported by the merchant     |
+| Campaign schedule      | Selected dates and local hours          |
+| Product category       | Haircare, makeup, clothing, accessories |
+| Occasion context       | Weddings, graduations, Durban July      |
+
+An advertiser targeting Johannesburg should not pay for impressions from London users unless those users are shopping in Johannesburg or the campaign explicitly supports that audience.
+
+The system should not use sensitive facial-analysis results or religious preferences as advertising-targeting attributes. Location, declared shopping intent, relevant product category and delivery eligibility provide a safer targeting foundation.
+
+## 4. Location-aware AI recommendations
+
+For example, a user requests:
+
+> Style me for the Durban July. My budget is R6,000. I need a dress, shoes, makeup and a tailor.
+
+GLAM AI should generate the look, then match it against:
+
+* Durban-based merchants and designers.
+
+* South African retailers that deliver to Durban before the event.
+
+* Tailors and alteration specialists serving the selected area.
+
+* Relevant sponsored listings that meet the same availability and delivery requirements.
+
+If the closest merchant is expensive or out of stock, GLAM AI should consider a more distant merchant that can reliably deliver within the user's deadline.
+
+The best match is not always the nearest shop. It is the most suitable available option for the user's location, budget and timing.
+
+## 5. Exact Codex implementation instruction
+
+GLAM AI — Global Location-Aware Advertising and Merchant Discovery
+
+# GLAM AI — Global Location-Aware Advertising and Merchant Discovery
+
+Implement location-aware discovery as a mandatory platform-wide capability across consumer mobile, consumer web, merchant listings, professional services, Personal Stylist, AI analysis recommendations and advertising.
+
+## Location resolution
+
+Support:
+
+* User-selected shopping country and city.
+
+* Saved delivery destination.
+
+* Optional device geolocation with explicit permission.
+
+* Approximate IP-based region detection.
+
+* Manual location overrides.
+
+* Country-specific currency, language and market settings.
+
+Do not require precise location access to use GLAM AI.
+
+## Merchant and product discovery
+
+Every merchant must configure:
+
+* Business country and operating location.
+
+* Physical shop locations where applicable.
+
+* Delivery coverage areas.
+
+* Supported shipping countries.
+
+* Local pickup availability.
+
+* Product inventory and regional availability.
+
+* Delivery fees and estimated delivery times.
+
+Match consumers to merchants that can actually fulfill the requested purchase or service.
+
+Prioritize relevant local merchants while allowing eligible national and international merchants.
+
+## Advertiser dashboard
+
+Implement geographic campaign targeting by:
+
+* Country.
+
+* Province/state.
+
+* City.
+
+* Approved geographic radius where supported.
+
+* Delivery/service coverage.
+
+* Campaign schedule and time zone.
+
+* Product category.
+
+* Contextual shopping intent.
+
+Support geographic impression, click, conversion and advertising-spend reporting.
+
+Clearly label sponsored placements.
+
+Do not expose consumer facial photographs, biometric information, inferred sensitive characteristics or private analysis reports to advertisers.
+
+## AI recommendation integration
+
+Apply location eligibility to recommendations generated from:
+
+* Face Analysis.
+
+* Hair Analysis.
+
+* Color Analysis.
+
+* Skin Appearance Analysis.
+
+* Body and Fit Styling.
+
+* Makeup Match.
+
+* AI Makeover.
+
+* Personal Stylist.
+
+* Event Styling.
+
+* Complete the Look.
+
+Combine product suitability with verified availability, delivery coverage, price, event deadline and merchant reliability.
+
+## Commerce
+
+Display the correct local currency and applicable delivery options.
+
+Support country-specific taxes, payment providers, returns and consumer protection requirements.
+
+Apply GLAM AI's approved 10% commission to completed eligible item sales, regardless of the discovery route.
+
+## Privacy and safety
+
+Use the minimum location precision necessary.
+
+Do not store precise location unnecessarily.
+
+Allow users to change their shopping location and revoke device-location permissions.
+
+Use age-appropriate advertising restrictions.
+
+## Testing
+
+Verify:
+
+* Country and city switching.
+
+* Travelers shopping in a different country.
+
+* Local versus nationwide merchant eligibility.
+
+* International shipping.
+
+* Incorrect IP location.
+
+* Device location permission denied.
+
+* Advertiser geographic targeting.
+
+* Event delivery deadlines.
+
+* Currency conversion and pricing display.
+
+* Merchant inventory eligibility.
+
+* Cross-border checkout and commission accounting.
+
+Do not represent unavailable merchants or products as locally available.
+
+My recommendation: Make the location selector visible in the GLAM AI header, with the selected country/currency, and allow users to refine their city when shopping or booking.
+
+This creates a global AI experience with a localized marketplace—giving small merchants, international brands, salons and tailors the ability to reach customers they can genuinely serve.

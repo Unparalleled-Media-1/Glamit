@@ -1,0 +1,29 @@
+{
+  "observed_at": "2026-11-06T05:55:17.421360+00:00",
+  "legal_entity": {
+    "name": "Zanzu Technologies Inc.",
+    "brand": "GLAM AI",
+    "country": "US",
+    "state": "DE",
+    "bank": "Mercury (user reported; not independently verified)",
+    "merchant_of_record": "contractual determination pending; no universal MoR assertion"
+  },
+  "mode": "test",
+  "status": "NOT CONFIGURED",
+  "integration_complete": false,
+  "actual_stripe_payment_ids": [],
+  "actual_stripe_transfer_ids": [],
+  "actual_stripe_fees": null,
+  "actual_reconciliation": null,
+  "existing_97_test_balance_is_commission_proof": false,
+  "missing_settings": [
+    "STRIPE_SECRET_KEY",
+    "STRIPE_WEBHOOK_SECRET",
+    "STRIPE_ACCOUNT_ID",
+    "STRIPE_TEST_CONNECTED_ACCOUNT_ID",
+    "STRIPE_TEST_DATABASE_URL",
+    "STRIPE_TEST_RETURN_URL",
+    "STRIPE_TEST_REFRESH_URL"
+  ],
+  "reason": "stripe_test_configuration_incomplete"
+}

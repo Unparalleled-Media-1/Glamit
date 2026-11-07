@@ -1,0 +1,48 @@
+All checks passed!
+108 files already formatted
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0
+rootdir: /workspace/Glamit
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.16.0, hypothesis-6.170.14
+collected 155 items
+
+tests/test_auth.py ...........                                           [  7%]
+tests/test_catalog.py .................................                  [ 28%]
+tests/test_commerce_policy.py ........                                   [ 33%]
+tests/test_credits.py .....                                              [ 36%]
+tests/test_db_safety.py ..                                               [ 38%]
+tests/test_integrations.py ....................                          [ 50%]
+tests/test_looks_api.py .....                                            [ 54%]
+tests/test_migrations.py .                                               [ 54%]
+tests/test_ranking.py ...                                                [ 56%]
+tests/test_request_security.py ...                                       [ 58%]
+tests/test_rls.py .                                                      [ 59%]
+tests/test_settings.py ...                                               [ 61%]
+tests/test_stripe_sandbox.py ...............................             [ 81%]
+tests/test_workspaces.py .............................                   [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /workspace/Glamit/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 155 passed, 1 warning in 13.25s ========================
+
+> glam-ai@0.1.0 check:client-runtime
+> node scripts/check-client-runtime.mjs
+
+Client runtime checks passed: shared React instances and web hook rendering
+
+> glam-ai@0.1.0 typecheck
+> npm run typecheck --workspaces
+
+
+> @glam/mobile@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @glam/web@0.1.0 typecheck
+> tsc --noEmit

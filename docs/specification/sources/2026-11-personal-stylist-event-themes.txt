@@ -1,0 +1,224 @@
+# GLAM AI — Personal Stylist & AI Event Theme Styling
+
+Yes. This should become a major GLAM AI feature, and I would include it in the final product specification.
+
+What you're describing goes beyond ordinary outfit recommendations. GLAM AI should act as a personal AI stylist that understands the occasion, dress code, cultural requirements, religious preferences, budget and location, then helps the user achieve the look through real merchants, fashion designers, tailors and rental providers.
+
+The experience should be:
+
+Describe your event → AI interprets the theme → Creates personalized looks → Try them on → Buy, rent or commission the outfit.
+
+This also gives GLAM AI a valuable commercial opportunity beyond makeup and hair products.
+
+## 1. Example: Durban July
+
+![How to interpret the Hollywoodbets Durban July ‘Ride the Wave’ theme like a trendy fashionista](https://images.openai.com/static-rsc-4/cB4kjXkLG-yz_ZctQ7cDRc1tBMNkW4ApW6SkmWIjwaTHS8BStltSJtE85vyXYlLxHe3vnT9x_qmwEtTQhJ8Y5cFUaIi7PPYsihF-XzOoezHqWfBQLj3vecbzylp_0xr-3W7NeWkxU4xMZHyHvobaOz3hIr894lpOXcpB_ehIlyE?purpose=inline)
+
+Add to Favorites
+
+![SAFRICA-HORSERACING-FASHION](https://images.openai.com/static-rsc-4/ZAy0EnqkZxattTQIejCYjJl8d5uYEv4m9i90ReGm7UZARrOPfV13ImAMGM-eRFNDJwdbDUzz83ypy9OcHXmAoFkN-hYFXY8Q9fi51y_hMHdBI3CgaopgMHaP3UK60AHiGc3FF_wz11fqQZIS7UgWmU3NDBBtXdOXLa9yscUloPjhR20FOJGTInjV2ArMN-F6?purpose=inline)
+
+Add to Favorites
+
+![PHOTOS | South African stars shine at the 2024 Durban July with 'Ride the Wave' fashion extravaganza | News24](https://images.openai.com/static-rsc-4/mlXCo5JVQV6PvhA6ohh0L7lUzB-lSQg5cIn9nGtSmhLP1PgJ5E9cM1zSWHSWUEbMjFN_jVICWS3WHxQF9Xs6rZg8TKEI_sKRFJMG65bBXsxt_YkmD9xcfYA6rbl5pqjnC33NHvsvzLpZ3CoUI09fRa9lptdpELl9em6jmy14s78?purpose=inline)
+
+18
+
+Add to Favorites
+
+Style inspiration for race-day fashion; the actual event theme should be checked for the selected year.
+
+A user should be able to enter something as simple as:
+
+> I'm attending the Durban July. The theme is \(event theme\). I want an elegant outfit, my budget is R5,000, I prefer modest clothing, and I need everything ready two weeks before the event.
+
+GLAM AI should then generate three to five outfit directions, recommend suitable colors and silhouettes, and offer exact products or relevant tailors/designers.
+
+Crucially, the AI must distinguish between the event's official theme, the event's dress code and the user's personal interpretation. It should not invent an official theme.
+
+For example, the verified 2026 Durban July theme was “Country Allure”, inspired by rural landscapes and equestrian elegance. GLAM AI could use that theme to generate modern country-inspired couture, modest formalwear, tailored suits or African-inspired interpretations.
+
+![](https://www.google.com/s2/favicons?domain=https://financial.durban.gov.za\&sz=32)
+
+financial.durban.gov.za+1
+
+## 2. Personal Stylist should understand religious and cultural dress preferences
+
+This is essential for a genuinely global application.
+
+![DubaiStyle - Premium Shopping Experience - DubaiStyle](https://images.openai.com/static-rsc-4/drnN6Nq7S4jq85BtuJW7lsofXvtJ8R_m0NkxceHp40UWuXG4ZmjRRGtpM8Yigojbswtqm-IQ4L8h775DT964vTd6lkJbmj4y7UIIwUqNguz4hJwW9eom7WDliYv6RDmCQIXR6Q55nqEnpVSNFkUkkoTEr6-P0_HMqZ2Phpjimg8?purpose=inline)
+
+Add to Favorites
+
+Modest & Hijab Styling
+
+Coverage preferences, opacity, layering, hijab coordination and occasionwear.
+
+![Hatem Alakeel: The Middle Eastern Tom Ford | by Creative Artists FND | Medium](https://images.openai.com/static-rsc-4/IhSjGG4WBsoXKSa456sAxVvPWMAedUkiYqEl53cTdcAadxQdZNsKNZuLTbmVl8WRLtDinfV30vx93rBfIuWjSDNAWOaNm52eWGFcIGd2yup3daveNfJVgpORuqGYdtRBFhl2oiH3y99xvV6uj1wxqhYH9XNqJmHDabfxHhDZbAk?purpose=inline)
+
+Add to Favorites
+
+Men's Modest & Traditional Wear
+
+Thobes, kurtas, traditional garments and modern formal alternatives.
+
+![Charu And Vasundhara - Frida Lehenga Saree With Blouse - Elahe](https://images.openai.com/static-rsc-4/MuEDpPA_E4rBs-ag5PTFzXX1A2HbDH2Qtg5UMX9h9tOiT8qgARqb0JTAiKm91HQc7NPU7aANQSYw8rsK5_HKoEzhntPAhAMB3f12939UBS-eDJr9Hoir7W6ShV7GwSwe83X1qAMRvBXlgpcEQA82UpoPbuwY_2gxnh7hXCU2hPo?purpose=inline)
+
+Add to Favorites
+
+Cultural Celebrations
+
+Sarees, lehengas, traditional attire and region-specific occasionwear.
+
+![Ande Shweshwe Dress
+– KHOSI NKOSI](https://images.openai.com/static-rsc-4/4QGV2FIWIdd_3ks14_TINOTiDKPzKX2xVLfpdU6MgTubSc3GqDagMNeGL1PxCXgG14OgcbomhY51j51vqrhy7TCWoc8bfX-WmTDtkt_oPiT0fnjuErAN7sJFo37saN5yE1bWf-oWWySQQ39yOxFQiDHaB6kekWPB0eMJAiQH_Cw?purpose=inline)
+
+Add to Favorites
+
+African Heritage Fashion
+
+Traditional fabrics, contemporary tailoring and cultural celebrations.
+
+Users should choose their own dress preferences, rather than GLAM AI assuming them from appearance, names or photographs.
+
+For Muslim users, for example, the stylist could support configurable preferences for hijab, loose fit, coverage of arms and legs, non-transparent fabrics, prayer-friendly outfits and preferred garment styles. It should recognize that interpretations and practices vary significantly between individuals and communities.
+
+The same approach should accommodate Jewish modest dress, Christian modesty preferences, Hindu and Sikh ceremonial attire, African traditional dress, other cultural requirements and people who simply prefer conservative clothing.
+
+The feature should also support people who do not want religious or cultural styling constraints.
+
+## 3. Interactive concept: AI Personal Stylist
+
+## Style My Event
+
+Tell GLAM AI what you're dressing for.
+
+Event or occasion
+
+Event theme or dress code
+
+Personal styling preferenceModest formal
+
+Outfit budget (ZAR)
+
+How would you like to get your outfit?
+
+Buy ready-made
+
+Find a tailor or designer
+
+Compare buying, renting and tailoring
+
+Generate My Event LooksThis concept sends your preferences into a styling request; it does not yet connect to a live merchant catalog.
+
+The full product should also support uploading an invitation or event poster, selecting preferred coverage and fit, choosing sizes and measurements, specifying the event date, and optionally using an existing face/color analysis.
+
+## 4. Tailors and fashion designers need their own functionality
+
+This is an important extension of the Beauty Professional workspace.
+
+I would broaden it to Professional / Designer, with permission-based subtypes for hair stylists, makeup artists, tailors, dressmakers, fashion designers, alteration specialists and outfit-rental businesses.
+
+A tailor's listing should include portfolio photographs, specialties, service area, price ranges, estimated production time, fitting arrangements, delivery options and available appointment slots.
+
+For custom outfits, the workflow should be:
+
+1. Generate design: AI creates a personalized outfit concept and visual references.
+
+2. Request quotes: User selects verified tailors or designers to receive the design brief.
+
+3. Confirm feasibility: Professional reviews fabrics, measurements, complexity and production time.
+
+4. Compare offers: User compares price, portfolio, turnaround time and reviews.
+
+5. Book and track: Once supported, manage fitting appointments, milestones and completion.
+
+An AI-generated outfit must be treated as a design concept until a professional confirms that it can actually be manufactured.
+
+## 5. Why this is commercially important
+
+This feature adds three attractive revenue channels:
+
+| Revenue stream                | How GLAM AI earns                                                              |
+| ----------------------------- | ------------------------------------------------------------------------------ |
+| Sponsored event looks         | Designers and fashion brands sponsor relevant, clearly labeled placements      |
+| Tailor/designer leads         | Professionals pay for qualified leads or completed bookings under agreed terms |
+| Fashion affiliate commissions | GLAM AI earns from attributed ready-made outfit and accessory sales            |
+
+It also supports premium personal-stylist subscriptions, where users pay for multiple outfit concepts, virtual try-ons, event planning and ongoing wardrobe advice.
+
+I would rank Event Styling + Tailor Matching as a high-priority growth feature, particularly because it addresses purchases with a defined occasion, budget and deadline.
+
+## 6. Add this to the final Codex specification
+
+GLAM AI — AI Personal Stylist, Event Themes and Inclusive Dress Codes
+
+# GLAM AI — AI Personal Stylist, Event Themes and Inclusive Dress Codes
+
+Implement AI Personal Stylist as a major feature of the consumer AI Advisor and AI Studio.
+
+## Core capabilities
+
+1. Accept free-text styling requests for any event, occasion or theme.
+
+2. Accept uploaded invitations, event posters and inspiration images.
+
+3. Extract event names, dates, themes and dress codes, requesting user confirmation.
+
+4. Where reliable official information exists, distinguish verified event themes from user-provided themes and AI suggestions.
+
+5. Generate multiple personalized outfit concepts with accessories, hairstyle and makeup recommendations.
+
+6. Support virtual try-on where technically feasible and appropriately consented to.
+
+7. Allow users to specify budget, location, sizing, measurements, preferred colors, comfort, climate and delivery deadlines.
+
+8. Integrate optional face, hair and personal color analysis results.
+
+9. Match recommended outfits to real approved merchant listings.
+
+10. Match custom designs to verified tailors, fashion designers, dressmakers and alteration professionals.
+
+11. Support ready-made purchase, clothing rental, custom tailoring and alterations.
+
+12. Provide quote requests, fitting appointments and booking workflows.
+
+## Cultural and religious inclusivity
+
+Implement a voluntary, user-controlled dress-preference system.
+
+Support configurable coverage, opacity, garment fit, layering, headwear, fabric, ceremonial requirements and preferred clothing styles.
+
+Include hijab-friendly and other modest-fashion options without assuming that all members of any religion follow identical requirements.
+
+Support global cultural attire, including African, South Asian, Middle Eastern and other regional traditions.
+
+Never infer religious identity from photographs or use religious preferences for targeted advertising without a valid, lawful basis.
+
+Allow users to combine multiple style preferences.
+
+## Professional marketplace
+
+Extend the existing professional workspace to include tailors, fashion designers, dressmakers, alteration specialists and rental providers.
+
+Support portfolios, service categories, custom quotes, fitting schedules, turnaround times, booking requests and reviews.
+
+## Recommendation engine
+
+Connect generated outfit requirements to merchant Snap & List catalogs and professional listings.
+
+Rank by relevance, verified availability, size/fit, delivery deadline, price and user preferences.
+
+Sponsored placements must be clearly identified and must not override essential compatibility requirements.
+
+## Acceptance criteria
+
+A user can describe an event theme, set their dress preferences and budget, receive personalized outfit concepts, and discover matching products or relevant professionals.
+
+When no verified commercial match exists, show a transparent no-match state rather than fabricating availability or prices.
+
+Preserve the existing AI-first beauty-analysis experience and unified role-switching architecture.
+
+My recommendation: Add Personal Stylist as a prominent capability within AI Advisor, and Style My Event as a dedicated journey within it.
+
+That makes GLAM AI useful not only for everyday glow-ups, but also for weddings, Eid celebrations, religious gatherings, graduations, matric dances, galas, traditional ceremonies and major fashion events—while connecting each styling recommendation to real commercial opportunities.

@@ -1,0 +1,149 @@
+Excellent. That means GLAM AI can move from payment-provider selection to Stripe integration preparation under Zanzu Technologies Inc.
+
+You have confirmed the three important prerequisites:
+
+US EIN
+
+Available
+
+Stripe account
+
+Available
+
+Mercury business bank account
+
+Available
+
+However, having a Stripe account does not necessarily mean Stripe Connect is enabled, Mercury payouts are verified, or GLAM's marketplace model has been approved. Those are the next checks.
+
+## Recommended payment architecture
+
+GLAM AI Marketplace
+
+Operated by Zanzu Technologies Inc.
+
+Stripe Payments + Connect
+
+Checkout · Seller onboarding · Transfers · Refunds
+
+Mercury
+
+Zanzu's USD bank settlement account
+
+Connected Sellers
+
+Eligible merchant payout accounts
+
+For multi-merchant shopping carts, I would evaluate separate charges and transfers first, because a single customer payment may need allocation across multiple merchants. The final charge model should be selected after reviewing refunds, chargebacks, taxes, seller geography and Merchant of Record responsibilities.
+
+## Next: Configure Stripe without exposing credentials
+
+In your Codex development environment, open the secure environment settings and configure the following test-mode credentials first.
+
+| Environment secret         | Purpose                                             |
+| -------------------------- | --------------------------------------------------- |
+| `STRIPE_SECRET_KEY`        | Server-side Stripe API                              |
+| `STRIPE_PUBLISHABLE_KEY`   | Client-side Stripe checkout                         |
+| `STRIPE_WEBHOOK_SECRET`    | Webhook signature verification                      |
+| `STRIPE_CONNECT_CLIENT_ID` | Only if using a Connect OAuth flow that requires it |
+| `STRIPE_ACCOUNT_ID`        | Zanzu's Stripe account identifier                   |
+
+Do not paste the values into ChatGPT, GitHub issues, screenshots or source files. Do not store Mercury login credentials in the application; Mercury is the settlement bank, not the checkout processor.
+
+### Codex implementation directive
+
+GLAM AI — STRIPE CONNECT IMPLEMENTATION READINESS
+
+# GLAM AI — STRIPE CONNECT IMPLEMENTATION READINESS
+
+GLAM AI will operate under Zanzu Technologies Inc., a Delaware US corporation.
+
+The company already has:
+
+* US EIN
+
+* Stripe account
+
+* Mercury business bank account
+
+Implement Stripe marketplace integration preparation.
+
+PHASE 1 — ACCOUNT VERIFICATION
+
+1. Verify Stripe test API authentication using server-side credentials.
+
+2. Confirm whether Stripe Connect is enabled.
+
+3. Verify Mercury is configured as an eligible payout destination in Stripe.
+
+4. Identify supported merchant onboarding countries.
+
+5. Confirm the appropriate connected-account configuration and charge model.
+
+6. Do not display or log sensitive account credentials.
+
+PHASE 2 — PAYMENT ARCHITECTURE
+
+1. Support single-merchant and multi-merchant carts.
+
+2. Calculate the GLAM 10% physical-product commission on the approved eligible amount.
+
+3. Record all financial events in an immutable, idempotent ledger.
+
+4. Implement payment state machines, webhook signature verification, refunds, disputes and reconciliation.
+
+5. Prevent merchants or consumers from modifying server-authoritative prices, commissions or payment statuses.
+
+6. Support partial refunds and commission reversals.
+
+7. Ensure seller payouts cannot be triggered twice.
+
+8. Keep professional service commission policy configurable until approved.
+
+PHASE 3 — MERCHANT ONBOARDING
+
+1. Prepare Stripe-hosted onboarding for eligible merchants.
+
+2. Track connected-account status and payment/payout capabilities.
+
+3. Prevent payouts when the connected account is ineligible.
+
+4. Provide merchant payout statements and transaction history.
+
+5. Never store raw card data or sensitive bank credentials in GLAM.
+
+PHASE 4 — TESTING
+
+1. Use Stripe test mode only.
+
+2. Test successful and failed payments.
+
+3. Test partial and full refunds.
+
+4. Test multi-merchant allocation.
+
+5. Test duplicate and out-of-order webhook delivery.
+
+6. Test disconnected and restricted merchant accounts.
+
+7. Test reconciliation and accounting accuracy.
+
+8. Preserve the pre-Supabase G0 release gate.
+
+Do not connect production Supabase or activate live payments yet.
+
+Generate:
+
+* STRIPE_CONNECT_READINESS.md
+
+* MARKETPLACE_PAYMENT_FLOW.md
+
+* MERCHANT_ONBOARDING_MATRIX.md
+
+* PAYMENT_REGRESSION_REPORT.md
+
+Report all missing credentials and provider permissions without fabricating successful connectivity.
+
+My recommendation: Make Stripe the primary global payment integration, retain Peach Payments as an optional regional integration, and use Mercury for Zanzu's corporate settlement account.
+
+The next thing to verify is whether Stripe Connect is already enabled on your existing Stripe account. That determines whether Codex can proceed directly with connected-merchant onboarding or must first complete the Stripe platform setup.

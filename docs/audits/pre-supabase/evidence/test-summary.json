@@ -1,0 +1,84 @@
+{
+  "source_sha": "1060e34263f0a980ba8ef66a8c148077a4a1355e",
+  "main_tested": false,
+  "checks": [
+    {
+      "check": "Backend, Ruff/format, contract/runtime and TS",
+      "status": "PASS",
+      "scope": "155 backend tests; one existing Starlette deprecation warning. Dedicated disposable local _test PostgreSQL only.",
+      "evidence": "core-checks.txt"
+    },
+    {
+      "check": "Clean candidate install/typecheck/production web build",
+      "status": "PASS",
+      "scope": "Fresh git archive of1060e34, npm ci --ignore-scripts, frozen uv sync, TS and Next build. Initial sandbox/offline restrictions resolved through permitted execution. Not a main build.",
+      "evidence": "clean-candidate-build.txt"
+    },
+    {
+      "check": "Shared product unit tests",
+      "status": "PASS",
+      "scope": "13 tests, no failures.",
+      "evidence": "client-tests.txt"
+    },
+    {
+      "check": "Browser contracts with explicit test double",
+      "status": "PASS",
+      "scope": "Owner rejection, uncertainty/corrections, stale result discard, matching, sponsorship, cart/server quote, pending/paid and deletion. No live provider evidence.",
+      "evidence": "contract-browser-tests.txt"
+    },
+    {
+      "check": "Web application regression",
+      "status": "PASS",
+      "scope": "13 groups; responsive320\u20131920px, keyboard/focus and reduced motion, empty/offline states.",
+      "evidence": "web-tests.txt"
+    },
+    {
+      "check": "Golden dimensions",
+      "status": "PASS",
+      "scope": "28 candidate captures at four viewport sizes.",
+      "evidence": "golden-dimensions.txt"
+    },
+    {
+      "check": "Approved visual regression",
+      "status": "PASS",
+      "scope": "20 comparisons, changedFraction0 for each. Sixth pattern is outside prior five-pattern approval.",
+      "evidence": "approved-visuals.txt"
+    },
+    {
+      "check": "Interactive preview",
+      "status": "PASS",
+      "scope": "Typecheck/build and repository-prefix browser routing/journeys.",
+      "evidence": "interactive-preview.txt"
+    },
+    {
+      "check": "iOS and Android exports",
+      "status": "PASS",
+      "scope": "Expo produces both Hermes bundles. This is not device execution or native usability validation.",
+      "evidence": "native-exports.txt"
+    },
+    {
+      "check": "npm dependency audit",
+      "status": "PASS",
+      "scope": "Zero known advisories at audit time.",
+      "evidence": "npm-audit.json"
+    },
+    {
+      "check": "Python dependency audit",
+      "status": "PASS",
+      "scope": "pip-audit2.9.0 locked dependency scope: no known vulnerabilities.",
+      "evidence": "python-audit.json"
+    },
+    {
+      "check": "Real provider + Stripe financial + native device acceptance",
+      "status": "BLOCKED",
+      "scope": "No actual authenticated provider evidence, payment IDs/fees/reconciliation, or iOS/Android device runtime.",
+      "evidence": ""
+    },
+    {
+      "check": "Clean main checkout and required GitHub checks",
+      "status": "BLOCKED",
+      "scope": "Main absent; approvals/check/protection metadata forbidden.",
+      "evidence": ""
+    }
+  ]
+}

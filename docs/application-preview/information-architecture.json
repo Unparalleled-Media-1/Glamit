@@ -1,0 +1,609 @@
+{
+  "authority": "goal-led-ux-2026-11",
+  "surfaces": [
+    "Expo iOS / Android unified mobile",
+    "Responsive consumer web",
+    "Unified business web portal",
+    "Restricted admin web"
+  ],
+  "mobileNavigation": [
+    "Home",
+    "Analyze",
+    "AI Studio",
+    "AI Advisor",
+    "Profile"
+  ],
+  "consumerWebNavigation": [
+    "Home",
+    "Face Analysis",
+    "Color Analysis",
+    "AI Studio",
+    "My Glow-Up Guide",
+    "AI Advisor"
+  ],
+  "businessWorkspaces": {
+    "merchant": {
+      "title": "Merchant / Brand",
+      "mobile": [
+        "Dashboard",
+        "Products",
+        "Orders / Leads",
+        "Promotions",
+        "Profile"
+      ],
+      "modules": [
+        {
+          "name": "Overview",
+          "fields": [
+            "Catalog coverage",
+            "Source freshness"
+          ]
+        },
+        {
+          "name": "Snap & List",
+          "fields": [
+            "Original product images",
+            "AI preparation",
+            "Merchant review",
+            "Publication"
+          ]
+        },
+        {
+          "name": "My Products",
+          "fields": [
+            "Approved revisions",
+            "Source facts"
+          ]
+        },
+        {
+          "name": "Draft Listings",
+          "fields": [
+            "Merchant-owned drafts",
+            "Review state"
+          ]
+        },
+        {
+          "name": "Catalog Health",
+          "fields": [
+            "Missing facts",
+            "Source freshness",
+            "Stock and media"
+          ]
+        },
+        {
+          "name": "Storefront",
+          "fields": [
+            "Public name",
+            "Support contact",
+            "Returns policy"
+          ]
+        },
+        {
+          "name": "Product Catalog",
+          "fields": [
+            "Product title",
+            "Category",
+            "Source SKU",
+            "Rights reference"
+          ]
+        },
+        {
+          "name": "Inventory",
+          "fields": [
+            "SKU",
+            "Source revision",
+            "Quantity evidence"
+          ]
+        },
+        {
+          "name": "Product Variants",
+          "fields": [
+            "SKU",
+            "Size chart",
+            "Materials",
+            "Variant reference"
+          ]
+        },
+        {
+          "name": "Offers",
+          "fields": [
+            "Source offer",
+            "Currency",
+            "Delivered cost evidence"
+          ]
+        },
+        {
+          "name": "Orders / Referrals",
+          "fields": [
+            "Source reference",
+            "Seller responsibility",
+            "Support state"
+          ]
+        },
+        {
+          "name": "Advertising",
+          "fields": [
+            "Eligible offers",
+            "Placement",
+            "Disclosure"
+          ]
+        },
+        {
+          "name": "Analytics",
+          "fields": [
+            "Interval",
+            "Event definition",
+            "Freshness"
+          ]
+        },
+        {
+          "name": "Billing",
+          "fields": [
+            "Invoice reference",
+            "Reconciliation state"
+          ]
+        },
+        {
+          "name": "Integrations",
+          "fields": [
+            "Feed type",
+            "Authorized source",
+            "Refresh interval"
+          ]
+        },
+        {
+          "name": "Reviews",
+          "fields": [
+            "Verified event",
+            "Moderation state"
+          ]
+        },
+        {
+          "name": "Settings",
+          "fields": [
+            "Organization",
+            "Team scope",
+            "Region"
+          ]
+        }
+      ]
+    },
+    "advertiser": {
+      "title": "Advertiser",
+      "mobile": [
+        "Dashboard",
+        "Campaigns",
+        "Analytics",
+        "Billing",
+        "Profile"
+      ],
+      "modules": [
+        {
+          "name": "Overview",
+          "fields": [
+            "Reporting interval",
+            "Qualified events"
+          ]
+        },
+        {
+          "name": "Campaigns",
+          "fields": [
+            "Campaign name",
+            "Objective",
+            "Schedule"
+          ]
+        },
+        {
+          "name": "Create Campaign",
+          "fields": [
+            "Objective",
+            "Eligible products",
+            "Placement",
+            "Budget cap",
+            "Creative",
+            "Disclosure"
+          ]
+        },
+        {
+          "name": "Sponsored Products",
+          "fields": [
+            "Source offer",
+            "Eligibility",
+            "Sponsored label"
+          ]
+        },
+        {
+          "name": "Sponsored Looks",
+          "fields": [
+            "Look rights",
+            "Disclosure",
+            "Eligible offers"
+          ]
+        },
+        {
+          "name": "Creative Library",
+          "fields": [
+            "Asset rights",
+            "Accessible description",
+            "Destination"
+          ]
+        },
+        {
+          "name": "Audiences & Placements",
+          "fields": [
+            "Permitted context",
+            "Region",
+            "Frequency cap"
+          ]
+        },
+        {
+          "name": "Budgets",
+          "fields": [
+            "Currency",
+            "Hard cap",
+            "Review owner"
+          ]
+        },
+        {
+          "name": "Billing",
+          "fields": [
+            "Invoice reference",
+            "Adjustment evidence"
+          ]
+        },
+        {
+          "name": "Performance Reports",
+          "fields": [
+            "Interval",
+            "Attribution rule",
+            "Freshness"
+          ]
+        },
+        {
+          "name": "Conversion Tracking",
+          "fields": [
+            "Verified event",
+            "Deduplication key",
+            "Refund window"
+          ]
+        },
+        {
+          "name": "Account Settings",
+          "fields": [
+            "Organization",
+            "Authorized team",
+            "Brand safety"
+          ]
+        }
+      ]
+    },
+    "professional": {
+      "title": "Beauty Professional",
+      "mobile": [
+        "Dashboard",
+        "Bookings",
+        "Portfolio",
+        "Clients",
+        "Profile"
+      ],
+      "modules": [
+        {
+          "name": "Profile",
+          "fields": [
+            "Service region",
+            "Qualification reference",
+            "Support contact"
+          ]
+        },
+        {
+          "name": "Portfolio",
+          "fields": [
+            "Image rights",
+            "Authorized style",
+            "Description"
+          ]
+        },
+        {
+          "name": "Services & Prices",
+          "fields": [
+            "Service",
+            "Materials",
+            "Full quote terms"
+          ]
+        },
+        {
+          "name": "Availability",
+          "fields": [
+            "Timezone",
+            "Working hours",
+            "Resource"
+          ]
+        },
+        {
+          "name": "Bookings",
+          "fields": [
+            "Request reference",
+            "Verified slot",
+            "Cancellation terms"
+          ]
+        },
+        {
+          "name": "Look Requests",
+          "fields": [
+            "Authorized reference",
+            "Feasibility",
+            "Materials",
+            "Full-price quote"
+          ]
+        },
+        {
+          "name": "Client Messages",
+          "fields": [
+            "Case reference",
+            "Permitted context"
+          ]
+        },
+        {
+          "name": "Reviews",
+          "fields": [
+            "Completed service",
+            "Moderation"
+          ]
+        },
+        {
+          "name": "Promotions",
+          "fields": [
+            "Qualified service",
+            "Terms",
+            "Disclosure"
+          ]
+        },
+        {
+          "name": "Earnings",
+          "fields": [
+            "Recognized event",
+            "Adjustments"
+          ]
+        },
+        {
+          "name": "Settings",
+          "fields": [
+            "Organization",
+            "Team",
+            "Service area"
+          ]
+        }
+      ]
+    },
+    "creator": {
+      "title": "Creator / Influencer",
+      "mobile": [
+        "Dashboard",
+        "Create",
+        "My Looks",
+        "Earnings",
+        "Profile"
+      ],
+      "modules": [
+        {
+          "name": "Creator Profile",
+          "fields": [
+            "Public name",
+            "Original voice",
+            "Rights policy"
+          ]
+        },
+        {
+          "name": "My Looks",
+          "fields": [
+            "Title",
+            "Style description",
+            "Asset rights"
+          ]
+        },
+        {
+          "name": "Tutorials",
+          "fields": [
+            "Title",
+            "Step-by-step instructions",
+            "Rights reference"
+          ]
+        },
+        {
+          "name": "Shoppable Collections",
+          "fields": [
+            "Collection title",
+            "Qualified offers",
+            "Affiliate disclosure"
+          ]
+        },
+        {
+          "name": "Affiliate Links",
+          "fields": [
+            "Approved destination",
+            "Disclosure",
+            "Expiry"
+          ]
+        },
+        {
+          "name": "Brand Campaigns",
+          "fields": [
+            "Deliverables",
+            "Rights",
+            "Compensation terms"
+          ]
+        },
+        {
+          "name": "Audience Analytics",
+          "fields": [
+            "Aggregate interval",
+            "Privacy threshold"
+          ]
+        },
+        {
+          "name": "Earnings",
+          "fields": [
+            "Verified event",
+            "Commission terms"
+          ]
+        },
+        {
+          "name": "Payouts",
+          "fields": [
+            "Recognized balance",
+            "Settlement evidence"
+          ]
+        },
+        {
+          "name": "Settings",
+          "fields": [
+            "Organization",
+            "Publication preferences"
+          ]
+        }
+      ]
+    },
+    "affiliate": {
+      "title": "Affiliate / Partner",
+      "mobile": [
+        "Dashboard",
+        "Links",
+        "Conversions",
+        "Earnings",
+        "Profile"
+      ],
+      "modules": [
+        {
+          "name": "Overview",
+          "fields": [
+            "Verified events",
+            "Reporting interval"
+          ]
+        },
+        {
+          "name": "Links",
+          "fields": [
+            "Approved destination",
+            "Disclosure",
+            "Expiry"
+          ]
+        },
+        {
+          "name": "Collections",
+          "fields": [
+            "Title",
+            "Offer source",
+            "Disclosure"
+          ]
+        },
+        {
+          "name": "Conversions",
+          "fields": [
+            "Verified event",
+            "Attribution window",
+            "Refund state"
+          ]
+        },
+        {
+          "name": "Earnings",
+          "fields": [
+            "Recognized commission",
+            "Adjustments"
+          ]
+        },
+        {
+          "name": "Payouts",
+          "fields": [
+            "Settlement evidence",
+            "Verified destination"
+          ]
+        },
+        {
+          "name": "Settings",
+          "fields": [
+            "Partner agreement",
+            "Organization"
+          ]
+        }
+      ]
+    }
+  },
+  "adminModules": [
+    "Executive Overview",
+    "User Management",
+    "AI Operations",
+    "Beauty Content",
+    "Merchant Management",
+    "Professional Management",
+    "Advertising",
+    "Commerce",
+    "Subscriptions",
+    "Creators & Partners",
+    "Regional Operations",
+    "Trust & Safety",
+    "Privacy",
+    "Analytics",
+    "System Configuration"
+  ],
+  "adminRoles": [
+    "Super Admin",
+    "Support",
+    "Finance",
+    "AI Operations",
+    "Content Moderation",
+    "Trust & Safety",
+    "Compliance",
+    "Regional Operations",
+    "Read-Only Analyst"
+  ],
+  "primaryJourney": [
+    "consent",
+    "local technical photo review",
+    "goals",
+    "uncomputed personal report until provider qualified",
+    "color report",
+    "editable user-authored guide",
+    "original-preserving Studio",
+    "saved server results when connected"
+  ],
+  "commerce": "Required embedded recommendations, organic and separately labeled sponsored opportunities or no-match states. Purchases are optional; no separate Shop tab is required.",
+  "authorityBoundary": "Client role/module inventory never grants access; canonical authenticated API requires active verified scopes.",
+  "contextualResults": [
+    "Face",
+    "Hair",
+    "Skin Appearance",
+    "Body & Fit",
+    "Color",
+    "Makeup Match",
+    "Makeover",
+    "Routines"
+  ],
+  "merchantWorkflow": [
+    "Snap",
+    "Qualified AI preparation or manual draft",
+    "Merchant factual review",
+    "Version-specific content approval",
+    "Publish and transactional index",
+    "Qualified organic/sponsored matching"
+  ],
+  "goalJourneys": [
+    "Understand What Suits Me",
+    "Style Me for an Event",
+    "Recreate This Look",
+    "Try a New Hairstyle or Makeup Look",
+    "Style My Existing Wardrobe",
+    "Find Products and Professionals"
+  ],
+  "newRoutes": [
+    "/event",
+    "/builder"
+  ],
+  "memory": "Explicit opt-in device metadata only; photos/attachments/conversations/reports/tokens/grants excluded; account sync unconnected",
+  "visualRevision": "beauty-led-2026-11",
+  "visualSurfaces": [
+    "Portrait/category Home",
+    "Framed permission-first Analysis",
+    "Reference/shade Studio",
+    "Illustrative color explorer"
+  ]
+}

@@ -5,6 +5,6 @@ from sqlalchemy import text
 
 def test_single_canonical_head_matches_database(db):
     heads = ScriptDirectory.from_config(Config("alembic.ini")).get_heads()
-    assert heads == ["0003_server_only_access"]
+    assert heads == ["0009_stripe_test_ledger"]
     with db.connect() as connection:
         assert connection.scalar(text("SELECT version_num FROM alembic_version")) == heads[0]
