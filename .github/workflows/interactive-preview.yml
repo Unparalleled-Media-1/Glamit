@@ -62,7 +62,7 @@ jobs:
     steps:
       # If automatic enablement is not permitted, a repository administrator must
       # enable Settings > Pages > GitHub Actions once. Never request a user secret.
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
         with:
           enablement: true
       - name: Publish the disconnected interactive preview
