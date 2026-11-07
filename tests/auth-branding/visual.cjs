@@ -45,7 +45,7 @@ const fs = require("node:fs"),
         ? js
         : req.url === "/app.css"
         ? css
-        : '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GLAM AI authentication UI test</title><link rel="stylesheet" href="/app.css"></head><body><div style="padding:6px;text-align:center;background:#181719;color:#fff;font:11px Arial" role="note">UI preview · configured providers simulated · no live sign-in</div><div id="root"></div><script src="/app.js"></script></body></html>',
+        : '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GLAM Beauty authentication UI test</title><link rel="stylesheet" href="/app.css"></head><body><div style="padding:6px;text-align:center;background:#181719;color:#fff;font:11px Arial" role="note">UI preview · configured providers simulated · no live sign-in</div><div id="root"></div><script src="/app.js"></script></body></html>',
     );
   });
   await new Promise((r) => server.listen(0, "127.0.0.1", r));
@@ -152,7 +152,7 @@ const fs = require("node:fs"),
         );
       }
       const guest = await page.getByRole("link", {
-        name: "Explore GLAM AI as a guest",
+        name: "Explore GLAM Beauty as a guest",
         exact: true,
       }).boundingBox();
       assert.equal(Math.round(guest.width), boxes[0].width);
@@ -184,7 +184,7 @@ const fs = require("node:fs"),
         "rgb(183, 109, 140)",
       );
       await page.getByRole("heading", {
-        name: "Sign in to GLAM AI",
+        name: "Sign in to GLAM Beauty",
         exact: true,
       }).click();
       const audit = await new AxeBuilder({ page }).withTags([

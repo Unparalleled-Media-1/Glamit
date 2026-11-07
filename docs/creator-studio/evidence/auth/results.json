@@ -1,0 +1,96 @@
+{
+  "scope": "Isolated UI/SDK transport doubles only; no real SMS or OAuth login",
+  "checks": [
+    {
+      "name": "desktop configured-method UI preview",
+      "status": "PASSED",
+      "buttons": [
+        {
+          "width": 386,
+          "height": 52
+        },
+        {
+          "width": 386,
+          "height": 52
+        },
+        {
+          "width": 386,
+          "height": 52
+        },
+        {
+          "width": 386,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "name": "compact-mobile configured-method UI preview",
+      "status": "PASSED",
+      "buttons": [
+        {
+          "width": 238,
+          "height": 52
+        },
+        {
+          "width": 238,
+          "height": 52
+        },
+        {
+          "width": 238,
+          "height": 52
+        },
+        {
+          "width": 238,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "name": "mobile configured-method UI preview",
+      "status": "PASSED",
+      "buttons": [
+        {
+          "width": 308,
+          "height": 52
+        },
+        {
+          "width": 308,
+          "height": 52
+        },
+        {
+          "width": 308,
+          "height": 52
+        },
+        {
+          "width": 308,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "name": "OTP entry retains rose action, autofill and E.164 SDK handoff",
+      "status": "PASSED"
+    },
+    {
+      "name": "google SDK PKCE redirect (intercepted)",
+      "status": "PASSED"
+    },
+    {
+      "name": "apple SDK PKCE redirect (intercepted)",
+      "status": "PASSED"
+    },
+    {
+      "name": "facebook SDK PKCE redirect (intercepted)",
+      "status": "PASSED"
+    },
+    {
+      "name": "All unconfigured methods hidden; no orphaned social separator",
+      "status": "PASSED"
+    },
+    {
+      "name": "Partial configuration exposes only available methods",
+      "status": "PASSED"
+    }
+  ],
+  "page_errors": []
+}

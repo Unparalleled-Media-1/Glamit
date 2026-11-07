@@ -93,7 +93,7 @@ export default function BusinessPortal({
       <div className="business-shell">
         <aside className="business-sidebar">
           <a className="brand" href={appPath("/")}>
-            ✧ GLAM <span>AI</span>
+            ✧ GLAM <span>Beauty</span>
           </a>
           <p className="eyebrow">
             {admin ? "Restricted administration" : "Unified business portal"}
@@ -170,10 +170,11 @@ export default function BusinessPortal({
               : "One identity. Your approved organizations."}
           </p>
           <h1>{admin ? visibleAdmin[module] : current.name}</h1>
+          {!admin && role === "creator" && <a className="button secondary" href={appPath("/profile") + "#creator-title"}>Open private Creator Studio</a>}
           <p className="intro">
             {admin
               ? "Platform-wide governance, including mobile apps. Private consumer photos and reports are never general dashboard data."
-              : "Your role-specific tools, without leaving GLAM AI. Review the requirements and prepare session-only planning notes."}
+              : "Your role-specific tools, without leaving GLAM Beauty. Review the requirements and prepare session-only planning notes."}
           </p>
           <div className="notice">
             {admin

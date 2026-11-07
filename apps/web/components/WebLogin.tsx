@@ -12,10 +12,10 @@ function Welcome({ onReady }: { onReady: () => void }) {
   return (
     <main className="auth-welcome">
       <div className="auth-frame">
-        <a className="brand auth-wordmark" href={appPath("/")}>✧ GLAM AI</a>
+        <a className="brand auth-wordmark" href={appPath("/")}>✧ GLAM Beauty</a>
         <section className="auth-card">
           <p className="auth-eyebrow">Your beauty. Your way.</p>
-          <h1>Sign in to GLAM AI</h1>
+          <h1>Sign in to GLAM Beauty</h1>
           <PasswordlessSignIn />
           {error && (
             <p role="alert">
@@ -26,7 +26,7 @@ function Welcome({ onReady }: { onReady: () => void }) {
             </p>
           )}
           <a className="auth-guest" href={appPath("/")}>
-            Explore GLAM AI as a guest
+            Explore GLAM Beauty as a guest
           </a>
         </section>
       </div>

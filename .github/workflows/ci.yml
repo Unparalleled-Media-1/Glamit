@@ -65,6 +65,7 @@ jobs:
       - run: npm run test:golden
       - run: npm run test:connections
       - run: npm run test:hosted-account
+      - run: npm run test:creator
       - run: npm run test:auth-branding
       - run: npm run test:login-hydration
       - run: npm run test:launch-accessibility

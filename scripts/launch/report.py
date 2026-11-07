@@ -646,7 +646,7 @@ def main():
         raise RuntimeError("unrendered_dashboard_template")
     (ART / "index.html").write_text(dashboard)
     (DOC / "README.md").write_text(
-        "# GLAM AI launch audit\n\nStart with [NO-GO "
+        "# GLAM Beauty launch audit\n\nStart with [NO-GO "
         "decision](PUBLIC_LAUNCH_GO_NO_GO.md), "
         "[defects](DEFECT_REGISTER.md) and [click-through "
         "results](CLICKTHROUGH_TEST_REPORT.md). "

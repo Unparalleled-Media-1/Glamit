@@ -208,7 +208,7 @@ const { chromium } = require("../docs/design-preview/node_modules/playwright");
     );
     fs.writeFileSync(
       path.join(out, "index.html"),
-      '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GLAM AI interaction evidence</title><style>body{background:#f8f3ef;color:#30252d;font:15px Arial;padding:24px}h1,h2{font-family:Georgia}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}video{width:100%;max-height:600px;background:#181719;border-radius:20px}article{padding:20px;border:1px solid #dfd1d5;border-radius:24px}</style><h1>Six patterns. Actual browser interactions.</h1><p>Desktop + iOS-sized and Android-sized Chromium emulation. These are not native device recordings. Live AI, payments and order confirmation remain unconnected.</p><main>' +
+      '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GLAM Beauty interaction evidence</title><style>body{background:#f8f3ef;color:#30252d;font:15px Arial;padding:24px}h1,h2{font-family:Georgia}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}video{width:100%;max-height:600px;background:#181719;border-radius:20px}article{padding:20px;border:1px solid #dfd1d5;border-radius:24px}</style><h1>Six patterns. Actual browser interactions.</h1><p>Desktop + iOS-sized and Android-sized Chromium emulation. These are not native device recordings. Live AI, payments and order confirmation remain unconnected.</p><main>' +
         evidence
           .map(
             (e) =>

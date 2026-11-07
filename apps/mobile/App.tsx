@@ -1,3 +1,4 @@
+import CreatorStudio from "./CreatorStudio";
 import NativeAccount from "./auth/NativeAccount";
 import { useNativeAccount } from "./auth/use-native-account";
 import { useEffect, useReducer, useRef, useState } from "react";
@@ -765,6 +766,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
               "Your private goals, session routines and authorized workspaces.",
             )}
             <NativeAccount auth={nativeAccount}/>
+            <CreatorStudio key={nativeAccount.account?.profile.id || "guest"} token={nativeAccount.account?.token}/>
             <Button title="Switch workspace" secondary onPress={()=>setSwitcher(true)}/>
 
             {[
@@ -954,7 +956,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
     >
       <View style={s.topbar}>
         <Text style={[s.brand, beautyPage && { color: "#fff0f5" }]}>
-          ✧ GLAM AI
+          ✧ GLAM Beauty
         </Text>
         <Pressable
           accessibilityRole="button"

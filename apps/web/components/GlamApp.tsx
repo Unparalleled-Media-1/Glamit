@@ -23,6 +23,7 @@ import { BeautyAnalysis, BeautyStudio, BeautyColor } from "./BeautyExperience";
 import { studioPart } from "../../../packages/product/beauty";
 import { editorialProducts } from "../../../packages/product/editorial-products";
 import GoldenCommerce from "./GoldenCommerce";
+import CreatorStudio from "./CreatorStudio";
 import HostedAccount, { hostedAccountConfigured } from "./HostedAccount";
 import { useAccountSession } from "../lib/use-account-session";
 import PersonalizedResults from "./PersonalizedResults";
@@ -912,6 +913,7 @@ export default function GlamApp({
               <section className="panel">
                 {accountError && <p role="alert">{accountError} <button className="text-button" onClick={()=>retryAccount()}>Retry account connection</button></p>}
                 <HostedAccount session={hostedSession} setSession={setHostedSession} />
+                <CreatorStudio key={hostedSession?.profile.id || "guest"} token={hostedSession?.token} />
                 <button
                   ref={switchButton}
                   className="button secondary"
@@ -1248,8 +1250,8 @@ export default function GlamApp({
         Skip to content
       </a>
       <header className="site-header">
-        <a href={appPath("/")} className="brand" aria-label="GLAM AI home">
-          <Icon name="spark" /> GLAM <span>AI</span>
+        <a href={appPath("/")} className="brand" aria-label="GLAM Beauty home">
+          <Icon name="spark" /> GLAM <span>Beauty</span>
         </a>
         <nav className="desktop-nav" aria-label="Main navigation">
           {webTabs.map((n) => (
@@ -1368,7 +1370,7 @@ export default function GlamApp({
       </main>
       <footer className="site-footer">
         <a className="brand" href={appPath("/")}>
-          GLAM AI
+          GLAM Beauty
         </a>
         <span>Understand your features. Explore your possibilities.</span>
         <div>

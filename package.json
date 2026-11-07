@@ -41,7 +41,8 @@
     "test:launch-accessibility": "node tests/launch/accessibility.cjs",
     "test:launch-keyboard": "node scripts/launch/keyboard.cjs",
     "test:launch-gates": "node --test tests/launch/release-gates.test.cjs",
-    "test:auth-branding": "node tests/auth-branding/visual.cjs"
+    "test:auth-branding": "node tests/auth-branding/visual.cjs",
+    "test:creator": "node tests/creator/visual.cjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",

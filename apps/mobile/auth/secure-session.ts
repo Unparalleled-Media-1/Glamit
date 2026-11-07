@@ -8,7 +8,7 @@ import type { SupportedStorage } from "../../../packages/auth/core";
 const secureOptions = {
   requireAuthentication: true,
   keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
-  authenticationPrompt: "Unlock GLAM AI",
+  authenticationPrompt: "Unlock GLAM Beauty",
 };
 const refreshKey = "glam.auth.refresh.v1",
   enabledKey = "glam.auth.biometric.v1";

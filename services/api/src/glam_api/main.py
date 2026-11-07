@@ -31,7 +31,7 @@ from glam_api.db import get_session
 from glam_api.observability import http_error, request_evidence, validation_error
 from glam_api.workspaces import build_router
 
-app = FastAPI(title="GLAM AI", version="0.1.0", docs_url=None, redoc_url=None)
+app = FastAPI(title="GLAM Beauty", version="0.1.0", docs_url=None, redoc_url=None)
 app.middleware("http")(request_evidence)
 app.add_exception_handler(HTTPException, http_error)
 app.add_exception_handler(RequestValidationError, validation_error)
@@ -150,7 +150,7 @@ def ready(db: Db):
     from glam_api.config import get_settings
 
     applied = set(db.scalars(text("SELECT version_num FROM alembic_version")))
-    if "0013_passwordless_accounts" not in applied:
+    if "0014_creator_studio" not in applied:
         raise HTTPException(503, "Database migration is not current")
     if not get_settings().oidc_issuer:
         raise HTTPException(503, "Identity provider is not configured")
