@@ -13,6 +13,7 @@ import {
   rememberDestination,
   webAuth,
 } from "../lib/passwordless";
+import AuthProviderButton from "./AuthProviderButton";
 import type { SocialProvider } from "../../../packages/auth/core";
 
 export default function AccountSecurity(
@@ -199,69 +200,74 @@ export default function AccountSecurity(
     }
   }
   return (
-    <section aria-label="Account security">
+    <section
+      className="auth-surface auth-security"
+      aria-label="Account security"
+    >
       <h3>Sign-in & security</h3>
       <p>
         Linked methods:{" "}
         {linked.join(", ") || "Loading your verified identities…"}
       </p>
-      <div className="chips">
-        {providers.map((p) => (
-          <button
-            className="button secondary"
-            key={p}
-            disabled={busy || !available[p] || linked.includes(p)}
-            onClick={() => link(p)}
-          >
-            {linked.includes(p) ? "Linked" : "Link"}{" "}
-            {p[0].toUpperCase() + p.slice(1)}
-          </button>
-        ))}
+      <div className="auth-provider-list">
+        {providers.filter((p) => available[p] && !linked.includes(p)).map(
+          (p) => (
+            <AuthProviderButton
+              key={p}
+              provider={p}
+              disabled={busy}
+              link
+              onClick={() => void link(p)}
+            />
+          ),
+        )}
       </div>
       <p className="fine">
         Linking requires this signed-in account and verification with the new
         provider. Existing accounts are not merged by this app.
       </p>
-      <form
-        method="post"
-        onSubmit={(e) => {
-          e.preventDefault();
-          void (changing ? verifyPhone() : changePhone());
-        }}
-      >
-        <label htmlFor="link-phone">
-          Add or change mobile number, including country code
-        </label>
-        <input
-          id="link-phone"
-          type="tel"
-          autoComplete="tel"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          required
-          disabled={busy || changing}
-        />
-        {changing && (
-          <>
-            <label htmlFor="link-code">Phone verification code</label>
-            <input
-              id="link-code"
-              inputMode="numeric"
-              autoComplete="one-time-code"
-              value={code}
-              onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
-              maxLength={6}
-              required
-            />
-          </>
-        )}
-        <button
-          className="button secondary"
-          disabled={busy || !available.phone}
+      {available.phone && (
+        <form
+          method="post"
+          onSubmit={(e) => {
+            e.preventDefault();
+            void (changing ? verifyPhone() : changePhone());
+          }}
         >
-          {changing ? "Verify phone change" : "Verify mobile number"}
-        </button>
-      </form>
+          <label htmlFor="link-phone">
+            Add or change mobile number, including country code
+          </label>
+          <input
+            id="link-phone"
+            type="tel"
+            autoComplete="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            required
+            disabled={busy || changing}
+          />
+          {changing && (
+            <>
+              <label htmlFor="link-code">Phone verification code</label>
+              <input
+                id="link-code"
+                inputMode="numeric"
+                autoComplete="one-time-code"
+                value={code}
+                onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
+                maxLength={6}
+                required
+              />
+            </>
+          )}
+          <button
+            className="button secondary"
+            disabled={busy || !available.phone}
+          >
+            {changing ? "Verify phone change" : "Verify mobile number"}
+          </button>
+        </form>
+      )}
       <button
         className="text-button"
         disabled={busy}

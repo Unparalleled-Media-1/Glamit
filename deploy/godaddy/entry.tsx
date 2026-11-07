@@ -9,6 +9,7 @@ import "../../apps/web/app/styles.css";
 import "../../apps/web/app/golden-tokens.css";
 import "../../apps/web/app/golden-screens.css";
 import "../../apps/web/app/personal-results.css";
+import "../../apps/web/app/authentication.css";
 
 const section = location.pathname.replace(/\/+$/, "") === "/auth/callback"
   ? "home"
