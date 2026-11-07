@@ -1,0 +1,22 @@
+{
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "function": {
+    "id": "d9e4d177-29c9-4076-85f7-8aab1ad68637",
+    "slug": "glam-api",
+    "name": "glam-api",
+    "status": "ACTIVE",
+    "version": 2,
+    "created_at": 1794041858838,
+    "updated_at": 1794042544534,
+    "verify_jwt": false,
+    "import_map": false,
+    "entrypoint_path": "file:///tmp/user_fn_bkkmsbxrxkqaveymcrgi_d9e4d177-29c9-4076-85f7-8aab1ad68637_2/source/index.ts",
+    "ezbr_sha256": "09fad06396db27169d3fa7069f4cd137eea7390a25ebcf85ba040fe5d66f55f3"
+  },
+  "source_sha256": {
+    "supabase/functions/glam-api/auth.ts": "86beb7518f855be8292256d52b5e849915ad372bbd42bc406df0761c57e67a9a",
+    "supabase/functions/glam-api/handler.ts": "bbee1d85ad2aa0629df4292f454ea4f30feaa203d70d357ce5466b562b54fc81",
+    "supabase/functions/glam-api/index.ts": "2056055c4bff0f88eae13f52be32910573be27b26c2f6bd71f81dbe4d40d094e"
+  },
+  "authentication": "Handler verifies ES256/RS256 signature, issuer, audience, role, expiry and active Auth user; legacy gateway verification disabled for ES256 compatibility."
+}

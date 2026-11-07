@@ -23,6 +23,7 @@ import { BeautyAnalysis, BeautyStudio, BeautyColor } from "./BeautyExperience";
 import { studioPart } from "../../../packages/product/beauty";
 import { editorialProducts } from "../../../packages/product/editorial-products";
 import GoldenCommerce from "./GoldenCommerce";
+import HostedAccount, { hostedAccountConfigured } from "./HostedAccount";
 import PersonalizedResults from "./PersonalizedResults";
 import VerifiedProductDetail from "./VerifiedProductDetail";
 import DestinationStylist from "./DestinationStylist";
@@ -902,6 +903,7 @@ export default function GlamApp({
             />
             <div className="split">
               <section className="panel">
+                {hostedAccountConfigured ? <HostedAccount /> : <>
                 <h2>Personal account</h2>
                 {unavailable(capabilityReasons.account)}
                 <button
@@ -914,6 +916,7 @@ export default function GlamApp({
                 >
                   Continue with Google
                 </button>
+                </>}
                 <button
                   ref={switchButton}
                   className="button secondary"

@@ -1,0 +1,80 @@
+{
+  "credentials_by_name": {
+    "OPENAI_API_KEY": false,
+    "REPLICATE_API_TOKEN": false,
+    "FASHN_API_KEY": false,
+    "SUPABASE_URL": true,
+    "SUPABASE_ANON_KEY": true,
+    "SUPABASE_SERVICE_ROLE_KEY": true,
+    "GLAM_DATABASE_URL": true,
+    "GLAM_OIDC_ISSUER": true,
+    "GLAM_OIDC_AUDIENCE": true,
+    "GLAM_OIDC_JWKS_URL": true,
+    "STRIPE_SECRET_KEY": true,
+    "STRIPE_PUBLISHABLE_KEY": true,
+    "STRIPE_WEBHOOK_SECRET": false,
+    "STRIPE_ACCOUNT_ID": true,
+    "GOOGLE_MAPS_API_KEY": false,
+    "RESEND_API_KEY": false,
+    "TWILIO_ACCOUNT_SID": false,
+    "TWILIO_AUTH_TOKEN": false,
+    "PEACH_ENTITY_ID": false,
+    "PEACH_ACCESS_TOKEN": false,
+    "SENTRY_DSN": false
+  },
+  "providers": {
+    "stripe": {
+      "http_status": 200,
+      "status": "BLOCKED_LIVE_CREDENTIAL_FOR_TEST_TASK",
+      "payments_active": false,
+      "commission_reconciled": false,
+      "livemode": true
+    },
+    "openai": {
+      "status": "NOT_CONFIGURED"
+    },
+    "replicate": {
+      "status": "NOT_CONFIGURED"
+    },
+    "fashn": {
+      "status": "NOT_CONFIGURED"
+    },
+    "maps": {
+      "status": "NOT_CONFIGURED"
+    },
+    "resend": {
+      "status": "NOT_CONFIGURED"
+    },
+    "twilio": {
+      "status": "NOT_CONFIGURED"
+    },
+    "peach": {
+      "status": "NOT_CONFIGURED"
+    },
+    "sentry": {
+      "status": "NOT_CONFIGURED"
+    }
+  },
+  "edge_functions_http_status": 200,
+  "edge_functions": [
+    {
+      "slug": "glam-api",
+      "status": "ACTIVE",
+      "version": 2,
+      "verify_jwt": false
+    }
+  ],
+  "edge_secret_names_http_status": 200,
+  "edge_secret_names": [
+    "SUPABASE_DB_URL",
+    "STRIPE_PUBLISHABLE_KEY",
+    "SUPABASE_URL",
+    "SUPABASE_ANON_KEY",
+    "SUPABASE_SERVICE_ROLE_KEY",
+    "SUPABASE_PUBLISHABLE_KEYS",
+    "SUPABASE_SECRET_KEYS",
+    "SUPABASE_JWKS"
+  ],
+  "storage_http_status": 200,
+  "storage_buckets": []
+}

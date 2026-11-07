@@ -6,8 +6,8 @@ from sqlalchemy import text
 def test_canonical_application_head_is_separate_from_guarded_test_sandbox(db):
     script = ScriptDirectory.from_config(Config("alembic.ini"))
     heads = set(script.get_heads())
-    assert heads == {"0009_stripe_test_ledger", "0010_supabase_foundation"}
-    assert script.get_revision("application@head").revision == "0010_supabase_foundation"
+    assert heads == {"0009_stripe_test_ledger", "0012_hosted_routines"}
+    assert script.get_revision("application@head").revision == "0012_hosted_routines"
     lineage = {r.revision for r in script.walk_revisions("base", "application@head")}
     assert "0008_catalog_market_policy" in lineage
     assert "0009_stripe_test_ledger" not in lineage

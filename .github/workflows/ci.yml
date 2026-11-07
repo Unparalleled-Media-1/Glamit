@@ -29,6 +29,16 @@ jobs:
       - run: uv run --frozen ruff format --check .
       - run: uv run --frozen pytest
       - run: uv run --frozen python scripts/export_contracts.py --check
+  hosted-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+      - run: npx --yes deno@2.9.6 fmt --check supabase/functions/glam-api tests/edge
+      - run: npx --yes deno@2.9.6 check supabase/functions/glam-api/index.ts
+      - run: npx --yes deno@2.9.6 test tests/edge
   clients:
     runs-on: ubuntu-latest
     env:
@@ -54,6 +64,7 @@ jobs:
       - run: npm run test:web
       - run: npm run test:golden
       - run: npm run test:connections
+      - run: npm run test:hosted-account
       - run: node scripts/generate-consumer-tokens.mjs --check
       - run: npm exec --workspace=@glam/mobile -- expo install --check
       - run: npm run export --workspace=@glam/mobile

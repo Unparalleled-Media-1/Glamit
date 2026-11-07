@@ -1,0 +1,200 @@
+{
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "observed_at": "2026-11-07T09:09:04.961078+00:00",
+  "checks": [
+    {
+      "name": "public_liveness",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "anonymous_profile_denied",
+      "http_status": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "name": "controlled_auth_created",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "real_auth_login",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "controlled_auth_created",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "real_auth_login",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "authenticated_readiness",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "identity_bootstrap",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "profile_update",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "profile_persisted",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "preferences_update",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "passport_read",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "passport_update",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "passport_preserves_selection",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "stale_revision_refused",
+      "http_status": 409,
+      "expected": 409,
+      "passed": true
+    },
+    {
+      "name": "organization_create",
+      "http_status": 201,
+      "expected": 201,
+      "passed": true
+    },
+    {
+      "name": "idempotent_replay",
+      "http_status": 201,
+      "expected": 201,
+      "passed": true
+    },
+    {
+      "name": "cross_tenant_denied",
+      "http_status": 404,
+      "expected": 404,
+      "passed": true
+    },
+    {
+      "name": "owner_read",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "privilege_override_refused",
+      "http_status": 422,
+      "expected": 422,
+      "passed": true
+    },
+    {
+      "name": "unsupported_operation_truthful",
+      "http_status": 501,
+      "expected": 501,
+      "passed": true
+    },
+    {
+      "name": "service_role_not_user",
+      "http_status": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "name": "routine_created",
+      "http_status": 201,
+      "expected": 201,
+      "passed": true
+    },
+    {
+      "name": "routine_replay",
+      "http_status": 201,
+      "expected": 201,
+      "passed": true
+    },
+    {
+      "name": "routine_cross_tenant_denied",
+      "http_status": 404,
+      "expected": 404,
+      "passed": true
+    },
+    {
+      "name": "routine_updated",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "routine_stale_write_refused",
+      "http_status": 409,
+      "expected": 409,
+      "passed": true
+    },
+    {
+      "name": "routine_deleted",
+      "http_status": 204,
+      "expected": 204,
+      "passed": true
+    },
+    {
+      "name": "deleted_routine_not_replayed",
+      "http_status": 410,
+      "expected": 410,
+      "passed": true
+    }
+  ],
+  "controlled_auth_ids": [
+    "feb6f3f2-9763-44bc-a2cb-994ced239885",
+    "4f32148c-dd76-43c8-889e-fed341951dbf"
+  ],
+  "cleanup": [
+    {
+      "auth_id": "feb6f3f2-9763-44bc-a2cb-994ced239885",
+      "http_status": 200
+    },
+    {
+      "auth_id": "4f32148c-dd76-43c8-889e-fed341951dbf",
+      "http_status": 200
+    }
+  ],
+  "controlled_internal_id": "c42da1ce-07d0-49ed-a112-55cc04c221c7",
+  "controlled_organization_id": "a44642b2-75ae-47ea-8768-6d071baa5963",
+  "controlled_routine_id": "7b6551e7-9e5d-4495-8039-673a617b2cc8",
+  "status": "PASSED",
+  "controlled_organization_cleanup_http_status": 201,
+  "retained_test_evidence": "Minimal internal identities and immutable audits only; no merchant listings or financial records created."
+}

@@ -137,7 +137,7 @@ def ready(db: Db):
     from glam_api.config import get_settings
 
     applied = set(db.scalars(text("SELECT version_num FROM alembic_version")))
-    if "0010_supabase_foundation" not in applied:
+    if "0012_hosted_routines" not in applied:
         raise HTTPException(503, "Database migration is not current")
     if not get_settings().oidc_issuer:
         raise HTTPException(503, "Identity provider is not configured")

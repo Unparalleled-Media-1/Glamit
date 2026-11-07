@@ -64,6 +64,11 @@ def test_unconfigured_identity_fails_closed(client, monkeypatch):
     monkeypatch.setattr(
         auth,
         "get_settings",
-        lambda: Settings(database_url="postgresql+psycopg://localhost/unused_test"),
+        lambda: Settings(
+            database_url="postgresql+psycopg://localhost/unused_test",
+            oidc_issuer=None,
+            oidc_audience=None,
+            oidc_jwks_url=None,
+        ),
     )
     assert client.get("/v1/me").status_code == 503
