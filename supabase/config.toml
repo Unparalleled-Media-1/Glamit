@@ -1,0 +1,7 @@
+project_id = "bkkmsbxrxkqaveymcrgi"
+
+[functions.glam-api]
+# ES256/RS256 are verified inside the handler and Auth user status is checked.
+# Supabase's legacy gateway JWT switch is not used as application authorization.
+verify_jwt = false
+entrypoint = "./functions/glam-api/index.ts"

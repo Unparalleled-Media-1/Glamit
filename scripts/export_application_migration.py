@@ -1,5 +1,6 @@
 """Capture canonical application Alembic SQL from a validated empty LOCAL build database."""
 
+import argparse
 import hashlib
 import json
 import os
@@ -13,7 +14,11 @@ from sqlalchemy import create_engine, event, text
 from sqlalchemy.engine import Engine, make_url
 
 
-def export():
+def export(
+    start=None,
+    revision="0010_supabase_foundation",
+    output="db/migrations/releases/0010_application.sql",
+):
     raw = os.environ.get("GLAM_MIGRATION_BUILD_DATABASE_URL", "")
     target = make_url(raw)
     if (
@@ -43,9 +48,11 @@ def export():
     previous = os.environ.get("GLAM_DATABASE_URL")
     os.environ["GLAM_DATABASE_URL"] = raw
     get_settings.cache_clear()
+    if start:
+        command.upgrade(Config("alembic.ini"), start)
     event.listen(Engine, "before_cursor_execute", capture)
     try:
-        command.upgrade(Config("alembic.ini"), "application@head")
+        command.upgrade(Config("alembic.ini"), revision)
     finally:
         event.remove(Engine, "before_cursor_execute", capture)
         if previous is None:
@@ -55,19 +62,20 @@ def export():
         get_settings.cache_clear()
     with engine.connect() as c:
         head = c.scalar(text("SELECT version_num FROM alembic_version"))
-        assert head == "0010_supabase_foundation"
+        assert head == revision
         assert c.scalar(text("SELECT to_regclass('public.stripe_test_order')")) is None
-    out = Path("db/migrations/releases/0010_application.sql")
+    out = Path(output)
     content = (
         "-- GENERATED from canonical Alembic application@head; do not edit.\n"
-        "-- Includes existing application prerequisites; excludes Stripe sandbox0009.\n"
+        f"-- Starting revision: {start or 'empty'}; excludes Stripe sandbox0009.\n"
         "BEGIN;\nSET LOCAL lock_timeout='5s';\nSET LOCAL statement_timeout='60s';\n"
         + "\n\n".join(statements)
         + "\nCOMMIT;\n"
     )
     out.write_text(content)
     manifest = {
-        "target": "application@head",
+        "target": revision,
+        "starting_revision": start,
         "revision": head,
         "excluded_sandbox": "0009_stripe_test_ledger",
         "artifact": str(out),
@@ -84,4 +92,9 @@ def export():
 
 
 if __name__ == "__main__":
-    export()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--start")
+    parser.add_argument("--revision", default="0010_supabase_foundation")
+    parser.add_argument("--output", default="db/migrations/releases/0010_application.sql")
+    args = parser.parse_args()
+    export(args.start, args.revision, args.output)

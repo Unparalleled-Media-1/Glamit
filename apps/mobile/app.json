@@ -20,7 +20,21 @@
           "cameraPermission": "Take a photo for a private GLAM AI preview after you choose to start the camera.",
           "microphonePermission": false
         }
+      ],
+      "expo-web-browser",
+      [
+        "expo-secure-store",
+        {
+          "faceIDPermission": "Allow GLAM AI to unlock your saved session with Face ID."
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow GLAM AI to unlock your saved session with Face ID."
+        }
       ]
-    ]
+    ],
+    "scheme": "glamai"
   }
 }

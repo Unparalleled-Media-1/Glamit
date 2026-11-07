@@ -1,0 +1,41 @@
+{
+  "python_regression": {
+    "passed": 222,
+    "database": "fresh local PostgreSQL",
+    "live_provider_evidence": false
+  },
+  "final_hosted_sql_boundary_suite": {
+    "passed": 17,
+    "includes_new_private_core_denial": true
+  },
+  "edge_security_tests": {
+    "passed": 6,
+    "real_signature_fixtures": true,
+    "live_provider_evidence": false
+  },
+  "live_supabase_http_checks": {
+    "passed": 29,
+    "report": "live-regression.json"
+  },
+  "shared_client_tests": {
+    "passed": 13
+  },
+  "web_application_browser_groups": {
+    "passed": 13,
+    "mode": "unconfigured/offline frontend, browser viewport emulation"
+  },
+  "hosted_account_browser": {
+    "status": "PASSED",
+    "mode": "isolated Auth/API doubles; no real email or private data",
+    "in_app_navigation_session_preserved": true
+  },
+  "typecheck": "PASSED web and mobile",
+  "web_production_build": "PASSED",
+  "offline_interactive_preview_build": "PASSED",
+  "native_device_verification": "NOT_PERFORMED",
+  "financial_provider_mutations": 0,
+  "full_product_acceptance": "INCOMPLETE",
+  "preview_disabled_target_guard_tests": {
+    "passed": 5
+  }
+}

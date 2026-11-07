@@ -113,7 +113,11 @@ def as_user(c, uid, role="authenticated"):
     c.execute(text("SELECT set_config('request.jwt.claim.sub',:id,true)"), {"id": str(uid)})
     c.execute(
         text("SELECT set_config('request.jwt.claims',:claims,true)"),
-        {"claims": json.dumps({"iss": ISSUER, "sub": str(uid), "role": role})},
+        {
+            "claims": json.dumps(
+                {"iss": ISSUER, "sub": str(uid), "role": role, "session_id": str(uid)}
+            )
+        },
     )
     assert role in {"authenticated", "anon"}
     c.execute(text("SET LOCAL ROLE " + role))

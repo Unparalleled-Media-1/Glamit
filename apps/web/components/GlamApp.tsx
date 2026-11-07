@@ -23,6 +23,8 @@ import { BeautyAnalysis, BeautyStudio, BeautyColor } from "./BeautyExperience";
 import { studioPart } from "../../../packages/product/beauty";
 import { editorialProducts } from "../../../packages/product/editorial-products";
 import GoldenCommerce from "./GoldenCommerce";
+import HostedAccount, { hostedAccountConfigured } from "./HostedAccount";
+import { useAccountSession } from "../lib/use-account-session";
 import PersonalizedResults from "./PersonalizedResults";
 import VerifiedProductDetail from "./VerifiedProductDetail";
 import DestinationStylist from "./DestinationStylist";
@@ -173,6 +175,7 @@ export default function GlamApp({
   start?: Page;
   connection?: CompanionConnection;
 }) {
+  const {session:hostedSession,setSession:setHostedSession,error:accountError,retry:retryAccount}=useAccountSession(path=>{const next=sectionFromPath(path) as Page;if(pages.includes(next))go(next);});
   const [journey, setJourney] = useState(freshJourney);
   const [memoryReady, setMemoryReady] = useState(false);
   const [memoryError, setMemoryError] = useState("");
@@ -228,6 +231,8 @@ export default function GlamApp({
   const [advisor, setAdvisor] = useState("");
   const [compare, setCompare] = useState(50);
   const [showSwitcher, setShowSwitcher] = useState(false);
+  const [activeWorkspace,setActiveWorkspace]=useState<string|null>(null);
+  useEffect(()=>{if(!hostedSession?.workspaces?.some(w=>w.organization_id+':'+w.workspace===activeWorkspace))setActiveWorkspace(null);},[hostedSession,activeWorkspace]);
   const [online, setOnline] = useState(true);
   const [checking, setChecking] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -393,7 +398,9 @@ export default function GlamApp({
       },
     });
     setMessage(
-      "Routine saved for this session. Account sync is not connected.",
+      hostedAccountConfigured
+        ? "Routine saved for this session. To save an account routine, sign in from Profile."
+        : "Routine saved for this session. Account sync is not connected.",
     );
   }
   const btn = (label: string, next: Page, secondary = false) => (
@@ -896,24 +903,15 @@ export default function GlamApp({
             )}
             <StylingJourney
               page="profile"
+              accountAvailable={hostedAccountConfigured}
               data={journey}
               setData={setJourney}
               go={go}
             />
             <div className="split">
               <section className="panel">
-                <h2>Personal account</h2>
-                {unavailable(capabilityReasons.account)}
-                <button
-                  className="button"
-                  onClick={() =>
-                    setMessage(
-                      "Google sign-in will use the selected Supabase project when it is connected. No password is collected here.",
-                    )
-                  }
-                >
-                  Continue with Google
-                </button>
+                {accountError && <p role="alert">{accountError} <button className="text-button" onClick={()=>retryAccount()}>Retry account connection</button></p>}
+                <HostedAccount session={hostedSession} setSession={setHostedSession} />
                 <button
                   ref={switchButton}
                   className="button secondary"
@@ -1023,7 +1021,14 @@ export default function GlamApp({
                   Session routines<span>{state.routines.length}</span>
                 </li>
                 <li>
-                  Account sync<span>Not connected</span>
+                  {hostedAccountConfigured
+                    ? "Account details & routines"
+                    : "Account sync"}
+                  <span>
+                    {hostedAccountConfigured
+                      ? (hostedSession ? "Signed in" : "Sign in required")
+                      : "Not connected"}
+                  </span>
                 </li>
               </ul>
               <button
@@ -1275,8 +1280,11 @@ export default function GlamApp({
       </header>
       <div className="connection-bar">
         <span className="status-dot" />
-        Interactive preview · AI, account & commerce connections pending
+        {hostedAccountConfigured
+          ? `${hostedSession ? "Signed in" : "Sign-in available"} · AI and shopping connections pending`
+          : "Interactive preview · AI, account & commerce connections pending"}
       </div>
+      {accountError && !hostedSession && <Notice>{accountError} <button className="text-button" onClick={()=>go("profile")}>Choose a sign-in method</button></Notice>}
       {!online && (
         <Notice>
           You’re offline. Session notes remain available; no upload or
@@ -1406,10 +1414,16 @@ export default function GlamApp({
         </p>
         <div className="workspace-personal">
           <strong>Personal</strong>
-          <span>Current workspace</span>
+          <span>{activeWorkspace ? "Available personal workspace" : "Current workspace"}</span>
+          {hostedSession && <button className="text-button" onClick={()=>{setActiveWorkspace(null);setShowSwitcher(false);}}>Use Personal</button>}
         </div>
+        {hostedSession?.workspaces?.map(w=><button className="button secondary" key={w.organization_id+':'+w.workspace} aria-pressed={activeWorkspace===w.organization_id+':'+w.workspace} onClick={()=>{setActiveWorkspace(w.organization_id+':'+w.workspace);setShowSwitcher(false);setMessage(`Active workspace: ${w.name} · ${w.workspace}. Permissions are checked by the server.`);}}>{w.name} · {w.workspace}</button>)}
         <Notice>
-          {capabilityReasons.account} No business workspaces are authorized.
+          {hostedAccountConfigured
+            ? hostedSession
+              ? (hostedSession.workspaces?.length ? "Only server-authorized workspaces are shown. Business execution still depends on its connected services." : "No verified business workspace is available for this account.")
+              : "Sign in to load your authorized workspaces. Signing in does not grant business permissions."
+            : `${capabilityReasons.account} No business workspaces are authorized.`}
         </Notice>
         <a className="button secondary" href={appPath("/business")}>
           View business tools & requirements

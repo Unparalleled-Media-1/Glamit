@@ -1,0 +1,18 @@
+{
+  "observed_at": "2026-11-07T14:24:11.749348+00:00",
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "read_only": true,
+  "catalog": [
+    {
+      "tables": 41,
+      "indexes": 77,
+      "foreign_keys": 54,
+      "unvalidated_foreign_keys": 0,
+      "policies": 21,
+      "tables_without_rls": 0,
+      "revision": "0013_passwordless_accounts",
+      "controlled_auth_remaining": 0,
+      "controlled_profiles_remaining": 0
+    }
+  ]
+}

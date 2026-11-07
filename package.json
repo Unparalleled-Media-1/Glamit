@@ -26,13 +26,20 @@
     "test:golden": "node scripts/check-golden-visuals.cjs --verify-candidates",
     "test:connections": "node tests/client/connected-contracts.cjs",
     "record:golden": "node scripts/record-golden-evidence.cjs",
-    "test:approved-visuals": "node scripts/check-golden-visuals.cjs --compare-approved"
+    "test:approved-visuals": "node scripts/check-golden-visuals.cjs --compare-approved",
+    "test:hosted-account": "node tests/client/hosted-account.cjs",
+    "build:godaddy": "node scripts/build-godaddy-web.mjs",
+    "test:public-config": "node --test tests/client/public-config.test.mjs",
+    "test:godaddy": "node tests/client/godaddy-web.cjs",
+    "typecheck:godaddy": "tsc --noEmit -p deploy/godaddy/tsconfig.json",
+    "test:auth": "node tests/auth/contracts.cjs && node tests/auth/native-gate.cjs"
   },
   "devDependencies": {
     "@types/node": "24.10.0",
     "@types/react": "19.3.0",
     "esbuild": "0.28.2",
     "openapi-typescript": "7.13.0",
+    "react-test-renderer": "19.3.0",
     "typescript": "5.9.3"
   },
   "overrides": {
@@ -45,5 +52,9 @@
       "glob": "14.0.3",
       "minimatch": "11.0.4"
     }
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.119.0",
+    "libphonenumber-js": "1.13.15"
   }
 }

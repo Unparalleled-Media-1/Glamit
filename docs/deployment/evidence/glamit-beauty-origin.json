@@ -1,0 +1,32 @@
+{
+  "observed_at": "2026-11-07T12:44:41.022849+00:00",
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "production_origin": "https://www.glamit.beauty",
+  "hosting_reported_by_user": "GoDaddy",
+  "frontend_published": false,
+  "cors_setting_write_http_status": 201,
+  "allowed_origins": [
+    "https://www.glamit.beauty",
+    "https://unparalleled-media-1.github.io"
+  ],
+  "previous_auth_site_url": "http://localhost:3000",
+  "auth_site_url_write_http_status": 200,
+  "verified_auth_site_url": "https://www.glamit.beauty",
+  "preflight_checks": [
+    {
+      "origin": "https://www.glamit.beauty",
+      "http_status": 204,
+      "allow_origin": "https://www.glamit.beauty"
+    },
+    {
+      "origin": "https://unparalleled-media-1.github.io",
+      "http_status": 204,
+      "allow_origin": "https://unparalleled-media-1.github.io"
+    },
+    {
+      "origin": "https://untrusted.invalid",
+      "http_status": 403,
+      "allow_origin": null
+    }
+  ]
+}

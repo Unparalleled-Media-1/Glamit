@@ -21,6 +21,7 @@ await build({
     "process.env.NODE_ENV": '"production"',
     "process.env.NEXT_PUBLIC_GLAM_BASE_PATH": JSON.stringify(base + "/app"),
     "process.env.NEXT_PUBLIC_GLAM_STATIC_PREVIEW": '"true"',
+    "process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY": '""',
     "process.env.PREVIEW_SITE_BASE": JSON.stringify(base),
   },
   loader: { ".woff2": "file", ".webp": "file" },
