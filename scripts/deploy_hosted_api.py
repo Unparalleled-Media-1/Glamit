@@ -1,4 +1,4 @@
-"""Apply only the verified 0010 -> 0011 incremental release on original production main."""
+"""Apply verified incremental hosted API releases only to the original production project."""
 
 import argparse
 import hashlib
@@ -9,6 +9,19 @@ from pathlib import Path
 
 import httpx
 from deploy_application_foundation import PROJECT, validate_backup, validate_branch
+
+
+def validate_original_target(branches, metadata):
+    if branches:
+        validate_branch(branches, PROJECT, production_approved=True)
+    elif not (
+        metadata.get("id") == PROJECT
+        and metadata.get("status") == "ACTIVE_HEALTHY"
+        and metadata.get("database", {}).get("host") == f"db.{PROJECT}.supabase.co"
+    ):
+        raise RuntimeError("original_production_project_required")
+    # An empty branch inventory is expected after disabling unauthorized preview automation.
+    # Never enable branching or create another project to satisfy a deployment guard.
 
 
 def deploy(apply=False, release="0011"):
@@ -49,7 +62,7 @@ def deploy(apply=False, release="0011"):
         def query(sql):
             return request("POST", "/database/query", json={"query": sql, "read_only": False})
 
-        validate_branch(request("GET", "/branches"), PROJECT, production_approved=True)
+        validate_original_target(request("GET", "/branches"), request("GET", ""))
         report["recovery_point"] = validate_backup(request("GET", "/database/backups")["backups"])
         before = query("SELECT version_num FROM public.alembic_version ORDER BY version_num")
         report["previous_revisions"] = before

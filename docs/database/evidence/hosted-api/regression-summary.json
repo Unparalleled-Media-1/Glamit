@@ -33,5 +33,8 @@
   "offline_interactive_preview_build": "PASSED",
   "native_device_verification": "NOT_PERFORMED",
   "financial_provider_mutations": 0,
-  "full_product_acceptance": "INCOMPLETE"
+  "full_product_acceptance": "INCOMPLETE",
+  "preview_disabled_target_guard_tests": {
+    "passed": 5
+  }
 }

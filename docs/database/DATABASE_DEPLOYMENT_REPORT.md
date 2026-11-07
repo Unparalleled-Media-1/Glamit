@@ -2,7 +2,7 @@
 
 Observed 7 November 2026. **Hosted core verified; full operational acceptance remains incomplete.**
 
-Only project `bkkmsbxrxkqaveymcrgi`, default branch `main` (PRODUCTION), was used. No development branch was restored or created. The canonical Alembic application branch is now `0012_hosted_routines`: application revisions 0001–0008, 0010, 0011 and 0012 (11 total). Sandbox0009 is excluded from production. The database and the GitHub branch are different release surfaces; production DDL execution does not mean a Git PR was merged.
+All application migrations and Edge deployments targeted project `bkkmsbxrxkqaveymcrgi`, production `main`. No development branch was requested. Opening PR22 triggered the existing Supabase GitHub integration to auto-create one empty, nonpersistent preview. That newly generated preview was removed after discovery, automatic preview branching was disabled, and the original production database was verified intact. The final branch inventory is empty because preview branching is disabled; the original project identity, production database host and application revision remain verified. See [remediation evidence](evidence/hosted-api/automatic-preview-remediation.json). The canonical Alembic application branch is now `0012_hosted_routines`: application revisions 0001–0008, 0010, 0011 and 0012 (11 total). Sandbox0009 is excluded from production. The database and the GitHub branch are different release surfaces; production DDL execution does not mean a Git PR was merged.
 
 ## This deployment stage
 
@@ -19,7 +19,7 @@ Only project `bkkmsbxrxkqaveymcrgi`, default branch `main` (PRODUCTION), was use
 
 29/29 live HTTP checks passed using two explicitly designated temporary Auth users: real password login, identity/profile persistence, preferences, Style Passport correction/version conflicts, organization idempotency, tenant isolation, privilege override refusal, unsupported-operation refusal, routine CRUD/deletion/stale writes and no replay of deleted routine contents. Both Auth users and their test organization were removed. Actual post-cleanup SQL counts: Auth users 0, profiles 0, organizations 0, private routines 0. Minimal internal test identity references and immutable audit events were retained; no merchant listings, images, customer orders or financial records were created.
 
-222 Python tests passed on a fresh local PostgreSQL database; 6 Edge security tests passed. Independent replay of each exact incremental SQL artifact passed on a separate fresh local database. Web/mobile TypeScript checks, web production build, 13 shared client tests and the account UI browser regression passed. Browser doubles are identified as UI regression evidence; only the separate live report is evidence of real provider/database operations. No native iOS/Android device evidence is claimed.
+222 Python tests passed on a fresh local PostgreSQL database; 6 Edge security tests passed. Independent replay of each exact incremental SQL artifact passed on a separate fresh local database. Web/mobile TypeScript checks, web production build, 13 shared client tests, 13 web application browser regression groups, the account UI browser regression and 5 preview-disabled production-target guard tests passed. Browser doubles are identified as UI regression evidence; only the separate live report is evidence of real provider/database operations. No native iOS/Android device evidence is claimed.
 
 ## Credentials and external services
 
