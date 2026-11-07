@@ -1,0 +1,285 @@
+[
+  {
+    "id": "W01",
+    "domain": "Consumer",
+    "name": "Guest exploration and local navigation",
+    "status": "BLOCKED",
+    "scope": "Local web UI; no live inventory claimed",
+    "evidence": "clickthrough.json",
+    "prior_or_local_status": "PASSED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped."
+  },
+  {
+    "id": "W02",
+    "domain": "Authentication",
+    "name": "SMS registration, login, delivery and throttling",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W03",
+    "domain": "Authentication",
+    "name": "Google, Apple, Facebook and secure linking",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W04",
+    "domain": "Mobile",
+    "name": "iOS and Android biometric reauthentication",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "regression-checks.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W05",
+    "domain": "Account",
+    "name": "Profile and approved preferences save/read",
+    "status": "BLOCKED",
+    "scope": "Real controlled Supabase Auth session and scoped persistent records",
+    "evidence": "live-core-regression.json",
+    "prior_or_local_status": "PASSED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped."
+  },
+  {
+    "id": "W06",
+    "domain": "Account",
+    "name": "Account deletion and lost-all-methods recovery",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "../../authentication/PASSWORDLESS_AUTH_REPORT.md",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W07",
+    "domain": "AI",
+    "name": "Authorized face analysis operation and personal result",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "live-core-regression.json",
+    "prior_or_local_status": "FAILED"
+  },
+  {
+    "id": "W08",
+    "domain": "AI",
+    "name": "Hair/grooming analysis and recommendations",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W09",
+    "domain": "AI",
+    "name": "Skin appearance analysis without diagnosis",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W10",
+    "domain": "AI",
+    "name": "Personal color/undertone and real product matching",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W11",
+    "domain": "AI",
+    "name": "AI Studio transformation, compare, save and reopen",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W12",
+    "domain": "AI",
+    "name": "AI Advisor conversation, memory and history",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W13",
+    "domain": "AI",
+    "name": "Personal Stylist, complete outfit and virtual preview",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "regression-checks.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W14",
+    "domain": "AI",
+    "name": "Event invitation extraction, styling and shopping",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "regression-checks.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W15",
+    "domain": "AI",
+    "name": "Destination weather, outfits and packing recommendations",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W16",
+    "domain": "AI",
+    "name": "Digital Wardrobe durable uploads and outfits",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W17",
+    "domain": "Marketplace",
+    "name": "Real search, variants, inventory and eligible offers",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "regression-checks.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W18",
+    "domain": "Marketplace",
+    "name": "Local/destination discovery and shipping feasibility",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W19",
+    "domain": "Merchant",
+    "name": "Merchant onboarding, Snap & List, publish and orders",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "workspace-layouts.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W20",
+    "domain": "Payments",
+    "name": "Multi-merchant checkout and 10% reconciliation",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W21",
+    "domain": "Orders",
+    "name": "Order fulfillment, tracking, refund and ledger reversal",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W22",
+    "domain": "Bookings",
+    "name": "Professional availability, booking conflict and changes",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "workspace-layouts.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W23",
+    "domain": "Creator",
+    "name": "Creator storefront, shoppable looks and attribution",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "workspace-layouts.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W24",
+    "domain": "Advertising",
+    "name": "Campaign targeting, budgets and reporting",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "workspace-layouts.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W25",
+    "domain": "Administration",
+    "name": "Real admin approvals, moderation and finance controls",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "workspace-layouts.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W26",
+    "domain": "Notifications",
+    "name": "OTP, order, booking, email and push delivery",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W27",
+    "domain": "Account",
+    "name": "Private saved routine create/read/update/delete",
+    "status": "BLOCKED",
+    "scope": "Real scoped Supabase records, optimistic revisions, idempotency and cleanup",
+    "evidence": "live-core-regression.json",
+    "prior_or_local_status": "PASSED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped."
+  },
+  {
+    "id": "W28",
+    "domain": "Workspaces",
+    "name": "Authorized multi-role business switching and actions",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "workspace-layouts.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W29",
+    "domain": "Security",
+    "name": "Consumer/tenant isolation and revoked-session denial",
+    "status": "BLOCKED",
+    "scope": "Controlled real Auth users plus local access-control regressions; not every future role permission",
+    "evidence": "live-session-regression.json",
+    "prior_or_local_status": "PASSED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped."
+  },
+  {
+    "id": "W30",
+    "domain": "UX",
+    "name": "Responsive accessibility including real native and screen readers",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "clickthrough.json",
+    "prior_or_local_status": "BLOCKED"
+  },
+  {
+    "id": "W31",
+    "domain": "Deployment",
+    "name": "Public HTTPS, monitoring, rollback and pilot UAT",
+    "status": "BLOCKED",
+    "reason": "Required deployed release-candidate journey not executed; Railway access unavailable. Prior/local evidence remains separately scoped.",
+    "evidence": "remote-readiness.json",
+    "prior_or_local_status": "BLOCKED"
+  }
+]

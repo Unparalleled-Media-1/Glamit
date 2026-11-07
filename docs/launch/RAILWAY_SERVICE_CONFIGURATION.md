@@ -1,0 +1,11 @@
+# Existing service configuration and repair boundaries
+
+07 November 2026 21:42 SAST. **NO-GO — no public launch or service mutation.** Machine evidence uses UTC timestamps.
+
+Railway project `elegant-dedication` (`3f490939-cffd-4468-8c25-d90146f1b308`), production environment `93eeefda-99b8-462b-9041-421f9f5903ca`, existing service `glamit-web` (`d2a011b7-929e-4302-809a-27ca7345621a`), reported URL `https://glamit-web-production.up.railway.app`. These service details were supplied by the user, not independently verified through Railway API. Actual deployed commit **unknown**.
+
+GitHub default **`feat/platform-foundations`**, SHA `d846b94c2fe6f0b4394be2b74c27734cde4533bf`. No `main` branch exists. PR21–26 are merged. 52 local/remote refs and 9 open PRs inventoried. The reported Railway source matches the actual default; a branch-name mismatch is not established. No force push, branch deletion, repository disconnect or source switch occurred.
+
+Actual root directory, builder, commands, runtime, source, Wait for CI, auto-deploy and restart settings remain **unverified**. The prior tested candidates under `deploy/railway` are not applied configuration or proof a second service is needed. `apps/web` is Next.js/React; `apps/mobile` is React Native/Expo; `services/api` is FastAPI. Existing clients use Supabase Edge/RPC and cannot be blindly switched to the incomplete FastAPI route set. Canonical migrations remain `db/migrations`, one original Supabase project only.
+
+Inspect first. Create no additional service/project, recreate no Supabase dev branch, and do not switch domains or deploy publicly before verified impact and final approval. Required access: the existing project's environment-scoped `RAILWAY_TOKEN` in **this Codex environment's secure settings**, plus applied access for `backboard.railway.app`, `backboard.railway.com` and `glamit-web-production.up.railway.app`. Remove the unused unbound `RAILWAY_API_TOKEN` requirement; never configure both. The saved draft now includes the correct token entry but requires review/save/publication to load here. No token value belongs in chat or Git. Inspect deployment/source/build/runtime logs and Railway GitHub App permissions before changing settings; preserve the working service and previous release.

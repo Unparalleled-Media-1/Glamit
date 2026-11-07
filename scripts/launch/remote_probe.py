@@ -10,7 +10,7 @@ from pathlib import Path
 import httpx
 
 PROJECT = "bkkmsbxrxkqaveymcrgi"
-OUT = Path("docs/launch/evidence")
+OUT = Path(os.environ.get("GLAM_LAUNCH_EVIDENCE", "docs/launch/evidence"))
 
 
 def main():
@@ -21,6 +21,9 @@ def main():
     }
     names = [
         "OPENAI_API_KEY",
+        "GLAM_OPENAI_API_KEY",
+        "RAILWAY_TOKEN",
+        "RAILWAY_API_TOKEN",
         "REPLICATE_API_TOKEN",
         "FASHN_API_KEY",
         "GOOGLE_MAPS_API_KEY",

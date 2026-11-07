@@ -1,0 +1,25 @@
+{
+  "scope": "Read-only configuration metadata; not proof of Railway connectivity",
+  "production_modified": false,
+  "cors": [
+    {
+      "origin": "https://www.glam.beauty",
+      "status": 403,
+      "allow_origin": null
+    },
+    {
+      "origin": "https://www.glamit.beauty",
+      "status": 204,
+      "allow_origin": "https://www.glamit.beauty"
+    }
+  ],
+  "runtime_database_url": {
+    "parseable": true,
+    "original_project_host": true,
+    "administrative_username": true
+  },
+  "railway_credentials": {
+    "RAILWAY_TOKEN": false,
+    "RAILWAY_API_TOKEN": false
+  }
+}

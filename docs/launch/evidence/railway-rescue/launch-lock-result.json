@@ -1,0 +1,23 @@
+{
+  "decision": "NO-GO",
+  "errors": [
+    "G1 is not passed",
+    "G3 is not passed",
+    "G4 is not passed",
+    "G5 is not passed",
+    "G6 is not passed",
+    "G7 is not passed",
+    "G8 is not passed",
+    "G9 is not passed",
+    "G10 is not passed",
+    "G11 is not passed",
+    "G12 is not passed",
+    "Critical journeys incomplete",
+    "Open critical defects",
+    "Actual test-mode financial evidence missing",
+    "Native hardware verification missing",
+    "Explicit final launch approval missing",
+    "Railway deployed release, health, critical journey or rollback evidence missing or invalid"
+  ],
+  "deployed": false
+}

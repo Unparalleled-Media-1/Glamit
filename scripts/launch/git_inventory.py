@@ -1,6 +1,7 @@
 """Read-only Git/GitHub branch consolidation evidence. Never merges or publishes."""
 
 import json
+import os
 import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
@@ -80,7 +81,9 @@ def main():
         "remote_refs_fetched": True,
         "mutations": "none; no merge or deletion",
     }
-    Path("docs/launch/evidence/git-inventory.json").write_text(json.dumps(value, indent=2) + "\n")
+    (
+        Path(os.environ.get("GLAM_LAUNCH_EVIDENCE", "docs/launch/evidence")) / "git-inventory.json"
+    ).write_text(json.dumps(value, indent=2) + "\n")
     print(
         json.dumps(
             {

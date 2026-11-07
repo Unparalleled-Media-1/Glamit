@@ -1,3 +1,7 @@
+## 7 November — Railway rescue and feature freeze
+
+No new features. Actual default `feat/platform-foundations` now includes PR26 at `d846b94`; no literal `main` exists. Actual deployed service SHA/logs remain unknown. The user clarified the token was added in Railway service settings, not the Codex execution environment; current agent credential/network access remains absent. Local crawl:117 visits,3048 control occurrences,99 role/module layouts; deployed:0 reached routes,39 blocked. The twelve-gate release lock now requires fresh deployed Railway/health/rollback/critical-journey evidence. 260 PostgreSQL and8 lock tests pass locally; no live business/provider/financial/native success inferred. [Current NO-GO and evidence](launch/PUBLIC_LAUNCH_GO_NO_GO.md).
+
 ## 7 November — existing Railway investigation / independent build candidate
 
 GitHub default is `feat/platform-foundations`; no branch named `main` exists. PR24/25 are now merged at `2eff5df`; the reported Railway source matches that default. Actual Railway source/logs/deployed SHA remain unverified: project token and applied network access are absent. Preserve existing project/service; no additional services, public redeployment or domain switch authorized until the release candidate is approved. Independent Docker/CI/EAS preparation passes 260 backend tests, local image health/CORS/SSR smoke checks, TypeScript and iOS/Android JS exports; signed builds/live cross-device testing remain blocked. See [deployment investigation and gates](deployment/independent/REPORT.md).
