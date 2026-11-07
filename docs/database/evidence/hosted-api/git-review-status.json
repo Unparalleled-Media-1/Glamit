@@ -1,0 +1,11 @@
+{
+  "snapshot": "2026-11-07",
+  "implementation_commit": "3dca3cd480d34f872a00842425d5f15692b532f9",
+  "pull_request": "https://github.com/Unparalleled-Media-1/Glamit/pull/22",
+  "base": "feat/platform-foundations",
+  "state": "OPEN",
+  "approving_reviews": 0,
+  "merge_performed": false,
+  "ci_status_at_snapshot": "RUNNING",
+  "instruction": "Normal CI and required approving reviews remain required. No bypass."
+}

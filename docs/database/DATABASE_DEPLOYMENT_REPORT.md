@@ -55,7 +55,7 @@ These gaps include implementation work as well as missing credentials. The compl
 
 ## Source, deployment and Git review
 
-Branch `feat/operational-supabase-backend`; target main is `feat/platform-foundations`. Source includes existing foundation work from PR21, which remained open without an approving review at the last check. The hosted changes are prepared as a normal reviewable PR; no force push, review bypass, production data reset or live-payment activation is authorized. See the Git status evidence alongside this report for the current PR/commit/check state. The earlier deployment report is preserved in [history](history/PRE_HOSTED_API_DEPLOYMENT_REPORT.md).
+Branch `feat/operational-supabase-backend`; target main is `feat/platform-foundations`. Source includes existing foundation work from PR21, which remained open without an approving review at the last check. The hosted changes are pushed in [PR22](https://github.com/Unparalleled-Media-1/Glamit/pull/22), implementation commit `3dca3cd480d34f872a00842425d5f15692b532f9`; CI was running and no approving review was present at the recorded snapshot; no force push, review bypass, production data reset or live-payment activation is authorized. See the Git status evidence alongside this report for the current PR/commit/check state. The earlier deployment report is preserved in [history](history/PRE_HOSTED_API_DEPLOYMENT_REPORT.md).
 
 ## Actual production table inventory
 
