@@ -1,5 +1,7 @@
 "use client";
 
+import PhotoCapture from "./PhotoCapture";
+import { supportedPhoto } from "../lib/photo-file";
 import { appPath, sectionFromPath, capabilitiesPath } from "../lib/paths";
 import { useEffect, useReducer, useRef, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
@@ -302,27 +304,27 @@ export default function GlamApp({
     setPhotoBusy(false);
     if (inputRef.current) inputRef.current.value = "";
   }
-  async function choosePhoto(e: ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  async function preparePhoto(file: File) {
     const ticket = ++selection.current;
     setError("");
     if (!consent) {
       setError("Choose local-preview permission first.");
-      e.target.value = "";
       return;
     }
-    if (
-      !["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
-      file.size > 10485760
-    ) {
+    if (file.size > 10485760) {
       setError("Choose a JPEG, PNG or WebP image smaller than 10 MB.");
-      e.target.value = "";
       return;
     }
     setPhotoBusy(true);
-    const uri = URL.createObjectURL(file);
+    let uri: string | null = null;
     try {
+      const supported = await supportedPhoto(file);
+      if (ticket !== selection.current) return;
+      if (!supported) {
+        setError("Choose a JPEG, PNG or WebP image. HEIC files must be exported as JPEG first.");
+        return;
+      }
+      uri = URL.createObjectURL(file);
       const img = new Image();
       img.src = uri;
       await img.decode();
@@ -341,7 +343,6 @@ export default function GlamApp({
       if (issue) {
         URL.revokeObjectURL(uri);
         setError(issue);
-        e.target.value = "";
         return;
       }
       if (photoRef.current) URL.revokeObjectURL(photoRef.current.uri);
@@ -349,12 +350,17 @@ export default function GlamApp({
       setPhoto(candidate);
       go("quality");
     } catch {
-      URL.revokeObjectURL(uri);
+      if (uri) URL.revokeObjectURL(uri);
       if (ticket === selection.current)
         setError("This image could not be opened. Try another image.");
     } finally {
       if (ticket === selection.current) setPhotoBusy(false);
     }
+  }
+  async function choosePhoto(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (file) await preparePhoto(file);
   }
   async function checkAnalysis() {
     if (checking) return;
@@ -537,20 +543,13 @@ export default function GlamApp({
                 I have permission to use this image and want a device-only
                 preview.
               </label>
-              <label
-                className={`button ${!consent || photoBusy ? "disabled" : ""}`}
-              >
-                Choose a photo
-                <input
-                  ref={inputRef}
-                  data-testid="photo-input"
-                  className="visually-hidden"
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp"
-                  disabled={!consent || photoBusy}
-                  onChange={choosePhoto}
-                />
-              </label>
+              <p id="photo-consent-help" className="fine">{consent ? "Choose a file or open your camera for a private preview." : "Tick the permission checkbox above to choose or take a photo."}</p>
+              <div className="actions">
+                <button type="button" className="button" disabled={!consent || photoBusy} onClick={() => inputRef.current?.click()} aria-describedby="photo-consent-help">Choose a photo</button>
+                <PhotoCapture allowed={consent && !photoBusy} onPhoto={file => void preparePhoto(file)} />
+              </div>
+              <input ref={inputRef} data-testid="photo-input" aria-label="Choose a photo file" className="visually-hidden" type="file" accept="image/jpeg,image/png,image/webp" disabled={!consent || photoBusy} onChange={choosePhoto} />
+              {error && <p className="error" role="alert">{error}</p>}
               <p className="fine">
                 JPEG, PNG or WebP · under 10 MB · at least 480 × 480 pixels
               </p>
@@ -1299,7 +1298,7 @@ export default function GlamApp({
         tabIndex={-1}
         className="consumer-main"
       >
-        {error && (
+        {error && page !== "consent" && (
           <div className="error" role="alert">
             {error}
           </div>

@@ -43,7 +43,8 @@
     "test:launch-gates": "node --test tests/launch/release-gates.test.cjs",
     "test:auth-branding": "node tests/auth-branding/visual.cjs",
     "test:creator": "node tests/creator/visual.cjs",
-    "test:deployment-config": "node --test tests/client/ci-targets.test.mjs && node tests/client/mobile-build-config.cjs"
+    "test:deployment-config": "node --test tests/client/ci-targets.test.mjs && node tests/client/mobile-build-config.cjs",
+    "test:photo": "node tests/photo/next.cjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",

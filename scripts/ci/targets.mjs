@@ -7,7 +7,7 @@ export function targets(paths) {
   const pipeline = hit(/^\.github\/workflows\/ci\.yml$|^scripts\/ci\//);
   const js = hit(/^(package(-lock)?\.json|\.node-version|\.npmrc)$|^packages\//);
   return {
-    web: pipeline || js || hit(/^(apps\/web\/|deploy\/godaddy\/|deploy\/railway\/web|scripts\/(smoke_deployment_images|build-|public-supabase|check-browser|generate-consumer)|tests\/(client|auth|auth-branding|creator|launch)\/|\.dockerignore$)/),
+    web: pipeline || js || hit(/^(apps\/web\/|deploy\/godaddy\/|deploy\/railway\/web|scripts\/(smoke_deployment_images|build-|public-supabase|check-browser|generate-consumer)|tests\/(client|auth|auth-branding|creator|launch|photo)\/|\.dockerignore$)/),
     mobile: pipeline || js || hit(/^(apps\/mobile\/|tests\/auth\/|tests\/client\/(product\.test|mobile-build-config)\.cjs$|scripts\/check-browser-auth-config\.mjs$|scripts\/public-supabase-config\.mjs$)/),
     backend: pipeline || hit(/^(services\/api\/|db\/|pyproject\.toml$|uv.lock$|alembic.ini$|tests\/[^/]+\.py$|tests\/fixtures\/|scripts\/(start-api|smoke_deployment_images|export_contracts|deploy_|export_application)|deploy\/railway\/api|\.dockerignore$|packages\/contracts\/)/),
     edge: pipeline || hit(/^(supabase\/functions\/|tests\/edge\/)/),
