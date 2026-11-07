@@ -396,7 +396,9 @@ export default function GlamApp({
       },
     });
     setMessage(
-      "Routine saved for this session. Account sync is not connected.",
+      hostedAccountConfigured
+        ? "Routine saved for this session. To save an account routine, sign in from Profile."
+        : "Routine saved for this session. Account sync is not connected.",
     );
   }
   const btn = (label: string, next: Page, secondary = false) => (
@@ -899,6 +901,7 @@ export default function GlamApp({
             )}
             <StylingJourney
               page="profile"
+              accountAvailable={hostedAccountConfigured}
               data={journey}
               setData={setJourney}
               go={go}
@@ -1028,7 +1031,14 @@ export default function GlamApp({
                   Session routines<span>{state.routines.length}</span>
                 </li>
                 <li>
-                  Account sync<span>Not connected</span>
+                  {hostedAccountConfigured
+                    ? "Account details & routines"
+                    : "Account sync"}
+                  <span>
+                    {hostedAccountConfigured
+                      ? (hostedSession ? "Signed in" : "Sign in required")
+                      : "Not connected"}
+                  </span>
                 </li>
               </ul>
               <button
@@ -1280,7 +1290,9 @@ export default function GlamApp({
       </header>
       <div className="connection-bar">
         <span className="status-dot" />
-        Interactive preview · AI, account & commerce connections pending
+        {hostedAccountConfigured
+          ? `${hostedSession ? "Signed in" : "Sign-in available"} · AI and shopping connections pending`
+          : "Interactive preview · AI, account & commerce connections pending"}
       </div>
       {!online && (
         <Notice>
@@ -1414,7 +1426,9 @@ export default function GlamApp({
           <span>Current workspace</span>
         </div>
         <Notice>
-          {capabilityReasons.account} No business workspaces are authorized.
+          {hostedAccountConfigured
+            ? "Business workspace switching is awaiting verification and connection. Signing in does not grant business permissions."
+            : `${capabilityReasons.account} No business workspaces are authorized.`}
         </Notice>
         <a className="button secondary" href={appPath("/business")}>
           View business tools & requirements

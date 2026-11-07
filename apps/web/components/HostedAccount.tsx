@@ -219,7 +219,7 @@ export default function HostedAccount({ session, setSession }: {
       <h2>Personal account</h2>
       {profile
         ? (
-          <form onSubmit={save}>
+          <form method="post" onSubmit={save}>
             <label htmlFor="account-name">Display name</label>
             <input
               id="account-name"
@@ -241,7 +241,7 @@ export default function HostedAccount({ session, setSession }: {
           </form>
         )
         : (
-          <form onSubmit={signIn}>
+          <form method="post" onSubmit={signIn}>
             <p>Sign in with your existing GLAM account.</p>
             <label htmlFor="account-email">Email</label>
             <input

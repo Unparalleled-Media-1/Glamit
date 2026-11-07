@@ -1,0 +1,15 @@
+{
+  "hosting_confirmed": "GoDaddy cPanel / Web Hosting",
+  "canonical_origin": "https://www.glamit.beauty",
+  "public_key_type_guard": "PASSED",
+  "privileged_credential_scan": "PASSED",
+  "static_entry_typecheck": "PASSED",
+  "browser_route_checks": 6,
+  "mobile_fixed_navigation_clearance": "PASSED",
+  "account_form_regression": "PASSED",
+  "unexpected_browser_external_requests": 0,
+  "public_site_inspected": false,
+  "website_files_modified": false,
+  "dns_modified": false,
+  "publication_status": "PENDING_CPANEL_ACCESS"
+}

@@ -76,6 +76,10 @@ const assert = require("node:assert/strict");
       },
     );
     await page.goto("http://127.0.0.1:" + server.address().port);
+    assert.equal(
+      await page.locator("form").first().getAttribute("method"),
+      "post",
+    );
     await page.getByLabel("Email", { exact: true }).fill("fixture@example.com");
     await page.getByLabel("Password", { exact: true }).fill(
       "fixture-only-password",
