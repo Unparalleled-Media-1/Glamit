@@ -67,4 +67,4 @@ jobs:
           enablement: true
       - name: Publish the disconnected interactive preview
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
