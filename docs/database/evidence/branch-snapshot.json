@@ -1,0 +1,219 @@
+{
+  "observed_at": "2026-11-06T09:25:18.447556+00:00",
+  "main_branch": "feat/platform-foundations",
+  "main_sha": "d03f6d45a8ffb99a26fd1a5a7df6c51689185ffb",
+  "implementation_branch": "feat/supabase-database-foundation",
+  "source_base_sha": "9b9286194cd40c7e0405481d1a46da1e61e54c6a",
+  "refs": [
+    {
+      "ref": "refs/heads/audit/pre-supabase-g0",
+      "sha": "b1621de4c62489f007eb0f83c8efccbc633bd9a9",
+      "behind_main": 0,
+      "ahead_main": 19
+    },
+    {
+      "ref": "refs/heads/chore/consolidate-foundations-secrets",
+      "sha": "9b9286194cd40c7e0405481d1a46da1e61e54c6a",
+      "behind_main": 0,
+      "ahead_main": 22
+    },
+    {
+      "ref": "refs/heads/design/editorial-ui-ux-brief",
+      "sha": "80d21a7df361ff9c5331df6ff3da46cc53fde3f9",
+      "behind_main": 0,
+      "ahead_main": 5
+    },
+    {
+      "ref": "refs/heads/docs/global-master-prd-v2",
+      "sha": "f48f3e0659ed53852bf9e5c4ed1b70ac414425cb",
+      "behind_main": 0,
+      "ahead_main": 4
+    },
+    {
+      "ref": "refs/heads/docs/master-specification-and-design-blueprint",
+      "sha": "d700a0d820926c88f63cc2c911b2efebeec346e7",
+      "behind_main": 0,
+      "ahead_main": 3
+    },
+    {
+      "ref": "refs/heads/docs/mobile-first-product-surfaces",
+      "sha": "51207db59e1ab5df6e2368e4ec9a0416e9c54a09",
+      "behind_main": 0,
+      "ahead_main": 2
+    },
+    {
+      "ref": "refs/heads/feat/analysis-first-platform",
+      "sha": "30804917b62f4a80ea3c400e7cb4535ddcc28258",
+      "behind_main": 0,
+      "ahead_main": 6
+    },
+    {
+      "ref": "refs/heads/feat/contextual-catalog-snap-list",
+      "sha": "5c65ec350810ff63269143cb08090212d2646b37",
+      "behind_main": 0,
+      "ahead_main": 7
+    },
+    {
+      "ref": "refs/heads/feat/goal-led-styling-experience",
+      "sha": "c323190c143d37e1416c29aab3f5a7f0b186dbba",
+      "behind_main": 0,
+      "ahead_main": 8
+    },
+    {
+      "ref": "refs/heads/feat/golden-screen-recovery",
+      "sha": "240de1acf676963276fd19599289bd3c2f74fb33",
+      "behind_main": 0,
+      "ahead_main": 13
+    },
+    {
+      "ref": "refs/heads/feat/interactive-preview",
+      "sha": "4fc0b3ad7a9bcd2e9d554d63d0f85ba2892cda0e",
+      "behind_main": 0,
+      "ahead_main": 12
+    },
+    {
+      "ref": "refs/heads/feat/personalized-results-journey",
+      "sha": "b97f1d6db1ad96b78d62e451c88a7bffbd212da4",
+      "behind_main": 0,
+      "ahead_main": 16
+    },
+    {
+      "ref": "refs/heads/feat/stripe-connect-test",
+      "sha": "1060e34263f0a980ba8ef66a8c148077a4a1355e",
+      "behind_main": 0,
+      "ahead_main": 18
+    },
+    {
+      "ref": "refs/heads/feat/supabase-database-foundation",
+      "sha": "9b9286194cd40c7e0405481d1a46da1e61e54c6a",
+      "behind_main": 0,
+      "ahead_main": 22
+    },
+    {
+      "ref": "refs/heads/feat/visual-beauty-experience",
+      "sha": "79c4afa530a30e6d0343847b043c8aa4a0ef8ea8",
+      "behind_main": 0,
+      "ahead_main": 9
+    },
+    {
+      "ref": "refs/heads/fix/reproducible-client-toolchain",
+      "sha": "e5bddf5683db571b9d0d2b4e0dbc9e87678063ca",
+      "behind_main": 0,
+      "ahead_main": 1
+    },
+    {
+      "ref": "refs/heads/gh-pages",
+      "sha": "fe0c513319ecddbda650f3de9bdcc189135b73b4",
+      "behind_main": 24,
+      "ahead_main": 1
+    },
+    {
+      "ref": "refs/heads/work",
+      "sha": "d03f6d45a8ffb99a26fd1a5a7df6c51689185ffb",
+      "behind_main": 0,
+      "ahead_main": 0
+    },
+    {
+      "ref": "refs/remotes/origin/audit/pre-supabase-g0",
+      "sha": "b1621de4c62489f007eb0f83c8efccbc633bd9a9",
+      "behind_main": 0,
+      "ahead_main": 19
+    },
+    {
+      "ref": "refs/remotes/origin/chore/consolidate-foundations-secrets",
+      "sha": "9b9286194cd40c7e0405481d1a46da1e61e54c6a",
+      "behind_main": 0,
+      "ahead_main": 22
+    },
+    {
+      "ref": "refs/remotes/origin/design/editorial-ui-ux-brief",
+      "sha": "80d21a7df361ff9c5331df6ff3da46cc53fde3f9",
+      "behind_main": 0,
+      "ahead_main": 5
+    },
+    {
+      "ref": "refs/remotes/origin/docs/global-master-prd-v2",
+      "sha": "f48f3e0659ed53852bf9e5c4ed1b70ac414425cb",
+      "behind_main": 0,
+      "ahead_main": 4
+    },
+    {
+      "ref": "refs/remotes/origin/docs/master-specification-and-design-blueprint",
+      "sha": "d700a0d820926c88f63cc2c911b2efebeec346e7",
+      "behind_main": 0,
+      "ahead_main": 3
+    },
+    {
+      "ref": "refs/remotes/origin/docs/mobile-first-product-surfaces",
+      "sha": "51207db59e1ab5df6e2368e4ec9a0416e9c54a09",
+      "behind_main": 0,
+      "ahead_main": 2
+    },
+    {
+      "ref": "refs/remotes/origin/feat/analysis-first-platform",
+      "sha": "30804917b62f4a80ea3c400e7cb4535ddcc28258",
+      "behind_main": 0,
+      "ahead_main": 6
+    },
+    {
+      "ref": "refs/remotes/origin/feat/contextual-catalog-snap-list",
+      "sha": "5c65ec350810ff63269143cb08090212d2646b37",
+      "behind_main": 0,
+      "ahead_main": 7
+    },
+    {
+      "ref": "refs/remotes/origin/feat/goal-led-styling-experience",
+      "sha": "c323190c143d37e1416c29aab3f5a7f0b186dbba",
+      "behind_main": 0,
+      "ahead_main": 8
+    },
+    {
+      "ref": "refs/remotes/origin/feat/golden-screen-recovery",
+      "sha": "240de1acf676963276fd19599289bd3c2f74fb33",
+      "behind_main": 0,
+      "ahead_main": 13
+    },
+    {
+      "ref": "refs/remotes/origin/feat/interactive-preview",
+      "sha": "4fc0b3ad7a9bcd2e9d554d63d0f85ba2892cda0e",
+      "behind_main": 0,
+      "ahead_main": 12
+    },
+    {
+      "ref": "refs/remotes/origin/feat/personalized-results-journey",
+      "sha": "b97f1d6db1ad96b78d62e451c88a7bffbd212da4",
+      "behind_main": 0,
+      "ahead_main": 16
+    },
+    {
+      "ref": "refs/remotes/origin/feat/platform-foundations",
+      "sha": "d03f6d45a8ffb99a26fd1a5a7df6c51689185ffb",
+      "behind_main": 0,
+      "ahead_main": 0
+    },
+    {
+      "ref": "refs/remotes/origin/feat/stripe-connect-test",
+      "sha": "1060e34263f0a980ba8ef66a8c148077a4a1355e",
+      "behind_main": 0,
+      "ahead_main": 18
+    },
+    {
+      "ref": "refs/remotes/origin/feat/visual-beauty-experience",
+      "sha": "79c4afa530a30e6d0343847b043c8aa4a0ef8ea8",
+      "behind_main": 0,
+      "ahead_main": 9
+    },
+    {
+      "ref": "refs/remotes/origin/fix/reproducible-client-toolchain",
+      "sha": "e5bddf5683db571b9d0d2b4e0dbc9e87678063ca",
+      "behind_main": 0,
+      "ahead_main": 1
+    },
+    {
+      "ref": "refs/remotes/origin/gh-pages",
+      "sha": "fe0c513319ecddbda650f3de9bdcc189135b73b4",
+      "behind_main": 24,
+      "ahead_main": 1
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "domain": "Identity / authorization",
+    "existing": "app_user; organization; organization_member; account_eligibility; workspace_role; workspace_capability; workspace_invitation; staff_grant; policy_document; consent_event; audit_event",
+    "proposed": "User preferences/profile; privacy preferences; verification; deletion requests",
+    "invariants": "Reuse issuer+subject mapping to Supabase Auth; no password table, no assumption app_user.id=auth.uid(). Membership/role changes server-only."
+  },
+  {
+    "domain": "Style Passport / AI",
+    "existing": "look; look_revision; personal_routine; saved_requirement",
+    "proposed": "style_passport; analysis_session; finding_revision; recommendation; size_profile; conversation; message; ai_model; ai_job",
+    "invariants": "Owner FK; purpose/consent version, uncertainty, model provenance, user corrections, retention expiry. Explicit user-declared sensitive preferences only."
+  },
+  {
+    "domain": "Studio / transformations",
+    "existing": "look_revision components; catalog_media; catalog_ai_job",
+    "proposed": "transformation_session; preset; product_shade_reference; private_media_asset; transformation_variant; comparison; collection",
+    "invariants": "Private storage object keys, source/render lineage, statuses/retry codes; components versioned independently, no erasing unrelated selections."
+  },
+  {
+    "domain": "Weather / travel / events",
+    "existing": "saved_requirement; workspace_draft only",
+    "proposed": "selected_location; styling_trip; occasion; event_requirement; weather_snapshot; packing_item; suitability_rule",
+    "invariants": "Destination separate from current location; provider and valid/as-of time; forecast staleness explicit; preference declared, no fabricated weather."
+  },
+  {
+    "domain": "Marketplace / catalog",
+    "existing": "catalog_listing; catalog_revision; catalog_approval; catalog_media; catalog_projection; catalog_ai_job; market_policy_version",
+    "proposed": "merchant_profile; merchant_location; coverage_area; storefront; category; variant; stock_movement; price_revision; discount; review; trust_signal; import_job; wishlist; alert",
+    "invariants": "Reuse catalog listing/revision publication authority; do not add competing products table. Merchant confirms facts; variant/stock/verification/freshness and market eligibility are server-enforced."
+  },
+  {
+    "domain": "Carts / orders",
+    "existing": "No production order tables; stripe_test_order/line are sandbox-only",
+    "proposed": "cart; cart_item; checkout_session; order; order_item; merchant_suborder; shipping_address; shipment; fulfillment; status_history; return_case; refund_request; dispute_case",
+    "invariants": "Buyer-owned cart; immutable order snapshots, per-merchant child scope, stock reservations atomically, permitted delivery projection only."
+  },
+  {
+    "domain": "Stripe / accounting",
+    "existing": "credit_* is AI-credit ledger, not money; stripe_test_* sandbox only; existing commerce_policy.py",
+    "proposed": "connected_account_reference; payment_intent_reference; payment_event; transfer_allocation; payout_reference; platform_commission; reversal; balanced_financial_journal; posting; reconciliation_run; exception",
+    "invariants": "Existing10% completed eligible item policy unchanged; no booking fee by default; minor-unit exact math; unique provider event/business key; immutable append-only journal; credentials never stored."
+  },
+  {
+    "domain": "Professionals / bookings",
+    "existing": "Workspace role/capability/invitation foundations only",
+    "proposed": "professional_profile; service; service_location; availability; appointment_hold; booking; booking_status; cancellation_policy; portfolio; professional_review; design_request; quote; fitting; deadline",
+    "invariants": "Explicit assigned org/customer scope; atomic slot conflict constraint and expiring holds; approved versioned quote; service commission remains unset."
+  },
+  {
+    "domain": "Creators / referrals / affiliates",
+    "existing": "Workspace role/drafts only",
+    "proposed": "creator_profile; creator_storefront; content; shoppable_look; product_association; referral_code; attribution_event; affiliate_campaign; approved_rule; earning; payout_reference",
+    "invariants": "Validated consented attribution, deduped conversion, approved rule version; no automatic payouts or guessed affiliate commission."
+  },
+  {
+    "domain": "Advertising / geo targeting",
+    "existing": "Catalog eligibility/ranking and workspace drafts only",
+    "proposed": "advertiser_profile; campaign; creative; budget_reservation; geographic_target; context_target; sponsored_placement; impression; click; conversion; invoice; aggregate",
+    "invariants": "Org-owned approval/budget; sensitive/private face data excluded; organic relevance independent; sponsored labels retained; currency-bounded money."
+  },
+  {
+    "domain": "Notifications / engagement",
+    "existing": "outbox_event infrastructure only",
+    "proposed": "notification_template; preference; event; delivery_attempt; inbox_notification; saved_search; reminder; product_alert",
+    "invariants": "Purpose/channel consent, transactional outbox/dedupe, provider-safe status codes and retries; no unsolicited delivery from deployment."
+  },
+  {
+    "domain": "Administration / operations",
+    "existing": "staff_grant; audit_event; outbox_event; market_policy_version",
+    "proposed": "moderation_case; approval_event; feature_flag; ai_usage; ai_cost; integration_observation; support_ticket; incident; compliance_record; retention_job",
+    "invariants": "Explicit scoped staff capabilities and audit trail; append immutable history; no platform admin via editable user metadata."
+  }
+]

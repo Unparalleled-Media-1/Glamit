@@ -1,0 +1,163 @@
+{
+  "canonical_system": "Alembic db/migrations; no second Supabase/Prisma migration lineage",
+  "head": "0009_stripe_test_ledger",
+  "new_revisions": [],
+  "remote_migration_execution_count": 0,
+  "files": [
+    {
+      "path": "db/migrations/versions/0001_foundations.py",
+      "sha256": "cacbb66a16253b2058a3b3a617302762d86358bfa12e4180e66af08ad0a7f1ef",
+      "revision": "0001_foundations",
+      "creates": [],
+      "remote_applied": false
+    },
+    {
+      "path": "db/migrations/versions/0001_foundations.sql",
+      "sha256": "e38ccde698b49b661cb12a6a8d9594c5b34f7233a13b3544d6a9ccabee41a369",
+      "revision": "SQL source of0001; not a separate revision",
+      "creates": [
+        "app_user",
+        "organization",
+        "organization_member",
+        "policy_document",
+        "consent_event",
+        "look",
+        "look_revision",
+        "credit_account",
+        "credit_reservation",
+        "credit_journal",
+        "credit_posting",
+        "outbox_event",
+        "audit_event",
+        "idempotency_record"
+      ],
+      "remote_applied": false
+    },
+    {
+      "path": "db/migrations/versions/0002_credit_safety.py",
+      "sha256": "06af2b198ead5940aa61fafe809aaf9396426f0316e40a8a6e9aaa83c2d3b5d3",
+      "revision": "0002_credit_safety",
+      "creates": [],
+      "remote_applied": false
+    },
+    {
+      "path": "db/migrations/versions/0003_server_only_access.py",
+      "sha256": "d1ff935b7f5cd120d014b9a3aa842e1f7109c40dc76f4524b11196b644cb0d20",
+      "revision": "0003_server_only_access",
+      "creates": [],
+      "remote_applied": false
+    },
+    {
+      "path": "db/migrations/versions/0004_analysis_workspaces.py",
+      "sha256": "44511886ab3a27de455722a84b58e1712cd2ad1b2e06fe36b95449bf1d980159",
+      "revision": "0004_analysis_workspaces",
+      "creates": [
+        "account_eligibility",
+        "workspace_capability",
+        "workspace_role",
+        "workspace_draft",
+        "personal_routine"
+      ],
+      "remote_applied": false
+    },
+    {
+      "path": "db/migrations/versions/0005_workspace_invitations.py",
+      "sha256": "73316c2f14713e4a1c3629a69fa99c043b426d5bdd983472bf2b918c80cada40",
+      "revision": "0005_workspace_invitations",
+      "creates": ["workspace_invitation"],
+      "remote_applied": false
+    },
+    {
+      "path": "db/migrations/versions/0006_staff_context.py",
+      "sha256": "51d968048c7fd51dd85a9a76942fe98fdb950b74789382844e65a89e7ec98081",
+      "revision": "0006_staff_context",
+      "creates": ["staff_grant"],
+      "remote_applied": false
+    },
+    {
+      "path": "db/migrations/versions/0007_contextual_catalog.py",
+      "sha256": "de5670f34d6a2720669111601d2cbaaef0c5720bb6721accc966d79ccef27f96",
+      "revision": "0007_contextual_catalog",
+      "creates": [
+        "catalog_listing",
+        "catalog_revision",
+        "catalog_approval",
+        "catalog_media",
+        "catalog_projection",
+        "catalog_ai_job",
+        "saved_requirement"
+      ],
+      "remote_applied": false
+    },
+    {
+      "path": "db/migrations/versions/0008_catalog_market_policy.py",
+      "sha256": "c405c3395f90a7c87cdbabddf38f4776f75eca34b6be38f0635bd4913a24c54e",
+      "revision": "0008_catalog_market_policy",
+      "creates": ["market_policy_version"],
+      "remote_applied": false
+    },
+    {
+      "path": "db/migrations/versions/0009_stripe_test_ledger.py",
+      "sha256": "6479a6946a73a5c378b4aa1e589234db6f279cb6900fc8d1b060d83264503b82",
+      "revision": "0009_stripe_test_ledger",
+      "creates": [
+        "stripe_test_offer",
+        "stripe_test_order",
+        "stripe_test_line",
+        "stripe_test_operation",
+        "stripe_test_event",
+        "stripe_test_journal",
+        "stripe_test_posting",
+        "stripe_test_fulfillment",
+        "stripe_test_transfer",
+        "stripe_test_refund",
+        "stripe_test_reversal",
+        "stripe_test_balance_evidence"
+      ],
+      "remote_applied": false
+    }
+  ],
+  "literal_created_tables": [
+    "account_eligibility",
+    "app_user",
+    "audit_event",
+    "catalog_ai_job",
+    "catalog_approval",
+    "catalog_listing",
+    "catalog_media",
+    "catalog_projection",
+    "catalog_revision",
+    "consent_event",
+    "credit_account",
+    "credit_journal",
+    "credit_posting",
+    "credit_reservation",
+    "idempotency_record",
+    "look",
+    "look_revision",
+    "market_policy_version",
+    "organization",
+    "organization_member",
+    "outbox_event",
+    "personal_routine",
+    "policy_document",
+    "saved_requirement",
+    "staff_grant",
+    "stripe_test_balance_evidence",
+    "stripe_test_event",
+    "stripe_test_fulfillment",
+    "stripe_test_journal",
+    "stripe_test_line",
+    "stripe_test_offer",
+    "stripe_test_operation",
+    "stripe_test_order",
+    "stripe_test_posting",
+    "stripe_test_refund",
+    "stripe_test_reversal",
+    "stripe_test_transfer",
+    "workspace_capability",
+    "workspace_draft",
+    "workspace_invitation",
+    "workspace_role"
+  ]
+}

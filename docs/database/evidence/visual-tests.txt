@@ -1,0 +1,5 @@
+
+> glam-ai@0.1.0 test:approved-visuals
+> node scripts/check-golden-visuals.cjs --compare-approved
+
+PASS approved golden-screen pixel regressions. This does not verify native devices, provider fidelity or commercial readiness.
