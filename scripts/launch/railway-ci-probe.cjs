@@ -19,7 +19,7 @@ async function main() {
   fs.mkdirSync(out, { recursive: true });
   const inventory = JSON.parse(fs.readFileSync('docs/launch/evidence/railway-rescue/source-inventory.json'));
   const summary = JSON.parse(fs.readFileSync('docs/launch/evidence/launch-summary.json'));
-  const report = { observed_at: new Date().toISOString(), origin, scope: 'Actual deployed anonymous read-only HTTP/browser checks; not authenticated journeys or provider acceptance', runner_commit: process.env.GITHUB_SHA || null, run_url: process.env.GITHUB_RUN_ID ? `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}` : null, deployed_commit: null, railway_logs_available: false, status: 'BLOCKED', health: [], routes: [], assets: [], errors: [], mutations_blocked: 0, critical_journeys: summary.workflows.map(w => ({ id:w.id, name:w.name, status:'BLOCKED', expected:'Complete the actual qualified deployed journey', actual:'Anonymous route probing does not execute this journey', defect:'D101', evidence:'report.json', deployed_commit:null })) };
+  const report = { observed_at: new Date().toISOString(), origin, scope: 'Actual deployed anonymous read-only HTTP/browser checks; not authenticated journeys or provider acceptance', runner_commit: process.env.GITHUB_SHA || null, run_url: process.env.GITHUB_RUN_ID ? `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}` : null, deployed_commit: null, railway_logs_available: false, status: 'BLOCKED', health: [], routes: [], assets: [], errors: [], mutations_blocked: 0, critical_journeys: summary.workflows.map(w => ({ id:w.id, name:w.name, status:'BLOCKED', expected:'Complete the actual qualified deployed journey', actual:'Anonymous route probing does not execute this journey', defect:'D111', evidence:'report.json', deployed_commit:null })) };
   let browser, context;
   try {
     browser = await chromium.launch({ executablePath: process.env.CHROMIUM_EXECUTABLE_PATH || (fs.existsSync('/usr/bin/chromium') ? '/usr/bin/chromium' : undefined), args:['--no-sandbox'] });
@@ -85,6 +85,11 @@ async function main() {
     report.decision='NO-GO';
     fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');
     console.log(JSON.stringify({status:report.status,deployed_commit:report.deployed_commit,counts:report.counts,decision:report.decision}));
+    if (process.env.GITHUB_ACTIONS === 'true') {
+      const receipt = { observed_at:report.observed_at,origin,run_url:report.run_url,status:report.status,deployed_commit:report.deployed_commit,health:report.health,counts:report.counts,branding:report.branding,assets:report.assets,errors:report.errors.slice(0,20),mutations_blocked:report.mutations_blocked,decision:report.decision };
+      const escaped=JSON.stringify(receipt).replaceAll('%','%25').replaceAll('\r','%0D').replaceAll('\n','%0A');
+      console.log('::notice title=Railway read-only evidence receipt::'+escaped);
+    }
   }
 }
 module.exports={approvedOrigin,revisionFromHealth};
