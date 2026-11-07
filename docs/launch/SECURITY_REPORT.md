@@ -1,6 +1,6 @@
 # Security and release authorization
 
-07 November 2026 21:42 SAST. **NO-GO — no public launch or service mutation.** Machine evidence uses UTC timestamps.
+07 November 2026 21:46 SAST. **NO-GO — no public launch or service mutation.** Machine evidence uses UTC timestamps.
 
 Current read-only catalog: `[{"revision": "0013_passwordless_accounts", "public_tables": 41, "tables_without_rls": 0, "indexes": 77, "policies": 21, "foreign_keys": 54, "unvalidated_foreign_keys": 0}]`. All 41 public tables have RLS; no invalid foreign key reported. This is metadata verification, not the complete tenant/role matrix. Local PostgreSQL security tests are included in 260 tests; prior controlled live core/session evidence remains historical and separately scoped. No new production users, transactions or private images were created.
 

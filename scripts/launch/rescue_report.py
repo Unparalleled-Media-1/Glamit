@@ -393,7 +393,7 @@ def main():
         "defect_id",
     ]
     with (E / "control-inventory.csv").open("w", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=columns)
+        writer = csv.DictWriter(stream, fieldnames=columns, lineterminator="\n")
         writer.writeheader()
         for screen in crawl["routes"]:
             for control in screen["controls"]:

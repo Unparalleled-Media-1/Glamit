@@ -1,0 +1,97 @@
+✖ legacy eleven green labels cannot bypass the twelve current gates (9.854998ms)
+✖ local success and fresh documents do not replace deployed Railway evidence (0.649414ms)
+✔ structurally complete synthetic evidence validates; it proves no provider operation (0.858906ms)
+✖ wrong deployed commit, failed readiness and blocked deployed journeys are rejected (1.076575ms)
+✖ duplicate or malformed gate sets fail closed without crashing (0.680603ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 1
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 79.693752
+
+✖ failing tests:
+
+test at tests/launch/railway-release-lock.test.cjs:5:1
+✖ legacy eleven green labels cannot bypass the twelve current gates (9.854998ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(validateLaunch(f).some(e=>e.includes('G12')))
+
+      at TestContext.<anonymous> (/workspace/Glamit/tests/launch/railway-release-lock.test.cjs:5:111)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/launch/railway-release-lock.test.cjs:6:1
+✖ local success and fresh documents do not replace deployed Railway evidence (0.649414ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(validateLaunch(f).some(e=>e.includes('Railway')))
+
+      at TestContext.<anonymous> (/workspace/Glamit/tests/launch/railway-release-lock.test.cjs:6:123)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/launch/railway-release-lock.test.cjs:8:1
+✖ wrong deployed commit, failed readiness and blocked deployed journeys are rejected (1.076575ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(validateLaunch(f).some(e=>e.includes('Railway')))
+
+      at TestContext.<anonymous> (/workspace/Glamit/tests/launch/railway-release-lock.test.cjs:8:376)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/launch/railway-release-lock.test.cjs:9:1
+✖ duplicate or malformed gate sets fail closed without crashing (0.680603ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(validateLaunch(f).some(e=>e.includes('gate')))
+
+      at TestContext.<anonymous> (/workspace/Glamit/tests/launch/railway-release-lock.test.cjs:9:118)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

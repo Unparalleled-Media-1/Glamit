@@ -1,6 +1,6 @@
 # Railway root-cause investigation
 
-07 November 2026 21:42 SAST. **NO-GO — no public launch or service mutation.** Machine evidence uses UTC timestamps.
+07 November 2026 21:46 SAST. **NO-GO — no public launch or service mutation.** Machine evidence uses UTC timestamps.
 
 GitHub default **`feat/platform-foundations`**, SHA `d846b94c2fe6f0b4394be2b74c27734cde4533bf`. No `main` branch exists. PR21–26 are merged. 52 local/remote refs and 9 open PRs inventoried. The reported Railway source matches the actual default; a branch-name mismatch is not established. No force push, branch deletion, repository disconnect or source switch occurred.
 
