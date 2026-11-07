@@ -37,7 +37,8 @@ def export():
             return
         if parameters:
             raise RuntimeError("Parameterized migration SQL requires explicit literal rendering")
-        statements.append(statement.replace("%%", "%").strip().rstrip(";") + ";")
+        normalized = "\n".join(line.rstrip() for line in statement.replace("%%", "%").splitlines())
+        statements.append(normalized.strip().rstrip(";") + ";")
 
     previous = os.environ.get("GLAM_DATABASE_URL")
     os.environ["GLAM_DATABASE_URL"] = raw

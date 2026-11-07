@@ -4,7 +4,7 @@ BEGIN;
 SET LOCAL lock_timeout='5s';
 SET LOCAL statement_timeout='60s';
 CREATE TABLE alembic_version (
-	version_num VARCHAR(32) NOT NULL, 
+	version_num VARCHAR(32) NOT NULL,
 	CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num)
 );
 

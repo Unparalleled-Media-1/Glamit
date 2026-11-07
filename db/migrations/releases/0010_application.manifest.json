@@ -3,7 +3,7 @@
   "revision": "0010_supabase_foundation",
   "excluded_sandbox": "0009_stripe_test_ledger",
   "artifact": "db/migrations/releases/0010_application.sql",
-  "sha256": "081fc03457f7e1fe38527e5897b98145b80406df0a14dcbb6e08dfd043c26f4c",
+  "sha256": "aa1c508a9e847ee0115405e5a5bae99659fdcd2b4ee1f728c21fa3be4b0ff854",
   "statement_count": 76,
   "canonical_sources": {
     "db/migrations/versions/0001_foundations.py": "cacbb66a16253b2058a3b3a617302762d86358bfa12e4180e66af08ad0a7f1ef",
