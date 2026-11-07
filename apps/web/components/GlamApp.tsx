@@ -24,6 +24,7 @@ import { studioPart } from "../../../packages/product/beauty";
 import { editorialProducts } from "../../../packages/product/editorial-products";
 import GoldenCommerce from "./GoldenCommerce";
 import HostedAccount, { hostedAccountConfigured } from "./HostedAccount";
+import type { HostedSession } from "./HostedAccount";
 import PersonalizedResults from "./PersonalizedResults";
 import VerifiedProductDetail from "./VerifiedProductDetail";
 import DestinationStylist from "./DestinationStylist";
@@ -174,6 +175,7 @@ export default function GlamApp({
   start?: Page;
   connection?: CompanionConnection;
 }) {
+  const [hostedSession, setHostedSession] = useState<HostedSession>(null);
   const [journey, setJourney] = useState(freshJourney);
   const [memoryReady, setMemoryReady] = useState(false);
   const [memoryError, setMemoryError] = useState("");
@@ -903,7 +905,7 @@ export default function GlamApp({
             />
             <div className="split">
               <section className="panel">
-                {hostedAccountConfigured ? <HostedAccount /> : <>
+                {hostedAccountConfigured ? <HostedAccount session={hostedSession} setSession={setHostedSession} /> : <>
                 <h2>Personal account</h2>
                 {unavailable(capabilityReasons.account)}
                 <button

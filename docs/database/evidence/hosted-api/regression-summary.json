@@ -26,7 +26,8 @@
   },
   "hosted_account_browser": {
     "status": "PASSED",
-    "mode": "isolated Auth/API doubles; no real email or private data"
+    "mode": "isolated Auth/API doubles; no real email or private data",
+    "in_app_navigation_session_preserved": true
   },
   "typecheck": "PASSED web and mobile",
   "web_production_build": "PASSED",

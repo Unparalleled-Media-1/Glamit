@@ -13,7 +13,7 @@ All application migrations and Edge deployments targeted project `bkkmsbxrxkqave
 - Public `/health/live`; authenticated `/health/ready`. Readiness scope is `hosted_core_api`, not the entire GLAM product.
 - JWT-scoped profile, preferences, Style Passport, organization, verified workspace-list, credit-balance and routine endpoints are queryable. Routine create/read/update/delete uses the existing `personal_routine` model, idempotency records, optimistic revision checks and minimal audit trail.
 - ES256/RS256 signature, fixed issuer, audience, expiry, role and active Auth user are verified. Legacy gateway verification is disabled because the handler performs verification for the project's ES256 signing keys. Database RPCs reject anonymous execution and derive owners from verified claims. Normal application calls never use Management API or service-role credentials.
-- Web Profile account form and saved routines are wired in source, behind `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Tokens remain in memory. **The production web host/build configuration and allowed origin are awaiting the owner's URL; this is not a published frontend rollout.** The static interactive preview deliberately remains offline.
+- Web Profile account form and saved routines are wired in source, behind `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Tokens remain in app-root memory across in-app navigation and are never added to the saved device profile or browser storage. **The production web host/build configuration and allowed origin are awaiting the owner's URL; this is not a published frontend rollout.** The static interactive preview deliberately remains offline.
 
 ## Actual verification
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import type { FormEvent } from "react";
+import type { Dispatch, FormEvent, SetStateAction } from "react";
 
 const url = "https://bkkmsbxrxkqaveymcrgi.supabase.co";
 const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
@@ -14,14 +14,27 @@ type Routine = {
 };
 type Profile = { id: string; display_name: string | null };
 
-/** Auth tokens stay in component memory; never in device profile, URLs or browser storage. */
-export default function HostedAccount() {
-  const [token, setToken] = useState<string | null>(null);
-  const [profile, setProfile] = useState<Profile | null>(null);
-  const [name, setName] = useState("");
+export type HostedSession = {
+  token: string;
+  profile: Profile;
+  routines: Routine[];
+} | null;
+
+/** Session lives in the app root across navigation; never in device profile or browser storage. */
+export default function HostedAccount({ session, setSession }: {
+  session: HostedSession;
+  setSession: Dispatch<SetStateAction<HostedSession>>;
+}) {
+  const token = session?.token || null;
+  const profile = session?.profile || null;
+  const [name, setName] = useState(profile?.display_name || "");
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
-  const [routines, setRoutines] = useState<Routine[]>([]);
+  const routines = session?.routines || [];
+  const setRoutines = (saved: Routine[]) =>
+    setSession((current) =>
+      current ? { ...current, routines: saved } : current
+    );
   const [routineTitle, setRoutineTitle] = useState("");
   const [routineStep, setRoutineStep] = useState("");
   const routineKey = useRef<string | null>(null);
@@ -90,9 +103,7 @@ export default function HostedAccount() {
       access = session.access_token;
       const p: Profile = await api("GET", "/v1/me/profile", access!);
       const saved: Routine[] = await api("GET", "/v1/me/routines", access!);
-      setRoutines(saved);
-      setToken(access);
-      setProfile(p);
+      setSession({ token: access!, profile: p, routines: saved });
       setName(p.display_name || "");
       setStatus(
         "Signed in. Profile changes are saved to your GLAM account. Reloading ends this browser session.",
@@ -121,7 +132,7 @@ export default function HostedAccount() {
       const p: Profile = await api("PATCH", "/v1/me/profile", token, {
         display_name: name,
       });
-      setProfile(p);
+      setSession((current) => current ? { ...current, profile: p } : current);
       setStatus("Profile saved to your GLAM account.");
     } catch (e) {
       setStatus(e instanceof Error ? e.message : "Save was not confirmed.");
@@ -149,10 +160,8 @@ export default function HostedAccount() {
     } catch {
       setStatus("Local session cleared. Server sign-out was not confirmed.");
     } finally {
-      setToken(null);
-      setProfile(null);
+      setSession(null);
       setName("");
-      setRoutines([]);
       setRoutineTitle("");
       setRoutineStep("");
       routineKey.current = null;

@@ -9,7 +9,7 @@ const assert = require("node:assert/strict");
   const bundle = await build({
     stdin: {
       contents:
-        `import React from 'react'; import {createRoot} from 'react-dom/client'; import HostedAccount from './apps/web/components/HostedAccount'; createRoot(document.getElementById('root')).render(<HostedAccount/>);`,
+        `import React from 'react'; import {createRoot} from 'react-dom/client'; import HostedAccount from './apps/web/components/HostedAccount'; function Harness(){const [session,setSession]=React.useState(null); const [open,setOpen]=React.useState(true);return <><button onClick={()=>setOpen(!open)}>Toggle account panel</button>{open && <HostedAccount session={session} setSession={setSession}/>}</>;} createRoot(document.getElementById('root')).render(<Harness/>);`,
       resolveDir: process.cwd(),
       loader: "tsx",
     },
@@ -86,6 +86,12 @@ const assert = require("node:assert/strict");
     await page.getByRole("status").filter({ hasText: "Profile saved" })
       .waitFor();
     assert.equal(displayName, "Updated name");
+    await page.getByRole("button", { name: "Toggle account panel" }).click();
+    await page.getByRole("button", { name: "Toggle account panel" }).click();
+    assert.equal(
+      await page.getByLabel("Display name").inputValue(),
+      "Updated name",
+    );
     assert.equal(
       await page.evaluate(() => localStorage.length + sessionStorage.length),
       0,
