@@ -1,0 +1,213 @@
+You do not need to separate GLAM Beauty into different GitHub repositories. In fact, for your business, I recommend keeping the website, mobile app and backend in one repository (a monorepo) while deploying them as separate applications.
+
+This is how companies can maintain a website and mobile applications that share users, products, orders and business logic without maintaining three completely different systems.
+
+## 1. How GLAM Beauty should work
+
+One GitHub Repository
+
+GLAM Beauty — shared source code
+
+Website
+
+Next.js / React
+
+Railway
+
+[www.glam.beauty](http://www.glam.beauty)
+
+Mobile App
+
+React Native / Expo
+
+App Stores
+
+iOS + Android
+
+Shared Backend API
+
+api.glam.beauty — Railway / FastAPI
+
+One Supabase Project
+
+Authentication · PostgreSQL · Storage · RLS
+
+The important distinction is that one repository does not mean one deployment.
+
+The website and backend can run as separate Railway services, while the iOS and Android applications are built into native applications and distributed through the Apple App Store and Google Play.
+
+## 2. Recommended repository structure
+
+This is the structure I would aim for, assuming Codex confirms the existing frameworks:
+
+```
+glam-beauty/
+│
+├── apps/
+│   ├── web/             # Website
+│   └── mobile/          # iOS + Android app
+│
+├── services/
+│   └── api/             # FastAPI backend
+│
+├── packages/
+│   ├── shared/          # Shared types and utilities
+│   ├── api-client/      # API communication
+│   └── design-tokens/   # Brand colours and styles
+│
+├── supabase/
+│   ├── migrations/
+│   └── functions/
+│
+└── .github/
+    └── workflows/       # Independent build pipelines
+```
+
+If the current repository already has a working structure, do not reorganize it just for aesthetics. Codex should configure deployment from the existing directories first.
+
+## 3. How each application gets launched
+
+| Component       | Deployment destination                            | Public address                             |
+| --------------- | ------------------------------------------------- | ------------------------------------------ |
+| Website         | Railway web service                               | `www.glam.beauty`                          |
+| Backend API     | Railway API service                               | `api.glam.beauty`                          |
+| iOS app         | Apple App Store                                   | GLAM Beauty                                |
+| Android app     | Google Play                                       | GLAM Beauty                                |
+| Database        | Supabase                                          | Shared, not publicly exposed as a database |
+| Admin dashboard | Railway web/admin service or protected web routes | `admin.glam.beauty` if separated           |
+
+The mobile apps do not need Railway hosting for their native user interfaces. They call the backend over HTTPS, just as the website does.
+
+The same customer can register on the website, install the mobile app and sign in with the same phone number. Their Style Passport, saved looks, wardrobe, orders and bookings will be available on both platforms.
+
+## 4. How updates work after launch
+
+1. Website update
+
+   Codex updates the web application. Railway rebuilds and deploys the web service. Users see the new version when they visit the site.
+
+2. Backend update
+
+   Codex updates the API. Railway deploys the backend independently. Both web and mobile clients can use the updated API, provided compatibility is maintained.
+
+3. Mobile app update
+
+   Codex updates the React Native/Expo app. You create new iOS and Android builds for store submission. Eligible JavaScript and asset updates may be delivered over the air through Expo Updates, subject to runtime compatibility and store policies.
+
+4. Database update
+
+   A controlled Supabase migration updates the shared database. Both website and mobile clients use the updated structures without requiring separate databases.
+
+A crucial rule: because app-store updates can take time, backend changes must remain compatible with older mobile versions. Otherwise, a Railway API deployment could break users who have not yet updated their apps.
+
+## 5. Send this instruction to Codex
+
+GLAM BEAUTY — SEPARATE WEB, MOBILE AND API DEPLOYMENTS FROM ONE REPOSITORY
+
+# GLAM BEAUTY — SEPARATE WEB, MOBILE AND API DEPLOYMENTS FROM ONE REPOSITORY
+
+We are launching GLAM Beauty at [www.glam.beauty](http://www.glam.beauty).
+
+The website, mobile application and backend currently share one GitHub repository.
+
+I want to preserve one repository and one Supabase backend while deploying each application independently.
+
+## REQUIREMENTS
+
+1. Audit the actual repository and identify the website, mobile app, backend API, shared packages and Supabase migrations.
+
+2. Do not create separate GitHub repositories.
+
+3. Do not restructure working source code unnecessarily.
+
+4. Configure an independent Railway service for the web application.
+
+5. Configure an independent Railway service for the backend API if it is a separate application.
+
+6. Ensure each Railway service has the correct root directory, build command, start command, environment variables, health checks and public domain.
+
+7. Configure the website to use [www.glam.beauty](http://www.glam.beauty).
+
+8. Configure the API to use api.glam.beauty where the architecture requires a public API domain.
+
+9. Configure native iOS and Android builds from the mobile application directory using the existing mobile build system, preferably Expo EAS if Expo is already in use.
+
+10. Prepare the mobile applications for Apple App Store and Google Play submission, including application identifiers, signing, splash screens, icons and production API configuration.
+
+11. Use the approved GLAM Beauty logo, favicon and application icon consistently.
+
+12. Ensure all platforms use the original Supabase project bkkmsbxrxkqaveymcrgi.
+
+13. Maintain one user identity across website and mobile, with consistent profiles, Style Passport, products, orders and bookings.
+
+14. Implement environment separation for development, preview and production without creating a second production database.
+
+15. Configure CI/CD so web-only changes do not unnecessarily trigger native mobile builds, and mobile-only changes do not unnecessarily redeploy Railway web services.
+
+16. Deploy backend changes independently with backward-compatible API contracts and versioning where needed.
+
+17. Configure appropriate web, mobile and OAuth redirect URLs.
+
+18. Verify HTTPS, CORS, deep links, authentication sessions and Stripe callback/webhook handling.
+
+19. Test web, iOS, Android and backend deployments independently.
+
+20. Run end-to-end tests confirming that data created on one platform is accessible on the other by the same authorized user.
+
+## RAILWAY DEPLOYMENT REPAIR
+
+We have experienced repeated Railway deployment failures.
+
+Before deploying:
+
+* Inspect actual build and runtime logs.
+
+* Identify the root cause of each failure.
+
+* Correct root directories and commands.
+
+* Verify PORT binding and health checks.
+
+* Verify production environment variables.
+
+* Verify API and Supabase connectivity.
+
+* Deploy and smoke-test each service separately.
+
+Do not repeatedly redeploy without diagnosing the underlying error.
+
+## REQUIRED FINAL REPORT
+
+Provide:
+
+* Actual repository structure
+
+* Railway service architecture
+
+* Web deployment URL and status
+
+* API deployment URL and status
+
+* iOS build status
+
+* Android build status
+
+* Supabase connection status
+
+* CI/CD pipeline status
+
+* Cross-platform authentication test results
+
+* Cross-platform data synchronization test results
+
+* Outstanding release blockers
+
+Do not claim the applications are ready for launch until each required deployment and integration has been verified.
+
+## My recommendation for your launch
+
+Keep one repository, two Railway services (web and API), two mobile store builds (iOS and Android), and one Supabase production backend. Add a separate admin deployment only if there is a genuine security or operational reason; protected admin routes can also work.
+
+This gives GLAM Beauty a unified platform without tying every website change to an Apple or Google app-store release.
+
+One thing I would confirm before Codex makes any structural changes: is your mobile application genuinely React Native/Expo, or is it currently a mobile-responsive website/PWA? That determines whether you already have a native app ready for the stores or still need a native build pipeline.

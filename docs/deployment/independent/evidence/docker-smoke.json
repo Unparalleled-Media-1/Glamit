@@ -1,0 +1,10 @@
+{
+  "local_only": true,
+  "production_modified": false,
+  "checks": [
+    "web: honors PORT and passes liveness",
+    "web: ready for public-key fixture configuration; branded login SSR passes; provider connectivity not asserted",
+    "api: honors PORT and passes liveness",
+    "api: database/identity unavailable fail closed; explicit new-origin CORS preflight passes; outsider denied"
+  ]
+}

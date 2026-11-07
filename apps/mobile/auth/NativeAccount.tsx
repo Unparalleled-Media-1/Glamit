@@ -487,11 +487,11 @@ export default function NativeAccount({ auth }: Props) {
       ))}
       {button(
         "Privacy",
-        () => void Linking.openURL("https://www.glamit.beauty/privacy"),
+        () => void Linking.openURL("https://www.glam.beauty/privacy"),
       )}
       {button(
         "Terms",
-        () => void Linking.openURL("https://www.glamit.beauty/terms"),
+        () => void Linking.openURL("https://www.glam.beauty/terms"),
       )}
       <AuthText accessibilityLiveRegion="polite">{auth.message}</AuthText>
     </View>

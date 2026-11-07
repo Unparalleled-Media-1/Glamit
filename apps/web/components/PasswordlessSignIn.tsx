@@ -312,7 +312,7 @@ export default function PasswordlessSignIn() {
       )}
       <p className="fine">
         <a href={appPath("/privacy")}>Privacy</a> ·{" "}
-        <a href="https://www.glamit.beauty/terms">Terms</a>
+        <a href="https://www.glam.beauty/terms">Terms</a>
       </p>
       {!available.phone && (
         <button

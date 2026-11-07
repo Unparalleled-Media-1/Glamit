@@ -1,3 +1,7 @@
+## 7 November — existing Railway investigation / independent build candidate
+
+GitHub default is `feat/platform-foundations`; no branch named `main` exists. PR24/25 are now merged at `2eff5df`; the reported Railway source matches that default. Actual Railway source/logs/deployed SHA remain unverified: project token and applied network access are absent. Preserve existing project/service; no additional services, public redeployment or domain switch authorized until the release candidate is approved. Independent Docker/CI/EAS preparation passes 260 backend tests, local image health/CORS/SSR smoke checks, TypeScript and iOS/Android JS exports; signed builds/live cross-device testing remain blocked. See [deployment investigation and gates](deployment/independent/REPORT.md).
+
 ## 7 November — GLAM Beauty / Creator Studio draft
 
 Confirmed display name: **GLAM Beauty**. Active web/mobile UI, metadata and build titles updated; canonical visual tokens and auth schemes preserved. Exact inline brand artwork still needs downloadable source files. Private Creator Studio draft flows are implemented and tested locally; migration 0014 and the clients are not deployed. No live social provider, shoppable publication, campaign execution, referral earnings or payouts are operational. See [implementation and provider report](creator-studio/IMPLEMENTATION_REPORT.md) for 251-test regression evidence and open gates.
