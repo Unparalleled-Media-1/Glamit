@@ -1,5 +1,7 @@
 # Database pre-migration audit — Phase 0
 
+> Historical Phase 0 snapshot. Management SQL access and a development branch are now verified; see [first foundation execution](FIRST_FOUNDATION_DEPLOYMENT.md) for the current migration path and actual deployment evidence.
+
 6 November 2026, Africa/Johannesburg. **Remote migration decision: BLOCKED. No schema/storage/data mutation was performed.** The connected API is not evidence of SQL migration permissions.
 
 ## Repository and integration target

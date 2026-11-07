@@ -1,0 +1,3235 @@
+{
+  "columns": [
+    {
+      "table_name": "account_eligibility",
+      "column_name": "user_id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "account_eligibility",
+      "column_name": "age_band",
+      "ordinal_position": 2,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "account_eligibility",
+      "column_name": "evidence_ref",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "account_eligibility",
+      "column_name": "expires_at",
+      "ordinal_position": 4,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "alembic_version",
+      "column_name": "version_num",
+      "ordinal_position": 1,
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "app_user",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "app_user",
+      "column_name": "issuer",
+      "ordinal_position": 2,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "app_user",
+      "column_name": "subject",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "app_user",
+      "column_name": "created_at",
+      "ordinal_position": 4,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "audit_event",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "audit_event",
+      "column_name": "actor_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "audit_event",
+      "column_name": "action",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "audit_event",
+      "column_name": "resource_id",
+      "ordinal_position": 4,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "audit_event",
+      "column_name": "created_at",
+      "ordinal_position": 5,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "listing_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "base_revision",
+      "ordinal_position": 3,
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "requester_id",
+      "ordinal_position": 4,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "provider",
+      "ordinal_position": 5,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "features",
+      "ordinal_position": 6,
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "state",
+      "ordinal_position": 7,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "lease_token",
+      "ordinal_position": 8,
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "lease_until",
+      "ordinal_position": 9,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "attempts",
+      "ordinal_position": 10,
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "suggestions",
+      "ordinal_position": 11,
+      "data_type": "jsonb",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "created_at",
+      "ordinal_position": 12,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_approval",
+      "column_name": "listing_id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_approval",
+      "column_name": "revision",
+      "ordinal_position": 2,
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_approval",
+      "column_name": "decision",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_approval",
+      "column_name": "identifier_verified",
+      "ordinal_position": 4,
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_approval",
+      "column_name": "reviewer_id",
+      "ordinal_position": 5,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_approval",
+      "column_name": "reviewed_at",
+      "ordinal_position": 6,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "organization_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "source_sku",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "workspace",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "current_revision",
+      "ordinal_position": 5,
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "published_revision",
+      "ordinal_position": 6,
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "state",
+      "ordinal_position": 7,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "created_at",
+      "ordinal_position": 8,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "listing_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "organization_id",
+      "ordinal_position": 3,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "original_id",
+      "ordinal_position": 4,
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "storage_ref",
+      "ordinal_position": 5,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "sha256",
+      "ordinal_position": 6,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "rights_confirmed",
+      "ordinal_position": 7,
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "validated",
+      "ordinal_position": 8,
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "generated_advertising",
+      "ordinal_position": 9,
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_projection",
+      "column_name": "listing_id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_projection",
+      "column_name": "revision",
+      "ordinal_position": 2,
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_projection",
+      "column_name": "indexed_at",
+      "ordinal_position": 3,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_revision",
+      "column_name": "listing_id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_revision",
+      "column_name": "revision",
+      "ordinal_position": 2,
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_revision",
+      "column_name": "facts",
+      "ordinal_position": 3,
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_revision",
+      "column_name": "merchant_reviewed",
+      "ordinal_position": 4,
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_revision",
+      "column_name": "author_id",
+      "ordinal_position": 5,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_revision",
+      "column_name": "created_at",
+      "ordinal_position": 6,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "consent_event",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "consent_event",
+      "column_name": "user_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "consent_event",
+      "column_name": "policy_id",
+      "ordinal_position": 3,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "consent_event",
+      "column_name": "action",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "consent_event",
+      "column_name": "created_at",
+      "ordinal_position": 5,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "consent_event",
+      "column_name": "sequence",
+      "ordinal_position": 6,
+      "data_type": "bigint",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_account",
+      "column_name": "user_id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "user_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "operation",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "business_key",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "units",
+      "ordinal_position": 5,
+      "data_type": "bigint",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "sealed",
+      "ordinal_position": 6,
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "created_at",
+      "ordinal_position": 7,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_posting",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "bigint",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_posting",
+      "column_name": "journal_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_posting",
+      "column_name": "user_id",
+      "ordinal_position": 3,
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "credit_posting",
+      "column_name": "bucket",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_posting",
+      "column_name": "units",
+      "ordinal_position": 5,
+      "data_type": "bigint",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_reservation",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_reservation",
+      "column_name": "user_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_reservation",
+      "column_name": "business_key",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_reservation",
+      "column_name": "units",
+      "ordinal_position": 4,
+      "data_type": "bigint",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_reservation",
+      "column_name": "state",
+      "ordinal_position": 5,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_reservation",
+      "column_name": "expires_at",
+      "ordinal_position": 6,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "idempotency_record",
+      "column_name": "user_id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "idempotency_record",
+      "column_name": "route",
+      "ordinal_position": 2,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "idempotency_record",
+      "column_name": "key",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "idempotency_record",
+      "column_name": "request_hash",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "idempotency_record",
+      "column_name": "response",
+      "ordinal_position": 5,
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "idempotency_record",
+      "column_name": "created_at",
+      "ordinal_position": 6,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look",
+      "column_name": "owner_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look",
+      "column_name": "title",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look",
+      "column_name": "source_type",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look",
+      "column_name": "created_at",
+      "ordinal_position": 5,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look_revision",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look_revision",
+      "column_name": "look_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look_revision",
+      "column_name": "revision_no",
+      "ordinal_position": 3,
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look_revision",
+      "column_name": "components",
+      "ordinal_position": 4,
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look_revision",
+      "column_name": "content_hash",
+      "ordinal_position": 5,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look_revision",
+      "column_name": "created_at",
+      "ordinal_position": 6,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "sequence",
+      "ordinal_position": 2,
+      "data_type": "bigint",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "country",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "currency",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "capability",
+      "ordinal_position": 5,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "enabled",
+      "ordinal_position": 6,
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "expires_at",
+      "ordinal_position": 7,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "policy_ref",
+      "ordinal_position": 8,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "reviewed_by",
+      "ordinal_position": 9,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "column_name": "organization_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "column_name": "display_name",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "column_name": "verification_status",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "column_name": "created_at",
+      "ordinal_position": 5,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "column_name": "updated_at",
+      "ordinal_position": 6,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "organization_id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "user_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "role",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "active",
+      "ordinal_position": 4,
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "id",
+      "ordinal_position": 5,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "created_at",
+      "ordinal_position": 6,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "updated_at",
+      "ordinal_position": 7,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organizations",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organizations",
+      "column_name": "name",
+      "ordinal_position": 2,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organizations",
+      "column_name": "created_at",
+      "ordinal_position": 3,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organizations",
+      "column_name": "suspended",
+      "ordinal_position": 4,
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organizations",
+      "column_name": "updated_at",
+      "ordinal_position": 5,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "event_type",
+      "ordinal_position": 2,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "aggregate_id",
+      "ordinal_position": 3,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "payload",
+      "ordinal_position": 4,
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "created_at",
+      "ordinal_position": 5,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "available_at",
+      "ordinal_position": 6,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "claimed_until",
+      "ordinal_position": 7,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "attempts",
+      "ordinal_position": 8,
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "delivered_at",
+      "ordinal_position": 9,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "personal_routine",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "personal_routine",
+      "column_name": "owner_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "personal_routine",
+      "column_name": "title",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "personal_routine",
+      "column_name": "steps",
+      "ordinal_position": 4,
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "personal_routine",
+      "column_name": "revision",
+      "ordinal_position": 5,
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "personal_routine",
+      "column_name": "updated_at",
+      "ordinal_position": 6,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "policy_document",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "policy_document",
+      "column_name": "purpose",
+      "ordinal_position": 2,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "policy_document",
+      "column_name": "version",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "policy_document",
+      "column_name": "content",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "policy_document",
+      "column_name": "approved_at",
+      "ordinal_position": 5,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "parent_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "slug",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "name",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "is_active",
+      "ordinal_position": 5,
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "created_at",
+      "ordinal_position": 6,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "updated_at",
+      "ordinal_position": 7,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "product_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "organization_id",
+      "ordinal_position": 3,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "sku",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "shade",
+      "ordinal_position": 5,
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "size_label",
+      "ordinal_position": 6,
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "currency",
+      "ordinal_position": 7,
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "unit_price_minor",
+      "ordinal_position": 8,
+      "data_type": "bigint",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "stock_on_hand",
+      "ordinal_position": 9,
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "verified_at",
+      "ordinal_position": 10,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "created_at",
+      "ordinal_position": 11,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "updated_at",
+      "ordinal_position": 12,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "products",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "products",
+      "column_name": "organization_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "products",
+      "column_name": "merchant_profile_id",
+      "ordinal_position": 3,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "products",
+      "column_name": "category_id",
+      "ordinal_position": 4,
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "products",
+      "column_name": "title",
+      "ordinal_position": 5,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "products",
+      "column_name": "description",
+      "ordinal_position": 6,
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "products",
+      "column_name": "created_at",
+      "ordinal_position": 7,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "products",
+      "column_name": "updated_at",
+      "ordinal_position": 8,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "organization_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "display_name",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "bio",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "verification_status",
+      "ordinal_position": 5,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "created_at",
+      "ordinal_position": 6,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "updated_at",
+      "ordinal_position": 7,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "profiles",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "profiles",
+      "column_name": "display_name",
+      "ordinal_position": 2,
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "profiles",
+      "column_name": "avatar_object_key",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "profiles",
+      "column_name": "created_at",
+      "ordinal_position": 4,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "profiles",
+      "column_name": "updated_at",
+      "ordinal_position": 5,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "saved_requirement",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "saved_requirement",
+      "column_name": "owner_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "saved_requirement",
+      "column_name": "requirement",
+      "ordinal_position": 3,
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "saved_requirement",
+      "column_name": "created_at",
+      "ordinal_position": 4,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "staff_grant",
+      "column_name": "user_id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "staff_grant",
+      "column_name": "role",
+      "ordinal_position": 2,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "staff_grant",
+      "column_name": "active",
+      "ordinal_position": 3,
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "staff_grant",
+      "column_name": "expires_at",
+      "ordinal_position": 4,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "staff_grant",
+      "column_name": "evidence_ref",
+      "ordinal_position": 5,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "profile_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "preferred_colors",
+      "ordinal_position": 3,
+      "data_type": "ARRAY",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "preferred_styles",
+      "ordinal_position": 4,
+      "data_type": "ARRAY",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "coverage_preference",
+      "ordinal_position": 5,
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "sizing_notes",
+      "ordinal_position": 6,
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "revision",
+      "ordinal_position": 7,
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "created_at",
+      "ordinal_position": 8,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "updated_at",
+      "ordinal_position": 9,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "profile_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "locale",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "currency",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "measurement_system",
+      "ordinal_position": 5,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "personalization_opt_in",
+      "ordinal_position": 6,
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "marketing_opt_in",
+      "ordinal_position": 7,
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "created_at",
+      "ordinal_position": 8,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "updated_at",
+      "ordinal_position": 9,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_capability",
+      "column_name": "organization_id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_capability",
+      "column_name": "workspace",
+      "ordinal_position": 2,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_capability",
+      "column_name": "status",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_capability",
+      "column_name": "expires_at",
+      "ordinal_position": 4,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "organization_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "workspace",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "author_id",
+      "ordinal_position": 4,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "title",
+      "ordinal_position": 5,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "notes",
+      "ordinal_position": 6,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "revision",
+      "ordinal_position": 7,
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "updated_at",
+      "ordinal_position": 8,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "organization_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "workspace",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "recipient_id",
+      "ordinal_position": 4,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "invited_by",
+      "ordinal_position": 5,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "role",
+      "ordinal_position": 6,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "state",
+      "ordinal_position": 7,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "expires_at",
+      "ordinal_position": 8,
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_role",
+      "column_name": "organization_id",
+      "ordinal_position": 1,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_role",
+      "column_name": "user_id",
+      "ordinal_position": 2,
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_role",
+      "column_name": "workspace",
+      "ordinal_position": 3,
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_role",
+      "column_name": "role",
+      "ordinal_position": 4,
+      "data_type": "text",
+      "is_nullable": "NO"
+    }
+  ],
+  "indexes": [
+    {
+      "tablename": "account_eligibility",
+      "indexname": "account_eligibility_pkey"
+    },
+    {
+      "tablename": "alembic_version",
+      "indexname": "alembic_version_pkc"
+    },
+    {
+      "tablename": "app_user",
+      "indexname": "app_user_issuer_subject_key"
+    },
+    {
+      "tablename": "app_user",
+      "indexname": "app_user_pkey"
+    },
+    {
+      "tablename": "audit_event",
+      "indexname": "audit_event_pkey"
+    },
+    {
+      "tablename": "catalog_ai_job",
+      "indexname": "catalog_ai_job_pkey"
+    },
+    {
+      "tablename": "catalog_approval",
+      "indexname": "catalog_approval_pkey"
+    },
+    {
+      "tablename": "catalog_listing",
+      "indexname": "catalog_listing_id_organization_id_key"
+    },
+    {
+      "tablename": "catalog_listing",
+      "indexname": "catalog_listing_org"
+    },
+    {
+      "tablename": "catalog_listing",
+      "indexname": "catalog_listing_organization_id_workspace_source_sku_key"
+    },
+    {
+      "tablename": "catalog_listing",
+      "indexname": "catalog_listing_pkey"
+    },
+    {
+      "tablename": "catalog_media",
+      "indexname": "catalog_media_pkey"
+    },
+    {
+      "tablename": "catalog_projection",
+      "indexname": "catalog_projection_pkey"
+    },
+    {
+      "tablename": "catalog_revision",
+      "indexname": "catalog_revision_pkey"
+    },
+    {
+      "tablename": "consent_event",
+      "indexname": "consent_event_pkey"
+    },
+    {
+      "tablename": "consent_event",
+      "indexname": "consent_event_sequence_key"
+    },
+    {
+      "tablename": "consent_event",
+      "indexname": "consent_latest"
+    },
+    {
+      "tablename": "credit_account",
+      "indexname": "credit_account_pkey"
+    },
+    {
+      "tablename": "credit_journal",
+      "indexname": "credit_journal_pkey"
+    },
+    {
+      "tablename": "credit_journal",
+      "indexname": "credit_journal_user_id_operation_business_key_key"
+    },
+    {
+      "tablename": "credit_posting",
+      "indexname": "credit_balance"
+    },
+    {
+      "tablename": "credit_posting",
+      "indexname": "credit_posting_pkey"
+    },
+    {
+      "tablename": "credit_reservation",
+      "indexname": "credit_reservation_id_user_id_key"
+    },
+    {
+      "tablename": "credit_reservation",
+      "indexname": "credit_reservation_pkey"
+    },
+    {
+      "tablename": "credit_reservation",
+      "indexname": "credit_reservation_user_id_business_key_key"
+    },
+    {
+      "tablename": "idempotency_record",
+      "indexname": "idempotency_record_pkey"
+    },
+    {
+      "tablename": "look",
+      "indexname": "look_owner"
+    },
+    {
+      "tablename": "look",
+      "indexname": "look_pkey"
+    },
+    {
+      "tablename": "look_revision",
+      "indexname": "look_revision_look_id_revision_no_key"
+    },
+    {
+      "tablename": "look_revision",
+      "indexname": "look_revision_pkey"
+    },
+    {
+      "tablename": "market_policy_version",
+      "indexname": "market_policy_latest"
+    },
+    {
+      "tablename": "market_policy_version",
+      "indexname": "market_policy_version_pkey"
+    },
+    {
+      "tablename": "market_policy_version",
+      "indexname": "market_policy_version_sequence_key"
+    },
+    {
+      "tablename": "merchant_profiles",
+      "indexname": "merchant_profiles_id_organization_id_key"
+    },
+    {
+      "tablename": "merchant_profiles",
+      "indexname": "merchant_profiles_organization_id_key"
+    },
+    {
+      "tablename": "merchant_profiles",
+      "indexname": "merchant_profiles_pkey"
+    },
+    {
+      "tablename": "organization_members",
+      "indexname": "organization_member_pkey"
+    },
+    {
+      "tablename": "organization_members",
+      "indexname": "organization_members_id_key"
+    },
+    {
+      "tablename": "organization_members",
+      "indexname": "organization_members_user"
+    },
+    {
+      "tablename": "organizations",
+      "indexname": "organization_pkey"
+    },
+    {
+      "tablename": "outbox_event",
+      "indexname": "outbox_event_pkey"
+    },
+    {
+      "tablename": "outbox_event",
+      "indexname": "outbox_pending"
+    },
+    {
+      "tablename": "personal_routine",
+      "indexname": "personal_routine_owner"
+    },
+    {
+      "tablename": "personal_routine",
+      "indexname": "personal_routine_pkey"
+    },
+    {
+      "tablename": "policy_document",
+      "indexname": "policy_document_pkey"
+    },
+    {
+      "tablename": "policy_document",
+      "indexname": "policy_document_purpose_version_key"
+    },
+    {
+      "tablename": "product_categories",
+      "indexname": "product_categories_parent"
+    },
+    {
+      "tablename": "product_categories",
+      "indexname": "product_categories_pkey"
+    },
+    {
+      "tablename": "product_categories",
+      "indexname": "product_categories_slug_key"
+    },
+    {
+      "tablename": "product_variants",
+      "indexname": "product_variants_org"
+    },
+    {
+      "tablename": "product_variants",
+      "indexname": "product_variants_organization_id_sku_key"
+    },
+    {
+      "tablename": "product_variants",
+      "indexname": "product_variants_pkey"
+    },
+    {
+      "tablename": "product_variants",
+      "indexname": "product_variants_product"
+    },
+    {
+      "tablename": "products",
+      "indexname": "products_category"
+    },
+    {
+      "tablename": "products",
+      "indexname": "products_id_organization_id_key"
+    },
+    {
+      "tablename": "products",
+      "indexname": "products_merchant"
+    },
+    {
+      "tablename": "products",
+      "indexname": "products_org"
+    },
+    {
+      "tablename": "products",
+      "indexname": "products_pkey"
+    },
+    {
+      "tablename": "professional_profiles",
+      "indexname": "professional_profiles_organization_id_key"
+    },
+    {
+      "tablename": "professional_profiles",
+      "indexname": "professional_profiles_pkey"
+    },
+    {
+      "tablename": "profiles",
+      "indexname": "profiles_pkey"
+    },
+    {
+      "tablename": "saved_requirement",
+      "indexname": "saved_requirement_owner"
+    },
+    {
+      "tablename": "saved_requirement",
+      "indexname": "saved_requirement_pkey"
+    },
+    {
+      "tablename": "staff_grant",
+      "indexname": "staff_grant_pkey"
+    },
+    {
+      "tablename": "style_passports",
+      "indexname": "style_passports_pkey"
+    },
+    {
+      "tablename": "style_passports",
+      "indexname": "style_passports_profile_id_key"
+    },
+    {
+      "tablename": "user_preferences",
+      "indexname": "user_preferences_pkey"
+    },
+    {
+      "tablename": "user_preferences",
+      "indexname": "user_preferences_profile_id_key"
+    },
+    {
+      "tablename": "workspace_capability",
+      "indexname": "workspace_capability_pkey"
+    },
+    {
+      "tablename": "workspace_draft",
+      "indexname": "workspace_draft_pkey"
+    },
+    {
+      "tablename": "workspace_draft",
+      "indexname": "workspace_draft_tenant"
+    },
+    {
+      "tablename": "workspace_invitation",
+      "indexname": "workspace_invitation_pkey"
+    },
+    {
+      "tablename": "workspace_role",
+      "indexname": "workspace_role_pkey"
+    }
+  ],
+  "constraints": [
+    {
+      "table_name": "account_eligibility",
+      "conname": "account_eligibility_age_band_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "account_eligibility",
+      "conname": "account_eligibility_evidence_ref_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "account_eligibility",
+      "conname": "account_eligibility_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "account_eligibility",
+      "conname": "account_eligibility_user_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "alembic_version",
+      "conname": "alembic_version_pkc",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "app_user",
+      "conname": "app_user_issuer_subject_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "app_user",
+      "conname": "app_user_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "audit_event",
+      "conname": "audit_event_actor_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "audit_event",
+      "conname": "audit_event_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "conname": "catalog_ai_job_listing_id_base_revision_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "conname": "catalog_ai_job_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "conname": "catalog_ai_job_requester_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "conname": "catalog_ai_job_state_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_approval",
+      "conname": "catalog_approval_decision_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_approval",
+      "conname": "catalog_approval_listing_id_revision_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_approval",
+      "conname": "catalog_approval_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_approval",
+      "conname": "catalog_approval_reviewer_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_current_revision_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_id_current_revision_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_id_organization_id_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_id_published_revision_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_organization_id_workspace_source_sku_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_state_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_workspace_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_media",
+      "conname": "catalog_media_listing_id_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_media",
+      "conname": "catalog_media_original_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_media",
+      "conname": "catalog_media_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_media",
+      "conname": "catalog_media_sha256_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_media",
+      "conname": "catalog_media_storage_ref_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_projection",
+      "conname": "catalog_projection_listing_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_projection",
+      "conname": "catalog_projection_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_revision",
+      "conname": "catalog_revision_author_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_revision",
+      "conname": "catalog_revision_facts_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_revision",
+      "conname": "catalog_revision_listing_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_revision",
+      "conname": "catalog_revision_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "catalog_revision",
+      "conname": "catalog_revision_revision_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "consent_event",
+      "conname": "consent_event_action_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "consent_event",
+      "conname": "consent_event_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "consent_event",
+      "conname": "consent_event_policy_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "consent_event",
+      "conname": "consent_event_sequence_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "consent_event",
+      "conname": "consent_event_user_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_account",
+      "conname": "credit_account_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_account",
+      "conname": "credit_account_user_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_journal",
+      "conname": "balanced_credit_journal",
+      "contype": "t",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_journal",
+      "conname": "credit_journal_operation_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_journal",
+      "conname": "credit_journal_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_journal",
+      "conname": "credit_journal_units_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_journal",
+      "conname": "credit_journal_user_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_journal",
+      "conname": "credit_journal_user_id_operation_business_key_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_posting",
+      "conname": "credit_posting_bucket_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_posting",
+      "conname": "credit_posting_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_posting",
+      "conname": "credit_posting_journal_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_posting",
+      "conname": "credit_posting_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_posting",
+      "conname": "credit_posting_units_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_posting",
+      "conname": "credit_posting_user_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_reservation",
+      "conname": "credit_reservation_id_user_id_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_reservation",
+      "conname": "credit_reservation_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_reservation",
+      "conname": "credit_reservation_state_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_reservation",
+      "conname": "credit_reservation_units_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_reservation",
+      "conname": "credit_reservation_user_id_business_key_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "credit_reservation",
+      "conname": "credit_reservation_user_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "idempotency_record",
+      "conname": "idempotency_record_key_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "idempotency_record",
+      "conname": "idempotency_record_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "idempotency_record",
+      "conname": "idempotency_record_user_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "look",
+      "conname": "look_owner_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "look",
+      "conname": "look_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "look",
+      "conname": "look_source_type_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "look",
+      "conname": "look_title_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "look_revision",
+      "conname": "look_revision_components_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "look_revision",
+      "conname": "look_revision_content_hash_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "look_revision",
+      "conname": "look_revision_look_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "look_revision",
+      "conname": "look_revision_look_id_revision_no_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "look_revision",
+      "conname": "look_revision_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "look_revision",
+      "conname": "look_revision_revision_no_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_capability_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_country_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_currency_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_policy_ref_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_reviewed_by_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_sequence_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "merchant_profiles",
+      "conname": "merchant_profiles_display_name_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "merchant_profiles",
+      "conname": "merchant_profiles_id_organization_id_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "merchant_profiles",
+      "conname": "merchant_profiles_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "merchant_profiles",
+      "conname": "merchant_profiles_organization_id_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "merchant_profiles",
+      "conname": "merchant_profiles_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "merchant_profiles",
+      "conname": "merchant_profiles_verification_status_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "organization_members",
+      "conname": "organization_member_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "organization_members",
+      "conname": "organization_member_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "organization_members",
+      "conname": "organization_member_role_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "organization_members",
+      "conname": "organization_member_user_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "organization_members",
+      "conname": "organization_members_id_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "organizations",
+      "conname": "organization_name_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "organizations",
+      "conname": "organization_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "outbox_event",
+      "conname": "outbox_event_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "personal_routine",
+      "conname": "personal_routine_owner_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "personal_routine",
+      "conname": "personal_routine_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "personal_routine",
+      "conname": "personal_routine_revision_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "personal_routine",
+      "conname": "personal_routine_steps_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "personal_routine",
+      "conname": "personal_routine_title_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "policy_document",
+      "conname": "policy_document_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "policy_document",
+      "conname": "policy_document_purpose_version_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_categories",
+      "conname": "product_categories_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_categories",
+      "conname": "product_categories_name_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_categories",
+      "conname": "product_categories_parent_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_categories",
+      "conname": "product_categories_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_categories",
+      "conname": "product_categories_slug_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_categories",
+      "conname": "product_categories_slug_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_currency_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_organization_id_sku_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_product_id_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_shade_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_size_label_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_sku_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_stock_on_hand_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_unit_price_minor_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "products",
+      "conname": "products_category_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "products",
+      "conname": "products_description_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "products",
+      "conname": "products_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "products",
+      "conname": "products_id_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "products",
+      "conname": "products_id_organization_id_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "products",
+      "conname": "products_merchant_profile_id_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "products",
+      "conname": "products_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "products",
+      "conname": "products_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "products",
+      "conname": "products_title_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "professional_profiles",
+      "conname": "professional_profiles_bio_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "professional_profiles",
+      "conname": "professional_profiles_display_name_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "professional_profiles",
+      "conname": "professional_profiles_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "professional_profiles",
+      "conname": "professional_profiles_organization_id_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "professional_profiles",
+      "conname": "professional_profiles_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "professional_profiles",
+      "conname": "professional_profiles_verification_status_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_avatar_object_key_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_display_name_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "saved_requirement",
+      "conname": "saved_requirement_owner_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "saved_requirement",
+      "conname": "saved_requirement_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "staff_grant",
+      "conname": "staff_grant_evidence_ref_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "staff_grant",
+      "conname": "staff_grant_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "staff_grant",
+      "conname": "staff_grant_role_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "staff_grant",
+      "conname": "staff_grant_user_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_coverage_preference_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_profile_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_profile_id_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_revision_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_sizing_notes_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "user_preferences",
+      "conname": "user_preferences_currency_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "user_preferences",
+      "conname": "user_preferences_locale_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "user_preferences",
+      "conname": "user_preferences_measurement_system_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "user_preferences",
+      "conname": "user_preferences_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "user_preferences",
+      "conname": "user_preferences_profile_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "user_preferences",
+      "conname": "user_preferences_profile_id_key",
+      "contype": "u",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_capability",
+      "conname": "workspace_capability_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_capability",
+      "conname": "workspace_capability_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_capability",
+      "conname": "workspace_capability_status_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_capability",
+      "conname": "workspace_capability_workspace_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_draft",
+      "conname": "workspace_draft_author_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_draft",
+      "conname": "workspace_draft_notes_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_draft",
+      "conname": "workspace_draft_organization_id_workspace_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_draft",
+      "conname": "workspace_draft_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_draft",
+      "conname": "workspace_draft_revision_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_draft",
+      "conname": "workspace_draft_title_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_invitation",
+      "conname": "workspace_invitation_invited_by_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_invitation",
+      "conname": "workspace_invitation_organization_id_workspace_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_invitation",
+      "conname": "workspace_invitation_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_invitation",
+      "conname": "workspace_invitation_recipient_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_invitation",
+      "conname": "workspace_invitation_role_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_invitation",
+      "conname": "workspace_invitation_state_check",
+      "contype": "c",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_role",
+      "conname": "workspace_role_organization_id_user_id_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_role",
+      "conname": "workspace_role_organization_id_workspace_fkey",
+      "contype": "f",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_role",
+      "conname": "workspace_role_pkey",
+      "contype": "p",
+      "convalidated": true
+    },
+    {
+      "table_name": "workspace_role",
+      "conname": "workspace_role_role_check",
+      "contype": "c",
+      "convalidated": true
+    }
+  ],
+  "functions": [
+    {
+      "schema": "glam_private",
+      "name": "current_app_user_id",
+      "security_definer": true,
+      "volatility": "s"
+    },
+    {
+      "schema": "glam_private",
+      "name": "is_org_member",
+      "security_definer": true,
+      "volatility": "s"
+    },
+    {
+      "schema": "glam_private",
+      "name": "touch_updated_at",
+      "security_definer": false,
+      "volatility": "v"
+    },
+    {
+      "schema": "public",
+      "name": "enforce_credit_balance",
+      "security_definer": false,
+      "volatility": "v"
+    },
+    {
+      "schema": "public",
+      "name": "protect_journal",
+      "security_definer": false,
+      "volatility": "v"
+    },
+    {
+      "schema": "public",
+      "name": "protect_posting_insert",
+      "security_definer": false,
+      "volatility": "v"
+    },
+    {
+      "schema": "public",
+      "name": "reject_mutation",
+      "security_definer": false,
+      "volatility": "v"
+    },
+    {
+      "schema": "public",
+      "name": "rls_auto_enable",
+      "security_definer": true,
+      "volatility": "v"
+    }
+  ],
+  "policies": [
+    {
+      "schemaname": "public",
+      "tablename": "merchant_profiles",
+      "policyname": "merchants_read_org",
+      "cmd": "SELECT",
+      "qual": "glam_private.is_org_member(organization_id)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "organization_members",
+      "policyname": "members_read_org",
+      "cmd": "SELECT",
+      "qual": "glam_private.is_org_member(organization_id)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "organizations",
+      "policyname": "organizations_read_member",
+      "cmd": "SELECT",
+      "qual": "glam_private.is_org_member(id)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "product_categories",
+      "policyname": "categories_read_active",
+      "cmd": "SELECT",
+      "qual": "is_active",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "product_variants",
+      "policyname": "variants_read_org",
+      "cmd": "SELECT",
+      "qual": "glam_private.is_org_member(organization_id)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "products",
+      "policyname": "products_read_org",
+      "cmd": "SELECT",
+      "qual": "glam_private.is_org_member(organization_id)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "professional_profiles",
+      "policyname": "professionals_read_org",
+      "cmd": "SELECT",
+      "qual": "glam_private.is_org_member(organization_id)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "profiles",
+      "policyname": "profiles_insert_self",
+      "cmd": "INSERT",
+      "qual": null,
+      "with_check": "(id = auth.uid())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "profiles",
+      "policyname": "profiles_select_self",
+      "cmd": "SELECT",
+      "qual": "(id = auth.uid())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "profiles",
+      "policyname": "profiles_update_self",
+      "cmd": "UPDATE",
+      "qual": "(id = auth.uid())",
+      "with_check": "(id = auth.uid())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "style_passports",
+      "policyname": "passports_delete_self",
+      "cmd": "DELETE",
+      "qual": "(profile_id = auth.uid())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "style_passports",
+      "policyname": "passports_insert_self",
+      "cmd": "INSERT",
+      "qual": null,
+      "with_check": "(profile_id = auth.uid())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "style_passports",
+      "policyname": "passports_select_self",
+      "cmd": "SELECT",
+      "qual": "(profile_id = auth.uid())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "style_passports",
+      "policyname": "passports_update_self",
+      "cmd": "UPDATE",
+      "qual": "(profile_id = auth.uid())",
+      "with_check": "(profile_id = auth.uid())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "user_preferences",
+      "policyname": "preferences_delete_self",
+      "cmd": "DELETE",
+      "qual": "(profile_id = auth.uid())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "user_preferences",
+      "policyname": "preferences_insert_self",
+      "cmd": "INSERT",
+      "qual": null,
+      "with_check": "(profile_id = auth.uid())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "user_preferences",
+      "policyname": "preferences_select_self",
+      "cmd": "SELECT",
+      "qual": "(profile_id = auth.uid())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "user_preferences",
+      "policyname": "preferences_update_self",
+      "cmd": "UPDATE",
+      "qual": "(profile_id = auth.uid())",
+      "with_check": "(profile_id = auth.uid())"
+    }
+  ]
+}

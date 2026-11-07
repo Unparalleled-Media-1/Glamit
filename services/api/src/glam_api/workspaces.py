@@ -120,7 +120,7 @@ def authorize(db, uid, org, workspace, write=False):
     # Read authoritative state on every call. Unknown tenants and outsiders get identical 404s.
     row = db.execute(
         text(
-            "SELECT m.role FROM organization_member m JOIN organization o "
+            "SELECT m.role FROM organization_members m JOIN organizations o "
             "ON o.id=m.organization_id "
             "JOIN workspace_capability c ON c.organization_id=o.id "
             "WHERE m.user_id=:u AND o.id=:o AND m.active AND NOT o.suspended "
@@ -180,7 +180,7 @@ def build_router(user, audit, replay, remember):
         rows = db.execute(
             text(
                 "SELECT o.id AS organization_id,o.name,c.workspace,m.role "
-                "FROM organization o JOIN organization_member m ON m.organization_id=o.id "
+                "FROM organizations o JOIN organization_members m ON m.organization_id=o.id "
                 "JOIN workspace_capability c ON c.organization_id=o.id "
                 "WHERE m.user_id=:u AND m.active AND NOT o.suspended "
                 "AND c.status='verified' AND c.expires_at>now() ORDER BY o.name,c.workspace"
@@ -414,7 +414,7 @@ def build_router(user, audit, replay, remember):
         if (
             db.scalar(
                 text(
-                    "SELECT role FROM organization_member WHERE organization_id=:o AND user_id=:u"
+                    "SELECT role FROM organization_members WHERE organization_id=:o AND user_id=:u"
                 ),
                 {"o": org, "u": uid},
             )
@@ -469,7 +469,7 @@ def build_router(user, audit, replay, remember):
             text(
                 "SELECT i.id,i.state,i.organization_id,o.name,i.workspace,i.role,i.expires_at,"
                 "i.invited_by FROM workspace_invitation i "
-                "JOIN organization o ON o.id=i.organization_id "
+                "JOIN organizations o ON o.id=i.organization_id "
                 "WHERE i.recipient_id=:u AND i.state='pending' AND i.expires_at>now() "
                 "ORDER BY i.expires_at,i.id"
             ),
@@ -504,7 +504,7 @@ def build_router(user, audit, replay, remember):
         require_owner(db, row["invited_by"], row["organization_id"], row["workspace"])
         membership = db.execute(
             text(
-                "SELECT active FROM organization_member WHERE organization_id=:o AND user_id=:u "
+                "SELECT active FROM organization_members WHERE organization_id=:o AND user_id=:u "
                 "FOR UPDATE"
             ),
             {"o": row["organization_id"], "u": uid},
@@ -516,7 +516,7 @@ def build_router(user, audit, replay, remember):
         db.execute(
             text(
                 "INSERT INTO "
-                "organization_member(organization_id,user_id,role) VALUES (:o,:u,'analyst') "
+                "organization_members(organization_id,user_id,role) VALUES (:o,:u,'analyst') "
                 "ON CONFLICT DO NOTHING"
             ),
             {"o": row["organization_id"], "u": uid},

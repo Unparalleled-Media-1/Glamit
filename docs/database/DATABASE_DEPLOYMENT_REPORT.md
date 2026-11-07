@@ -1,5 +1,7 @@
 # Database deployment report — BLOCKED, no deployment
 
+> Historical Phase 0 snapshot. Management SQL access and a development branch are now verified; see [first foundation execution](FIRST_FOUNDATION_DEPLOYMENT.md) for the current migration path and actual deployment evidence.
+
 Target project: `bkkmsbxrxkqaveymcrgi`, selected for development. Source base `9b9286194cd40c7e0405481d1a46da1e61e54c6a`. Implementation branch `feat/supabase-database-foundation`; main `feat/platform-foundations` remains `d03f6d45a8ffb99a26fd1a5a7df6c51689185ffb`. Consolidation PR #10 exists and both CI jobs succeed, but it remains draft/unapproved; protection API 403 prevents independently validating all approval rules.
 
 **Actual remote changes: 0. Tables created: 0. New policies/buckets: 0. New migrations applied: 0. Transfers/payouts initiated: 0.** Existing remote internal objects are not altered. No SQL execution, database connection, auth reconfiguration or application data access occurred.
