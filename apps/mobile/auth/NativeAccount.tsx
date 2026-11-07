@@ -1,6 +1,7 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
 import {
+  Image,
   Linking,
   Modal,
   Platform,
@@ -11,6 +12,8 @@ import {
   TextInput,
   View,
 } from "react-native";
+import type { TextProps } from "react-native";
+import design from "../../../packages/product/consumer-design.json";
 import * as WebBrowser from "expo-web-browser";
 import * as SecureStore from "expo-secure-store";
 import * as Crypto from "expo-crypto";
@@ -33,6 +36,12 @@ import { nativePublicKey, useNativeAccount } from "./use-native-account";
 
 WebBrowser.maybeCompleteAuthSession();
 type Props = { auth: ReturnType<typeof useNativeAccount> };
+const colors = design.palette;
+const providerImages = {
+  google: require("./assets/google.png"),
+  apple: require("./assets/apple.png"),
+  facebook: require("./assets/facebook.png"),
+};
 const callback = "glamai://auth/callback";
 export default function NativeAccount({ auth }: Props) {
   const insets = useSafeAreaInsets();
@@ -47,6 +56,7 @@ export default function NativeAccount({ auth }: Props) {
     [countries, setCountries] = useState(false),
     [supported, setSupported] = useState(false),
     [countrySearch, setCountrySearch] = useState("");
+  const [focused, setFocused] = useState<string | null>(null);
   const wait = Math.max(0, 60 - Math.floor((now - sent) / 1000));
   useEffect(() => {
     let live = true;
@@ -65,15 +75,22 @@ export default function NativeAccount({ auth }: Props) {
     const t = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(t);
   }, [sent]);
-  const button = (label: string, run: () => void, disabled = false) => (
+  const button = (
+    label: string,
+    run: () => void,
+    disabled = false,
+    primary = false,
+  ) => (
     <Pressable
       accessibilityRole="button"
       accessibilityState={{ disabled: busy || disabled }}
       disabled={busy || disabled}
       onPress={run}
-      style={[s.button, (busy || disabled) && s.disabled]}
+      style={[s.button, primary && s.primary, (busy || disabled) && s.disabled]}
     >
-      <Text style={s.buttonText}>{label}</Text>
+      <AuthText style={[s.buttonText, primary && s.primaryText]}>
+        {label}
+      </AuthText>
     </Pressable>
   );
   async function request() {
@@ -246,203 +263,306 @@ export default function NativeAccount({ auth }: Props) {
   if (auth.locked) {
     return (
       <View style={s.card}>
-        <Text style={s.heading}>Welcome back</Text>
-        <Text>Your account is locked on this device.</Text>
+        <AuthText style={s.heading}>Welcome back</AuthText>
+        <AuthText>Your account is locked on this device.</AuthText>
         {auth.remembered && supported &&
-          button("Unlock with device biometrics", () => void auth.unlock())}
+          button(
+            "Unlock with device biometrics",
+            () => void auth.unlock(),
+            false,
+            true,
+          )}
         {button("Use SMS or a linked account", () => void auth.freshLogin())}
-        <Text accessibilityLiveRegion="polite">{auth.message}</Text>
+        <AuthText accessibilityLiveRegion="polite">{auth.message}</AuthText>
       </View>
     );
   }
   if (auth.account) {
     return (
       <View style={s.card}>
-        <Text style={s.heading}>Your GLAM account</Text>
-        <Text>
+        <AuthText style={s.heading}>Your GLAM account</AuthText>
+        <AuthText>
           {auth.account.profile.display_name || "Your profile is ready."}
-        </Text>
-        <Text>
+        </AuthText>
+        <AuthText>
           {auth.account.workspaces?.length || 0} approved business workspaces
-        </Text>
+        </AuthText>
         {!auth.remembered && supported && (
           <>
-            <Text>Enable biometric login for faster access?</Text>
-            {button("Enable biometric login", () => void remember())}
+            <AuthText>Enable biometric login for faster access?</AuthText>
+            {button(
+              "Enable biometric login",
+              () => void remember(),
+              false,
+              true,
+            )}
           </>
         )}
         {auth.remembered &&
           button("Turn off biometric login", () => void disableBiometrics())}
         {button("Sign out of this device", () => void auth.logout())}
         {button("Sign out of all devices", () => void auth.logout(true))}
-        <Text accessibilityLiveRegion="polite">{auth.message}</Text>
+        <AuthText accessibilityLiveRegion="polite">{auth.message}</AuthText>
       </View>
     );
   }
   return (
     <View style={s.card}>
-      <Text style={s.heading}>Welcome to GLAM AI</Text>
-      <Text>Your personal beauty and style journey starts here.</Text>
-      {!target
-        ? (
-          <>
-            <Text>Country calling code</Text>
-            {button(
-              (countryChoices.find((c) => c.country === country)?.name ||
-                country) +
-                " +" +
-                countryChoices.find((c) => c.country === country)?.callingCode,
-              () => setCountries(!countries),
-            )}
-            <Modal
-              visible={countries}
-              transparent
-              animationType="slide"
-              onRequestClose={() => setCountries(false)}
-            >
-              <View
-                style={{
-                  flex: 1,
-                  backgroundColor: "#0009",
-                  paddingTop: Math.max(16, insets.top),
-                  paddingBottom: Math.max(16, insets.bottom),
-                  paddingHorizontal: 20,
-                }}
-                accessibilityViewIsModal
+      <AuthText style={s.heading}>Welcome to GLAM AI</AuthText>
+      <AuthText>Your personal beauty and style journey starts here.</AuthText>
+      {available.phone || target
+        ? (!target
+          ? (
+            <>
+              <AuthText>Country calling code</AuthText>
+              {button(
+                (countryChoices.find((c) => c.country === country)?.name ||
+                  country) +
+                  " +" +
+                  countryChoices.find((c) => c.country === country)
+                    ?.callingCode,
+                () => setCountries(!countries),
+              )}
+              <Modal
+                visible={countries}
+                transparent
+                animationType="slide"
+                onRequestClose={() => setCountries(false)}
               >
-                <View style={[s.card, { flex: 1 }]}>
-                  <Text style={s.heading}>Country calling code</Text>
-                  <TextInput
-                    accessibilityLabel="Search countries"
-                    value={countrySearch}
-                    onChangeText={setCountrySearch}
-                    style={s.input}
-                  />
-                  <ScrollView>
-                    {countryChoices.filter((c) =>
-                      (c.name + " " + c.country + " " + c.callingCode)
-                        .toLowerCase().includes(countrySearch.toLowerCase())
-                    ).map((c) => (
-                      <Pressable
-                        key={c.country}
-                        accessibilityRole="button"
-                        onPress={() => {
-                          setCountry(c.country);
-                          setCountries(false);
-                          setCountrySearch("");
-                        }}
-                        style={s.option}
-                      >
-                        <Text>{c.name} +{c.callingCode}</Text>
-                      </Pressable>
-                    ))}
-                  </ScrollView>
-                  {button("Close country selector", () => setCountries(false))}
+                <View
+                  style={{
+                    flex: 1,
+                    backgroundColor: colors.charcoal + "99",
+                    paddingTop: Math.max(16, insets.top),
+                    paddingBottom: Math.max(16, insets.bottom),
+                    paddingHorizontal: 20,
+                  }}
+                  accessibilityViewIsModal
+                >
+                  <View style={[s.card, { flex: 1 }]}>
+                    <AuthText style={s.heading}>Country calling code</AuthText>
+                    <TextInput
+                      accessibilityLabel="Search countries"
+                      value={countrySearch}
+                      onChangeText={setCountrySearch}
+                      onFocus={() => setFocused("search")}
+                      onBlur={() => setFocused(null)}
+                      style={[s.input, focused === "search" && s.inputFocused]}
+                    />
+                    <ScrollView>
+                      {countryChoices.filter((c) =>
+                        (c.name + " " + c.country + " " + c.callingCode)
+                          .toLowerCase().includes(countrySearch.toLowerCase())
+                      ).map((c) => (
+                        <Pressable
+                          key={c.country}
+                          accessibilityRole="button"
+                          onPress={() => {
+                            setCountry(c.country);
+                            setCountries(false);
+                            setCountrySearch("");
+                          }}
+                          accessibilityState={{
+                            selected: c.country === country,
+                          }}
+                          style={[
+                            s.option,
+                            c.country === country && s.selectedOption,
+                          ]}
+                        >
+                          <AuthText>{c.name} +{c.callingCode}</AuthText>
+                        </Pressable>
+                      ))}
+                    </ScrollView>
+                    {button(
+                      "Close country selector",
+                      () => setCountries(false),
+                    )}
+                  </View>
                 </View>
-              </View>
-            </Modal>
-            <Text>Mobile number</Text>
-            <TextInput
-              accessibilityLabel="Mobile number"
-              autoComplete="tel"
-              textContentType="telephoneNumber"
-              keyboardType="phone-pad"
-              value={phone}
-              onChangeText={setPhone}
-              maxLength={80}
-              editable={!busy}
-              style={s.input}
-            />
-            {button(
-              "Continue with SMS",
-              () => void request(),
-              !available.phone,
-            )}
-            {!available.phone && (
-              <Text>
-                SMS sign-in is awaiting provider setup. No code will be sent.
-              </Text>
-            )}
-          </>
-        )
+              </Modal>
+              <AuthText>Mobile number</AuthText>
+              <TextInput
+                accessibilityLabel="Mobile number"
+                autoComplete="tel"
+                textContentType="telephoneNumber"
+                keyboardType="phone-pad"
+                value={phone}
+                onChangeText={setPhone}
+                maxLength={80}
+                editable={!busy}
+                onFocus={() => setFocused("phone")}
+                onBlur={() => setFocused(null)}
+                style={[s.input, focused === "phone" && s.inputFocused]}
+              />
+              {button(
+                "Continue with SMS",
+                () => void request(),
+                !available.phone,
+                true,
+              )}
+              {!available.phone && (
+                <AuthText>
+                  SMS sign-in is awaiting provider setup. No code will be sent.
+                </AuthText>
+              )}
+            </>
+          )
+          : (
+            <>
+              <AuthText>Verification code</AuthText>
+              <TextInput
+                accessibilityLabel="Verification code"
+                keyboardType="number-pad"
+                textContentType="oneTimeCode"
+                autoComplete={Platform.OS === "android"
+                  ? "sms-otp"
+                  : "one-time-code"}
+                value={code}
+                onChangeText={(v) => setCode(v.replace(/\D/g, ""))}
+                maxLength={6}
+                editable={!busy}
+                onFocus={() => setFocused("code")}
+                onBlur={() => setFocused(null)}
+                style={[s.input, focused === "code" && s.inputFocused]}
+              />
+              {button(
+                "Verify code",
+                () => void verify(),
+                code.length !== 6,
+                true,
+              )}
+              {button(
+                wait ? `Resend in ${wait}s` : "Resend code",
+                () => void request(),
+                wait > 0,
+              )}
+              {button("Change number", () => {
+                setTarget("");
+                setCode("");
+              })}
+            </>
+          ))
         : (
-          <>
-            <Text>Verification code</Text>
-            <TextInput
-              accessibilityLabel="Verification code"
-              keyboardType="number-pad"
-              textContentType="oneTimeCode"
-              autoComplete={Platform.OS === "android"
-                ? "sms-otp"
-                : "one-time-code"}
-              value={code}
-              onChangeText={(v) => setCode(v.replace(/\D/g, ""))}
-              maxLength={6}
-              editable={!busy}
-              style={s.input}
-            />
-            {button("Verify code", () => void verify(), code.length !== 6)}
-            {button(wait ? `Resend in ${wait}s` : "Resend code", () =>
-              void request(), wait > 0)}
-            {button("Change number", () => {
-              setTarget("");
-              setCode("");
-            })}
-          </>
+          <AuthText>
+            SMS sign-in isn’t available right now. Explore GLAM AI without
+            signing in.
+          </AuthText>
         )}
-      <Text>Or continue with</Text>
-      {providers.map((p) => (
-        <View key={p}>
-          {button(
-            p[0].toUpperCase() + p.slice(1),
-            () => void social(p),
-            !available[p],
-          )}
-        </View>
+      {providers.some((p) => available[p]) && (
+        <AuthText>Or continue with</AuthText>
+      )}
+      {providers.filter((p) => available[p]).map((p) => (
+        <Pressable
+          key={p}
+          accessibilityRole="button"
+          accessibilityLabel={`Continue with ${
+            p[0].toUpperCase() + p.slice(1)
+          }`}
+          accessibilityState={{ disabled: busy }}
+          disabled={busy}
+          onPress={() => void social(p)}
+          style={[
+            s.button,
+            s.provider,
+            p === "google" ? s.google : p === "apple" ? s.apple : s.facebook,
+            busy && s.disabled,
+          ]}
+        >
+          <Image
+            source={providerImages[p]}
+            style={s.providerIcon}
+            accessible={false}
+          />
+          <AuthText
+            style={[
+              s.buttonText,
+              s.providerText,
+              p === "google" ? s.googleText : s.whiteText,
+            ]}
+          >
+            Continue with {p[0].toUpperCase() + p.slice(1)}
+          </AuthText>
+        </Pressable>
       ))}
-      <Text>Social options activate after provider setup.</Text>
       {button(
         "Privacy",
-        () =>
-          void Linking.openURL("https://www.glamit.beauty/privacy"),
+        () => void Linking.openURL("https://www.glamit.beauty/privacy"),
       )}
       {button(
         "Terms",
-        () =>
-          void Linking.openURL("https://www.glamit.beauty/terms"),
+        () => void Linking.openURL("https://www.glamit.beauty/terms"),
       )}
-      <Text accessibilityLiveRegion="polite">{auth.message}</Text>
+      <AuthText accessibilityLiveRegion="polite">{auth.message}</AuthText>
     </View>
   );
 }
+function AuthText({ style, ...props }: TextProps) {
+  return <Text {...props} style={[s.body, style]} />;
+}
 const s = StyleSheet.create({
+  body: { color: colors.ink, fontSize: design.type.body, lineHeight: 21 },
   card: {
-    padding: 22,
-    borderRadius: 22,
-    backgroundColor: "#fff",
-    gap: 14,
+    padding: design.spacing.xl,
+    borderRadius: design.radius.sheet,
+    backgroundColor: colors.ivory,
+    gap: design.spacing.md,
     borderWidth: 1,
-    borderColor: "#ddd6d2",
-    marginVertical: 16,
+    borderColor: colors.line,
+    marginVertical: design.spacing.lg,
   },
-  heading: { fontSize: 23, fontWeight: "600", color: "#17151a" },
+  heading: {
+    fontSize: design.type.heading,
+    fontFamily: Platform.OS === "ios"
+      ? design.fonts.iosHeading
+      : design.fonts.androidHeading,
+    color: colors.ink,
+  },
   input: {
     minHeight: 48,
     padding: 14,
     borderWidth: 1,
-    borderColor: "#847c87",
-    borderRadius: 14,
-    color: "#17151a",
+    borderColor: colors.muted,
+    borderRadius: design.radius.card,
+    color: colors.ink,
+    backgroundColor: colors.white,
   },
   button: {
-    minHeight: 48,
-    backgroundColor: "#17151a",
-    borderRadius: 25,
+    minHeight: 52,
+    width: "100%",
+    borderWidth: 1,
+    borderColor: colors.mauve,
+    backgroundColor: colors.white,
+    borderRadius: design.radius.control,
     paddingHorizontal: 20,
     paddingVertical: 14,
     alignItems: "center",
   },
-  buttonText: { color: "#fff", fontWeight: "600" },
+  buttonText: { color: colors.mauve, fontWeight: "600" },
+  primary: { backgroundColor: colors.rose, borderColor: colors.rose },
+  primaryText: { color: colors.charcoal },
+  inputFocused: { borderColor: colors.rose, borderWidth: 2 },
+  provider: { flexDirection: "row", justifyContent: "center", gap: 12 },
+  providerIcon: {
+    position: "absolute",
+    left: 18,
+    width: 20,
+    height: 20,
+    resizeMode: "contain",
+  },
+  providerText: {
+    fontFamily: Platform.OS === "android" ? "Roboto" : "Arial",
+    fontSize: 14,
+  },
+  google: { backgroundColor: "#FFFFFF", borderColor: "#747775" },
+  apple: { backgroundColor: "#000000", borderColor: "#000000" },
+  facebook: { backgroundColor: "#0866FF", borderColor: "#0866FF" },
+  googleText: { color: "#1F1F1F", fontWeight: "500" },
+  whiteText: { color: "#FFFFFF" },
   disabled: { opacity: .45 },
+  selectedOption: {
+    backgroundColor: colors.blush,
+    borderRadius: design.radius.card,
+  },
   option: { minHeight: 48, padding: 14 },
 });

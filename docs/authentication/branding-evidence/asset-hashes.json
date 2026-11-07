@@ -1,0 +1,17 @@
+[
+  {
+    "provider": "google",
+    "file": "packages/auth/marks/google.svg",
+    "sha256": "cbe9772630b9b72daf7c14eab28c6c86f88e07da9cb08487544e022e385ede1f"
+  },
+  {
+    "provider": "apple",
+    "file": "packages/auth/marks/apple.svg",
+    "sha256": "2a1509dccd25e6d2bc7a11a8e52941077e1a48555e192ce638699b9f083c2a7c"
+  },
+  {
+    "provider": "facebook",
+    "file": "packages/auth/marks/facebook.svg",
+    "sha256": "b06d18d844ed621b89faffb1a33440cc0ec4f1ffea9f36191f50db19a47c59a6"
+  }
+]

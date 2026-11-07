@@ -1,0 +1,76 @@
+{
+  "scope": "Token-level comparison with base commit; authentication handler bodies unchanged",
+  "handlers": [
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "handler": "requestCode",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "handler": "verify",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "handler": "social",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "handler": "password",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/components/AccountSecurity.tsx",
+      "handler": "saveChannel",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/components/AccountSecurity.tsx",
+      "handler": "link",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/components/AccountSecurity.tsx",
+      "handler": "changePhone",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/components/AccountSecurity.tsx",
+      "handler": "verifyPhone",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/components/AccountSecurity.tsx",
+      "handler": "logoutAll",
+      "unchanged": true
+    },
+    {
+      "file": "apps/mobile/auth/NativeAccount.tsx",
+      "handler": "request",
+      "unchanged": true
+    },
+    {
+      "file": "apps/mobile/auth/NativeAccount.tsx",
+      "handler": "verify",
+      "unchanged": true
+    },
+    {
+      "file": "apps/mobile/auth/NativeAccount.tsx",
+      "handler": "social",
+      "unchanged": true
+    },
+    {
+      "file": "apps/mobile/auth/NativeAccount.tsx",
+      "handler": "remember",
+      "unchanged": true
+    },
+    {
+      "file": "apps/mobile/auth/NativeAccount.tsx",
+      "handler": "disableBiometrics",
+      "unchanged": true
+    }
+  ],
+  "base_commit": "7b06baa"
+}

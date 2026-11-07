@@ -49,9 +49,25 @@ const assert = require("node:assert/strict");
       errors = [],
       external = [];
     page.on("pageerror", (e) => errors.push(e.message));
-    await page.route("https://**/*", route => {
-      if(route.request().url()==="https://bkkmsbxrxkqaveymcrgi.supabase.co/auth/v1/settings")return route.fulfill({status:200,json:{external:{phone:false,google:false,apple:false,facebook:false}}});
-      external.push(new URL(route.request().url()).origin);return route.abort();
+    await page.route("https://**/*", (route) => {
+      if (
+        route.request().url() ===
+          "https://bkkmsbxrxkqaveymcrgi.supabase.co/auth/v1/settings"
+      ) {
+        return route.fulfill({
+          status: 200,
+          json: {
+            external: {
+              phone: false,
+              google: false,
+              apple: false,
+              facebook: false,
+            },
+          },
+        });
+      }
+      external.push(new URL(route.request().url()).origin);
+      return route.abort();
     });
     const origin = "http://127.0.0.1:" + server.address().port;
     for (
@@ -83,21 +99,53 @@ const assert = require("node:assert/strict");
       );
     }
     await page.goto(origin + "/login/");
-    await page.getByRole("heading", {name:"Sign in to GLAM AI", exact:true}).waitFor();
-    await page.getByLabel("Mobile number", {exact:true}).waitFor();
-    assert.equal(await page.getByRole("button", {name:"Continue with SMS", exact:true}).isDisabled(), true);
-    assert.equal(await page.getByRole("button", {name:"Google", exact:true}).isDisabled(), true);
-    const evidence = process.env.GLAM_AUTH_EVIDENCE_DIR || "/tmp/glam-auth-artifacts";
-    fs.mkdirSync(evidence,{recursive:true});
-    await page.screenshot({path:path.join(evidence,"glam-auth-mobile.png"),fullPage:true});
-    await page.setViewportSize({width:1440,height:1000});
-    await page.screenshot({path:path.join(evidence,"glam-auth-desktop.png"),fullPage:true});
-    await page.setViewportSize({width:390,height:844});
+    await page.getByRole("heading", { name: "Sign in to GLAM AI", exact: true })
+      .waitFor();
+    await page.getByText("SMS sign-in isn’t available right now.", {
+      exact: false,
+    }).waitFor();
+    assert.equal(
+      await page.getByRole("button", { name: "Continue with SMS", exact: true })
+        .count(),
+      0,
+    );
+    assert.equal(
+      await page.getByRole("button", {
+        name: "Continue with Google",
+        exact: true,
+      }).count(),
+      0,
+    );
+    const evidence = process.env.GLAM_AUTH_EVIDENCE_DIR ||
+      "/tmp/glam-auth-artifacts";
+    fs.mkdirSync(evidence, { recursive: true });
+    await page.screenshot({
+      path: path.join(evidence, "glam-auth-mobile.png"),
+      fullPage: true,
+    });
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.screenshot({
+      path: path.join(evidence, "glam-auth-desktop.png"),
+      fullPage: true,
+    });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.getByRole("link", {
+      name: "Explore GLAM AI as a guest",
+      exact: true,
+    }).click();
+    await page.getByRole("heading", { name: /Your next look/ }).waitFor();
     await page.goto(origin + "/profile/");
-    await page.getByLabel("Mobile number", { exact: true }).waitFor();
-    await page.getByRole("button",{name:"Use an existing email and password"}).click();
+    await page.getByText("SMS sign-in isn’t available right now.", {
+      exact: false,
+    }).waitFor();
+    await page.getByRole("button", {
+      name: "Use an existing email and password",
+    }).click();
     await page.getByLabel("Email", { exact: true }).waitFor();
-    await page.getByText("Sign-in available · AI and shopping connections pending", { exact: true }).waitFor();
+    await page.getByText(
+      "Sign-in available · AI and shopping connections pending",
+      { exact: true },
+    ).waitFor();
     assert.equal(
       await page.getByLabel("Password", { exact: true }).getAttribute("type"),
       "password",

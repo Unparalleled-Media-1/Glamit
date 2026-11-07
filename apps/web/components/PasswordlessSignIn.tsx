@@ -16,6 +16,7 @@ import {
   rememberDestination,
   webAuth,
 } from "../lib/passwordless";
+import AuthProviderButton from "./AuthProviderButton";
 import { appPath } from "../lib/paths";
 
 export default function PasswordlessSignIn() {
@@ -165,113 +166,119 @@ export default function PasswordlessSignIn() {
     }
   }
   return (
-    <section aria-label="Sign in to GLAM AI">
-      <p className="eyebrow">Welcome to GLAM AI</p>
-      <p>
-        Your personal beauty and style journey starts here. Explore freely, then
-        sign in to save.
+    <section className="auth-surface" aria-label="Sign in to GLAM AI">
+      <p className="auth-intro">
+        Your personal beauty and style journey starts here.
       </p>
-      {!target
-        ? (
-          <form method="post" onSubmit={requestCode}>
-            <label htmlFor="login-country">Country calling code</label>
-            <select
-              id="login-country"
-              value={country}
-              disabled={busy}
-              onChange={(e) => setCountry(e.target.value as CountryCode)}
-            >
-              {countryChoices.map((c) => (
-                <option key={c.country} value={c.country}>
-                  {c.name} +{c.callingCode}
-                </option>
-              ))}
-            </select>
-            <label htmlFor="login-phone">Mobile number</label>
-            <input
-              id="login-phone"
-              name="phone"
-              type="tel"
-              inputMode="tel"
-              autoComplete="tel-national"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              maxLength={80}
-              required
-              disabled={busy}
-            />
-            <button className="button" disabled={busy || !available.phone}>
-              {busy ? "Please wait…" : "Continue with SMS"}
-            </button>
-            {!available.phone && (
+
+      {available.phone || target
+        ? (!target
+          ? (
+            <form method="post" onSubmit={requestCode}>
+              <label htmlFor="login-country">Country calling code</label>
+              <select
+                id="login-country"
+                value={country}
+                disabled={busy}
+                onChange={(e) => setCountry(e.target.value as CountryCode)}
+              >
+                {countryChoices.map((c) => (
+                  <option key={c.country} value={c.country}>
+                    {c.name} +{c.callingCode}
+                  </option>
+                ))}
+              </select>
+              <label htmlFor="login-phone">Mobile number</label>
+              <input
+                id="login-phone"
+                name="phone"
+                type="tel"
+                inputMode="tel"
+                autoComplete="tel-national"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                maxLength={80}
+                required
+                disabled={busy}
+              />
+              <button className="button" disabled={busy || !available.phone}>
+                {busy ? "Please wait…" : "Continue with SMS"}
+              </button>
+              {!available.phone && (
+                <p className="fine">
+                  SMS sign-in is awaiting provider setup. No code will be sent.
+                </p>
+              )}
+            </form>
+          )
+          : (
+            <form method="post" onSubmit={verify}>
+              <label htmlFor="login-code">Verification code</label>
+              <input
+                id="login-code"
+                name="otp"
+                type="text"
+                inputMode="numeric"
+                autoComplete="one-time-code"
+                pattern="[0-9]{6}"
+                maxLength={6}
+                value={otp}
+                onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
+                required
+                disabled={busy}
+              />
               <p className="fine">
-                SMS sign-in is awaiting provider setup. No code will be sent.
+                Enter the six-digit code requested for{" "}
+                {target}. Codes expire; request a new one if needed.
               </p>
-            )}
-          </form>
-        )
+              <button className="button" disabled={busy || otp.length !== 6}>
+                Verify code
+              </button>
+              <button
+                type="button"
+                className="button secondary"
+                disabled={busy || wait > 0}
+                onClick={() => requestCode()}
+              >
+                {wait > 0 ? `Resend in ${wait}s` : "Resend code"}
+              </button>
+              <button
+                type="button"
+                className="text-button"
+                disabled={busy}
+                onClick={() => {
+                  setTarget("");
+                  setOtp("");
+                  setMessage("");
+                }}
+              >
+                Change number
+              </button>
+            </form>
+          ))
         : (
-          <form method="post" onSubmit={verify}>
-            <label htmlFor="login-code">Verification code</label>
-            <input
-              id="login-code"
-              name="otp"
-              type="text"
-              inputMode="numeric"
-              autoComplete="one-time-code"
-              pattern="[0-9]{6}"
-              maxLength={6}
-              value={otp}
-              onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-              required
-              disabled={busy}
-            />
-            <p className="fine">
-              Enter the six-digit code requested for{" "}
-              {target}. Codes expire; request a new one if needed.
-            </p>
-            <button className="button" disabled={busy || otp.length !== 6}>
-              Verify code
-            </button>
-            <button
-              type="button"
-              className="button secondary"
-              disabled={busy || wait > 0}
-              onClick={() => requestCode()}
-            >
-              {wait > 0 ? `Resend in ${wait}s` : "Resend code"}
-            </button>
-            <button
-              type="button"
-              className="text-button"
-              disabled={busy}
-              onClick={() => {
-                setTarget("");
-                setOtp("");
-                setMessage("");
-              }}
-            >
-              Change number
-            </button>
-          </form>
+          <p className="auth-unavailable" role="status">
+            SMS sign-in isn’t available right now. You can explore as a guest or
+            use an existing email account.
+          </p>
         )}
-      <p>Or continue with</p>
-      <div className="chips">
-        {providers.map((provider) => (
-          <button
-            key={provider}
-            type="button"
-            className="button secondary"
-            disabled={busy || !available[provider]}
-            onClick={() => social(provider)}
-          >
-            {provider[0].toUpperCase() + provider.slice(1)}
-          </button>
-        ))}
-      </div>
-      <p className="fine">
-        Unavailable social options are awaiting provider configuration.
-      </p>
+      {providers.some((p) => available[p]) && (
+        <>
+          <div className="auth-divider">
+            <span>Or continue with</span>
+          </div>
+          <div className="auth-provider-list">
+            {providers.filter((p) => available[p]).map((provider) => (
+              <AuthProviderButton
+                key={provider}
+                provider={provider}
+                disabled={busy}
+                onClick={() => void social(provider)}
+              />
+            ))}
+          </div>
+        </>
+      )}
       <button
         className="text-button"
         type="button"
@@ -307,25 +314,27 @@ export default function PasswordlessSignIn() {
         <a href={appPath("/privacy")}>Privacy</a> ·{" "}
         <a href="https://www.glamit.beauty/terms">Terms</a>
       </p>
-      <button
-        className="text-button"
-        type="button"
-        disabled={busy}
-        onClick={() => {
-          void availability(publicAuthKey).then((v) => {
-            setAvailable(v);
-            setMessage(
-              v.configured
-                ? "Sign-in options updated."
-                : "Account connection is unavailable.",
+      {!available.phone && (
+        <button
+          className="text-button"
+          type="button"
+          disabled={busy}
+          onClick={() => {
+            void availability(publicAuthKey).then((v) => {
+              setAvailable(v);
+              setMessage(
+                v.configured
+                  ? "Sign-in options updated."
+                  : "Account connection is unavailable.",
+              );
+            }).catch(() =>
+              setMessage("Sign-in options could not be checked. Try again.")
             );
-          }).catch(() =>
-            setMessage("Sign-in options could not be checked. Try again.")
-          );
-        }}
-      >
-        Refresh sign-in options
-      </button>
+          }}
+        >
+          Refresh sign-in options
+        </button>
+      )}
       <p role="status" aria-live="polite">{message}</p>
     </section>
   );
