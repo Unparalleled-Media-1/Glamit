@@ -251,7 +251,7 @@
 .golden-product-card > p {
   font-size: 9px;
   margin: 16px 0 6px;
-  color: #997487;
+  color: var(--glam-palette-mauve);
 }
 .golden-product-card > h3 {
   font:
@@ -262,7 +262,7 @@
 }
 .golden-product-card > span {
   font-size: 10px;
-  color: #87707e;
+  color: var(--glam-palette-mauve);
 }
 .golden-offer-boundary {
   display: grid;
@@ -294,7 +294,7 @@
   color: #765268;
 }
 .golden-offer-boundary span {
-  color: #89707e;
+  color: var(--glam-palette-mauve);
 }
 .golden-offer-boundary > .golden-text-button {
   grid-column: 1/-1;
@@ -322,7 +322,7 @@
 .golden-product-topline > span {
   font-size: 9px;
   letter-spacing: 1.5px;
-  color: #99778b;
+  color: var(--glam-palette-mauve);
 }
 .golden-detail-layout {
   display: grid;
@@ -378,7 +378,7 @@
 }
 .golden-price-status > span {
   font-size: 10px;
-  color: #98798a;
+  color: var(--glam-palette-mauve);
 }
 .golden-detail-moods > span {
   font-size: 12px;
@@ -835,7 +835,7 @@
 .golden-report-progress > span {
   font-size: 9px;
   letter-spacing: 1px;
-  color: #927386;
+  color: var(--glam-palette-mauve);
 }
 .golden-report-progress strong {
   display: block;

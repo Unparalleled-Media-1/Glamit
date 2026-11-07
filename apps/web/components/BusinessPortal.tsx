@@ -156,7 +156,7 @@ export default function BusinessPortal({
             Navigation does not grant access.
           </p>
         </aside>
-        <main id="workspace-content" className="business-main">
+        <main id="workspace-content" className="business-main" tabIndex={-1}>
           <header className="workspace-header">
             <span>
               {admin ? "Admin" : config.title} /{" "}

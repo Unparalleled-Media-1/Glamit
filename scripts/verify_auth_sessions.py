@@ -1,5 +1,6 @@
 """Real Supabase session/RLS checks with designated disposable users; never SMS delivery proof."""
 
+import argparse
 import json
 import os
 import secrets
@@ -12,7 +13,7 @@ import httpx
 URL = "https://bkkmsbxrxkqaveymcrgi.supabase.co"
 
 
-def verify():
+def verify(report_path="docs/authentication/evidence/live-session-regression.json"):
     report = {
         "observed_at": datetime.now(UTC).isoformat(),
         "project_ref": "bkkmsbxrxkqaveymcrgi",
@@ -184,13 +185,15 @@ def verify():
                 report["cleanup"].append({"id": uid, "http_status": r.status_code})
                 if not r.is_success:
                     report["status"] = "FAILED"
-    Path("docs/authentication/evidence/live-session-regression.json").write_text(
-        json.dumps(report, indent=2) + "\n"
-    )
+    Path(report_path).write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report, indent=2))
     if report["status"] == "FAILED":
         raise SystemExit(2)
 
 
 if __name__ == "__main__":
-    verify()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--report", default="docs/authentication/evidence/live-session-regression.json"
+    )
+    verify(parser.parse_args().report)

@@ -1,0 +1,608 @@
+{
+  "observed_at": "2026-11-07T16:51:51.065598+00:00",
+  "decision": "NO-GO",
+  "candidate_base_commit": "748555ab1d02983707d5f19fe2e914bb16853723",
+  "candidate_branch": "feat/launch-audit",
+  "input_hashes": {
+    "packages/auth/country-labels.ts": "51d65c35c725c9e804455f558f75bcf7d7055bef0b0e9aa424758f88da22bf77",
+    "apps/mobile/App.tsx": "6b6fab3b30f8c30b2edc9496827c584eb7e6e1fe1684fb33264d36eef56d7ede",
+    "apps/mobile/BeautyExperience.tsx": "74e8b193cb0c10996348f48f5c6f1beff1e530ce65d88556030222c827d0289d",
+    "apps/mobile/CompanionViews.tsx": "d1af93e843c4546b69eed71f6567a2ecaf301e1c8b719063a520be0be32699d2",
+    "apps/mobile/ContextualRecommendations.tsx": "b332eda460f3ea5313e051276f0ac939751cc52fbe47a70d98310f282862ffc8",
+    "apps/mobile/GoldenCommerce.tsx": "6c7b90d0a9ee3bfb349455e40add7b62061f841b7283559c336d25c74900d2a6",
+    "apps/mobile/MerchantSnapList.tsx": "d9411a448fd1e13aec4d2f82dec338a0f9592244dde5616c229964abcba8e651",
+    "apps/mobile/StylingJourney.tsx": "4c02c67f95739c8f8655c5e1bad161b205f3deaee6ff34ff71d685dd9d24ca57",
+    "apps/mobile/app.json": "ee284b56671782dff3b6233112d1238c4e89da1e68be737882501a92343c127d",
+    "apps/mobile/assets/beauty-editorial.webp": "6dd1271800f04b2014cd344c362ce11ff2bcb2d14ea476388d3b58ca9bc98008",
+    "apps/mobile/assets/beauty-products.webp": "bf54fdd3fa8b823955e7a85b048150339f8cf107a77dc9d54e66a609937da67a",
+    "apps/mobile/assets/editorial.webp": "b683504a26f710b35afdd294bc96880af0bf93d1fd5fe5711459d1b95689a7b3",
+    "apps/mobile/auth/NativeAccount.tsx": "ee4c2baf525b942ec1f8cf923b96bf24bc6fa8ec65b62f273bce754937029ec5",
+    "apps/mobile/auth/secure-session.ts": "95ed8526e18116282ec07581063a95dc035dcbb240e247ccb2a63682a15d1b06",
+    "apps/mobile/auth/use-native-account.ts": "2de355d858dbd2d5dfc8dc7aaa5515f6457a9ae4b2cbf06df91d1d6088d6167d",
+    "apps/mobile/index.ts": "bd5900c3419fa39727c350ce6192b2ea699a37078d2432094cc84665d5069f06",
+    "apps/mobile/package.json": "9a2f62d37b2d1c56a2ec9cd64f976263d9c53322bba9aeb0b5d1f2b2cd09cec3",
+    "apps/mobile/tsconfig.json": "ae3c31da66eac6f29ebf1070e0b6b0217699f3738dbfb11c05b0f278022880a2",
+    "apps/web/app/[section]/page.tsx": "5061a3458d72b2c74c6ff9828b14e951890b0cad28a7a8d673a65f8b5542b0fc",
+    "apps/web/app/admin/page.tsx": "3ed7be3361be1af244a3fa31a13034838dbee3ef6c1b268716adbaf371f6db55",
+    "apps/web/app/api/capabilities/route.ts": "d1d5753b3d2a45656f57b1917a5713517d696f2d49c391b9c06b6b269c2a8a2b",
+    "apps/web/app/auth/callback/page.tsx": "d5f7152027f6667323c12e0752dc6750f2ae33f4474347994ae63777a422e343",
+    "apps/web/app/business/page.tsx": "73af18044193d14efc8fbe8bb3a83cf47c176598d6fe11ff6172dc29c6ec1eda",
+    "apps/web/app/golden-screens.css": "bfdcbe3f705637fc68c2370301b3701ff8dbbfdbe88f6d0cdb70abaebe06341f",
+    "apps/web/app/golden-tokens.css": "ee76cdd7bdfd149c2fd5d668e561789d60682f0711403d23b034ea3c34d38a47",
+    "apps/web/app/layout.tsx": "83a88c601a14f222610b25ae2f235c8374bc387ee2bebab0b24e2e7d1d851c91",
+    "apps/web/app/login/page.tsx": "bcffe1a27f50b537547de796869f349d64374275f57e01f493ac0dab42e3cfe5",
+    "apps/web/app/page.tsx": "d58e19bcbe75ed818ea966167f51c30de24250ab994ace92302761cb1a7e949d",
+    "apps/web/app/personal-results.css": "69683f579f9f69bb1cd00601aea4ec05aed7ff8a94c9ff761486759378378ac2",
+    "apps/web/app/styles.css": "65d8f619007ce61d22379703b91306875b1d96bf6483493d7dd87b1eb92f4abb",
+    "apps/web/components/AccountSecurity.tsx": "49461dea508ff5cece573d47a44745052c8386615a388a77c91ff51967e957e2",
+    "apps/web/components/BeautyExperience.tsx": "39a74deda0484fceca04cb2dcf6613d55c733cff8966dde3ccdb65778cfb620e",
+    "apps/web/components/BusinessPortal.tsx": "f37108370f9b6457d6f60c64c1c1e72aaa1d633d4fe17d6fbea9e07cdcab307a",
+    "apps/web/components/ContextualRecommendations.tsx": "79325ac469bc10e960f85f49cbbff187dc1a3eeb852663801c37c96ccdf67dce",
+    "apps/web/components/DestinationStylist.tsx": "52c2f59820fab463777b3aa6333f19ece6782449a914aea42310a862f835eb8a",
+    "apps/web/components/DestinationStylistTypes.ts": "ef676c076e43cdbbad5581e927eafbc0be761622d60b05c8b8fe2218cff27e6a",
+    "apps/web/components/GlamApp.tsx": "b628884519226a3cbfaadb82525cd4f46efbad5e63e133129574d2c3328f44ad",
+    "apps/web/components/GoldenCommerce.tsx": "187ecf3c2738b4bd2fb305937ef85643ae2e20b7378c7747a4f02f58a613bacf",
+    "apps/web/components/HostedAccount.tsx": "630831c31267b01eceeb8a4df2c9ef99f8c6bd149d23f7a19da800323bc7efbe",
+    "apps/web/components/MarketplaceJourney.tsx": "cab86123fbd80a8444e6f06663170f7df2c226953ffaa86ae98a42a7e7ef0b5f",
+    "apps/web/components/MerchantSnapList.tsx": "2c87d47fa62cdfab09ad30f48a61363b6fd747afe102a2ddb3d5ba6d45aadebc",
+    "apps/web/components/PasswordlessSignIn.tsx": "fcd60749d555b75254e7c59bd797d9d37c6c8f53f0bdb4f88710fdeda340a86b",
+    "apps/web/components/PersonalizedResults.tsx": "810859673a700649c2b04ba324084f6131fcacc5ac59cd818c1b86cfc4109926",
+    "apps/web/components/StylingJourney.tsx": "3ec46cca325b516b8c249c0e97e861d4fa13dc2f03c03aeca13c8820458a6cb9",
+    "apps/web/components/VerifiedMatches.tsx": "62a2cbde7e748088267b964df6e1e4ed4f09b7d5ea06add8e68c87905bb1ffab",
+    "apps/web/components/VerifiedProductDetail.tsx": "335f27c66a606b5ac8eed7685a5357c99ca40559310158c3961c9711575300fd",
+    "apps/web/components/WebLogin.tsx": "0a1c4717779d75c97b000b52da355effcecac87ad7fefb43abd9528b75664510",
+    "apps/web/lib/passwordless.ts": "42ecb3bd11a4fe6329d835e60662f4f72e766acf667fbfb38ad900f3f1a1ed20",
+    "apps/web/lib/paths.ts": "57e8dde47725c4dd0f3067350228b907314c7f45f3578120c9af04fba357bb3d",
+    "apps/web/lib/use-account-session.ts": "25a1c695c8f929ca8e475438be60edc7089737ba72e28a0ffea9996e3815678e",
+    "apps/web/next-env.d.ts": "1862ac4bbbc5192d4bf562161df66ea547ed3e67173100656ab606ae9797db2b",
+    "apps/web/next.config.ts": "78001098c357462bc7987bf97c0fec42b65cc3db119338ae6117d337df2b14b4",
+    "apps/web/package.json": "d85cad95650783fdc94278150e73bf2d880afb74e327e4638709a7364878d884",
+    "apps/web/public/images/beauty-editorial.webp": "6dd1271800f04b2014cd344c362ce11ff2bcb2d14ea476388d3b58ca9bc98008",
+    "apps/web/public/images/beauty-products.webp": "bf54fdd3fa8b823955e7a85b048150339f8cf107a77dc9d54e66a609937da67a",
+    "apps/web/public/images/editorial.webp": "b683504a26f710b35afdd294bc96880af0bf93d1fd5fe5711459d1b95689a7b3",
+    "apps/web/public/images/products.webp": "53fa1142ad1f559b5aeb5a5975fccde124179a7f7bcb52ca15f05ad89d409fd3",
+    "apps/web/tsconfig.json": "fe301561c5f9f7556924d85c875b73846f4fc6891001acb4ce3ca299984d06c0",
+    "db/migrations/versions/0001_foundations.py": "cacbb66a16253b2058a3b3a617302762d86358bfa12e4180e66af08ad0a7f1ef",
+    "db/migrations/versions/0001_foundations.sql": "e38ccde698b49b661cb12a6a8d9594c5b34f7233a13b3544d6a9ccabee41a369",
+    "db/migrations/versions/0002_credit_safety.py": "06af2b198ead5940aa61fafe809aaf9396426f0316e40a8a6e9aaa83c2d3b5d3",
+    "db/migrations/versions/0003_server_only_access.py": "d1ff935b7f5cd120d014b9a3aa842e1f7109c40dc76f4524b11196b644cb0d20",
+    "db/migrations/versions/0004_analysis_workspaces.py": "44511886ab3a27de455722a84b58e1712cd2ad1b2e06fe36b95449bf1d980159",
+    "db/migrations/versions/0005_workspace_invitations.py": "73316c2f14713e4a1c3629a69fa99c043b426d5bdd983472bf2b918c80cada40",
+    "db/migrations/versions/0006_staff_context.py": "51d968048c7fd51dd85a9a76942fe98fdb950b74789382844e65a89e7ec98081",
+    "db/migrations/versions/0007_contextual_catalog.py": "de5670f34d6a2720669111601d2cbaaef0c5720bb6721accc966d79ccef27f96",
+    "db/migrations/versions/0008_catalog_market_policy.py": "c405c3395f90a7c87cdbabddf38f4776f75eca34b6be38f0635bd4913a24c54e",
+    "db/migrations/versions/0009_stripe_test_ledger.py": "6479a6946a73a5c378b4aa1e589234db6f279cb6900fc8d1b060d83264503b82",
+    "db/migrations/versions/0010_supabase_foundation.py": "98551b52756ff2cdc1fb7c08de752f2da49bb3d4da53a26eeabcb51a4ce14166",
+    "db/migrations/versions/0010_supabase_foundation.sql": "c5897352fb565dba4683d19ab3e87488daac525c97f1d5cd38e371bd1cb6db18",
+    "db/migrations/versions/0011_hosted_api.py": "d6495d752143fe9814b788745a6251e17a4ed3a7b97f29f1d822182ef3f57f10",
+    "db/migrations/versions/0011_hosted_api.sql": "3be91fbd418db690bdf94bdb45417579414990f25ffa49396d306e2d8a72dd98",
+    "db/migrations/versions/0012_hosted_routines.py": "dbf9773fa1f4b8f33b9bf97dd4842a9b25ed3c376aefd82d43cde60a057b8b1d",
+    "db/migrations/versions/0012_hosted_routines.sql": "7d8986135803b2f99bb50fbb31401f25d3573e16c61bbc4e50b54cf3772ba313",
+    "db/migrations/versions/0013_passwordless_accounts.py": "636027aeb5c116feab3fd7a45579021481066602259e0a374aef24b86c526fc1",
+    "db/migrations/versions/0013_passwordless_accounts.sql": "3a34d34888f89a9f18a88e4926f723986e9e05a869352c179cf85f20da99b8d9",
+    "package-lock.json": "9f5dbae75a530fbea84371c7640a665a927112139893081a1e54ab2aebad2fcf",
+    "package.json": "fbe809854b7684524656334b17ffd16007c54a663ac4284a7c3159ce36e5c512",
+    "packages/auth/core.ts": "e542b848ecac9d32226b40160eacf6e5d82ae286c3e3287e5ac74fa85556ad2c",
+    "packages/contracts/api.d.ts": "9f25a0a2d6f8924ad52a6ea85e7c18a812e8949bcc7150e4516cc75235648bc7",
+    "packages/contracts/openapi.json": "b783b9b618777b924c5cb6f18ed43196533421b144ee31a9acb9c9c4414d6e52",
+    "packages/product/api.ts": "c8fa72f27f1064cc580614463ec8ec75613eaf9acd1028d61cfe21d92ec385f0",
+    "packages/product/beauty.ts": "60c07f55c1b199437367dbfeac69374d6aa79908d21df1374ee9afab1a171824",
+    "packages/product/catalog.ts": "c3418756d99ea01d24cb031750ba73c7912e6182c431ee8fe6703ace38beb7e0",
+    "packages/product/companion.ts": "37e3b93058f5bac7b1d1e5ac48501f73f614a7b5e20ef1ecb9914d3031211a64",
+    "packages/product/consumer-design.json": "8daffb7ad39f10a31c7c9fbc82da84d52e6bf0850088caba5a1f76f716709263",
+    "packages/product/editorial-products.ts": "15ff59d9f707c78ef531b14859d713ba6fb36dfb1d6a07808449547d925cd14f",
+    "packages/product/journey.ts": "d3e62723332f9962c7145112ee96a06000e1db22cdb637943973c4ccb55973bf",
+    "packages/product/platform.ts": "620563542e068c1341c83703861059dd86052c5a5a43a2138dc89fee6c91c46b",
+    "packages/product/studio-history.ts": "8576d8246bf7c6650610bbbdeaf4afe81fdbb182cdbaf7822b001b5ff1878363",
+    "packages/product/use-destination.ts": "0e5182898224b3f1d7191d18f98b4dbd522ab8f33861fa2062fb5a399819365b",
+    "packages/product/use-marketplace.ts": "aa5004d1d69f890ba9b2008842272412e47811c4386d22b0c42801822467588a",
+    "packages/product/use-personal-results.ts": "dbb8dad75905e88c8aff3287c80d5f746f2a530caed3154d1d6471ee6aeaa7d7",
+    "supabase/functions/glam-api/auth.ts": "86beb7518f855be8292256d52b5e849915ad372bbd42bc406df0761c57e67a9a",
+    "supabase/functions/glam-api/handler.ts": "bbee1d85ad2aa0629df4292f454ea4f30feaa203d70d357ce5466b562b54fc81",
+    "supabase/functions/glam-api/index.ts": "ba01bf3cbc4b1b10a6491379a67f613f2af0f261b1f81c75d0fbdf532712cc7b"
+  },
+  "routes_discovered": 39,
+  "source_control_declarations": 422,
+  "python_endpoints": 46,
+  "route_audit": {
+    "routes": 39,
+    "route_viewport_visits": 117,
+    "rendered_control_occurrences": 3108,
+    "console_errors": 0,
+    "page_errors": 0,
+    "http_errors": 0,
+    "overflow": 0,
+    "broken_images": 0,
+    "accessibility_violations": 0
+  },
+  "interaction_results": {
+    "PASSED": 1413,
+    "PASSED_IDEMPOTENT": 41,
+    "SKIPPED": 430,
+    "BLOCKED": 86,
+    "SKIPPED_ALREADY_CURRENT": 10
+  },
+  "workspace_layout_visits": 99,
+  "workflows": [
+    {
+      "id": "W01",
+      "domain": "Consumer",
+      "name": "Guest exploration and local navigation",
+      "status": "PASSED",
+      "scope": "Local web UI; no live inventory claimed",
+      "evidence": "clickthrough.json"
+    },
+    {
+      "id": "W02",
+      "domain": "Authentication",
+      "name": "SMS registration, login, delivery and throttling",
+      "status": "BLOCKED",
+      "reason": "Phone disabled; Twilio credentials/sender and abuse controls not configured",
+      "evidence": "remote-readiness.json"
+    },
+    {
+      "id": "W03",
+      "domain": "Authentication",
+      "name": "Google, Apple, Facebook and secure linking",
+      "status": "BLOCKED",
+      "reason": "All three providers disabled/unconfigured; real linking/collision tests unavailable",
+      "evidence": "remote-readiness.json"
+    },
+    {
+      "id": "W04",
+      "domain": "Mobile",
+      "name": "iOS and Android biometric reauthentication",
+      "status": "BLOCKED",
+      "reason": "No signed app identifiers/builds or physical devices; OS doubles and Metro exports are insufficient",
+      "evidence": "regression-checks.json"
+    },
+    {
+      "id": "W05",
+      "domain": "Account",
+      "name": "Profile and approved preferences save/read",
+      "status": "PASSED",
+      "scope": "Real controlled Supabase Auth session and scoped persistent records",
+      "evidence": "live-core-regression.json"
+    },
+    {
+      "id": "W06",
+      "domain": "Account",
+      "name": "Account deletion and lost-all-methods recovery",
+      "status": "BLOCKED",
+      "reason": "Complete authenticated deletion/support recovery flow not implemented or validated",
+      "evidence": "../../authentication/PASSWORDLESS_AUTH_REPORT.md"
+    },
+    {
+      "id": "W07",
+      "domain": "AI",
+      "name": "Authorized face analysis operation and personal result",
+      "status": "FAILED",
+      "reason": "Controlled authenticated POST /v1/analysis returns 501 BACKEND_OPERATION_NOT_IMPLEMENTED; no photo processed",
+      "evidence": "live-core-regression.json"
+    },
+    {
+      "id": "W08",
+      "domain": "AI",
+      "name": "Hair/grooming analysis and recommendations",
+      "status": "BLOCKED",
+      "reason": "Provider credentials and hosted analysis persistence workflow unavailable",
+      "evidence": "remote-readiness.json"
+    },
+    {
+      "id": "W09",
+      "domain": "AI",
+      "name": "Skin appearance analysis without diagnosis",
+      "status": "BLOCKED",
+      "reason": "No qualified model invocation/output, privacy processing or safety benchmark evidence",
+      "evidence": "remote-readiness.json"
+    },
+    {
+      "id": "W10",
+      "domain": "AI",
+      "name": "Personal color/undertone and real product matching",
+      "status": "BLOCKED",
+      "reason": "Color UI/reference choices exist; personal inference and verified catalog matching unavailable",
+      "evidence": "remote-readiness.json"
+    },
+    {
+      "id": "W11",
+      "domain": "AI",
+      "name": "AI Studio transformation, compare, save and reopen",
+      "status": "BLOCKED",
+      "reason": "Replicate/FASHN and private media/job persistence disconnected; editorial imagery is not generated output",
+      "evidence": "remote-readiness.json"
+    },
+    {
+      "id": "W12",
+      "domain": "AI",
+      "name": "AI Advisor conversation, memory and history",
+      "status": "BLOCKED",
+      "reason": "Local brief UI is not hosted AI conversation/history; provider and durable workflow missing",
+      "evidence": "remote-readiness.json"
+    },
+    {
+      "id": "W13",
+      "domain": "AI",
+      "name": "Personal Stylist, complete outfit and virtual preview",
+      "status": "BLOCKED",
+      "reason": "Local choices preserved; real stylist/model and verified item matching absent",
+      "evidence": "regression-checks.json"
+    },
+    {
+      "id": "W14",
+      "domain": "AI",
+      "name": "Event invitation extraction, styling and shopping",
+      "status": "BLOCKED",
+      "reason": "Local permission/brief controls work; actual extraction, inference and shopping do not",
+      "evidence": "regression-checks.json"
+    },
+    {
+      "id": "W15",
+      "domain": "AI",
+      "name": "Destination weather, outfits and packing recommendations",
+      "status": "BLOCKED",
+      "reason": "No verified live forecast integration/commercial entitlement or generated recommendations",
+      "evidence": "remote-readiness.json"
+    },
+    {
+      "id": "W16",
+      "domain": "AI",
+      "name": "Digital Wardrobe durable uploads and outfits",
+      "status": "BLOCKED",
+      "reason": "Local planning is not private hosted wardrobe persistence or generated outfits",
+      "evidence": "remote-readiness.json"
+    },
+    {
+      "id": "W17",
+      "domain": "Marketplace",
+      "name": "Real search, variants, inventory and eligible offers",
+      "status": "BLOCKED",
+      "reason": "Editorial product UI is not verified merchant inventory; catalog publication/discovery not wired",
+      "evidence": "regression-checks.json"
+    },
+    {
+      "id": "W18",
+      "domain": "Marketplace",
+      "name": "Local/destination discovery and shipping feasibility",
+      "status": "BLOCKED",
+      "reason": "Google Maps credentials absent; location/availability contracts alone are insufficient",
+      "evidence": "remote-readiness.json"
+    },
+    {
+      "id": "W19",
+      "domain": "Merchant",
+      "name": "Merchant onboarding, Snap & List, publish and orders",
+      "status": "BLOCKED",
+      "reason": "Public workspace/draft layouts are not qualified merchant operations or live publication",
+      "evidence": "workspace-layouts.json"
+    },
+    {
+      "id": "W20",
+      "domain": "Payments",
+      "name": "Multi-merchant checkout and 10% reconciliation",
+      "status": "BLOCKED",
+      "reason": "Stripe balance endpoint reports livemode=true; webhook secret and second eligible test merchant absent; no financial writes attempted",
+      "evidence": "remote-readiness.json"
+    },
+    {
+      "id": "W21",
+      "domain": "Orders",
+      "name": "Order fulfillment, tracking, refund and ledger reversal",
+      "status": "BLOCKED",
+      "reason": "No connected production order workflow or authorized actual Stripe test transaction evidence",
+      "evidence": "remote-readiness.json"
+    },
+    {
+      "id": "W22",
+      "domain": "Bookings",
+      "name": "Professional availability, booking conflict and changes",
+      "status": "BLOCKED",
+      "reason": "Hosted availability/atomic booking/reschedule/notification workflow not implemented and verified",
+      "evidence": "workspace-layouts.json"
+    },
+    {
+      "id": "W23",
+      "domain": "Creator",
+      "name": "Creator storefront, shoppable looks and attribution",
+      "status": "BLOCKED",
+      "reason": "Public creator/affiliate layouts do not establish hosted content/attribution or settlement",
+      "evidence": "workspace-layouts.json"
+    },
+    {
+      "id": "W24",
+      "domain": "Advertising",
+      "name": "Campaign targeting, budgets and reporting",
+      "status": "BLOCKED",
+      "reason": "Planning layouts lack qualified live campaign execution/budget/reporting integration",
+      "evidence": "workspace-layouts.json"
+    },
+    {
+      "id": "W25",
+      "domain": "Administration",
+      "name": "Real admin approvals, moderation and finance controls",
+      "status": "BLOCKED",
+      "reason": "Public role-layout inventory grants no staff authority; operational admin workflows unavailable",
+      "evidence": "workspace-layouts.json"
+    },
+    {
+      "id": "W26",
+      "domain": "Notifications",
+      "name": "OTP, order, booking, email and push delivery",
+      "status": "BLOCKED",
+      "reason": "Preferences persist; Resend/Twilio/push delivery and end-to-end events unconfigured",
+      "evidence": "remote-readiness.json"
+    },
+    {
+      "id": "W27",
+      "domain": "Account",
+      "name": "Private saved routine create/read/update/delete",
+      "status": "PASSED",
+      "scope": "Real scoped Supabase records, optimistic revisions, idempotency and cleanup",
+      "evidence": "live-core-regression.json"
+    },
+    {
+      "id": "W28",
+      "domain": "Workspaces",
+      "name": "Authorized multi-role business switching and actions",
+      "status": "BLOCKED",
+      "reason": "Membership listing/core checks exist; complete verified multi-role UI/business journey is not demonstrated",
+      "evidence": "workspace-layouts.json"
+    },
+    {
+      "id": "W29",
+      "domain": "Security",
+      "name": "Consumer/tenant isolation and revoked-session denial",
+      "status": "PASSED",
+      "scope": "Controlled real Auth users plus local access-control regressions; not every future role permission",
+      "evidence": "live-session-regression.json"
+    },
+    {
+      "id": "W30",
+      "domain": "UX",
+      "name": "Responsive accessibility including real native and screen readers",
+      "status": "BLOCKED",
+      "reason": "Browser viewport/axe/keyboard evidence is available; VoiceOver/TalkBack and real iOS/Android validation remain unexecuted",
+      "evidence": "clickthrough.json"
+    },
+    {
+      "id": "W31",
+      "domain": "Deployment",
+      "name": "Public HTTPS, monitoring, rollback and pilot UAT",
+      "status": "BLOCKED",
+      "reason": "Applied network policy excludes website; cPanel access absent; monitoring and restore/rollback drill, staging smoke and pilot UAT not established",
+      "evidence": "remote-readiness.json"
+    }
+  ],
+  "workflow_counts": {
+    "PASSED": 4,
+    "BLOCKED": 26,
+    "FAILED": 1
+  },
+  "gates": [
+    {
+      "id": "G1",
+      "name": "Repository/build integrity",
+      "status": "BLOCKED",
+      "reason": "Local build/tests pass; reviewed consolidation and clean merged-main build pending."
+    },
+    {
+      "id": "G2",
+      "name": "Authentication/account security",
+      "status": "BLOCKED",
+      "reason": "Real session core passes; SMS/OAuth/recovery and hardware gates incomplete."
+    },
+    {
+      "id": "G3",
+      "name": "Consumer AI functionality",
+      "status": "FAILED",
+      "reason": "Analysis endpoint returned 501; actual inference/try-on/history not demonstrated."
+    },
+    {
+      "id": "G4",
+      "name": "Marketplace/merchant operations",
+      "status": "BLOCKED",
+      "reason": "Verified live catalog, publication/inventory and merchant workflows missing."
+    },
+    {
+      "id": "G5",
+      "name": "Payments/financial correctness",
+      "status": "BLOCKED",
+      "reason": "Live-mode configuration, missing test webhook and zero actual payment/transfer/reconciliation proof."
+    },
+    {
+      "id": "G6",
+      "name": "Bookings/professional operations",
+      "status": "BLOCKED",
+      "reason": "Atomic hosted booking workflow unverified/unimplemented."
+    },
+    {
+      "id": "G7",
+      "name": "Privacy/security/access control",
+      "status": "BLOCKED",
+      "reason": "Executed RLS/negative tests pass; private media, full role matrix and legal/deletion gates incomplete."
+    },
+    {
+      "id": "G8",
+      "name": "Responsive UX/accessibility",
+      "status": "BLOCKED",
+      "reason": "Automated browser checks pass after repairs; manual screen readers and real devices pending."
+    },
+    {
+      "id": "G9",
+      "name": "Reliability/monitoring/recovery",
+      "status": "BLOCKED",
+      "reason": "Completed backup exists; monitoring, restoration/rollback rehearsal and public smoke missing."
+    },
+    {
+      "id": "G10",
+      "name": "Pilot user acceptance",
+      "status": "BLOCKED",
+      "reason": "Not executed."
+    },
+    {
+      "id": "G11",
+      "name": "Explicit final public launch approval",
+      "status": "BLOCKED",
+      "reason": "Not requested or granted; prerequisites unmet."
+    }
+  ],
+  "defects": [
+    {
+      "id": "D001",
+      "severity": "P2",
+      "title": "Login SSR hydration failed across browser sizes",
+      "status": "FIXED",
+      "resolution": "Host ICU produced different country labels. Versioned labels and deterministic sorting; login-hydration regression."
+    },
+    {
+      "id": "D002",
+      "severity": "P2",
+      "title": "Low-contrast captions on Shop/Product/Report/Color",
+      "status": "FIXED",
+      "resolution": "Use existing mauve token for affected text; strict axe regression."
+    },
+    {
+      "id": "D003",
+      "severity": "P2",
+      "title": "Conversation label on generic div",
+      "status": "FIXED",
+      "resolution": "Named role=log with polite live announcements; strict axe regression."
+    },
+    {
+      "id": "D004",
+      "severity": "P2",
+      "title": "Business/admin skip links did not focus main",
+      "status": "FIXED",
+      "resolution": "Focusable main target; keyboard and focused interaction regressions."
+    },
+    {
+      "id": "D101",
+      "severity": "P1",
+      "title": "SMS and optional OAuth unavailable",
+      "status": "OPEN",
+      "resolution": "Configure approved providers and test actual signup/linking/delivery/abuse controls."
+    },
+    {
+      "id": "D102",
+      "severity": "P1",
+      "title": "Real mobile biometrics unverified",
+      "status": "OPEN",
+      "resolution": "Signed app identifiers/builds and physical iOS/Android testing required."
+    },
+    {
+      "id": "D103",
+      "severity": "P1",
+      "title": "Hosted AI operation unimplemented",
+      "status": "OPEN",
+      "resolution": "Authenticated analysis returned 501; model/media/history/matching integrations need implementation and qualification."
+    },
+    {
+      "id": "D104",
+      "severity": "P1",
+      "title": "Private image/wardrobe persistence unavailable",
+      "status": "OPEN",
+      "resolution": "No Storage buckets; complete consent, retention, upload/access/deletion workflows before activation."
+    },
+    {
+      "id": "D105",
+      "severity": "P1",
+      "title": "Verified marketplace and merchant execution unavailable",
+      "status": "OPEN",
+      "resolution": "Complete catalog publication, inventory, location matching and merchant qualification; layouts alone do not fulfill this."
+    },
+    {
+      "id": "D106",
+      "severity": "P1",
+      "title": "Stripe configured in live mode",
+      "status": "OPEN",
+      "resolution": "Test secret/webhook, two eligible merchants and real reconciliation evidence required; no live mutation attempted."
+    },
+    {
+      "id": "D107",
+      "severity": "P1",
+      "title": "Checkout/order/fulfillment workflows incomplete",
+      "status": "OPEN",
+      "resolution": "Connect authoritative pricing, order persistence and inventory/financial lifecycle."
+    },
+    {
+      "id": "D108",
+      "severity": "P1",
+      "title": "Bookings workflow incomplete",
+      "status": "OPEN",
+      "resolution": "Implement/verify atomic availability, booking, changes and notifications; no booking rate invented."
+    },
+    {
+      "id": "D109",
+      "severity": "P1",
+      "title": "Creator, ads and admin execution incomplete",
+      "status": "OPEN",
+      "resolution": "Qualified role-specific persistent operations and authorization tests required."
+    },
+    {
+      "id": "D110",
+      "severity": "P1",
+      "title": "Notification delivery not configured",
+      "status": "OPEN",
+      "resolution": "Preferences save; actual SMS/email/push and order/booking delivery unverified."
+    },
+    {
+      "id": "D111",
+      "severity": "P1",
+      "title": "Public hosting/monitoring/recovery unverified",
+      "status": "OPEN",
+      "resolution": "Website excluded by applied network policy, cPanel access absent, no restore/rollback drill or pilot UAT."
+    },
+    {
+      "id": "D112",
+      "severity": "P1",
+      "title": "Legal and complete recovery/deletion gates incomplete",
+      "status": "OPEN",
+      "resolution": "Terms publication, legal/retention approval and lost-all-methods recovery/deletion workflow required."
+    },
+    {
+      "id": "D113",
+      "severity": "P1",
+      "title": "Reviewed main consolidation incomplete",
+      "status": "OPEN",
+      "resolution": "Open feature PRs lack current-head approvals; no clean merged-main release candidate."
+    }
+  ],
+  "defects_fixed": 4,
+  "open_p0_p1": 13,
+  "postgresql": {
+    "tests": 233,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "scope": "Fresh local PostgreSQL regression; Stripe provider objects are synthetic fixtures",
+    "financial_tests": 31
+  },
+  "real_core_checks": 29,
+  "real_session_checks": 20,
+  "database": {
+    "revision": "0013_passwordless_accounts",
+    "public_tables": 41,
+    "tables_without_rls": 0,
+    "indexes": 77,
+    "policies": 21,
+    "foreign_keys": 54,
+    "unvalidated_foreign_keys": 0
+  },
+  "stripe": {
+    "http_status": 200,
+    "livemode": true,
+    "status": "BLOCKED_LIVE_MODE",
+    "financial_mutations": 0,
+    "actual_payment_ids": [],
+    "actual_transfer_ids": [],
+    "commission_reconciliation": "NOT EXECUTED"
+  },
+  "test_webhook_configured": false,
+  "actual_financial_acceptance": false,
+  "final_launch_approved": false,
+  "external_integrations_verified": [
+    "Supabase hosted account/session core"
+  ],
+  "native_hardware_verified": false,
+  "public_frontend_deployed": false
+}

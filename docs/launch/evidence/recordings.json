@@ -1,0 +1,978 @@
+[
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 914,
+    "seconds": 1.0,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 915,
+    "seconds": 1.0,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 1.0,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 1.0,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 1.0,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 915,
+    "seconds": 1.0,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 1.0,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 1.0,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 1.0,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 1.0,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 1.0,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 1.0,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 1.0,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 914,
+    "seconds": 21.28,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 914,
+    "seconds": 1.0,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 1.0,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 914,
+    "seconds": 1.0,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 61.36,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 914,
+    "seconds": 1.0,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 74.8,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 0.96,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 1.0,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 914,
+    "seconds": 1.0,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 1.0,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 914,
+    "seconds": 1.0,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 1.0,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 1.0,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 1.0,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 1.0,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 914,
+    "seconds": 1.0,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 1.0,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 914,
+    "seconds": 1.0,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 22.76,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 1.0,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 1.0,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 914,
+    "seconds": 1.0,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 914,
+    "seconds": 1.0,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 1.0,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 1.0,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 1.0,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "android-web",
+    "width": 412,
+    "height": 914,
+    "seconds": 1.0,
+    "file": "recordings/android-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 21.24,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 1.0,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "tablet-web",
+    "width": 768,
+    "height": 1024,
+    "seconds": 1.0,
+    "file": "recordings/tablet-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "landscape-web",
+    "width": 844,
+    "height": 390,
+    "seconds": 1.0,
+    "file": "recordings/landscape-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "iphone-web",
+    "width": 390,
+    "height": 844,
+    "seconds": 1.0,
+    "file": "recordings/iphone-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  },
+  {
+    "label": "desktop-web",
+    "width": 1440,
+    "height": 1000,
+    "seconds": 1.0,
+    "file": "recordings/desktop-web.webm",
+    "source": "Final route audit; browser viewport emulation, not a native app/hardware recording"
+  }
+]

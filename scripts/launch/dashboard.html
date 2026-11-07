@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GLAM AI launch audit</title>
+  <style>
+  body {
+    margin: 0;
+    background: #181719;
+    color: #f8f3ef;
+    font: 16px Arial,sans-serif;
+  }
+  main {
+    max-width: 1160px;
+    margin: auto;
+    padding: 40px 24px;
+  }
+  h1 {
+    font: 48px Georgia,serif;
+  }
+  small,
+  p {
+    line-height: 1.6;
+    color: #e0ced6;
+  }
+  .badge {
+    color: #f6c6d8;
+  }
+  section {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  article {
+    background: #30252d;
+    border: 1px solid #78546c;
+    border-radius: 16px;
+    padding: 22px;
+    min-width: 120px;
+    flex: 1;
+  }
+  article strong {
+    display: block;
+    font: 36px Georgia;
+  }
+  article span {
+    display: block;
+    margin-top: 8px;
+  }
+  input {
+    padding: 14px;
+    border-radius: 12px;
+    width: min(90%,460px);
+    margin: 20px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  td,
+  th {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #78546c;
+  }
+  a {
+    color: #f6c6d8;
+    margin-right: 18px;
+    line-height: 2;
+  }
+  tr[hidden] {
+    display: none;
+  }
+  @media (max-width:650px) {
+    h1 {
+      font-size: 36px;
+    }
+    td,
+    th {
+      padding: 9px;
+      font-size: 13px;
+    }
+  }
+  .evidence {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+  }
+  .evidence img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 12px;
+  }
+  .evidence figure {
+    margin: 0;
+  }
+  .evidence figcaption {
+    padding: 8px 0;
+  }
+  </style>
+  <main>
+    <p class="badge">GLAM AI · EVIDENCE-BASED AUDIT</p>
+    <h1>Public launch: NO-GO</h1>
+    <p>Four local product repairs. Mandatory live AI, marketplace, authentication, payments, hardware, legal and release gates remain incomplete. These results never certify a public rollout.</p>
+    <section>{{ CARDS }}</section>
+    <h2>Critical journey matrix</h2>
+    <label for="search">Filter by domain, journey or status</label>
+    <br>
+    <input id="search" type="search"
+      placeholder="For example: Payments or BLOCKED">
+    <div style="overflow:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Domain</th>
+            <th>Journey</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>{{ ROWS }}</tbody>
+      </table>
+    </div>
+    <h2>Browser evidence</h2>
+    <p>Viewport emulation is not native device evidence.</p>
+    <section class="evidence">{{ SCREENSHOTS }}</section>
+    <p>Complete reports are under docs/launch in the review branch. Traces and recordings are local audit artifacts; no SMS, AI generation or payment success is depicted.</p>
+    <script>
+    document.getElementById("search").addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll("tbody tr").forEach((r) =>
+        r.hidden = !r.textContent.toLowerCase().includes(q)
+      );
+    });
+    </script>
+  </main>
+</html>

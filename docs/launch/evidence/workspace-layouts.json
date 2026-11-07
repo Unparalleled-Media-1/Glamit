@@ -1,0 +1,2662 @@
+{
+  "observed_at": "2026-11-07T15:21:07.803Z",
+  "scope": "Public role/module inventory, not authenticated merchant/admin workflows",
+  "modules": [
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Overview",
+      "heading": "Overview",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Catalog coverage",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Source freshness",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Snap & List",
+      "heading": "Snap & List",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Choose product images",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Clear product photos",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Continue to enhancement options",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "My Products",
+      "heading": "My Products",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Import session draft JSON",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Download session draft JSON",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Bulk publish — verified connection required",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Draft Listings",
+      "heading": "Draft Listings",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Import session draft JSON",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Download session draft JSON",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Bulk publish — verified connection required",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Catalog Health",
+      "heading": "Catalog Health",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": []
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Storefront",
+      "heading": "Storefront",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Public name",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Support contact",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Returns policy",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Product Catalog",
+      "heading": "Product Catalog",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Product title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Category",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Source SKU",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Rights reference",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Inventory",
+      "heading": "Inventory",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "SKU",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Source revision",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Quantity evidence",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Product Variants",
+      "heading": "Product Variants",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "SKU",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Size chart",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Materials",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Variant reference",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Offers",
+      "heading": "Offers",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Source offer",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Currency",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Delivered cost evidence",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Orders / Referrals",
+      "heading": "Orders / Referrals",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Source reference",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Seller responsibility",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Support state",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Advertising",
+      "heading": "Advertising",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Eligible offers",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Placement",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Disclosure",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Analytics",
+      "heading": "Analytics",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Interval",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Event definition",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Freshness",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Billing",
+      "heading": "Billing",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Invoice reference",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Reconciliation state",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Integrations",
+      "heading": "Integrations",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Feed type",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Authorized source",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Refresh interval",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Reviews",
+      "heading": "Reviews",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Verified event",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Moderation state",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "merchant",
+      "module": "Settings",
+      "heading": "Settings",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Organization",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Team scope",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Region",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "advertiser",
+      "module": "Overview",
+      "heading": "Overview",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Reporting interval",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Qualified events",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "advertiser",
+      "module": "Campaigns",
+      "heading": "Campaigns",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Campaign name",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Objective",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Schedule",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "advertiser",
+      "module": "Create Campaign",
+      "heading": "Create Campaign",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Objective planning note",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Next: Eligible products",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "advertiser",
+      "module": "Sponsored Products",
+      "heading": "Sponsored Products",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Source offer",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Eligibility",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Sponsored label",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "advertiser",
+      "module": "Sponsored Looks",
+      "heading": "Sponsored Looks",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Look rights",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Disclosure",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Eligible offers",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "advertiser",
+      "module": "Creative Library",
+      "heading": "Creative Library",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Asset rights",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Accessible description",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Destination",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "advertiser",
+      "module": "Audiences & Placements",
+      "heading": "Audiences & Placements",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Permitted context",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Region",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Frequency cap",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "advertiser",
+      "module": "Budgets",
+      "heading": "Budgets",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Currency",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Hard cap",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Review owner",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "advertiser",
+      "module": "Billing",
+      "heading": "Billing",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Invoice reference",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Adjustment evidence",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "advertiser",
+      "module": "Performance Reports",
+      "heading": "Performance Reports",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Interval",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Attribution rule",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Freshness",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "advertiser",
+      "module": "Conversion Tracking",
+      "heading": "Conversion Tracking",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Verified event",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Deduplication key",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Refund window",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "advertiser",
+      "module": "Account Settings",
+      "heading": "Account Settings",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Organization",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Authorized team",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Brand safety",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "professional",
+      "module": "Profile",
+      "heading": "Profile",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Service region",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Qualification reference",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Support contact",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "professional",
+      "module": "Portfolio",
+      "heading": "Portfolio",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Image rights",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Authorized style",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Description",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "professional",
+      "module": "Services & Prices",
+      "heading": "Services & Prices",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Service",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Materials",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Full quote terms",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "professional",
+      "module": "Availability",
+      "heading": "Availability",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Timezone",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Working hours",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Resource",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "professional",
+      "module": "Bookings",
+      "heading": "Bookings",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Request reference",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Verified slot",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Cancellation terms",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "professional",
+      "module": "Look Requests",
+      "heading": "Look Requests",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Authorized reference",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Feasibility",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Materials",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Full-price quote",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "professional",
+      "module": "Client Messages",
+      "heading": "Client Messages",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Case reference",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Permitted context",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "professional",
+      "module": "Reviews",
+      "heading": "Reviews",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Completed service",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Moderation",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "professional",
+      "module": "Promotions",
+      "heading": "Promotions",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Qualified service",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Terms",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Disclosure",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "professional",
+      "module": "Earnings",
+      "heading": "Earnings",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Recognized event",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Adjustments",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "professional",
+      "module": "Settings",
+      "heading": "Settings",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Organization",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Team",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Service area",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "creator",
+      "module": "Creator Profile",
+      "heading": "Creator Profile",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Public name",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Original voice",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Rights policy",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "creator",
+      "module": "My Looks",
+      "heading": "My Looks",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Style description",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Asset rights",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "creator",
+      "module": "Tutorials",
+      "heading": "Tutorials",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Step-by-step instructions",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Rights reference",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "creator",
+      "module": "Shoppable Collections",
+      "heading": "Shoppable Collections",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Collection title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Qualified offers",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Affiliate disclosure",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "creator",
+      "module": "Affiliate Links",
+      "heading": "Affiliate Links",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Approved destination",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Disclosure",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Expiry",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "creator",
+      "module": "Brand Campaigns",
+      "heading": "Brand Campaigns",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Deliverables",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Rights",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Compensation terms",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "creator",
+      "module": "Audience Analytics",
+      "heading": "Audience Analytics",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Aggregate interval",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Privacy threshold",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "creator",
+      "module": "Earnings",
+      "heading": "Earnings",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Verified event",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Commission terms",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "creator",
+      "module": "Payouts",
+      "heading": "Payouts",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Recognized balance",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Settlement evidence",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "creator",
+      "module": "Settings",
+      "heading": "Settings",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Organization",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Publication preferences",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "affiliate",
+      "module": "Overview",
+      "heading": "Overview",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Verified events",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Reporting interval",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "affiliate",
+      "module": "Links",
+      "heading": "Links",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Approved destination",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Disclosure",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Expiry",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "affiliate",
+      "module": "Collections",
+      "heading": "Collections",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Offer source",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Disclosure",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "affiliate",
+      "module": "Conversions",
+      "heading": "Conversions",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Verified event",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Attribution window",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Refund state",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "affiliate",
+      "module": "Earnings",
+      "heading": "Earnings",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Recognized commission",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Adjustments",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "affiliate",
+      "module": "Payouts",
+      "heading": "Payouts",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Settlement evidence",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Verified destination",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/business",
+      "role": "affiliate",
+      "module": "Settings",
+      "heading": "Settings",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "input",
+          "name": "Draft title",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Partner agreement",
+          "disabled": false
+        },
+        {
+          "tag": "input",
+          "name": "Organization",
+          "disabled": false
+        },
+        {
+          "tag": "button",
+          "name": "Save session planning draft",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "name": "Load authorized organization records",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "Executive Overview",
+      "heading": "Executive Overview",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "User Management",
+      "heading": "User Management",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "AI Operations",
+      "heading": "AI Operations",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "Beauty Content",
+      "heading": "Beauty Content",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "Merchant Management",
+      "heading": "Merchant Management",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "Professional Management",
+      "heading": "Professional Management",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "Advertising",
+      "heading": "Advertising",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "Commerce",
+      "heading": "Commerce",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "Subscriptions",
+      "heading": "Subscriptions",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "Creators & Partners",
+      "heading": "Creators & Partners",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "Regional Operations",
+      "heading": "Regional Operations",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "Trust & Safety",
+      "heading": "Trust & Safety",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "Privacy",
+      "heading": "Privacy",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "Analytics",
+      "heading": "Analytics",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Super Admin",
+      "module": "System Configuration",
+      "heading": "System Configuration",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Support",
+      "module": "User Management",
+      "heading": "User Management",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Support",
+      "module": "Trust & Safety",
+      "heading": "Trust & Safety",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Support",
+      "module": "Privacy",
+      "heading": "Privacy",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Finance",
+      "module": "Commerce",
+      "heading": "Commerce",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Finance",
+      "module": "Subscriptions",
+      "heading": "Subscriptions",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "AI Operations",
+      "module": "AI Operations",
+      "heading": "AI Operations",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Content Moderation",
+      "module": "Beauty Content",
+      "heading": "Beauty Content",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Content Moderation",
+      "module": "Creators & Partners",
+      "heading": "Creators & Partners",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Trust & Safety",
+      "module": "Trust & Safety",
+      "heading": "Trust & Safety",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Compliance",
+      "module": "Privacy",
+      "heading": "Privacy",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Compliance",
+      "module": "Trust & Safety",
+      "heading": "Trust & Safety",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Regional Operations",
+      "module": "Regional Operations",
+      "heading": "Regional Operations",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "Executive Overview",
+      "heading": "Executive Overview",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "User Management",
+      "heading": "User Management",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "AI Operations",
+      "heading": "AI Operations",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "Beauty Content",
+      "heading": "Beauty Content",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "Merchant Management",
+      "heading": "Merchant Management",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "Professional Management",
+      "heading": "Professional Management",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "Advertising",
+      "heading": "Advertising",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "Commerce",
+      "heading": "Commerce",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "Subscriptions",
+      "heading": "Subscriptions",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "Creators & Partners",
+      "heading": "Creators & Partners",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "Regional Operations",
+      "heading": "Regional Operations",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "Trust & Safety",
+      "heading": "Trust & Safety",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "Privacy",
+      "heading": "Privacy",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "Analytics",
+      "heading": "Analytics",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "route": "/admin",
+      "role": "Read-Only Analyst",
+      "module": "System Configuration",
+      "heading": "System Configuration",
+      "status": "PASSED_UI_LAYOUT",
+      "controls": [
+        {
+          "tag": "button",
+          "name": "Privileged controls unavailable",
+          "disabled": true
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

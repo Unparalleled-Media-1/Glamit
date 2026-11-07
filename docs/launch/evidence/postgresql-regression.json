@@ -1,0 +1,8 @@
+{
+  "tests": 233,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "scope": "Fresh local PostgreSQL regression; Stripe provider objects are synthetic fixtures",
+  "financial_tests": 31
+}
