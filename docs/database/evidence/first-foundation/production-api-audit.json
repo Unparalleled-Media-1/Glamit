@@ -1,0 +1,16 @@
+{
+  "project": "bkkmsbxrxkqaveymcrgi",
+  "mutations": 0,
+  "public_categories": {
+    "http_status": 200,
+    "returned_count": 0
+  },
+  "private_profiles_anonymous": {
+    "http_status": 401
+  },
+  "jwks": {
+    "http_status": 200,
+    "signing_key_algorithms": ["ES256"],
+    "key_count": 1
+  }
+}

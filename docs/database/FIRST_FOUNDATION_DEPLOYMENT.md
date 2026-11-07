@@ -30,3 +30,7 @@ The runner refuses any other project, unexpected branch, missing explicit produc
 ## Scope still to verify
 
 Actual deployment evidence and complete table/security/constraint lists must be recorded after successful execution. A production app runtime DSN and least-privileged role remain separate from the administrative Management API token. Do not use that token as a per-request application DB adapter. Later schema batches and unimplemented business workflows are not declared complete by this foundation.
+
+## Confirmed execution
+
+Production deployment and independent schema verification succeeded. See [actual results and table list](PRODUCTION_DEPLOYMENT_RESULTS.md). Alembic head0010,38 public tables, all ten requested entities, validated FKs and matching RLS/index/constraint metadata. No remaining-domain or application-wiring completion is claimed.
