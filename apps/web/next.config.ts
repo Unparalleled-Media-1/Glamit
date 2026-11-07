@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
+import path from "node:path";
 
 const config: NextConfig = {
   poweredByHeader: false,
+  output: "standalone",
+  outputFileTracingRoot: path.join(process.cwd(), "../.."),
   async headers() {
     return [{ source: "/(.*)", headers: [
       { key: "X-Content-Type-Options", value: "nosniff" },

@@ -1,0 +1,12 @@
+{
+  "projectName": "elegant-dedication",
+  "projectId": "3f490939-cffd-4468-8c25-d90146f1b308",
+  "environmentName": "production",
+  "environmentId": "93eeefda-99b8-462b-9041-421f9f5903ca",
+  "serviceName": "glamit-web",
+  "serviceId": "d2a011b7-929e-4302-809a-27ca7345621a",
+  "reportedUrl": "https://glamit-web-production.up.railway.app",
+  "source": "user-provided identifiers; Railway API inspection blocked",
+  "createAdditionalServices": false,
+  "publicLaunchApproved": false
+}

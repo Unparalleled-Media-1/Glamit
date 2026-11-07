@@ -1,4 +1,5 @@
 import { productName } from "../../../packages/product/brand";
+import { siteOrigin } from "../../../packages/product/site";
 import type { Metadata, Viewport } from "next";
 import "./styles.css";
 import "./golden-tokens.css";
@@ -12,6 +13,7 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 export const metadata: Metadata = {
+  metadataBase: new URL(siteOrigin),
   title: productName,
   applicationName: productName,
   description:

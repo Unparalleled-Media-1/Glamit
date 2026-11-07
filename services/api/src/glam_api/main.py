@@ -1,12 +1,15 @@
 import hashlib
 import json
+import os
 from typing import Annotated
 from uuid import UUID, uuid4
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Response
 from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import bindparam, text
 from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from glam_api.auth import Principal, get_principal
@@ -28,10 +31,22 @@ from glam_api.contracts import (
 )
 from glam_api.credits import balance
 from glam_api.db import get_session
+from glam_api.deployment import cors_origins, deployment_revision
 from glam_api.observability import http_error, request_evidence, validation_error
 from glam_api.workspaces import build_router
 
 app = FastAPI(title="GLAM Beauty", version="0.1.0", docs_url=None, redoc_url=None)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=cors_origins(
+        os.environ.get("GLAM_ALLOWED_ORIGINS", ""),
+        os.environ.get("GLAM_DEPLOYMENT_ENV") == "production",
+    ),
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "PATCH", "PUT", "DELETE"],
+    allow_headers=["Authorization", "Content-Type", "Idempotency-Key", "X-Request-ID"],
+    expose_headers=["X-Request-ID"],
+)
 app.middleware("http")(request_evidence)
 app.add_exception_handler(HTTPException, http_error)
 app.add_exception_handler(RequestValidationError, validation_error)
@@ -142,14 +157,17 @@ def require_look_consent(db, uid):
 
 @app.get("/health/live")
 def live():
-    return {"status": "alive"}
+    return {"status": "alive", "commit": deployment_revision()}
 
 
 @app.get("/health/ready")
 def ready(db: Db):
     from glam_api.config import get_settings
 
-    applied = set(db.scalars(text("SELECT version_num FROM alembic_version")))
+    try:
+        applied = set(db.scalars(text("SELECT version_num FROM alembic_version")))
+    except SQLAlchemyError:
+        raise HTTPException(503, "Database readiness is unavailable") from None
     if "0014_creator_studio" not in applied:
         raise HTTPException(503, "Database migration is not current")
     if not get_settings().oidc_issuer:

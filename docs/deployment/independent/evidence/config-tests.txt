@@ -1,0 +1,18 @@
+
+> glam-ai@0.1.0 test:deployment-config
+> node --test tests/client/ci-targets.test.mjs && node tests/client/mobile-build-config.cjs
+
+✔ web-only work does not build mobile or API (1.858012ms)
+✔ native-only work does not build web or API (1.149104ms)
+✔ API-only work is independent (0.124645ms)
+✔ shared JS changes test both clients (0.139963ms)
+✔ contracts test consumers and API; docs do not redeploy (0.228014ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 76.519301
+Mobile production build gates passed; no EAS project, signing or native build was created.
