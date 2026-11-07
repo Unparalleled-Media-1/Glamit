@@ -1,0 +1,250 @@
+[
+  {
+    "id": "W01",
+    "domain": "Consumer",
+    "name": "Guest exploration and local navigation",
+    "status": "PASSED",
+    "scope": "Local web UI; no live inventory claimed",
+    "evidence": "clickthrough.json"
+  },
+  {
+    "id": "W02",
+    "domain": "Authentication",
+    "name": "SMS registration, login, delivery and throttling",
+    "status": "BLOCKED",
+    "reason": "Phone disabled; Twilio credentials/sender and abuse controls not configured",
+    "evidence": "remote-readiness.json"
+  },
+  {
+    "id": "W03",
+    "domain": "Authentication",
+    "name": "Google, Apple, Facebook and secure linking",
+    "status": "BLOCKED",
+    "reason": "All three providers disabled/unconfigured; real linking/collision tests unavailable",
+    "evidence": "remote-readiness.json"
+  },
+  {
+    "id": "W04",
+    "domain": "Mobile",
+    "name": "iOS and Android biometric reauthentication",
+    "status": "BLOCKED",
+    "reason": "No signed app identifiers/builds or physical devices; OS doubles and Metro exports are insufficient",
+    "evidence": "regression-checks.json"
+  },
+  {
+    "id": "W05",
+    "domain": "Account",
+    "name": "Profile and approved preferences save/read",
+    "status": "PASSED",
+    "scope": "Real controlled Supabase Auth session and scoped persistent records",
+    "evidence": "live-core-regression.json"
+  },
+  {
+    "id": "W06",
+    "domain": "Account",
+    "name": "Account deletion and lost-all-methods recovery",
+    "status": "BLOCKED",
+    "reason": "Complete authenticated deletion/support recovery flow not implemented or validated",
+    "evidence": "../../authentication/PASSWORDLESS_AUTH_REPORT.md"
+  },
+  {
+    "id": "W07",
+    "domain": "AI",
+    "name": "Authorized face analysis operation and personal result",
+    "status": "FAILED",
+    "reason": "Controlled authenticated POST /v1/analysis returns 501 BACKEND_OPERATION_NOT_IMPLEMENTED; no photo processed",
+    "evidence": "live-core-regression.json"
+  },
+  {
+    "id": "W08",
+    "domain": "AI",
+    "name": "Hair/grooming analysis and recommendations",
+    "status": "BLOCKED",
+    "reason": "Provider credentials and hosted analysis persistence workflow unavailable",
+    "evidence": "remote-readiness.json"
+  },
+  {
+    "id": "W09",
+    "domain": "AI",
+    "name": "Skin appearance analysis without diagnosis",
+    "status": "BLOCKED",
+    "reason": "No qualified model invocation/output, privacy processing or safety benchmark evidence",
+    "evidence": "remote-readiness.json"
+  },
+  {
+    "id": "W10",
+    "domain": "AI",
+    "name": "Personal color/undertone and real product matching",
+    "status": "BLOCKED",
+    "reason": "Color UI/reference choices exist; personal inference and verified catalog matching unavailable",
+    "evidence": "remote-readiness.json"
+  },
+  {
+    "id": "W11",
+    "domain": "AI",
+    "name": "AI Studio transformation, compare, save and reopen",
+    "status": "BLOCKED",
+    "reason": "Replicate/FASHN and private media/job persistence disconnected; editorial imagery is not generated output",
+    "evidence": "remote-readiness.json"
+  },
+  {
+    "id": "W12",
+    "domain": "AI",
+    "name": "AI Advisor conversation, memory and history",
+    "status": "BLOCKED",
+    "reason": "Local brief UI is not hosted AI conversation/history; provider and durable workflow missing",
+    "evidence": "remote-readiness.json"
+  },
+  {
+    "id": "W13",
+    "domain": "AI",
+    "name": "Personal Stylist, complete outfit and virtual preview",
+    "status": "BLOCKED",
+    "reason": "Local choices preserved; real stylist/model and verified item matching absent",
+    "evidence": "regression-checks.json"
+  },
+  {
+    "id": "W14",
+    "domain": "AI",
+    "name": "Event invitation extraction, styling and shopping",
+    "status": "BLOCKED",
+    "reason": "Local permission/brief controls work; actual extraction, inference and shopping do not",
+    "evidence": "regression-checks.json"
+  },
+  {
+    "id": "W15",
+    "domain": "AI",
+    "name": "Destination weather, outfits and packing recommendations",
+    "status": "BLOCKED",
+    "reason": "No verified live forecast integration/commercial entitlement or generated recommendations",
+    "evidence": "remote-readiness.json"
+  },
+  {
+    "id": "W16",
+    "domain": "AI",
+    "name": "Digital Wardrobe durable uploads and outfits",
+    "status": "BLOCKED",
+    "reason": "Local planning is not private hosted wardrobe persistence or generated outfits",
+    "evidence": "remote-readiness.json"
+  },
+  {
+    "id": "W17",
+    "domain": "Marketplace",
+    "name": "Real search, variants, inventory and eligible offers",
+    "status": "BLOCKED",
+    "reason": "Editorial product UI is not verified merchant inventory; catalog publication/discovery not wired",
+    "evidence": "regression-checks.json"
+  },
+  {
+    "id": "W18",
+    "domain": "Marketplace",
+    "name": "Local/destination discovery and shipping feasibility",
+    "status": "BLOCKED",
+    "reason": "Google Maps credentials absent; location/availability contracts alone are insufficient",
+    "evidence": "remote-readiness.json"
+  },
+  {
+    "id": "W19",
+    "domain": "Merchant",
+    "name": "Merchant onboarding, Snap & List, publish and orders",
+    "status": "BLOCKED",
+    "reason": "Public workspace/draft layouts are not qualified merchant operations or live publication",
+    "evidence": "workspace-layouts.json"
+  },
+  {
+    "id": "W20",
+    "domain": "Payments",
+    "name": "Multi-merchant checkout and 10% reconciliation",
+    "status": "BLOCKED",
+    "reason": "Stripe balance endpoint reports livemode=true; webhook secret and second eligible test merchant absent; no financial writes attempted",
+    "evidence": "remote-readiness.json"
+  },
+  {
+    "id": "W21",
+    "domain": "Orders",
+    "name": "Order fulfillment, tracking, refund and ledger reversal",
+    "status": "BLOCKED",
+    "reason": "No connected production order workflow or authorized actual Stripe test transaction evidence",
+    "evidence": "remote-readiness.json"
+  },
+  {
+    "id": "W22",
+    "domain": "Bookings",
+    "name": "Professional availability, booking conflict and changes",
+    "status": "BLOCKED",
+    "reason": "Hosted availability/atomic booking/reschedule/notification workflow not implemented and verified",
+    "evidence": "workspace-layouts.json"
+  },
+  {
+    "id": "W23",
+    "domain": "Creator",
+    "name": "Creator storefront, shoppable looks and attribution",
+    "status": "BLOCKED",
+    "reason": "Public creator/affiliate layouts do not establish hosted content/attribution or settlement",
+    "evidence": "workspace-layouts.json"
+  },
+  {
+    "id": "W24",
+    "domain": "Advertising",
+    "name": "Campaign targeting, budgets and reporting",
+    "status": "BLOCKED",
+    "reason": "Planning layouts lack qualified live campaign execution/budget/reporting integration",
+    "evidence": "workspace-layouts.json"
+  },
+  {
+    "id": "W25",
+    "domain": "Administration",
+    "name": "Real admin approvals, moderation and finance controls",
+    "status": "BLOCKED",
+    "reason": "Public role-layout inventory grants no staff authority; operational admin workflows unavailable",
+    "evidence": "workspace-layouts.json"
+  },
+  {
+    "id": "W26",
+    "domain": "Notifications",
+    "name": "OTP, order, booking, email and push delivery",
+    "status": "BLOCKED",
+    "reason": "Preferences persist; Resend/Twilio/push delivery and end-to-end events unconfigured",
+    "evidence": "remote-readiness.json"
+  },
+  {
+    "id": "W27",
+    "domain": "Account",
+    "name": "Private saved routine create/read/update/delete",
+    "status": "PASSED",
+    "scope": "Real scoped Supabase records, optimistic revisions, idempotency and cleanup",
+    "evidence": "live-core-regression.json"
+  },
+  {
+    "id": "W28",
+    "domain": "Workspaces",
+    "name": "Authorized multi-role business switching and actions",
+    "status": "BLOCKED",
+    "reason": "Membership listing/core checks exist; complete verified multi-role UI/business journey is not demonstrated",
+    "evidence": "workspace-layouts.json"
+  },
+  {
+    "id": "W29",
+    "domain": "Security",
+    "name": "Consumer/tenant isolation and revoked-session denial",
+    "status": "PASSED",
+    "scope": "Controlled real Auth users plus local access-control regressions; not every future role permission",
+    "evidence": "live-session-regression.json"
+  },
+  {
+    "id": "W30",
+    "domain": "UX",
+    "name": "Responsive accessibility including real native and screen readers",
+    "status": "BLOCKED",
+    "reason": "Browser viewport/axe/keyboard evidence is available; VoiceOver/TalkBack and real iOS/Android validation remain unexecuted",
+    "evidence": "clickthrough.json"
+  },
+  {
+    "id": "W31",
+    "domain": "Deployment",
+    "name": "Public HTTPS, monitoring, rollback and pilot UAT",
+    "status": "BLOCKED",
+    "reason": "Applied network policy excludes website; cPanel access absent; monitoring and restore/rollback drill, staging smoke and pilot UAT not established",
+    "evidence": "remote-readiness.json"
+  }
+]

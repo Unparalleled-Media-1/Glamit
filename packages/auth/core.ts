@@ -1,4 +1,5 @@
 /** One Supabase identity; no OTP implementation or persistence outside Supabase Auth. */
+import { countryLabels } from "./country-labels";
 import { createClient } from "@supabase/supabase-js";
 import type {
   Session,
@@ -38,14 +39,11 @@ export function phoneE164(input: string, country: CountryCode): string {
   if (!number?.isValid()) throw Error("Check the country and mobile number.");
   return number.number;
 }
-const names = typeof Intl.DisplayNames === "function"
-  ? new Intl.DisplayNames(["en"], { type: "region" })
-  : null;
 export const countryChoices = getCountries().map((country) => ({
   country,
-  name: names?.of(country) || country,
+  name: countryLabels[country] || country,
   callingCode: getCountryCallingCode(country),
-})).sort((a, b) => a.name.localeCompare(b.name));
+})).sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0);
 export function safeDestination(value: string | null | undefined): string {
   if (
     !value || !/^\/(?!\/)[a-z0-9/-]*$/i.test(value) || value.includes("..") ||

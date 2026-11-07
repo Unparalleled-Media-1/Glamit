@@ -1,0 +1,19 @@
+{
+  "observed_at": "2026-11-07T16:39:36.709983+00:00",
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "read_only": true,
+  "counts": {
+    "auth_remaining": 0,
+    "profiles_remaining": 0,
+    "notifications_remaining": 0,
+    "devices_remaining": 0,
+    "organizations_remaining": 0,
+    "routines_remaining": 0,
+    "identities_retained": 3,
+    "bootstrap_accounts_retained": 3,
+    "credit_journals": 0,
+    "credit_postings": 0
+  },
+  "status": "PASSED",
+  "retention_note": "Existing bootstrap retains internal references, zero-balance credit accounts and immutable audits. No credit/payment transactions."
+}

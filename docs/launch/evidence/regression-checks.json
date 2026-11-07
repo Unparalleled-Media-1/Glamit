@@ -1,0 +1,180 @@
+{
+  "observed_at": "2026-11-07T16:47:42.986515+00:00",
+  "checks": [
+    {
+      "name": "client-contracts",
+      "command": [
+        "npm",
+        "run",
+        "test:client"
+      ],
+      "scope": "Shared product contracts; no live providers",
+      "status": "PASSED",
+      "exit_code": 0,
+      "seconds": 0.57,
+      "log": "checks/client-contracts.log"
+    },
+    {
+      "name": "web-journeys",
+      "command": [
+        "npm",
+        "run",
+        "test:web"
+      ],
+      "scope": "Existing local browser journeys; disconnected AI remains unavailable",
+      "status": "PASSED",
+      "exit_code": 0,
+      "seconds": 23.86,
+      "log": "checks/web-journeys.log"
+    },
+    {
+      "name": "golden-patterns",
+      "command": [
+        "npm",
+        "run",
+        "test:golden"
+      ],
+      "scope": "Candidate visual invariants; not owner approval",
+      "status": "PASSED",
+      "exit_code": 0,
+      "seconds": 0.21,
+      "log": "checks/golden-patterns.log"
+    },
+    {
+      "name": "connected-contracts",
+      "command": [
+        "npm",
+        "run",
+        "test:connections"
+      ],
+      "scope": "Adapter/UI doubles only",
+      "status": "PASSED",
+      "exit_code": 0,
+      "seconds": 4.84,
+      "log": "checks/connected-contracts.log"
+    },
+    {
+      "name": "auth-ui",
+      "command": [
+        "npm",
+        "run",
+        "test:hosted-account"
+      ],
+      "scope": "Mocked Auth transport; no SMS/OAuth delivery",
+      "status": "PASSED",
+      "exit_code": 0,
+      "seconds": 1.92,
+      "log": "checks/auth-ui.log"
+    },
+    {
+      "name": "auth-native-gate",
+      "command": [
+        "npm",
+        "run",
+        "test:auth"
+      ],
+      "scope": "Contract/OS storage doubles; no physical device",
+      "status": "PASSED",
+      "exit_code": 0,
+      "seconds": 0.57,
+      "log": "checks/auth-native-gate.log"
+    },
+    {
+      "name": "public-key-guard",
+      "command": [
+        "npm",
+        "run",
+        "test:public-config"
+      ],
+      "scope": "Privileged key rejection",
+      "status": "PASSED",
+      "exit_code": 0,
+      "seconds": 0.26,
+      "log": "checks/public-key-guard.log"
+    },
+    {
+      "name": "client-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "scope": "Web and Expo TypeScript",
+      "status": "PASSED",
+      "exit_code": 0,
+      "seconds": 4.65,
+      "log": "checks/client-types.log"
+    },
+    {
+      "name": "cpanel-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck:godaddy"
+      ],
+      "scope": "Static host entry point",
+      "status": "PASSED",
+      "exit_code": 0,
+      "seconds": 3.74,
+      "log": "checks/cpanel-types.log"
+    },
+    {
+      "name": "production-dependency-audit",
+      "command": [
+        "npm",
+        "audit",
+        "--omit=dev",
+        "--audit-level=moderate"
+      ],
+      "scope": "Registry advisory snapshot",
+      "status": "PASSED",
+      "exit_code": 0,
+      "seconds": 0.67,
+      "log": "checks/production-dependency-audit.log"
+    },
+    {
+      "name": "edge-security",
+      "command": [
+        "/workspace/glam-tools/backend-cli/node_modules/.bin/deno",
+        "test",
+        "tests/edge"
+      ],
+      "scope": "Cryptographic/handler regression",
+      "status": "PASSED",
+      "exit_code": 0,
+      "seconds": 0.82,
+      "log": "checks/edge-security.log"
+    },
+    {
+      "name": "native-compatibility",
+      "command": [
+        "npm",
+        "exec",
+        "--workspace=@glam/mobile",
+        "--",
+        "expo",
+        "install",
+        "--check"
+      ],
+      "scope": "Installed Expo SDK compatibility map",
+      "status": "PASSED",
+      "exit_code": 0,
+      "seconds": 0.47,
+      "log": "checks/native-compatibility.log"
+    },
+    {
+      "name": "native-exports",
+      "command": [
+        "npm",
+        "run",
+        "export",
+        "--workspace=@glam/mobile"
+      ],
+      "scope": "iOS/Android Metro exports; not installed binaries",
+      "status": "PASSED",
+      "exit_code": 0,
+      "seconds": 10.89,
+      "log": "checks/native-exports.log"
+    }
+  ]
+}

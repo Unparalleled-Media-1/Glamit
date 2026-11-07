@@ -306,6 +306,8 @@ export default function StylingJourney({
             </div>
             <div
               className="conversation-messages"
+              role="log"
+              aria-live="polite"
               aria-label="Your styling brief"
             >
               {s.messages.map((m, i) => (

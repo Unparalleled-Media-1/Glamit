@@ -523,6 +523,7 @@ input[type="checkbox"] {
   border-radius: 70px;
 }
 .palette-art p {
+  color: var(--glam-palette-mauve);
   font-size: 12px;
 }
 .done {
@@ -3520,7 +3521,7 @@ body:has(.beauty-shell) {
 .color-explorer-copy > p {
   font-size: 13px;
   max-width: 380px;
-  color: #775867;
+  color: var(--glam-palette-mauve);
 }
 .color-mood-tabs {
   display: flex;

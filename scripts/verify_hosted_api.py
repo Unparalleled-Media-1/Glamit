@@ -1,5 +1,6 @@
 """Controlled real Auth/API regression. No email delivery, provider calls or payments."""
 
+import argparse
 import json
 import os
 import secrets
@@ -40,12 +41,13 @@ def cleanup_organization(report):
         if not r.is_success:
             report["status"] = "FAILED"
         report["retained_test_evidence"] = (
-            "Minimal internal identities and immutable audits only; "
-            "no merchant listings or financial records created."
+            "Minimal internal identities, zero-balance bootstrap accounts "
+            "and immutable audits only; "
+            "no merchant listings or payment transactions created."
         )
 
 
-def verify():
+def verify(report_path="docs/database/evidence/hosted-api/live-regression.json"):
     report = {
         "project_ref": PROJECT,
         "observed_at": datetime.now(UTC).isoformat(),
@@ -278,13 +280,15 @@ def verify():
                 report["cleanup"].append({"auth_id": uid, "http_status": r.status_code})
                 if not r.is_success:
                     report["status"] = "FAILED"
-    Path("docs/database/evidence/hosted-api/live-regression.json").write_text(
-        json.dumps(report, indent=2) + "\n"
-    )
+    Path(report_path).write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report))
     if report["status"] != "PASSED":
         raise SystemExit(2)
 
 
 if __name__ == "__main__":
-    verify()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--report", default="docs/database/evidence/hosted-api/live-regression.json"
+    )
+    verify(parser.parse_args().report)
