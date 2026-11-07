@@ -1,16 +1,15 @@
-"""Deploy the canonical, locally replayed application SQL to an empty DEV BRANCH only."""
+"""Deploy canonical application SQL only to the explicitly authorized production project."""
 
 import argparse
 import hashlib
 import json
 import os
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import httpx
 
-PARENT = "bkkmsbxrxkqaveymcrgi"
-BRANCH = "glam-foundation-dev"
+PROJECT = "bkkmsbxrxkqaveymcrgi"
 EXPECTED = {
     "profiles",
     "organizations",
@@ -25,17 +24,36 @@ EXPECTED = {
 }
 
 
-def validate_branch(branches, target):
+def validate_branch(branches, target, production_approved=False):
     matches = [b for b in branches if b.get("project_ref") == target]
-    if target == PARENT or len(matches) != 1:
-        raise RuntimeError("production_or_unknown_project_refused")
+    if target != PROJECT or len(matches) != 1:
+        raise RuntimeError("only_authorized_original_project_allowed")
     branch = matches[0]
     if (
-        branch.get("is_default") is not False
-        or branch.get("parent_project_ref") != PARENT
-        or branch.get("name") != BRANCH
+        branch.get("is_default") is not True
+        or branch.get("parent_project_ref") != PROJECT
+        or branch.get("name") != "main"
     ):
-        raise RuntimeError("authorized_development_branch_required")
+        raise RuntimeError("original_production_main_required")
+    if not production_approved:
+        raise RuntimeError("explicit_production_authorization_required")
+
+
+def validate_backup(backups):
+    recent = []
+    for backup in backups:
+        if backup.get("status") != "COMPLETED" or backup.get("is_physical_backup") is not True:
+            continue
+        try:
+            when = datetime.fromisoformat(backup["inserted_at"].replace("Z", "+00:00"))
+        except (ValueError, KeyError, TypeError):
+            continue
+        if datetime.now(UTC) - timedelta(hours=48) <= when <= datetime.now(UTC):
+            recent.append(backup)
+    if not recent:
+        raise RuntimeError("recent_completed_recovery_point_required")
+    selected = max(recent, key=lambda b: b["inserted_at"])
+    return {k: selected.get(k) for k in ["id", "inserted_at", "status", "is_physical_backup"]}
 
 
 def validate_empty(snapshot):
@@ -60,16 +78,16 @@ def validate_artifact():
     return artifact.read_text(), manifest
 
 
-def deploy(target, apply=False):
+def deploy(target, apply=False, production_approved=False):
     sql, manifest = validate_artifact()
     token = os.environ.get("SUPABASE_ACCESS_TOKEN")
     if not token:
         raise RuntimeError("management_api_token_required")
     report = {
         "observed_at": datetime.now(UTC).isoformat(),
-        "parent_project": PARENT,
+        "parent_project": PROJECT,
         "project_ref": target,
-        "branch": BRANCH,
+        "branch": "main (PRODUCTION)",
         "production_modified": False,
         "apply_requested": apply,
         "revision": manifest["revision"],
@@ -82,10 +100,10 @@ def deploy(target, apply=False):
         trust_env=True,
     ) as client:
         base = "https://api.supabase.com/v1/projects/"
-        response = client.get(base + PARENT + "/branches")
+        response = client.get(base + PROJECT + "/branches")
         if not response.is_success:
             raise RuntimeError("branch_inventory_failed")
-        validate_branch(response.json(), target)
+        validate_branch(response.json(), target, production_approved or not apply)
 
         def query(statement, readonly=True):
             response = client.post(
@@ -96,6 +114,10 @@ def deploy(target, apply=False):
             return response.json()
 
         if apply:
+            backup_response = client.get(base + PROJECT + "/database/backups")
+            if not backup_response.is_success:
+                raise RuntimeError("backup_verification_unavailable")
+            report["recovery_point"] = validate_backup(backup_response.json().get("backups", []))
             snapshot = query(
                 """SELECT COALESCE((SELECT json_agg(tablename) FROM pg_tables WHERE
                 schemaname='public'),'[]'::json) AS public_tables,
@@ -108,6 +130,7 @@ def deploy(target, apply=False):
             # No automatic retries: after an unknown result, verify before any new attempt.
             query(sql, False)
             report["migration_execution"] = "CONFIRMED_SUCCESS"
+            report["production_modified"] = True
         report["public_tables"] = [
             r["table_name"]
             for r in query(
@@ -154,10 +177,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--project-ref", required=True)
     parser.add_argument("--apply", action="store_true")
+    parser.add_argument("--production-approved", action="store_true")
     parser.add_argument("--report", required=True)
     args = parser.parse_args()
     try:
-        result = deploy(args.project_ref, args.apply)
+        result = deploy(args.project_ref, args.apply, args.production_approved)
     except (RuntimeError, httpx.HTTPError, ValueError) as error:
         # Network exception strings can contain private context; emit stable codes only.
         result = {
@@ -180,7 +204,7 @@ if __name__ == "__main__":
                 "requested_tables_verified": 10,
                 "total_public_tables": len(result["public_tables"]),
                 "revision": result["revision"],
-                "production_modified": False,
+                "production_modified": result["production_modified"],
             },
             indent=2,
         )
