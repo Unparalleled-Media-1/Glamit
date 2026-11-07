@@ -1,0 +1,28 @@
+{
+  "project": "bkkmsbxrxkqaveymcrgi",
+  "remote_mutations": 0,
+  "sql_statement_type": "SELECT only; migration-mode privilege inspection, no DDL",
+  "sql_http_status": 201,
+  "database_verification": [
+    {
+      "database": "postgres",
+      "role": "postgres",
+      "can_create_public_objects": true,
+      "public_tables": [],
+      "other_schema_tables": [],
+      "alembic_table": null
+    }
+  ],
+  "branch_http_status": 200,
+  "branches": [
+    {
+      "id": "8fa3789d-2cf7-4260-b5a2-e9c2d3140602",
+      "name": "main",
+      "project_ref": "bkkmsbxrxkqaveymcrgi",
+      "parent_project_ref": "bkkmsbxrxkqaveymcrgi",
+      "is_default": true,
+      "status": "FUNCTIONS_DEPLOYED",
+      "persistent": false
+    }
+  ]
+}

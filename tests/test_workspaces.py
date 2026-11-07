@@ -115,7 +115,7 @@ def test_all_role_workspaces_and_scope_revalidation(client, db, workspace, role)
     with db.begin() as c:
         c.execute(
             text(
-                "INSERT INTO organization_member(organization_id,user_id,role) "
+                "INSERT INTO organization_members(organization_id,user_id,role) "
                 "VALUES (:o,:u,'analyst')"
             ),
             {"o": org, "u": member},
@@ -149,14 +149,14 @@ def test_analyst_read_only_and_suspension_does_not_cross_organizations(client, d
     create_draft(client, first)
     with db.begin() as c:
         c.execute(
-            text("UPDATE organization_member SET active=false WHERE organization_id=:o"),
+            text("UPDATE organization_members SET active=false WHERE organization_id=:o"),
             {"o": first},
         )
     assert client.get(base(first) + "/drafts").status_code == 404
     assert client.get(base(second) + "/drafts").status_code == 200
     with db.begin() as c:
         c.execute(
-            text("UPDATE organization_member SET role='analyst' WHERE organization_id=:o"),
+            text("UPDATE organization_members SET role='analyst' WHERE organization_id=:o"),
             {"o": second},
         )
         c.execute(
@@ -177,7 +177,7 @@ def test_authority_changes_apply_to_every_request(client, db, change):
     assert create_draft(client, org).status_code == 201
     with db.begin() as c:
         if change == "suspended_org":
-            c.execute(text("UPDATE organization SET suspended=true WHERE id=:o"), {"o": org})
+            c.execute(text("UPDATE organizations SET suspended=true WHERE id=:o"), {"o": org})
         elif change == "suspended_capability":
             c.execute(text("UPDATE workspace_capability SET status='suspended'"))
         elif change == "expired":
@@ -336,7 +336,7 @@ def test_pending_invitation_cannot_bypass_changed_eligibility(client, db, failur
                 {"u": recipient},
             )
         else:
-            c.execute(text("UPDATE organization SET suspended=true WHERE id=:o"), {"o": org})
+            c.execute(text("UPDATE organizations SET suspended=true WHERE id=:o"), {"o": org})
     as_user("recipient")
     assert client.post(f"/v1/me/workspace-invitations/{invitation}/accept").status_code == 404
     assert client.get("/v1/me/workspaces").json() == []

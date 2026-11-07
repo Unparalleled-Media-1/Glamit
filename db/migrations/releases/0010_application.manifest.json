@@ -1,0 +1,22 @@
+{
+  "target": "application@head",
+  "revision": "0010_supabase_foundation",
+  "excluded_sandbox": "0009_stripe_test_ledger",
+  "artifact": "db/migrations/releases/0010_application.sql",
+  "sha256": "081fc03457f7e1fe38527e5897b98145b80406df0a14dcbb6e08dfd043c26f4c",
+  "statement_count": 76,
+  "canonical_sources": {
+    "db/migrations/versions/0001_foundations.py": "cacbb66a16253b2058a3b3a617302762d86358bfa12e4180e66af08ad0a7f1ef",
+    "db/migrations/versions/0001_foundations.sql": "e38ccde698b49b661cb12a6a8d9594c5b34f7233a13b3544d6a9ccabee41a369",
+    "db/migrations/versions/0002_credit_safety.py": "06af2b198ead5940aa61fafe809aaf9396426f0316e40a8a6e9aaa83c2d3b5d3",
+    "db/migrations/versions/0003_server_only_access.py": "d1ff935b7f5cd120d014b9a3aa842e1f7109c40dc76f4524b11196b644cb0d20",
+    "db/migrations/versions/0004_analysis_workspaces.py": "44511886ab3a27de455722a84b58e1712cd2ad1b2e06fe36b95449bf1d980159",
+    "db/migrations/versions/0005_workspace_invitations.py": "73316c2f14713e4a1c3629a69fa99c043b426d5bdd983472bf2b918c80cada40",
+    "db/migrations/versions/0006_staff_context.py": "51d968048c7fd51dd85a9a76942fe98fdb950b74789382844e65a89e7ec98081",
+    "db/migrations/versions/0007_contextual_catalog.py": "de5670f34d6a2720669111601d2cbaaef0c5720bb6721accc966d79ccef27f96",
+    "db/migrations/versions/0008_catalog_market_policy.py": "c405c3395f90a7c87cdbabddf38f4776f75eca34b6be38f0635bd4913a24c54e",
+    "db/migrations/versions/0009_stripe_test_ledger.py": "6479a6946a73a5c378b4aa1e589234db6f279cb6900fc8d1b060d83264503b82",
+    "db/migrations/versions/0010_supabase_foundation.py": "98551b52756ff2cdc1fb7c08de752f2da49bb3d4da53a26eeabcb51a4ce14166",
+    "db/migrations/versions/0010_supabase_foundation.sql": "c5897352fb565dba4683d19ab3e87488daac525c97f1d5cd38e371bd1cb6db18"
+  }
+}

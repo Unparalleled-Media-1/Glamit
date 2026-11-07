@@ -136,8 +136,8 @@ def live():
 def ready(db: Db):
     from glam_api.config import get_settings
 
-    head = db.scalar(text("SELECT version_num FROM alembic_version"))
-    if head != "0008_catalog_market_policy":
+    applied = set(db.scalars(text("SELECT version_num FROM alembic_version")))
+    if "0010_supabase_foundation" not in applied:
         raise HTTPException(503, "Database migration is not current")
     if not get_settings().oidc_issuer:
         raise HTTPException(503, "Identity provider is not configured")
@@ -199,12 +199,12 @@ def create_organization(body: NewOrganization, db: Db, identity: Identity, key: 
         return result
     org_id = uuid4()
     db.execute(
-        text("INSERT INTO organization(id,name) VALUES (:id,:name)"),
+        text("INSERT INTO organizations(id,name) VALUES (:id,:name)"),
         {"id": org_id, "name": body.name},
     )
     db.execute(
         text(
-            "INSERT INTO organization_member(organization_id,user_id,role) VALUES (:o,:u,'owner')"
+            "INSERT INTO organization_members(organization_id,user_id,role) VALUES (:o,:u,'owner')"
         ),
         {"o": org_id, "u": uid},
     )
@@ -218,8 +218,8 @@ def get_organization(org_id: UUID, db: Db, identity: Identity):
     row = (
         db.execute(
             text(
-                "SELECT o.id,o.name,m.role FROM organization o "
-                "JOIN organization_member m ON m.organization_id=o.id "
+                "SELECT o.id,o.name,m.role FROM organizations o "
+                "JOIN organization_members m ON m.organization_id=o.id "
                 "WHERE o.id=:id AND m.user_id=:u AND m.active AND NOT o.suspended"
             ),
             {"id": org_id, "u": uid},

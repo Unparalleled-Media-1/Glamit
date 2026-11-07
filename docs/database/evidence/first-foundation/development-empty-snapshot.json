@@ -1,0 +1,21 @@
+{
+  "project": "vmzfiahjdfcuyzlyvewz",
+  "parent_project": "bkkmsbxrxkqaveymcrgi",
+  "branch": "glam-foundation-dev",
+  "http_status": 201,
+  "schema_changed": false,
+  "pre_migration_catalog_snapshot": [
+    {
+      "database": "postgres",
+      "role": "postgres",
+      "can_create_public_objects": true,
+      "public_tables": [],
+      "auth_user_count": 0,
+      "storage_object_count": 0,
+      "auth_users_table": "auth.users",
+      "uid_function": "auth.uid()",
+      "existing_glam_private": null,
+      "public_function_names": []
+    }
+  ]
+}

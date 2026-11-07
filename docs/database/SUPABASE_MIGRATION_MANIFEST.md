@@ -1,5 +1,7 @@
 # Migration manifest and deployment batches
 
+> Historical Phase 0 snapshot. Management SQL access and a development branch are now verified; see [first foundation execution](FIRST_FOUNDATION_DEPLOYMENT.md) for the current migration path and actual deployment evidence.
+
 **No remote revisions applied and no new SQL generated for deployment.** Source migrations are checksummed in [manifest](evidence/canonical-migration-manifest.json).0001 SQL is the source loaded by 0001's Alembic wrapper, not a second migration. Remote alembic_version/drift remains unknown.
 
 | Source                                               | Revision                                   | SHA256                                                           | Literal created tables                                                                                                                                                                                                                                            |

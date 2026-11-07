@@ -142,7 +142,7 @@ def matches(db, uid, req, only_lid=None):
             "AND l.published_revision=p.revision AND l.state='published' "
             "JOIN catalog_revision r ON r.listing_id=l.id AND r.revision=p.revision "
             "JOIN catalog_approval a ON a.listing_id=r.listing_id AND a.revision=r.revision "
-            "JOIN organization o ON o.id=l.organization_id "
+            "JOIN organizations o ON o.id=l.organization_id "
             "JOIN workspace_capability c ON c.organization_id=o.id AND c.workspace=l.workspace "
             "WHERE NOT o.suspended AND c.status='verified' AND c.expires_at>now() "
             "AND a.decision='approved' AND r.merchant_reviewed "
