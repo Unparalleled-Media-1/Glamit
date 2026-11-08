@@ -7,6 +7,7 @@ const { validateLaunch } = require("../../scripts/launch/release-gates.cjs");
 function fixture() {
   const sha = "1".repeat(40);
   return {
+    ...require("./final-platform-fixture.cjs").fixture(),
     release_evidence_version: 2,
     observed_at: new Date().toISOString(),
     candidate_base_commit: sha,

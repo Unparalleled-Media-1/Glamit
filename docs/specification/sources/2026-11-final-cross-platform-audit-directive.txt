@@ -1,0 +1,1516 @@
+# GLAM Beauty — FINAL 100% Build Integrity, End-to-End & Pre-Launch Audit
+
+At this stage, we should stop developing new features and concentrate entirely on making the existing GLAM Beauty application production-quality.
+
+Your instruction to Codex should be clear:
+
+Every feature, screen, button, link, form, navigation item, dashboard and business workflow must be fully built and functional. The only acceptable outstanding dependencies are external API credentials, authentication provider configuration and explicitly approved third-party activations.
+
+Even when an API key is missing, the feature's interface, backend integration, database structure, validation, error handling and test coverage must be complete.
+
+We must distinguish:
+
+* Build complete: All application code and integration adapters are implemented and tested.
+
+* Provider activation pending: Credentials, OAuth configuration or third-party approval are outstanding.
+
+* Production verified: The actual deployed application passes end-to-end testing with real integrations.
+
+These are different milestones. Codex must not report the application as publicly ready simply because the build is complete.
+
+Below is the final instruction I recommend sending.
+
+GLAM BEAUTY — FINAL MASTER AUDIT, 100% BUILD COMPLETION & RELEASE LOCK
+
+# GLAM BEAUTY — FINAL MASTER AUDIT, 100% BUILD COMPLETION & RELEASE LOCK
+
+## MANDATE
+
+Perform the FINAL exhaustive end-to-end audit, defect remediation, integration-readiness verification and deployment-readiness assessment of GLAM Beauty.
+
+This is the final engineering stabilization phase before connecting the remaining external APIs and activating authentication providers through Supabase.
+
+**ALL approved GLAM Beauty features are considered part of the required build scope.**
+
+Do not start another feature-development cycle.
+
+Do not redesign or rebuild the application.
+
+Do not create duplicate modules, databases, services or authentication systems.
+
+The objective is to achieve:
+
+1. 100% approved feature implementation.
+
+2. 100% implemented route and screen coverage.
+
+3. 100% actionable-control test coverage.
+
+4. Zero broken or stale internal links.
+
+5. Zero dead buttons or nonfunctional interactive elements.
+
+6. Zero unintentional placeholder functionality.
+
+7. Zero unresolved P0/P1 application defects.
+
+8. Fully implemented frontend-to-backend integration.
+
+9. Complete Supabase schema, authorization and persistence integration.
+
+10. Complete external API adapters awaiting only credentials or provider approval.
+
+11. Fully implemented login flows awaiting only Supabase provider activation.
+
+12. Verified deployment and rollback readiness.
+
+**IMPORTANT: A missing external API key is not permission to leave a feature half-built.**
+
+If a provider is not configured, finish all code, configuration handling, test adapters, callback handling, error handling and persistence logic that can be completed without the provider.
+
+Do not invent successful real-provider results.
+
+Do not count mocked integrations as live-provider verification.
+
+---
+
+# 1. PROJECT CONFIGURATION
+
+Product: GLAM Beauty
+
+Website: [https://www.glam.beauty](https://www.glam.beauty)
+
+Company: Zanzu Technologies Inc.
+
+GitHub repository:
+Unparalleled-Media-1/Glamit
+
+Reported default branch:
+feat/platform-foundations
+
+Previous release audit baseline:
+d846b94
+
+Railway project:
+elegant-dedication
+
+Railway project ID:
+3f490939-cffd-4468-8c25-d90146f1b308
+
+Railway production environment ID:
+93eeefda-99b8-462b-9041-421f9f5903ca
+
+Existing Railway web service ID:
+d2a011b7-929e-4302-809a-27ca7345621a
+
+Supabase production project:
+bkkmsbxrxkqaveymcrgi
+
+Use the current repository state and actual deployed SHA when newer than the previous baseline.
+
+Do not assume a GitHub `main` branch exists.
+
+Do not switch the Railway deployment branch without explicit authorization.
+
+Do not recreate existing services or reset Supabase.
+
+---
+
+# 2. FREEZE THE APPLICATION
+
+Effective immediately:
+
+* No new features.
+
+* No unnecessary UI redesigns.
+
+* No architectural rewrites.
+
+* No speculative enhancements.
+
+* No unrelated refactoring.
+
+* No database resets.
+
+* No duplicate feature implementations.
+
+* No unnecessary dependency upgrades.
+
+* No unapproved production configuration changes.
+
+Only permit:
+
+* Missing approved feature completion.
+
+* Broken functionality repairs.
+
+* Dead link repairs.
+
+* Navigation repairs.
+
+* API contract corrections.
+
+* Database integration repairs.
+
+* Security corrections.
+
+* Accessibility corrections.
+
+* Performance corrections.
+
+* Automated test improvements.
+
+* Deployment and release-readiness corrections.
+
+All changes must be traceable to a documented requirement or demonstrated defect.
+
+---
+
+# 3. AUDIT EVERY PAGE, SCREEN AND ROUTE
+
+Discover every route from the actual application code.
+
+Do not rely exclusively on the previous inventory of 39 routes.
+
+Include:
+
+* Public website
+
+* Landing pages
+
+* Registration and login
+
+* Consumer dashboard
+
+* AI analysis
+
+* AI Studio
+
+* Virtual try-on
+
+* Style Passport
+
+* Personal Stylist
+
+* Digital Wardrobe
+
+* Universal Look Search
+
+* Product discovery
+
+* Merchant storefronts
+
+* Cart and checkout
+
+* Orders
+
+* Professional bookings
+
+* Creator Studio
+
+* Advertiser dashboard
+
+* Affiliate and partner dashboards
+
+* Notifications
+
+* Settings
+
+* Administration
+
+* Error pages
+
+* Native iOS screens
+
+* Native Android screens
+
+For every route verify:
+
+\( \) Route exists.
+
+\( \) Route loads successfully.
+
+\( \) Correct page renders.
+
+\( \) Correct navigation is displayed.
+
+\( \) Authentication rules are correct.
+
+\( \) Role permissions are correct.
+
+\( \) Page has no JavaScript errors.
+
+\( \) Page has no broken assets.
+
+\( \) Page has no dead links.
+
+\( \) Page has no missing components.
+
+\( \) Page has no accidental placeholder text.
+
+\( \) Page has no broken layout.
+
+\( \) Page supports appropriate viewport sizes.
+
+\( \) Loading states work.
+
+\( \) Empty states work.
+
+\( \) Error states work.
+
+\( \) Back navigation works.
+
+\( \) Refresh and deep linking work.
+
+\( \) Page works against the real backend where provider credentials are not required.
+
+Record all results by route, platform and role.
+
+---
+
+# 4. EXHAUSTIVE BUTTON, LINK AND TAP AUDIT
+
+THIS IS A MANDATORY RELEASE-BLOCKING AUDIT.
+
+Discover every actionable control through both static source analysis and runtime rendering.
+
+Include:
+
+* Buttons
+
+* Text links
+
+* Icons
+
+* Cards with click handlers
+
+* Navigation tabs
+
+* Menus
+
+* Dropdowns
+
+* Toggles
+
+* Checkboxes
+
+* Radio controls
+
+* Search fields
+
+* Filters
+
+* Sorting
+
+* Pagination
+
+* Upload buttons
+
+* Camera buttons
+
+* Image editing tools
+
+* AI generation actions
+
+* Save buttons
+
+* Share buttons
+
+* Download actions
+
+* Edit and delete actions
+
+* Booking actions
+
+* Product variant selectors
+
+* Add-to-cart controls
+
+* Checkout actions
+
+* Authentication controls
+
+* Settings actions
+
+* Admin approval/rejection actions
+
+* Mobile gestures and tappable surfaces
+
+For every control:
+
+1. Identify the component.
+
+2. Identify the expected behavior.
+
+3. Identify the required user role.
+
+4. Establish the correct preconditions.
+
+5. Execute the action.
+
+6. Verify the resulting UI state.
+
+7. Verify navigation where applicable.
+
+8. Verify the expected API request.
+
+9. Verify database persistence where applicable.
+
+10. Verify correct failure handling.
+
+11. Verify repeat-action behavior.
+
+12. Capture test evidence.
+
+A control must not PASS merely because a click handler executes.
+
+A control must not PASS merely because a toast message appears.
+
+A control must not PASS merely because a mock response is returned.
+
+For actions that should mutate data, verify the actual authorized data mutation in an isolated test environment.
+
+For actions awaiting third-party credentials, verify the integration adapter and local contract tests, and mark provider activation separately as PENDING.
+
+**No dead buttons, decorative controls pretending to be functional, empty onClick handlers or navigation to nonexistent routes are permitted.**
+
+Do not exclude hidden, conditionally rendered or role-specific controls.
+
+Create a unique identifier for every control.
+
+---
+
+# 5. BROKEN LINKS, STALE LINKS AND NAVIGATION AUDIT
+
+Crawl every reachable route and extract every internal and external link.
+
+Check:
+
+\( \) Internal links resolve to existing routes.
+
+\( \) Navigation menu links are correct.
+
+\( \) Footer links are correct.
+
+\( \) Dashboard links are correct.
+
+\( \) Profile links are correct.
+
+\( \) Merchant storefront links are correct.
+
+\( \) Product links are correct.
+
+\( \) Creator profile links are correct.
+
+\( \) Booking links are correct.
+
+\( \) Admin links are correct.
+
+\( \) Email verification links use approved domains.
+
+\( \) Password/account recovery links use approved domains.
+
+\( \) OAuth redirect URLs use approved callback destinations.
+
+\( \) Deep links resolve correctly.
+
+\( \) External links do not lead to known broken destinations.
+
+\( \) No references remain to deleted development environments.
+
+\( \) No unintended old GLAM AI branding remains.
+
+\( \) No incorrect localhost links exist in production builds.
+
+\( \) No stale Supabase project references exist.
+
+\( \) No incorrect Railway service URLs exist.
+
+\( \) No obsolete API endpoints remain.
+
+\( \) No broken image or media URLs remain.
+
+\( \) No accidental test domains appear in production navigation.
+
+Handle third-party rate limits and authentication restrictions correctly. An inaccessible external link is not automatically a confirmed broken link.
+
+Produce a complete broken-link report with source location, destination, observed HTTP result and repair evidence.
+
+---
+
+# 6. VERIFY EVERY APPROVED PRODUCT FEATURE
+
+Audit the complete GLAM Beauty scope.
+
+## Consumer and identity
+
+\( \) Guest browsing.
+
+\( \) Phone number registration.
+
+\( \) SMS OTP request and verification implementation.
+
+\( \) Google login integration readiness.
+
+\( \) Apple login integration readiness.
+
+\( \) Facebook login integration readiness.
+
+\( \) Account linking.
+
+\( \) Profile creation and editing.
+
+\( \) Secure sessions.
+
+\( \) Biometric returning-user unlock on supported devices.
+
+\( \) One account with multiple authorized roles.
+
+\( \) Privacy and consent management.
+
+\( \) Account deletion.
+
+## AI Beauty
+
+\( \) Face shape analysis.
+
+\( \) Hair analysis.
+
+\( \) Nonmedical skin appearance analysis.
+
+\( \) Personal colour analysis.
+
+\( \) AI beauty recommendations.
+
+\( \) Style Passport.
+
+\( \) Saved analysis history.
+
+\( \) AI Advisor.
+
+\( \) Personal Stylist.
+
+## AI Studio
+
+\( \) Makeup try-on.
+
+\( \) Hairstyle try-on.
+
+\( \) Hair colour preview.
+
+\( \) Outfit styling.
+
+\( \) Accessories.
+
+\( \) Live Look Builder.
+
+\( \) Before-and-after comparison.
+
+\( \) Save looks.
+
+\( \) Share looks.
+
+\( \) Reopen and edit saved looks.
+
+## Styling and discovery
+
+\( \) Digital Wardrobe.
+
+\( \) Outfit combinations.
+
+\( \) Occasion styling.
+
+\( \) Event styling.
+
+\( \) Weather-aware styling.
+
+\( \) Destination styling.
+
+\( \) Packing recommendations.
+
+\( \) Universal Look Search.
+
+\( \) Screenshot-to-look discovery.
+
+\( \) Visual product search.
+
+\( \) Location-aware product recommendations.
+
+## Marketplace
+
+\( \) Product catalog.
+
+\( \) Product categories.
+
+\( \) Search.
+
+\( \) Filters.
+
+\( \) Sorting.
+
+\( \) Product variants.
+
+\( \) Inventory.
+
+\( \) Wishlist.
+
+\( \) Merchant storefronts.
+
+\( \) Multi-merchant cart.
+
+\( \) Checkout integration.
+
+\( \) Orders.
+
+\( \) Shipping and fulfillment.
+
+\( \) Returns and refunds.
+
+\( \) Reviews.
+
+## Merchant operations
+
+\( \) Merchant registration.
+
+\( \) Merchant dashboard.
+
+\( \) Merchant verification workflow.
+
+\( \) AI Snap & List.
+
+\( \) Product management.
+
+\( \) Inventory management.
+
+\( \) Order management.
+
+\( \) Stripe Connect integration readiness.
+
+\( \) Settlement reporting.
+
+\( \) Organization-scoped permissions.
+
+## Professionals
+
+\( \) Salon profiles.
+
+\( \) Beauty professional profiles.
+
+\( \) Tailor and designer profiles.
+
+\( \) Service catalog.
+
+\( \) Availability.
+
+\( \) Appointment booking.
+
+\( \) Rescheduling.
+
+\( \) Cancellation.
+
+\( \) Professional dashboard.
+
+\( \) Reviews.
+
+## Creators and influencers
+
+\( \) Creator onboarding.
+
+\( \) Creator Studio.
+
+\( \) TikTok connection implementation.
+
+\( \) Instagram connection implementation.
+
+\( \) YouTube connection implementation.
+
+\( \) Pinterest connection implementation.
+
+\( \) Facebook Page connection implementation.
+
+\( \) Shoppable looks.
+
+\( \) Product tagging.
+
+\( \) Creator portfolio.
+
+\( \) Brand collaborations.
+
+\( \) Referral attribution.
+
+\( \) Earnings dashboard.
+
+## Advertising and growth
+
+\( \) Advertiser onboarding.
+
+\( \) Advertiser dashboard.
+
+\( \) Campaign creation.
+
+\( \) Geographic targeting.
+
+\( \) Sponsored placement labeling.
+
+\( \) Campaign reporting.
+
+\( \) Referrals.
+
+\( \) Affiliate tracking.
+
+\( \) Subscription entitlements.
+
+\( \) AI usage and credit accounting.
+
+## Administration
+
+\( \) User management.
+
+\( \) Merchant management.
+
+\( \) Creator management.
+
+\( \) Professional management.
+
+\( \) Product moderation.
+
+\( \) Booking oversight.
+
+\( \) Orders and refunds.
+
+\( \) Advertising management.
+
+\( \) Permissions and roles.
+
+\( \) Audit logs.
+
+\( \) Platform analytics.
+
+\( \) Support and dispute management.
+
+For each item, distinguish source implementation, local test verification, external provider activation and deployed verification.
+
+---
+
+# 7. EXTERNAL API READINESS — NO KEYS REQUIRED YET
+
+We will configure outstanding third-party APIs and login providers separately.
+
+This must NOT prevent completion of the application code.
+
+For each external integration verify:
+
+\( \) Integration adapter implemented.
+
+\( \) Configuration variables documented.
+
+\( \) Secret names defined.
+
+\( \) Server-side secret handling.
+
+\( \) API request structure implemented.
+
+\( \) API response parsing implemented.
+
+\( \) Callback/webhook handling implemented where applicable.
+
+\( \) Token refresh implemented where applicable.
+
+\( \) Error handling implemented.
+
+\( \) Timeout handling implemented.
+
+\( \) Retry policy implemented where safe.
+
+\( \) Rate-limit handling implemented.
+
+\( \) Permission/consent handling implemented.
+
+\( \) Data persistence implemented.
+
+\( \) Mock/contract tests pass.
+
+\( \) Unconfigured provider is handled gracefully.
+
+\( \) No fake success message is displayed.
+
+\( \) No provider secret is exposed to the frontend.
+
+Required integration categories:
+
+* AI analysis and generation providers.
+
+* Virtual try-on providers.
+
+* SMS OTP through Supabase Auth.
+
+* Google authentication.
+
+* Apple authentication.
+
+* Facebook authentication.
+
+* Stripe and Stripe Connect.
+
+* TikTok.
+
+* Instagram.
+
+* YouTube.
+
+* Pinterest.
+
+* Facebook Pages.
+
+* Weather services.
+
+* Location and mapping services.
+
+* Email and push notifications.
+
+* Any other provider actually referenced by approved GLAM Beauty functionality.
+
+Use official supported provider APIs and permissions.
+
+Where an API does not support an intended feature, document the actual limitation rather than simulating functionality.
+
+A feature may be marked:
+
+BUILD COMPLETE — PROVIDER ACTIVATION PENDING
+
+only when all implementation and credential-independent tests pass.
+
+Do not mark it:
+
+PRODUCTION VERIFIED
+
+until the real provider integration has been tested successfully.
+
+---
+
+# 8. SUPABASE AUTHENTICATION READINESS
+
+Supabase will remain the canonical authentication platform.
+
+Verify the implementation of:
+
+* SMS OTP.
+
+* Google OAuth.
+
+* Apple OAuth.
+
+* Facebook OAuth.
+
+* Account linking.
+
+* Session refresh.
+
+* Logout.
+
+* Profile synchronization.
+
+* Role switching.
+
+* Passwordless recovery where applicable.
+
+* Secure redirect handling.
+
+* Mobile deep links.
+
+* Biometric secure-session unlock.
+
+Audit the actual Supabase provider configuration.
+
+Identify missing credentials without printing secrets.
+
+Ensure the UI handles unavailable providers gracefully.
+
+Do not build a competing authentication system.
+
+Do not claim that OTP delivery or social sign-in works until the providers are configured and tested.
+
+---
+
+# 9. DATABASE AND BACKEND COMPLETENESS
+
+Audit all approved functionality against the existing Supabase project.
+
+Verify:
+
+\( \) Required schema exists.
+
+\( \) All required migrations are tracked.
+
+\( \) No duplicate tables.
+
+\( \) No missing foreign keys.
+
+\( \) No orphaned data relationships.
+
+\( \) Correct RLS.
+
+\( \) Correct organization permissions.
+
+\( \) Correct Storage policies.
+
+\( \) Backend endpoints exist.
+
+\( \) API contracts match frontend calls.
+
+\( \) Pagination works.
+
+\( \) Filtering works.
+
+\( \) Validation works.
+
+\( \) Authorized writes persist.
+
+\( \) Reads return the correct records.
+
+\( \) Error handling is consistent.
+
+\( \) Data deletion is controlled.
+
+\( \) No frontend reliance on service-role credentials.
+
+Review proposed migration 0014 separately.
+
+Do not apply migration 0014 or any other production schema change without explicit approval of the exact migration.
+
+Test proposed migrations against an isolated database.
+
+---
+
+# 10. FINANCIAL LOGIC AND STRIPE READINESS
+
+Implement and verify all approved financial rules.
+
+GLAM Beauty platform commission:
+
+10% on eligible physical product sales, calculated on discounted item amounts excluding separately charged shipping and taxes.
+
+Verify:
+
+* Product price calculations.
+
+* Discounts.
+
+* Cart totals.
+
+* Shipping.
+
+* Taxes.
+
+* Multi-merchant order allocation.
+
+* Platform commission.
+
+* Merchant balances.
+
+* Refunds.
+
+* Partial refunds.
+
+* Webhook idempotency.
+
+* Reconciliation.
+
+* Stripe Connect onboarding implementation.
+
+* Disputes.
+
+* Audit trails.
+
+Do not invent unapproved booking or creator commission rates.
+
+Use Stripe test-mode fixtures and isolated tests.
+
+Do not execute live financial mutations.
+
+Do not activate live checkout as part of this audit.
+
+---
+
+# 11. RESPONSIVE AND VISUAL QA
+
+Test web at:
+
+320px
+375px
+390px
+430px
+768px
+1024px
+1440px
+1920px
+
+Verify:
+
+* No horizontal overflow.
+
+* No overlapping text.
+
+* No clipped buttons.
+
+* No broken cards.
+
+* No invisible controls.
+
+* No unreadable text.
+
+* No broken modals.
+
+* No inaccessible dropdowns.
+
+* No missing images.
+
+* Correct loading indicators.
+
+* Correct error messages.
+
+* Correct keyboard handling.
+
+* Correct touch targets.
+
+* Correct brand identity.
+
+* Correct favicon.
+
+* Correct app icon.
+
+* Accessible keyboard navigation.
+
+* Accessible labels and contrast.
+
+Compare screenshots across routes, roles and viewport sizes.
+
+Do not introduce unrelated redesigns.
+
+---
+
+# 12. NATIVE MOBILE AUDIT
+
+Audit actual Expo/React Native code and native builds.
+
+Do not substitute responsive web tests for mobile verification.
+
+Check:
+
+\( \) iOS builds.
+
+\( \) Android builds.
+
+\( \) Splash screen.
+
+\( \) App icon.
+
+\( \) Navigation.
+
+\( \) Authentication integration readiness.
+
+\( \) Biometric integration.
+
+\( \) Camera access.
+
+\( \) Image picker.
+
+\( \) Upload handling.
+
+\( \) AI generation flows.
+
+\( \) Saved looks.
+
+\( \) Marketplace.
+
+\( \) Cart.
+
+\( \) Checkout.
+
+\( \) Bookings.
+
+\( \) Notifications.
+
+\( \) Deep links.
+
+\( \) Offline states.
+
+\( \) App resume.
+
+\( \) Session persistence.
+
+\( \) Production API configuration.
+
+\( \) Crash handling.
+
+\( \) Store signing readiness.
+
+Use real-device testing where required.
+
+Clearly distinguish build success from verified real-device functionality.
+
+---
+
+# 13. RAILWAY DEPLOYMENT VERIFICATION
+
+The previous audit reported:
+
+* A Chromium proxy tunnel failure.
+
+* Zero of 31 deployed critical journeys completed.
+
+* Unknown deployed SHA.
+
+* Unavailable runtime logs.
+
+* Unresolved CORS issues.
+
+These findings remain unresolved until new evidence proves otherwise.
+
+Verify:
+
+\( \) Actual deployed commit SHA.
+
+\( \) Correct GitHub default branch.
+
+\( \) Successful build logs.
+
+\( \) Successful runtime logs.
+
+\( \) HTTPS health.
+
+\( \) API readiness.
+
+\( \) Supabase connectivity.
+
+\( \) CORS.
+
+\( \) Environment variable configuration.
+
+\( \) No missing application dependencies.
+
+\( \) Correct asset serving.
+
+\( \) Error monitoring.
+
+\( \) Resource usage.
+
+\( \) Restart behavior.
+
+\( \) Rollback procedure.
+
+\( \) Real deployed browser tests.
+
+If Codex cannot reach Railway, investigate the test runner network path.
+
+Use an authorized CI runner where necessary.
+
+Do not treat proxy failures as proof that application routes are broken.
+
+Do not claim deployed verification from localhost results.
+
+---
+
+# 14. NEGATIVE AND EDGE-CASE TESTING
+
+Test:
+
+* Invalid form inputs.
+
+* Missing required fields.
+
+* Invalid uploads.
+
+* Oversized uploads.
+
+* Duplicate submissions.
+
+* Expired sessions.
+
+* Unauthorized requests.
+
+* Slow network.
+
+* Offline network.
+
+* API timeouts.
+
+* Provider outages.
+
+* Empty results.
+
+* Large result sets.
+
+* Rapid navigation.
+
+* Browser refresh.
+
+* Back navigation.
+
+* Multiple tabs.
+
+* Concurrent updates.
+
+* Duplicate payments.
+
+* Cancelled checkout.
+
+* Failed bookings.
+
+* Incorrect user roles.
+
+* Deleted resources.
+
+* Stale links.
+
+* Missing images.
+
+* Unsupported devices.
+
+Verify that the application fails safely and provides useful feedback.
+
+---
+
+# 15. SECURITY, PRIVACY AND PERFORMANCE
+
+Run:
+
+* TypeScript checks.
+
+* Ruff and Python checks.
+
+* Unit tests.
+
+* API contract tests.
+
+* PostgreSQL tests.
+
+* RLS tests.
+
+* Secret scans.
+
+* Dependency vulnerability scans.
+
+* Authorization tests.
+
+* File upload security tests.
+
+* CORS tests.
+
+* Accessibility tests.
+
+* Browser performance tests.
+
+* Mobile startup tests.
+
+* API latency tests.
+
+* Load tests against an approved nonproduction environment.
+
+* Backup and rollback checks.
+
+Do not load-test production without authorization.
+
+Do not weaken security to make tests pass.
+
+---
+
+# 16. DEFECT REPAIR AND REGRESSION CONTROL
+
+Every confirmed defect must have:
+
+1. Unique defect ID.
+
+2. Affected route or component.
+
+3. Reproduction steps.
+
+4. Expected behavior.
+
+5. Actual behavior.
+
+6. Severity.
+
+7. Root cause.
+
+8. Failing regression test.
+
+9. Minimal code correction.
+
+10. Passing targeted test.
+
+11. Passing dependent regression tests.
+
+12. Deployed verification where applicable.
+
+13. Closure evidence.
+
+Do not close defects because a developer says they are fixed.
+
+Do not repeat the entire audit after every small correction.
+
+Use targeted regression tests during remediation, followed by one comprehensive release-candidate verification.
+
+---
+
+# 17. REQUIRED COMPLETION CLASSIFICATIONS
+
+Every feature must have separate statuses for:
+
+A. SOURCE IMPLEMENTATION
+
+B. LOCAL FUNCTIONAL VERIFICATION
+
+C. EXTERNAL PROVIDER ACTIVATION
+
+D. DEPLOYED VERIFICATION
+
+E. MOBILE DEVICE VERIFICATION, where applicable
+
+Allowed values:
+
+PASS
+FAIL
+BLOCKED
+NOT TESTED
+NOT APPLICABLE
+
+Additionally classify features as:
+
+* BUILD COMPLETE
+
+* BUILD INCOMPLETE
+
+* PROVIDER ACTIVATION PENDING
+
+* DEPLOYMENT VERIFICATION PENDING
+
+* PRODUCTION VERIFIED
+
+Do not merge these into one misleading percentage.
+
+100% BUILD COMPLETE is allowed only when every approved in-scope feature has complete implementation and all applicable credential-independent tests pass.
+
+100% PRODUCTION VERIFIED is allowed only when all required real-provider and deployed tests pass.
+
+---
+
+# 18. REQUIRED AUDIT DELIVERABLES
+
+Create or update the existing audit artifacts rather than generating unnecessary duplicates.
+
+Required files:
+
+docs/launch/FINAL_MASTER_AUDIT.md
+
+docs/launch/COMPLETE_FEATURE_MATRIX.csv
+
+docs/launch/ALL_ROUTES_AND_SCREENS.csv
+
+docs/launch/EVERY_CLICKABLE_CONTROL.csv
+
+docs/launch/BROKEN_AND_STALE_LINKS.csv
+
+docs/launch/END_TO_END_JOURNEY_RESULTS.md
+
+docs/launch/WEB_MOBILE_PARITY.md
+
+docs/launch/EXTERNAL_API_ACTIVATION_CHECKLIST.md
+
+docs/launch/SUPABASE_AUTH_READINESS.md
+
+docs/launch/SUPABASE_SCHEMA_SECURITY_AUDIT.md
+
+docs/launch/STRIPE_FINANCIAL_AUDIT.md
+
+docs/launch/RAILWAY_DEPLOYMENT_AUDIT.md
+
+docs/launch/DEFECT_REGISTER.csv
+
+docs/launch/REGRESSION_TEST_RESULTS.md
+
+docs/launch/FINAL_PUBLIC_RELEASE_CHECKLIST.md
+
+docs/launch/PUBLIC_LAUNCH_GO_NO_GO.md
+
+Preserve test screenshots, traces, CI results and relevant logs.
+
+---
+
+# 19. FINAL ACCEPTANCE GATES
+
+G1 — All approved features implemented.
+
+G2 — All required routes and screens present.
+
+G3 — All actionable controls tested.
+
+G4 — Zero broken internal links.
+
+G5 — Zero dead or placeholder controls.
+
+G6 — All frontend/backend contracts pass.
+
+G7 — Supabase schema and security pass.
+
+G8 — AI adapters and workflows pass credential-independent tests.
+
+G9 — Authentication flows are fully implemented and ready for provider activation.
+
+G10 — Marketplace and financial logic pass isolated tests.
+
+G11 — All role-specific dashboards and journeys pass.
+
+G12 — Web and mobile parity requirements pass.
+
+G13 — Accessibility, visual and responsive QA pass.
+
+G14 — Security and performance tests pass.
+
+G15 — Railway deployment and rollback are verified.
+
+G16 — Native iOS and Android release builds and applicable device tests pass.
+
+G17 — No unresolved P0/P1 defects.
+
+G18 — All outstanding provider credentials and approvals are explicitly documented.
+
+G19 — All mandatory deployed critical journeys pass.
+
+G20 — Final public-release authorization is recorded.
+
+G1–G14 and G17–G18 are the primary build-completion gates, with applicable mobile implementation checks included.
+
+G15–G16 and G19–G20 establish deployment, device and public-release readiness.
+
+Passing the build gates does not override missing production evidence.
+
+---
+
+# 20. FINAL REPORT FORMAT
+
+Return a concise executive report followed by detailed evidence.
+
+Report:
+
+1. Total approved features.
+
+2. Fully built features.
+
+3. Incomplete features.
+
+4. Total routes.
+
+5. Broken routes.
+
+6. Total actionable controls.
+
+7. Controls tested.
+
+8. Controls passed.
+
+9. Controls failed.
+
+10. Controls blocked.
+
+11. Dead buttons.
+
+12. Broken internal links.
+
+13. Stale external links.
+
+14. Backend integration failures.
+
+15. Supabase failures.
+
+16. Authentication implementation gaps.
+
+17. External APIs awaiting activation.
+
+18. Financial logic failures.
+
+19. Web/mobile parity gaps.
+
+20. Unresolved P0/P1/P2/P3 defects.
+
+21. Railway deployment status.
+
+22. Critical deployed journey results.
+
+23. Build completion percentage.
+
+24. Production verification percentage.
+
+25. Public launch GO/NO-GO decision.
+
+The final report must answer:
+
+**IS THE ENTIRE APPROVED GLAM BEAUTY APPLICATION 100% BUILT?**
+
+If no, identify the exact missing implementation and repair it.
+
+**ARE ALL BUTTONS, LINKS, SCREENS AND WORKFLOWS FUNCTIONAL?**
+
+If no, identify every confirmed failure and repair it.
+
+**IS THE APPLICATION READY FOR EXTERNAL API AND LOGIN PROVIDER ACTIVATION?**
+
+If no, complete the remaining integration code and document the exact configuration requirements.
+
+**IS GLAM BEAUTY READY FOR PUBLIC USE?**
+
+Answer only from deployed, security, financial and operational evidence.
+
+---
+
+# FINAL EXECUTION DIRECTIVE
+
+Start by reconciling the approved feature inventory against the actual codebase.
+
+Then execute the exhaustive functional and click-through tests.
+
+Repair all confirmed application defects.
+
+Complete all missing approved implementation work.
+
+Run regression tests.
+
+Verify Railway deployment where access permits.
+
+Prepare the complete Supabase authentication and external API activation checklist.
+
+Maintain the existing strict release lock.
+
+Do not claim 100% completion based on mock responses, static fixtures, documentation or green labels.
+
+Do not request another broad feature-development cycle.
+
+The required outcome is a fully implemented, stable, secure, test-covered GLAM Beauty application with all credential-independent functionality working and only clearly documented external provider activations outstanding.
+
+Do not authorize public launch automatically.
+
+## How to interpret the final result
+
+Codex should return three separate completion measurements:
+
+Build completeness
+
+Code, UI, backend, Supabase integration, tests
+
+Target: 100%
+
+Provider activation
+
+SMS, OAuth, AI services, social APIs, Stripe
+
+May be pending
+
+Production readiness
+
+Real deployment, device testing, live integration evidence
+
+Not yet verified
+
+One final requirement I would enforce: when Codex reports a broken button, missing feature or failed test, it must identify the exact file, root cause, correction and passing regression test. Otherwise, you'll return to the same cycle of repeated audits without measurable progress.
+
+Once the application reaches 100% verified build completeness, you can activate the remaining providers in Supabase and run the final production integration tests without reopening general feature development.
