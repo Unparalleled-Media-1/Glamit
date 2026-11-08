@@ -111,14 +111,14 @@ const { spawn } = require("node:child_process"),
       }
     }
     await c.tracing.stop({
-      path: "/workspace/artifacts/glam-launch/workspace-layouts.zip",
+      path: path.join(process.env.GLAM_LAUNCH_ARTIFACTS || "/workspace/artifacts/glam-launch", "workspace-layouts.zip"),
     });
     await c.close();
   } finally {
     if (browser) await browser.close();
     server.kill();
     fs.writeFileSync(
-      path.join(root, "docs/launch/evidence/workspace-layouts.json"),
+      path.join(process.env.GLAM_LAUNCH_EVIDENCE || path.join(root, "docs/launch/evidence"), "workspace-layouts.json"),
       JSON.stringify(result, null, 2) + "\n",
     );
     console.log(

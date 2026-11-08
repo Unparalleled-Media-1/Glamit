@@ -1,0 +1,135 @@
+{
+  "observed_at": "2026-11-07T19:21:50.547124+00:00",
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "scope": "Read-only API/catalog metadata; no transactions or notifications",
+  "environment_presence": {
+    "OPENAI_API_KEY": false,
+    "GLAM_OPENAI_API_KEY": false,
+    "RAILWAY_TOKEN": false,
+    "RAILWAY_API_TOKEN": false,
+    "REPLICATE_API_TOKEN": false,
+    "FASHN_API_KEY": false,
+    "GOOGLE_MAPS_API_KEY": false,
+    "RESEND_API_KEY": false,
+    "TWILIO_ACCOUNT_SID": false,
+    "TWILIO_AUTH_TOKEN": false,
+    "SENTRY_DSN": false,
+    "STRIPE_SECRET_KEY": true,
+    "STRIPE_WEBHOOK_SECRET": false,
+    "GLAM_CPANEL_USER": false,
+    "GLAM_CPANEL_API_TOKEN": false
+  },
+  "target": {
+    "id": "bkkmsbxrxkqaveymcrgi",
+    "status": "ACTIVE_HEALTHY",
+    "database_host": "db.bkkmsbxrxkqaveymcrgi.supabase.co"
+  },
+  "branch_inventory": [],
+  "auth": {
+    "site_url": "https://www.glamit.beauty",
+    "uri_allow_list": "https://www.glamit.beauty/auth/callback,glamai://auth/callback",
+    "external_phone_enabled": false,
+    "external_google_enabled": false,
+    "external_apple_enabled": false,
+    "external_facebook_enabled": false,
+    "sms_max_frequency": 60,
+    "sms_otp_exp": 300,
+    "sms_otp_length": 6,
+    "captcha_enabled": null
+  },
+  "provider_credential_presence": {
+    "sms_twilio_account_sid": false,
+    "sms_twilio_auth_token": false,
+    "sms_twilio_message_service_sid": false,
+    "external_google_client_id": false,
+    "external_google_secret": false,
+    "external_apple_client_id": false,
+    "external_apple_secret": false,
+    "external_facebook_client_id": false,
+    "external_facebook_secret": false
+  },
+  "backups": [
+    {
+      "id": 2189281988,
+      "inserted_at": "2026-11-07T02:07:35.793Z",
+      "status": "COMPLETED",
+      "is_physical_backup": true
+    },
+    {
+      "id": 2180471707,
+      "inserted_at": "2026-11-06T04:01:26.060Z",
+      "status": "COMPLETED",
+      "is_physical_backup": true
+    }
+  ],
+  "catalog": [
+    {
+      "revision": "0013_passwordless_accounts",
+      "public_tables": 41,
+      "tables_without_rls": 0,
+      "indexes": 77,
+      "policies": 21,
+      "foreign_keys": 54,
+      "unvalidated_foreign_keys": 0
+    }
+  ],
+  "catalog_roundtrip_ms": 746,
+  "index_plan": [
+    {
+      "QUERY PLAN": [
+        {
+          "Plan": {
+            "Node Type": "Index Only Scan",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Scan Direction": "Forward",
+            "Index Name": "profiles_pkey",
+            "Relation Name": "profiles",
+            "Alias": "profiles",
+            "Startup Cost": 0.15,
+            "Total Cost": 2.37,
+            "Plan Rows": 1,
+            "Plan Width": 16,
+            "Index Cond": "(id = '00000000-0000-0000-0000-000000000000'::uuid)"
+          }
+        }
+      ]
+    }
+  ],
+  "http": [
+    {
+      "path": "/health/live",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "roundtrip_ms": 375
+    },
+    {
+      "path": "/v1/me/profile",
+      "status": 401,
+      "expected": 401,
+      "passed": true,
+      "roundtrip_ms": 194
+    }
+  ],
+  "storage": {
+    "http_status": 200,
+    "bucket_count": 0,
+    "public_bucket_count": 0,
+    "private_upload_workflow": "NOT VERIFIED; no image uploaded"
+  },
+  "stripe": {
+    "http_status": 200,
+    "livemode": true,
+    "status": "BLOCKED_LIVE_MODE",
+    "financial_mutations": 0,
+    "actual_payment_ids": [],
+    "actual_transfer_ids": [],
+    "commission_reconciliation": "NOT EXECUTED"
+  },
+  "devices": {
+    "adb": false,
+    "xcrun": false,
+    "maestro": false
+  }
+}
