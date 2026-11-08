@@ -956,7 +956,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
       ]}
     >
       <View style={s.topbar}>
-        <BrandLogo />
+        <BrandLogo dark={beautyPage} />
         <Pressable
           accessibilityRole="button"
           accessibilityLabel="Change shopping location"
