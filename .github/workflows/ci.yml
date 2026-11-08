@@ -99,6 +99,15 @@ jobs:
       - run: npm run test:connections
       - run: npm run test:hosted-account
       - run: npm run test:creator
+      - run: npm run test:workspace-access
+        env:
+          GLAM_WORKSPACE_ARTIFACTS: ${{ runner.temp }}/workspace-access
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: workspace-access-evidence
+          path: ${{ runner.temp }}/workspace-access
+          if-no-files-found: warn
       - run: npm run test:auth-branding
       - run: npm run test:login-hydration
       - run: npm run test:launch-accessibility

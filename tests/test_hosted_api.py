@@ -211,3 +211,44 @@ def test_private_core_transport_cannot_be_called_directly_by_client_role(db, fou
         as_user(c, foundation[0]["uid"])
         c.execute(text("SELECT glam_private.glam_core_api_v1('GET','/v1/me','{}',NULL)"))
     assert error.value.orig.sqlstate == "42501"
+
+
+def test_business_registration_creates_no_verified_workspace_or_staff_grant(db, foundation):
+    actor = foundation[0]
+    with db.begin() as c:
+        as_user(c, actor["uid"])
+        result = rpc(c, "POST", "/v1/organizations", {"name": "Pending business"}, "pending")
+        assert not any(
+            w["organization_id"] == result["id"] for w in rpc(c, "GET", "/v1/me/workspaces")
+        )
+    with db.connect() as c:
+        assert (
+            c.scalar(
+                text("SELECT count(*) FROM workspace_capability WHERE organization_id=:org"),
+                {"org": result["id"]},
+            )
+            == 0
+        )
+        assert (
+            c.scalar(
+                text("SELECT count(*) FROM staff_grant WHERE user_id=:uid"),
+                {"uid": actor["internal"]},
+            )
+            == 0
+        )
+
+
+@pytest.mark.parametrize(
+    "extra",
+    [
+        {"workspace": "merchant"},
+        {"role": "super_admin"},
+        {"verification_status": "verified"},
+        {"organization_id": str(uuid4())},
+    ],
+)
+def test_business_registration_rejects_self_assigned_authority(db, foundation, extra):
+    with pytest.raises(DBAPIError) as failure, db.begin() as c:
+        as_user(c, foundation[0]["uid"])
+        rpc(c, "POST", "/v1/organizations", {"name": "Safe name", **extra}, str(uuid4()))
+    assert failure.value.orig.sqlstate == "PT422"

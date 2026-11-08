@@ -1,30 +1,35 @@
 /** Safe review-layout traversal only; no real business role or privilege is activated. */
-const { chromium } = require(
-  "../../docs/design-preview/node_modules/playwright",
-);
+const {
+  chromium,
+} = require("../../docs/design-preview/node_modules/playwright");
 const { spawn } = require("node:child_process"),
   net = require("node:net"),
   fs = require("node:fs"),
   path = require("node:path");
 (async () => {
-  const root = path.resolve(__dirname, "../.."), a = net.createServer();
+  const root = path.resolve(__dirname, "../.."),
+    a = net.createServer();
   await new Promise((r) => a.listen(0, "127.0.0.1", r));
   const port = a.address().port;
   await new Promise((r) => a.close(r));
   const origin = "http://127.0.0.1:" + port,
-    server = spawn(process.execPath, [
-      require.resolve("next/dist/bin/next"),
-      "start",
-      "--hostname",
-      "127.0.0.1",
-      "--port",
-      String(port),
-    ], { cwd: path.join(root, "apps/web"), stdio: "ignore" });
+    server = spawn(
+      process.execPath,
+      [
+        require.resolve("next/dist/bin/next"),
+        "start",
+        "--hostname",
+        "127.0.0.1",
+        "--port",
+        String(port),
+      ],
+      { cwd: path.join(root, "apps/web"), stdio: "ignore" },
+    );
   let browser;
   const result = {
     observed_at: new Date().toISOString(),
     scope:
-      "Public role/module inventory, not authenticated merchant/admin workflows",
+      "Guest private-route denial and review-layout traversal when explicitly available; not authenticated role workflows",
     modules: [],
     errors: [],
   };
@@ -48,50 +53,63 @@ const { spawn } = require("node:child_process"),
       snapshots: true,
       sources: false,
     });
-    await c.route(
-      "**/*",
-      (r) =>
-        new URL(r.request().url()).origin === origin &&
-          r.request().method() === "GET"
-          ? r.continue()
-          : r.abort("blockedbyclient"),
+    await c.route("**/*", (r) =>
+      new URL(r.request().url()).origin === origin &&
+      r.request().method() === "GET"
+        ? r.continue()
+        : r.abort("blockedbyclient"),
     );
     p.on("pageerror", (e) => result.errors.push(e.message));
-    for (
-      const [route, label, nav] of [[
-        "/business",
-        "Review workspace tools",
-        "Workspace modules",
-      ], ["/admin", "Review admin role layout", "Admin modules"]]
-    ) {
+    for (const [route, label, nav] of [
+      ["/business", "Review workspace tools", "Workspace modules"],
+      ["/admin", "Review admin role layout", "Admin modules"],
+    ]) {
       await p.goto(origin + route);
-      const choices = await p.getByLabel(label, { exact: true }).locator(
-        "option",
-      ).evaluateAll((es) =>
-        es.map((e) => ({ value: e.value, label: e.textContent }))
-      );
+      if ((await p.getByLabel(label, { exact: true }).count()) === 0) {
+        const leaked = await p.getByRole("navigation", { name: nav }).count();
+        if (leaked) throw Error("UNAUTHENTICATED_WORKSPACE_NAVIGATION");
+        result.modules.push({
+          route,
+          role: "guest",
+          status: "BLOCKED",
+          reason:
+            "Real role/module actions require verified sign-in and server grants; guest route gate renders no dashboard.",
+        });
+        continue;
+      }
+      const choices = await p
+        .getByLabel(label, { exact: true })
+        .locator("option")
+        .evaluateAll((es) =>
+          es.map((e) => ({ value: e.value, label: e.textContent })),
+        );
       for (const choice of choices) {
         await p.getByLabel(label, { exact: true }).selectOption(choice.value);
-        const count = await p.getByRole("navigation", { name: nav }).getByRole(
-          "button",
-        ).count();
+        const count = await p
+          .getByRole("navigation", { name: nav })
+          .getByRole("button")
+          .count();
         for (let index = 0; index < count; index++) {
-          const button = p.getByRole("navigation", { name: nav }).getByRole(
-            "button",
-          ).nth(index);
+          const button = p
+            .getByRole("navigation", { name: nav })
+            .getByRole("button")
+            .nth(index);
           const name = (await button.innerText()).replace(/^\d+\s*/, "");
           await button.click();
           const heading = await p.locator("h1").innerText();
-          const inputs = await p.locator(
-            "main input, main textarea, main select, main button",
-          ).evaluateAll((es) =>
-            es.map((e) => ({
-              tag: e.tagName.toLowerCase(),
-              name: e.getAttribute("aria-label") || e.labels?.[0]?.innerText ||
-                e.innerText || "",
-              disabled: e.disabled === true,
-            }))
-          );
+          const inputs = await p
+            .locator("main input, main textarea, main select, main button")
+            .evaluateAll((es) =>
+              es.map((e) => ({
+                tag: e.tagName.toLowerCase(),
+                name:
+                  e.getAttribute("aria-label") ||
+                  e.labels?.[0]?.innerText ||
+                  e.innerText ||
+                  "",
+                disabled: e.disabled === true,
+              })),
+            );
           result.modules.push({
             route,
             role: choice.value,
@@ -111,14 +129,21 @@ const { spawn } = require("node:child_process"),
       }
     }
     await c.tracing.stop({
-      path: path.join(process.env.GLAM_LAUNCH_ARTIFACTS || "/workspace/artifacts/glam-launch", "workspace-layouts.zip"),
+      path: path.join(
+        process.env.GLAM_LAUNCH_ARTIFACTS || "/workspace/artifacts/glam-launch",
+        "workspace-layouts.zip",
+      ),
     });
     await c.close();
   } finally {
     if (browser) await browser.close();
     server.kill();
     fs.writeFileSync(
-      path.join(process.env.GLAM_LAUNCH_EVIDENCE || path.join(root, "docs/launch/evidence"), "workspace-layouts.json"),
+      path.join(
+        process.env.GLAM_LAUNCH_EVIDENCE ||
+          path.join(root, "docs/launch/evidence"),
+        "workspace-layouts.json",
+      ),
       JSON.stringify(result, null, 2) + "\n",
     );
     console.log(

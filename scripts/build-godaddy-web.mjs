@@ -56,6 +56,10 @@ await cp("apps/web/public/images", path.join(root, "images"), {
 for (
   const route of [
     "login",
+    "register",
+    "business/login",
+    "business/register",
+    "admin/login",
     "auth/callback",
     "profile",
     "analyze",

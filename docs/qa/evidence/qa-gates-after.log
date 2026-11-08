@@ -1,0 +1,11 @@
+✔ tests/launch/qa-gates.test.cjs (60.423898ms)
+✔ tests/launch/railway-release-lock.test.cjs (87.932075ms)
+✔ tests/launch/release-gates.test.cjs (81.178546ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 100.029187

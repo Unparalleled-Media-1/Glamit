@@ -1,0 +1,4 @@
+
+> glam-ai@0.1.0 typecheck:godaddy
+> tsc --noEmit -p deploy/godaddy/tsconfig.json
+

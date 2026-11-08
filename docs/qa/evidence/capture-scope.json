@@ -1,0 +1,15 @@
+{
+  "candidate_code_commit": "b9f0843dd22e98f9f0028904a5c753b373688740",
+  "crawl": "43 desktop +43 iPhone-browser +13 tablet route visits; 2244 rendered occurrences. No native device execution.",
+  "controls": "1905 desktop/iPhone control records; only338 exact internal-path navigation occurrences are qualified semantic control passes. Generic state changes, idempotent observations and skips are not operations.",
+  "excluded_runs": "Discarded a sweep concurrent with an asset rebuild; its stale errors and separate diagnostic recheck are not current certification evidence. Final uninterrupted run has no action exceptions or unexpected page errors.",
+  "runtime_artifacts": {
+    "directory": "/workspace/artifacts/glam-qa",
+    "traces": {
+      "interactions-desktop.zip": "13d99766cf15a79fbc57515d6b8c2573ca17eb81d51e04f5eb4910ec3a663880",
+      "interactions-iphone-web.zip": "4b31d14f40a9ce7c47d46ff9266ce3f7d9af7e6208d0946524884d84b2084387"
+    }
+  },
+  "unresolved_actions": 18,
+  "live_journeys": "0/71; credential and missing implementation gaps remain."
+}

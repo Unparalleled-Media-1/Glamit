@@ -1,0 +1,147 @@
+These are three configuration and approval requirements that Codex is asking you to address before GLAM Beauty can become fully operational.
+
+They relate to authentication, website security and the Supabase database.
+
+## 1. OIDC variables — secure authentication
+
+OIDC stands for OpenID Connect. It is a standard used to verify user identities through an authentication provider.
+
+For GLAM Beauty, OIDC configuration may be relevant to Google, Apple, or another identity provider, or to secure machine-to-machine authentication in your deployment pipeline.
+
+Typical OIDC settings include:
+
+| Variable             | Purpose                                                  |
+| -------------------- | -------------------------------------------------------- |
+| `OIDC_ISSUER`        | Identifies the trusted identity provider                 |
+| `OIDC_CLIENT_ID`     | Identifies the application                               |
+| `OIDC_CLIENT_SECRET` | Secret used by certain confidential clients              |
+| `OIDC_REDIRECT_URI`  | Where the provider returns the user after authentication |
+| `OIDC_AUDIENCE`      | Expected token audience, where applicable                |
+
+These are examples, not confirmed variable names in your repository. Codex must inspect the actual implementation before deciding what to configure.
+
+If GLAM Beauty uses Supabase Auth for Google, Apple and Facebook, much of the OAuth provider configuration belongs in Supabase Authentication rather than requiring a separate OIDC system.
+
+Important: Ask Codex which exact feature requires OIDC. It may be related to Railway/GitHub deployment authentication rather than customer login.
+
+## 2. `GLAM_ALLOWED_ORIGINS` — which websites can access your API
+
+This is likely a backend environment variable controlling CORS (Cross-Origin Resource Sharing).
+
+For example, your website:
+
+`https://www.glam.beauty`
+
+needs to communicate with your backend:
+
+`https://api.glam.beauty`
+
+Because they are different origins, the backend must permit the website's origin.
+
+A possible production value would be:
+
+env
+
+```
+GLAM_ALLOWED_ORIGINS=https://www.glam.beauty,https://glam.beauty
+```
+
+This is only correct if the application expects a comma-separated list. Codex must verify how the variable is parsed.
+
+The Railway-generated website URL may also need inclusion while you are testing.
+
+Do not use `*` to allow every origin on authenticated endpoints. Configure only the actual approved origins, and handle native mobile clients separately where appropriate.
+
+You previously had an Edge Function returning CORS 403 for the new GLAM Beauty domain. This variable may be part of the fix, but if the rejection comes from Supabase Edge Functions, their own CORS configuration must also be checked.
+
+## 3. Migration 0014 approval — permission to change Supabase
+
+A database migration is a controlled change to the structure or behavior of your database.
+
+Your earlier audit reported that Supabase was at schema version `0013`. Codex is now apparently proposing migration `0014`.
+
+It could contain new tables, columns, indexes, triggers, RLS policies or other database changes.
+
+I cannot tell you exactly what migration 0014 changes without seeing its SQL or migration file.
+
+Before approving it, Codex should provide:
+
+* The complete SQL migration or a precise change summary.
+
+* Which tables and policies will be added or modified.
+
+* Whether existing user or merchant data could be affected.
+
+* Whether it contains destructive operations.
+
+* Whether it has passed tests on an isolated PostgreSQL database.
+
+* Its rollback and recovery plan.
+
+* Whether it is compatible with the currently deployed web and mobile applications.
+
+Since your existing Supabase `main` is production, approval matters even if the application is not publicly launched yet.
+
+## What I recommend you tell Codex
+
+Message
+
+Please clarify and prepare the following three items for GLAM Beauty:
+
+**1. OIDC variables**
+
+Identify the exact OIDC variables required by our current implementation, what component uses each variable, and whether they belong in Supabase Auth, Railway or Codex/GitHub CI.
+
+Do not introduce a second authentication system if Supabase Auth already handles the requirement.
+
+Provide the configuration instructions without exposing secrets.
+
+**2. GLAM_ALLOWED_ORIGINS**
+
+Audit our web, API and Supabase Edge Function CORS configuration.
+
+Our intended domains are:
+
+* [https://www.glam.beauty](https://www.glam.beauty)
+
+* [https://glam.beauty](https://glam.beauty)
+
+* [https://api.glam.beauty](https://api.glam.beauty)
+
+Include the existing Railway deployment domains only where required.
+
+Confirm the correct environment variable format, fix any demonstrated CORS issues, and test actual preflight and authenticated requests.
+
+**3. Migration 0014**
+
+Before requesting approval, provide:
+
+* Exact migration filename
+
+* Complete SQL change summary
+
+* Affected tables and policies
+
+* Data-loss and compatibility risks
+
+* Test results
+
+* Backup and rollback procedure
+
+* Whether production downtime is expected
+
+Do not apply migration 0014 to Supabase production until I have reviewed and explicitly approved the exact changes.
+
+Once these are prepared, report which launch blockers each item resolves and which blockers remain.
+
+### My recommendation
+
+| Item                   | What you should do                                          |
+| ---------------------- | ----------------------------------------------------------- |
+| OIDC variables         | Let Codex identify the exact required configuration first   |
+| `GLAM_ALLOWED_ORIGINS` | Configure approved website origins and verify CORS          |
+| Migration 0014         | Review the actual SQL before approving production execution |
+
+Of these three, migration 0014 needs the most caution, because it can change your live Supabase database.
+
+If you paste Codex's migration 0014 summary or SQL here, I can review it and tell you whether it is safe to approve, what could break, and what should be tested first.

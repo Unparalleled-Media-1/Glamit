@@ -1,0 +1,10 @@
+locator.waitFor: Timeout 7000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('heading', { name: 'Your business workspace starts here' }) to be visible[22m
+
+    at /workspace/Glamit/tests/workspace/access.cjs:36:116 {
+  log: [
+    "  - waiting for getByRole('heading', { name: 'Your business workspace starts here' }) to be visible"
+  ],
+  name: 'TimeoutError'
+}

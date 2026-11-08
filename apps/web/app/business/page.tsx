@@ -1,4 +1,2 @@
-import BusinessPortal from "../../components/BusinessPortal";
-export default function Business() {
-  return <BusinessPortal />;
-}
+import AccountRoutes from "../../components/AccountRoutes";
+export default function Page() { return <AccountRoutes initialPath="/business" />; }

@@ -1,4 +1,5 @@
 "use client";
+import type { ApprovedWorkspace } from "../lib/workspace-access";
 import { appPath } from "../lib/paths";
 import MerchantSnapList from "./MerchantSnapList";
 import type { MerchantDraft } from "../../../packages/product/catalog";
@@ -15,12 +16,22 @@ import type { Role } from "../../../packages/product/platform";
 export default function BusinessPortal({
   admin = false,
   startModule,
+  access,
 }: {
   admin?: boolean;
   startModule?: string;
+  access?: {
+    workspaces: ApprovedWorkspace[];
+    displayName: string;
+    onSignOut: () => void;
+    onNavigate?: (path: string) => void;
+    staffModules?: string[];
+  };
 }) {
   const [catalogDrafts, setCatalogDrafts] = useState<MerchantDraft[]>([]);
-  const [role, setRole] = useState<Role>("merchant");
+  const [role, setRole] = useState<Role>(
+    access?.workspaces[0]?.workspace || "merchant",
+  );
   const [module, setModule] = useState(() =>
     Math.max(
       0,
@@ -36,10 +47,21 @@ export default function BusinessPortal({
   const [step, setStep] = useState(0);
   const [discard, setDiscard] = useState<Role | null>(null);
   const [adminRole, setAdminRole] = useState("Support");
+  const [workspaceKey, setWorkspaceKey] = useState(
+    access?.workspaces[0]
+      ? access.workspaces[0].organization_id +
+          ":" +
+          access.workspaces[0].workspace
+      : "",
+  );
+  const selectedWorkspace = access?.workspaces.find(
+    (w) => w.organization_id + ":" + w.workspace === workspaceKey,
+  );
   const config = workspaces[role];
   const current = config.modules[module];
-  const visibleAdmin =
-    adminRole === "Support"
+  const visibleAdmin = access
+    ? (access.staffModules || []).filter((name) => adminModules.includes(name))
+    : adminRole === "Support"
       ? adminModules.filter((n) =>
           ["User Management", "Trust & Safety", "Privacy"].includes(n),
         )
@@ -55,7 +77,9 @@ export default function BusinessPortal({
                 ? ["Beauty Content", "Creators & Partners"]
                 : adminRole === "Trust & Safety"
                   ? ["Trust & Safety"]
-                  : adminModules;
+                  : adminRole === "Read-Only Analyst"
+                    ? ["Analytics"]
+                    : adminModules;
   function switchRole(next: Role) {
     if (
       (title.trim() || Object.values(values).some(Boolean)) &&
@@ -64,7 +88,7 @@ export default function BusinessPortal({
       )
     ) {
       setDiscard(next);
-      return;
+      return false;
     }
     setDiscard(null);
     setRole(next);
@@ -77,6 +101,7 @@ export default function BusinessPortal({
       "Workspace task inventory changed. No business session or privileges were activated.",
     );
     setStep(0);
+    return true;
   }
   function chooseModule(i: number) {
     setModule(i);
@@ -98,7 +123,36 @@ export default function BusinessPortal({
           <p className="eyebrow">
             {admin ? "Restricted administration" : "Unified business portal"}
           </p>
-          {!admin && (
+          {!admin && access && (
+            <label>
+              Approved workspace
+              <select
+                aria-label="Approved workspace"
+                value={workspaceKey}
+                onChange={(event) => {
+                  const next = access.workspaces.find(
+                    (w) =>
+                      w.organization_id + ":" + w.workspace ===
+                      event.target.value,
+                  );
+                  if (next && switchRole(next.workspace))
+                    setWorkspaceKey(
+                      next.organization_id + ":" + next.workspace,
+                    );
+                }}
+              >
+                {access.workspaces.map((w) => (
+                  <option
+                    key={w.organization_id + ":" + w.workspace}
+                    value={w.organization_id + ":" + w.workspace}
+                  >
+                    {w.name} · {workspaces[w.workspace].title}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          {!admin && !access && (
             <label>
               Review workspace tools
               <select
@@ -114,7 +168,7 @@ export default function BusinessPortal({
               </select>
             </label>
           )}
-          {admin && (
+          {admin && !access && (
             <label>
               Review role layout
               <select
@@ -147,14 +201,36 @@ export default function BusinessPortal({
               ),
             )}
           </nav>
-          <a href={appPath("/profile")} className="personal-link">
+          <a
+            href={appPath("/profile")}
+            className="personal-link"
+            onClick={(event) => {
+              if (access?.onNavigate) {
+                event.preventDefault();
+                access.onNavigate("/profile");
+              }
+            }}
+          >
             ← Return to Personal
           </a>
-          <p className="fine">
-            No authenticated workspace.
-            <br />
-            Navigation does not grant access.
-          </p>
+          {access ? (
+            <>
+              <p className="fine">
+                {access.displayName}
+                <br />
+                {admin ? "Staff access verified" : selectedWorkspace?.name}
+              </p>
+              <button className="text-button" onClick={access.onSignOut}>
+                Sign out
+              </button>
+            </>
+          ) : (
+            <p className="fine">
+              Public layout review only.
+              <br />
+              No authenticated workspace. Navigation does not grant access.
+            </p>
+          )}
         </aside>
         <main id="workspace-content" className="business-main" tabIndex={-1}>
           <header className="workspace-header">
@@ -162,7 +238,11 @@ export default function BusinessPortal({
               {admin ? "Admin" : config.title} /{" "}
               {admin ? visibleAdmin[module] : current.name}
             </span>
-            <span className="badge">Connection pending</span>
+            <span className="badge">
+              {access
+                ? "Access verified · tools in preparation"
+                : "Connection pending"}
+            </span>
           </header>
           <p className="eyebrow">
             {admin
@@ -170,16 +250,25 @@ export default function BusinessPortal({
               : "One identity. Your approved organizations."}
           </p>
           <h1>{admin ? visibleAdmin[module] : current.name}</h1>
-          {!admin && role === "creator" && <a className="button secondary" href={appPath("/profile") + "#creator-title"}>Open private Creator Studio</a>}
+          {!admin && role === "creator" && (
+            <a
+              className="button secondary"
+              href={appPath("/profile") + "#creator-title"}
+            >
+              Open private Creator Studio
+            </a>
+          )}
           <p className="intro">
             {admin
               ? "Platform-wide governance, including mobile apps. Private consumer photos and reports are never general dashboard data."
               : "Your role-specific tools, without leaving GLAM Beauty. Review the requirements and prepare session-only planning notes."}
           </p>
           <div className="notice">
-            {admin
-              ? "Access denied until staff authentication, privileged assurance and server permissions are connected. This public page is a module inventory only; it exposes no operational data or privileged controls."
-              : "Google / Supabase is not connected. No approved organization is active. Your session notes are not business records and cannot publish, launch, charge, book or pay out."}
+            {access
+              ? "Your workspace access has been verified. You can prepare planning drafts here. Publishing, bookings, payments and live reports are not available yet."
+              : admin
+                ? "Access denied until staff authentication, privileged assurance and server permissions are connected. This public page is a module inventory only; it exposes no operational data or privileged controls."
+                : "Google / Supabase is not connected. No approved organization is active. Your session notes are not business records and cannot publish, launch, charge, book or pay out."}
           </div>
           {discard && (
             <div className="notice">
@@ -192,263 +281,280 @@ export default function BusinessPortal({
               {message}
             </div>
           )}
-          {admin ? (
-            <>
-              <div className="metric-grid">
-                {["Qualified users", "Service health", "Open exceptions"].map(
-                  (n) => (
+          <fieldset
+            className="workspace-tool-fieldset"
+            disabled={Boolean(
+              access && !admin && !selectedWorkspace?.can_write,
+            )}
+          >
+            <legend className="visually-hidden">
+              Workspace planning tools
+            </legend>
+            {access && !admin && !selectedWorkspace?.can_write && (
+              <p className="notice">This workspace has read-only access.</p>
+            )}
+            {admin ? (
+              <>
+                <div className="metric-grid">
+                  {["Qualified users", "Service health", "Open exceptions"].map(
+                    (n) => (
+                      <section className="panel" key={n}>
+                        <h2>{n}</h2>
+                        <strong className="metric">—</strong>
+                        <p>Verified data not connected</p>
+                      </section>
+                    ),
+                  )}
+                </div>
+                <div className="split">
+                  <section className="panel">
+                    <h2>Authority before action</h2>
+                    <ul className="list">
+                      {[
+                        "Scoped staff role and organization / region",
+                        "Mandatory privileged verification",
+                        "Evidence, reason and approval",
+                        "Append-only audit / rollback",
+                      ].map((n) => (
+                        <li key={n}>
+                          {n}
+                          <span>Required</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <button className="button" disabled>
+                      Privileged controls unavailable
+                    </button>
+                  </section>
+                  <section className="panel">
+                    <h2>Every surface, one policy</h2>
+                    <p>
+                      Consumer mobile and web, merchant, advertiser,
+                      professional, creator and affiliate capabilities use the
+                      same canonical backend and policies.
+                    </p>
+                    <p>
+                      Changing this role layout never changes a real permission.
+                      Restricted users cannot access finance or private-image
+                      data through a sidebar.
+                    </p>
+                  </section>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="metric-grid">
+                  {[
+                    "Source evidence",
+                    "Qualified activity",
+                    "Recognized earnings",
+                  ].map((n) => (
                     <section className="panel" key={n}>
                       <h2>{n}</h2>
                       <strong className="metric">—</strong>
-                      <p>Verified data not connected</p>
+                      <p>No verified data connection</p>
                     </section>
-                  ),
-                )}
-              </div>
-              <div className="split">
-                <section className="panel">
-                  <h2>Authority before action</h2>
-                  <ul className="list">
-                    {[
-                      "Scoped staff role and organization / region",
-                      "Mandatory privileged verification",
-                      "Evidence, reason and approval",
-                      "Append-only audit / rollback",
-                    ].map((n) => (
-                      <li key={n}>
-                        {n}
-                        <span>Required</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <button className="button" disabled>
-                    Privileged controls unavailable
-                  </button>
-                </section>
-                <section className="panel">
-                  <h2>Every surface, one policy</h2>
-                  <p>
-                    Consumer mobile and web, merchant, advertiser, professional,
-                    creator and affiliate capabilities use the same canonical
-                    backend and policies.
-                  </p>
-                  <p>
-                    Changing this role layout never changes a real permission.
-                    Restricted users cannot access finance or private-image data
-                    through a sidebar.
-                  </p>
-                </section>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="metric-grid">
-                {[
-                  "Source evidence",
-                  "Qualified activity",
-                  "Recognized earnings",
-                ].map((n) => (
-                  <section className="panel" key={n}>
-                    <h2>{n}</h2>
-                    <strong className="metric">—</strong>
-                    <p>No verified data connection</p>
-                  </section>
-                ))}
-              </div>
-              {role === "merchant" &&
-              [
-                "Snap & List",
-                "My Products",
-                "Draft Listings",
-                "Catalog Health",
-              ].includes(current.name) ? (
-                <MerchantSnapList
-                  drafts={catalogDrafts}
-                  setDrafts={setCatalogDrafts}
-                  view={current.name}
-                />
-              ) : (
-                <div className="workspace-columns">
-                  <section className="panel">
-                    <p className="eyebrow">Session planning only</p>
-                    <h2>{current.name} planning draft</h2>
-                    {role === "advertiser" &&
-                    current.name === "Create Campaign" ? (
-                      <>
-                        <ol className="stepper">
-                          {campaignSteps.map((n, i) => (
-                            <li
-                              key={n}
-                              aria-current={step === i ? "step" : undefined}
-                            >
+                  ))}
+                </div>
+                {role === "merchant" &&
+                [
+                  "Snap & List",
+                  "My Products",
+                  "Draft Listings",
+                  "Catalog Health",
+                ].includes(current.name) ? (
+                  <MerchantSnapList
+                    drafts={catalogDrafts}
+                    setDrafts={setCatalogDrafts}
+                    view={current.name}
+                  />
+                ) : (
+                  <div className="workspace-columns">
+                    <section className="panel">
+                      <p className="eyebrow">Session planning only</p>
+                      <h2>{current.name} planning draft</h2>
+                      {role === "advertiser" &&
+                      current.name === "Create Campaign" ? (
+                        <>
+                          <ol className="stepper">
+                            {campaignSteps.map((n, i) => (
+                              <li
+                                key={n}
+                                aria-current={step === i ? "step" : undefined}
+                              >
+                                {n}
+                              </li>
+                            ))}
+                          </ol>
+                          <h3>{campaignSteps[step]}</h3>
+                          {step < 5 && (
+                            <label>
+                              {campaignSteps[step]} planning note
+                              <input
+                                value={values[campaignSteps[step]] || ""}
+                                maxLength={500}
+                                onChange={(e) =>
+                                  setValues({
+                                    ...values,
+                                    [campaignSteps[step]]: e.target.value,
+                                  })
+                                }
+                              />
+                            </label>
+                          )}
+                          {step >= 5 && (
+                            <>
+                              <dl>
+                                {campaignSteps.slice(0, 5).map((n) => (
+                                  <div key={n}>
+                                    <dt>{n}</dt>
+                                    <dd>{values[n] || "Not supplied"}</dd>
+                                  </div>
+                                ))}
+                              </dl>
+                              <p>
+                                Eligible offers, spend caps, creative rights,
+                                brand safety and billing require verified server
+                                evidence.
+                              </p>
+                            </>
+                          )}
+                          <div className="actions">
+                            {step > 0 && (
+                              <button
+                                className="button secondary"
+                                onClick={() => setStep(step - 1)}
+                              >
+                                Back
+                              </button>
+                            )}
+                            {step < 6 ? (
+                              <button
+                                className="button"
+                                onClick={() => setStep(step + 1)}
+                              >
+                                Next: {campaignSteps[step + 1]}
+                              </button>
+                            ) : (
+                              <button className="button" disabled>
+                                Launch unavailable
+                              </button>
+                            )}
+                          </div>
+                        </>
+                      ) : (
+                        <form
+                          onSubmit={(e) => {
+                            e.preventDefault();
+                            const notes = current.fields
+                              .map(
+                                (n) => `${n}: ${values[n] || "Not supplied"}`,
+                              )
+                              .join("\n");
+                            setDrafts([
+                              ...drafts,
+                              {
+                                id: crypto.randomUUID(),
+                                title: title.trim(),
+                                notes,
+                              },
+                            ]);
+                            setMessage(
+                              "Planning draft saved in this browser session only. No server write or publication occurred.",
+                            );
+                            setTitle("");
+                            setValues({});
+                          }}
+                        >
+                          <label>
+                            Draft title
+                            <input
+                              value={title}
+                              required
+                              maxLength={160}
+                              onChange={(e) => setTitle(e.target.value)}
+                            />
+                          </label>
+                          {current.fields.map((n) => (
+                            <label key={n}>
                               {n}
+                              <input
+                                maxLength={500}
+                                value={values[n] || ""}
+                                onChange={(e) =>
+                                  setValues({ ...values, [n]: e.target.value })
+                                }
+                              />
+                            </label>
+                          ))}
+                          <button className="button" disabled={!title.trim()}>
+                            Save session planning draft
+                          </button>
+                          <p className="fine">
+                            No private customer photos, payment information or
+                            verification documents.
+                          </p>
+                        </form>
+                      )}
+                    </section>
+                    <aside>
+                      <section className="panel">
+                        <h2>Session planning notes</h2>
+                        {drafts.length ? (
+                          drafts.map((d) => (
+                            <article className="draft" key={d.id}>
+                              <h3>{d.title}</h3>
+                              <p style={{ whiteSpace: "pre-line" }}>
+                                {d.notes}
+                              </p>
+                              <button
+                                className="text-button"
+                                onClick={() =>
+                                  setDrafts(drafts.filter((n) => n.id !== d.id))
+                                }
+                              >
+                                Delete planning draft
+                              </button>
+                            </article>
+                          ))
+                        ) : (
+                          <p>
+                            No planning drafts for this review session.
+                            Switching workspace clears these notes.
+                          </p>
+                        )}
+                        <button className="button secondary" disabled>
+                          Load authorized organization records
+                        </button>
+                      </section>
+                      <section className="panel">
+                        <h2>Activation checklist</h2>
+                        <ul className="list">
+                          {[
+                            "Verified identity & eligible account",
+                            "Active organization membership",
+                            "Approved capability & scoped role",
+                            "Source facts / rights / audit",
+                          ].map((n) => (
+                            <li key={n}>
+                              {n}
+                              <span>Required</span>
                             </li>
                           ))}
-                        </ol>
-                        <h3>{campaignSteps[step]}</h3>
-                        {step < 5 && (
-                          <label>
-                            {campaignSteps[step]} planning note
-                            <input
-                              value={values[campaignSteps[step]] || ""}
-                              maxLength={500}
-                              onChange={(e) =>
-                                setValues({
-                                  ...values,
-                                  [campaignSteps[step]]: e.target.value,
-                                })
-                              }
-                            />
-                          </label>
-                        )}
-                        {step >= 5 && (
-                          <>
-                            <dl>
-                              {campaignSteps.slice(0, 5).map((n) => (
-                                <div key={n}>
-                                  <dt>{n}</dt>
-                                  <dd>{values[n] || "Not supplied"}</dd>
-                                </div>
-                              ))}
-                            </dl>
-                            <p>
-                              Eligible offers, spend caps, creative rights,
-                              brand safety and billing require verified server
-                              evidence.
-                            </p>
-                          </>
-                        )}
-                        <div className="actions">
-                          {step > 0 && (
-                            <button
-                              className="button secondary"
-                              onClick={() => setStep(step - 1)}
-                            >
-                              Back
-                            </button>
-                          )}
-                          {step < 6 ? (
-                            <button
-                              className="button"
-                              onClick={() => setStep(step + 1)}
-                            >
-                              Next: {campaignSteps[step + 1]}
-                            </button>
-                          ) : (
-                            <button className="button" disabled>
-                              Launch unavailable
-                            </button>
-                          )}
-                        </div>
-                      </>
-                    ) : (
-                      <form
-                        onSubmit={(e) => {
-                          e.preventDefault();
-                          const notes = current.fields
-                            .map((n) => `${n}: ${values[n] || "Not supplied"}`)
-                            .join("\n");
-                          setDrafts([
-                            ...drafts,
-                            {
-                              id: crypto.randomUUID(),
-                              title: title.trim(),
-                              notes,
-                            },
-                          ]);
-                          setMessage(
-                            "Planning draft saved in this browser session only. No server write or publication occurred.",
-                          );
-                          setTitle("");
-                          setValues({});
-                        }}
-                      >
-                        <label>
-                          Draft title
-                          <input
-                            value={title}
-                            required
-                            maxLength={160}
-                            onChange={(e) => setTitle(e.target.value)}
-                          />
-                        </label>
-                        {current.fields.map((n) => (
-                          <label key={n}>
-                            {n}
-                            <input
-                              maxLength={500}
-                              value={values[n] || ""}
-                              onChange={(e) =>
-                                setValues({ ...values, [n]: e.target.value })
-                              }
-                            />
-                          </label>
-                        ))}
-                        <button className="button" disabled={!title.trim()}>
-                          Save session planning draft
-                        </button>
-                        <p className="fine">
-                          No private customer photos, payment information or
-                          verification documents.
-                        </p>
-                      </form>
-                    )}
-                  </section>
-                  <aside>
-                    <section className="panel">
-                      <h2>Session planning notes</h2>
-                      {drafts.length ? (
-                        drafts.map((d) => (
-                          <article className="draft" key={d.id}>
-                            <h3>{d.title}</h3>
-                            <p style={{ whiteSpace: "pre-line" }}>{d.notes}</p>
-                            <button
-                              className="text-button"
-                              onClick={() =>
-                                setDrafts(drafts.filter((n) => n.id !== d.id))
-                              }
-                            >
-                              Delete planning draft
-                            </button>
-                          </article>
-                        ))
-                      ) : (
-                        <p>
-                          No planning drafts for this review session. Switching
-                          workspace clears these notes.
-                        </p>
-                      )}
-                      <button className="button secondary" disabled>
-                        Load authorized organization records
-                      </button>
-                    </section>
-                    <section className="panel">
-                      <h2>Activation checklist</h2>
-                      <ul className="list">
-                        {[
-                          "Verified identity & eligible account",
-                          "Active organization membership",
-                          "Approved capability & scoped role",
-                          "Source facts / rights / audit",
-                        ].map((n) => (
-                          <li key={n}>
-                            {n}
-                            <span>Required</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <a
-                        href={appPath("/profile")}
-                        className="button secondary"
-                      >
-                        Account & workspace switching
-                      </a>
-                    </section>
-                  </aside>
-                </div>
-              )}
-            </>
-          )}
+                        </ul>
+                        <a
+                          href={appPath("/profile")}
+                          className="button secondary"
+                        >
+                          Account & workspace switching
+                        </a>
+                      </section>
+                    </aside>
+                  </div>
+                )}
+              </>
+            )}
+          </fieldset>
         </main>
       </div>
     </>

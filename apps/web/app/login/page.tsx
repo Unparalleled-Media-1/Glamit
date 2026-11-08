@@ -1,4 +1,2 @@
-import WebLogin from "../../components/WebLogin";
-export default function Login() {
-  return <WebLogin />;
-}
+import AccountRoutes from "../../components/AccountRoutes";
+export default function Page() { return <AccountRoutes initialPath="/login" />; }
