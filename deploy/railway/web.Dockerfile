@@ -12,9 +12,7 @@ ENV NEXT_TELEMETRY_DISABLED=1 NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates
 COPY package.json package-lock.json ./
 COPY apps/web/package.json apps/web/package.json
 COPY apps/mobile/package.json apps/mobile/package.json
-RUN --mount=type=secret,id=proxy_ca \
-    if [ -f /run/secrets/proxy_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/proxy_ca; fi; \
-    npm ci --ignore-scripts
+RUN npm ci --ignore-scripts
 COPY apps/web apps/web
 COPY packages packages
 COPY scripts/check-browser-auth-config.mjs scripts/public-supabase-config.mjs scripts/
