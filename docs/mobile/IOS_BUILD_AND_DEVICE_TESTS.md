@@ -16,3 +16,5 @@
 Apple signing is not needed for an unsigned simulator build; the missing macOS/Xcode runner is the immediate simulator blocker. A configured macOS runner can independently compile and run native tests; signed store distribution needs actual registered IDs and secure signing credentials afterward. Do not substitute a web screenshot or EAS configuration file for those results.
 
 Current root consumer connection is absent; analysis/generation/commerce persistence and native stack/deep links/notifications require implementation, regardless of keys. N1 is only a local photo lifecycle repair. Full iOS build completeness and launch readiness remain uncertified.
+
+A separate `Native build verification` GitHub workflow now attempts actual unsigned iOS simulator compilation/startup on macOS and Android APK/emulator compilation/startup on Linux. It uses local verification IDs, no deployment secrets or store publication. Remote results are pending and must be reviewed before upgrading the local BLOCKED/NOT TESTED status; a startup capture alone will not certify complete feature or hardware journeys.

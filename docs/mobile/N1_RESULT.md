@@ -20,3 +20,5 @@ Backlog: scoped progress for GB-022 / FINAL-GB-022, GB-013 / FINAL-GB-013 and GB
 Permanent strategy: `docs/specification/mobile-first-policy.md` and AGENTS now require native-first consumer/creator delivery, independent evidence, valid web conversion opportunities and complete desktop business functionality. Store links/IDs and automatic identity transfer were not invented. Navigation modernization, operational native parity, notifications and web acquisition prompts remain explicit next implementation batches.
 
 No production migrations, database/storage records, Railway services, payments or existing identity/commercial rules were changed. No full feature/defect was closed or global completion percentage asserted.
+
+A separate `Native build verification` GitHub workflow now attempts actual unsigned iOS simulator compilation/startup on macOS and Android APK/emulator compilation/startup on Linux. It uses local verification IDs, no deployment secrets or store publication. Remote results are pending and must be reviewed before upgrading the local BLOCKED/NOT TESTED status; a startup capture alone will not certify complete feature or hardware journeys.
