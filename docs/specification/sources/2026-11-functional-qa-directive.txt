@@ -1,0 +1,1018 @@
+For GLAM Beauty ([www.glam.beauty](http://www.glam.beauty)), I recommend running a full automated functional audit, exhaustive click-through audit, and production deployment readiness assessment using Codex.
+
+The objective is to test more than whether the website loads or the code compiles. We need to prove that every visible button, link, icon, form, menu, upload control and user action performs its intended function, and that complete business journeys work across the website, mobile app, Railway, Supabase and external integrations.
+
+The audit should operate like a professional software QA and release-certification process.
+
+## 1. What the audit must verify
+
+GLAM Beauty public launch checklist
+
+Verification required
+
+0 of 10 review areas selected
+
+Reset
+
+Interface & navigation
+
+Every route, button, link, menu, modal and form
+
+User accounts
+
+SMS OTP, OAuth, biometrics, profiles and sessions
+
+AI functionality
+
+Analysis, try-on, styling, search and saved results
+
+Marketplace
+
+Products, cart, checkout, orders, refunds
+
+Merchants & professionals
+
+Onboarding, inventory, bookings and payouts
+
+Creators & advertising
+
+Social connections, shoppable looks, campaigns
+
+Database & security
+
+Supabase, RLS, storage, permissions and privacy
+
+Infrastructure
+
+Railway, API, DNS, HTTPS, logs and rollback
+
+Mobile apps
+
+iOS/Android builds, deep links, device tests
+
+Launch operations
+
+Monitoring, legal, support and incident response
+
+Interactive planning checklist only. Checking an item does not constitute a completed technical test.
+
+The key is to use three levels of testing:
+
+* Control-level: Did clicking or tapping this specific item produce the correct result?
+
+* Journey-level: Can a real user complete the entire process from beginning to end?
+
+* Deployment-level: Does that same process work on the actual deployed release, with real backend connections and appropriate test-provider credentials?
+
+A control should not pass simply because it responds to a click. It must produce the correct, observable outcome.
+
+## 2. The complete Codex audit instruction
+
+Copy this into Codex. It is designed to make Codex discover, test, repair, retest and document the application, rather than just generate another audit report.
+
+GLAM BEAUTY — EXHAUSTIVE CLICK-THROUGH, FUNCTIONAL QA AND PUBLIC DEPLOYMENT CERTIFICATION
+
+# GLAM BEAUTY — EXHAUSTIVE CLICK-THROUGH, FUNCTIONAL QA AND PUBLIC DEPLOYMENT CERTIFICATION
+
+## OBJECTIVE
+
+Perform a complete functional, security, integration, mobile and production-readiness audit of GLAM Beauty.
+
+Website: [https://www.glam.beauty](https://www.glam.beauty)
+
+Repository: Unparalleled-Media-1/Glamit
+
+Reported default Git branch: feat/platform-foundations
+
+Railway project: elegant-dedication
+
+Supabase project: bkkmsbxrxkqaveymcrgi
+
+The goal is to ensure every implemented and approved feature works correctly, every tappable or clickable element performs its intended action, all critical business journeys complete successfully, and the platform is safe and operationally ready for public use.
+
+This is an EXECUTE, TEST, FIX, RETEST AND VERIFY assignment.
+
+Do not claim success based only on static code inspection, green unit tests, simulated clicks or local builds.
+
+Keep unrelated feature development frozen.
+
+Do not perform destructive production changes, real payments, public deployment or domain changes without approval.
+
+## PHASE 1 — DISCOVER EVERYTHING
+
+Inspect the entire repository and enumerate:
+
+* All web routes and mobile screens
+
+* All navigation items
+
+* All buttons and clickable icons
+
+* All dropdowns and selection controls
+
+* All text inputs and forms
+
+* All search bars and filters
+
+* All tabs and accordions
+
+* All modals and dialogs
+
+* All upload and camera controls
+
+* All image-generation actions
+
+* All save, edit, delete and share actions
+
+* All cart and checkout controls
+
+* All booking actions
+
+* All merchant and creator controls
+
+* All administrative actions
+
+* All role-dependent navigation
+
+* All authenticated and guest-only actions
+
+Include controls rendered conditionally, inside menus, behind authentication, or available only to particular roles.
+
+Use static analysis to discover potential controls, then use runtime browser and mobile inspection to confirm what actually renders.
+
+Record every control with a unique ID.
+
+Create:
+
+docs/qa/COMPLETE_CONTROL_INVENTORY.csv
+
+Columns:
+
+Control ID
+Platform
+Role
+Route/Screen
+Component
+Control Label
+Control Type
+Expected Action
+Required Preconditions
+Expected API Call
+Expected Database Effect
+Expected Navigation
+Test ID
+Observed Result
+Evidence
+Status
+Defect ID
+
+## PHASE 2 — AUTOMATED CLICK-THROUGH TESTING
+
+Use Playwright for web testing and appropriate native mobile automation for iOS and Android.
+
+Test every actionable element in its proper state.
+
+For each control:
+
+1. Navigate to the correct page.
+
+2. Establish the required user role and state.
+
+3. Locate the element.
+
+4. Verify it is visible.
+
+5. Verify it is enabled when appropriate.
+
+6. Click or tap it.
+
+7. Observe the actual outcome.
+
+8. Verify navigation, UI updates or network requests.
+
+9. Verify required backend changes.
+
+10. Check for errors.
+
+11. Capture evidence.
+
+12. Mark PASS, FAIL, BLOCKED or NOT TESTED.
+
+A click with no observable change is not automatically a failure: determine the intended behavior and verify it.
+
+A control is not considered working merely because a click event fired.
+
+Test:
+
+* Empty inputs
+
+* Invalid inputs
+
+* Valid inputs
+
+* Slow network
+
+* Network failure
+
+* Permission denial
+
+* Double-click or double-submit
+
+* Browser refresh
+
+* Back navigation
+
+* Session expiration
+
+* Unauthorized user
+
+* Server error
+
+* Retry and recovery
+
+Avoid uncontrolled writes to production data.
+
+## PHASE 3 — VISUAL AND RESPONSIVE QA
+
+Test web viewports:
+
+* 320px
+
+* 375px
+
+* 390px
+
+* 430px
+
+* 768px
+
+* 1024px
+
+* 1440px
+
+* 1920px
+
+Verify:
+
+* No horizontal overflow
+
+* No overlapping components
+
+* No clipped controls
+
+* No invisible text
+
+* No broken images
+
+* No inaccessible buttons
+
+* No keyboard obstruction
+
+* No broken mobile navigation
+
+* Correct loading states
+
+* Correct empty states
+
+* Correct error states
+
+* Correct GLAM Beauty branding
+
+* Correct favicon and app icon
+
+* Consistent design tokens
+
+* Accessible focus indicators
+
+* Suitable touch-target sizes
+
+* Keyboard navigation
+
+* Screen-reader semantics
+
+* Appropriate colour contrast
+
+Capture screenshots and compare them against approved visual baselines.
+
+## PHASE 4 — COMPLETE USER JOURNEY TESTING
+
+Create end-to-end tests for all approved and implemented journeys.
+
+### Consumer
+
+* Browse without signing in
+
+* Register with SMS OTP
+
+* Sign in with available OAuth providers
+
+* Set up profile
+
+* Complete AI face analysis
+
+* Complete hair analysis
+
+* Complete nonmedical skin appearance analysis
+
+* Save Style Passport
+
+* Generate makeup looks
+
+* Generate hairstyles
+
+* Use virtual try-on
+
+* Use AI Personal Stylist
+
+* Upload Digital Wardrobe items
+
+* Generate outfits
+
+* Search using a photograph
+
+* Recreate a look from a screenshot
+
+* Find matching products
+
+* Add products to cart
+
+* Complete test checkout
+
+* View orders
+
+* Request refund
+
+* Book a beauty professional
+
+* Save and share looks
+
+* Delete personal data
+
+### Merchant
+
+* Register
+
+* Complete onboarding
+
+* Create storefront
+
+* Upload product
+
+* Use AI Snap & List
+
+* Review AI-generated product details
+
+* Set variants and inventory
+
+* Receive test order
+
+* Update fulfillment
+
+* Process refund
+
+* Review settlement records
+
+* Verify merchant data isolation
+
+### Beauty Professional
+
+* Create professional profile
+
+* Add services
+
+* Configure availability
+
+* Receive booking
+
+* Confirm or reject booking
+
+* Reschedule
+
+* Cancel
+
+* Review completed bookings
+
+### Creator / Influencer
+
+* Activate creator profile
+
+* Connect supported social accounts
+
+* Disconnect social accounts
+
+* Create shoppable looks
+
+* Attach merchant products
+
+* Generate tracked links
+
+* Apply for brand campaigns
+
+* View attribution
+
+* View eligible earnings
+
+### Advertiser
+
+* Create campaign
+
+* Select placement and geography
+
+* Configure budget
+
+* Submit for review
+
+* Verify sponsored labeling
+
+* Review campaign analytics
+
+### Administrator
+
+* Sign in securely
+
+* View dashboard
+
+* Manage users
+
+* Approve merchants
+
+* Moderate listings
+
+* Review orders
+
+* Manage refunds and disputes
+
+* Review creator campaigns
+
+* Manage advertising
+
+* Review AI usage
+
+* View audit logs
+
+* Verify role restrictions
+
+For every journey, verify the complete result, not just individual screens.
+
+## PHASE 5 — AI INTEGRATION TESTING
+
+For each AI feature:
+
+* Verify real provider connectivity
+
+* Submit authorized test input
+
+* Validate response format
+
+* Verify generated result
+
+* Verify user-visible output
+
+* Verify persistence
+
+* Verify saved result retrieval
+
+* Verify retry behavior
+
+* Verify timeout handling
+
+* Verify privacy controls
+
+* Verify AI usage accounting
+
+* Verify consent and image deletion
+
+Do not count mocked provider responses as real integration passes.
+
+## PHASE 6 — SUPABASE DATABASE AUDIT
+
+Inspect the existing production Supabase project read-only.
+
+Verify:
+
+* Migration history
+
+* Required tables and columns
+
+* Foreign keys
+
+* Indexes
+
+* Constraints
+
+* RLS policies
+
+* Storage policies
+
+* Organization isolation
+
+* User ownership
+
+* Service-role isolation
+
+* Authentication triggers
+
+* Session handling
+
+* Data retention
+
+* Backup and recovery arrangements
+
+Use isolated test data and an approved nonproduction test environment for write tests.
+
+Do not reset or rebuild the production database.
+
+## PHASE 7 — AUTHENTICATION AND SECURITY
+
+Test:
+
+* SMS OTP delivery
+
+* Invalid and expired OTP
+
+* Resend limits
+
+* Rate limiting
+
+* Google OAuth
+
+* Apple OAuth
+
+* Facebook OAuth
+
+* Biometric unlock
+
+* Account linking
+
+* Session refresh
+
+* Logout
+
+* Account deletion
+
+* Unauthorized access
+
+* Cross-user data access
+
+* Cross-merchant data access
+
+* Cross-role privilege escalation
+
+* File upload validation
+
+* API authorization
+
+* Secret exposure
+
+* CORS
+
+* CSRF where applicable
+
+* Injection vulnerabilities
+
+* Dependency vulnerabilities
+
+* Webhook authentication
+
+* Replay and duplicate requests
+
+Do not disable security controls to make tests pass.
+
+## PHASE 8 — STRIPE FINANCIAL TESTING
+
+Use Stripe TEST MODE only.
+
+Verify:
+
+* Checkout initialization
+
+* Payment success
+
+* Payment failure
+
+* Payment cancellation
+
+* Duplicate webhook handling
+
+* Order confirmation
+
+* Multi-merchant allocations
+
+* 10% eligible physical-product commission
+
+* Shipping and tax exclusions
+
+* Partial refunds
+
+* Full refunds
+
+* Disputes
+
+* Reconciliation
+
+* Merchant payout eligibility
+
+Confirm financial values using independent test assertions.
+
+Never execute live financial mutations during the audit.
+
+## PHASE 9 — RAILWAY DEPLOYMENT AUDIT
+
+Inspect the actual Railway project and existing web/API services.
+
+Verify:
+
+* GitHub repository connection
+
+* Correct deployment branch
+
+* Actual deployed commit SHA
+
+* Root directory
+
+* Build command
+
+* Start command
+
+* Runtime dependencies
+
+* Environment variables
+
+* Port binding
+
+* Health endpoint
+
+* Readiness endpoint
+
+* API connectivity
+
+* Supabase connectivity
+
+* HTTPS
+
+* DNS
+
+* CORS
+
+* Error logs
+
+* Restart behavior
+
+* Memory and CPU limits
+
+* Background workers
+
+* Scheduled jobs
+
+* Rollback procedure
+
+Investigate previous ERR_TUNNEL_CONNECTION_FAILED errors.
+
+Do not confuse a test-runner proxy failure with an application failure.
+
+If the current runner cannot reach Railway, use an authorized external CI runner and retain its logs and traces.
+
+## PHASE 10 — REAL DEPLOYED TESTS
+
+Run all mandatory journeys against the actual deployed release candidate.
+
+Every test must record:
+
+* Deployed SHA
+
+* Environment
+
+* Timestamp
+
+* Test user or fixture
+
+* Action performed
+
+* Expected result
+
+* Actual result
+
+* HTTP/API evidence
+
+* Database evidence where relevant
+
+* Screenshot or trace
+
+* Pass/fail status
+
+Do not substitute localhost results for deployed evidence.
+
+## PHASE 11 — MOBILE APP CERTIFICATION
+
+Verify native iOS and Android applications separately.
+
+Test:
+
+* Installation
+
+* Cold launch
+
+* Splash screen
+
+* Navigation
+
+* Phone OTP
+
+* OAuth callbacks
+
+* Biometric unlock
+
+* Camera
+
+* Photo permissions
+
+* Uploads
+
+* AI generation
+
+* Shopping
+
+* Checkout
+
+* Bookings
+
+* Deep links
+
+* Push notifications
+
+* Background/foreground transitions
+
+* Offline recovery
+
+* App updates
+
+* Crash handling
+
+* Correct production API URL
+
+Use real devices for hardware-dependent features.
+
+Verify signing and build configuration.
+
+Do not claim App Store or Google Play readiness without valid release builds and required developer-account setup.
+
+## PHASE 12 — PERFORMANCE AND RELIABILITY
+
+Test:
+
+* Initial page loading
+
+* API latency
+
+* Image loading
+
+* AI request latency
+
+* Database query performance
+
+* Concurrent user behavior
+
+* Rate limits
+
+* Queue processing
+
+* Upload reliability
+
+* Failed payment recovery
+
+* Worker restart
+
+* Database connection recovery
+
+* Provider outage handling
+
+* Error monitoring
+
+* Logging and alerting
+
+* Backup restore
+
+* Deployment rollback
+
+Define and record acceptance thresholds for each critical service before declaring PASS.
+
+## PHASE 13 — AUTOMATIC DEFECT REPAIR
+
+For every confirmed defect:
+
+1. Create a defect ID.
+
+2. Record reproduction steps.
+
+3. Assign severity.
+
+4. Capture evidence.
+
+5. Identify root cause.
+
+6. Add a failing regression test.
+
+7. Implement the smallest safe correction.
+
+8. Run targeted tests.
+
+9. Run related regression tests.
+
+10. Verify the deployed correction.
+
+11. Close the defect only with evidence.
+
+Severity:
+
+P0 — Security breach, data corruption, severe financial error or total critical-service outage.
+
+P1 — Critical journey broken, major authorization failure, checkout failure or release-blocking deployment defect.
+
+P2 — Significant noncritical feature failure with an acceptable workaround.
+
+P3 — Cosmetic or minor usability issue.
+
+No unresolved P0 or P1 defects are permitted for public launch.
+
+## PHASE 14 — REQUIRED REPORTS
+
+Generate:
+
+docs/qa/COMPLETE_CONTROL_INVENTORY.csv
+docs/qa/CONTROL_CLICKTHROUGH_RESULTS.csv
+docs/qa/ROUTE_COVERAGE_REPORT.md
+docs/qa/ROLE_JOURNEY_RESULTS.md
+docs/qa/WEB_MOBILE_PARITY.md
+docs/qa/AI_INTEGRATION_RESULTS.md
+docs/qa/SUPABASE_SECURITY_RESULTS.md
+docs/qa/STRIPE_FINANCIAL_RESULTS.md
+docs/qa/RAILWAY_DEPLOYMENT_RESULTS.md
+docs/qa/MOBILE_DEVICE_RESULTS.md
+docs/qa/PERFORMANCE_RELIABILITY_RESULTS.md
+docs/qa/DEFECT_REGISTER.csv
+docs/qa/RELEASE_READINESS_CHECKLIST.md
+docs/qa/PUBLIC_LAUNCH_GO_NO_GO.md
+
+Store screenshots, Playwright traces, logs and CI artifacts in accessible evidence locations.
+
+## PHASE 15 — FINAL RELEASE GATES
+
+G1 — Complete feature inventory
+G2 — Complete actionable-control testing
+G3 — Critical consumer journeys
+G4 — Merchant and professional journeys
+G5 — Creator and advertiser journeys
+G6 — AI provider integration
+G7 — Authentication and session security
+G8 — Supabase and access control
+G9 — Stripe financial correctness
+G10 — Railway deployment and API health
+G11 — Native mobile device testing
+G12 — Performance, monitoring and recovery
+G13 — Legal, privacy, support and operational readiness
+G14 — Pilot user acceptance testing
+G15 — Final owner approval
+
+Do not mark a gate PASS without evidence.
+
+## FINAL OUTPUT
+
+Report:
+
+* Number of discovered routes
+
+* Number of discovered actionable controls
+
+* Number of controls actually tested
+
+* Number passed
+
+* Number failed
+
+* Number blocked
+
+* Number skipped
+
+* Number without observable expected behavior
+
+* Number of verified critical journeys
+
+* Number of unresolved P0/P1/P2/P3 defects
+
+* Web/mobile feature parity gaps
+
+* Railway deployment health
+
+* Supabase security status
+
+* Financial integration status
+
+* Real-device testing status
+
+* Release gate results
+
+* Public launch decision
+
+Required status values:
+
+PASS
+FAIL
+BLOCKED
+NOT TESTED
+NOT APPLICABLE
+
+Never count BLOCKED, SKIPPED or NOT TESTED as PASS.
+
+The audit must end with one of:
+
+GO — all mandatory release gates verified and owner approval obtained.
+
+CONDITIONAL GO — only explicitly accepted noncritical exclusions remain; owner approval still required.
+
+NO-GO — any mandatory gate fails or lacks required evidence.
+
+Start with the actual repository and deployed application, reuse existing tests and audit artifacts, and execute the complete verification process.
+
+Do not declare GLAM Beauty 100% operational until the evidence supports that claim.
+
+## 3. Public deployment readiness — final approval checklist
+
+The following is the checklist I would use personally to decide whether GLAM Beauty should go public.
+
+## Release sign-off checklist
+
+9 categories · 45 acceptance checks
+
+Copy
+
+0 / 45 selected
+
+0%
+
+Website and UX
+
+0 / 5 selected
+
+Every production route loads
+
+Every required clickable/tappable control passes
+
+Forms validate and submit correctly
+
+Mobile, tablet and desktop layouts pass
+
+No broken links, missing assets or placeholder screens
+
+Accounts and authentication
+
+0 / 5 selected
+
+AI features
+
+0 / 5 selected
+
+Commerce and professionals
+
+0 / 5 selected
+
+Creators and advertising
+
+0 / 5 selected
+
+Security and data
+
+0 / 5 selected
+
+Railway and reliability
+
+0 / 5 selected
+
+Native mobile
+
+0 / 5 selected
+
+Business and launch
+
+0 / 5 selected
+
+For planning and manual sign-off. Actual release status must come from documented test evidence, not these selections.
+
+## 4. How to run this without repeating the endless Codex audit cycle
+
+I recommend a controlled sequence:
+
+1. Run discovery once. Codex inventories every route, component and actionable control and links each to a test.
+
+2. Establish a test baseline. Run the existing automated tests without modifying the application. Identify genuine failures separately from unavailable providers or infrastructure.
+
+3. Fix in small batches. Prioritize P0/P1 defects. Every fix gets a regression test; unrelated functionality remains frozen.
+
+4. Test the deployed release candidate. Use the exact Railway commit SHA and real mobile builds. Local success does not substitute for this.
+
+5. Run a controlled pilot. Use real testers across consumer, merchant, creator, professional and admin roles, with safe test transactions.
+
+6. Lock the release. After mandatory gates pass, stop merging unrelated changes. Any subsequent change requires affected regression tests and a new deployment verification.
+
+For your current GLAM Beauty situation, the first priority remains Railway access and deployed testing. Your previous audit reported that none of the 31 critical deployed journeys could be completed because the test environment could not reach Railway. Until that is resolved, even thousands of passing local tests cannot establish public readiness.
+
+My recommended launch rule is simple: 100% of mandatory critical journeys must pass on the actual deployed application, with zero unresolved P0/P1 defects and verified security, payments, recovery and operational controls. Noncritical features can be deferred only with your explicit approval and must not be advertised as available before they work.

@@ -1,4 +1,2 @@
-import GlamApp from "../../../components/GlamApp";
-export default function AuthCallback() {
-  return <GlamApp start="home" />;
-}
+import AccountRoutes from "../../../components/AccountRoutes";
+export default function Page() { return <AccountRoutes initialPath="/auth/callback" />; }

@@ -50,7 +50,7 @@ import type {
   RequirementDraft,
 } from "../../../packages/product/catalog";
 
-const pages: Page[] = [
+export const pages: Page[] = [
   "offer",
   "results",
   "destination",
@@ -172,9 +172,11 @@ function Notice({ children }: { children: React.ReactNode }) {
 export default function GlamApp({
   start = "home",
   connection,
+  onAccountNavigate,
 }: {
   start?: Page;
   connection?: CompanionConnection;
+  onAccountNavigate?: (path: string) => void;
 }) {
   const {session:hostedSession,setSession:setHostedSession,error:accountError,retry:retryAccount}=useAccountSession(path=>{const next=sectionFromPath(path) as Page;if(pages.includes(next))go(next);});
   const [journey, setJourney] = useState(freshJourney);
@@ -1375,8 +1377,8 @@ export default function GlamApp({
         <span>Understand your features. Explore your possibilities.</span>
         <div>
           <button onClick={() => go("privacy")}>Privacy</button>
-          <a href={appPath("/business")}>Business portal</a>
-          <a href={appPath("/admin")}>Admin</a>
+          <a href={appPath("/business")} onClick={event => { if(onAccountNavigate){event.preventDefault();onAccountNavigate("/business");} }}>Business portal</a>
+          <a href={appPath("/admin")} onClick={event => { if(onAccountNavigate){event.preventDefault();onAccountNavigate("/admin");} }}>Admin</a>
         </div>
       </footer>
       <nav className="mobile-nav" aria-label="Personal navigation">
@@ -1427,7 +1429,7 @@ export default function GlamApp({
               : "Sign in to load your authorized workspaces. Signing in does not grant business permissions."
             : `${capabilityReasons.account} No business workspaces are authorized.`}
         </Notice>
-        <a className="button secondary" href={appPath("/business")}>
+        <a className="button secondary" href={appPath("/business")} onClick={event => { if(onAccountNavigate){event.preventDefault();onAccountNavigate("/business");} }}>
           View business tools & requirements
         </a>
       </dialog>

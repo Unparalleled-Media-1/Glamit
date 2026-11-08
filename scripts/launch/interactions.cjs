@@ -3,11 +3,20 @@ const fs = require("node:fs"),
   path = require("node:path"),
   net = require("node:net"),
   { spawn } = require("node:child_process");
-const { chromium } = require(
-  "../../docs/design-preview/node_modules/playwright",
-);
+const {
+  chromium,
+} = require("../../docs/design-preview/node_modules/playwright");
 const policy = require("../../tests/launch/safe-actions.json"),
-  inventory = JSON.parse(fs.readFileSync(path.join(process.env.GLAM_LAUNCH_EVIDENCE || path.join(__dirname, "../../docs/launch/evidence"), "clickthrough.json"), "utf8"));
+  inventory = JSON.parse(
+    fs.readFileSync(
+      path.join(
+        process.env.GLAM_LAUNCH_EVIDENCE ||
+          path.join(__dirname, "../../docs/launch/evidence"),
+        "clickthrough.json",
+      ),
+      "utf8",
+    ),
+  );
 const root = path.resolve(__dirname, "../.."),
   out = process.env.GLAM_LAUNCH_ARTIFACTS || "/workspace/artifacts/glam-launch";
 const report = {
@@ -27,23 +36,21 @@ const fingerprint = (page) =>
       form_values: [...document.querySelectorAll("input,select,textarea")].map(
         (e) => [e.id, e.value, e.checked],
       ),
-      dialogs: [...document.querySelectorAll("dialog[open]")].map((d) =>
-        d.innerText
+      dialogs: [...document.querySelectorAll("dialog[open]")].map(
+        (d) => d.innerText,
       ),
       selected: [
         ...document.querySelectorAll(
           "[aria-pressed],[aria-selected],[aria-current],details",
         ),
-      ].map(
-        (e) => [
-          e.textContent,
-          e.getAttribute("aria-pressed"),
-          e.getAttribute("aria-selected"),
-          e.getAttribute("aria-current"),
-          e.open,
-        ],
-      ),
-    })
+      ].map((e) => [
+        e.textContent,
+        e.getAttribute("aria-pressed"),
+        e.getAttribute("aria-selected"),
+        e.getAttribute("aria-current"),
+        e.open,
+      ]),
+    }),
   );
 (async () => {
   const alloc = net.createServer();
@@ -51,14 +58,18 @@ const fingerprint = (page) =>
   const port = alloc.address().port;
   await new Promise((r) => alloc.close(r));
   const origin = "http://127.0.0.1:" + port;
-  const server = spawn(process.execPath, [
-    require.resolve("next/dist/bin/next"),
-    "start",
-    "--hostname",
-    "127.0.0.1",
-    "--port",
-    String(port),
-  ], { cwd: path.join(root, "apps/web"), stdio: "ignore" });
+  const server = spawn(
+    process.execPath,
+    [
+      require.resolve("next/dist/bin/next"),
+      "start",
+      "--hostname",
+      "127.0.0.1",
+      "--port",
+      String(port),
+    ],
+    { cwd: path.join(root, "apps/web"), stdio: "ignore" },
+  );
   let browser;
   try {
     for (let i = 0; i < 150; i++) {
@@ -71,15 +82,26 @@ const fingerprint = (page) =>
       executablePath: "/usr/bin/chromium",
       args: ["--no-sandbox"],
     });
-    const previous = process.env.GLAM_INTERACTIONS_RECHECK === "1"
-      ? require("../../docs/launch/evidence/interactions-initial.json")
-      : null;
+    const previous =
+      process.env.GLAM_INTERACTIONS_RECHECK === "1"
+        ? JSON.parse(
+            fs.readFileSync(
+              process.env.GLAM_INTERACTIONS_PREVIOUS ||
+                path.join(
+                  root,
+                  "docs/launch/evidence/interactions-initial.json",
+                ),
+              "utf8",
+            ),
+          )
+        : null;
     for (const viewport of ["desktop", "iphone-web"]) {
       const targets = inventory.routes.filter((p) => p.viewport === viewport);
       const context = await browser.newContext({
-        viewport: viewport === "desktop"
-          ? { width: 1440, height: 1000 }
-          : { width: 390, height: 844 },
+        viewport:
+          viewport === "desktop"
+            ? { width: 1440, height: 1000 }
+            : { width: 390, height: 844 },
         reducedMotion: "reduce",
       });
       const page = await context.newPage();
@@ -88,19 +110,18 @@ const fingerprint = (page) =>
         snapshots: true,
         sources: false,
       });
-      page.on(
-        "pageerror",
-        (e) =>
-          report.unexpected_errors.push({
-            viewport,
-            message: e.message.slice(0, 300),
-          }),
+      page.on("pageerror", (e) =>
+        report.unexpected_errors.push({
+          viewport,
+          message: e.message.slice(0, 300),
+        }),
       );
       page.on("dialog", (d) => d.dismiss());
       await context.route("**/*", (r) => {
-        const req = r.request(), u = new URL(req.url());
-        return u.origin === origin && req.method() === "GET" ||
-            ["data:", "blob:"].includes(u.protocol)
+        const req = r.request(),
+          u = new URL(req.url());
+        return (u.origin === origin && req.method() === "GET") ||
+          ["data:", "blob:"].includes(u.protocol)
           ? r.continue()
           : r.abort("blockedbyclient");
       });
@@ -109,12 +130,15 @@ const fingerprint = (page) =>
         for (const c of route.controls) {
           if (
             previous &&
-            !previous.results.some((p) =>
-              p.viewport === viewport && p.route === route.route &&
-              p.control_id === c.id &&
-              ["FAILED", "NO_OBSERVED_CHANGE"].includes(p.status)
+            !previous.results.some(
+              (p) =>
+                p.viewport === viewport &&
+                p.route === route.route &&
+                p.control_id === c.id &&
+                ["FAILED", "NO_OBSERVED_CHANGE"].includes(p.status),
             )
-          ) continue;
+          )
+            continue;
           const record = {
             route: route.route,
             viewport,
@@ -130,13 +154,18 @@ const fingerprint = (page) =>
             });
             continue;
           }
-          const localLink = c.tag === "a" && c.href &&
-            (c.href.startsWith("#") || inventory.routes.some((p) =>
-              p.route === c.href.replace(/\/$/, "")
-            ) || c.href === "/");
+          const localLink =
+            c.tag === "a" &&
+            c.href &&
+            (c.href.startsWith("#") ||
+              inventory.routes.some(
+                (p) => p.route === c.href.replace(/\/$/, ""),
+              ) ||
+              c.href === "/");
           const approved =
-            c.tag === "button" && policy.buttons.includes(c.name) ||
-            localLink || c.tag === "summary";
+            (c.tag === "button" && policy.buttons.includes(c.name)) ||
+            localLink ||
+            c.tag === "summary";
           if (!approved) {
             report.results.push({
               ...record,
@@ -149,35 +178,46 @@ const fingerprint = (page) =>
           try {
             await page.goto(origin + route.route, { waitUntil: "load" });
             await page.locator("main").first().waitFor();
+            await page.waitForTimeout(200);
             await page.evaluate(() => {
               localStorage.clear();
               sessionStorage.clear();
             });
             await page.evaluate(() => {
               const visible = (e) => {
-                const r = e.getBoundingClientRect(), s = getComputedStyle(e);
-                return r.width > 0 && r.height > 0 &&
-                  s.visibility !== "hidden" && s.display !== "none";
+                const r = e.getBoundingClientRect(),
+                  s = getComputedStyle(e);
+                return (
+                  r.width > 0 &&
+                  r.height > 0 &&
+                  s.visibility !== "hidden" &&
+                  s.display !== "none"
+                );
               };
-              [...document.querySelectorAll(
-                'button,a[href],input,select,textarea,[role="button"],[role="tab"],dialog,summary',
-              )].filter(visible).forEach((e, i) =>
-                e.dataset.auditId = String(i)
-              );
+              [
+                ...document.querySelectorAll(
+                  'button,a[href],input,select,textarea,[role="button"],[role="tab"],dialog,summary',
+                ),
+              ]
+                .filter(visible)
+                .forEach((e, i) => (e.dataset.auditId = String(i)));
             });
             const selector = page.locator(`[data-audit-id="${c.id}"]`);
             if (
-              await selector.evaluate((e) =>
-                e.tagName.toLowerCase()
-              ) !== c.tag
-            ) throw Error("Inventory changed; requires rediscovery");
+              (await selector.evaluate((e) => e.tagName.toLowerCase())) !==
+              c.tag
+            )
+              throw Error("Inventory changed; requires rediscovery");
             const before = await fingerprint(page);
-            const selected = await selector.evaluate((e) =>
-              e.getAttribute("aria-pressed") === "true" ||
-              e.getAttribute("aria-selected") === "true" ||
-              e.getAttribute("aria-current") === "page"
+            const selected = await selector.evaluate(
+              (e) =>
+                e.getAttribute("aria-pressed") === "true" ||
+                e.getAttribute("aria-selected") === "true" ||
+                e.getAttribute("aria-current") === "page",
             );
-            const sameLink = localLink && !c.href.startsWith("#") &&
+            const sameLink =
+              localLink &&
+              !c.href.startsWith("#") &&
               new URL(c.href, origin).pathname === new URL(page.url()).pathname;
             let keyboardTarget = false;
             if (c.name.startsWith("Skip to ") && c.href?.startsWith("#")) {
@@ -197,8 +237,8 @@ const fingerprint = (page) =>
             const status = changed
               ? "PASSED"
               : selected || sameLink
-              ? "PASSED_IDEMPOTENT"
-              : "NO_OBSERVED_CHANGE";
+                ? "PASSED_IDEMPOTENT"
+                : "NO_OBSERVED_CHANGE";
             const result = {
               ...record,
               status,
@@ -237,7 +277,8 @@ const fingerprint = (page) =>
     }
     fs.writeFileSync(
       path.join(
-        process.env.GLAM_LAUNCH_EVIDENCE || path.join(root, "docs/launch/evidence"),
+        process.env.GLAM_LAUNCH_EVIDENCE ||
+          path.join(root, "docs/launch/evidence"),
         process.env.GLAM_INTERACTIONS_RECHECK === "1"
           ? "interactions-recheck.json"
           : "interactions.json",

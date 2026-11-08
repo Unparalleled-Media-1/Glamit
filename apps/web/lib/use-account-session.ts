@@ -7,11 +7,13 @@ import { finishWebOAuth, publicAuthKey, webAuth } from "./passwordless";
 export function useAccountSession(onDestination?: (path: string) => void) {
   const [session, setSession] = useState<CoreAccount | null>(null);
   const [error, setError] = useState("");
+  const [checking, setChecking] = useState(Boolean(publicAuthKey));
   const fence = useRef(0);
   const destination = useRef(onDestination);
   destination.current = onDestination;
   const retry = useCallback(async () => {
     const ticket = ++fence.current;
+    setChecking(true);
     try {
       const { data, error: failure } = await webAuth().auth.getSession();
       if (failure || !data.session) {
@@ -36,6 +38,8 @@ export function useAccountSession(onDestination?: (path: string) => void) {
         setSession(null);
         setError("Your account could not be loaded. Retry or sign in again.");
       }
+    } finally {
+      if (ticket === fence.current) setChecking(false);
     }
   }, []);
   useEffect(() => {
@@ -47,9 +51,14 @@ export function useAccountSession(onDestination?: (path: string) => void) {
         fence.current++;
         setSession(null);
         setError("");
+        setChecking(false);
       } else if (
-        ["SIGNED_IN", "TOKEN_REFRESHED", "USER_UPDATED", "INITIAL_SESSION"]
-          .includes(event)
+        [
+          "SIGNED_IN",
+          "TOKEN_REFRESHED",
+          "USER_UPDATED",
+          "INITIAL_SESSION",
+        ].includes(event)
       ) {
         queueMicrotask(() => {
           if (live) void retry();
@@ -57,13 +66,15 @@ export function useAccountSession(onDestination?: (path: string) => void) {
       }
     });
     auth.auth.startAutoRefresh();
-    void finishWebOAuth().then((path) => {
-      if (live && path) destination.current?.(path);
-    }).catch(() => {
-      if (live) {
-        setError("Social sign-in was not completed. Please start again.");
-      }
-    });
+    void finishWebOAuth()
+      .then((path) => {
+        if (live && path) destination.current?.(path);
+      })
+      .catch(() => {
+        if (live) {
+          setError("Social sign-in was not completed. Please start again.");
+        }
+      });
     const visibility = () => {
       if (document.visibilityState === "visible") {
         auth.auth.startAutoRefresh();
@@ -79,5 +90,5 @@ export function useAccountSession(onDestination?: (path: string) => void) {
       document.removeEventListener("visibilitychange", visibility);
     };
   }, [retry]);
-  return { session, setSession, error, retry };
+  return { session, setSession, error, retry, checking };
 }

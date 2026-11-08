@@ -19,7 +19,15 @@ import {
 import AuthProviderButton from "./AuthProviderButton";
 import { appPath } from "../lib/paths";
 
-export default function PasswordlessSignIn() {
+export default function PasswordlessSignIn({
+  destination,
+  registration = false,
+  allowCreateUser = true,
+}: {
+  destination?: string;
+  registration?: boolean;
+  allowCreateUser?: boolean;
+} = {}) {
   const [available, setAvailable] = useState(unavailableAuth);
   const [country, setCountry] = useState<CountryCode>("ZA");
   const [phone, setPhone] = useState("");
@@ -33,13 +41,17 @@ export default function PasswordlessSignIn() {
   const wait = Math.max(0, 60 - Math.floor((now - sentAt) / 1000));
   useEffect(() => {
     let live = true;
-    void availability(publicAuthKey).then((v) => {
-      if (live) setAvailable(v);
-    }).catch(() => {
-      if (live) {
-        setMessage("Sign-in availability could not be checked. Please retry.");
-      }
-    });
+    void availability(publicAuthKey)
+      .then((v) => {
+        if (live) setAvailable(v);
+      })
+      .catch(() => {
+        if (live) {
+          setMessage(
+            "Sign-in availability could not be checked. Please retry.",
+          );
+        }
+      });
     return () => {
       live = false;
     };
@@ -54,19 +66,18 @@ export default function PasswordlessSignIn() {
       return;
     }
     const abort = new AbortController();
-    void navigator.credentials.get(
-      {
+    void navigator.credentials
+      .get({
         otp: { transport: ["sms"] },
         signal: abort.signal,
-      } as CredentialRequestOptions,
-    ).then((value) => {
-      const code = (value as Credential & { code?: string } | null)?.code;
-      if (!abort.signal.aborted && code && /^\d{6}$/.test(code)) setOtp(code);
-    }).catch(
-      () => {
+      } as CredentialRequestOptions)
+      .then((value) => {
+        const code = (value as (Credential & { code?: string }) | null)?.code;
+        if (!abort.signal.aborted && code && /^\d{6}$/.test(code)) setOtp(code);
+      })
+      .catch(() => {
         /* Unsupported, denied or cancelled: manual entry remains available. */
-      },
-    );
+      });
     return () => abort.abort();
   }, [target]);
   async function requestCode(e?: FormEvent) {
@@ -78,7 +89,7 @@ export default function PasswordlessSignIn() {
       const number = target || phoneE164(phone, country);
       const { error } = await webAuth().auth.signInWithOtp({
         phone: number,
-        options: { shouldCreateUser: true },
+        options: { shouldCreateUser: allowCreateUser },
       });
       if (error) throw Error(authMessage(error));
       setTarget(number);
@@ -125,7 +136,7 @@ export default function PasswordlessSignIn() {
     setBusy(true);
     setMessage("Opening secure sign-in…");
     try {
-      rememberDestination(window.location.pathname);
+      rememberDestination(destination || window.location.pathname);
       const { data, error } = await webAuth().auth.signInWithOAuth({
         provider,
         options: { redirectTo: callbackUrl(), skipBrowserRedirect: true },
@@ -147,7 +158,8 @@ export default function PasswordlessSignIn() {
     e.preventDefault();
     setBusy(true);
     setMessage("Signing in…");
-    const form = e.currentTarget, data = new FormData(form);
+    const form = e.currentTarget,
+      data = new FormData(form);
     try {
       const { error } = await webAuth().auth.signInWithPassword({
         email: String(data.get("email")),
@@ -168,114 +180,116 @@ export default function PasswordlessSignIn() {
   return (
     <section className="auth-surface" aria-label="Sign in to GLAM Beauty">
       <p className="auth-intro">
-        Your personal beauty and style journey starts here.
+        {registration
+          ? "Create one GLAM Beauty account. Business access is verified separately."
+          : "Your personal beauty and style journey starts here."}
       </p>
 
-      {available.phone || target
-        ? (!target
-          ? (
-            <form method="post" onSubmit={requestCode}>
-              <label htmlFor="login-country">Country calling code</label>
-              <select
-                id="login-country"
-                value={country}
-                disabled={busy}
-                onChange={(e) => setCountry(e.target.value as CountryCode)}
-              >
-                {countryChoices.map((c) => (
-                  <option key={c.country} value={c.country}>
-                    {c.name} +{c.callingCode}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="login-phone">Mobile number</label>
-              <input
-                id="login-phone"
-                name="phone"
-                type="tel"
-                inputMode="tel"
-                autoComplete="tel-national"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                maxLength={80}
-                required
-                disabled={busy}
-              />
-              <button className="button" disabled={busy || !available.phone}>
-                {busy ? "Please wait…" : "Continue with SMS"}
-              </button>
-              {!available.phone && (
-                <p className="fine">
-                  SMS sign-in is awaiting provider setup. No code will be sent.
-                </p>
-              )}
-            </form>
-          )
-          : (
-            <form method="post" onSubmit={verify}>
-              <label htmlFor="login-code">Verification code</label>
-              <input
-                id="login-code"
-                name="otp"
-                type="text"
-                inputMode="numeric"
-                autoComplete="one-time-code"
-                pattern="[0-9]{6}"
-                maxLength={6}
-                value={otp}
-                onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-                required
-                disabled={busy}
-              />
+      {available.phone || target ? (
+        !target ? (
+          <form method="post" onSubmit={requestCode}>
+            <label htmlFor="login-country">Country calling code</label>
+            <select
+              id="login-country"
+              value={country}
+              disabled={busy}
+              onChange={(e) => setCountry(e.target.value as CountryCode)}
+            >
+              {countryChoices.map((c) => (
+                <option key={c.country} value={c.country}>
+                  {c.name} +{c.callingCode}
+                </option>
+              ))}
+            </select>
+            <label htmlFor="login-phone">Mobile number</label>
+            <input
+              id="login-phone"
+              name="phone"
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel-national"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              maxLength={80}
+              required
+              disabled={busy}
+            />
+            <button className="button" disabled={busy || !available.phone}>
+              {busy ? "Please wait…" : "Continue with SMS"}
+            </button>
+            {!available.phone && (
               <p className="fine">
-                Enter the six-digit code requested for{" "}
-                {target}. Codes expire; request a new one if needed.
+                SMS sign-in is awaiting provider setup. No code will be sent.
               </p>
-              <button className="button" disabled={busy || otp.length !== 6}>
-                Verify code
-              </button>
-              <button
-                type="button"
-                className="button secondary"
-                disabled={busy || wait > 0}
-                onClick={() => requestCode()}
-              >
-                {wait > 0 ? `Resend in ${wait}s` : "Resend code"}
-              </button>
-              <button
-                type="button"
-                className="text-button"
-                disabled={busy}
-                onClick={() => {
-                  setTarget("");
-                  setOtp("");
-                  setMessage("");
-                }}
-              >
-                Change number
-              </button>
-            </form>
-          ))
-        : (
-          <p className="auth-unavailable" role="status">
-            SMS sign-in isn’t available right now. You can explore as a guest or
-            use an existing email account.
-          </p>
-        )}
+            )}
+          </form>
+        ) : (
+          <form method="post" onSubmit={verify}>
+            <label htmlFor="login-code">Verification code</label>
+            <input
+              id="login-code"
+              name="otp"
+              type="text"
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              pattern="[0-9]{6}"
+              maxLength={6}
+              value={otp}
+              onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
+              required
+              disabled={busy}
+            />
+            <p className="fine">
+              Enter the six-digit code requested for {target}. Codes expire;
+              request a new one if needed.
+            </p>
+            <button className="button" disabled={busy || otp.length !== 6}>
+              Verify code
+            </button>
+            <button
+              type="button"
+              className="button secondary"
+              disabled={busy || wait > 0}
+              onClick={() => requestCode()}
+            >
+              {wait > 0 ? `Resend in ${wait}s` : "Resend code"}
+            </button>
+            <button
+              type="button"
+              className="text-button"
+              disabled={busy}
+              onClick={() => {
+                setTarget("");
+                setOtp("");
+                setMessage("");
+              }}
+            >
+              Change number
+            </button>
+          </form>
+        )
+      ) : (
+        <p className="auth-unavailable" role="status">
+          SMS sign-in isn’t available right now. You can explore as a guest or
+          use an existing email account.
+        </p>
+      )}
       {providers.some((p) => available[p]) && (
         <>
           <div className="auth-divider">
             <span>Or continue with</span>
           </div>
           <div className="auth-provider-list">
-            {providers.filter((p) => available[p]).map((provider) => (
-              <AuthProviderButton
-                key={provider}
-                provider={provider}
-                disabled={busy}
-                onClick={() => void social(provider)}
-              />
-            ))}
+            {providers
+              .filter((p) => available[p])
+              .map((provider) => (
+                <AuthProviderButton
+                  key={provider}
+                  provider={provider}
+                  disabled={busy}
+                  onClick={() => void social(provider)}
+                />
+              ))}
           </div>
         </>
       )}
@@ -307,7 +321,9 @@ export default function PasswordlessSignIn() {
             required
             disabled={busy}
           />
-          <button className="button" disabled={busy}>Sign in</button>
+          <button className="button" disabled={busy}>
+            Sign in
+          </button>
         </form>
       )}
       <p className="fine">
@@ -320,22 +336,26 @@ export default function PasswordlessSignIn() {
           type="button"
           disabled={busy}
           onClick={() => {
-            void availability(publicAuthKey).then((v) => {
-              setAvailable(v);
-              setMessage(
-                v.configured
-                  ? "Sign-in options updated."
-                  : "Account connection is unavailable.",
+            void availability(publicAuthKey)
+              .then((v) => {
+                setAvailable(v);
+                setMessage(
+                  v.configured
+                    ? "Sign-in options updated."
+                    : "Account connection is unavailable.",
+                );
+              })
+              .catch(() =>
+                setMessage("Sign-in options could not be checked. Try again."),
               );
-            }).catch(() =>
-              setMessage("Sign-in options could not be checked. Try again.")
-            );
           }}
         >
           Refresh sign-in options
         </button>
       )}
-      <p role="status" aria-live="polite">{message}</p>
+      <p role="status" aria-live="polite">
+        {message}
+      </p>
     </section>
   );
 }
