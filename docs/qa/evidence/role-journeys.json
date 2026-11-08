@@ -1,0 +1,712 @@
+[
+  {
+    "id": "JQA-001",
+    "role": "Consumer",
+    "journey": "Browse without signing in",
+    "status": "NOT TESTED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-002",
+    "role": "Consumer",
+    "journey": "Register with SMS OTP",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-003",
+    "role": "Consumer",
+    "journey": "Sign in with available OAuth providers",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-004",
+    "role": "Consumer",
+    "journey": "Set up profile",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-005",
+    "role": "Consumer",
+    "journey": "Complete AI face analysis",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-006",
+    "role": "Consumer",
+    "journey": "Complete hair analysis",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-007",
+    "role": "Consumer",
+    "journey": "Complete nonmedical skin appearance analysis",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-008",
+    "role": "Consumer",
+    "journey": "Save Style Passport",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-009",
+    "role": "Consumer",
+    "journey": "Generate makeup looks",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-010",
+    "role": "Consumer",
+    "journey": "Generate hairstyles",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-011",
+    "role": "Consumer",
+    "journey": "Use virtual try-on",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-012",
+    "role": "Consumer",
+    "journey": "Use AI Personal Stylist",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-013",
+    "role": "Consumer",
+    "journey": "Upload Digital Wardrobe items",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-014",
+    "role": "Consumer",
+    "journey": "Generate outfits",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-015",
+    "role": "Consumer",
+    "journey": "Search using a photograph",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-016",
+    "role": "Consumer",
+    "journey": "Recreate a look from a screenshot",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-017",
+    "role": "Consumer",
+    "journey": "Find matching products",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-018",
+    "role": "Consumer",
+    "journey": "Add products to cart",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-019",
+    "role": "Consumer",
+    "journey": "Complete test checkout",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-020",
+    "role": "Consumer",
+    "journey": "View orders",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-021",
+    "role": "Consumer",
+    "journey": "Request refund",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-022",
+    "role": "Consumer",
+    "journey": "Book a beauty professional",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-023",
+    "role": "Consumer",
+    "journey": "Save and share looks",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-024",
+    "role": "Consumer",
+    "journey": "Delete personal data",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-025",
+    "role": "Merchant",
+    "journey": "Register",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-026",
+    "role": "Merchant",
+    "journey": "Complete onboarding",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-027",
+    "role": "Merchant",
+    "journey": "Create storefront",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-028",
+    "role": "Merchant",
+    "journey": "Upload product",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-029",
+    "role": "Merchant",
+    "journey": "Use AI Snap & List",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-030",
+    "role": "Merchant",
+    "journey": "Review AI-generated product details",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-031",
+    "role": "Merchant",
+    "journey": "Set variants and inventory",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-032",
+    "role": "Merchant",
+    "journey": "Receive test order",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-033",
+    "role": "Merchant",
+    "journey": "Update fulfillment",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-034",
+    "role": "Merchant",
+    "journey": "Process refund",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-035",
+    "role": "Merchant",
+    "journey": "Review settlement records",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-036",
+    "role": "Merchant",
+    "journey": "Verify merchant data isolation",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-037",
+    "role": "Beauty Professional",
+    "journey": "Create professional profile",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-038",
+    "role": "Beauty Professional",
+    "journey": "Add services",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-039",
+    "role": "Beauty Professional",
+    "journey": "Configure availability",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-040",
+    "role": "Beauty Professional",
+    "journey": "Receive booking",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-041",
+    "role": "Beauty Professional",
+    "journey": "Confirm or reject booking",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-042",
+    "role": "Beauty Professional",
+    "journey": "Reschedule",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-043",
+    "role": "Beauty Professional",
+    "journey": "Cancel",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-044",
+    "role": "Beauty Professional",
+    "journey": "Review completed bookings",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-045",
+    "role": "Creator / Influencer",
+    "journey": "Activate creator profile",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-046",
+    "role": "Creator / Influencer",
+    "journey": "Connect supported social accounts",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-047",
+    "role": "Creator / Influencer",
+    "journey": "Disconnect social accounts",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-048",
+    "role": "Creator / Influencer",
+    "journey": "Create shoppable looks",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-049",
+    "role": "Creator / Influencer",
+    "journey": "Attach merchant products",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-050",
+    "role": "Creator / Influencer",
+    "journey": "Generate tracked links",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-051",
+    "role": "Creator / Influencer",
+    "journey": "Apply for brand campaigns",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-052",
+    "role": "Creator / Influencer",
+    "journey": "View attribution",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-053",
+    "role": "Creator / Influencer",
+    "journey": "View eligible earnings",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-054",
+    "role": "Advertiser",
+    "journey": "Create campaign",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-055",
+    "role": "Advertiser",
+    "journey": "Select placement and geography",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-056",
+    "role": "Advertiser",
+    "journey": "Configure budget",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-057",
+    "role": "Advertiser",
+    "journey": "Submit for review",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-058",
+    "role": "Advertiser",
+    "journey": "Verify sponsored labeling",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-059",
+    "role": "Advertiser",
+    "journey": "Review campaign analytics",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-060",
+    "role": "Administrator",
+    "journey": "Sign in securely",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-061",
+    "role": "Administrator",
+    "journey": "View dashboard",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-062",
+    "role": "Administrator",
+    "journey": "Manage users",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-063",
+    "role": "Administrator",
+    "journey": "Approve merchants",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-064",
+    "role": "Administrator",
+    "journey": "Moderate listings",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-065",
+    "role": "Administrator",
+    "journey": "Review orders",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-066",
+    "role": "Administrator",
+    "journey": "Manage refunds and disputes",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-067",
+    "role": "Administrator",
+    "journey": "Review creator campaigns",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-068",
+    "role": "Administrator",
+    "journey": "Manage advertising",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-069",
+    "role": "Administrator",
+    "journey": "Review AI usage",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-070",
+    "role": "Administrator",
+    "journey": "View audit logs",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  },
+  {
+    "id": "JQA-071",
+    "role": "Administrator",
+    "journey": "Verify role restrictions",
+    "status": "BLOCKED",
+    "expected": "Complete the actual deployed role journey with permissions, service and persistence proof",
+    "actual": "No qualified live role/session/provider/transaction acceptance. See feature matrix for missing code as well as credentials.",
+    "deployed_sha": "ff62f6403e9b44202792bf033bdea0e57587c217",
+    "evidence": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311"
+  }
+]

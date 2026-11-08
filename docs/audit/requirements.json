@@ -4,14 +4,17 @@
     "auth": {
       "group": "Identity & onboarding",
       "module": "Authentication and user identity",
-      "web": "/login; /auth/callback; /profile; /security",
+      "web": "/login; /auth/callback; /profile; /security; /register; /business/login; /business/register; /admin/login",
       "native": "NativeAccount; useNativeAccount",
       "files": [
         "apps/web/components/PasswordlessSignIn.tsx",
         "apps/web/components/AccountSecurity.tsx",
         "packages/auth/core.ts",
         "apps/mobile/auth/NativeAccount.tsx",
-        "apps/mobile/auth/use-native-account.ts"
+        "apps/mobile/auth/use-native-account.ts",
+        "apps/web/components/AccountRoutes.tsx",
+        "apps/web/components/WorkspaceAccess.tsx",
+        "apps/web/lib/workspace-access.ts"
       ],
       "api": "Supabase Auth signInWithOtp/verifyOtp/signInWithOAuth/linkIdentity; Edge /v1/me/profile",
       "tables": "profiles; app_user; device_auth_preferences; notification_preferences",
@@ -19,11 +22,14 @@
       "tests": [
         "tests/test_passwordless_accounts.py",
         "tests/auth/contracts.cjs",
-        "tests/auth/native-gate.cjs"
+        "tests/auth/native-gate.cjs",
+        "tests/workspace/access.cjs",
+        "tests/workspace/production.cjs",
+        "tests/test_hosted_api.py"
       ],
       "provider": "Supabase Auth; Twilio; Google; Apple; Facebook",
       "secrets": "NEXT_PUBLIC_SUPABASE_ANON_KEY; EXPO_PUBLIC_SUPABASE_ANON_KEY; TWILIO_ACCOUNT_SID; TWILIO_AUTH_TOKEN; provider client IDs/secrets configured in Supabase Auth",
-      "note": "Auth UI and lifecycle code exist; production phone/social providers disabled; current Auth callback origins still reference glamit.beauty."
+      "note": "Auth UI and lifecycle code exist; production phone/social providers disabled; current Auth callback origins still reference glamit.beauty. Private-entry/organization/staff gates are a local candidate; actual deployed Auth and role journeys remain blocked. See docs/qa."
     },
     "analysis": {
       "group": "AI Beauty Analysis",

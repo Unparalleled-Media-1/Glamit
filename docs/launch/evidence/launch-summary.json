@@ -735,5 +735,112 @@
       "skipped": 0
     },
     "ci_receipt": "railway-ci-receipt.json"
-  }
+  },
+  "qa_release_gates": [
+    {
+      "id": "G1",
+      "name": "Complete feature inventory",
+      "status": "PASS",
+      "evidence": "docs/audit/GLAM_BEAUTY_MASTER_FEATURE_MATRIX.csv",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G2",
+      "name": "Complete actionable-control testing",
+      "status": "BLOCKED",
+      "evidence": "COMPLETE_CONTROL_INVENTORY.csv",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G3",
+      "name": "Critical consumer journeys",
+      "status": "BLOCKED",
+      "evidence": "ROLE_JOURNEY_RESULTS.md",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G4",
+      "name": "Merchant and professional journeys",
+      "status": "BLOCKED",
+      "evidence": "ROLE_JOURNEY_RESULTS.md",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G5",
+      "name": "Creator and advertiser journeys",
+      "status": "BLOCKED",
+      "evidence": "ROLE_JOURNEY_RESULTS.md",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G6",
+      "name": "AI provider integration",
+      "status": "BLOCKED",
+      "evidence": "AI_INTEGRATION_RESULTS.md",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G7",
+      "name": "Authentication and session security",
+      "status": "BLOCKED",
+      "evidence": "ROLE_JOURNEY_RESULTS.md",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G8",
+      "name": "Supabase and access control",
+      "status": "FAIL",
+      "evidence": "SUPABASE_SECURITY_RESULTS.md",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G9",
+      "name": "Stripe financial correctness",
+      "status": "BLOCKED",
+      "evidence": "STRIPE_FINANCIAL_RESULTS.md",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G10",
+      "name": "Railway deployment and API health",
+      "status": "FAIL",
+      "evidence": "RAILWAY_DEPLOYMENT_RESULTS.md",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G11",
+      "name": "Native mobile device testing",
+      "status": "BLOCKED",
+      "evidence": "MOBILE_DEVICE_RESULTS.md",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G12",
+      "name": "Performance monitoring and recovery",
+      "status": "BLOCKED",
+      "evidence": "PERFORMANCE_RELIABILITY_RESULTS.md",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G13",
+      "name": "Legal privacy support and operations",
+      "status": "BLOCKED",
+      "evidence": "docs/audit/MISSING_FEATURE_IMPLEMENTATION_PLAN.md",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G14",
+      "name": "Pilot user acceptance",
+      "status": "NOT TESTED",
+      "evidence": "No controlled pilot performed",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    },
+    {
+      "id": "G15",
+      "name": "Final owner approval",
+      "status": "BLOCKED",
+      "evidence": "No final launch approval received",
+      "tested_commit": "b9f0843dd22e98f9f0028904a5c753b373688740"
+    }
+  ]
 }

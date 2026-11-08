@@ -1,3 +1,7 @@
+## 8 November — private workspace entry candidate and functional QA
+
+Business and staff routes now use private entry gates with business login/registration, safe return routing, approved-organization selection and server-scoped staff modules. Organization registration cannot grant verified capabilities or staff access. Local evidence: 268 PostgreSQL tests, 12 conditional UI checks, 11 actual guest-route checks and 4 isolated review-layout groups passed. Actual provider authentication and deployed correction remain unverified. The [fourteen QA deliverables](qa/PUBLIC_LAUNCH_GO_NO_GO.md) retain NO-GO; fifteen new QA gates supplement the existing twelve-gate release lock. No public deployment, database migration or financial mutation.
+
 ## 8 November — product-completeness audit and P0 candidate
 
 140 atomic requirements across all27 requested modules are mapped in [the feature audit](audit/GLAM_BEAUTY_FEATURE_COVERAGE_REPORT.md):82 partial,28 missing,19 placeholders,6 credential-blocked,2 platform-blocked,2 broken,1 untested,0 fully verified. Fresh read-only production check remains0013/41 RLS-enabled tables/0 buckets; phone/social disabled; Stripe live key is blocked from mutations. Actual externalCI now observes merged default ff62f64,78 route responses200,live200/ready503; critical journeys0/31. A fail-closed public-key check for production web Docker builds is locally repaired/tested; runtime configuration and PR28 photo deployment remain unresolved. No agent production deployment, schema mutation, live payment or scope reduction.

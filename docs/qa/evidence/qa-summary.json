@@ -1,0 +1,33 @@
+{
+  "observed_at": "2026-11-08T07:06:31.851503+00:00",
+  "source_routes": 43,
+  "source_declarations": 467,
+  "runtime_occurrences": 2244,
+  "inventory_rows_including_explicit_assertions": 2734,
+  "status_counts": {
+    "NOT TESTED": 2132,
+    "BLOCKED": 253,
+    "PASS": 349
+  },
+  "safe_action_observations": {
+    "PASSED": 1356,
+    "PASSED_IDEMPOTENT": 33,
+    "SKIPPED": 434,
+    "BLOCKED": 64,
+    "NO_OBSERVED_CHANGE": 18
+  },
+  "qualified_actionable_control_passes": 338,
+  "local_guest_assertion_passes": 11,
+  "local_transport_assertions": 12,
+  "latest_role_journeys": 71,
+  "qualified_role_journeys_passed": 0,
+  "legacy_critical_aggregates_passed": 0,
+  "legacy_critical_aggregates_required": 31,
+  "qa_gate_counts": {
+    "PASS": 1,
+    "BLOCKED": 11,
+    "FAIL": 2,
+    "NOT TESTED": 1
+  },
+  "decision": "NO-GO"
+}
