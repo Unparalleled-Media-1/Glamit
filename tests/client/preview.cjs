@@ -73,9 +73,9 @@ const assert = require("node:assert/strict");
     let app = page.frameLocator("iframe");
     await page.waitForFunction(() => {
       const img = document.querySelector("iframe")?.contentDocument?.querySelector(".brand-artwork");
-      return img?.complete && img.naturalWidth === 1300;
+      return img?.complete && img.naturalWidth === 2172;
     });
-    assert.match(await app.locator(".brand-artwork").first().getAttribute("src"), /^\/Glamit\/brand\/wordmark\.png/);
+    assert.match(await app.locator(".brand-artwork").first().getAttribute("src"), /^\/Glamit\/brand\/wordmark-dark\.png/);
     await app
       .getByRole("button", { name: "Analyze My Face", exact: true })
       .waitFor();
