@@ -1,0 +1,5 @@
+
+> glam-ai@0.1.0 test:golden
+> node scripts/check-golden-visuals.cjs --verify-candidates
+
+PASS 28 golden capture dimensions. Sixth-pattern approval and native-device validation remain pending.

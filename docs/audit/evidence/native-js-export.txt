@@ -1,0 +1,29 @@
+
+> @glam/mobile@0.1.0 export
+> node ../../scripts/check-browser-auth-config.mjs && expo export --platform android --platform ios
+
+Public auth build configuration checked; no privileged key was accepted.
+Expo Autolinking module resolution enabled
+Starting Metro Bundler
+
+iOS Bundled 5109ms apps/mobile/index.ts (782 modules)
+Android Bundled 9116ms apps/mobile/index.ts (829 modules)
+
+› Assets (6):
+assets/beauty-editorial.webp (214KB)
+assets/beauty-products.webp (121KB)
+assets/editorial.webp (211KB)
+auth/assets/apple.png (1.8KB)
+auth/assets/facebook.png (871B)
+auth/assets/google.png (3.5KB)
+
+› ios bundles (1):
+_expo/static/js/ios/index-cc5c5d6c62ebe62b10e68c9c60a041ad.hbc (2.9MB)
+
+› android bundles (1):
+_expo/static/js/android/index-5767a18bee67cd88e4412a521fb87a0e.hbc (2.9MB)
+
+› Files (1):
+metadata.json (1KB)
+
+Exported: dist

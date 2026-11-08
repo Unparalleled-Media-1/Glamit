@@ -1,0 +1,61 @@
+{
+  "observed_at": "2026-11-08T05:46:30.998Z",
+  "origin": "https://glamit-web-production.up.railway.app",
+  "run_url": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42452036311",
+  "status": "ANONYMOUS_ROUTE_PROBE_ONLY",
+  "deployed_commit": "ff62f6403e9b44202792bf033bdea0e57587c217",
+  "health": [
+    {
+      "endpoint": "/api/health/live",
+      "http_status": 200,
+      "content_type": "application/json",
+      "status": "alive",
+      "service": "web",
+      "commit": "ff62f6403e9b44202792bf033bdea0e57587c217",
+      "scope": null
+    },
+    {
+      "endpoint": "/api/health/ready",
+      "http_status": 503,
+      "content_type": "application/json",
+      "status": "not_configured",
+      "service": "web",
+      "commit": "ff62f6403e9b44202792bf033bdea0e57587c217",
+      "scope": "web_build_configuration"
+    },
+    {
+      "endpoint": "/health/live",
+      "http_status": 404,
+      "content_type": "text/html; charset=utf-8",
+      "status": null,
+      "service": null,
+      "commit": null,
+      "scope": null
+    },
+    {
+      "endpoint": "/health/ready",
+      "http_status": 404,
+      "content_type": "text/html; charset=utf-8",
+      "status": null,
+      "service": null,
+      "commit": null,
+      "scope": null
+    }
+  ],
+  "counts": {
+    "http_routes_checked": 78,
+    "http_routes_success": 78,
+    "blocked_routes": 0,
+    "critical_passed": 0,
+    "critical_blocked": 31
+  },
+  "branding": {
+    "icons": [],
+    "images": [],
+    "reference_artwork_available": false
+  },
+  "assets": [],
+  "errors": [],
+  "mutations_blocked": 0,
+  "decision": "NO-GO"
+}

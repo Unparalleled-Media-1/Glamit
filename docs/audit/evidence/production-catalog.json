@@ -1,0 +1,3768 @@
+{
+  "observed_at": "2026-11-08T05:39:18.354727+00:00",
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "scope": "Read-only system catalog metadata, no application user records",
+  "target_status": "ACTIVE_HEALTHY",
+  "tables": [
+    {
+      "schemaname": "public",
+      "tablename": "account_eligibility",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "alembic_version",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "api_request_counters",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "app_user",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "audit_event",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "catalog_ai_job",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "catalog_approval",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "catalog_listing",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "catalog_media",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "catalog_projection",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "catalog_revision",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "consent_event",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "credit_account",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "credit_journal",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "credit_posting",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "credit_reservation",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "device_auth_preferences",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "idempotency_record",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "look",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "look_revision",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "market_policy_version",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "merchant_profiles",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "notification_preferences",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "organization_members",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "organizations",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "outbox_event",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "personal_routine",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "policy_document",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "product_categories",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "product_variants",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "products",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "professional_profiles",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "profiles",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "saved_requirement",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "staff_grant",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "style_passports",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "user_preferences",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "workspace_capability",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "workspace_draft",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "workspace_invitation",
+      "rowsecurity": true
+    },
+    {
+      "schemaname": "public",
+      "tablename": "workspace_role",
+      "rowsecurity": true
+    }
+  ],
+  "columns": [
+    {
+      "table_name": "account_eligibility",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "account_eligibility",
+      "column_name": "age_band",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "account_eligibility",
+      "column_name": "evidence_ref",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "account_eligibility",
+      "column_name": "expires_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "alembic_version",
+      "column_name": "version_num",
+      "data_type": "character varying",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "api_request_counters",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "api_request_counters",
+      "column_name": "window_start",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "api_request_counters",
+      "column_name": "request_count",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "app_user",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "app_user",
+      "column_name": "issuer",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "app_user",
+      "column_name": "subject",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "app_user",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "audit_event",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "audit_event",
+      "column_name": "actor_id",
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "audit_event",
+      "column_name": "action",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "audit_event",
+      "column_name": "resource_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "audit_event",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "listing_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "base_revision",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "requester_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "provider",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "features",
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "state",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "lease_token",
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "lease_until",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "attempts",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "suggestions",
+      "data_type": "jsonb",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_approval",
+      "column_name": "listing_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_approval",
+      "column_name": "revision",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_approval",
+      "column_name": "decision",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_approval",
+      "column_name": "identifier_verified",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_approval",
+      "column_name": "reviewer_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_approval",
+      "column_name": "reviewed_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "organization_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "source_sku",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "workspace",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "current_revision",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "published_revision",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "state",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_listing",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "listing_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "organization_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "original_id",
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "storage_ref",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "sha256",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "rights_confirmed",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "validated",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_media",
+      "column_name": "generated_advertising",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_projection",
+      "column_name": "listing_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_projection",
+      "column_name": "revision",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_projection",
+      "column_name": "indexed_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_revision",
+      "column_name": "listing_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_revision",
+      "column_name": "revision",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_revision",
+      "column_name": "facts",
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_revision",
+      "column_name": "merchant_reviewed",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_revision",
+      "column_name": "author_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "catalog_revision",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "consent_event",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "consent_event",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "consent_event",
+      "column_name": "policy_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "consent_event",
+      "column_name": "action",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "consent_event",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "consent_event",
+      "column_name": "sequence",
+      "data_type": "bigint",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_account",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "operation",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "business_key",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "units",
+      "data_type": "bigint",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "sealed",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_journal",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_posting",
+      "column_name": "id",
+      "data_type": "bigint",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_posting",
+      "column_name": "journal_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_posting",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "credit_posting",
+      "column_name": "bucket",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_posting",
+      "column_name": "units",
+      "data_type": "bigint",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_reservation",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_reservation",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_reservation",
+      "column_name": "business_key",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_reservation",
+      "column_name": "units",
+      "data_type": "bigint",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_reservation",
+      "column_name": "state",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "credit_reservation",
+      "column_name": "expires_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "device_auth_preferences",
+      "column_name": "profile_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "device_auth_preferences",
+      "column_name": "device_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "device_auth_preferences",
+      "column_name": "platform",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "device_auth_preferences",
+      "column_name": "biometric_enabled",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "device_auth_preferences",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "idempotency_record",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "idempotency_record",
+      "column_name": "route",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "idempotency_record",
+      "column_name": "key",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "idempotency_record",
+      "column_name": "request_hash",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "idempotency_record",
+      "column_name": "response",
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "idempotency_record",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look",
+      "column_name": "owner_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look",
+      "column_name": "title",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look",
+      "column_name": "source_type",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look_revision",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look_revision",
+      "column_name": "look_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look_revision",
+      "column_name": "revision_no",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look_revision",
+      "column_name": "components",
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look_revision",
+      "column_name": "content_hash",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "look_revision",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "sequence",
+      "data_type": "bigint",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "country",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "currency",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "capability",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "enabled",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "expires_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "policy_ref",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "market_policy_version",
+      "column_name": "reviewed_by",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "column_name": "organization_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "column_name": "display_name",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "column_name": "verification_status",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notification_preferences",
+      "column_name": "profile_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notification_preferences",
+      "column_name": "sms_updates",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notification_preferences",
+      "column_name": "email_updates",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notification_preferences",
+      "column_name": "push_updates",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notification_preferences",
+      "column_name": "revision",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "notification_preferences",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "organization_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "role",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "active",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organization_members",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organizations",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organizations",
+      "column_name": "name",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organizations",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organizations",
+      "column_name": "suspended",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "organizations",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "event_type",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "aggregate_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "payload",
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "available_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "claimed_until",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "attempts",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "outbox_event",
+      "column_name": "delivered_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "personal_routine",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "personal_routine",
+      "column_name": "owner_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "personal_routine",
+      "column_name": "title",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "personal_routine",
+      "column_name": "steps",
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "personal_routine",
+      "column_name": "revision",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "personal_routine",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "policy_document",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "policy_document",
+      "column_name": "purpose",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "policy_document",
+      "column_name": "version",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "policy_document",
+      "column_name": "content",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "policy_document",
+      "column_name": "approved_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "parent_id",
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "slug",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "name",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "is_active",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_categories",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "product_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "organization_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "sku",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "shade",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "size_label",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "currency",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "unit_price_minor",
+      "data_type": "bigint",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "stock_on_hand",
+      "data_type": "integer",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "verified_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "product_variants",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "products",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "products",
+      "column_name": "organization_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "products",
+      "column_name": "merchant_profile_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "products",
+      "column_name": "category_id",
+      "data_type": "uuid",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "products",
+      "column_name": "title",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "products",
+      "column_name": "description",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "products",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "products",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "organization_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "display_name",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "bio",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "verification_status",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "professional_profiles",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "profiles",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "profiles",
+      "column_name": "display_name",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "profiles",
+      "column_name": "avatar_object_key",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "profiles",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "profiles",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "saved_requirement",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "saved_requirement",
+      "column_name": "owner_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "saved_requirement",
+      "column_name": "requirement",
+      "data_type": "jsonb",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "saved_requirement",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "staff_grant",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "staff_grant",
+      "column_name": "role",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "staff_grant",
+      "column_name": "active",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "staff_grant",
+      "column_name": "expires_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "staff_grant",
+      "column_name": "evidence_ref",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "profile_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "preferred_colors",
+      "data_type": "ARRAY",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "preferred_styles",
+      "data_type": "ARRAY",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "coverage_preference",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "sizing_notes",
+      "data_type": "text",
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "revision",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "style_passports",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "profile_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "locale",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "currency",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "measurement_system",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "personalization_opt_in",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "marketing_opt_in",
+      "data_type": "boolean",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "user_preferences",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_capability",
+      "column_name": "organization_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_capability",
+      "column_name": "workspace",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_capability",
+      "column_name": "status",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_capability",
+      "column_name": "expires_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "organization_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "workspace",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "author_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "title",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "notes",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "revision",
+      "data_type": "integer",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_draft",
+      "column_name": "updated_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "organization_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "workspace",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "recipient_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "invited_by",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "role",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "state",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "column_name": "expires_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_role",
+      "column_name": "organization_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_role",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_role",
+      "column_name": "workspace",
+      "data_type": "text",
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "workspace_role",
+      "column_name": "role",
+      "data_type": "text",
+      "is_nullable": "NO"
+    }
+  ],
+  "indexes": [
+    {
+      "tablename": "account_eligibility",
+      "indexname": "account_eligibility_pkey",
+      "indexdef": "CREATE UNIQUE INDEX account_eligibility_pkey ON public.account_eligibility USING btree (user_id)"
+    },
+    {
+      "tablename": "alembic_version",
+      "indexname": "alembic_version_pkc",
+      "indexdef": "CREATE UNIQUE INDEX alembic_version_pkc ON public.alembic_version USING btree (version_num)"
+    },
+    {
+      "tablename": "api_request_counters",
+      "indexname": "api_request_counters_expiry",
+      "indexdef": "CREATE INDEX api_request_counters_expiry ON public.api_request_counters USING btree (window_start)"
+    },
+    {
+      "tablename": "api_request_counters",
+      "indexname": "api_request_counters_pkey",
+      "indexdef": "CREATE UNIQUE INDEX api_request_counters_pkey ON public.api_request_counters USING btree (user_id, window_start)"
+    },
+    {
+      "tablename": "app_user",
+      "indexname": "app_user_issuer_subject_key",
+      "indexdef": "CREATE UNIQUE INDEX app_user_issuer_subject_key ON public.app_user USING btree (issuer, subject)"
+    },
+    {
+      "tablename": "app_user",
+      "indexname": "app_user_pkey",
+      "indexdef": "CREATE UNIQUE INDEX app_user_pkey ON public.app_user USING btree (id)"
+    },
+    {
+      "tablename": "audit_event",
+      "indexname": "audit_event_pkey",
+      "indexdef": "CREATE UNIQUE INDEX audit_event_pkey ON public.audit_event USING btree (id)"
+    },
+    {
+      "tablename": "catalog_ai_job",
+      "indexname": "catalog_ai_job_pkey",
+      "indexdef": "CREATE UNIQUE INDEX catalog_ai_job_pkey ON public.catalog_ai_job USING btree (id)"
+    },
+    {
+      "tablename": "catalog_approval",
+      "indexname": "catalog_approval_pkey",
+      "indexdef": "CREATE UNIQUE INDEX catalog_approval_pkey ON public.catalog_approval USING btree (listing_id, revision)"
+    },
+    {
+      "tablename": "catalog_listing",
+      "indexname": "catalog_listing_id_organization_id_key",
+      "indexdef": "CREATE UNIQUE INDEX catalog_listing_id_organization_id_key ON public.catalog_listing USING btree (id, organization_id)"
+    },
+    {
+      "tablename": "catalog_listing",
+      "indexname": "catalog_listing_org",
+      "indexdef": "CREATE INDEX catalog_listing_org ON public.catalog_listing USING btree (organization_id)"
+    },
+    {
+      "tablename": "catalog_listing",
+      "indexname": "catalog_listing_organization_id_workspace_source_sku_key",
+      "indexdef": "CREATE UNIQUE INDEX catalog_listing_organization_id_workspace_source_sku_key ON public.catalog_listing USING btree (organization_id, workspace, source_sku)"
+    },
+    {
+      "tablename": "catalog_listing",
+      "indexname": "catalog_listing_pkey",
+      "indexdef": "CREATE UNIQUE INDEX catalog_listing_pkey ON public.catalog_listing USING btree (id)"
+    },
+    {
+      "tablename": "catalog_media",
+      "indexname": "catalog_media_pkey",
+      "indexdef": "CREATE UNIQUE INDEX catalog_media_pkey ON public.catalog_media USING btree (id)"
+    },
+    {
+      "tablename": "catalog_projection",
+      "indexname": "catalog_projection_pkey",
+      "indexdef": "CREATE UNIQUE INDEX catalog_projection_pkey ON public.catalog_projection USING btree (listing_id)"
+    },
+    {
+      "tablename": "catalog_revision",
+      "indexname": "catalog_revision_pkey",
+      "indexdef": "CREATE UNIQUE INDEX catalog_revision_pkey ON public.catalog_revision USING btree (listing_id, revision)"
+    },
+    {
+      "tablename": "consent_event",
+      "indexname": "consent_event_pkey",
+      "indexdef": "CREATE UNIQUE INDEX consent_event_pkey ON public.consent_event USING btree (id)"
+    },
+    {
+      "tablename": "consent_event",
+      "indexname": "consent_event_sequence_key",
+      "indexdef": "CREATE UNIQUE INDEX consent_event_sequence_key ON public.consent_event USING btree (sequence)"
+    },
+    {
+      "tablename": "consent_event",
+      "indexname": "consent_latest",
+      "indexdef": "CREATE INDEX consent_latest ON public.consent_event USING btree (user_id, policy_id, sequence DESC)"
+    },
+    {
+      "tablename": "credit_account",
+      "indexname": "credit_account_pkey",
+      "indexdef": "CREATE UNIQUE INDEX credit_account_pkey ON public.credit_account USING btree (user_id)"
+    },
+    {
+      "tablename": "credit_journal",
+      "indexname": "credit_journal_pkey",
+      "indexdef": "CREATE UNIQUE INDEX credit_journal_pkey ON public.credit_journal USING btree (id)"
+    },
+    {
+      "tablename": "credit_journal",
+      "indexname": "credit_journal_user_id_operation_business_key_key",
+      "indexdef": "CREATE UNIQUE INDEX credit_journal_user_id_operation_business_key_key ON public.credit_journal USING btree (user_id, operation, business_key)"
+    },
+    {
+      "tablename": "credit_posting",
+      "indexname": "credit_balance",
+      "indexdef": "CREATE INDEX credit_balance ON public.credit_posting USING btree (user_id, bucket)"
+    },
+    {
+      "tablename": "credit_posting",
+      "indexname": "credit_posting_pkey",
+      "indexdef": "CREATE UNIQUE INDEX credit_posting_pkey ON public.credit_posting USING btree (id)"
+    },
+    {
+      "tablename": "credit_reservation",
+      "indexname": "credit_reservation_id_user_id_key",
+      "indexdef": "CREATE UNIQUE INDEX credit_reservation_id_user_id_key ON public.credit_reservation USING btree (id, user_id)"
+    },
+    {
+      "tablename": "credit_reservation",
+      "indexname": "credit_reservation_pkey",
+      "indexdef": "CREATE UNIQUE INDEX credit_reservation_pkey ON public.credit_reservation USING btree (id)"
+    },
+    {
+      "tablename": "credit_reservation",
+      "indexname": "credit_reservation_user_id_business_key_key",
+      "indexdef": "CREATE UNIQUE INDEX credit_reservation_user_id_business_key_key ON public.credit_reservation USING btree (user_id, business_key)"
+    },
+    {
+      "tablename": "device_auth_preferences",
+      "indexname": "device_auth_preferences_pkey",
+      "indexdef": "CREATE UNIQUE INDEX device_auth_preferences_pkey ON public.device_auth_preferences USING btree (profile_id, device_id)"
+    },
+    {
+      "tablename": "idempotency_record",
+      "indexname": "idempotency_record_pkey",
+      "indexdef": "CREATE UNIQUE INDEX idempotency_record_pkey ON public.idempotency_record USING btree (user_id, route, key)"
+    },
+    {
+      "tablename": "look",
+      "indexname": "look_owner",
+      "indexdef": "CREATE INDEX look_owner ON public.look USING btree (owner_id, created_at)"
+    },
+    {
+      "tablename": "look",
+      "indexname": "look_pkey",
+      "indexdef": "CREATE UNIQUE INDEX look_pkey ON public.look USING btree (id)"
+    },
+    {
+      "tablename": "look_revision",
+      "indexname": "look_revision_look_id_revision_no_key",
+      "indexdef": "CREATE UNIQUE INDEX look_revision_look_id_revision_no_key ON public.look_revision USING btree (look_id, revision_no)"
+    },
+    {
+      "tablename": "look_revision",
+      "indexname": "look_revision_pkey",
+      "indexdef": "CREATE UNIQUE INDEX look_revision_pkey ON public.look_revision USING btree (id)"
+    },
+    {
+      "tablename": "market_policy_version",
+      "indexname": "market_policy_latest",
+      "indexdef": "CREATE INDEX market_policy_latest ON public.market_policy_version USING btree (country, currency, sequence DESC)"
+    },
+    {
+      "tablename": "market_policy_version",
+      "indexname": "market_policy_version_pkey",
+      "indexdef": "CREATE UNIQUE INDEX market_policy_version_pkey ON public.market_policy_version USING btree (id)"
+    },
+    {
+      "tablename": "market_policy_version",
+      "indexname": "market_policy_version_sequence_key",
+      "indexdef": "CREATE UNIQUE INDEX market_policy_version_sequence_key ON public.market_policy_version USING btree (sequence)"
+    },
+    {
+      "tablename": "merchant_profiles",
+      "indexname": "merchant_profiles_id_organization_id_key",
+      "indexdef": "CREATE UNIQUE INDEX merchant_profiles_id_organization_id_key ON public.merchant_profiles USING btree (id, organization_id)"
+    },
+    {
+      "tablename": "merchant_profiles",
+      "indexname": "merchant_profiles_organization_id_key",
+      "indexdef": "CREATE UNIQUE INDEX merchant_profiles_organization_id_key ON public.merchant_profiles USING btree (organization_id)"
+    },
+    {
+      "tablename": "merchant_profiles",
+      "indexname": "merchant_profiles_pkey",
+      "indexdef": "CREATE UNIQUE INDEX merchant_profiles_pkey ON public.merchant_profiles USING btree (id)"
+    },
+    {
+      "tablename": "notification_preferences",
+      "indexname": "notification_preferences_pkey",
+      "indexdef": "CREATE UNIQUE INDEX notification_preferences_pkey ON public.notification_preferences USING btree (profile_id)"
+    },
+    {
+      "tablename": "organization_members",
+      "indexname": "organization_member_pkey",
+      "indexdef": "CREATE UNIQUE INDEX organization_member_pkey ON public.organization_members USING btree (organization_id, user_id)"
+    },
+    {
+      "tablename": "organization_members",
+      "indexname": "organization_members_id_key",
+      "indexdef": "CREATE UNIQUE INDEX organization_members_id_key ON public.organization_members USING btree (id)"
+    },
+    {
+      "tablename": "organization_members",
+      "indexname": "organization_members_user",
+      "indexdef": "CREATE INDEX organization_members_user ON public.organization_members USING btree (user_id, organization_id)"
+    },
+    {
+      "tablename": "organizations",
+      "indexname": "organization_pkey",
+      "indexdef": "CREATE UNIQUE INDEX organization_pkey ON public.organizations USING btree (id)"
+    },
+    {
+      "tablename": "outbox_event",
+      "indexname": "outbox_event_pkey",
+      "indexdef": "CREATE UNIQUE INDEX outbox_event_pkey ON public.outbox_event USING btree (id)"
+    },
+    {
+      "tablename": "outbox_event",
+      "indexname": "outbox_pending",
+      "indexdef": "CREATE INDEX outbox_pending ON public.outbox_event USING btree (available_at) WHERE (delivered_at IS NULL)"
+    },
+    {
+      "tablename": "personal_routine",
+      "indexname": "personal_routine_owner",
+      "indexdef": "CREATE INDEX personal_routine_owner ON public.personal_routine USING btree (owner_id)"
+    },
+    {
+      "tablename": "personal_routine",
+      "indexname": "personal_routine_pkey",
+      "indexdef": "CREATE UNIQUE INDEX personal_routine_pkey ON public.personal_routine USING btree (id)"
+    },
+    {
+      "tablename": "policy_document",
+      "indexname": "policy_document_pkey",
+      "indexdef": "CREATE UNIQUE INDEX policy_document_pkey ON public.policy_document USING btree (id)"
+    },
+    {
+      "tablename": "policy_document",
+      "indexname": "policy_document_purpose_version_key",
+      "indexdef": "CREATE UNIQUE INDEX policy_document_purpose_version_key ON public.policy_document USING btree (purpose, version)"
+    },
+    {
+      "tablename": "product_categories",
+      "indexname": "product_categories_parent",
+      "indexdef": "CREATE INDEX product_categories_parent ON public.product_categories USING btree (parent_id)"
+    },
+    {
+      "tablename": "product_categories",
+      "indexname": "product_categories_pkey",
+      "indexdef": "CREATE UNIQUE INDEX product_categories_pkey ON public.product_categories USING btree (id)"
+    },
+    {
+      "tablename": "product_categories",
+      "indexname": "product_categories_slug_key",
+      "indexdef": "CREATE UNIQUE INDEX product_categories_slug_key ON public.product_categories USING btree (slug)"
+    },
+    {
+      "tablename": "product_variants",
+      "indexname": "product_variants_org",
+      "indexdef": "CREATE INDEX product_variants_org ON public.product_variants USING btree (organization_id)"
+    },
+    {
+      "tablename": "product_variants",
+      "indexname": "product_variants_organization_id_sku_key",
+      "indexdef": "CREATE UNIQUE INDEX product_variants_organization_id_sku_key ON public.product_variants USING btree (organization_id, sku)"
+    },
+    {
+      "tablename": "product_variants",
+      "indexname": "product_variants_pkey",
+      "indexdef": "CREATE UNIQUE INDEX product_variants_pkey ON public.product_variants USING btree (id)"
+    },
+    {
+      "tablename": "product_variants",
+      "indexname": "product_variants_product",
+      "indexdef": "CREATE INDEX product_variants_product ON public.product_variants USING btree (product_id, organization_id)"
+    },
+    {
+      "tablename": "products",
+      "indexname": "products_category",
+      "indexdef": "CREATE INDEX products_category ON public.products USING btree (category_id)"
+    },
+    {
+      "tablename": "products",
+      "indexname": "products_id_organization_id_key",
+      "indexdef": "CREATE UNIQUE INDEX products_id_organization_id_key ON public.products USING btree (id, organization_id)"
+    },
+    {
+      "tablename": "products",
+      "indexname": "products_merchant",
+      "indexdef": "CREATE INDEX products_merchant ON public.products USING btree (merchant_profile_id)"
+    },
+    {
+      "tablename": "products",
+      "indexname": "products_org",
+      "indexdef": "CREATE INDEX products_org ON public.products USING btree (organization_id)"
+    },
+    {
+      "tablename": "products",
+      "indexname": "products_pkey",
+      "indexdef": "CREATE UNIQUE INDEX products_pkey ON public.products USING btree (id)"
+    },
+    {
+      "tablename": "professional_profiles",
+      "indexname": "professional_profiles_organization_id_key",
+      "indexdef": "CREATE UNIQUE INDEX professional_profiles_organization_id_key ON public.professional_profiles USING btree (organization_id)"
+    },
+    {
+      "tablename": "professional_profiles",
+      "indexname": "professional_profiles_pkey",
+      "indexdef": "CREATE UNIQUE INDEX professional_profiles_pkey ON public.professional_profiles USING btree (id)"
+    },
+    {
+      "tablename": "profiles",
+      "indexname": "profiles_pkey",
+      "indexdef": "CREATE UNIQUE INDEX profiles_pkey ON public.profiles USING btree (id)"
+    },
+    {
+      "tablename": "saved_requirement",
+      "indexname": "saved_requirement_owner",
+      "indexdef": "CREATE INDEX saved_requirement_owner ON public.saved_requirement USING btree (owner_id)"
+    },
+    {
+      "tablename": "saved_requirement",
+      "indexname": "saved_requirement_pkey",
+      "indexdef": "CREATE UNIQUE INDEX saved_requirement_pkey ON public.saved_requirement USING btree (id)"
+    },
+    {
+      "tablename": "staff_grant",
+      "indexname": "staff_grant_pkey",
+      "indexdef": "CREATE UNIQUE INDEX staff_grant_pkey ON public.staff_grant USING btree (user_id, role)"
+    },
+    {
+      "tablename": "style_passports",
+      "indexname": "style_passports_pkey",
+      "indexdef": "CREATE UNIQUE INDEX style_passports_pkey ON public.style_passports USING btree (id)"
+    },
+    {
+      "tablename": "style_passports",
+      "indexname": "style_passports_profile_id_key",
+      "indexdef": "CREATE UNIQUE INDEX style_passports_profile_id_key ON public.style_passports USING btree (profile_id)"
+    },
+    {
+      "tablename": "user_preferences",
+      "indexname": "user_preferences_pkey",
+      "indexdef": "CREATE UNIQUE INDEX user_preferences_pkey ON public.user_preferences USING btree (id)"
+    },
+    {
+      "tablename": "user_preferences",
+      "indexname": "user_preferences_profile_id_key",
+      "indexdef": "CREATE UNIQUE INDEX user_preferences_profile_id_key ON public.user_preferences USING btree (profile_id)"
+    },
+    {
+      "tablename": "workspace_capability",
+      "indexname": "workspace_capability_pkey",
+      "indexdef": "CREATE UNIQUE INDEX workspace_capability_pkey ON public.workspace_capability USING btree (organization_id, workspace)"
+    },
+    {
+      "tablename": "workspace_draft",
+      "indexname": "workspace_draft_pkey",
+      "indexdef": "CREATE UNIQUE INDEX workspace_draft_pkey ON public.workspace_draft USING btree (id)"
+    },
+    {
+      "tablename": "workspace_draft",
+      "indexname": "workspace_draft_tenant",
+      "indexdef": "CREATE INDEX workspace_draft_tenant ON public.workspace_draft USING btree (organization_id, workspace)"
+    },
+    {
+      "tablename": "workspace_invitation",
+      "indexname": "workspace_invitation_pkey",
+      "indexdef": "CREATE UNIQUE INDEX workspace_invitation_pkey ON public.workspace_invitation USING btree (id)"
+    },
+    {
+      "tablename": "workspace_role",
+      "indexname": "workspace_role_pkey",
+      "indexdef": "CREATE UNIQUE INDEX workspace_role_pkey ON public.workspace_role USING btree (organization_id, user_id, workspace, role)"
+    }
+  ],
+  "constraints": [
+    {
+      "table_name": "account_eligibility",
+      "conname": "account_eligibility_age_band_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((age_band = ANY (ARRAY['eligible_adult'::text, 'restricted'::text])))"
+    },
+    {
+      "table_name": "account_eligibility",
+      "conname": "account_eligibility_evidence_ref_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(evidence_ref) >= 1) AND (length(evidence_ref) <= 160)))"
+    },
+    {
+      "table_name": "account_eligibility",
+      "conname": "account_eligibility_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (user_id)"
+    },
+    {
+      "table_name": "account_eligibility",
+      "conname": "account_eligibility_user_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (user_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "alembic_version",
+      "conname": "alembic_version_pkc",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (version_num)"
+    },
+    {
+      "table_name": "api_request_counters",
+      "conname": "api_request_counters_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (user_id, window_start)"
+    },
+    {
+      "table_name": "api_request_counters",
+      "conname": "api_request_counters_request_count_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((request_count > 0))"
+    },
+    {
+      "table_name": "api_request_counters",
+      "conname": "api_request_counters_user_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "app_user",
+      "conname": "app_user_issuer_subject_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (issuer, subject)"
+    },
+    {
+      "table_name": "app_user",
+      "conname": "app_user_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "audit_event",
+      "conname": "audit_event_actor_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (actor_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "audit_event",
+      "conname": "audit_event_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "conname": "catalog_ai_job_listing_id_base_revision_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (listing_id, base_revision) REFERENCES catalog_revision(listing_id, revision) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "conname": "catalog_ai_job_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "conname": "catalog_ai_job_requester_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (requester_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "conname": "catalog_ai_job_state_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((state = ANY (ARRAY['queued'::text, 'processing'::text, 'review_ready'::text, 'failed'::text, 'cancelled'::text])))"
+    },
+    {
+      "table_name": "catalog_approval",
+      "conname": "catalog_approval_decision_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((decision = ANY (ARRAY['approved'::text, 'rejected'::text])))"
+    },
+    {
+      "table_name": "catalog_approval",
+      "conname": "catalog_approval_listing_id_revision_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (listing_id, revision) REFERENCES catalog_revision(listing_id, revision) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "catalog_approval",
+      "conname": "catalog_approval_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (listing_id, revision)"
+    },
+    {
+      "table_name": "catalog_approval",
+      "conname": "catalog_approval_reviewer_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (reviewer_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((state = 'published'::text) = (published_revision IS NOT NULL)))"
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_current_revision_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((current_revision > 0))"
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_id_current_revision_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (id, current_revision) REFERENCES catalog_revision(listing_id, revision) DEFERRABLE INITIALLY DEFERRED"
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_id_organization_id_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (id, organization_id)"
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_id_published_revision_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (id, published_revision) REFERENCES catalog_revision(listing_id, revision) DEFERRABLE INITIALLY DEFERRED"
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (organization_id) REFERENCES organizations(id)"
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_organization_id_workspace_source_sku_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (organization_id, workspace, source_sku)"
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_state_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((state = ANY (ARRAY['draft'::text, 'published'::text, 'withdrawn'::text])))"
+    },
+    {
+      "table_name": "catalog_listing",
+      "conname": "catalog_listing_workspace_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((workspace = ANY (ARRAY['merchant'::text, 'professional'::text])))"
+    },
+    {
+      "table_name": "catalog_media",
+      "conname": "catalog_media_listing_id_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (listing_id, organization_id) REFERENCES catalog_listing(id, organization_id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "catalog_media",
+      "conname": "catalog_media_original_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (original_id) REFERENCES catalog_media(id)"
+    },
+    {
+      "table_name": "catalog_media",
+      "conname": "catalog_media_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "catalog_media",
+      "conname": "catalog_media_sha256_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((sha256 ~ '^[a-f0-9]{64}$'::text))"
+    },
+    {
+      "table_name": "catalog_media",
+      "conname": "catalog_media_storage_ref_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(storage_ref) >= 1) AND (length(storage_ref) <= 300)))"
+    },
+    {
+      "table_name": "catalog_projection",
+      "conname": "catalog_projection_listing_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (listing_id) REFERENCES catalog_listing(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "catalog_projection",
+      "conname": "catalog_projection_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (listing_id)"
+    },
+    {
+      "table_name": "catalog_revision",
+      "conname": "catalog_revision_author_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (author_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "catalog_revision",
+      "conname": "catalog_revision_facts_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((jsonb_typeof(facts) = 'object'::text))"
+    },
+    {
+      "table_name": "catalog_revision",
+      "conname": "catalog_revision_listing_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (listing_id) REFERENCES catalog_listing(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "catalog_revision",
+      "conname": "catalog_revision_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (listing_id, revision)"
+    },
+    {
+      "table_name": "catalog_revision",
+      "conname": "catalog_revision_revision_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((revision > 0))"
+    },
+    {
+      "table_name": "consent_event",
+      "conname": "consent_event_action_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((action = ANY (ARRAY['granted'::text, 'withdrawn'::text])))"
+    },
+    {
+      "table_name": "consent_event",
+      "conname": "consent_event_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "consent_event",
+      "conname": "consent_event_policy_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (policy_id) REFERENCES policy_document(id)"
+    },
+    {
+      "table_name": "consent_event",
+      "conname": "consent_event_sequence_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (sequence)"
+    },
+    {
+      "table_name": "consent_event",
+      "conname": "consent_event_user_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (user_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "credit_account",
+      "conname": "credit_account_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (user_id)"
+    },
+    {
+      "table_name": "credit_account",
+      "conname": "credit_account_user_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (user_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "credit_journal",
+      "conname": "balanced_credit_journal",
+      "contype": "t",
+      "convalidated": true,
+      "definition": "TRIGGER DEFERRABLE INITIALLY DEFERRED"
+    },
+    {
+      "table_name": "credit_journal",
+      "conname": "credit_journal_operation_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((operation = ANY (ARRAY['grant'::text, 'reserve'::text, 'capture'::text, 'release'::text])))"
+    },
+    {
+      "table_name": "credit_journal",
+      "conname": "credit_journal_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "credit_journal",
+      "conname": "credit_journal_units_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((units > 0))"
+    },
+    {
+      "table_name": "credit_journal",
+      "conname": "credit_journal_user_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (user_id) REFERENCES credit_account(user_id)"
+    },
+    {
+      "table_name": "credit_journal",
+      "conname": "credit_journal_user_id_operation_business_key_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (user_id, operation, business_key)"
+    },
+    {
+      "table_name": "credit_posting",
+      "conname": "credit_posting_bucket_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((bucket = ANY (ARRAY['available'::text, 'held'::text, 'issuance'::text, 'consumed'::text])))"
+    },
+    {
+      "table_name": "credit_posting",
+      "conname": "credit_posting_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((((user_id IS NOT NULL) AND (bucket = ANY (ARRAY['available'::text, 'held'::text]))) OR ((user_id IS NULL) AND (bucket = ANY (ARRAY['issuance'::text, 'consumed'::text])))))"
+    },
+    {
+      "table_name": "credit_posting",
+      "conname": "credit_posting_journal_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (journal_id) REFERENCES credit_journal(id)"
+    },
+    {
+      "table_name": "credit_posting",
+      "conname": "credit_posting_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "credit_posting",
+      "conname": "credit_posting_units_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((units <> 0))"
+    },
+    {
+      "table_name": "credit_posting",
+      "conname": "credit_posting_user_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (user_id) REFERENCES credit_account(user_id)"
+    },
+    {
+      "table_name": "credit_reservation",
+      "conname": "credit_reservation_id_user_id_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (id, user_id)"
+    },
+    {
+      "table_name": "credit_reservation",
+      "conname": "credit_reservation_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "credit_reservation",
+      "conname": "credit_reservation_state_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((state = ANY (ARRAY['held'::text, 'captured'::text, 'released'::text])))"
+    },
+    {
+      "table_name": "credit_reservation",
+      "conname": "credit_reservation_units_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((units > 0))"
+    },
+    {
+      "table_name": "credit_reservation",
+      "conname": "credit_reservation_user_id_business_key_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (user_id, business_key)"
+    },
+    {
+      "table_name": "credit_reservation",
+      "conname": "credit_reservation_user_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (user_id) REFERENCES credit_account(user_id)"
+    },
+    {
+      "table_name": "device_auth_preferences",
+      "conname": "device_auth_preferences_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (profile_id, device_id)"
+    },
+    {
+      "table_name": "device_auth_preferences",
+      "conname": "device_auth_preferences_platform_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((platform = ANY (ARRAY['ios'::text, 'android'::text])))"
+    },
+    {
+      "table_name": "device_auth_preferences",
+      "conname": "device_auth_preferences_profile_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (profile_id) REFERENCES profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "idempotency_record",
+      "conname": "idempotency_record_key_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(key) >= 1) AND (length(key) <= 160)))"
+    },
+    {
+      "table_name": "idempotency_record",
+      "conname": "idempotency_record_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (user_id, route, key)"
+    },
+    {
+      "table_name": "idempotency_record",
+      "conname": "idempotency_record_user_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (user_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "look",
+      "conname": "look_owner_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (owner_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "look",
+      "conname": "look_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "look",
+      "conname": "look_source_type_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((source_type = 'user_authored'::text))"
+    },
+    {
+      "table_name": "look",
+      "conname": "look_title_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(title) >= 1) AND (length(title) <= 160)))"
+    },
+    {
+      "table_name": "look_revision",
+      "conname": "look_revision_components_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((jsonb_typeof(components) = 'array'::text))"
+    },
+    {
+      "table_name": "look_revision",
+      "conname": "look_revision_content_hash_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((length(content_hash) = 64))"
+    },
+    {
+      "table_name": "look_revision",
+      "conname": "look_revision_look_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (look_id) REFERENCES look(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "look_revision",
+      "conname": "look_revision_look_id_revision_no_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (look_id, revision_no)"
+    },
+    {
+      "table_name": "look_revision",
+      "conname": "look_revision_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "look_revision",
+      "conname": "look_revision_revision_no_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((revision_no > 0))"
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_capability_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((capability = 'catalog_discovery'::text))"
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_country_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((country ~ '^[A-Z]{2}$'::text))"
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_currency_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((currency = ANY (ARRAY['ZAR'::text, 'USD'::text, 'EUR'::text, 'GBP'::text])))"
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_policy_ref_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(policy_ref) >= 1) AND (length(policy_ref) <= 160)))"
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_reviewed_by_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (reviewed_by) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "market_policy_version",
+      "conname": "market_policy_version_sequence_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (sequence)"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "conname": "merchant_profiles_display_name_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(display_name) >= 1) AND (length(display_name) <= 160)))"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "conname": "merchant_profiles_id_organization_id_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (id, organization_id)"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "conname": "merchant_profiles_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (organization_id) REFERENCES organizations(id)"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "conname": "merchant_profiles_organization_id_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (organization_id)"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "conname": "merchant_profiles_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "merchant_profiles",
+      "conname": "merchant_profiles_verification_status_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((verification_status = ANY (ARRAY['pending'::text, 'verified'::text, 'rejected'::text, 'suspended'::text])))"
+    },
+    {
+      "table_name": "notification_preferences",
+      "conname": "notification_preferences_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (profile_id)"
+    },
+    {
+      "table_name": "notification_preferences",
+      "conname": "notification_preferences_profile_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (profile_id) REFERENCES profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "notification_preferences",
+      "conname": "notification_preferences_revision_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((revision > 0))"
+    },
+    {
+      "table_name": "organization_members",
+      "conname": "organization_member_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (organization_id) REFERENCES organizations(id)"
+    },
+    {
+      "table_name": "organization_members",
+      "conname": "organization_member_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (organization_id, user_id)"
+    },
+    {
+      "table_name": "organization_members",
+      "conname": "organization_member_role_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((role = ANY (ARRAY['owner'::text, 'catalog_manager'::text, 'analyst'::text])))"
+    },
+    {
+      "table_name": "organization_members",
+      "conname": "organization_member_user_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (user_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "organization_members",
+      "conname": "organization_members_id_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (id)"
+    },
+    {
+      "table_name": "organizations",
+      "conname": "organization_name_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(name) >= 1) AND (length(name) <= 160)))"
+    },
+    {
+      "table_name": "organizations",
+      "conname": "organization_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "outbox_event",
+      "conname": "outbox_event_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "personal_routine",
+      "conname": "personal_routine_owner_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (owner_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "personal_routine",
+      "conname": "personal_routine_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "personal_routine",
+      "conname": "personal_routine_revision_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((revision > 0))"
+    },
+    {
+      "table_name": "personal_routine",
+      "conname": "personal_routine_steps_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((jsonb_typeof(steps) = 'array'::text))"
+    },
+    {
+      "table_name": "personal_routine",
+      "conname": "personal_routine_title_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(title) >= 1) AND (length(title) <= 160)))"
+    },
+    {
+      "table_name": "policy_document",
+      "conname": "policy_document_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "policy_document",
+      "conname": "policy_document_purpose_version_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (purpose, version)"
+    },
+    {
+      "table_name": "product_categories",
+      "conname": "product_categories_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((parent_id IS NULL) OR (parent_id <> id)))"
+    },
+    {
+      "table_name": "product_categories",
+      "conname": "product_categories_name_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(name) >= 1) AND (length(name) <= 160)))"
+    },
+    {
+      "table_name": "product_categories",
+      "conname": "product_categories_parent_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (parent_id) REFERENCES product_categories(id)"
+    },
+    {
+      "table_name": "product_categories",
+      "conname": "product_categories_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "product_categories",
+      "conname": "product_categories_slug_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'::text))"
+    },
+    {
+      "table_name": "product_categories",
+      "conname": "product_categories_slug_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (slug)"
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((unit_price_minor IS NULL) = (currency IS NULL)))"
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_currency_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((currency IS NULL) OR (currency ~ '^[A-Z]{3}$'::text)))"
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (organization_id) REFERENCES organizations(id)"
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_organization_id_sku_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (organization_id, sku)"
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_product_id_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (product_id, organization_id) REFERENCES products(id, organization_id)"
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_shade_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((shade IS NULL) OR (length(shade) <= 160)))"
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_size_label_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((size_label IS NULL) OR (length(size_label) <= 100)))"
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_sku_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(sku) >= 1) AND (length(sku) <= 160)))"
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_stock_on_hand_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((stock_on_hand IS NULL) OR (stock_on_hand >= 0)))"
+    },
+    {
+      "table_name": "product_variants",
+      "conname": "product_variants_unit_price_minor_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((unit_price_minor IS NULL) OR (unit_price_minor >= 0)))"
+    },
+    {
+      "table_name": "products",
+      "conname": "products_category_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (category_id) REFERENCES product_categories(id)"
+    },
+    {
+      "table_name": "products",
+      "conname": "products_description_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((description IS NULL) OR (length(description) <= 10000)))"
+    },
+    {
+      "table_name": "products",
+      "conname": "products_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (id) REFERENCES catalog_listing(id)"
+    },
+    {
+      "table_name": "products",
+      "conname": "products_id_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (id, organization_id) REFERENCES catalog_listing(id, organization_id)"
+    },
+    {
+      "table_name": "products",
+      "conname": "products_id_organization_id_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (id, organization_id)"
+    },
+    {
+      "table_name": "products",
+      "conname": "products_merchant_profile_id_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (merchant_profile_id, organization_id) REFERENCES merchant_profiles(id, organization_id)"
+    },
+    {
+      "table_name": "products",
+      "conname": "products_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (organization_id) REFERENCES organizations(id)"
+    },
+    {
+      "table_name": "products",
+      "conname": "products_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "products",
+      "conname": "products_title_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(title) >= 1) AND (length(title) <= 240)))"
+    },
+    {
+      "table_name": "professional_profiles",
+      "conname": "professional_profiles_bio_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((bio IS NULL) OR (length(bio) <= 4000)))"
+    },
+    {
+      "table_name": "professional_profiles",
+      "conname": "professional_profiles_display_name_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(display_name) >= 1) AND (length(display_name) <= 160)))"
+    },
+    {
+      "table_name": "professional_profiles",
+      "conname": "professional_profiles_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (organization_id) REFERENCES organizations(id)"
+    },
+    {
+      "table_name": "professional_profiles",
+      "conname": "professional_profiles_organization_id_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (organization_id)"
+    },
+    {
+      "table_name": "professional_profiles",
+      "conname": "professional_profiles_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "professional_profiles",
+      "conname": "professional_profiles_verification_status_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((verification_status = ANY (ARRAY['pending'::text, 'verified'::text, 'rejected'::text, 'suspended'::text])))"
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_avatar_object_key_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((avatar_object_key IS NULL) OR (length(avatar_object_key) <= 512)))"
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_display_name_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((display_name IS NULL) OR ((length(display_name) >= 1) AND (length(display_name) <= 160))))"
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "profiles",
+      "conname": "profiles_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "saved_requirement",
+      "conname": "saved_requirement_owner_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (owner_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "saved_requirement",
+      "conname": "saved_requirement_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "staff_grant",
+      "conname": "staff_grant_evidence_ref_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(evidence_ref) >= 1) AND (length(evidence_ref) <= 160)))"
+    },
+    {
+      "table_name": "staff_grant",
+      "conname": "staff_grant_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (user_id, role)"
+    },
+    {
+      "table_name": "staff_grant",
+      "conname": "staff_grant_role_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((role = ANY (ARRAY['super_admin'::text, 'support'::text, 'finance'::text, 'ai_operations'::text, 'content_moderation'::text, 'trust_safety'::text, 'compliance'::text, 'regional_operations'::text, 'analyst'::text])))"
+    },
+    {
+      "table_name": "staff_grant",
+      "conname": "staff_grant_user_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (user_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((cardinality(preferred_colors) <= 30) AND (cardinality(preferred_styles) <= 30)))"
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_coverage_preference_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((coverage_preference IS NULL) OR (length(coverage_preference) <= 240)))"
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_profile_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (profile_id) REFERENCES profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_profile_id_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (profile_id)"
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_revision_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((revision > 0))"
+    },
+    {
+      "table_name": "style_passports",
+      "conname": "style_passports_sizing_notes_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((sizing_notes IS NULL) OR (length(sizing_notes) <= 1000)))"
+    },
+    {
+      "table_name": "user_preferences",
+      "conname": "user_preferences_currency_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((currency ~ '^[A-Z]{3}$'::text))"
+    },
+    {
+      "table_name": "user_preferences",
+      "conname": "user_preferences_locale_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(locale) >= 2) AND (length(locale) <= 35)))"
+    },
+    {
+      "table_name": "user_preferences",
+      "conname": "user_preferences_measurement_system_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((measurement_system = ANY (ARRAY['metric'::text, 'imperial'::text])))"
+    },
+    {
+      "table_name": "user_preferences",
+      "conname": "user_preferences_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "user_preferences",
+      "conname": "user_preferences_profile_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (profile_id) REFERENCES profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "table_name": "user_preferences",
+      "conname": "user_preferences_profile_id_key",
+      "contype": "u",
+      "convalidated": true,
+      "definition": "UNIQUE (profile_id)"
+    },
+    {
+      "table_name": "workspace_capability",
+      "conname": "workspace_capability_organization_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (organization_id) REFERENCES organizations(id)"
+    },
+    {
+      "table_name": "workspace_capability",
+      "conname": "workspace_capability_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (organization_id, workspace)"
+    },
+    {
+      "table_name": "workspace_capability",
+      "conname": "workspace_capability_status_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((status = ANY (ARRAY['pending'::text, 'verified'::text, 'suspended'::text])))"
+    },
+    {
+      "table_name": "workspace_capability",
+      "conname": "workspace_capability_workspace_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((workspace = ANY (ARRAY['merchant'::text, 'advertiser'::text, 'professional'::text, 'creator'::text, 'affiliate'::text])))"
+    },
+    {
+      "table_name": "workspace_draft",
+      "conname": "workspace_draft_author_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (author_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "workspace_draft",
+      "conname": "workspace_draft_notes_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((length(notes) <= 4000))"
+    },
+    {
+      "table_name": "workspace_draft",
+      "conname": "workspace_draft_organization_id_workspace_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (organization_id, workspace) REFERENCES workspace_capability(organization_id, workspace)"
+    },
+    {
+      "table_name": "workspace_draft",
+      "conname": "workspace_draft_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "workspace_draft",
+      "conname": "workspace_draft_revision_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((revision > 0))"
+    },
+    {
+      "table_name": "workspace_draft",
+      "conname": "workspace_draft_title_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK (((length(title) >= 1) AND (length(title) <= 160)))"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "conname": "workspace_invitation_invited_by_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (invited_by) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "conname": "workspace_invitation_organization_id_workspace_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (organization_id, workspace) REFERENCES workspace_capability(organization_id, workspace)"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "conname": "workspace_invitation_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "conname": "workspace_invitation_recipient_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (recipient_id) REFERENCES app_user(id)"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "conname": "workspace_invitation_role_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((role = ANY (ARRAY['catalog_manager'::text, 'campaign_manager'::text, 'booking_manager'::text, 'creator'::text, 'affiliate'::text, 'analyst'::text])))"
+    },
+    {
+      "table_name": "workspace_invitation",
+      "conname": "workspace_invitation_state_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((state = ANY (ARRAY['pending'::text, 'accepted'::text, 'revoked'::text])))"
+    },
+    {
+      "table_name": "workspace_role",
+      "conname": "workspace_role_organization_id_user_id_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (organization_id, user_id) REFERENCES organization_members(organization_id, user_id)"
+    },
+    {
+      "table_name": "workspace_role",
+      "conname": "workspace_role_organization_id_workspace_fkey",
+      "contype": "f",
+      "convalidated": true,
+      "definition": "FOREIGN KEY (organization_id, workspace) REFERENCES workspace_capability(organization_id, workspace)"
+    },
+    {
+      "table_name": "workspace_role",
+      "conname": "workspace_role_pkey",
+      "contype": "p",
+      "convalidated": true,
+      "definition": "PRIMARY KEY (organization_id, user_id, workspace, role)"
+    },
+    {
+      "table_name": "workspace_role",
+      "conname": "workspace_role_role_check",
+      "contype": "c",
+      "convalidated": true,
+      "definition": "CHECK ((role = ANY (ARRAY['admin'::text, 'catalog_manager'::text, 'campaign_manager'::text, 'booking_manager'::text, 'creator'::text, 'affiliate'::text, 'analyst'::text, 'finance_manager'::text])))"
+    }
+  ],
+  "policies": [
+    {
+      "schemaname": "public",
+      "tablename": "api_request_counters",
+      "policyname": "counters_server_only",
+      "roles": "{anon,authenticated}",
+      "cmd": "ALL",
+      "qual": "false",
+      "with_check": "false"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "device_auth_preferences",
+      "policyname": "device_preferences_self",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "(profile_id = glam_private.active_profile_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "merchant_profiles",
+      "policyname": "merchants_read_org",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "glam_private.is_org_member(organization_id)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "notification_preferences",
+      "policyname": "notifications_self",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "(profile_id = glam_private.active_profile_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "organization_members",
+      "policyname": "members_read_org",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "glam_private.is_org_member(organization_id)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "organizations",
+      "policyname": "organizations_read_member",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "glam_private.is_org_member(id)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "product_categories",
+      "policyname": "categories_read_active",
+      "roles": "{anon,authenticated}",
+      "cmd": "SELECT",
+      "qual": "is_active",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "product_variants",
+      "policyname": "variants_read_org",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "glam_private.is_org_member(organization_id)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "products",
+      "policyname": "products_read_org",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "glam_private.is_org_member(organization_id)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "professional_profiles",
+      "policyname": "professionals_read_org",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "glam_private.is_org_member(organization_id)",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "profiles",
+      "policyname": "profiles_insert_self",
+      "roles": "{authenticated}",
+      "cmd": "INSERT",
+      "qual": null,
+      "with_check": "(id = glam_private.active_profile_id())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "profiles",
+      "policyname": "profiles_select_self",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "(id = glam_private.active_profile_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "profiles",
+      "policyname": "profiles_update_self",
+      "roles": "{authenticated}",
+      "cmd": "UPDATE",
+      "qual": "(id = glam_private.active_profile_id())",
+      "with_check": "(id = glam_private.active_profile_id())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "style_passports",
+      "policyname": "passports_delete_self",
+      "roles": "{authenticated}",
+      "cmd": "DELETE",
+      "qual": "(profile_id = glam_private.active_profile_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "style_passports",
+      "policyname": "passports_insert_self",
+      "roles": "{authenticated}",
+      "cmd": "INSERT",
+      "qual": null,
+      "with_check": "(profile_id = glam_private.active_profile_id())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "style_passports",
+      "policyname": "passports_select_self",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "(profile_id = glam_private.active_profile_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "style_passports",
+      "policyname": "passports_update_self",
+      "roles": "{authenticated}",
+      "cmd": "UPDATE",
+      "qual": "(profile_id = glam_private.active_profile_id())",
+      "with_check": "(profile_id = glam_private.active_profile_id())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "user_preferences",
+      "policyname": "preferences_delete_self",
+      "roles": "{authenticated}",
+      "cmd": "DELETE",
+      "qual": "(profile_id = glam_private.active_profile_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "user_preferences",
+      "policyname": "preferences_insert_self",
+      "roles": "{authenticated}",
+      "cmd": "INSERT",
+      "qual": null,
+      "with_check": "(profile_id = glam_private.active_profile_id())"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "user_preferences",
+      "policyname": "preferences_select_self",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "(profile_id = glam_private.active_profile_id())",
+      "with_check": null
+    },
+    {
+      "schemaname": "public",
+      "tablename": "user_preferences",
+      "policyname": "preferences_update_self",
+      "roles": "{authenticated}",
+      "cmd": "UPDATE",
+      "qual": "(profile_id = glam_private.active_profile_id())",
+      "with_check": "(profile_id = glam_private.active_profile_id())"
+    }
+  ],
+  "grants": [],
+  "functions": [
+    {
+      "schema": "glam_private",
+      "proname": "active_profile_id",
+      "arguments": "",
+      "security_definer": true,
+      "configuration": [
+        "search_path=\"\""
+      ]
+    },
+    {
+      "schema": "glam_private",
+      "proname": "bootstrap_identity",
+      "arguments": "",
+      "security_definer": true,
+      "configuration": [
+        "search_path=\"\""
+      ]
+    },
+    {
+      "schema": "glam_private",
+      "proname": "canonical_json",
+      "arguments": "v jsonb",
+      "security_definer": false,
+      "configuration": [
+        "search_path=\"\""
+      ]
+    },
+    {
+      "schema": "glam_private",
+      "proname": "current_app_user_id",
+      "arguments": "",
+      "security_definer": true,
+      "configuration": [
+        "search_path=\"\""
+      ]
+    },
+    {
+      "schema": "glam_private",
+      "proname": "glam_core_api_v1",
+      "arguments": "p_method text, p_path text, p_body jsonb, p_key text",
+      "security_definer": true,
+      "configuration": [
+        "search_path=\"\""
+      ]
+    },
+    {
+      "schema": "glam_private",
+      "proname": "glam_routines_api_v1",
+      "arguments": "p_method text, p_path text, p_body jsonb, p_key text",
+      "security_definer": true,
+      "configuration": [
+        "search_path=\"\""
+      ]
+    },
+    {
+      "schema": "glam_private",
+      "proname": "is_org_member",
+      "arguments": "org_id uuid",
+      "security_definer": true,
+      "configuration": [
+        "search_path=\"\""
+      ]
+    },
+    {
+      "schema": "glam_private",
+      "proname": "touch_updated_at",
+      "arguments": "",
+      "security_definer": false,
+      "configuration": [
+        "search_path=\"\""
+      ]
+    },
+    {
+      "schema": "public",
+      "proname": "enforce_credit_balance",
+      "arguments": "",
+      "security_definer": false,
+      "configuration": null
+    },
+    {
+      "schema": "public",
+      "proname": "glam_api_gate",
+      "arguments": "",
+      "security_definer": true,
+      "configuration": [
+        "search_path=\"\""
+      ]
+    },
+    {
+      "schema": "public",
+      "proname": "glam_api_v1",
+      "arguments": "p_method text, p_path text, p_body jsonb, p_key text",
+      "security_definer": true,
+      "configuration": [
+        "search_path=\"\""
+      ]
+    },
+    {
+      "schema": "public",
+      "proname": "glam_backend_status",
+      "arguments": "",
+      "security_definer": true,
+      "configuration": [
+        "search_path=\"\""
+      ]
+    },
+    {
+      "schema": "public",
+      "proname": "protect_journal",
+      "arguments": "",
+      "security_definer": false,
+      "configuration": null
+    },
+    {
+      "schema": "public",
+      "proname": "protect_posting_insert",
+      "arguments": "",
+      "security_definer": false,
+      "configuration": null
+    },
+    {
+      "schema": "public",
+      "proname": "reject_mutation",
+      "arguments": "",
+      "security_definer": false,
+      "configuration": null
+    },
+    {
+      "schema": "public",
+      "proname": "rls_auto_enable",
+      "arguments": "",
+      "security_definer": true,
+      "configuration": [
+        "search_path=pg_catalog"
+      ]
+    }
+  ],
+  "revision": [
+    {
+      "version_num": "0013_passwordless_accounts"
+    }
+  ]
+}
