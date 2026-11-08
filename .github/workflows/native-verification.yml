@@ -35,8 +35,9 @@ jobs:
       - run: npm run test:native-photo
       - name: Generate actual iOS native project
         run: npm exec --workspace=@glam/mobile -- expo prebuild --platform ios --no-install
-      - name: Install CocoaPods dependencies
-        run: python3 scripts/mobile/run_logged.py artifacts/native-ios/pods.txt pod install --project-directory=apps/mobile/ios
+      - name: Install CocoaPods dependencies from the native project root
+        working-directory: apps/mobile/ios
+        run: python3 ../../../scripts/mobile/run_logged.py ../../../artifacts/native-ios/pods.txt pod install
       - name: Compile and boot unsigned simulator application
         shell: bash
         run: |
@@ -54,7 +55,7 @@ jobs:
           xcodebuild -list -json -workspace "$workspace" > artifacts/native-ios/workspace.json
           scheme=$(jq -r '.workspace.schemes[0] // empty' artifacts/native-ios/workspace.json)
           test -n "$scheme"
-          xcodebuild -workspace "$workspace" -scheme "$scheme" -configuration Release -sdk iphonesimulator -destination "platform=iOS Simulator,id=$simulator_id" -derivedDataPath /tmp/glam-native-ios CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=YES 2>&1 | tee artifacts/native-ios/build.txt
+          python3 scripts/mobile/run_logged.py artifacts/native-ios/build.txt xcodebuild -workspace "$workspace" -scheme "$scheme" -configuration Release -sdk iphonesimulator -destination "platform=iOS Simulator,id=$simulator_id" -derivedDataPath /tmp/glam-native-ios CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=YES
           app_bundle=$(find /tmp/glam-native-ios/Build/Products/Release-iphonesimulator -maxdepth 1 -name '*.app' -print -quit)
           test -n "$app_bundle"
           xcrun simctl install "$simulator_id" "$app_bundle"
@@ -102,7 +103,7 @@ jobs:
           set -euo pipefail
           mkdir -p artifacts/native-android
           cd apps/mobile/android
-          ./gradlew :app:assembleRelease -PreactNativeArchitectures=x86_64 --no-daemon --max-workers=2 2>&1 | tee ../../../artifacts/native-android/build.txt
+          python3 ../../../scripts/mobile/run_logged.py ../../../artifacts/native-android/build.txt ./gradlew :app:assembleRelease -PreactNativeArchitectures=x86_64 --no-daemon --max-workers=2
       - name: Enable emulator KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -120,7 +121,7 @@ jobs:
             adb shell am start -W -n com.glambeauty.localverification/.MainActivity
             sleep 10
             adb shell pidof com.glambeauty.localverification
-            python scripts/mobile/android_startup_smoke.py
+            python3 scripts/mobile/run_logged.py artifacts/native-android/navigation.txt python3 scripts/mobile/android_startup_smoke.py
             adb logcat -d -t 300 ReactNativeJS:E AndroidRuntime:E '*:S' > artifacts/native-android/runtime.txt
             git rev-parse HEAD > artifacts/native-android/source-sha.txt
       - uses: actions/upload-artifact@v7
