@@ -1,0 +1,32 @@
+
+> @glam/mobile@0.1.0 export
+> node ../../scripts/check-browser-auth-config.mjs && expo export --platform android --platform ios
+
+Public auth build configuration checked; no privileged key was accepted.
+Expo Autolinking module resolution enabled
+Starting Metro Bundler
+
+| (node:208816) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Android Bundled 7029ms apps/mobile/index.ts (831 modules)
+iOS Bundled 12909ms apps/mobile/index.ts (833 modules)
+
+› Assets (7):
+assets/beauty-editorial.webp (214KB)
+assets/beauty-products.webp (121KB)
+assets/brand/wordmark.png (534KB)
+assets/editorial.webp (211KB)
+auth/assets/apple.png (1.8KB)
+auth/assets/facebook.png (871B)
+auth/assets/google.png (3.5KB)
+
+› android bundles (1):
+_expo/static/js/android/index-61edbb11a6a602a843bc1012d5dad821.hbc (2.9MB)
+
+› ios bundles (1):
+_expo/static/js/ios/index-9c948ac5ec269d5cc375cb86693b1377.hbc (2.9MB)
+
+› Files (1):
+metadata.json (1.1KB)
+
+Exported: dist

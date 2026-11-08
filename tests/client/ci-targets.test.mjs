@@ -10,3 +10,5 @@ test("contracts test consumers and API; docs do not redeploy", () => { assert(ta
 test("photo regression changes run the web checks", () => assert.deepEqual(targets(["tests/photo/flow.cjs"]), {web:true,mobile:false,backend:false,edge:false}));
 
 test("Railway config validation changes check both deployment images", () => {const t=targets(["scripts/check-railway-config.mjs"]);assert(t.web && t.backend);});
+
+test("native photo regression changes run mobile checks", () => assert.deepEqual(targets(["tests/mobile/photo-native.cjs"]), {web:false,mobile:true,backend:false,edge:false}));

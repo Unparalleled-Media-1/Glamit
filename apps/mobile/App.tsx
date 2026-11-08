@@ -19,6 +19,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import { randomUUID } from "expo-crypto";
 import { File, Paths } from "expo-file-system";
 import {
   capabilityReasons,
@@ -195,6 +196,9 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
   const marketplace = useMarketplace(connection, journey);
   const photoRef = useRef<Photo | null>(null);
   const [consent, setConsent] = useState(false);
+  const consentRef = useRef(false);
+  const pickerBusy = useRef(false);
+  const ownedCopies = useRef(new Map<string, Photo>());
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -221,18 +225,18 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
     return () => {
       mounted.current = false;
       request.current++;
-      const p = photoRef.current;
-      if (p?.uri.startsWith(Paths.cache.uri)) {
+      consentRef.current = false;
+      for (const p of ownedCopies.current.values()) {
         try {
-          const f = new File(p.uri);
-          if (f.exists) f.delete();
+          deleteCached(p);
         } catch {
-          /* Explicit retry is available during the session. */
+          // No user original is touched. Unresolved cache erasure is not certified.
         }
       }
     };
   }, []);
   const go = (page: Page) => {
+    if (pickerBusy.current) request.current++;
     dispatch({ type: "navigate", page });
     setMessage("");
     setError("");
@@ -240,91 +244,92 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
   };
   function deleteCached(p: Photo | null) {
     if (!p) return;
-    if (!p.uri.startsWith(Paths.cache.uri))
-      throw Error("Only app-owned cached copies may be deleted");
+    const root = Paths.cache.uri.replace(/\/+$/, "") + "/glam-photo-";
+    if (!p.uri.startsWith(root) || !ownedCopies.current.has(p.uri))
+      throw Error("Only this session's app-owned photo copies may be deleted");
     const f = new File(p.uri);
     if (f.exists) f.delete();
+    ownedCopies.current.delete(p.uri);
   }
   function clearPhoto() {
     request.current++;
-    setBusy(false);
-    try {
-      deleteCached(photoRef.current);
-      photoRef.current = null;
-      setPhoto(null);
-      setConsent(false);
-      setDeletionPending(false);
-      return true;
-    } catch {
-      setDeletionPending(true);
-      setError(
-        "The app-owned preview cache could not be deleted. Retry clearing it before choosing another photo.",
-      );
+    consentRef.current = false;
+    setConsent(false);
+    photoRef.current = null;
+    setPhoto(null);
+    let failed = false;
+    for (const p of ownedCopies.current.values()) {
+      try { deleteCached(p); } catch { failed = true; }
+    }
+    setDeletionPending(failed);
+    if (failed) {
+      setError("The app-owned preview cache could not be deleted. Retry clearing it before choosing another photo.");
       return false;
     }
+    setError("");
+    return true;
   }
   async function pick(camera = false) {
-    if (!consent || busy || deletionPending) return;
+    if (!consentRef.current || pickerBusy.current || deletionPending) return;
     const ticket = ++request.current;
+    const current = () => mounted.current && consentRef.current && ticket === request.current;
+    pickerBusy.current = true;
     setBusy(true);
     setError("");
     let candidate: Photo | null = null;
+    let replacementCleanupFailed = false;
     try {
-      const permission = camera
-        ? await ImagePicker.requestCameraPermissionsAsync()
-        : await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (!permission.granted) {
-        setError(
-          "Permission was denied. You can continue without a photo or enable access in device settings.",
-        );
-        return;
+      // Modern iOS/Android system photo pickers grant access only to selected items.
+      // Camera capture still needs its own explicit OS permission.
+      if (camera) {
+        const permission = await ImagePicker.requestCameraPermissionsAsync();
+        if (!current()) return;
+        if (!permission.granted) {
+          setError("Camera permission was denied. Choose a photo instead, continue without one, or enable access in device settings.");
+          return;
+        }
       }
+      if (!current()) return;
       const options: ImagePicker.ImagePickerOptions = {
-        mediaTypes: ["images"],
-        quality: 1,
-        allowsEditing: false,
-        exif: false,
+        mediaTypes: ["images"], quality: 1, allowsEditing: false, exif: false,
       };
       const result = camera
         ? await ImagePicker.launchCameraAsync(options)
         : await ImagePicker.launchImageLibraryAsync(options);
-      if (result.canceled) return;
-      const a = result.assets[0];
-      candidate = {
-        uri: a.uri,
-        width: a.width,
-        height: a.height,
-        bytes: a.fileSize ?? new File(a.uri).size,
+      if (!current() || result.canceled) return;
+      const a = result.assets?.[0];
+      if (!a?.uri) throw Error("No selected image");
+      const source = new File(a.uri);
+      const details = {
+        width: a.width, height: a.height, bytes: a.fileSize ?? source.size,
         name: a.fileName || "Local photo",
       };
-      const issue = photoIssue(candidate);
-      if (issue) {
-        deleteCached(candidate);
-        setError(issue);
-        return;
-      }
-      if (!mounted.current || ticket !== request.current) {
-        deleteCached(candidate);
-        return;
-      }
-      deleteCached(photoRef.current);
+      if (![details.width, details.height, details.bytes].every(n => Number.isFinite(n) && n > 0))
+        throw Error("Invalid image metadata");
+      const issue = photoIssue(details);
+      if (issue) { setError(issue); return; }
+      // Never adopt/delete a user or provider URI. Own a unique cache copy first.
+      const copy = new File(Paths.cache, `glam-photo-${randomUUID()}.jpg`);
+      candidate = { ...details, uri: copy.uri };
+      ownedCopies.current.set(candidate.uri, candidate);
+      source.copy(copy);
+      if (!current()) { deleteCached(candidate); return; }
+      try { deleteCached(photoRef.current); } catch { replacementCleanupFailed = true; throw Error("Previous copy could not be removed"); }
       photoRef.current = candidate;
       setPhoto(candidate);
       go("quality");
     } catch {
+      let cleanupFailed = replacementCleanupFailed;
       if (candidate && candidate !== photoRef.current) {
-        try {
-          deleteCached(candidate);
-        } catch {
-          /* Do not delete user originals. */
-        }
+        try { deleteCached(candidate); } catch { cleanupFailed = true; }
       }
-      if (mounted.current)
-        setError(
-          "Photo selection could not be completed. No photo was uploaded.",
-        );
+      if (mounted.current && cleanupFailed) setDeletionPending(true);
+      if (current()) setError(cleanupFailed
+        ? "The app-owned preview cache could not be deleted. Retry clearing it before choosing another photo."
+        : "Photo selection could not be completed. No photo was uploaded.");
     } finally {
-      if (mounted.current && ticket === request.current) setBusy(false);
+      pickerBusy.current = false;
+      if (mounted.current) setBusy(false);
     }
   }
   const hero = (panel = 0) => (
@@ -495,10 +500,9 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
                 <Switch
                   accessibilityLabel="Allow device-only photo preview"
                   value={consent}
-                  disabled={busy}
                   onValueChange={(v) => {
                     if (!v) clearPhoto();
-                    else setConsent(true);
+                    else { consentRef.current = true; setConsent(true); }
                   }}
                 />
                 <Text style={s.flexText}>
@@ -516,6 +520,9 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
                 disabled={!consent || busy || deletionPending}
                 onPress={() => pick(true)}
               />
+              {deletionPending && (
+                <Button title="Retry clearing private photo" secondary onPress={clearPhoto} />
+              )}
               <Text style={s.fine}>
                 Under 10 MB · at least 480 × 480 pixels · no filters added
               </Text>

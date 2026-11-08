@@ -1,0 +1,11 @@
+{
+  "host_os": "Linux",
+  "xcodebuild_available": false,
+  "android_sdk": "/workspace/glam-tools/android-sdk",
+  "android_emulator_installed": false,
+  "android_system_images_installed": false,
+  "kvm_device_present": false,
+  "native_screenshots_produced": false,
+  "local_verification_identifier": "com.glambeauty.localverification",
+  "store_registration_claimed": false
+}

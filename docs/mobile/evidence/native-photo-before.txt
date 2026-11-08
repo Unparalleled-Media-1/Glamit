@@ -1,0 +1,13 @@
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+AssertionError [ERR_ASSERTION]: ios: stale permission must not launch camera
+
+1 !== 0
+
+    at /workspace/Glamit/tests/mobile/photo-native.cjs:19:233 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
