@@ -26,6 +26,10 @@ const http = require("node:http"),
     },
   });
   const server = http.createServer((req, res) => {
+    if (new URL(req.url, "http://local").pathname === "/brand/wordmark.png") {
+      res.setHeader("Content-Type", "image/png");
+      return res.end(fs.readFileSync("apps/web/public/brand/wordmark.png"));
+    }
     res.setHeader(
       "Content-Type",
       req.url === "/app.js" ? "application/javascript" : "text/html",

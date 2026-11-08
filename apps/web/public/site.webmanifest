@@ -1,0 +1,20 @@
+{
+  "name": "GLAM Beauty",
+  "short_name": "GLAM Beauty",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/brand/favicon.png?v=20261108",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/app-icon.png?v=20261108",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

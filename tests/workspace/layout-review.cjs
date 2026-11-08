@@ -28,6 +28,11 @@ const { build } = require("esbuild"),
   const js = bundle.outputFiles.find((f) => f.path.endsWith(".js")).text,
     css = bundle.outputFiles.find((f) => f.path.endsWith(".css")).text;
   const server = http.createServer((q, r) => {
+    const brandFile = new URL(q.url, "http://local").pathname;
+    if (["/brand/wordmark.png", "/brand/favicon.png", "/brand/app-icon.png"].includes(brandFile)) {
+      r.setHeader("Content-Type", "image/png");
+      return r.end(fs.readFileSync(path.join("apps/web/public", brandFile)));
+    }
     r.setHeader(
       "Content-Type",
       q.url === "/app.js"

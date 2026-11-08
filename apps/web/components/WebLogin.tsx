@@ -1,4 +1,5 @@
 "use client";
+import BrandLogo from "./BrandLogo";
 import { useEffect, useState } from "react";
 import GlamApp from "./GlamApp";
 import PasswordlessSignIn from "./PasswordlessSignIn";
@@ -55,7 +56,7 @@ function Welcome({
     <main className="auth-welcome" tabIndex={-1}>
       <div className="auth-frame">
         <a className="brand auth-wordmark" href={appPath("/")}>
-          ✧ GLAM Beauty
+          <BrandLogo />
         </a>
         <section className="auth-card">
           <p className="auth-eyebrow">{label}</p>

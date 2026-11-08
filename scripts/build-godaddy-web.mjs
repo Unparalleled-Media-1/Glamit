@@ -43,12 +43,14 @@ const csp =
 const html =
   `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="${
     csp.replace("; frame-ancestors 'none'", "")
-  }"><meta name="description" content="Your personal beauty and styling companion."><link rel="canonical" href="https://www.glamit.beauty/"><title>GLAM Beauty</title><link rel="stylesheet" href="${
+  }"><meta name="description" content="Your personal beauty and styling companion."><link rel="canonical" href="https://www.glamit.beauty/"><link rel="icon" type="image/png" sizes="256x256" href="/brand/favicon.png?v=20261108"><link rel="apple-touch-icon" href="/brand/favicon.png?v=20261108"><link rel="manifest" href="/site.webmanifest"><title>GLAM Beauty</title><link rel="stylesheet" href="${
     href(css)
   }"></head><body><div id="root"></div><script type="module" src="${
     href(js)
   }"></script></body></html>`;
 await writeFile(path.join(root, "index.html"), html);
+await cp("apps/web/public/site.webmanifest", path.join(root, "site.webmanifest"));
+await cp("apps/web/public/brand", path.join(root, "brand"), { recursive: true });
 await cp("apps/web/public/images", path.join(root, "images"), {
   recursive: true,
 });

@@ -36,6 +36,7 @@ const assert = require("node:assert/strict");
       ".css": "text/css",
       ".json": "application/json",
       ".webp": "image/webp",
+      ".png": "image/png",
     };
     res.writeHead(200, {
       "Content-Type": mime[path.extname(file)] || "application/octet-stream",
@@ -70,6 +71,11 @@ const assert = require("node:assert/strict");
     await page.goto(origin + base + "/");
     await page.getByRole("heading", { name: "Explore GLAM Beauty." }).waitFor();
     let app = page.frameLocator("iframe");
+    await page.waitForFunction(() => {
+      const img = document.querySelector("iframe")?.contentDocument?.querySelector(".brand-artwork");
+      return img?.complete && img.naturalWidth === 1300;
+    });
+    assert.match(await app.locator(".brand-artwork").first().getAttribute("src"), /^\/Glamit\/brand\/wordmark\.png/);
     await app
       .getByRole("button", { name: "Analyze My Face", exact: true })
       .waitFor();

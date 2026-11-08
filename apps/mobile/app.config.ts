@@ -11,7 +11,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
   const projectId = process.env.EAS_PROJECT_ID;
   const owner = process.env.EXPO_OWNER;
   const icon = "./assets/brand/app-icon.png";
-  const splash = "./assets/brand/splash.png";
+  const splash = "./assets/brand/wordmark.png";
   if (stage === "production") {
     if (!process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY) throw Error("Production mobile Auth public key is required; never provide server keys.");
     if (!bundleId || !androidId || !projectId || !owner) throw Error("Registered iOS/Android identifiers, EAS_PROJECT_ID and EXPO_OWNER are required. Do not invent replacements for existing store records.");
@@ -28,6 +28,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     ...(existsSync(path.resolve(__dirname, icon)) ? { icon } : {}),
     ...(existsSync(path.resolve(__dirname, splash)) ? { splash: { image: splash, resizeMode: "contain", backgroundColor: design.palette.ivory } } : {}),
     ios: { ...config.ios, ...(bundleId ? { bundleIdentifier: bundleId } : {}) },
+    web: { ...config.web, favicon: "./assets/brand/favicon.png" },
     android: { ...config.android, ...(androidId ? { package: androidId } : {}) },
     extra: { ...config.extra, deploymentEnvironment: stage, ...(projectId ? { eas: { projectId } } : {}), supabaseProject: "bkkmsbxrxkqaveymcrgi", apiTransport: "supabase-edge-v1" },
   };

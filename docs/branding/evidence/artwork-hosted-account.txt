@@ -1,0 +1,5 @@
+
+> glam-ai@0.1.0 test:hosted-account
+> node tests/client/hosted-account.cjs
+
+Auth UI doubles passed: E.164 SMS request, expiry error, resend cooldown, autofill, verification, account persistence/navigation, memory-only session, logout and optional legacy login.

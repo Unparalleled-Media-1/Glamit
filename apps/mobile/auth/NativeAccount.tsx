@@ -1,3 +1,4 @@
+import BrandLogo from "../BrandLogo";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
 import {
@@ -308,6 +309,7 @@ export default function NativeAccount({ auth }: Props) {
   }
   return (
     <View style={s.card}>
+      <BrandLogo />
       <AuthText style={s.heading}>Welcome to GLAM Beauty</AuthText>
       <AuthText>Your personal beauty and style journey starts here.</AuthText>
       {available.phone || target

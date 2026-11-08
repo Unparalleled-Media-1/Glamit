@@ -99,6 +99,15 @@ jobs:
       - run: npm run test:connections
       - run: npm run test:hosted-account
       - run: npm run test:creator
+      - run: npm run test:artwork
+        env:
+          GLAM_BRAND_ARTIFACTS: ${{ runner.temp }}/brand-artwork
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: brand-artwork-previews
+          path: ${{ runner.temp }}/brand-artwork
+          if-no-files-found: warn
       - run: npm run test:workspace-access
         env:
           GLAM_WORKSPACE_ARTIFACTS: ${{ runner.temp }}/workspace-access

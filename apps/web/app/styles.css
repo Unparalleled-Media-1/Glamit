@@ -4415,6 +4415,16 @@ body:has(.beauty-shell) {
 .creator-studio .draft { overflow-wrap: anywhere; }
 .creator-studio :is(input, textarea, select):focus-visible { outline: 2px solid var(--glam-palette-rose); outline-offset: 2px; }
 
+/* Original brand artwork: preserve aspect ratio and colors in every theme. */
+.brand-artwork { display: block; width: 168px; max-width: 100%; height: auto; object-fit: contain; flex-shrink: 0; }
+.business-sidebar .brand-artwork { width: 176px; }
+.site-header .brand { min-width: 0; flex-shrink: 1; }
+.site-header .brand-artwork { min-width: 0; flex-shrink: 1; }
+@media (max-width: 600px) {
+  .site-header, .beauty-shell .site-header { gap: 12px; }
+  .site-header .brand-artwork { width: 112px; }
+  .site-header .market-trigger { min-width: 0; flex: 1; }
+}
 .photo-camera-dialog { max-width: min(540px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow: auto; border: 1px solid var(--glam-palette-line); border-radius: var(--glam-radius-card); padding: 24px; background: var(--glam-palette-ivory); color: var(--glam-palette-ink); }
 .photo-camera-dialog::backdrop { background: rgb(24 23 25 / 75%); }
 .photo-camera-dialog video { display: block; width: 100%; max-height: 50dvh; object-fit: contain; background: var(--glam-palette-charcoal); border-radius: 12px; }
