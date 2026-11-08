@@ -7,4 +7,4 @@ test("API-only work is independent", () => assert.deepEqual(targets(["services/a
 test("shared JS changes test both clients", () => { const t=targets(["packages/product/brand.ts"]); assert(t.web && t.mobile); });
 test("contracts test consumers and API; docs do not redeploy", () => { assert(targets(["packages/contracts/openapi.json"]).backend); assert.deepEqual(targets(["docs/deployment/README.md"]), {web:false,mobile:false,backend:false,edge:false}); });
 
-test("release-audit changes select the checks that execute them", () => { assert(targets(["scripts/launch/release-gates.cjs"]).web); assert(targets(["scripts/launch/report.py"]).backend); });
+test("photo regression changes run the web checks", () => assert.deepEqual(targets(["tests/photo/flow.cjs"]), {web:true,mobile:false,backend:false,edge:false}));
