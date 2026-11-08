@@ -104,6 +104,7 @@ jobs:
       - run: npm run test:launch-keyboard
       - run: npm run test:launch-gates
       - run: npm run test:auth
+      - run: node --test tests/client/production-web-config.test.mjs
       - run: npm run test:public-config
       - run: npm run typecheck:godaddy
       - name: Build static host package with an explicit public-key fixture

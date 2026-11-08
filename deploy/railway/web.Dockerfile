@@ -14,7 +14,7 @@ COPY packages packages
 COPY scripts/check-browser-auth-config.mjs scripts/public-supabase-config.mjs scripts/
 ARG NEXT_PUBLIC_SUPABASE_ANON_KEY=""
 ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=$NEXT_PUBLIC_SUPABASE_ANON_KEY
-RUN npm run build:web
+RUN node scripts/check-browser-auth-config.mjs --production-web && npm run build:web
 FROM node:24.22.1-bookworm-slim AS runtime
 WORKDIR /app
 ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 HOSTNAME=0.0.0.0 PORT=3000
