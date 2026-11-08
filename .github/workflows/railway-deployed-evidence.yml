@@ -24,7 +24,7 @@ jobs:
         run: node scripts/launch/railway-ci-probe.cjs
         env:
           GLAM_LAUNCH_ARTIFACTS: ${{ runner.temp }}/railway-deployed-evidence
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: railway-deployed-evidence-${{ github.run_id }}

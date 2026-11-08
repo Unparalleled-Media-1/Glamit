@@ -113,7 +113,7 @@ jobs:
       - run: npm run test:workspace-access
         env:
           GLAM_WORKSPACE_ARTIFACTS: ${{ runner.temp }}/workspace-access
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: workspace-access-evidence
@@ -167,7 +167,7 @@ jobs:
       - run: npm run test:auth
       - run: npm exec --workspace=@glam/mobile -- expo install --check
       - run: npm run export --workspace=@glam/mobile
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: native-javascript-exports-not-store-builds
           path: apps/mobile/dist

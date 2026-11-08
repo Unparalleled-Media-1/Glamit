@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
-    "@types/node": "24.10.0",
+    "@types/node": "26.6.6",
     "@types/react": "19.3.0",
     "esbuild": "0.28.2",
     "openapi-typescript": "7.13.0",
