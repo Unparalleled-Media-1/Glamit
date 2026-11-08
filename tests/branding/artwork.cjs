@@ -70,7 +70,7 @@ const {
       );
     }
     checks.push(
-      "Web/native assets match all three ZIP originals byte-for-byte; live local HTTP returns exact PNG bytes and correct metadata",
+      "Web/native assets match all supplied ZIP originals byte-for-byte; live local HTTP returns exact PNG bytes and correct metadata",
     );
     browser = await chromium.launch({
       executablePath:
@@ -93,15 +93,20 @@ const {
         "/admin/login",
         "/shop",
         "/studio",
+        "/analyze",
       ]) {
         await page.goto(origin + route);
         await page.locator(".brand-artwork").first().waitFor();
-        await page.waitForFunction(() =>
+        const dark = ["/", "/studio", "/analyze"].includes(route);
+        const expected = dark ? "wordmark-dark.png" : "wordmark.png";
+        await page.waitForFunction((expected) =>
           [...document.querySelectorAll(".brand-artwork")].every(
-            (i) =>
-              i.complete && i.naturalWidth === 1300 && i.naturalHeight === 455,
-          ),
+            (i) => i.complete && i.naturalWidth > 0 && i.src.includes("/brand/" + expected + "?"),
+          ), expected,
         );
+        for (const logo of await page.locator(".brand-artwork").all()) {
+          assert.deepEqual(await logo.evaluate((i) => [i.naturalWidth, i.naturalHeight]), manifest[expected].dimensions);
+        }
         assert(
           await page.evaluate(
             () => document.documentElement.scrollWidth <= innerWidth,

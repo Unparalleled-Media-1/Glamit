@@ -22,5 +22,13 @@
       455
     ],
     "sha256": "34f468753b5873607fb0d4dec6f1f6c128f4c80c433eeee24e9bd5a73ad3a424"
+  },
+  "wordmark-dark.png": {
+    "source": "DARK PAGES.zip / Glam Beauty Rose-Gold Logo.png",
+    "dimensions": [
+      2172,
+      724
+    ],
+    "sha256": "010161a77fcb775b02cbd81d700a7be34fa7759068f41fef88d0b47df6603c92"
   }
 }
