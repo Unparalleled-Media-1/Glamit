@@ -1253,7 +1253,7 @@ export default function GlamApp({
       </a>
       <header className="site-header">
         <a href={appPath("/")} className="brand" aria-label="GLAM Beauty home">
-          <BrandLogo />
+          <BrandLogo dark={["home", "analyze", "studio"].includes(page)} />
         </a>
         <nav className="desktop-nav" aria-label="Main navigation">
           {webTabs.map((n) => (
@@ -1372,7 +1372,7 @@ export default function GlamApp({
       </main>
       <footer className="site-footer">
         <a className="brand" href={appPath("/")}>
-          <BrandLogo />
+          <BrandLogo dark={["home", "analyze", "studio"].includes(page)} />
         </a>
         <span>Understand your features. Explore your possibilities.</span>
         <div>
