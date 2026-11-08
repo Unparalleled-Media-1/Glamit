@@ -1,6 +1,6 @@
 # F1B1 — durable cosmetic-analysis jobs and saved reports
 
-This is the backend persistence/dispatch foundation for the approved photo → analysis → corrected saved results priority. It is not the complete journey, corrected results, Style Passport or native feature acceptance. Branch feat/persistent-analysis-jobs began on the native foundation/Advisor/media drafts. During this batch GitHub reported PRs37–40 merged externally; their source matched the branch ancestry, and the upstream merge commits were reconciled normally without changing the tested application files. The F1B1 draft targets surviving feat/platform-foundations. This agent performed no release-candidate merge or deployment.
+This is the backend persistence/dispatch foundation for the approved photo → analysis → corrected saved results priority. It is not the complete journey, corrected results, Style Passport or native feature acceptance. Branch feat/persistent-analysis-jobs began on the native foundation/Advisor/media drafts. GitHub reported PRs37–40 merged externally, but PR39/40 targeted feature branches after PR38 reached feat/platform-foundations; their N2A/B changes are absent from that integration branch. The new draft therefore carries those existing native-media prerequisites as well as F1B1. Upstream merge commits were reconciled normally without changing the tested application files. This agent performed no release-candidate merge or deployment.
 
 ## Implemented contract
 
