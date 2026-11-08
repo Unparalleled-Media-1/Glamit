@@ -33,6 +33,7 @@ jobs:
           cache: npm
       - run: node scripts/ci/frozen-install.mjs node
       - run: npm run test:native-photo
+      - run: npm run test:native-stylist
       - name: Generate actual iOS native project
         run: npm exec --workspace=@glam/mobile -- expo prebuild --platform ios --no-install
       - name: Install CocoaPods dependencies from the native project root
@@ -95,6 +96,7 @@ jobs:
           python3 scripts/mobile/run_logged.py artifacts/native-android/sdk.txt "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --version
       - run: node scripts/ci/frozen-install.mjs node
       - run: npm run test:native-photo
+      - run: npm run test:native-stylist
       - name: Generate actual Android native project
         run: npm exec --workspace=@glam/mobile -- expo prebuild --platform android --no-install
       - name: Install compile SDK and NDK

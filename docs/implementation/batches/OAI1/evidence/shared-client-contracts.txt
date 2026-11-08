@@ -1,0 +1,5 @@
+
+> glam-ai@0.1.0 test:ai-stylist
+> node tests/client/ai-stylist.cjs
+
+PASS shared AI styling transport: exact authenticated API contract, bounded response/schema, no credential propagation, session/abort fences and no automatic retry

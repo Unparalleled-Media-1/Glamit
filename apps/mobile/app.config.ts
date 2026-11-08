@@ -10,6 +10,12 @@ export default ({ config }: ConfigContext): ExpoConfig => {
   const androidId = process.env.GLAM_ANDROID_PACKAGE;
   const projectId = process.env.EAS_PROJECT_ID;
   const owner = process.env.EXPO_OWNER;
+  const stylistOrigin = process.env.EXPO_PUBLIC_GLAM_API_ORIGIN || "";
+  if (stylistOrigin) {
+    let target: URL;
+    try { target = new URL(stylistOrigin); } catch { throw Error("Native styling API origin must be a valid HTTPS origin"); }
+    if (target.protocol !== "https:" || target.username || target.password || target.search || target.hash || target.pathname !== "/") throw Error("Native styling API origin must be HTTPS without credentials, path or query");
+  }
   const icon = "./assets/brand/app-icon.png";
   const splash = "./assets/brand/wordmark.png";
   if (stage === "production") {
@@ -30,6 +36,6 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     ios: { ...config.ios, ...(bundleId ? { bundleIdentifier: bundleId } : {}) },
     web: { ...config.web, favicon: "./assets/brand/favicon.png" },
     android: { ...config.android, ...(androidId ? { package: androidId } : {}) },
-    extra: { ...config.extra, deploymentEnvironment: stage, ...(projectId ? { eas: { projectId } } : {}), supabaseProject: "bkkmsbxrxkqaveymcrgi", apiTransport: "supabase-edge-v1" },
+    extra: { ...config.extra, deploymentEnvironment: stage, ...(projectId ? { eas: { projectId } } : {}), supabaseProject: "bkkmsbxrxkqaveymcrgi", apiTransport: "supabase-edge-v1", aiStylistTransport: "fastapi-v1", aiStylistOriginConfigured: Boolean(stylistOrigin) },
   };
 };

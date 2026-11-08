@@ -1,5 +1,6 @@
 import BrandLogo from "./BrandLogo";
 import CreatorStudio from "./CreatorStudio";
+import NativeAIStylist from "./NativeAIStylist";
 import NativeAccount from "./auth/NativeAccount";
 import { useNativeAccount } from "./auth/use-native-account";
 import { useEffect, useReducer, useRef, useState } from "react";
@@ -478,6 +479,9 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
           data={journey}
           setData={setJourney}
           go={go}
+          advicePanel={<NativeAIStylist account={nativeAccount.account}
+            apiOrigin={process.env.EXPO_PUBLIC_GLAM_API_ORIGIN || ""}
+            onLogin={() => go("profile")} />}
         />
       );
     switch (state.page) {

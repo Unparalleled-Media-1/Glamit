@@ -10,3 +10,5 @@ The app has a reusable native foundation. Preserve approved visual patterns and 
 6. **Web acquisition conversion** — tasteful contextual CTAs and valid before/after-publication fallback. Verified app links/QR/store listing validation; no bearer tokens in URLs. Retain complete desktop business tools and essential accessible web/privacy/recovery/support routes.
 
 For each batch, add failing acceptance checks first, implement the scoped operation, run dependent regressions, update the existing backlog and attach exact evidence. Source contracts/doubles, JS exports, prebuilds, simulator compilation, installed-device behavior, provider activation and deployed verification remain separate statuses. No browser screenshots substitute for native captures. No production/deployment/store activation without the applicable authorization.
+
+OAI1 adds a guarded authenticated native text-advice path through FastAPI using the existing Supabase identity; see docs/implementation/batches/OAI1/RESULT.md. It does not complete N2 native navigation or F1B photo/analysis persistence. OpenAI live activation is still NOT CONFIGURED.

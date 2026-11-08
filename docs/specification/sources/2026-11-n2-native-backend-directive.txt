@@ -1,0 +1,285 @@
+## GLAM Beauty — N1 implementation review
+
+This is meaningful progress. Codex has now demonstrated that GLAM Beauty has real iOS and Android applications, rather than just a mobile-looking website.
+
+Based on the implementation report, I would accept N1 as a scoped engineering milestone, but not approve either mobile app as feature-complete or ready for release.
+
+Native iOS simulator build and launch
+
+Passed
+
+Native Android emulator build and launch
+
+Passed
+
+Photo-picker lifecycle regression tests
+
+Passed
+
+Native screenshot visual review
+
+Pending
+
+Actual analysis and AI Studio workflows
+
+Incomplete
+
+Physical-device and store-release certification
+
+Not verified
+
+These statuses reflect Codex's reported CI evidence, not an independent inspection of the GitHub artifacts.
+
+### What N1 actually achieved
+
+The most valuable improvement is the camera/photo-picker safety fix. It prevents stale camera permissions, withdrawn consent and asynchronous picker results from causing inappropriate photo retention or screen transitions.
+
+Codex also reports that the real native applications compiled, installed and launched on iOS and Android CI environments. That is substantially stronger evidence than the earlier browser gallery.
+
+But the report identifies the biggest remaining problem:
+
+The application entry point does not supply the `CompanionConnection` required by the consumer service hooks.
+
+Consequently, the app may display native screens while its core analysis, AI generation, weather and marketplace operations remain unavailable.
+
+That is now the primary architectural issue to resolve.
+
+## What Codex should build next
+
+I recommend moving directly into N2 — Native Navigation and Real Backend Integration.
+
+Do not spend the next batch polishing colors, creating more previews or expanding the audit. First make the existing mobile application operational.
+
+Native screens
+
+Existing Expo/React Native components
+
+Native navigation + authenticated service connection
+
+Missing or incomplete integration
+
+Canonical backend APIs
+
+Supabase identity, Railway services, private media and persistent jobs
+
+Persistent user data
+
+Analysis reports, corrections, Style Passport, saved looks and transactions
+
+### Send Codex this instruction
+
+# GLAM BEAUTY — N2 NATIVE APPLICATION COMPLETION DIRECTIVE
+
+N1 is accepted as a scoped engineering milestone based on the reported tests and CI results.
+
+Do not declare either mobile application complete.
+
+Proceed immediately with N2: NATIVE NAVIGATION AND REAL BACKEND INTEGRATION.
+
+## 1. Connect the actual application entry point
+
+The architecture report confirms that the consumer hooks accept an optional CompanionConnection, but the root App does not provide it.
+
+Resolve this missing integration.
+
+Create or complete the authenticated mobile service composition layer using existing shared contracts and canonical backend endpoints.
+
+Requirements:
+
+- Restore the authenticated session safely.
+- Supply the correct service connection to native consumer screens.
+- Use current user identity and role.
+- Refresh tokens securely.
+- Handle expired and revoked sessions.
+- Handle logout and account switching.
+- Handle offline and server-error states.
+- Prevent cross-account data leakage.
+- Preserve existing Supabase RLS and backend authorization.
+
+Do not connect mobile screens directly to privileged database operations.
+
+Do not put service-role credentials in the mobile bundle.
+
+Do not duplicate backend business rules.
+
+Determine which operations belong to existing Supabase Edge APIs and which belong to FastAPI. Resolve their authentication and contract boundaries explicitly.
+
+## 2. Implement production-quality native navigation
+
+Replace the incomplete shared-page navigation behavior with a proper native navigation architecture, preserving working screens and their state.
+
+Use the existing routing library if suitable, or introduce Expo Router/React Navigation with a controlled migration.
+
+Consumer bottom tabs:
+
+HOME\
+ANALYZE\
+STUDIO\
+DISCOVER\
+PROFILE
+
+Support:
+
+- Nested stacks.
+- iOS back gestures.
+- Android hardware back.
+- Native screen transitions.
+- Modal and bottom-sheet behavior.
+- Deep links.
+- Authenticated route guards.
+- Role-based workspaces.
+- Correct return navigation after login.
+- State preservation.
+- Safe areas and keyboard avoidance.
+
+Do not rewrite functioning screens merely to change their navigation container.
+
+## 3. Connect the complete native photo workflow
+
+Build on the N1 consent and picker lifecycle protections.
+
+Wire the native photo screens to the existing F1A private-media API.
+
+Implement:
+
+- Authenticated upload intent.
+- Validated private upload.
+- Progress indication.
+- Cancellation and stale-request fencing.
+- Durable media reference.
+- Safe image retrieval.
+- Private-media deletion.
+- Error recovery.
+- Cross-session persistence.
+
+Do not enable production uploads before retention policy approval and required migration authorization.
+
+Use a controlled local/test environment for implementation and integration verification.
+
+## 4. Complete the persistent analysis workflow
+
+Implement the missing F1B capability required for genuine native analysis:
+
+- Persistent analysis jobs.
+- Job states.
+- AI provider adapter.
+- Server-side result validation.
+- Stored analysis reports.
+- User corrections.
+- Style Passport persistence.
+- Result retrieval.
+- Privacy and deletion propagation.
+
+Use real persisted jobs rather than local fake success screens.
+
+When external AI credentials are unavailable, complete contract tests and show a truthful unavailable-provider state.
+
+Do not fabricate analysis findings.
+
+## 5. Repair the native consumer screens
+
+For each existing native screen, connect the intended action to its real operation.
+
+Prioritize:
+
+1. Analyze.
+2. Analysis Results.
+3. Style Passport.
+4. AI Studio.
+5. Saved Looks.
+6. Discover.
+7. Product Detail.
+8. Cart.
+9. Profile.
+
+Preserve the rest of the approved feature backlog for subsequent implementation batches.
+
+No tappable control should silently do nothing.
+
+Every action must have a working operation or an explicit, truthful unavailable state.
+
+## 6. Native verification
+
+Run separate iOS and Android verification.
+
+Require:
+
+- React Native component tests.
+- Navigation tests.
+- Auth/session tests.
+- Consent withdrawal tests.
+- Upload lifecycle tests.
+- API contract tests.
+- Backend persistence tests.
+- iOS simulator build/install/launch.
+- Android emulator build/install/launch.
+- Native screenshots from both platforms.
+- Representative end-to-end journeys using actual native UI.
+
+Do not count browser screenshots as native evidence.
+
+Investigate the earlier intermittent Android Home lookup failure and retain a regression check.
+
+If GitHub artifact downloads remain blocked, use another authorized evidence route without delaying code implementation.
+
+Do not claim visual review until the screenshots have actually been inspected.
+
+## 7. Production safety
+
+Do not modify production Supabase, Railway, Stripe or identity configuration without authorization.
+
+The pending 0014 and 0015 migrations must remain unapplied until exact-SQL review, verified backup and explicit approval.
+
+Any additional F1B migration must receive the same treatment.
+
+Keep private-media upload feature flags off in production until approved.
+
+Use Stripe test mode for all payment-related tests.
+
+## 8. Required deliverables
+
+Provide:
+
+- Exact source files changed.
+- Native navigation architecture.
+- CompanionConnection integration evidence.
+- Real backend endpoint mapping.
+- Native screen-to-API mapping.
+- Tests that failed before and passed after.
+- iOS and Android independent build receipts.
+- Native simulator screenshots.
+- Remaining provider credentials.
+- Required migration approvals.
+- Updated feature/defect statuses.
+- Next implementation batch.
+
+## 9. Completion rule
+
+N2 is complete only when the actual native screens can navigate correctly, authenticate safely, communicate through the canonical service layer and complete the scoped persistent photo-analysis journey in an approved test environment.
+
+If a dependency prevents that outcome, report the precise blocked step and continue with independent implementation work.
+
+Do not label N2 complete because TypeScript passes or the apps launch.
+
+Do not start another platform-wide audit.
+
+Proceed with implementation now.
+
+## The remaining roadmap
+
+| Batch | Main objective                                                 | Current position             |
+| ----- | -------------------------------------------------------------- | ---------------------------- |
+| N1    | Native foundation and photo lifecycle                          | Scoped implementation passed |
+| N2    | Native navigation, backend integration and persistent analysis | Next priority                |
+| N3    | AI Studio and virtual try-on                                   | Pending                      |
+| N4    | Stylist, wardrobe, saved looks and discovery                   | Pending                      |
+| N5    | Shopping, checkout, bookings and creators                      | Pending                      |
+| N6    | Business companion dashboards                                  | Pending                      |
+| N7    | Notifications, deep links and native polish                    | Pending                      |
+| N8    | Full iOS/Android verification and release certification        | Pending                      |
+
+One additional recommendation: do not wait until N8 to visually inspect the native applications. Every implementation batch should include actual simulator screenshots so that an increasingly functional app does not drift into a poor mobile user experience.
+
+The immediate milestone I want to see is straightforward: open the real GLAM Beauty iOS or Android app, take a photo, submit it securely, receive a persisted analysis result, correct that result and see the updated Style Passport after reopening the application.
+
+Once that works, GLAM Beauty will have demonstrated a genuine native end-to-end consumer journey—not merely a functioning Expo shell.

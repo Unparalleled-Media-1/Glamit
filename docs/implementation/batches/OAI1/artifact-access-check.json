@@ -1,0 +1,11 @@
+{
+  "github_artifact_metadata_access": "PASS",
+  "artifact_expired": false,
+  "fresh_download_exit": 1,
+  "download_hostname": "productionresultssa13.blob.core.windows.net",
+  "signed_url_expired": false,
+  "direct_fresh_request_status": "unavailable",
+  "host_probe_failure_type": "URLError",
+  "proxy_connect_forbidden": true,
+  "host_probe_tls_error": false
+}

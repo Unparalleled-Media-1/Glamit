@@ -1,0 +1,17 @@
+
+> glam-ai@0.1.0 test:native-stylist
+> node tests/mobile/ai-stylist-native.cjs
+
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+AssertionError [ERR_ASSERTION]: An uncertain grant must offer explicit withdrawal
+    at /workspace/Glamit/tests/mobile/ai-stylist-native.cjs:16:229 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

@@ -1,6 +1,77 @@
 {
   "components": {
     "schemas": {
+      "AdviceRead": {
+        "properties": {
+          "advice": {
+            "$ref": "#/components/schemas/ProviderAdvice"
+          },
+          "completed_at": {
+            "format": "date-time",
+            "title": "Completed At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "provider": {
+            "const": "openai",
+            "default": "openai",
+            "title": "Provider",
+            "type": "string"
+          },
+          "subject": {
+            "title": "Subject",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "subject",
+          "model",
+          "completed_at",
+          "advice"
+        ],
+        "title": "AdviceRead",
+        "type": "object"
+      },
+      "AdviceRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "consent": {
+            "const": true,
+            "title": "Consent",
+            "type": "boolean"
+          },
+          "messages": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "title": "Messages",
+            "type": "array"
+          },
+          "policy_id": {
+            "format": "uuid",
+            "title": "Policy Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "messages",
+          "policy_id",
+          "consent"
+        ],
+        "title": "AdviceRequest",
+        "type": "object"
+      },
       "BulkListings": {
         "additionalProperties": false,
         "properties": {
@@ -306,6 +377,55 @@
           "sha256"
         ],
         "title": "Derivative",
+        "type": "object"
+      },
+      "Direction": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Id",
+            "type": "string"
+          },
+          "rationale": {
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Rationale",
+            "type": "string"
+          },
+          "style": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Style",
+            "type": "string"
+          },
+          "title": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          },
+          "tool": {
+            "enum": [
+              "Hair Try-On",
+              "Hair Color",
+              "Makeup Match",
+              "Glow-Up Preview",
+              "Look Remix"
+            ],
+            "title": "Tool",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "rationale",
+          "tool",
+          "style"
+        ],
+        "title": "Direction",
         "type": "object"
       },
       "Draft": {
@@ -1235,6 +1355,62 @@
         "title": "NewRevision",
         "type": "object"
       },
+      "OpenAIStatus": {
+        "properties": {
+          "advice_enabled": {
+            "title": "Advice Enabled",
+            "type": "boolean"
+          },
+          "configured": {
+            "title": "Configured",
+            "type": "boolean"
+          },
+          "model_configured": {
+            "title": "Model Configured",
+            "type": "boolean"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "response_persistence": {
+            "const": "transient",
+            "default": "transient",
+            "title": "Response Persistence",
+            "type": "string"
+          },
+          "scope": {
+            "const": "openai_authenticated_api",
+            "default": "openai_authenticated_api",
+            "title": "Scope",
+            "type": "string"
+          },
+          "service": {
+            "const": "openai",
+            "default": "openai",
+            "title": "Service",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "NOT CONFIGURED",
+              "CONNECTED",
+              "DEGRADED"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "configured",
+          "state",
+          "reason",
+          "model_configured",
+          "advice_enabled"
+        ],
+        "title": "OpenAIStatus",
+        "type": "object"
+      },
       "OrganizationRead": {
         "additionalProperties": false,
         "properties": {
@@ -1313,6 +1489,38 @@
           "content"
         ],
         "title": "PolicyRead",
+        "type": "object"
+      },
+      "ProviderAdvice": {
+        "additionalProperties": false,
+        "properties": {
+          "directions": {
+            "items": {
+              "$ref": "#/components/schemas/Direction"
+            },
+            "maxItems": 12,
+            "title": "Directions",
+            "type": "array"
+          },
+          "message": {
+            "maxLength": 4000,
+            "minLength": 1,
+            "title": "Message",
+            "type": "string"
+          },
+          "uncertainty": {
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Uncertainty",
+            "type": "string"
+          }
+        },
+        "required": [
+          "message",
+          "uncertainty",
+          "directions"
+        ],
+        "title": "ProviderAdvice",
         "type": "object"
       },
       "PublishChoice": {
@@ -2075,6 +2283,107 @@
           }
         ],
         "summary": "Staff Context"
+      }
+    },
+    "/v1/ai/openai/status": {
+      "get": {
+        "operationId": "status_v1_ai_openai_status_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenAIStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Status"
+      }
+    },
+    "/v1/ai/stylist/advice": {
+      "post": {
+        "operationId": "advice_v1_ai_stylist_advice_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdviceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdviceRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Advice"
+      }
+    },
+    "/v1/ai/stylist/policy": {
+      "get": {
+        "operationId": "policy_v1_ai_stylist_policy_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Policy"
       }
     },
     "/v1/analysis/requests": {

@@ -12,6 +12,7 @@ from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
+from glam_api.ai_stylist import build_stylist_router
 from glam_api.auth import Principal, get_principal
 from glam_api.catalog import build_catalog_router
 from glam_api.contracts import (
@@ -368,3 +369,5 @@ app.include_router(build_router(user, audit, replay, remember))
 app.include_router(build_catalog_router(user, audit, replay, remember))
 
 app.include_router(build_media_router(user, audit))
+
+app.include_router(build_stylist_router(user, audit))
