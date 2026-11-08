@@ -1,0 +1,21 @@
+Expo Autolinking module resolution enabled
+Starting Metro Bundler
+
+Android Bundled 7057ms apps/mobile/index.ts (831 modules)
+
+› Assets (7):
+assets/beauty-editorial.webp (214KB)
+assets/beauty-products.webp (121KB)
+assets/brand/wordmark.png (534KB)
+assets/editorial.webp (211KB)
+auth/assets/apple.png (1.8KB)
+auth/assets/facebook.png (871B)
+auth/assets/google.png (3.5KB)
+
+› android bundles (1):
+_expo/static/js/android/index-d022fbd13977a20d248faeddb039e91f.hbc (2.9MB)
+
+› Files (1):
+metadata.json (593B)
+
+Exported: /workspace/artifacts/glam-final-android-js

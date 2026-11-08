@@ -1,0 +1,545 @@
+{
+  "observed_at": "2026-11-08T14:29:13.608900+00:00",
+  "default_branch": "feat/platform-foundations",
+  "main_sha": "166498e287de5d966dac42e6fb7a719fd61d0ddd",
+  "candidate_sha": "166498e287de5d966dac42e6fb7a719fd61d0ddd",
+  "candidate_branch": "audit/final-cross-platform",
+  "branches": [
+    {
+      "name": "audit/final-cross-platform",
+      "sha": "166498e287de5d966dac42e6fb7a719fd61d0ddd",
+      "contained_in_main": true,
+      "divergence_from_main": "0\t0"
+    },
+    {
+      "name": "audit/pre-supabase-g0",
+      "sha": "b1621de4c62489f007eb0f83c8efccbc633bd9a9",
+      "contained_in_main": true,
+      "divergence_from_main": "75\t0"
+    },
+    {
+      "name": "chore/consolidate-foundations-secrets",
+      "sha": "9b9286194cd40c7e0405481d1a46da1e61e54c6a",
+      "contained_in_main": true,
+      "divergence_from_main": "72\t0"
+    },
+    {
+      "name": "design/editorial-ui-ux-brief",
+      "sha": "80d21a7df361ff9c5331df6ff3da46cc53fde3f9",
+      "contained_in_main": true,
+      "divergence_from_main": "89\t0"
+    },
+    {
+      "name": "docs/global-master-prd-v2",
+      "sha": "f48f3e0659ed53852bf9e5c4ed1b70ac414425cb",
+      "contained_in_main": true,
+      "divergence_from_main": "90\t0"
+    },
+    {
+      "name": "docs/master-specification-and-design-blueprint",
+      "sha": "d700a0d820926c88f63cc2c911b2efebeec346e7",
+      "contained_in_main": true,
+      "divergence_from_main": "91\t0"
+    },
+    {
+      "name": "docs/mobile-first-product-surfaces",
+      "sha": "51207db59e1ab5df6e2368e4ec9a0416e9c54a09",
+      "contained_in_main": true,
+      "divergence_from_main": "92\t0"
+    },
+    {
+      "name": "feat/analysis-first-platform",
+      "sha": "30804917b62f4a80ea3c400e7cb4535ddcc28258",
+      "contained_in_main": true,
+      "divergence_from_main": "88\t0"
+    },
+    {
+      "name": "feat/contextual-catalog-snap-list",
+      "sha": "5c65ec350810ff63269143cb08090212d2646b37",
+      "contained_in_main": true,
+      "divergence_from_main": "87\t0"
+    },
+    {
+      "name": "feat/goal-led-styling-experience",
+      "sha": "c323190c143d37e1416c29aab3f5a7f0b186dbba",
+      "contained_in_main": true,
+      "divergence_from_main": "86\t0"
+    },
+    {
+      "name": "feat/golden-screen-recovery",
+      "sha": "240de1acf676963276fd19599289bd3c2f74fb33",
+      "contained_in_main": true,
+      "divergence_from_main": "81\t0"
+    },
+    {
+      "name": "feat/interactive-preview",
+      "sha": "4fc0b3ad7a9bcd2e9d554d63d0f85ba2892cda0e",
+      "contained_in_main": true,
+      "divergence_from_main": "82\t0"
+    },
+    {
+      "name": "feat/personalized-results-journey",
+      "sha": "b97f1d6db1ad96b78d62e451c88a7bffbd212da4",
+      "contained_in_main": true,
+      "divergence_from_main": "78\t0"
+    },
+    {
+      "name": "feat/stripe-connect-test",
+      "sha": "1060e34263f0a980ba8ef66a8c148077a4a1355e",
+      "contained_in_main": true,
+      "divergence_from_main": "76\t0"
+    },
+    {
+      "name": "feat/supabase-database-foundation",
+      "sha": "600e9d4429aa2a4159afcebe537613fa3e0d83c1",
+      "contained_in_main": true,
+      "divergence_from_main": "64\t0"
+    },
+    {
+      "name": "feat/visual-beauty-experience",
+      "sha": "79c4afa530a30e6d0343847b043c8aa4a0ef8ea8",
+      "contained_in_main": true,
+      "divergence_from_main": "85\t0"
+    },
+    {
+      "name": "fix/reproducible-client-toolchain",
+      "sha": "e5bddf5683db571b9d0d2b4e0dbc9e87678063ca",
+      "contained_in_main": true,
+      "divergence_from_main": "93\t0"
+    },
+    {
+      "name": "gh-pages",
+      "sha": "fe0c513319ecddbda650f3de9bdcc189135b73b4",
+      "contained_in_main": false,
+      "divergence_from_main": "118\t1"
+    },
+    {
+      "name": "work",
+      "sha": "d03f6d45a8ffb99a26fd1a5a7df6c51689185ffb",
+      "contained_in_main": true,
+      "divergence_from_main": "94\t0"
+    },
+    {
+      "name": "origin/audit/pre-supabase-g0",
+      "sha": "b1621de4c62489f007eb0f83c8efccbc633bd9a9",
+      "contained_in_main": true,
+      "divergence_from_main": "75\t0"
+    },
+    {
+      "name": "origin/chore/consolidate-foundations-secrets",
+      "sha": "9b9286194cd40c7e0405481d1a46da1e61e54c6a",
+      "contained_in_main": true,
+      "divergence_from_main": "72\t0"
+    },
+    {
+      "name": "origin/dependabot/github_actions/actions/configure-pages-6",
+      "sha": "1631af62401fb2a2a708f90b09213eb70163d1b9",
+      "contained_in_main": true,
+      "divergence_from_main": "68\t0"
+    },
+    {
+      "name": "origin/dependabot/github_actions/actions/deploy-pages-5",
+      "sha": "76f429c35e864018a1376cc0e3a9f4d26287b93d",
+      "contained_in_main": true,
+      "divergence_from_main": "68\t0"
+    },
+    {
+      "name": "origin/dependabot/github_actions/actions/setup-node-7",
+      "sha": "687a6eaae2d69653a26650f25becf1e9bf62cf41",
+      "contained_in_main": false,
+      "divergence_from_main": "69\t1"
+    },
+    {
+      "name": "origin/dependabot/github_actions/actions/upload-artifact-7",
+      "sha": "6d2d0f26d0aa320245cfabe81aee70afb3f909ad",
+      "contained_in_main": false,
+      "divergence_from_main": "69\t1"
+    },
+    {
+      "name": "origin/dependabot/github_actions/actions/upload-pages-artifact-5",
+      "sha": "684e12100636f5816cad44a9a9a3e5bba0dfc50f",
+      "contained_in_main": true,
+      "divergence_from_main": "68\t0"
+    },
+    {
+      "name": "origin/dependabot/npm_and_yarn/react-runtime-54c26d8e69",
+      "sha": "a8648db5c6a245d4c47c40a691b0fe1f6c351a84",
+      "contained_in_main": false,
+      "divergence_from_main": "69\t1"
+    },
+    {
+      "name": "origin/dependabot/npm_and_yarn/types/node-26.6.6",
+      "sha": "7fb0a6f0ec9b72938316fe3baacdf21c602dd41a",
+      "contained_in_main": false,
+      "divergence_from_main": "69\t1"
+    },
+    {
+      "name": "origin/dependabot/uv/psycopg-binary--gte-3.3.7-and-lt-4",
+      "sha": "7341afaa90d261a1033a2e3e4c0ab1843e615843",
+      "contained_in_main": true,
+      "divergence_from_main": "68\t0"
+    },
+    {
+      "name": "origin/dependabot/uv/sqlalchemy-2.1.8",
+      "sha": "11026e4aaea7ee0526e1c294ccac2d24b54eb12e",
+      "contained_in_main": true,
+      "divergence_from_main": "68\t0"
+    },
+    {
+      "name": "origin/design/editorial-ui-ux-brief",
+      "sha": "80d21a7df361ff9c5331df6ff3da46cc53fde3f9",
+      "contained_in_main": true,
+      "divergence_from_main": "89\t0"
+    },
+    {
+      "name": "origin/docs/global-master-prd-v2",
+      "sha": "f48f3e0659ed53852bf9e5c4ed1b70ac414425cb",
+      "contained_in_main": true,
+      "divergence_from_main": "90\t0"
+    },
+    {
+      "name": "origin/docs/master-specification-and-design-blueprint",
+      "sha": "d700a0d820926c88f63cc2c911b2efebeec346e7",
+      "contained_in_main": true,
+      "divergence_from_main": "91\t0"
+    },
+    {
+      "name": "origin/docs/mobile-first-product-surfaces",
+      "sha": "51207db59e1ab5df6e2368e4ec9a0416e9c54a09",
+      "contained_in_main": true,
+      "divergence_from_main": "92\t0"
+    },
+    {
+      "name": "origin/feat/analysis-first-platform",
+      "sha": "30804917b62f4a80ea3c400e7cb4535ddcc28258",
+      "contained_in_main": true,
+      "divergence_from_main": "88\t0"
+    },
+    {
+      "name": "origin/feat/contextual-catalog-snap-list",
+      "sha": "5c65ec350810ff63269143cb08090212d2646b37",
+      "contained_in_main": true,
+      "divergence_from_main": "87\t0"
+    },
+    {
+      "name": "origin/feat/goal-led-styling-experience",
+      "sha": "c323190c143d37e1416c29aab3f5a7f0b186dbba",
+      "contained_in_main": true,
+      "divergence_from_main": "86\t0"
+    },
+    {
+      "name": "origin/feat/golden-screen-recovery",
+      "sha": "240de1acf676963276fd19599289bd3c2f74fb33",
+      "contained_in_main": true,
+      "divergence_from_main": "81\t0"
+    },
+    {
+      "name": "origin/feat/interactive-preview",
+      "sha": "4fc0b3ad7a9bcd2e9d554d63d0f85ba2892cda0e",
+      "contained_in_main": true,
+      "divergence_from_main": "82\t0"
+    },
+    {
+      "name": "origin/feat/personalized-results-journey",
+      "sha": "b97f1d6db1ad96b78d62e451c88a7bffbd212da4",
+      "contained_in_main": true,
+      "divergence_from_main": "78\t0"
+    },
+    {
+      "name": "origin/feat/platform-foundations",
+      "sha": "166498e287de5d966dac42e6fb7a719fd61d0ddd",
+      "contained_in_main": true,
+      "divergence_from_main": "0\t0"
+    },
+    {
+      "name": "origin/feat/stripe-connect-test",
+      "sha": "1060e34263f0a980ba8ef66a8c148077a4a1355e",
+      "contained_in_main": true,
+      "divergence_from_main": "76\t0"
+    },
+    {
+      "name": "origin/feat/supabase-database-foundation",
+      "sha": "9d27b90f37f9d337990f36018d2260b82134e4c6",
+      "contained_in_main": true,
+      "divergence_from_main": "71\t0"
+    },
+    {
+      "name": "origin/feat/visual-beauty-experience",
+      "sha": "79c4afa530a30e6d0343847b043c8aa4a0ef8ea8",
+      "contained_in_main": true,
+      "divergence_from_main": "85\t0"
+    },
+    {
+      "name": "origin/fix/reproducible-client-toolchain",
+      "sha": "e5bddf5683db571b9d0d2b4e0dbc9e87678063ca",
+      "contained_in_main": true,
+      "divergence_from_main": "93\t0"
+    },
+    {
+      "name": "origin/gh-pages",
+      "sha": "fe0c513319ecddbda650f3de9bdcc189135b73b4",
+      "contained_in_main": false,
+      "divergence_from_main": "118\t1"
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 32,
+      "state": "closed",
+      "merged_at": "2026-11-08T13:16:53Z",
+      "base": "feat/platform-foundations",
+      "head": "fix/railway-docker-complete",
+      "head_sha": "3547b1f93773ffdaab32ebeb957bce3b827c07b8"
+    },
+    {
+      "number": 31,
+      "state": "closed",
+      "merged_at": "2026-11-08T12:52:56Z",
+      "base": "feat/platform-foundations",
+      "head": "fix/exact-brand-artwork",
+      "head_sha": "d8d2849ec089dc62fffb9b3cb37f2e5d92e4ed26"
+    },
+    {
+      "number": 30,
+      "state": "closed",
+      "merged_at": "2026-11-08T12:16:26Z",
+      "base": "feat/platform-foundations",
+      "head": "fix/private-workspace-entry",
+      "head_sha": "0ab247a8f2043bba8712ebc4a0ab565c018bea40"
+    },
+    {
+      "number": 29,
+      "state": "closed",
+      "merged_at": "2026-11-08T12:15:24Z",
+      "base": "feat/platform-foundations",
+      "head": "audit/product-completeness",
+      "head_sha": "a7ea8232ca312809a91f7fe2c0cf86cccdca11f5"
+    },
+    {
+      "number": 28,
+      "state": "closed",
+      "merged_at": "2026-11-08T12:15:00Z",
+      "base": "feat/platform-foundations",
+      "head": "fix/photo-capture-branding",
+      "head_sha": "fb0d06184bdfa90d981c2b734a7f046663a6e29c"
+    },
+    {
+      "number": 27,
+      "state": "closed",
+      "merged_at": "2026-11-08T05:40:23Z",
+      "base": "feat/platform-foundations",
+      "head": "audit/railway-rescue-release-lock",
+      "head_sha": "b149af45166245faa0789a481d1ef5c45ad442c7"
+    },
+    {
+      "number": 26,
+      "state": "closed",
+      "merged_at": "2026-11-07T19:04:50Z",
+      "base": "feat/platform-foundations",
+      "head": "feat/independent-deployments",
+      "head_sha": "c0b44c3b0da4c0634b6e4f2d741446d201298faa"
+    },
+    {
+      "number": 25,
+      "state": "closed",
+      "merged_at": "2026-11-07T18:23:28Z",
+      "base": "feat/platform-foundations",
+      "head": "feat/glam-beauty-creator-studio",
+      "head_sha": "d37812b135b12137f2703ddad96bc9a6c0f916d9"
+    },
+    {
+      "number": 24,
+      "state": "closed",
+      "merged_at": "2026-11-07T17:43:34Z",
+      "base": "feat/platform-foundations",
+      "head": "feat/auth-branding",
+      "head_sha": "b2025fbb296d0dd995b70fc6392d2afc72b2e37f"
+    },
+    {
+      "number": 23,
+      "state": "closed",
+      "merged_at": "2026-11-07T17:03:12Z",
+      "base": "feat/platform-foundations",
+      "head": "feat/launch-audit",
+      "head_sha": "7b06baabb7fcc0683e18f50577ee9124bc4b0e41"
+    },
+    {
+      "number": 22,
+      "state": "closed",
+      "merged_at": "2026-11-07T15:39:32Z",
+      "base": "feat/platform-foundations",
+      "head": "feat/operational-supabase-backend",
+      "head_sha": "748555ab1d02983707d5f19fe2e914bb16853723"
+    },
+    {
+      "number": 21,
+      "state": "closed",
+      "merged_at": "2026-11-07T15:38:53Z",
+      "base": "feat/platform-foundations",
+      "head": "feat/supabase-database-foundation",
+      "head_sha": "600e9d4429aa2a4159afcebe537613fa3e0d83c1"
+    },
+    {
+      "number": 20,
+      "state": "closed",
+      "merged_at": "2026-11-08T12:50:03Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/uv/sqlalchemy-2.1.8",
+      "head_sha": "4b16b6a0fa0135d8393d55074c125df8cd3d1462"
+    },
+    {
+      "number": 19,
+      "state": "closed",
+      "merged_at": "2026-11-08T12:48:30Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/uv/psycopg-binary--gte-3.3.7-and-lt-4",
+      "head_sha": "7341afaa90d261a1033a2e3e4c0ab1843e615843"
+    },
+    {
+      "number": 18,
+      "state": "closed",
+      "merged_at": "2026-11-08T12:50:42Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/npm_and_yarn/types/node-26.6.6",
+      "head_sha": "fb4f5b418cab336a737aa2eb081cb9a0177df07e"
+    },
+    {
+      "number": 17,
+      "state": "closed",
+      "merged_at": "2026-11-08T12:51:24Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/npm_and_yarn/react-runtime-54c26d8e69",
+      "head_sha": "0f5d39c5fbee0833dbbaee094efd010ba3b3de49"
+    },
+    {
+      "number": 16,
+      "state": "closed",
+      "merged_at": "2026-11-08T12:45:49Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/github_actions/actions/upload-artifact-7",
+      "head_sha": "a935dfc394540910a6f0d09c1a4ccc5bb133f91e"
+    },
+    {
+      "number": 15,
+      "state": "closed",
+      "merged_at": "2026-11-08T12:48:04Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/github_actions/actions/upload-pages-artifact-5",
+      "head_sha": "684e12100636f5816cad44a9a9a3e5bba0dfc50f"
+    },
+    {
+      "number": 14,
+      "state": "closed",
+      "merged_at": "2026-11-08T12:47:44Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/github_actions/actions/configure-pages-6",
+      "head_sha": "1631af62401fb2a2a708f90b09213eb70163d1b9"
+    },
+    {
+      "number": 13,
+      "state": "closed",
+      "merged_at": "2026-11-08T12:46:49Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/github_actions/actions/deploy-pages-5",
+      "head_sha": "76f429c35e864018a1376cc0e3a9f4d26287b93d"
+    },
+    {
+      "number": 12,
+      "state": "closed",
+      "merged_at": "2026-11-08T12:45:21Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/github_actions/actions/setup-node-7",
+      "head_sha": "dc3700c5cf8964ccafff0970c9dd56d8c4ae56c2"
+    },
+    {
+      "number": 11,
+      "state": "closed",
+      "merged_at": "2026-11-07T07:22:38Z",
+      "base": "feat/platform-foundations",
+      "head": "feat/supabase-database-foundation",
+      "head_sha": "9d27b90f37f9d337990f36018d2260b82134e4c6"
+    },
+    {
+      "number": 10,
+      "state": "closed",
+      "merged_at": "2026-11-07T07:22:09Z",
+      "base": "feat/platform-foundations",
+      "head": "chore/consolidate-foundations-secrets",
+      "head_sha": "9b9286194cd40c7e0405481d1a46da1e61e54c6a"
+    },
+    {
+      "number": 9,
+      "state": "closed",
+      "merged_at": "2026-11-04T06:54:30Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/npm_and_yarn/multi-75c0a8599d",
+      "head_sha": "d73179355f2746790de6f3bb54101664b9c34d27"
+    },
+    {
+      "number": 8,
+      "state": "closed",
+      "merged_at": "2026-11-04T06:58:51Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/npm_and_yarn/react-19.3.1",
+      "head_sha": "117ac8f496b20835657fb316de2515f3ccf43ef7"
+    },
+    {
+      "number": 7,
+      "state": "closed",
+      "merged_at": "2026-11-04T06:57:44Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/github_actions/astral-sh/setup-uv-7",
+      "head_sha": "3c47cfd0beaf3a950cf2b5e61d81c1a698c92b02"
+    },
+    {
+      "number": 6,
+      "state": "closed",
+      "merged_at": "2026-11-04T06:57:06Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/uv/pyjwt-crypto--gte-2.15.1-and-lt-3",
+      "head_sha": "40c1ba410ec9a2561b793f511b6fa495683d7895"
+    },
+    {
+      "number": 5,
+      "state": "closed",
+      "merged_at": "2026-11-04T06:56:45Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/npm_and_yarn/typescript-7.0.2",
+      "head_sha": "e9dcfd41e7c1e51b321cac8948988b3293fa0d39"
+    },
+    {
+      "number": 4,
+      "state": "closed",
+      "merged_at": "2026-11-04T06:56:12Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/uv/psycopg-binary--gte-3.3.6-and-lt-4",
+      "head_sha": "267000a1735d9e69f01a6bcd4e6f183ed6cbda82"
+    },
+    {
+      "number": 3,
+      "state": "closed",
+      "merged_at": "2026-11-04T06:58:26Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/github_actions/actions/setup-node-7",
+      "head_sha": "173db46b8dabd9e75125e73faed4a2a5bfd7d5f8"
+    },
+    {
+      "number": 2,
+      "state": "closed",
+      "merged_at": "2026-11-04T06:55:27Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/npm_and_yarn/types/node-26.6.6",
+      "head_sha": "84bd8026f985b4ef1cae4d8b06c0676064d8e6fe"
+    },
+    {
+      "number": 1,
+      "state": "closed",
+      "merged_at": "2026-11-04T06:55:10Z",
+      "base": "feat/platform-foundations",
+      "head": "dependabot/github_actions/actions/checkout-7",
+      "head_sha": "d4c3241b5a48f6c4c5d6a8e32ee9cf33b37b93fc"
+    }
+  ],
+  "remote_refs_fetched": true,
+  "mutations": "none; no merge or deletion"
+}

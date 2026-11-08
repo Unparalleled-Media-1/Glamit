@@ -1,0 +1,232 @@
+{
+  "observed_at": "2026-11-08T14:29:19.770Z",
+  "origin": "https://glamit-web-production.up.railway.app",
+  "scope": "Actual deployed anonymous read-only route checks; not authenticated, AI, payment or native-device proof",
+  "status": "BLOCKED_ACCESS",
+  "routes": [
+    {
+      "route": "/",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/offer",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/results",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/destination",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/cart",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/checkout",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/orders",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/shop",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/product",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/event",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/builder",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/analyze",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/hair",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/skin",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/body-fit",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/consent",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/quality",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/goals",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/report",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/color",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/guide",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/studio",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/advisor",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/profile",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/history",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/privacy",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/explore",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/complete",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/screenshot",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/budget",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/booking",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/wardrobe",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/calendar",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/groups",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/agent",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/business",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/admin",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/login",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/auth/callback",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/admin/login",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/business/login",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/business/register",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    },
+    {
+      "route": "/register",
+      "status": "BLOCKED",
+      "reason": "net::ERR_TUNNEL_CONNECTION_FAILED"
+    }
+  ],
+  "mutations_blocked": 0,
+  "deployed_commit": null,
+  "railway_logs_available": false,
+  "access_error": "net::ERR_TUNNEL_CONNECTION_FAILED",
+  "counts": {
+    "checked": 0,
+    "blocked": 43,
+    "passed_critical_journeys": 0
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "scope": "Isolated preview/audit compile only; no registered application or production identifier changed",
+  "host": "Linux x86_64",
+  "android_audit_package": "org.example.glam.audit",
+  "jdk17": "Temurin17.0.21+9 checksum verified",
+  "android_sdk_platform": "android-37.0 (plus generated project required36)",
+  "gradle": "9.4.1 checksum verified",
+  "tls_verification": true,
+  "latest_native_compile_status": "BLOCKED_DEPENDENCY_DOWNLOAD",
+  "failed_dependency_host": "repo.reactnative.dev",
+  "http_status": 403,
+  "tasks_reached": 75,
+  "apk_produced": false,
+  "ios_native_build": "BLOCKED_NO_MACOS_XCODE_EAS_SIGNING",
+  "physical_device_tests": "NOT TESTED",
+  "network_draft_rule_added": "repo.reactnative.dev",
+  "network_draft_status": "SAVED_NOT_APPLIED; requires environment review/save/publish"
+}

@@ -1,0 +1,105 @@
+{
+  "scope": "UI state transitions only, no provider success claims. External/mutating network blocked. Fixed versioned allowlist; unknown controls skipped.",
+  "counts": {
+    "PASSED": 1358,
+    "PASSED_IDEMPOTENT": 31,
+    "SKIPPED": 434,
+    "BLOCKED": 68,
+    "NO_OBSERVED_CHANGE": 18
+  },
+  "total": 1909,
+  "unexpected_errors": 0,
+  "same_page_no_observed_change": [
+    {
+      "viewport": "desktop",
+      "route": "/cart",
+      "control": "01 / Cart"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/checkout",
+      "control": "02 / Checkout"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/orders",
+      "control": "03 / Order status"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/event",
+      "control": "Event Stylist"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/advisor",
+      "control": "AI Personal Stylist"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/profile",
+      "control": "Open profile"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/privacy",
+      "control": "Privacy"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/complete",
+      "control": "Change shopping location"
+    },
+    {
+      "viewport": "desktop",
+      "route": "/complete",
+      "control": "Complete the Look"
+    },
+    {
+      "viewport": "iphone-web",
+      "route": "/cart",
+      "control": "01 / Cart"
+    },
+    {
+      "viewport": "iphone-web",
+      "route": "/checkout",
+      "control": "02 / Checkout"
+    },
+    {
+      "viewport": "iphone-web",
+      "route": "/orders",
+      "control": "03 / Order status"
+    },
+    {
+      "viewport": "iphone-web",
+      "route": "/event",
+      "control": "Event Stylist"
+    },
+    {
+      "viewport": "iphone-web",
+      "route": "/advisor",
+      "control": "AI Personal Stylist"
+    },
+    {
+      "viewport": "iphone-web",
+      "route": "/profile",
+      "control": "Open profile"
+    },
+    {
+      "viewport": "iphone-web",
+      "route": "/privacy",
+      "control": "Privacy"
+    },
+    {
+      "viewport": "iphone-web",
+      "route": "/complete",
+      "control": "Change shopping location"
+    },
+    {
+      "viewport": "iphone-web",
+      "route": "/complete",
+      "control": "Complete the Look"
+    }
+  ],
+  "classification": "18 current-page navigation controls; source handlers navigate/focus current main. No content delta is not proof of a dead handler. Raw outcomes retained; no unmeasured semantic success awarded.434 skipped and68 blocked are not passes."
+}

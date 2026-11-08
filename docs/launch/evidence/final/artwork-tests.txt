@@ -1,0 +1,5 @@
+
+> glam-ai@0.1.0 test:artwork
+> node tests/branding/artwork.cjs
+
+43 artwork checks passed

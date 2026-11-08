@@ -1,0 +1,18 @@
+
+> glam-ai@0.1.0 check:railway
+> node scripts/check-railway-config.mjs && node --test tests/client/railway-build-config.test.mjs
+
+{"component":"web","dockerfile":"deploy/railway/web.Dockerfile","rootDirectory":"/","healthcheck":"/api/health/ready"}
+{"component":"api","dockerfile":"deploy/railway/api.Dockerfile","rootDirectory":"/","healthcheck":"/health/ready"}
+✔ web: actual Dockerfile and readiness path exist from repository root (0.952387ms)
+✔ web: empty, default-root and wrong-service Dockerfile paths are refused (2.753602ms)
+✔ api: actual Dockerfile and readiness path exist from repository root (0.273014ms)
+✔ api: empty, default-root and wrong-service Dockerfile paths are refused (0.265587ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 204.224377

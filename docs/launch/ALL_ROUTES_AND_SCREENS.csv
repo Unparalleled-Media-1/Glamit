@@ -1,0 +1,114 @@
+id,platform,route_or_screen,evidence_kind,visits,status,feature_acceptance
+WEB-ROUTE-8a5edab28263,WEB,/,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-94fd9fd7b04a,WEB,/offer,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-6e59d036a832,WEB,/results,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-d8dbbd251284,WEB,/destination,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-edf54f1e1e2f,WEB,/cart,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-3ff05a7ed821,WEB,/checkout,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-fc7d055239d9,WEB,/orders,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-26315ce1e935,WEB,/shop,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-7adda4af8b5b,WEB,/product,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-fa362389b6a4,WEB,/event,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-593a78009204,WEB,/builder,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-da25a459bb9a,WEB,/analyze,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-e288c89e2268,WEB,/hair,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-263b063e4ee8,WEB,/skin,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-54b92e9775ae,WEB,/body-fit,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-89a696036f1b,WEB,/consent,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-c484e133df84,WEB,/quality,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-70b6cdaf4e59,WEB,/goals,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-8cc63f97e8c5,WEB,/report,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-a6e52945d9d0,WEB,/color,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-2fb1d65c85be,WEB,/guide,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-5b0f3f2119e1,WEB,/studio,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-85b13db11de9,WEB,/advisor,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-55d685028857,WEB,/profile,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-ec56202ad3db,WEB,/history,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-0ece7f7c306b,WEB,/privacy,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-1c8ad297ff10,WEB,/explore,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-919e4beb5bfd,WEB,/complete,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-31369b226d76,WEB,/screenshot,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-e9b64d95080b,WEB,/budget,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-021b2129e6d3,WEB,/booking,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-a97192917b41,WEB,/wardrobe,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-df61c8d0ffcc,WEB,/calendar,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-3c5eb83d0822,WEB,/groups,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-b0e97f6427d0,WEB,/agent,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-6f3bf60c1564,WEB,/business,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-84a04c248965,WEB,/admin,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-7e93fba0bc7a,WEB,/login,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-bbf5727261ca,WEB,/auth/callback,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-801604123651,WEB,/admin/login,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-6924f38bbbf9,WEB,/business/login,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-c5223955d2fb,WEB,/business/register,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+WEB-ROUTE-d4699c05385a,WEB,/register,Next production browser,8,CHECKED_HTTP_LAYOUT_ONLY,Not implied by route load
+iOS-SCREEN-advisor,iOS,advisor,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-agent,iOS,agent,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-analyze,iOS,analyze,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-body-fit,iOS,body-fit,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-booking,iOS,booking,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-budget,iOS,budget,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-builder,iOS,builder,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-calendar,iOS,calendar,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-cart,iOS,cart,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-checkout,iOS,checkout,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-color,iOS,color,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-complete,iOS,complete,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-consent,iOS,consent,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-destination,iOS,destination,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-event,iOS,event,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-explore,iOS,explore,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-goals,iOS,goals,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-groups,iOS,groups,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-guide,iOS,guide,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-hair,iOS,hair,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-history,iOS,history,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-home,iOS,home,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-offer,iOS,offer,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-orders,iOS,orders,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-privacy,iOS,privacy,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-product,iOS,product,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-profile,iOS,profile,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-quality,iOS,quality,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-report,iOS,report,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-results,iOS,results,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-screenshot,iOS,screenshot,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-shop,iOS,shop,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-skin,iOS,skin,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-studio,iOS,studio,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+iOS-SCREEN-wardrobe,iOS,wardrobe,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-advisor,ANDROID,advisor,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-agent,ANDROID,agent,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-analyze,ANDROID,analyze,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-body-fit,ANDROID,body-fit,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-booking,ANDROID,booking,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-budget,ANDROID,budget,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-builder,ANDROID,builder,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-calendar,ANDROID,calendar,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-cart,ANDROID,cart,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-checkout,ANDROID,checkout,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-color,ANDROID,color,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-complete,ANDROID,complete,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-consent,ANDROID,consent,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-destination,ANDROID,destination,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-event,ANDROID,event,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-explore,ANDROID,explore,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-goals,ANDROID,goals,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-groups,ANDROID,groups,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-guide,ANDROID,guide,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-hair,ANDROID,hair,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-history,ANDROID,history,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-home,ANDROID,home,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-offer,ANDROID,offer,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-orders,ANDROID,orders,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-privacy,ANDROID,privacy,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-product,ANDROID,product,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-profile,ANDROID,profile,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-quality,ANDROID,quality,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-report,ANDROID,report,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-results,ANDROID,results,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-screenshot,ANDROID,screenshot,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-shop,ANDROID,shop,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-skin,ANDROID,skin,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-studio,ANDROID,studio,Page union plus explicit switch; source only,0,NOT TESTED,Native runtime unavailable
+ANDROID-SCREEN-wardrobe,ANDROID,wardrobe,Page union; delegated view or generic planning fallback; source only,0,NOT TESTED,Native runtime unavailable

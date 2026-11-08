@@ -1,0 +1,10 @@
+{
+  "tested_code_commit": "d38cf1667a50d5ae240dc75da6c683a770363fd9",
+  "browser_observed_base": "166498e287de5d966dac42e6fb7a719fd61d0ddd",
+  "browser_source_binding": "git diff between observed base and tested code commit is empty for apps/web and packages; audit changes only instruments, tests and native prerequisites",
+  "web_clean_rebuild": "PASS after final frozen install",
+  "native_binary": "NOT PRODUCED; blocked dependency download",
+  "release_status": "NO-GO",
+  "public_deployments": 0,
+  "production_database_mutations": 0
+}
