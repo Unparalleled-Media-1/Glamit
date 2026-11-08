@@ -2,7 +2,7 @@
 
 Observed 8 November 2026. Scope: the actual `apps/mobile` source and native build attempt, not another platform-wide audit. This answers the user's native-versus-browser question and bounds batch N1.
 
-**A substantial genuine React Native UI exists, but the consumer application is not complete or independently verified on devices.** The earlier interactive HTML used `apps/web/components/GlamApp.tsx`; it was the wrong artifact for demonstrating native screens. It remains a design reference only.
+**A substantial genuine React Native UI exists, but the consumer application is not complete or qualified on physical devices.** The earlier interactive HTML used `apps/web/components/GlamApp.tsx`; it was the wrong artifact for demonstrating native screens. It remains a design reference only.
 
 | Area | Actual implementation | Exact remaining gap |
 | --- | --- | --- |
@@ -22,3 +22,5 @@ Observed 8 November 2026. Scope: the actual `apps/mobile` source and native buil
 There is no basis for declaring iOS or Android 100% built. See the two screen inventories and build reports. Shared PostgreSQL/API tests, JS exports, prebuilds and browser images cannot supply missing native functionality or device acceptance.
 
 No Railway, Supabase, Stripe, production schema, identity rules or financial logic changed. N1 repairs actual native source without rewriting working backend/services. The permanent strategy is in `docs/specification/mobile-first-policy.md`.
+
+Actual independent native compiler/startup receipts now exist: iOS unsigned simulator launch/capture and Android x86_64 emulator five-tab captures. See the platform reports and evidence/remote-native-results.json. PNG visual review remains pending; this does not upgrade full feature acceptance or physical-device verification.
