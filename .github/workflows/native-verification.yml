@@ -53,8 +53,10 @@ jobs:
           workspace=$(find apps/mobile/ios -maxdepth 1 -name '*.xcworkspace' -print -quit)
           test -n "$workspace"
           xcodebuild -list -json -workspace "$workspace" > artifacts/native-ios/workspace.json
-          scheme=$(jq -r '.workspace.schemes[0] // empty' artifacts/native-ios/workspace.json)
-          test -n "$scheme"
+          project=$(find apps/mobile/ios -maxdepth 1 -name '*.xcodeproj' -print -quit)
+          test -n "$project"
+          scheme=$(basename "$project" .xcodeproj)
+          jq -e --arg scheme "$scheme" '.workspace.schemes | index($scheme) != null' artifacts/native-ios/workspace.json
           python3 scripts/mobile/run_logged.py artifacts/native-ios/build.txt xcodebuild -workspace "$workspace" -scheme "$scheme" -configuration Release -sdk iphonesimulator -destination "platform=iOS Simulator,id=$simulator_id" -derivedDataPath /tmp/glam-native-ios CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=YES
           app_bundle=$(find /tmp/glam-native-ios/Build/Products/Release-iphonesimulator -maxdepth 1 -name '*.app' -print -quit)
           test -n "$app_bundle"
