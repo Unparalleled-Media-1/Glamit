@@ -46,6 +46,19 @@ try {
   assert.equal(ready.icon, "./assets/brand/app-icon.png");
   assert.equal(ready.splash.image, "./assets/brand/wordmark.png");
   assert.equal(ready.web.favicon, "./assets/brand/favicon.png");
+  // Exercise the actual CI preflight dependencies against the resolved app config.
+  // A stale artwork filename otherwise rejects every store candidate before EAS starts.
+  const workflow = require("node:fs").readFileSync(
+    ".github/workflows/native-store-build.yml", "utf8",
+  );
+  const requiredFiles = [...workflow.matchAll(/test -f (\S+)/g)].map(m => m[1]);
+  for (const file of requiredFiles) {
+    assert(require("node:fs").existsSync(file), `Native CI requires missing file: ${file}`);
+  }
+  for (const file of [ready.icon, ready.splash.image]) {
+    const relative = require("node:path").posix.join("apps/mobile", file);
+    assert(requiredFiles.includes(relative), `Native CI must check configured artwork: ${relative}`);
+  }
   const fs = require("node:fs"),
     exists = fs.existsSync;
   try {

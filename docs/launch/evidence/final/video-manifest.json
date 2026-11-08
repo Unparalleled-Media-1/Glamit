@@ -1,0 +1,66 @@
+[
+  {
+    "viewport": "small-web",
+    "path": "/workspace/artifacts/glam-final-audit/small-web-route-walkthrough.webm",
+    "bytes": 2926120,
+    "sha256": "93c035709808e903f358d80300588613ebba08550b8ea54936e4f959fd7bc569",
+    "scope": "Actual web route walkthrough; not native app or provider/E2E acceptance",
+    "trace": "/workspace/artifacts/glam-final-audit/small-web.zip"
+  },
+  {
+    "viewport": "compact-web",
+    "path": "/workspace/artifacts/glam-final-audit/compact-web-route-walkthrough.webm",
+    "bytes": 3246465,
+    "sha256": "97aa8a1b68ac94f2a631cddb580c05bc8eecff5b67d42f197147eda0871c4b2e",
+    "scope": "Actual web route walkthrough; not native app or provider/E2E acceptance",
+    "trace": "/workspace/artifacts/glam-final-audit/compact-web.zip"
+  },
+  {
+    "viewport": "iphone-web",
+    "path": "/workspace/artifacts/glam-final-audit/iphone-web-route-walkthrough.webm",
+    "bytes": 4192417,
+    "sha256": "423227516590f9231fb86c2237b7c1fbb2fffeabf578b4168c46eac9e62ad911",
+    "scope": "Actual web route walkthrough; not native app or provider/E2E acceptance",
+    "trace": "/workspace/artifacts/glam-final-audit/iphone-web.zip"
+  },
+  {
+    "viewport": "large-phone-web",
+    "path": "/workspace/artifacts/glam-final-audit/large-phone-web-route-walkthrough.webm",
+    "bytes": 3911136,
+    "sha256": "447ff1fe7a3d648f0f8d2299181974bb4f7fa4b3858e0e5ed6df7f20827cbee4",
+    "scope": "Actual web route walkthrough; not native app or provider/E2E acceptance",
+    "trace": "/workspace/artifacts/glam-final-audit/large-phone-web.zip"
+  },
+  {
+    "viewport": "tablet",
+    "path": "/workspace/artifacts/glam-final-audit/tablet-route-walkthrough.webm",
+    "bytes": 6786673,
+    "sha256": "582a9a77705139b52ef474c9b16b3036a3d41399dedc3eff9c208a9a1d59ee36",
+    "scope": "Actual web route walkthrough; not native app or provider/E2E acceptance",
+    "trace": "/workspace/artifacts/glam-final-audit/tablet.zip"
+  },
+  {
+    "viewport": "small-desktop",
+    "path": "/workspace/artifacts/glam-final-audit/small-desktop-route-walkthrough.webm",
+    "bytes": 6459141,
+    "sha256": "f90ad549e7212d65094197cbf49189cff7de45c8e5ebef0a93cc68dead427c2c",
+    "scope": "Actual web route walkthrough; not native app or provider/E2E acceptance",
+    "trace": "/workspace/artifacts/glam-final-audit/small-desktop.zip"
+  },
+  {
+    "viewport": "desktop",
+    "path": "/workspace/artifacts/glam-final-audit/desktop-route-walkthrough.webm",
+    "bytes": 8090683,
+    "sha256": "0d7e1be2e9169c1415e0f415f4397428071c1003143d79476c616be7ea3374f0",
+    "scope": "Actual web route walkthrough; not native app or provider/E2E acceptance",
+    "trace": "/workspace/artifacts/glam-final-audit/desktop.zip"
+  },
+  {
+    "viewport": "wide-desktop",
+    "path": "/workspace/artifacts/glam-final-audit/wide-desktop-route-walkthrough.webm",
+    "bytes": 9438969,
+    "sha256": "fa58b3dae2027844b741e328ebb52fe976519a5adc616b2c927693daeaf83a00",
+    "scope": "Actual web route walkthrough; not native app or provider/E2E acceptance",
+    "trace": "/workspace/artifacts/glam-final-audit/wide-desktop.zip"
+  }
+]

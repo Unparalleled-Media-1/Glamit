@@ -1,0 +1,34 @@
+{
+  "observed_at": "2026-11-08T15:00:58.123916+00:00",
+  "source_base": "d38cf1667a50d5ae240dc75da6c683a770363fd9",
+  "requirements_per_platform": 140,
+  "counts": {
+    "WEB": {
+      "BLOCKED": 9,
+      "NOT TESTED": 52,
+      "PASS": 2,
+      "FAIL": 77
+    },
+    "iOS": {
+      "BLOCKED": 9,
+      "NOT TESTED": 53,
+      "FAIL": 78
+    },
+    "ANDROID": {
+      "BLOCKED": 9,
+      "NOT TESTED": 53,
+      "FAIL": 78
+    }
+  },
+  "verified_build_acceptance_percent": {
+    "WEB": 1.43,
+    "iOS": 0.0,
+    "ANDROID": 0.0
+  },
+  "overall_verified_build_acceptance_percent": 0.48,
+  "methodology": "PASS/applicable requirements. Lower bound of fully evidenced requirement acceptance, not estimated code-written percentage. Partial implementation counts zero. Native exports/prebuild do not certify native runtime. No unapproved N/A exclusions.",
+  "decision": "NO-GO",
+  "build_completeness_certification": "NOT CERTIFIED; no estimated code percentage",
+  "entire_application_100_percent_built": false,
+  "public_launch_ready": false
+}

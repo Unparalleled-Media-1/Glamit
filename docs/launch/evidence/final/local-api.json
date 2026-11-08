@@ -1,0 +1,375 @@
+{
+  "observed_at": "2026-11-08T14:48:32.564722+00:00",
+  "scope": "Real local FastAPI process; isolated test PostgreSQL; no authentication bypass",
+  "requests": [
+    {
+      "method": "GET",
+      "route": "/health/live",
+      "status": 200,
+      "passed": true,
+      "roundtrip_ms": 4,
+      "expected": "public health/policy"
+    },
+    {
+      "method": "GET",
+      "route": "/health/ready",
+      "status": 200,
+      "passed": true,
+      "roundtrip_ms": 232,
+      "expected": "public health/policy"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/me",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 3,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/me/credits",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/policies",
+      "status": 200,
+      "passed": true,
+      "roundtrip_ms": 7,
+      "expected": "public health/policy"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/policies/{policy_id}/consent",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 3,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/organizations",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/organizations/{org_id}",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/looks",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/looks/{look_id}/revisions",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 3,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/looks/{look_id}/revisions/{revision_no}",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "DELETE",
+      "route": "/v1/looks/{look_id}",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/me/workspaces",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 3,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/organizations/{org}/workspaces/{workspace}/drafts",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/organizations/{org}/workspaces/{workspace}/drafts",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "DELETE",
+      "route": "/v1/organizations/{org}/workspaces/{workspace}/drafts/{draft}",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "PUT",
+      "route": "/v1/organizations/{org}/workspaces/{workspace}/drafts/{draft}",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/me/routines",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/me/routines",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "DELETE",
+      "route": "/v1/me/routines/{routine}",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "PUT",
+      "route": "/v1/me/routines/{routine}",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/organizations/{org}/workspaces/{workspace}/invitations",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 3,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/me/workspace-invitations",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/me/workspace-invitations/{invitation}/accept",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "DELETE",
+      "route": "/v1/organizations/{org}/workspaces/{workspace}/invitations/{invitation}",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "DELETE",
+      "route": "/v1/organizations/{org}/workspaces/{workspace}/roles/{member}/{role}",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/admin/context",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/analysis/requests",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/organizations/{org}/catalog/listings",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 3,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/organizations/{org}/catalog/listings",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 4,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/organizations/{org}/catalog/listings/bulk",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/organizations/{org}/catalog/listings/{lid}",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/organizations/{org}/catalog/listings/{lid}/revisions",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/admin/catalog/review-queue",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/admin/catalog/{lid}/revisions/{revision}/review",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/organizations/{org}/catalog/listings/{lid}/publish",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/organizations/{org}/catalog/publish-bulk",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/organizations/{org}/catalog/listings/{lid}/withdraw",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/organizations/{org}/catalog/listings/{lid}/rollback",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/recommendations/matches",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/recommendations/listings/{lid}",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/me/saved-requirements",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 3,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/me/saved-requirements",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "DELETE",
+      "route": "/v1/me/saved-requirements/{sid}",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "POST",
+      "route": "/v1/organizations/{org}/catalog/listings/{lid}/enhancements",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    },
+    {
+      "method": "GET",
+      "route": "/v1/organizations/{org}/catalog/listings/{lid}/enhancements/{jid}",
+      "status": 401,
+      "passed": true,
+      "roundtrip_ms": 2,
+      "expected": "anonymous access denied"
+    }
+  ],
+  "status": "PASSED"
+}

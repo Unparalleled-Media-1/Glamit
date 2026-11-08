@@ -1,0 +1,28 @@
+
+> glam-ai@0.1.0 test:launch-gates
+> node --test tests/launch/release-gates.test.cjs tests/launch/railway-release-lock.test.cjs tests/launch/qa-gates.test.cjs tests/launch/final-platform-gates.test.cjs
+
+✔ final evidence cannot be omitted by an older release receipt (4.567769ms)
+✔ browser emulation and JS exports cannot certify either native application (7.872027ms)
+✔ missing, duplicate, blocked and unapproved N/A features prevent certification (10.338092ms)
+✔ green gates for another candidate cannot certify the current commit (0.855914ms)
+✔ structurally complete synthetic evidence is accepted; it is not a real release (3.206991ms)
+✔ legacy gates cannot omit the fifteen current QA review gates (6.12353ms)
+✔ duplicate, blocked and missing QA gates cannot be treated as passes (3.30414ms)
+✔ fifteen green labels without commit-bound evidence cannot certify QA (1.163786ms)
+✔ legacy eleven green labels cannot bypass the twelve current gates (20.12121ms)
+✔ local success and fresh documents do not replace deployed Railway evidence (3.317976ms)
+✔ structurally complete synthetic evidence validates; it proves no provider operation (5.228591ms)
+✔ wrong deployed commit, failed readiness and blocked deployed journeys are rejected (14.016887ms)
+✔ duplicate or malformed gate sets fail closed without crashing (1.822566ms)
+✔ Missing or partial evidence cannot certify launch (3.177181ms)
+✔ Green gate labels do not replace actual financial, hardware or approval evidence (1.095571ms)
+✔ Stale evidence and changed source are rejected (1.031722ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 330.202588

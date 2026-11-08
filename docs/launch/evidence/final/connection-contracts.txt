@@ -1,0 +1,5 @@
+
+> glam-ai@0.1.0 test:connections
+> node tests/client/connected-contracts.cjs
+
+PASS isolated TEST DOUBLE browser contract journey: owner rejection, analysis uncertainty/corrections, stale preview discard, current try-on handoff, explicit local matching, separate sponsorship, verified variant/cart/server quote, pending vs paid receipt and photo clearing. Not live provider/payment evidence.

@@ -6,6 +6,7 @@ function validateLaunch(r, root = process.cwd()) {
   const errors = [];
   const expected = Array.from({ length: 12 }, (_, i) => "G" + (i + 1));
   if (!r || typeof r !== "object") return ["Launch evidence missing"];
+  errors.push(...require("./final-platform-gates.cjs").validateFinalPlatforms(r));
   if (r.release_evidence_version !== 2)
     errors.push("Unsupported release evidence schema");
   const gates = Array.isArray(r.gates) ? r.gates : [];

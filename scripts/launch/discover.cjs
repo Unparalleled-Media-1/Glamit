@@ -86,6 +86,7 @@ for (const file of [
         controls.push({
           file: path.relative(root, file),
           line: at.line + 1,
+          column: at.character + 1,
           tag,
           label:
             attrs

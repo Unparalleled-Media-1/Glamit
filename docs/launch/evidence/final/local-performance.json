@@ -1,0 +1,55 @@
+{
+  "observed_at": "2026-11-08T14:47:39.073Z",
+  "scope": "Single-run local Chromium lab, no CPU/network throttling. LCP/CLS observations do not establish production CWV, INP, load capacity or real-device performance.",
+  "pages": [
+    {
+      "route": "/",
+      "lcp_ms": 628,
+      "cls": 0.20853080568720378,
+      "fcp_ms": 360,
+      "transfer_bytes": 1149002
+    },
+    {
+      "route": "/analyze",
+      "lcp_ms": 580,
+      "cls": 0.20853080568720378,
+      "fcp_ms": 284,
+      "transfer_bytes": 1149002
+    },
+    {
+      "route": "/results",
+      "lcp_ms": 524,
+      "cls": 0.6686018957345972,
+      "fcp_ms": 332,
+      "transfer_bytes": 1149002
+    },
+    {
+      "route": "/studio",
+      "lcp_ms": 616,
+      "cls": 0.7162595698140722,
+      "fcp_ms": 272,
+      "transfer_bytes": 1149002
+    },
+    {
+      "route": "/shop",
+      "lcp_ms": 496,
+      "cls": 0.20853080568720378,
+      "fcp_ms": 280,
+      "transfer_bytes": 1055726
+    },
+    {
+      "route": "/product",
+      "lcp_ms": 412,
+      "cls": 0.20853080568720378,
+      "fcp_ms": 204,
+      "transfer_bytes": 1055726
+    },
+    {
+      "route": "/login",
+      "lcp_ms": 192,
+      "cls": 0,
+      "fcp_ms": 192,
+      "transfer_bytes": 934898
+    }
+  ]
+}

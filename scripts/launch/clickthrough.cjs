@@ -18,10 +18,15 @@ const source = JSON.parse(
   fs.readFileSync(path.join(EVIDENCE, "source-inventory.json")),
 );
 const viewports = [
+  { name: "small-web", width: 320, height: 740 },
+  { name: "compact-web", width: 375, height: 812 },
   { name: "desktop", width: 1440, height: 1000 },
   { name: "iphone-web", width: 390, height: 844 },
+  { name: "large-phone-web", width: 430, height: 932 },
   { name: "android-web", width: 412, height: 915 },
   { name: "tablet", width: 768, height: 1024 },
+  { name: "small-desktop", width: 1024, height: 900 },
+  { name: "wide-desktop", width: 1920, height: 1080 },
   { name: "landscape-web", width: 844, height: 390 },
 ];
 const core = [
@@ -236,7 +241,7 @@ async function inventory(page) {
         ? process.env.GLAM_AUDIT_ROUTES.split(",").filter((r) =>
           source.routes.includes(r)
         )
-        : ["desktop", "iphone-web"].includes(viewport.name)
+        : process.env.GLAM_AUDIT_ALL_ROUTES === "1" || ["desktop", "iphone-web"].includes(viewport.name)
         ? source.routes
         : core;
       for (const route of routes) {

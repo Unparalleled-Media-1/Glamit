@@ -1,0 +1,33 @@
+{
+  "observed_at": "2026-11-08T15:10:36.125132+00:00",
+  "default_branch": "feat/platform-foundations",
+  "main_sha": "166498e287de5d966dac42e6fb7a719fd61d0ddd",
+  "actual_github_branch_count": 3,
+  "branches": [
+    {
+      "branch": "audit/final-cross-platform",
+      "sha": "6f489df614a79e93f3c3b6ec6e110618d75fb096",
+      "contained_in_main": false,
+      "divergence_from_main": "0\t4",
+      "tracking_head_matches_github": true
+    },
+    {
+      "branch": "feat/platform-foundations",
+      "sha": "166498e287de5d966dac42e6fb7a719fd61d0ddd",
+      "contained_in_main": true,
+      "divergence_from_main": "0\t0",
+      "tracking_head_matches_github": true
+    },
+    {
+      "branch": "fix/railway-docker-complete",
+      "sha": "3547b1f93773ffdaab32ebeb957bce3b827c07b8",
+      "contained_in_main": true,
+      "divergence_from_main": "1\t0",
+      "tracking_head_matches_github": true
+    }
+  ],
+  "historical_inventory_scope": "git-inventory.json contains cached local/tracking refs; its46 entries are not46 live GitHub branches",
+  "remote_mutations": 0,
+  "branches_deleted": 0,
+  "pr_state": "PR33 open; not merged"
+}

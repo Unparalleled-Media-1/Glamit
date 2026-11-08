@@ -42,7 +42,7 @@ jobs:
             test -n "${!name}" || { echo "Missing required build configuration: $name"; exit 1; }
           done
           test -f apps/mobile/assets/brand/app-icon.png
-          test -f apps/mobile/assets/brand/splash.png
+          test -f apps/mobile/assets/brand/wordmark.png
       - run: npm ci --ignore-scripts
       - run: node scripts/check-browser-auth-config.mjs
       - run: npm run typecheck --workspace=@glam/mobile

@@ -1,0 +1,3 @@
+These logs record the current local candidate only. Tests using provider doubles are labeled. Android compilation progressed to75 tasks and failed fetching the official React Native AAR from repo.reactnative.dev (HTTP403). No APK was produced. Java/proxy/CA setup issues were resolved before that last failure. iOS native compilation was not attempted because macOS/Xcode/EAS/signing are unavailable. Neither platform has real-device evidence.
+
+Committed text receipts normalize line endings and trailing whitespace only. The original workspace command logs remain available under /tmp/glam-final-*.log. No status or diagnostic content was changed by normalization.

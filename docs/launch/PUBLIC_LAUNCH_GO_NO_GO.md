@@ -1,3 +1,5 @@
+> Latest final cross-platform audit: **NO-GO**. See [FINAL_MASTER_AUDIT.md](FINAL_MASTER_AUDIT.md), [CROSS_PLATFORM_PARITY_REPORT.md](CROSS_PLATFORM_PARITY_REPORT.md) and [FINAL_PUBLIC_RELEASE_CHECKLIST.md](FINAL_PUBLIC_RELEASE_CHECKLIST.md). Earlier evidence below remains historical; it does not certify this candidate.
+
 # Public launch decision: NO-GO
 
 07 November 2026 22:30 SAST. **NO-GO — no public launch or service mutation.** Machine evidence uses UTC timestamps.
