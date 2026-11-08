@@ -1,0 +1,136 @@
+name: Native build verification
+on:
+  pull_request:
+    paths:
+      - 'apps/mobile/**'
+      - 'packages/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/native-verification.yml'
+      - 'scripts/mobile/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: native-verification-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+env:
+  CI: '1'
+  EXPO_NO_TELEMETRY: '1'
+  GLAM_BUILD_ENV: development
+  # Local verification IDs only; never registered/published by this workflow.
+  GLAM_IOS_BUNDLE_IDENTIFIER: com.glambeauty.localverification
+  GLAM_ANDROID_PACKAGE: com.glambeauty.localverification
+jobs:
+  ios-simulator:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: node scripts/ci/frozen-install.mjs node
+      - run: npm run test:native-photo
+      - name: Generate actual iOS native project
+        run: npm exec --workspace=@glam/mobile -- expo prebuild --platform ios --no-install
+      - name: Install CocoaPods dependencies from the native project root
+        working-directory: apps/mobile/ios
+        run: python3 ../../../scripts/mobile/run_logged.py ../../../artifacts/native-ios/pods.txt pod install
+      - name: Compile and boot unsigned simulator application
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/native-ios
+          xcodebuild -version > artifacts/native-ios/toolchain.txt
+          xcrun simctl list devices available --json > artifacts/native-ios/simulators.json
+          simulator_id=$(jq -r '[.devices[][] | select(.isAvailable and (.name | startswith("iPhone")))][0].udid // empty' artifacts/native-ios/simulators.json)
+          test -n "$simulator_id"
+          simulator_state=$(jq -r --arg id "$simulator_id" '.devices[][] | select(.udid == $id) | .state' artifacts/native-ios/simulators.json)
+          if [ "$simulator_state" != Booted ]; then xcrun simctl boot "$simulator_id"; fi
+          xcrun simctl bootstatus "$simulator_id" -b
+          workspace=$(find apps/mobile/ios -maxdepth 1 -name '*.xcworkspace' -print -quit)
+          test -n "$workspace"
+          xcodebuild -list -json -workspace "$workspace" > artifacts/native-ios/workspace.json
+          project=$(find apps/mobile/ios -maxdepth 1 -name '*.xcodeproj' -print -quit)
+          test -n "$project"
+          scheme=$(basename "$project" .xcodeproj)
+          jq -e --arg scheme "$scheme" '.workspace.schemes | index($scheme) != null' artifacts/native-ios/workspace.json
+          python3 scripts/mobile/run_logged.py artifacts/native-ios/build.txt xcodebuild -workspace "$workspace" -scheme "$scheme" -configuration Release -sdk iphonesimulator -destination "platform=iOS Simulator,id=$simulator_id" -derivedDataPath /tmp/glam-native-ios CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=YES
+          app_bundle=$(find /tmp/glam-native-ios/Build/Products/Release-iphonesimulator -maxdepth 1 -name '*.app' -print -quit)
+          test -n "$app_bundle"
+          xcrun simctl install "$simulator_id" "$app_bundle"
+          xcrun simctl launch "$simulator_id" com.glambeauty.localverification | tee artifacts/native-ios/launch.txt
+          sleep 10
+          xcrun simctl io "$simulator_id" screenshot artifacts/native-ios/home.png
+          git rev-parse HEAD > artifacts/native-ios/source-sha.txt
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: actual-ios-simulator-build-and-startup
+          path: artifacts/native-ios
+          if-no-files-found: warn
+  android-emulator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Inspect preinstalled Android SDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/native-android
+          test -d "$ANDROID_HOME"
+          echo "$ANDROID_HOME/cmdline-tools/latest/bin" >> "$GITHUB_PATH"
+          echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
+          python3 scripts/mobile/run_logged.py artifacts/native-android/sdk.txt "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --version
+      - run: node scripts/ci/frozen-install.mjs node
+      - run: npm run test:native-photo
+      - name: Generate actual Android native project
+        run: npm exec --workspace=@glam/mobile -- expo prebuild --platform android --no-install
+      - name: Install compile SDK and NDK
+        run: python3 scripts/mobile/run_logged.py artifacts/native-android/sdk-install.txt sdkmanager 'platforms;android-37.0' 'build-tools;37.0.0' 'ndk;27.1.12297006' 'cmake;3.22.1'
+      - name: Compile local verification APK with bundled JavaScript
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/native-android
+          cd apps/mobile/android
+          python3 ../../../scripts/mobile/run_logged.py ../../../artifacts/native-android/build.txt ./gradlew :app:assembleRelease -PreactNativeArchitectures=x86_64 --no-daemon --max-workers=2
+      - name: Enable emulator KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install, launch and capture actual Android app
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          script: |
+            adb install -r apps/mobile/android/app/build/outputs/apk/release/app-release.apk
+            adb shell am start -W -n com.glambeauty.localverification/.MainActivity
+            sleep 10
+            adb shell pidof com.glambeauty.localverification
+            python3 scripts/mobile/run_logged.py artifacts/native-android/navigation.txt python3 scripts/mobile/android_startup_smoke.py
+            adb logcat -d -t 300 ReactNativeJS:E AndroidRuntime:E '*:S' > artifacts/native-android/runtime.txt
+            git rev-parse HEAD > artifacts/native-android/source-sha.txt
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: actual-android-apk-and-emulator-startup
+          path: |
+            artifacts/native-android
+            apps/mobile/android/app/build/outputs/apk/release/*.apk
+          if-no-files-found: warn

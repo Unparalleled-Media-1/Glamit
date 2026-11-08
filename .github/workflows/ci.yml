@@ -164,6 +164,7 @@ jobs:
           cache: npm
       - run: node scripts/ci/frozen-install.mjs node
       - run: npm run typecheck --workspace=@glam/mobile
+      - run: npm run test:native-photo
       - run: npm run test:client
       - run: node tests/client/mobile-build-config.cjs
       - run: npm run test:auth

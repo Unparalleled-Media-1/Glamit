@@ -1,0 +1,14 @@
+{
+  "source_base": "af4f2492ecfab5b43db4eedfc4860814d6dd7400",
+  "current_sources": {
+    "apps/mobile/App.tsx": "a27186472aa716a44372224d528a84f62a4db472b832dba79c4be4c9b1211034",
+    "apps/mobile/index.ts": "bd5900c3419fa39727c350ce6192b2ea699a37078d2432094cc84665d5069f06",
+    "apps/mobile/app.config.ts": "1be1be04bcb99d0e236cc696e3f1a45e7c2216ecb6860716be70f5c9cf92cc04",
+    "apps/mobile/app.json": "9150b78069be0c07ecde19f799a505281cde860337e09fc59604cf6aa7ddb8ed",
+    "apps/mobile/eas.json": "21ec26986399c113f344b7abffbc2c78660d3062274271d14ed1da5b6d6af03e",
+    "apps/mobile/auth/secure-session.ts": "969c62710c85c308697ab3d0d4d3b02eb7695894ea40a895975f28fc30638d78",
+    "tests/mobile/photo-native.cjs": "c00d7f779df10e851851655e2566d04e35a5503e691453590298656d1fe110e1"
+  },
+  "android_attempt_App_snapshot_sha256": "fcb2c70824ff9729ea235f1ed42041f37bcadd50d1a7f5d24110526fc09d2076",
+  "scope": "Android attempt used N1 snapshot before final replacement-cleanup guard; both the snapshot and final source remain blocked before APK generation at the same external native artifact download. Current source has passing handler/type tests."
+}

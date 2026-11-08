@@ -1,0 +1,13 @@
+{
+  "host_os": "Linux",
+  "xcodebuild_available": false,
+  "android_sdk": "/workspace/glam-tools/android-sdk",
+  "android_emulator_installed": false,
+  "android_system_images_installed": false,
+  "kvm_device_present": false,
+  "local_verification_identifier": "com.glambeauty.localverification",
+  "store_registration_claimed": false,
+  "native_screenshots_produced_locally": false,
+  "remote_native_captures_produced": true,
+  "remote_visual_review": "PENDING: artifact download blocked"
+}

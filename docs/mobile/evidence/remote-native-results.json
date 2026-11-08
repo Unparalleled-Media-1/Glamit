@@ -1,0 +1,74 @@
+{
+  "scope": "Actual native compilation and startup/navigation smoke only; no full feature/device/provider certification",
+  "visual_review": "BLOCKED: artifact download hostname productionresultssa9.blob.core.windows.net rejected by environment policy",
+  "app_source_trees": {
+    "ios": {
+      "apps/mobile": "0d6cf36d43a60eadaf6ff9c3d84811c013352ebd",
+      "packages": "dc23b9c83e970185cda9f4e187db92d72ad00977",
+      "package-lock.json": "061728d21759635e6467954ccb1c8b75752576db"
+    },
+    "android": {
+      "apps/mobile": "0d6cf36d43a60eadaf6ff9c3d84811c013352ebd",
+      "packages": "dc23b9c83e970185cda9f4e187db92d72ad00977",
+      "package-lock.json": "061728d21759635e6467954ccb1c8b75752576db"
+    }
+  },
+  "jobs": [
+    {
+      "platform": "ios",
+      "run_id": "42516089742",
+      "job_id": 128839304861,
+      "head_sha": "ebaedd6378c12cd6e63c552671ea316e971d1a6c",
+      "conclusion": "success",
+      "url": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42516089742/job/128839304861",
+      "artifacts": [
+        {
+          "id": 13630979780,
+          "name": "actual-ios-simulator-build-and-startup",
+          "size_in_bytes": 1292556
+        }
+      ],
+      "evidence_scope": "Unsigned simulator compilation/install/launch/startup capture; image not visually reviewed"
+    },
+    {
+      "platform": "android",
+      "run_id": "42516089742",
+      "job_id": 128839305125,
+      "head_sha": "ebaedd6378c12cd6e63c552671ea316e971d1a6c",
+      "conclusion": "success",
+      "url": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42516089742/job/128839305125",
+      "artifacts": [
+        {
+          "id": 13631657699,
+          "name": "actual-android-apk-and-emulator-startup",
+          "size_in_bytes": 17422993
+        }
+      ],
+      "evidence_scope": "x86_64 APK compilation/install/native UIAutomator taps/captures for Home/Analyze/AI Studio/AI Advisor/Profile; no camera/provider/physical-device qualification"
+    }
+  ],
+  "identical_native_and_shared_source_between_platform_runs": true,
+  "retained_failed_android_attempt": {
+    "run_id": "42514991945",
+    "job_id": 128836042338,
+    "finding": "First Home tab lookup failed. Rerun succeeded without changing apps/mobile or packages; fixed-delay/readiness reliability remains an open test concern."
+  },
+  "earlier_successful_ios_run": {
+    "platform": "ios",
+    "run_id": "42514991945",
+    "job_id": 128836042464,
+    "head_sha": "2e365cce5dbd88203b26d373b0f8cf024d944605",
+    "conclusion": "success",
+    "url": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42514991945/job/128836042464",
+    "artifacts": [
+      {
+        "id": 13631092193,
+        "name": "actual-ios-simulator-build-and-startup",
+        "size_in_bytes": 1294222
+      }
+    ],
+    "evidence_scope": "Unsigned simulator compilation/install/launch/startup capture; image not visually reviewed"
+  },
+  "source_regression_run": "42516089740",
+  "all_eight_checks_passed_on_executable_source_sha": "ebaedd6378c12cd6e63c552671ea316e971d1a6c"
+}

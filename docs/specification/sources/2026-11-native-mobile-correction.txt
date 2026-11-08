@@ -1,0 +1,231 @@
+## GLAM Beauty mobile app — my assessment
+
+Your concern is justified. The file Codex supplied is not evidence of a genuine native iOS application.
+
+I inspected the uploaded `ios-gallery.html`. It explicitly describes its contents as:
+
+> Six browser layout previews at 390 × 844. These are not installed native-app screenshots.
+
+It references six screens: Home, Face Analysis, AI Studio, Shop, Product Detail and Personalized Results.
+
+That means Codex has shown you mobile-sized browser previews, not proof that those screens were rendered by the actual iOS application.
+
+There is an important distinction:
+
+|               | Responsive website       | Genuine native mobile app                     |
+| ------------- | ------------------------ | --------------------------------------------- |
+| Rendering     | Browser / HTML / CSS     | React Native or native iOS/Android components |
+| Navigation    | Website routes           | Native screen stacks and tabs                 |
+| Camera        | Browser permissions      | Native camera and image picker                |
+| Gestures      | Browser interactions     | Native touch gestures and transitions         |
+| Biometrics    | Limited web capabilities | Face ID / Touch ID / Android biometrics       |
+| Notifications | Web push where supported | APNs / FCM                                    |
+| Distribution  | Website / PWA            | App Store / Google Play                       |
+
+Using Expo and React Native is a valid approach for a genuine mobile app. You do not need to rewrite GLAM Beauty in Swift and Kotlin simply to achieve a premium native experience.
+
+However, having an `apps/mobile` folder, passing TypeScript checks or generating Expo prebuilds does not prove the actual mobile product has been implemented correctly.
+
+The HTML gallery alone cannot establish whether the native app is missing, incomplete or simply not included in the evidence.
+
+## The mobile structure I recommend
+
+GLAM Beauty should feel like a dedicated beauty and styling app, not a website squeezed onto a phone.
+
+[AI Skincare App - Mobile UI/UX by Kiran on Dribbble](https://images.openai.com/static-rsc-4/0whHJJGsPsZIQ8yFQTz5X00YHkCK1MHV73h4GqNXjBjetgHpw3A4aQmQW0qlFVgzyblnKfmvt3SLaSdDOuLkiFnAvUTuT0vOzaIy3gznJuZcoqvOdzGdxjFEVsoxr9Zk9JSNHt-Az9tEVhxDZzLK9kqfSDkiea0a8S3zD34GEHs?purpose=inline)
+
+1\. Home — personalized beauty hub
+
+Daily recommendations, saved looks, personalized styling, beauty inspiration and quick access to the camera. No desktop-style navigation menu.
+
+[Create an augmented reality app for virtual clothing try on and digital twins by Carterlogic | Fiverr](https://images.openai.com/static-rsc-4/QKme5SaZiQ0a9T6OOH-rmJcWlpEvKK-ao2Cg9PWIi-06lzuGTls5JOdmb9-Dj8p5dpbrS1Bz0-yXZiklCnkCLHIi2l7SlqojLDd6y-KtTU96qV__RHI2U5ui1Z_vjH9XSxDmcxbUSoqt_8nN6avOHtkSkCuzMV1FiUpuuNGZhfY?purpose=inline)
+
+2\. AI Studio — camera-first experience
+
+Full-screen camera and photo picker, native editing controls, swipeable hairstyle and makeup options, generation progress and before/after comparisons.
+
+[AI Stylist Mobile App by Victoria Grinevich on Dribbble](https://images.openai.com/static-rsc-4/zzx9MUkF_i6MsxXxs4dyM6WAmU53ZV5n9lxvpgMfFGkw_Bh_i0-jaLQolfd8i5mNo7V-Wc40Hd6Eu7DEohhLoQ2Z7rQuAQF7o-2imLaET32rHdwzrrIidWHbt9QTJcYM0zQK1uiSIvNB5cJmeWd6Bq6DlTHw2xHEOJTqQIS0POA?purpose=inline)
+
+3\. My Style — personal styling workspace
+
+Style Passport, Digital Wardrobe, saved looks, personal colour palette, AI Advisor and event/destination styling.
+
+[Lumière - Modern AI Beauty Skincare Ecommerce Mobile App Design by LAIN UI/UX for LAIN on Dribbble](https://images.openai.com/static-rsc-4/0R29dbcIFVYFUml4mdI5R6srMCWYuVxps1fVkX2erxozVdBzooQ_2udyWEGgh4H7m3xuCzWCZESWKJm6gzGpZGarWovpA9Fc-vuaDGQSDwv1xxoXueyDo7ad7bWIS0VYwQqFrF7iV2oIvffmbcbOd7OE1RUlwWYQ56VmfKQ0OhA?purpose=inline)
+
+4\. Discover — inspiration and shopping
+
+Shoppable beauty looks, creator content, nearby professionals and product discovery, without turning GLAM into a generic shopping app.
+
+### Recommended bottom navigation
+
+Home
+
+Studio
+
+Analyze
+
+Discover
+
+Me
+
+Proposed native navigation architecture — not a screenshot of the existing app.
+
+Business users should still have role-specific mobile experiences, but advanced merchant, advertiser and admin operations can remain desktop-first.
+
+## Send this correction instruction to Codex
+
+# GLAM BEAUTY — CRITICAL NATIVE MOBILE APP CORRECTION
+
+The supplied ios-gallery.html contains six browser previews at 390 × 844. This is not acceptable as evidence of the actual iOS application.
+
+We must determine whether GLAM Beauty has a genuine, independently functioning iOS and Android application or whether mobile development has primarily been responsive-web work.
+
+## 1. Verify the actual mobile architecture
+
+Inspect apps/mobile and identify:
+
+- Expo / React Native entry point
+- Expo Router or React Navigation configuration
+- Actual native screen components
+- React Native component usage
+- Native camera and image picker integration
+- Native biometric authentication
+- Secure session storage
+- Native push notifications
+- Native deep linking
+- Native gestures and animations
+- iOS and Android configuration
+- EAS build profiles
+- Installed-device evidence
+
+Identify any screens implemented as WebViews, HTML wrappers or copies of desktop layouts.
+
+Do not classify a responsive web preview as a native app screen.
+
+## 2. Preserve the existing backend
+
+Do not rebuild Supabase, Railway, Stripe or the existing shared business logic.
+
+Use the current backend, shared API contracts, authentication system and data models.
+
+Reuse appropriate non-UI code.
+
+Do not reuse web DOM components as substitutes for native interfaces.
+
+## 3. Implement a genuine mobile-first consumer experience
+
+Create or complete a dedicated React Native consumer navigation system:
+
+HOME\
+AI STUDIO\
+ANALYZE\
+DISCOVER\
+PROFILE / MY STYLE
+
+Use native bottom-tab navigation, screen stacks, safe areas, gestures, keyboard handling, native sheets, haptics where appropriate and mobile-optimized transitions.
+
+Prioritize:
+
+- Camera-first analysis
+- AI makeup and hairstyle try-on
+- Personal Stylist
+- Style Passport
+- Digital Wardrobe
+- Saved looks
+- Creator discovery
+- Product shopping
+- Professional bookings
+- Notifications
+
+Design each flow for touch interaction rather than shrinking a desktop layout.
+
+Maintain GLAM Beauty branding, including the dark luxury theme and pink/rose-gold visual identity.
+
+## 4. Preserve role-specific experiences
+
+Consumers: mobile-first.
+
+Creators: mobile-first content and storefront management, with advanced desktop tools.
+
+Professionals: native booking and scheduling companion.
+
+Merchants: native order and inventory companion; full web workspace.
+
+Advertisers: web-first campaign management.
+
+Administrators: web-first operational dashboard.
+
+Do not remove or break approved features.
+
+## 5. Prove actual native functionality
+
+Build the actual Expo iOS and Android applications.
+
+Provide:
+
+- Native route inventory
+- Native component inventory
+- iOS build results
+- Android build results
+- Screenshots from native simulators/emulators
+- Installed-device screenshots where available
+- Native camera tests
+- Native navigation tests
+- Native authentication tests
+- Native API integration tests
+- Native feature-parity report
+
+Browser screenshots do not count as native evidence.
+
+If Apple signing or developer access is unavailable, distinguish simulator build verification from signed distribution readiness.
+
+## 6. Close implementation gaps
+
+Compare every native screen against the approved GLAM Beauty feature matrix.
+
+For each feature identify:
+
+- Native implementation exists
+- Backend connected
+- Persistent operations implemented
+- Credential-independent tests passed
+- Real-device verification completed
+- External provider activation pending
+
+Fix missing native implementation in controlled batches.
+
+Do not mark any missing mobile screen as complete because the corresponding web route exists.
+
+## 7. Final deliverables
+
+Create:
+
+docs/mobile/NATIVE_ARCHITECTURE_REPORT.md
+
+docs/mobile/IOS_SCREEN_INVENTORY.csv
+
+docs/mobile/ANDROID_SCREEN_INVENTORY.csv
+
+docs/mobile/WEB_VS_NATIVE_GAP_REPORT.md
+
+docs/mobile/NATIVE_UX_REMEDIATION_PLAN.md
+
+docs/mobile/IOS_BUILD_AND_DEVICE_TESTS.md
+
+docs/mobile/ANDROID_BUILD_AND_DEVICE_TESTS.md
+
+## EXECUTION
+
+First establish whether the existing Expo application is genuinely native and identify the exact deficiencies.
+
+Then repair the mobile architecture and user experience without unnecessarily rewriting working code.
+
+Do not create another responsive website and call it a mobile app.
+
+Do not claim iOS or Android completion from browser previews.
+
+The final goal is a premium, independently functioning GLAM Beauty native mobile experience for iOS and Android, using the existing shared backend and preserving all approved product functionality.
+
+My recommendation: Do not approve a full mobile rewrite yet. First have Codex identify how much of `apps/mobile` is genuinely React Native and how much is missing or web-derived. If the underlying native structure is sound, we can replace the unsuitable navigation and screen layouts while retaining working functionality.
+
+The goal is a mobile experience designed around the camera, AI styling and daily engagement, with the website encouraging consumers to download the app and providing full desktop tools for business users.

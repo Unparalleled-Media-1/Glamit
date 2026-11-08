@@ -1,3 +1,5 @@
+Permanent platform policy: [Mobile-first GLAM Beauty](mobile-first-policy.md). Consumers and creators prioritize real native apps; desktop business functionality and essential web access remain. Native evidence must be independent of browser prototypes.
+
 # GLAM AI architecture approval package
 
 **Latest payment scope:** The user authorizes isolated Stripe Connect test integration under Zanzu Technologies Inc. See [architecture](../payments/PAYMENT_ARCHITECTURE.md), [country eligibility](../payments/COUNTRY_ELIGIBILITY_MATRIX.md), [readiness](../payments/STRIPE_CONNECT_READINESS.md) and [financial regression](../payments/PAYMENT_REGRESSION_REPORT.md). Existing policy/auth/production data and original migrations are preserved. New additive sandbox tables are test-database-only. Actual Stripe financial verification is blocked, not complete.

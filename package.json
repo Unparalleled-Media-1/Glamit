@@ -48,7 +48,8 @@
     "test:artwork": "node tests/branding/artwork.cjs",
     "test:private-media": "node tests/client/private-media.cjs",
     "test:photo": "node tests/photo/next.cjs",
-    "check:railway": "node scripts/check-railway-config.mjs && node --test tests/client/railway-build-config.test.mjs"
+    "check:railway": "node scripts/check-railway-config.mjs && node --test tests/client/railway-build-config.test.mjs",
+    "test:native-photo": "node tests/mobile/photo-native.cjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
