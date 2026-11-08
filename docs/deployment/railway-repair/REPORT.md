@@ -33,6 +33,16 @@ Web production builds need the real **public** `NEXT_PUBLIC_SUPABASE_ANON_KEY` f
 
 API production startup still requires the restricted original-project PostgreSQL runtime role, all three exact Supabase OIDC fields and an explicit GLAM_ALLOWED_ORIGINS list. Runtime/database/API schema readiness must actually pass; this patch does not remove those guards. See [the exact configuration and0014 review](../../branding/CONFIGURATION_AND_0014_REVIEW.md). Migration0014 remains separately gated and was not executed. Do not stamp or automatically migrate to make a readiness check green.
 
+## Merged dependency build blockers repaired
+
+While this work was in progress, the default branch advanced to b37f2c8 through dependency PRs and PR31. CI tested that merged snapshot and failed before application compilation. The redacted check annotations identified a malformed SQLAlchemy lock entry (2.1.8 referencing2.1.7 wheels) and npm lock/peer mismatches. Actual local reproduction additionally showed React19.3.1 conflicting with the old renderer/overrides; Expo58.0.23 requires React19.3.0.
+
+The updated candidate preserves the user's Psycopg3.3.7 and Node types26.6.6 updates, regenerates SQLAlchemy2.1.8 wheel metadata using the official resolver, and keeps React/DOM/native/renderer/overrides consistently19.3.0 for the existing Expo SDK. Frozen installs, shared React runtime, Expo dependency checks and both client typechecks pass; npm production audit reports0 vulnerabilities. No force, legacy-peer-deps, skipped wheel validation or suppressed Expo checks are used.
+
+Early standard-library checks now reject inconsistent workspace metadata, split React versions and mismatched Python wheel filenames before installing dependencies. CI install failures also emit bounded redacted check annotations; this environment's proxy blocks direct CI-log downloads, so credential-safe summaries are needed for diagnosis.
+
+Full PostgreSQL regression with the updated SQLAlchemy/Psycopg versions:270 passed. Three additional lock-regression cases pass. Both Docker images were rebuilt and runtime/asset/TLS smoke-tested with the corrected dependencies; the image identities in the manifest reflect those final builds.
+
 ## Actual local evidence
 
 - Both complete Docker image builds succeeded. [Image identities and Dockerfile hashes](evidence/build-manifest.json).

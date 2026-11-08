@@ -27,6 +27,7 @@ jobs:
             BASE_SHA=$(git hash-object -t tree -w /dev/null)
           fi
           node scripts/ci/targets.mjs "$BASE_SHA" "$HEAD_SHA"
+      - run: python3 scripts/ci/check_lockfiles.py
       - run: node --test tests/client/ci-targets.test.mjs
       - run: node scripts/check-railway-config.mjs
       - run: node --test tests/client/railway-build-config.test.mjs tests/client/frozen-install.test.mjs

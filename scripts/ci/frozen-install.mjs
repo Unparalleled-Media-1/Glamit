@@ -32,7 +32,7 @@ export function failureSummary(text, env) {
     );
   return (
     errors.length
-      ? errors.slice(-8)
+      ? errors.slice(0, 8)
       : ["Frozen dependency install failed; inspect the job log."]
   )
     .join(" ")
