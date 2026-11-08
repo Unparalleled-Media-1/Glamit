@@ -1,0 +1,13 @@
+{
+  "local_only": true,
+  "production_modified": false,
+  "checks": [
+    "web: non-root runtime loads system TLS roots; build CA mount absent",
+    "web: honors PORT and passes liveness",
+    "web: Docker runtime serves all three exact original PNGs",
+    "web: ready for public-key fixture configuration; branded login SSR passes; provider connectivity not asserted",
+    "api: non-root runtime loads system TLS roots; build CA mount absent",
+    "api: honors PORT and passes liveness",
+    "api: database/identity unavailable fail closed; explicit new-origin CORS preflight passes; outsider denied"
+  ]
+}

@@ -12,7 +12,7 @@ fs.mkdirSync(path.dirname(encoder), { recursive: true });
 if (!fs.existsSync(encoder)) fs.symlinkSync("/usr/bin/ffmpeg", encoder);
 const { chromium } = require("../docs/design-preview/node_modules/playwright");
 (async () => {
-  const out = path.resolve("docs/application-preview/recordings");
+  const out = path.resolve(process.env.GLAM_RECORDING_OUTPUT || "docs/application-preview/recordings");
   fs.mkdirSync(out, { recursive: true });
   const allocation = http.createServer();
   await new Promise((r) => allocation.listen(0, "127.0.0.1", r));
@@ -79,11 +79,13 @@ const { chromium } = require("../docs/design-preview/node_modules/playwright");
           },
           reducedMotion: "reduce",
         });
+        await context.route("https://**/*", (route) => route.abort());
         const page = await context.newPage();
         page.on("pageerror", (e) => errors.push(e.message));
         await page.goto(origin + route);
         await page.locator("h1").waitFor();
         await page.waitForTimeout(500);
+        await page.screenshot({path:path.join(out, device.name + "-" + screen + ".png"), fullPage:true});
         if (screen === "home")
           await page
             .getByRole("button", { name: "Analyze My Face", exact: true })
@@ -199,7 +201,7 @@ const { chromium } = require("../docs/design-preview/node_modules/playwright");
           nativeIOS: "BLOCKED: no Apple runtime/device available",
           nativeAndroid: "BLOCKED: no Android runtime/device available",
           endToEnd:
-            "BLOCKED: provider credentials, private storage/auth G0, verified marketplace inventory and payment/order activation unavailable",
+            "BLOCKED: provider, private storage, verified catalog and payment/order integration acceptance unavailable",
           files: evidence,
         },
         null,

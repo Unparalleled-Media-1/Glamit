@@ -85,6 +85,17 @@ const assert = require("node:assert/strict");
         .evaluate((n) => Math.round(n.getBoundingClientRect().width)),
       390,
     );
+    const deviceOut = process.env.GLAM_DEVICE_PREVIEWS || "/tmp/glam-device-previews";
+    fs.mkdirSync(deviceOut, { recursive: true });
+    await page.locator("iframe").screenshot({ path: path.join(deviceOut, "ios-home.png") });
+    await page.screenshot({ path: path.join(deviceOut, "ios-interactive-hub.png"), fullPage: true });
+    await page.getByRole("button", { name: "Android", exact: true }).click();
+    await page.waitForFunction(() => Math.round(document.querySelector("iframe").getBoundingClientRect().width) === 412);
+    await page.locator("iframe").screenshot({ path: path.join(deviceOut, "android-home.png") });
+    await page.screenshot({ path: path.join(deviceOut, "android-interactive-hub.png"), fullPage: true });
+    fs.writeFileSync(path.join(deviceOut, "scope.json"), JSON.stringify({ nativeDevice: false, engine: "Chromium", source: "Actual web application in interactive review hub", ios: {width:390,height:844}, android:{width:412,height:915}, nativeBuilds: "Not included: EAS registration/signing/device setup required" }, null, 2));
+    await page.getByRole("button", { name: "iOS", exact: true }).click();
+    await page.waitForFunction(() => Math.round(document.querySelector("iframe").getBoundingClientRect().width) === 390);
     await app
       .getByRole("button", { name: "Analyze My Face", exact: true })
       .click();
@@ -202,7 +213,7 @@ const assert = require("node:assert/strict");
         .isDisabled(),
     );
     await page.getByLabel("Preview journey").selectOption("0");
-    await page.getByRole("button", { name: "Phone", exact: true }).click();
+    await page.getByRole("button", { name: "iOS", exact: true }).click();
     await app
       .getByRole("button", { name: "Analyze My Face", exact: true })
       .waitFor();

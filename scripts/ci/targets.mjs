@@ -4,7 +4,7 @@ import { appendFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 export function targets(paths) {
   const hit = regex => paths.some(p => regex.test(p));
-  const pipeline = hit(/^\.github\/workflows\/ci\.yml$|^scripts\/ci\//);
+  const pipeline = hit(/^scripts\/check-railway-config\.mjs$|^\.github\/workflows\/ci\.yml$|^scripts\/ci\//);
   const js = hit(/^(package(-lock)?\.json|\.node-version|\.npmrc)$|^packages\//);
   return {
     web: pipeline || js || hit(/^(apps\/web\/|deploy\/godaddy\/|deploy\/railway\/web|scripts\/(smoke_deployment_images|build-|public-supabase|check-browser|generate-consumer)|tests\/(client|auth|auth-branding|creator|launch|photo)\/|\.dockerignore$)/),

@@ -1,0 +1,5 @@
+
+> glam-ai@0.1.0 check:client-runtime
+> node scripts/check-client-runtime.mjs
+
+Client runtime checks passed: shared React instances and web hook rendering

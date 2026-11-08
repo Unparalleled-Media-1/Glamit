@@ -1,5 +1,6 @@
 """Local Docker smoke checks only. Never load production credentials or redeploy services."""
 
+import hashlib
 import json
 import subprocess
 import time
@@ -71,12 +72,43 @@ def smoke(component="all"):
                 if time.monotonic() > deadline:
                     raise RuntimeError("LOCAL_" + component.upper() + "_STARTUP_FAILED")
                 time.sleep(0.3)
+            if component == "web":
+                cert_check = (
+                    "const fs=require('node:fs'),tls=require('node:tls');"
+                    "if(process.getuid()===0)throw Error('ROOT_RUNTIME');"
+                    "const ca=fs.readFileSync('/etc/ssl/certs/ca-certificates.crt','utf8');"
+                    "if(!ca.includes('BEGIN CERTIFICATE'))throw Error('SYSTEM_CA_MISSING');"
+                    "tls.createSecureContext({ca});"
+                    "if(fs.existsSync('/run/secrets/proxy_ca'))throw Error('BUILD_CA_LEAK');"
+                )
+                docker("exec", container, "node", "-e", cert_check)
+            else:
+                cert_check = (
+                    "import os,ssl,pathlib;"
+                    "assert os.getuid()!=0;"
+                    "assert pathlib.Path('/etc/ssl/certs/ca-certificates.crt').stat().st_size>0;"
+                    "assert len(ssl.create_default_context().get_ca_certs())>0;"
+                    "assert not pathlib.Path('/run/secrets/proxy_ca').exists()"
+                )
+                docker("exec", container, "python", "-c", cert_check)
+            result["checks"].append(
+                component + ": non-root runtime loads system TLS roots; build CA mount absent"
+            )
             result["checks"].append(component + ": honors PORT and passes liveness")
             if component == "web":
                 code, _, body = request(origin, "/api/health/ready")
                 assert code == 200 and json.loads(body)["integrations_verified"] is False
                 code, _, body = request(origin, "/login")
                 assert code == 200 and "GLAM Beauty" in body
+                assert "/brand/wordmark.png?v=20261108" in body
+                for asset in ["wordmark.png", "favicon.png", "app-icon.png"]:
+                    with urlopen(origin + "/brand/" + asset, timeout=10) as image:
+                        assert image.status == 200
+                        assert image.headers.get_content_type() == "image/png"
+                        delivered = hashlib.sha256(image.read()).hexdigest()
+                    original = Path("apps/web/public/brand") / asset
+                    assert delivered == hashlib.sha256(original.read_bytes()).hexdigest()
+                result["checks"].append("web: Docker runtime serves all three exact original PNGs")
                 result["checks"].append(
                     "web: ready for public-key fixture configuration; branded login SSR passes; "
                     "provider connectivity not asserted"
