@@ -52,9 +52,10 @@ await build({
     },
   ],
 });
-const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'self'"><title>GLAM Beauty — Interactive Preview</title><link rel="stylesheet" href="${base}/assets/preview.css"></head><body><div id="root"></div><script type="module" src="${base}/assets/preview.js"></script></body></html>`;
+const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'self'"><link rel="icon" type="image/png" sizes="256x256" href="${base}/brand/favicon.png?v=20261108"><link rel="apple-touch-icon" href="${base}/brand/favicon.png?v=20261108"><title>GLAM Beauty — Interactive Preview</title><link rel="stylesheet" href="${base}/assets/preview.css"></head><body><div id="root"></div><script type="module" src="${base}/assets/preview.js"></script></body></html>`;
 await writeFile(path.join(root, "index.html"), html);
 await writeFile(path.join(root, ".nojekyll"), "");
+await cp("apps/web/public/brand", path.join(root, "brand"), { recursive: true });
 await cp("apps/web/public/images", path.join(root, "images"), {
   recursive: true,
 });

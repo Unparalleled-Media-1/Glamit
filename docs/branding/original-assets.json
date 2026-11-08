@@ -1,0 +1,26 @@
+{
+  "app-icon.png": {
+    "source": "glam_beauty_app_icon.png",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "sha256": "8e2d34aa7758c8af91169c07939d8643f5328aec06bd836a5dcb94c148fc45b2"
+  },
+  "favicon.png": {
+    "source": "glam_beauty_favicon.png",
+    "dimensions": [
+      256,
+      256
+    ],
+    "sha256": "bebb6f4fe0a2d108286c40b2fe315685ae91f72f64117804d7a7b0ef0eb100d2"
+  },
+  "wordmark.png": {
+    "source": "glam_beauty_logo.png",
+    "dimensions": [
+      1300,
+      455
+    ],
+    "sha256": "34f468753b5873607fb0d4dec6f1f6c128f4c80c433eeee24e9bd5a73ad3a424"
+  }
+}

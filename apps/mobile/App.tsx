@@ -1,3 +1,4 @@
+import BrandLogo from "./BrandLogo";
 import CreatorStudio from "./CreatorStudio";
 import NativeAccount from "./auth/NativeAccount";
 import { useNativeAccount } from "./auth/use-native-account";
@@ -955,9 +956,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
       ]}
     >
       <View style={s.topbar}>
-        <Text style={[s.brand, beautyPage && { color: "#fff0f5" }]}>
-          ✧ GLAM Beauty
-        </Text>
+        <BrandLogo />
         <Pressable
           accessibilityRole="button"
           accessibilityLabel="Change shopping location"

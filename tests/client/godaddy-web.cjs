@@ -116,6 +116,11 @@ const assert = require("node:assert/strict");
       }).count(),
       0,
     );
+    await page.waitForFunction(() => {
+      const img = document.querySelector(".brand-artwork");
+      return img?.complete && img.naturalWidth === 1300;
+    });
+    assert.equal(await page.locator('link[rel="icon"]').getAttribute("href"), "/brand/favicon.png?v=20261108");
     const evidence = process.env.GLAM_AUTH_EVIDENCE_DIR ||
       "/tmp/glam-auth-artifacts";
     fs.mkdirSync(evidence, { recursive: true });

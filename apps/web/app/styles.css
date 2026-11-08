@@ -4414,3 +4414,14 @@ body:has(.beauty-shell) {
 .creator-studio input:not([type=checkbox]), .creator-studio textarea, .creator-studio select { width: 100%; min-width: 0; min-height: 48px; }
 .creator-studio .draft { overflow-wrap: anywhere; }
 .creator-studio :is(input, textarea, select):focus-visible { outline: 2px solid var(--glam-palette-rose); outline-offset: 2px; }
+
+/* Original brand artwork: preserve aspect ratio and colors in every theme. */
+.brand-artwork { display: block; width: 168px; max-width: 100%; height: auto; object-fit: contain; flex-shrink: 0; }
+.business-sidebar .brand-artwork { width: 176px; }
+.site-header .brand { min-width: 0; flex-shrink: 1; }
+.site-header .brand-artwork { min-width: 0; flex-shrink: 1; }
+@media (max-width: 600px) {
+  .site-header, .beauty-shell .site-header { gap: 12px; }
+  .site-header .brand-artwork { width: 112px; }
+  .site-header .market-trigger { min-width: 0; flex: 1; }
+}

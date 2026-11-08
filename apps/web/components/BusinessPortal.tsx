@@ -1,4 +1,5 @@
 "use client";
+import BrandLogo from "./BrandLogo";
 import type { ApprovedWorkspace } from "../lib/workspace-access";
 import { appPath } from "../lib/paths";
 import MerchantSnapList from "./MerchantSnapList";
@@ -118,7 +119,7 @@ export default function BusinessPortal({
       <div className="business-shell">
         <aside className="business-sidebar">
           <a className="brand" href={appPath("/")}>
-            ✧ GLAM <span>Beauty</span>
+            <BrandLogo />
           </a>
           <p className="eyebrow">
             {admin ? "Restricted administration" : "Unified business portal"}

@@ -1,4 +1,5 @@
 "use client";
+import BrandLogo from "./BrandLogo";
 import { useEffect, useRef, useState } from "react";
 import BusinessPortal from "./BusinessPortal";
 import { useAccountSession } from "../lib/use-account-session";
@@ -183,7 +184,7 @@ export default function WorkspaceAccess({
       <main id="workspace-content" tabIndex={-1} className="auth-welcome">
         <div className="auth-frame">
           <a className="brand auth-wordmark" href={appPath("/")}>
-            ✧ GLAM Beauty
+            <BrandLogo />
           </a>
           <section className="auth-card">
             <p className="auth-eyebrow">

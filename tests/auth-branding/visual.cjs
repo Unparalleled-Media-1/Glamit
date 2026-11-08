@@ -32,6 +32,10 @@ const fs = require("node:fs"),
   const js = bundle.outputFiles.find((p) => p.path.endsWith(".js")).text,
     css = bundle.outputFiles.find((p) => p.path.endsWith(".css")).text;
   const server = http.createServer((req, res) => {
+    if (new URL(req.url, "http://local").pathname === "/brand/wordmark.png") {
+      res.setHeader("Content-Type", "image/png");
+      return res.end(fs.readFileSync("apps/web/public/brand/wordmark.png"));
+    }
     res.setHeader(
       "Content-Type",
       req.url === "/app.js"

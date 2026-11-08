@@ -1,4 +1,5 @@
 "use client";
+import BrandLogo from "./BrandLogo";
 
 import { appPath, sectionFromPath, capabilitiesPath } from "../lib/paths";
 import { useEffect, useReducer, useRef, useState } from "react";
@@ -1253,7 +1254,7 @@ export default function GlamApp({
       </a>
       <header className="site-header">
         <a href={appPath("/")} className="brand" aria-label="GLAM Beauty home">
-          <Icon name="spark" /> GLAM <span>Beauty</span>
+          <BrandLogo />
         </a>
         <nav className="desktop-nav" aria-label="Main navigation">
           {webTabs.map((n) => (
@@ -1372,7 +1373,7 @@ export default function GlamApp({
       </main>
       <footer className="site-footer">
         <a className="brand" href={appPath("/")}>
-          GLAM Beauty
+          <BrandLogo />
         </a>
         <span>Understand your features. Explore your possibilities.</span>
         <div>

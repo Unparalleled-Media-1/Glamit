@@ -1,3 +1,7 @@
+## 8 November — exact original artwork installed in candidate
+
+The supplied ZIP resolves the missing binary asset blocker. Original wordmark, ivory favicon and burgundy launcher icon are installed byte-for-byte across web/auth/private workspaces/native config, with hashes, responsive image checks and screenshots in [the artwork report](branding/ASSET_INSTALLATION_STATUS.md). No canonical palette/identity/financial changes or public deployment. Native JS exports are not signed/store or device proof.
+
 ## 8 November — private workspace entry candidate and functional QA
 
 Business and staff routes now use private entry gates with business login/registration, safe return routing, approved-organization selection and server-scoped staff modules. Organization registration cannot grant verified capabilities or staff access. Local evidence: 268 PostgreSQL tests, 12 conditional UI checks, 11 actual guest-route checks and 4 isolated review-layout groups passed. Actual provider authentication and deployed correction remain unverified. The [fourteen QA deliverables](qa/PUBLIC_LAUNCH_GO_NO_GO.md) retain NO-GO; fifteen new QA gates supplement the existing twelve-gate release lock. Fresh read-only CI at07:08UTC still serves ff62f64: web readiness now200 (build configuration scope only),78/86 anonymous responses200; four new entry paths return404 across two viewports. Both deployed dashboards still expose public role selectors and no sign-in/register entry. No public deployment, database migration or financial mutation.
