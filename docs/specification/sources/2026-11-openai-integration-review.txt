@@ -1,0 +1,74 @@
+## GLAM Beauty — OpenAI integration review
+
+I checked [draft PR #38](https://github.com/Unparalleled-Media-1/Glamit/pull/38?utm_source=chatgpt.com) directly in your GitHub repository.
+
+The integration is real source code, not another AI Advisor prototype. It connects the native React Native Advisor to server-side FastAPI endpoints that use an OpenAI provider adapter.
+
+However, the code is not yet approved for live use.
+
+| Area                             | Verified position                                |
+| -------------------------------- | ------------------------------------------------ |
+| Native AI Advisor implementation | Added in PR #38                                  |
+| Server-side OpenAI integration   | Implemented                                      |
+| Backend regression tests         | 345 reported passing                             |
+| iOS simulator                    | Successful build/launch reported                 |
+| Android native app               | APK compiled; navigation verification incomplete |
+| OpenAI API credentials           | Not configured                                   |
+| Live OpenAI response             | Not tested                                       |
+| Production deployment            | Not performed                                    |
+| Full mobile feature completion   | Still outstanding                                |
+
+The implementation includes several safeguards worth retaining: server-side API credentials, explicit styling consent, account eligibility checks, bounded prompts, per-user attempt limits, duplicate-attempt protection and rechecking consent before returning a response.
+
+One important distinction: this integration supplies text-based personal styling advice. It does not yet deliver the full face analysis, hairstyle generation, makeup try-on or persistent Style Passport workflows.
+
+### 1. Configure OpenAI securely
+
+Codex's existing configuration specifies these settings:
+
+| Setting                             | Value / instruction                                                               |
+| ----------------------------------- | --------------------------------------------------------------------------------- |
+| `GLAM_OPENAI_API_KEY`               | Your OpenAI API key, stored as a server-side secret                               |
+| `GLAM_OPENAI_MODEL`                 | `gpt-4.1-mini-2025-04-14` — proposed candidate, not yet verified for your account |
+| `GLAM_OPENAI_ADVISOR_ENABLED`       | `false` initially                                                                 |
+| `GLAM_OPENAI_MAX_REQUESTS_PER_HOUR` | `20` as the proposed testing limit                                                |
+| `EXPO_PUBLIC_GLAM_API_ORIGIN`       | Your approved HTTPS FastAPI endpoint                                              |
+| Network allowlist                   | `api.openai.com` over HTTPS                                                       |
+
+You can create a key at [OpenAI API keys](https://platform.openai.com/api-keys?utm_source=chatgpt.com).
+
+The OpenAI API is billed separately from ChatGPT subscriptions. Set an appropriate project budget and usage alerts.
+
+Store the key in the Codex execution environment for development testing. When the reviewed FastAPI service is eventually deployed, configure its own server-side secret in Railway. These are separate environments.
+
+Do not place the key in GitHub source files, `EXPO_PUBLIC_` variables, `NEXT_PUBLIC_` variables or the mobile app.
+
+### 2. CI status checked directly
+
+The latest GitHub Actions runs I inspected show:
+
+- Backend, hosted API and mobile source checks: passed.
+- Web job: still running.
+- iOS simulator and Android emulator jobs: still running.
+
+Those latest runs therefore cannot yet be counted as passed.
+
+### 3. Instruction to send Codex
+
+Proceed with completing and verifying PR #38 without deploying it to production.
+
+1. Finish the current GitHub Actions checks and investigate any failures. Do not claim the fresh iOS/Android jobs passed until GitHub confirms their conclusions.
+2. Verify the OpenAI configuration contract. I will provide GLAM_OPENAI_API_KEY through the approved server-secret mechanism, not through source code or chat.
+3. Once the development environment is configured, perform a read-only model-access probe first.
+4. Keep GLAM_OPENAI_ADVISOR_ENABLED=false until the selected model, approved styling-advice consent policy, trusted eligibility, session authorization, server permissions, request limits and provider data-handling requirements are verified.
+5. After those gates pass, enable the Advisor only in an isolated test environment. Run a real text-styling request using a test account and test consent records. Verify the actual response, request accounting, refusal handling, failures, cancellation, consent withdrawal and rate limiting.
+6. Demonstrate that the actual native iOS and Android Advisor screens can communicate with the authenticated FastAPI service. Browser tests and mocked native clients do not substitute for this demonstration.
+7. Keep the OpenAI integration separate from the unfinished F1B persistent face-analysis pipeline and image-generation workflows. Do not falsely classify those features as complete.
+8. Maintain PR #38 as draft until the dependency on PR #37, CI results and code review are resolved.
+9. Do not introduce live payments, production schema changes or unapproved deployment changes.
+
+After verification, report the precise difference between source-complete, native-build-verified, provider-connected and live-journey-tested functionality.
+
+Then continue the approved N2 native implementation backlog instead of treating the AI Advisor integration as completion of the mobile application.
+
+My recommendation: Configure the OpenAI key in the development environment, but keep the Advisor feature disabled until the remaining safeguards are validated. Then run one genuine end-to-end native styling-advice journey before expanding to the more expensive photo-analysis and virtual-try-on capabilities.

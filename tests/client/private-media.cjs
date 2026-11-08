@@ -11,8 +11,10 @@ buildSync({ entryPoints: ["packages/product/private-media.ts"], bundle: true, pl
 buildSync({ entryPoints: ["apps/web/lib/private-media.ts"], bundle: true, platform: "node", outfile: web });
 const cryptoDouble = path.join(dir, "native-crypto-contract-double.mjs");
 fs.writeFileSync(cryptoDouble, 'export const CryptoDigestAlgorithm={SHA256:"SHA-256"}; export async function digest(a,d){return globalThis.crypto.subtle.digest(a,d)}');
+const fetchDouble = path.join(dir, "native-fetch-contract-double.mjs");
+fs.writeFileSync(fetchDouble, 'export const fetch=(...args)=>{globalThis.nativeMediaFetchCalls=(globalThis.nativeMediaFetchCalls||0)+1;return globalThis.fetch(...args)}');
 buildSync({ entryPoints: ["apps/mobile/private-media.ts"], bundle: true, platform: "node", outfile: native,
-  alias: { "expo-crypto": cryptoDouble },
+  alias: { "expo-crypto": cryptoDouble, "expo/fetch": fetchDouble },
 });
 
 const { createPrivateMediaClient } = require(shared);
@@ -39,12 +41,15 @@ const input = () => ({ data: raw.slice(0), contentType: "image/jpeg", policyId: 
       ["Android source / explicit native Crypto port double", require(native).nativePrivateMedia],
     ]) {
       const calls = [];
+      const nativeCallsBefore = globalThis.nativeMediaFetchCalls || 0;
       globalThis.fetch = async (url, init) => {
         calls.push({ url, init });
         return response(metadata(init.method === "POST" ? "pending" : "ready"));
       };
       const client = factory("https://api.glam.beauty", () => "test-user-session");
       const result = await client.uploadPhoto(input(), key);
+      if (label.startsWith("Web")) assert.equal(globalThis.nativeMediaFetchCalls || 0, nativeCallsBefore);
+      else assert.equal(globalThis.nativeMediaFetchCalls, nativeCallsBefore + 2, "Native adapter must use the Expo fetch port");
       assert.equal(result.state, "ready");
       assert.equal(calls.length, 2);
       assert.equal(calls[0].url, "https://api.glam.beauty/v1/media");

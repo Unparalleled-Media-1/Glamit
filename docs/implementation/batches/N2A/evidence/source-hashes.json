@@ -1,0 +1,6 @@
+{
+  "packages/product/private-media.ts": "a71fcb62069a3b7a84962748fbca2ecb551253e21a8d3bc122c5f8e4d261e74d",
+  "apps/mobile/private-media.ts": "3c0cda192fa4168f8cfcd18a135206884a250cda620c634ad5fc71aa3a5d9d76",
+  "tests/client/private-media.cjs": "937993f1779a368def4a66e61b60524b60677b2c072d324d85d09e228d664bf5",
+  "tests/client/private-media-lifecycle.cjs": "529171a857dbcddb930ea681488fd9881d5bb281ec7f62972a7202280046e535"
+}
