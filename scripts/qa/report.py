@@ -482,15 +482,29 @@ def main():
             ["Endpoint", "HTTP", "State"],
             [(h["endpoint"], h.get("http_status"), h.get("status")) for h in deployed["health"]],
         )
-        + "\n\nThe existing site is reachable through CI; this workspace "
-        "proxy still denies direct access. Readiness503 is a real con"
-        "figuration failure; proxy tunnel denial is a runner-access p"
-        "roblem, not evidence all routes are broken. New business acc"
-        "ess code is not deployed. Provider config/CORS/actual Railwa"
-        "y logs/settings/rollback remain blocked. New read-only probe"
-        "s include candidate entry routes and anonymous role-picker/s"
-        "ign-in visibility; receipt scope is exact. No service/domain"
-        "/source setting changed.",
+        + "\n\nThe web readiness endpoint now returns200 with scope "
+        "web_build_configuration; this supersedes the earlier503 observation. "
+        "It does not prove API/provider/database readiness. The separate /health "
+        "API paths return404. Of86 anonymous route responses,78 are200 and the "
+        "eight responses for the four new entry paths (desktop/mobile) are404. "
+        "The current deployed business/admin DOM still has one role picker and "
+        "one tools navigation each, with zero sign-in or registration entries. "
+        "New private-entry code is not deployed. Provider config/CORS, actual "
+        "Railway logs/settings and rollback remain unverified. No service, "
+        "domain or source setting was changed by this audit.\n\n"
+        + table(
+            ["Route", "Role picker", "Tools nav", "Sign in", "Register"],
+            [
+                [
+                    r["route"],
+                    r["public_role_picker_count"],
+                    r["tool_navigation_count"],
+                    r["sign_in_entries"],
+                    r["registration_entries"],
+                ]
+                for r in deployed.get("workspace_entry", [])
+            ],
+        ),
     )
     doc(
         "MOBILE_DEVICE_RESULTS.md",

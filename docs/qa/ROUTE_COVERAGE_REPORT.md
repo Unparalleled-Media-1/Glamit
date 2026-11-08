@@ -6,7 +6,7 @@
 
 | Metric | Observed |
 | --- | --- |
-| observed_at | 2026-11-08T07:06:31.851503+00:00 |
+| observed_at | 2026-11-08T07:11:23.552114+00:00 |
 | source_routes | 43 |
 | source_declarations | 467 |
 | runtime_occurrences | 2244 |
