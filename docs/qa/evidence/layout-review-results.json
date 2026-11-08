@@ -1,0 +1,9 @@
+{
+  "scope": "Component-only public review harness; no real role, production route or backend acceptance",
+  "checks": [
+    "All business role modules, isolated session draft save/reset and evidence-gated campaign wizard",
+    "Public admin inventory reveals no privileged controls or business data",
+    "All nine admin review layouts retain scoped modules; analyst is Analytics only",
+    "Snap & List originals, unavailable AI, manual factual review, duplicate rejection, session catalog health and publication guard"
+  ]
+}

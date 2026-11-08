@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
           cache: npm
@@ -33,21 +33,21 @@ jobs:
       - run: npm run test:preview
       - run: npm run export --workspace=@glam/mobile
       - run: python scripts/archive-recent-builds.py
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: glam-interactive-preview
           path: dist/interactive-preview
           include-hidden-files: true
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: glam-last-24-hours-source-snapshots
           path: dist/build-snapshots/*.zip
           compression-level: 0
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: glam-ios-android-javascript-exports
           path: apps/mobile/dist
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist/interactive-preview
   deploy:
@@ -62,9 +62,9 @@ jobs:
     steps:
       # If automatic enablement is not permitted, a repository administrator must
       # enable Settings > Pages > GitHub Actions once. Never request a user secret.
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
         with:
           enablement: true
       - name: Publish the disconnected interactive preview
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

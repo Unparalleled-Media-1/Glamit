@@ -1,0 +1,156 @@
+{
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "observed_at": "2026-11-07T08:58:35.402320+00:00",
+  "checks": [
+    {
+      "name": "public_liveness",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "anonymous_profile_denied",
+      "http_status": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "name": "controlled_auth_created",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "real_auth_login",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "controlled_auth_created",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "real_auth_login",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "authenticated_readiness",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "identity_bootstrap",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "profile_update",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "profile_persisted",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "preferences_update",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "passport_read",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "passport_update",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "passport_preserves_selection",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "stale_revision_refused",
+      "http_status": 409,
+      "expected": 409,
+      "passed": true
+    },
+    {
+      "name": "organization_create",
+      "http_status": 201,
+      "expected": 201,
+      "passed": true
+    },
+    {
+      "name": "idempotent_replay",
+      "http_status": 201,
+      "expected": 201,
+      "passed": true
+    },
+    {
+      "name": "cross_tenant_denied",
+      "http_status": 404,
+      "expected": 404,
+      "passed": true
+    },
+    {
+      "name": "owner_read",
+      "http_status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "privilege_override_refused",
+      "http_status": 422,
+      "expected": 422,
+      "passed": true
+    },
+    {
+      "name": "unsupported_operation_truthful",
+      "http_status": 501,
+      "expected": 501,
+      "passed": true
+    },
+    {
+      "name": "service_role_not_user",
+      "http_status": 401,
+      "expected": 401,
+      "passed": true
+    }
+  ],
+  "controlled_auth_ids": [
+    "c84506aa-efbb-4ce5-af3a-f1ec0480b31d",
+    "9bf57fe3-22d0-4c4a-a174-fe51a953824f"
+  ],
+  "cleanup": [
+    {
+      "auth_id": "c84506aa-efbb-4ce5-af3a-f1ec0480b31d",
+      "http_status": 200
+    },
+    {
+      "auth_id": "9bf57fe3-22d0-4c4a-a174-fe51a953824f",
+      "http_status": 200
+    }
+  ],
+  "controlled_internal_id": "4fd76d96-afae-4b24-b9c9-a5a12f9650bf",
+  "controlled_organization_id": "b4e922a0-1d07-48cb-9f2f-5e6703774aca",
+  "status": "PASSED",
+  "controlled_organization_cleanup": "completed; minimal internal identities and immutable creation audit retained, no merchant data created"
+}

@@ -1,0 +1,1479 @@
+{
+  "methodology": "Atomic requirements normalized from the supplied PartsA-N and existing approved specifications. The opening96-checkpoint summary omits item names in six groups and combines subfeatures; this file expands named subfeatures rather than asserting an artificial96-row total. Priorities are audit risk classifications, not approval to defer launch scope. Eighteen supporting flows from the approved delivery/acceptance documents are retained explicitly rather than hidden inside broad module labels. Opportunity proposals without activation/scope approval are not silently treated as implemented or approved deferrals.",
+  "profiles": {
+    "auth": {
+      "group": "Identity & onboarding",
+      "module": "Authentication and user identity",
+      "web": "/login; /auth/callback; /profile; /security; /register; /business/login; /business/register; /admin/login",
+      "native": "NativeAccount; useNativeAccount",
+      "files": [
+        "apps/web/components/PasswordlessSignIn.tsx",
+        "apps/web/components/AccountSecurity.tsx",
+        "packages/auth/core.ts",
+        "apps/mobile/auth/NativeAccount.tsx",
+        "apps/mobile/auth/use-native-account.ts",
+        "apps/web/components/AccountRoutes.tsx",
+        "apps/web/components/WorkspaceAccess.tsx",
+        "apps/web/lib/workspace-access.ts"
+      ],
+      "api": "Supabase Auth signInWithOtp/verifyOtp/signInWithOAuth/linkIdentity; Edge /v1/me/profile",
+      "tables": "profiles; app_user; device_auth_preferences; notification_preferences",
+      "migrations": "0010_supabase_foundation; 0011_hosted_api; 0013_passwordless_accounts",
+      "tests": [
+        "tests/test_passwordless_accounts.py",
+        "tests/auth/contracts.cjs",
+        "tests/auth/native-gate.cjs",
+        "tests/workspace/access.cjs",
+        "tests/workspace/production.cjs",
+        "tests/test_hosted_api.py"
+      ],
+      "provider": "Supabase Auth; Twilio; Google; Apple; Facebook",
+      "secrets": "NEXT_PUBLIC_SUPABASE_ANON_KEY; EXPO_PUBLIC_SUPABASE_ANON_KEY; TWILIO_ACCOUNT_SID; TWILIO_AUTH_TOKEN; provider client IDs/secrets configured in Supabase Auth",
+      "note": "Auth UI and lifecycle code exist; production phone/social providers disabled; current Auth callback origins still reference glamit.beauty. Private-entry/organization/staff gates are a local candidate; actual deployed Auth and role journeys remain blocked. See docs/qa."
+    },
+    "analysis": {
+      "group": "AI Beauty Analysis",
+      "module": "AI Beauty Analysis",
+      "web": "/consent; /analyze; /results; /report",
+      "native": "App consent/quality/results; CompanionViews PersonalResults",
+      "files": [
+        "apps/web/components/GlamApp.tsx",
+        "apps/web/components/PersonalizedResults.tsx",
+        "apps/mobile/CompanionViews.tsx",
+        "packages/product/use-personal-results.ts",
+        "services/api/src/glam_api/workspaces.py",
+        "services/api/src/glam_api/integrations/providers.py"
+      ],
+      "api": "POST /v1/analysis/requests always503; CompanionConnection.analyze is an optional unbound client port; provider adapter unmounted",
+      "tables": "consent_event; look; look_revision; style_passports (not a completed analysis model)",
+      "migrations": "0001_foundations; 0010_supabase_foundation",
+      "tests": [
+        "tests/test_integrations.py",
+        "tests/client/connected-contracts.cjs",
+        "tests/client/application.cjs"
+      ],
+      "provider": "OpenAI; private Storage",
+      "secrets": "OPENAI_API_KEY or GLAM_OPENAI_API_KEY; GLAM_OPENAI_MODEL; GLAM_PRIVATE_IMAGE_ORIGINS; private Storage configuration",
+      "note": "Consumer starts without CompanionConnection; adapters and schemas do not dispatch operational analysis; no genuine provider result tested."
+    },
+    "studio": {
+      "group": "AI Studio & Virtual Try-On",
+      "module": "AI Studio and virtual try-on",
+      "web": "/studio; /preview; /builder; /get-look",
+      "native": "BeautyExperience; StylingJourney; CompanionViews PersonalPreview",
+      "files": [
+        "apps/web/components/BeautyExperience.tsx",
+        "apps/web/components/StylingJourney.tsx",
+        "apps/mobile/BeautyExperience.tsx",
+        "apps/mobile/StylingJourney.tsx",
+        "packages/product/studio-history.ts",
+        "packages/product/use-personal-results.ts"
+      ],
+      "api": "CompanionConnection.tryOn unbound; internal Replicate/Fashn adapter methods are not mounted",
+      "tables": "look; look_revision (metadata only; no operational generated-media lifecycle)",
+      "migrations": "0001_foundations",
+      "tests": [
+        "tests/client/connected-contracts.cjs",
+        "tests/test_integrations.py",
+        "tests/test_looks_api.py"
+      ],
+      "provider": "Replicate; FASHN; qualified makeup/hair model",
+      "secrets": "REPLICATE_API_TOKEN; FASHN_API_KEY; GLAM_FASHN_MODEL; GLAM_PRIVATE_IMAGE_ORIGINS",
+      "note": "Editorial references, selection history and local look metadata exist; real generated media, exact shade fidelity and persisted generation history are unverified."
+    },
+    "style": {
+      "group": "Personal Styling & Discovery",
+      "module": "AI Advisor and Personal Stylist",
+      "web": "/advisor; /event; /destination; /builder; /wardrobe",
+      "native": "StylingJourney; CompanionViews Destination; App advisor",
+      "files": [
+        "apps/web/components/StylingJourney.tsx",
+        "apps/web/components/DestinationStylist.tsx",
+        "apps/mobile/StylingJourney.tsx",
+        "packages/product/journey.ts",
+        "packages/product/use-destination.ts",
+        "services/api/src/glam_api/integrations/providers.py"
+      ],
+      "api": "CompanionConnection.weather optional/unbound; OpenAI.advise and OpenMeteo adapter unmounted; no wardrobe CRUD or image-search service",
+      "tables": "style_passports; user_preferences (preferences only); no canonical wardrobe/trip/search records",
+      "migrations": "0010_supabase_foundation",
+      "tests": [
+        "tests/client/product.test.cjs",
+        "tests/client/connected-contracts.cjs",
+        "tests/test_integrations.py"
+      ],
+      "provider": "OpenAI; Open-Meteo; Google Maps; qualified visual-search source",
+      "secrets": "OPENAI_API_KEY; GOOGLE_MAPS_API_KEY; no Open-Meteo key required",
+      "note": "Manual brief, packing checklist and opt-in local metadata are not grounded AI, real weather or cross-device wardrobe persistence."
+    },
+    "market": {
+      "group": "Shopping & Marketplace",
+      "module": "Marketplace and shopping",
+      "web": "/shop; /product; /cart; /checkout; /orders",
+      "native": "GoldenCommerce; CompanionViews Marketplace; ContextualRecommendations",
+      "files": [
+        "apps/web/components/GoldenCommerce.tsx",
+        "apps/web/components/VerifiedProductDetail.tsx",
+        "apps/web/components/MarketplaceJourney.tsx",
+        "apps/mobile/GoldenCommerce.tsx",
+        "packages/product/use-marketplace.ts",
+        "services/api/src/glam_api/catalog.py"
+      ],
+      "api": "Standalone FastAPI catalog/match APIs exist; production clients do not instantiate GlamApi; Edge/RPC does not implement catalog routes; offer/quote/order ports unbound",
+      "tables": "catalog_listing; catalog_revision; catalog_projection; products; product_variants; saved_requirement",
+      "migrations": "0007_contextual_catalog; 0008_catalog_market_policy; 0010_supabase_foundation",
+      "tests": [
+        "tests/test_catalog.py",
+        "tests/test_ranking.py",
+        "tests/client/connected-contracts.cjs"
+      ],
+      "provider": "Verified merchant feeds; Stripe; Google Maps",
+      "secrets": "GOOGLE_MAPS_API_KEY; Stripe test configuration",
+      "note": "Strict match/ranking and offer validators are tested locally; no verified production stock, transactional cart/order/inventory reservation service is connected."
+    },
+    "merchant": {
+      "group": "Merchants & Professionals",
+      "module": "Merchant onboarding and Snap & List",
+      "web": "/business merchant/professional workspaces",
+      "native": "App workspace planning; MerchantSnapList",
+      "files": [
+        "apps/web/components/BusinessPortal.tsx",
+        "apps/web/components/MerchantSnapList.tsx",
+        "apps/mobile/MerchantSnapList.tsx",
+        "packages/product/platform.ts",
+        "services/api/src/glam_api/catalog.py",
+        "services/api/src/glam_api/workspaces.py"
+      ],
+      "api": "FastAPI organization/catalog/workspace draft APIs; no operational booking/quote/fulfillment endpoints",
+      "tables": "organizations; organization_members; merchant_profiles; professional_profiles; workspace_draft; catalog_listing; catalog_ai_job",
+      "migrations": "0004_analysis_workspaces; 0005_workspace_invitations; 0007_contextual_catalog; 0010_supabase_foundation",
+      "tests": [
+        "tests/test_workspaces.py",
+        "tests/test_catalog.py",
+        "tests/client/application.cjs"
+      ],
+      "provider": "Stripe Connect onboarding; Replicate; optional Google Calendar",
+      "secrets": "STRIPE_SECRET_KEY (test only); REPLICATE_API_TOKEN; calendar OAuth credentials",
+      "note": "Planning fields, local Snap & List drafts and canonical catalog APIs exist; generic workspace drafts are not executed business operations."
+    },
+    "creator": {
+      "group": "Creators & Social Media",
+      "module": "Creator Studio",
+      "web": "/creator; creator workspace",
+      "native": "CreatorStudio",
+      "files": [
+        "apps/web/components/CreatorStudio.tsx",
+        "apps/mobile/CreatorStudio.tsx",
+        "packages/product/creator.ts",
+        "packages/product/use-creator.ts",
+        "db/migrations/versions/0014_creator_studio.sql"
+      ],
+      "api": "0014 candidate Edge/RPC /v1/me/creator, profile/media/collections/connections drafts; authorize/sync/publish explicitly503",
+      "tables": "creator_profiles; connected_social_accounts; social_media_items; creator_collections; creator_referrals; creator_earnings (candidate only)",
+      "migrations": "0014_creator_studio (source only; production currently0013)",
+      "tests": [
+        "tests/test_creator_studio.py",
+        "tests/test_creator_security.py",
+        "tests/creator/visual.cjs"
+      ],
+      "provider": "TikTok; Instagram; YouTube; Pinterest; Facebook official APIs",
+      "secrets": "CREATOR_TOKEN_ENCRYPTION_KEY; provider OAuth client config names not yet implemented; native/web public Supabase keys",
+      "note": "Private drafts and strict social URL validation exist; 0014 is not applied; pasting a profile URL does not link an account or retrieve media."
+    },
+    "growth": {
+      "group": "Advertising & Growth",
+      "module": "Location-aware advertising",
+      "web": "/business advertiser/affiliate; contextual match placements",
+      "native": "App role planning; ContextualRecommendations",
+      "files": [
+        "apps/web/components/BusinessPortal.tsx",
+        "apps/web/components/ContextualRecommendations.tsx",
+        "apps/mobile/ContextualRecommendations.tsx",
+        "packages/product/platform.ts",
+        "services/api/src/glam_api/ranking.py"
+      ],
+      "api": "Generic workspace draft API only; no campaign serving/budget/attribution/settlement operation",
+      "tables": "workspace_draft; catalog_listing; no operational campaign, ad budget or affiliate ledger",
+      "migrations": "0004_analysis_workspaces; 0007_contextual_catalog",
+      "tests": [
+        "tests/test_ranking.py",
+        "tests/test_workspaces.py",
+        "tests/client/application.cjs"
+      ],
+      "provider": "Approved merchant inventory; location provider; notification providers",
+      "secrets": "GOOGLE_MAPS_API_KEY; RESEND_API_KEY; TWILIO_AUTH_TOKEN",
+      "note": "Sponsored label rendering and ranking policy tests do not implement ad serving, billing or measured attribution."
+    },
+    "pay": {
+      "group": "Payments & Financial Controls",
+      "module": "Stripe Connect and financial controls",
+      "web": "/checkout; /business billing panels (not connected to sandbox app)",
+      "native": "CompanionViews Marketplace gated checkout",
+      "files": [
+        "services/api/src/glam_api/commerce_policy.py",
+        "services/api/src/glam_api/payments/service.py",
+        "services/api/src/glam_api/payments/ledger.py",
+        "services/api/src/glam_api/payments/webhooks.py",
+        "services/api/src/glam_api/payments/app.py",
+        "services/api/src/glam_api/payments/config.py"
+      ],
+      "api": "Separate Stripe-test app: /stripe-test/orders, checkout, merchants/onboarding, webhook; not consumer hosted checkout",
+      "tables": "stripe_test_order; stripe_test_line; stripe_test_journal; stripe_test_posting; stripe_test_transfer; stripe_test_refund (sandbox sibling only, absent production)",
+      "migrations": "0009_stripe_test_ledger (isolated sibling; never production application head)",
+      "tests": [
+        "tests/test_stripe_sandbox.py",
+        "tests/test_commerce_policy.py"
+      ],
+      "provider": "Stripe Connect test mode",
+      "secrets": "STRIPE_SECRET_KEY (test only); STRIPE_WEBHOOK_SECRET; STRIPE_ACCOUNT_ID; STRIPE_TEST_CONNECTED_ACCOUNT_ID; STRIPE_TEST_ADDITIONAL_CONNECTED_ACCOUNT_IDS; STRIPE_TEST_DATABASE_URL; STRIPE_TEST_RETURN_URL; STRIPE_TEST_REFRESH_URL",
+      "note": "Local Stripe transport doubles and sandbox ledger tests are not actual payments, fees or settlement proof; current remote balance call still reports livemode=true."
+    },
+    "platform": {
+      "group": "Platform, Admin & Release",
+      "module": "Monitoring, recovery and release readiness",
+      "web": "/admin; /business; /privacy; web health",
+      "native": "App; app.config.ts; eas.json",
+      "files": [
+        "apps/web/components/BusinessPortal.tsx",
+        "apps/mobile/App.tsx",
+        "apps/mobile/app.config.ts",
+        "services/api/src/glam_api/auth.py",
+        "services/api/src/glam_api/observability.py",
+        "scripts/launch/release-gates.cjs",
+        "deploy/railway/web.Dockerfile"
+      ],
+      "api": "FastAPI /v1/admin/context; Edge/RPC gate; Railway web /api/health/live and ready",
+      "tables": "staff_grant; audit_event; api_request_counters; outbox_event; canonical application schema",
+      "migrations": "0001_foundations through0013 application graph;0014 candidate;0009 isolated sibling",
+      "tests": [
+        "tests/test_auth.py",
+        "tests/test_rls.py",
+        "tests/test_request_security.py",
+        "tests/test_migrations.py",
+        "tests/launch/railway-release-lock.test.cjs"
+      ],
+      "provider": "Supabase; Railway; EAS/stores; Sentry; Resend; Twilio",
+      "secrets": "RAILWAY_TOKEN; EAS_PROJECT_ID; EXPO_OWNER; GLAM_IOS_BUNDLE_IDENTIFIER; GLAM_ANDROID_PACKAGE; SENTRY_DSN",
+      "note": "Read-only deployment evidence, local RBAC/RLS and build checks exist; real role sessions, restore rehearsal, device/store release and runtime monitoring remain unverified."
+    }
+  },
+  "features": [
+    {
+      "profile": "auth",
+      "requirement": "SMS OTP signup/login",
+      "status": "BLOCKED BY CREDENTIALS",
+      "blocker": "Supabase phone disabled; Twilio account/auth/message-service credentials absent",
+      "priority": "launch-critical",
+      "id": "GB-001"
+    },
+    {
+      "profile": "auth",
+      "requirement": "Google OAuth login",
+      "status": "BLOCKED BY CREDENTIALS",
+      "blocker": "Provider disabled; client ID/secret and callbacks not configured",
+      "priority": "launch-critical",
+      "id": "GB-002"
+    },
+    {
+      "profile": "auth",
+      "requirement": "Apple OAuth login",
+      "status": "BLOCKED BY CREDENTIALS",
+      "blocker": "Provider disabled; Apple service/team/key and native entitlement qualification absent",
+      "priority": "launch-critical",
+      "id": "GB-003"
+    },
+    {
+      "profile": "auth",
+      "requirement": "Facebook OAuth login",
+      "status": "BLOCKED BY CREDENTIALS",
+      "blocker": "Provider disabled; client ID/secret and callback review absent",
+      "priority": "launch-critical",
+      "id": "GB-004"
+    },
+    {
+      "profile": "auth",
+      "requirement": "Native Face ID/Touch ID/Android biometric unlock",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "SecureStore/local-auth code exists; no signed physical-device lifecycle tests",
+      "priority": "launch-critical",
+      "id": "GB-005"
+    },
+    {
+      "profile": "auth",
+      "requirement": "Guest exploration",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Actual web/native UI; deployed route response is not a complete device/user journey",
+      "priority": "launch-critical",
+      "id": "GB-006"
+    },
+    {
+      "profile": "auth",
+      "requirement": "Single identity and role/workspace switching",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Server grants and switcher exist; no live multi-role login/tenant journey",
+      "priority": "launch-critical",
+      "id": "GB-007"
+    },
+    {
+      "profile": "auth",
+      "requirement": "Secure account linking/unlinking",
+      "status": "BLOCKED BY CREDENTIALS",
+      "blocker": "Explicit identity-linking code; disabled providers prevent real callback and takeover tests",
+      "priority": "launch-critical",
+      "id": "GB-008"
+    },
+    {
+      "profile": "auth",
+      "requirement": "Profile/preferences and personalization consent",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Owner-scoped Edge/RPC profile/preferences exist; logged-in cross-device persistence not demonstrated",
+      "priority": "launch-critical",
+      "id": "GB-009"
+    },
+    {
+      "profile": "auth",
+      "requirement": "Session refresh and local/global logout",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Web/native session lifecycle code; actual long-running provider/device verification missing",
+      "priority": "launch-critical",
+      "id": "GB-010"
+    },
+    {
+      "profile": "auth",
+      "requirement": "Account recovery and phone replacement",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "UI and same-session phone verification exist; lost-all-methods recovery unimplemented",
+      "priority": "launch-critical",
+      "id": "GB-011"
+    },
+    {
+      "profile": "auth",
+      "requirement": "Account deletion including private media and provider tokens",
+      "status": "MISSING",
+      "blocker": "No completed deletion orchestration or deletion-job API; clearing local state is not account deletion",
+      "priority": "launch-critical",
+      "id": "GB-012"
+    },
+    {
+      "profile": "auth",
+      "requirement": "Age/guardian eligibility and image-processing consent",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Server eligibility/policy and local consent gating; minor/guardian end-to-end consent not qualified",
+      "priority": "launch-critical",
+      "id": "GB-013"
+    },
+    {
+      "profile": "analysis",
+      "requirement": "Face shape and facial-feature inference",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Finding schema/UI and internal OpenAI adapter only; request endpoint returns503; key absent",
+      "priority": "launch-critical",
+      "id": "GB-014"
+    },
+    {
+      "profile": "analysis",
+      "requirement": "Nonmedical skin appearance analysis",
+      "status": "PLACEHOLDER",
+      "blocker": "Report labels exist; no operational skin-specific inference/orchestration or evaluation",
+      "priority": "launch-critical",
+      "id": "GB-015"
+    },
+    {
+      "profile": "analysis",
+      "requirement": "Hair type/texture/condition analysis",
+      "status": "PLACEHOLDER",
+      "blocker": "Hair preferences/reference UI; no live hair inference result model or measured quality",
+      "priority": "launch-critical",
+      "id": "GB-016"
+    },
+    {
+      "profile": "analysis",
+      "requirement": "Personal color and undertone analysis",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Undertone finding contract and illustrative palette; real color analysis not invoked",
+      "priority": "launch-critical",
+      "id": "GB-017"
+    },
+    {
+      "profile": "analysis",
+      "requirement": "Personalized grounded recommendations",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Direction and matching contracts; no analysis-to-qualified-provider-to-catalog production chain",
+      "priority": "launch-critical",
+      "id": "GB-018"
+    },
+    {
+      "profile": "analysis",
+      "requirement": "Confidence/uncertainty and user corrections",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "UI validates uncertainty and invalidates dependent previews; correction persistence absent",
+      "priority": "launch-critical",
+      "id": "GB-019"
+    },
+    {
+      "profile": "analysis",
+      "requirement": "Style Passport saved user-approved results",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Preference-only style_passports table/RPC exists; no canonical approved analysis/report versions",
+      "priority": "launch-critical",
+      "id": "GB-020",
+      "module": "Style Passport"
+    },
+    {
+      "profile": "analysis",
+      "requirement": "Saved analysis reports/history and routines",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Routine CRUD exists; analysis history is empty and result persistence unconnected",
+      "priority": "launch-critical",
+      "id": "GB-021"
+    },
+    {
+      "profile": "analysis",
+      "requirement": "Private image upload/capture and retention/deletion",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Native picker/local preview; web camera repair only PR28; production Storage has no bucket or upload workflow",
+      "priority": "launch-critical",
+      "id": "GB-022"
+    },
+    {
+      "profile": "analysis",
+      "requirement": "Body/fit styling without attractiveness scoring",
+      "status": "PLACEHOLDER",
+      "blocker": "User-authored fit preferences and safety requirements; no qualified body/fit analysis or models",
+      "priority": "launch-critical",
+      "id": "GB-023"
+    },
+    {
+      "profile": "analysis",
+      "requirement": "Fairness/inclusive analysis evaluation",
+      "status": "MISSING",
+      "blocker": "No actual diverse-provider evaluation evidence or cohort quality benchmark",
+      "priority": "launch-critical",
+      "id": "GB-024"
+    },
+    {
+      "profile": "studio",
+      "requirement": "AI makeover generation",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Internal Replicate adapter and reference editing UI; no connected generation orchestration",
+      "priority": "launch-critical",
+      "id": "GB-025"
+    },
+    {
+      "profile": "studio",
+      "requirement": "Virtual makeup and exact product-shade try-on",
+      "status": "PLACEHOLDER",
+      "blocker": "Illustrative shade families; no qualified exact-shade model or product fidelity proof",
+      "priority": "launch-critical",
+      "id": "GB-026"
+    },
+    {
+      "profile": "studio",
+      "requirement": "Hairstyle and hair-color transformations",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Tool controls and adapter candidates; no real generated transformation",
+      "priority": "launch-critical",
+      "id": "GB-027"
+    },
+    {
+      "profile": "studio",
+      "requirement": "Outfit/accessory virtual try-on",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "FASHN adapter candidate; unmounted and key absent; accessory model not qualified",
+      "priority": "launch-critical",
+      "id": "GB-028"
+    },
+    {
+      "profile": "studio",
+      "requirement": "Live Look Builder beauty/fashion combinations",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Independent local components/snapshots work; realistic composed output unconnected",
+      "priority": "launch-critical",
+      "id": "GB-029"
+    },
+    {
+      "profile": "studio",
+      "requirement": "Before/after comparison and undo/reset",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Controls/history logic exist; no original-vs-genuine-generated-image journey",
+      "priority": "launch-critical",
+      "id": "GB-030"
+    },
+    {
+      "profile": "studio",
+      "requirement": "Save/edit/reopen looks",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Local snapshots and standalone look metadata API; hosted cross-session media/looks not wired",
+      "priority": "launch-critical",
+      "id": "GB-031"
+    },
+    {
+      "profile": "studio",
+      "requirement": "Share/export generated looks",
+      "status": "MISSING",
+      "blocker": "No qualified generated media export/share lifecycle; local choice metadata is insufficient",
+      "priority": "launch-critical",
+      "id": "GB-032"
+    },
+    {
+      "profile": "studio",
+      "requirement": "Generation history, errors and retries",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Client cancellation/fencing/error recovery; no persisted jobs/provider retry/usage history",
+      "priority": "launch-critical",
+      "id": "GB-033"
+    },
+    {
+      "profile": "style",
+      "requirement": "Conversational AI Beauty Advisor",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Manual conversation brief and internal OpenAI.advise; no provider-backed client endpoint",
+      "priority": "launch-critical",
+      "id": "GB-034"
+    },
+    {
+      "profile": "style",
+      "requirement": "AI Personal Stylist and Complete the Look",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Goals/brief/Look Builder UI; no grounded recommendation orchestration",
+      "priority": "launch-critical",
+      "id": "GB-035"
+    },
+    {
+      "profile": "style",
+      "requirement": "Occasion/Event Stylist",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Manual event requirements; no live event-specific analysis or measured outfit suitability",
+      "priority": "launch-critical",
+      "id": "GB-036",
+      "module": "Occasion, destination and weather styling"
+    },
+    {
+      "profile": "style",
+      "requirement": "Invitation upload and theme extraction",
+      "status": "PLACEHOLDER",
+      "blocker": "Reference attachment/manual fields only; no OCR/theme extraction or confirmed facts",
+      "priority": "launch-critical",
+      "id": "GB-037",
+      "module": "Occasion, destination and weather styling"
+    },
+    {
+      "profile": "style",
+      "requirement": "Destination/weather forecasts and outfits",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Trip form and Open-Meteo adapter; weather port unbound in production",
+      "priority": "launch-critical",
+      "id": "GB-038",
+      "module": "Occasion, destination and weather styling"
+    },
+    {
+      "profile": "style",
+      "requirement": "Packing lists and forecast-change alerts",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Manual checklist works; no persisted trip/forecast refresh/notification worker",
+      "priority": "launch-critical",
+      "id": "GB-039",
+      "module": "Occasion, destination and weather styling"
+    },
+    {
+      "profile": "style",
+      "requirement": "Digital Wardrobe CRUD and photo lifecycle",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Opt-in device metadata entries; no canonical wardrobe table/media CRUD or account synchronization",
+      "priority": "launch-critical",
+      "id": "GB-040",
+      "module": "Digital Wardrobe"
+    },
+    {
+      "profile": "style",
+      "requirement": "Outfit combinations from owned clothing",
+      "status": "PLACEHOLDER",
+      "blocker": "Local text reuse into brief; no visual owned-item combination service",
+      "priority": "launch-critical",
+      "id": "GB-041",
+      "module": "Digital Wardrobe"
+    },
+    {
+      "profile": "style",
+      "requirement": "Universal Look Search from screenshot/inspiration",
+      "status": "MISSING",
+      "blocker": "No extraction/embedding/index retrieval endpoint; attaching a reference is not search",
+      "priority": "launch-critical",
+      "id": "GB-042",
+      "module": "Universal Look Search"
+    },
+    {
+      "profile": "style",
+      "requirement": "Visual Product Search from photos",
+      "status": "MISSING",
+      "blocker": "No visual catalog embedding/model or image-search result pipeline",
+      "priority": "launch-critical",
+      "id": "GB-043",
+      "module": "Visual Product Search"
+    },
+    {
+      "profile": "style",
+      "requirement": "Location-aware organic product/professional discovery",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "City/country fields, strict matching and Google Maps candidate; real local coverage unqualified",
+      "priority": "launch-critical",
+      "id": "GB-044"
+    },
+    {
+      "profile": "style",
+      "requirement": "Inclusive modesty/sizing/accessibility styling preferences",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Manual style/coverage preferences exist; full model/ranking and device accessibility acceptance absent",
+      "priority": "launch-critical",
+      "id": "GB-045"
+    },
+    {
+      "profile": "market",
+      "requirement": "Verified product catalog/listing detail",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Canonical catalog/product/variant tables and FastAPI publication/review; no live approved supply feeds",
+      "priority": "launch-critical",
+      "id": "GB-046"
+    },
+    {
+      "profile": "market",
+      "requirement": "Product search/categories/filters/sorting",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Editorial browse and strict match engine; public authorized search/catalog transport not operational",
+      "priority": "launch-critical",
+      "id": "GB-047"
+    },
+    {
+      "profile": "market",
+      "requirement": "Variants/shades/stock and shipping feasibility",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Variant schema and client eligibility checks; no live stock reservation or fulfillment source",
+      "priority": "launch-critical",
+      "id": "GB-048"
+    },
+    {
+      "profile": "market",
+      "requirement": "Analysis-to-product recommendation matching",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Owner requirements and strict matcher tests; no real analysis source or verified offers connected",
+      "priority": "launch-critical",
+      "id": "GB-049"
+    },
+    {
+      "profile": "market",
+      "requirement": "Organic versus sponsored disclosure",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Separate label/card and policy paths; no qualified live placements",
+      "priority": "launch-critical",
+      "id": "GB-050"
+    },
+    {
+      "profile": "market",
+      "requirement": "Wishlist and saved requirements",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Saved requirement API/local choices; no persistent product wishlist or stock watch delivery",
+      "priority": "launch-critical",
+      "id": "GB-051"
+    },
+    {
+      "profile": "market",
+      "requirement": "Verified product detail-to-cart journey",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Offer validation and review UI; production offer port has no implementation",
+      "priority": "launch-critical",
+      "id": "GB-052"
+    },
+    {
+      "profile": "market",
+      "requirement": "Persistent multi-merchant cart",
+      "status": "PLACEHOLDER",
+      "blocker": "Session cart validator/hook only; no canonical durable cart or merchant split operations",
+      "priority": "launch-critical",
+      "id": "GB-053",
+      "module": "Shopping cart and multi-merchant orders"
+    },
+    {
+      "profile": "market",
+      "requirement": "Server-authoritative checkout/quote",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Client quote contract and separate sandbox price authority; no hosted checkout API",
+      "priority": "launch-critical",
+      "id": "GB-054",
+      "module": "Shopping cart and multi-merchant orders"
+    },
+    {
+      "profile": "market",
+      "requirement": "Order confirmation/tracking/cancellation",
+      "status": "PLACEHOLDER",
+      "blocker": "Receipt/order UI gate; no operational consumer order/tracking/merchant cancellation service",
+      "priority": "launch-critical",
+      "id": "GB-055",
+      "module": "Shopping cart and multi-merchant orders"
+    },
+    {
+      "profile": "market",
+      "requirement": "Verified buyer reviews and counterfeit reporting",
+      "status": "MISSING",
+      "blocker": "Workspace labels only; no purchase-verified review/report/moderation workflow",
+      "priority": "launch-critical",
+      "id": "GB-056"
+    },
+    {
+      "profile": "market",
+      "requirement": "Restock and price-drop notifications",
+      "status": "MISSING",
+      "blocker": "No wishlist/watch/stock/price event subscriptions or delivery jobs",
+      "priority": "launch-critical",
+      "id": "GB-057",
+      "module": "Notifications"
+    },
+    {
+      "profile": "merchant",
+      "requirement": "Merchant registration/verification/onboarding",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Organization and merchant schema/RBAC; no completed real KYC/approval/onboarding journey",
+      "priority": "launch-critical",
+      "id": "GB-058"
+    },
+    {
+      "profile": "merchant",
+      "requirement": "Snap & List camera/gallery and product draft",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Web/native local draft forms and merchant factual validation; private media upload not connected",
+      "priority": "launch-critical",
+      "id": "GB-059"
+    },
+    {
+      "profile": "merchant",
+      "requirement": "AI product image enhancement and fact review",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Catalog AI-job lease/worker protocol; no provider dispatch or media storage",
+      "priority": "launch-critical",
+      "id": "GB-060"
+    },
+    {
+      "profile": "merchant",
+      "requirement": "Merchant publishing and content moderation",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Canonical reviewed-revision publication with local DB tests; current hosted transport lacks catalog parity",
+      "priority": "launch-critical",
+      "id": "GB-061"
+    },
+    {
+      "profile": "merchant",
+      "requirement": "Inventory and variant management",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Products/variants schema and planning panels; no live merchant stock mutation/reservation workflow",
+      "priority": "launch-critical",
+      "id": "GB-062"
+    },
+    {
+      "profile": "merchant",
+      "requirement": "Merchant orders/partial fulfillment",
+      "status": "MISSING",
+      "blocker": "Generic draft panel is not an order service; sandbox fulfillment is not merchant production operations",
+      "priority": "launch-critical",
+      "id": "GB-063"
+    },
+    {
+      "profile": "merchant",
+      "requirement": "Merchant analytics/billing/storefront",
+      "status": "PLACEHOLDER",
+      "blocker": "Generic planning fields only; no executed merchant sales/invoice/event analytics",
+      "priority": "launch-critical",
+      "id": "GB-064"
+    },
+    {
+      "profile": "merchant",
+      "requirement": "Professional/salon profiles and verified discovery",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Professional schema and catalog kind; real listings/availability source unqualified",
+      "priority": "launch-critical",
+      "id": "GB-065",
+      "module": "Beauty professional and tailor bookings"
+    },
+    {
+      "profile": "merchant",
+      "requirement": "Availability and atomic appointment booking",
+      "status": "MISSING",
+      "blocker": "No booking-slot/hold/appointment tables or atomic confirmation service",
+      "priority": "launch-critical",
+      "id": "GB-066",
+      "module": "Beauty professional and tailor bookings"
+    },
+    {
+      "profile": "merchant",
+      "requirement": "Booking deposits/cancellation/refunds",
+      "status": "MISSING",
+      "blocker": "No booking/payment policy engine; no unapproved service commission may be invented",
+      "priority": "launch-critical",
+      "id": "GB-067",
+      "module": "Beauty professional and tailor bookings"
+    },
+    {
+      "profile": "merchant",
+      "requirement": "Tailor/designer quote/fittings/milestones",
+      "status": "MISSING",
+      "blocker": "Workspace planning labels only; no transactional quote/project/milestone data model",
+      "priority": "launch-critical",
+      "id": "GB-068",
+      "module": "Beauty professional and tailor bookings"
+    },
+    {
+      "profile": "merchant",
+      "requirement": "Google Calendar synchronization",
+      "status": "MISSING",
+      "blocker": "No calendar OAuth/sync/conflict handling adapter or worker",
+      "priority": "launch-optional",
+      "id": "GB-069",
+      "module": "Beauty professional and tailor bookings"
+    },
+    {
+      "profile": "creator",
+      "requirement": "Creator activation/profile",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Candidate0014 profile/draft RPC and web/native UI; production migration not applied",
+      "priority": "launch-critical",
+      "id": "GB-070"
+    },
+    {
+      "profile": "creator",
+      "requirement": "TikTok official account linking",
+      "status": "PLACEHOLDER",
+      "blocker": "Profile URL draft only; authorize/sync returns503; official app/scopes/token handling missing",
+      "priority": "launch-critical",
+      "id": "GB-071",
+      "module": "Official social provider connections"
+    },
+    {
+      "profile": "creator",
+      "requirement": "Instagram official account linking",
+      "status": "PLACEHOLDER",
+      "blocker": "Profile URL draft only; no provider callback/token exchange or media permissions",
+      "priority": "launch-critical",
+      "id": "GB-072",
+      "module": "Official social provider connections"
+    },
+    {
+      "profile": "creator",
+      "requirement": "YouTube official account linking",
+      "status": "PLACEHOLDER",
+      "blocker": "Channel URL draft only; no OAuth/authorized media adapter",
+      "priority": "launch-critical",
+      "id": "GB-073",
+      "module": "Official social provider connections"
+    },
+    {
+      "profile": "creator",
+      "requirement": "Pinterest official account linking",
+      "status": "PLACEHOLDER",
+      "blocker": "Profile URL draft only; no provider callback/approved scopes",
+      "priority": "launch-critical",
+      "id": "GB-074",
+      "module": "Official social provider connections"
+    },
+    {
+      "profile": "creator",
+      "requirement": "Facebook Page official linking",
+      "status": "PLACEHOLDER",
+      "blocker": "Profile URL draft only; no page permission selection/token integration",
+      "priority": "launch-critical",
+      "id": "GB-075",
+      "module": "Official social provider connections"
+    },
+    {
+      "profile": "creator",
+      "requirement": "Social account disconnection/token revocation",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Candidate local tombstone/revoke flag; no actual provider token revocation",
+      "priority": "launch-critical",
+      "id": "GB-076",
+      "module": "Official social provider connections"
+    },
+    {
+      "profile": "creator",
+      "requirement": "Authorized media retrieval and sync",
+      "status": "MISSING",
+      "blocker": "Media reference drafts and audit-log schema only; provider sync explicitly503",
+      "priority": "launch-critical",
+      "id": "GB-077",
+      "module": "Official social provider connections"
+    },
+    {
+      "profile": "creator",
+      "requirement": "Shoppable creator collections/product associations",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Private collection draft associations; publish blocked; no verified shoppable storefront",
+      "priority": "launch-critical",
+      "id": "GB-078",
+      "module": "Shoppable creator content"
+    },
+    {
+      "profile": "creator",
+      "requirement": "Creator referral attribution",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Candidate referrals/attribution schema; no production tracked conversion pipeline",
+      "priority": "launch-critical",
+      "id": "GB-079",
+      "module": "Referrals, affiliate attribution and campaigns"
+    },
+    {
+      "profile": "creator",
+      "requirement": "Brand campaign applications/deliverables",
+      "status": "PLACEHOLDER",
+      "blocker": "Draft/schema planning only; no usable campaign execution/review service",
+      "priority": "launch-critical",
+      "id": "GB-080",
+      "module": "Referrals, affiliate attribution and campaigns"
+    },
+    {
+      "profile": "creator",
+      "requirement": "Creator earnings/payout eligibility",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Immutable candidate records/contracts; no real revenue/financial settlement or payout",
+      "priority": "launch-critical",
+      "id": "GB-081"
+    },
+    {
+      "profile": "creator",
+      "requirement": "Creator content rights/moderation",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Rights assertions/private access gates; real provider/content moderation and public distribution absent",
+      "priority": "launch-critical",
+      "id": "GB-082"
+    },
+    {
+      "profile": "growth",
+      "requirement": "Sponsored campaign setup/approval/budgets",
+      "status": "PLACEHOLDER",
+      "blocker": "Seven-step review is local/generic workspace drafts; no real campaign operations",
+      "priority": "launch-critical",
+      "id": "GB-083"
+    },
+    {
+      "profile": "growth",
+      "requirement": "Location-aware ad eligibility/targeting controls",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Market-policy/relevance restrictions; no location-backed serving or audited audience controls",
+      "priority": "launch-critical",
+      "id": "GB-084"
+    },
+    {
+      "profile": "growth",
+      "requirement": "Ad impressions/clicks/conversions reporting",
+      "status": "MISSING",
+      "blocker": "No ad event collection/deduplication/billing pipeline",
+      "priority": "launch-critical",
+      "id": "GB-085"
+    },
+    {
+      "profile": "growth",
+      "requirement": "Affiliate/partner attribution and settlement",
+      "status": "PLACEHOLDER",
+      "blocker": "Workspace fields only; no conversion allocation or approved financial settlement",
+      "priority": "launch-critical",
+      "id": "GB-086",
+      "module": "Referrals, affiliate attribution and campaigns"
+    },
+    {
+      "profile": "growth",
+      "requirement": "Referral invitation/reward tracking",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Candidate creator referrals only; no full consumer invite/reward fulfillment",
+      "priority": "launch-critical",
+      "id": "GB-087",
+      "module": "Referrals, affiliate attribution and campaigns"
+    },
+    {
+      "profile": "growth",
+      "requirement": "Subscription plans/checkout/cancellation",
+      "status": "MISSING",
+      "blocker": "Credit-account accounting is not a subscription/product entitlement service",
+      "priority": "launch-critical",
+      "id": "GB-088",
+      "module": "Subscriptions and AI usage"
+    },
+    {
+      "profile": "growth",
+      "requirement": "AI usage limits/accounting",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Credit reservation/posting/worker lease code; no real AI dispatch-linked consumption records",
+      "priority": "launch-critical",
+      "id": "GB-089",
+      "module": "Subscriptions and AI usage"
+    },
+    {
+      "profile": "growth",
+      "requirement": "Email/SMS/push and notification preferences",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Owner preferences and Resend/Twilio candidates; no configured delivery or push registration/worker",
+      "priority": "launch-critical",
+      "id": "GB-090",
+      "module": "Notifications"
+    },
+    {
+      "profile": "growth",
+      "requirement": "User marketing consent and privacy-safe analytics",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Preference opt-in and private-image exclusion rules; no end-to-end consent-aware event system",
+      "priority": "launch-critical",
+      "id": "GB-091"
+    },
+    {
+      "profile": "growth",
+      "requirement": "Growth funnel/cohort analytics and experiments",
+      "status": "MISSING",
+      "blocker": "No operational analytics/experiment service or consented cohort data pipeline",
+      "priority": "launch-optional",
+      "id": "GB-092"
+    },
+    {
+      "profile": "pay",
+      "requirement": "Stripe platform/test connected account verification",
+      "status": "BLOCKED BY CREDENTIALS",
+      "blocker": "Current key returns livemode=true; no webhook secret/test account capabilities evidence",
+      "priority": "launch-critical",
+      "id": "GB-093",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "pay",
+      "requirement": "Stripe-hosted merchant onboarding",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Test-only adapter creates account links; production merchant/UI flow unconnected",
+      "priority": "launch-critical",
+      "id": "GB-094",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "pay",
+      "requirement": "Server-priced multi-merchant payment/charge splitting",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Sandbox order lines and separate-charge/transfer logic; no real test IDs or platform eligibility verification",
+      "priority": "launch-critical",
+      "id": "GB-095",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "pay",
+      "requirement": "10% eligible physical-item commission/refund calculation",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Pure server policy and immutable sandbox ledger; actual Stripe settlement/fees not reconciled",
+      "priority": "launch-critical",
+      "id": "GB-096",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "pay",
+      "requirement": "Processing fees/shipping/taxes allocation",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Sandbox accounting separation; actual balance transaction fees and jurisdictional tax/shipping integration missing",
+      "priority": "launch-critical",
+      "id": "GB-097",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "pay",
+      "requirement": "Signed idempotent Stripe webhooks",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Signature/event dedupe/local transaction tests; no configured test endpoint/secret or real duplicate-event proof",
+      "priority": "launch-critical",
+      "id": "GB-098",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "pay",
+      "requirement": "Immutable commission/transfer ledger",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Isolated sandbox append-only journals; not deployed production application financial ledger",
+      "priority": "launch-critical",
+      "id": "GB-099",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "pay",
+      "requirement": "Refunds/partial fulfillment/transfers/reversals",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Local transaction scenarios using doubles; no real Stripe financial acceptance",
+      "priority": "launch-critical",
+      "id": "GB-100",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "pay",
+      "requirement": "Disputes/chargebacks and reconciliation",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Sandbox dispute/fee/evidence handling; real charge/dispute/transfer balance proof absent",
+      "priority": "launch-critical",
+      "id": "GB-101",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "pay",
+      "requirement": "Stripe separate charges/transfers country eligibility",
+      "status": "BLOCKED BY PLATFORM APPROVAL",
+      "blocker": "Legal entity US reported; actual connected country/payout/settlement eligibility not qualified",
+      "priority": "launch-critical",
+      "id": "GB-102",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "pay",
+      "requirement": "Peach Payments approved South African capabilities",
+      "status": "MISSING",
+      "blocker": "No enabled provider configuration/adapter or contracted marketplace split settlement",
+      "priority": "launch-optional",
+      "id": "GB-103",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Shared authenticated account/data across web/iOS/Android",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Shared Auth/Edge helpers and some profile/routine CRUD; no real cross-device account journey",
+      "priority": "launch-critical",
+      "id": "GB-104",
+      "module": "Web/mobile shared account and data"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Supabase canonical schema/migration reconciliation",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Fresh read-only inventory0013/41tables; feature models incomplete and0014 remains candidate",
+      "priority": "launch-critical",
+      "id": "GB-105",
+      "module": "Supabase security and Storage",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Production RLS/tenant isolation/permission boundaries",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "RLS flags/policies and local two-user/tenant tests; no qualified production-role write/read test",
+      "priority": "launch-critical",
+      "id": "GB-106",
+      "module": "Supabase security and Storage",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Private Storage upload/access/retention",
+      "status": "MISSING",
+      "blocker": "Production currently has no Storage buckets or private binary workflow",
+      "priority": "launch-critical",
+      "id": "GB-107",
+      "module": "Supabase security and Storage"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Administrative role/context and moderation",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Staff-context/RBAC and catalog review endpoints; most operations are planning panels",
+      "priority": "launch-critical",
+      "id": "GB-108",
+      "module": "Administration and moderation",
+      "platforms": "web;admin;backend"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Organization invitations/roles/membership revocation",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Standalone transactional workspace invitation code; hosted transport parity and real role sessions missing",
+      "priority": "launch-critical",
+      "id": "GB-109"
+    },
+    {
+      "profile": "platform",
+      "requirement": "API security/input validation/rate limiting",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Local request/RLS tests and Edge gate; deployed API role penetration/abuse/latency not qualified",
+      "priority": "launch-critical",
+      "id": "GB-110",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Railway deployment identity/health/readiness",
+      "status": "BROKEN",
+      "blocker": "Fresh8Nov externalCI served ff62f64; live200 but ready503 not_configured; runtime settings/logs require missing agent token",
+      "priority": "launch-critical",
+      "id": "GB-111",
+      "module": "Railway deployment",
+      "platforms": "web;backend"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Correct production domain/CORS/auth callbacks",
+      "status": "BROKEN",
+      "blocker": "Auth still uses glamit.beauty; new glam.beauty Edge preflight403 in prior evidence; configuration requires verified release change",
+      "priority": "launch-critical",
+      "id": "GB-112",
+      "module": "Railway deployment"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Brand logo/favicon/app icons",
+      "status": "MISSING",
+      "blocker": "Text brand exists; exact inline artwork unavailable as source files; current deployed DOM has no favicon/logo image",
+      "priority": "launch-critical",
+      "id": "GB-113",
+      "module": "Web/mobile shared account and data"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Independent web/API/native build/release pipelines",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Docker/CI/EAS candidate configs; actual Railway source/runtime and signed native builds not verified",
+      "priority": "launch-critical",
+      "id": "GB-114",
+      "module": "iOS/Android release preparation"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Signed iOS/Android builds/store credentials and real devices",
+      "status": "BLOCKED BY PLATFORM APPROVAL",
+      "blocker": "No registered bundle/package IDs/EAS project/store credentials; no adb/xcrun or physical-device run",
+      "priority": "launch-critical",
+      "id": "GB-115",
+      "module": "iOS/Android release preparation"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Accessibility/mobile safe areas/responsiveness",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Local viewport/axe/keyboard tests; physical screen-reader/OS keyboard/native safe-area acceptance absent",
+      "priority": "launch-critical",
+      "id": "GB-116",
+      "module": "iOS/Android release preparation"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Performance/load/provider latency budgets",
+      "status": "NOT TESTED",
+      "blocker": "Prior local page timings are not deployed provider/load/concurrency evidence",
+      "priority": "launch-critical",
+      "id": "GB-117"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Monitoring/alerts/Sentry/support operations",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Structured error/redaction code and support planning panels; no configured Sentry/alert delivery",
+      "priority": "launch-critical",
+      "id": "GB-118"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Backup/restore/rollback rehearsal",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Fresh completed physical backup metadata exists; no restore rehearsal or deployment rollback test",
+      "priority": "launch-critical",
+      "id": "GB-119",
+      "platforms": "backend;admin"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Security secret scan/environment separation",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Prior working-tree scan and public-key/sandbox guards; current app DB credential administrative; no whole-history/rotation proof",
+      "priority": "launch-critical",
+      "id": "GB-120"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Legal/privacy/minor safeguarding approval",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Policy/eligibility models and safety copy; legal sign-off/guardian/retention/deletion acceptance missing",
+      "priority": "launch-critical",
+      "id": "GB-121"
+    },
+    {
+      "profile": "platform",
+      "requirement": "Twelve release gates and 31 critical journeys",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Version2 negative gate tests exist;0/31 qualified deployed journeys; no final launch approval",
+      "priority": "launch-critical",
+      "id": "GB-122"
+    },
+    {
+      "id": "GB-123",
+      "profile": "auth",
+      "requirement": "Personal data portability/export",
+      "status": "MISSING",
+      "blocker": "No complete authenticated export job/download lifecycle; preference JSON is not an account export",
+      "priority": "launch-critical",
+      "module": "Authentication and user identity",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-124",
+      "profile": "platform",
+      "requirement": "Country/language/currency/measurement localization",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Country/currency/manual locale fields exist; full translated UX and regional legal/currency activation unqualified",
+      "priority": "launch-critical",
+      "module": "Web/mobile shared account and data",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-125",
+      "profile": "platform",
+      "requirement": "Regional age/market capability activation",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Default-deny market policy and adult eligibility exist; country-by-country actual provider/legal/minor qualification absent",
+      "priority": "launch-critical",
+      "module": "Supabase security and Storage",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-126",
+      "profile": "growth",
+      "requirement": "App-store digital purchase/restore/renewal entitlements",
+      "status": "MISSING",
+      "blocker": "No StoreKit/Google Play purchase receipt validation, restore, renewal/refund or shared entitlements service",
+      "priority": "launch-critical",
+      "module": "Subscriptions and AI usage",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-127",
+      "profile": "growth",
+      "requirement": "Credit quote/reservation/cancellation/history",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Immutable reservation/accounting and lease tests exist; consumer quote/history/actual generation/billing chain missing",
+      "priority": "launch-critical",
+      "module": "Subscriptions and AI usage",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-128",
+      "profile": "platform",
+      "requirement": "Data retention/deletion legal-hold execution",
+      "status": "MISSING",
+      "blocker": "Policy/audit metadata exist; no complete retention scheduler, verified erasure, legal-hold or provider deletion orchestration",
+      "priority": "launch-critical",
+      "module": "Supabase security and Storage",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-129",
+      "profile": "platform",
+      "requirement": "Customer support tickets and audited resolution",
+      "status": "MISSING",
+      "blocker": "Admin support planning labels only; no case service, customer status or controlled resolution workflow",
+      "priority": "launch-critical",
+      "module": "Administration and moderation",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-130",
+      "profile": "platform",
+      "requirement": "Privileged admin MFA and step-up assurance",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Staff context checks fresh assurance in local tests; no real administrator MFA enrollment/step-up/session acceptance",
+      "priority": "launch-critical",
+      "module": "Administration and moderation",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-131",
+      "profile": "platform",
+      "requirement": "Audited private-media access requests",
+      "status": "MISSING",
+      "blocker": "No controlled support/moderation media-access request/approval/expiry workflow; private Storage absent",
+      "priority": "launch-critical",
+      "module": "Administration and moderation",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-132",
+      "profile": "merchant",
+      "requirement": "Authorized catalog feed import/freshness synchronization",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Local import/revision/outbox and freshness suppression exist; no authorized production feed adapter or complete inventory sync",
+      "priority": "launch-critical",
+      "module": "Merchant onboarding and Snap & List",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-133",
+      "profile": "merchant",
+      "requirement": "Merchant tax/shipping/price settings",
+      "status": "PLACEHOLDER",
+      "blocker": "Planning fields and factual catalog revisions only; no executed delivery/tax/settings quote operation",
+      "priority": "launch-critical",
+      "module": "Merchant onboarding and Snap & List",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-134",
+      "profile": "market",
+      "requirement": "Delivery address and complete tax/shipping quote",
+      "status": "MISSING",
+      "blocker": "No durable address or actual full-cost/tax/shipping provider orchestration; client quote contract is not checkout",
+      "priority": "launch-critical",
+      "module": "Shopping cart and multi-merchant orders",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-135",
+      "profile": "market",
+      "requirement": "Return authorization and customer refund case workflow",
+      "status": "MISSING",
+      "blocker": "Sandbox refund arithmetic exists but no buyer/merchant RMA/return evidence or operational case service",
+      "priority": "launch-critical",
+      "module": "Shopping cart and multi-merchant orders",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-136",
+      "profile": "merchant",
+      "requirement": "Seller protection/suspension/appeals",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Organization suspension/verification and catalog review controls; complete dispute/appeal/evidence handling missing",
+      "priority": "launch-critical",
+      "module": "Merchant onboarding and Snap & List",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-137",
+      "profile": "growth",
+      "requirement": "Atomic advertising budgets and traffic-fraud reconciliation",
+      "status": "MISSING",
+      "blocker": "No campaign reservations, signed click events, invalid traffic adjustments or advertiser spend reconciliation",
+      "priority": "launch-critical",
+      "module": "Location-aware advertising",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-138",
+      "profile": "growth",
+      "requirement": "Advertiser pause/schedule/appeal/invoice controls",
+      "status": "PLACEHOLDER",
+      "blocker": "Generic campaign planning/review forms only; no running campaign or invoice operation",
+      "priority": "launch-critical",
+      "module": "Location-aware advertising",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-139",
+      "profile": "creator",
+      "requirement": "Creator feed follow/block/report moderation",
+      "status": "MISSING",
+      "blocker": "Private creator drafts exist; no real public feed/follow/block/report and moderation lifecycle",
+      "priority": "launch-critical",
+      "module": "Creator Studio",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    },
+    {
+      "id": "GB-140",
+      "profile": "auth",
+      "requirement": "Organization team MFA and membership security",
+      "status": "PARTIALLY IMPLEMENTED",
+      "blocker": "Scoped roles/invitations and local revocation checks; no complete member MFA/account-security client enforcement journey",
+      "priority": "launch-critical",
+      "module": "Authentication and user identity",
+      "requirement_source": "docs/specification/product-delivery.md screen inventory; master-prd-v2.md acceptance; latest directive PartsA-N"
+    }
+  ]
+}

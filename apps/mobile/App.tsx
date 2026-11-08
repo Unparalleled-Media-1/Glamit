@@ -1,3 +1,6 @@
+import CreatorStudio from "./CreatorStudio";
+import NativeAccount from "./auth/NativeAccount";
+import { useNativeAccount } from "./auth/use-native-account";
 import { useEffect, useReducer, useRef, useState } from "react";
 import {
   Alert,
@@ -139,6 +142,7 @@ export function ConnectedApp({
   );
 }
 function PersonalApp({ connection }: { connection?: CompanionConnection }) {
+  const nativeAccount=useNativeAccount();
   const insets = useSafeAreaInsets();
   const [journey, setJourney] = useState(freshJourney);
   const [memoryReady, setMemoryReady] = useState(false);
@@ -199,6 +203,8 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
   );
   const [question, setQuestion] = useState("");
   const [switcher, setSwitcher] = useState(false);
+  const [activeBusiness,setActiveBusiness]=useState<string|null>(null);
+  useEffect(()=>{if(!nativeAccount.account?.workspaces?.some(w=>w.organization_id+':'+w.workspace===activeBusiness))setActiveBusiness(null);},[nativeAccount.account,activeBusiness]);
   const [reviewRole, setReviewRole] = useState<Role | null>(null);
   const [module, setModule] = useState(0);
   const [plan, setPlan] = useState("");
@@ -759,23 +765,10 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
               "Your space. Your choices.",
               "Your private goals, session routines and authorized workspaces.",
             )}
-            <Card>
-              <Text style={s.h2}>Personal account</Text>
-              <Note text={capabilityReasons.account} />
-              <Button
-                title="Continue with Google"
-                onPress={() =>
-                  setMessage(
-                    "Sign-in awaits the selected Supabase connection. No password is collected.",
-                  )
-                }
-              />
-              <Button
-                title="Switch workspace"
-                secondary
-                onPress={() => setSwitcher(true)}
-              />
-            </Card>
+            <NativeAccount auth={nativeAccount}/>
+            <CreatorStudio key={nativeAccount.account?.profile.id || "guest"} token={nativeAccount.account?.token}/>
+            <Button title="Switch workspace" secondary onPress={()=>setSwitcher(true)}/>
+
             {[
               ["Saved reports & looks", "history"],
               ["My routines", "guide"],
@@ -963,7 +956,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
     >
       <View style={s.topbar}>
         <Text style={[s.brand, beautyPage && { color: "#fff0f5" }]}>
-          ✧ GLAM AI
+          ✧ GLAM Beauty
         </Text>
         <Pressable
           accessibilityRole="button"
@@ -1190,10 +1183,12 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
               <Text accessibilityRole="header" style={s.h2}>
                 Switch workspace
               </Text>
-              <Note text="No approved business memberships are connected. Reviewing tools never grants a role." />
+              <Note text={nativeAccount.account ? "Only verified workspaces are available. Switching context does not change your identity." : "Sign in to load approved workspaces. Reviewing tools never grants a role."}/>
+              {nativeAccount.account?.workspaces?.map(w=><Button key={w.organization_id+':'+w.workspace} title={`${activeBusiness===w.organization_id+':'+w.workspace?'Current: ':''}${w.name} · ${w.workspace}`} onPress={()=>{setActiveBusiness(w.organization_id+':'+w.workspace);setReviewRole(null);setSwitcher(false);setMessage(`Active workspace: ${w.name} · ${w.workspace}. Server permissions still apply.`);}}/>)}
               <Button
                 title="Personal — current workspace"
                 onPress={() => {
+                  setActiveBusiness(null);
                   setReviewRole(null);
                   setSwitcher(false);
                 }}

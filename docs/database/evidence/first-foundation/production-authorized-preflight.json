@@ -1,0 +1,63 @@
+{
+  "project": "bkkmsbxrxkqaveymcrgi",
+  "mutations": 0,
+  "branch_http_status": 200,
+  "branches": [
+    {
+      "id": "8fa3789d-2cf7-4260-b5a2-e9c2d3140602",
+      "name": "main",
+      "project_ref": "bkkmsbxrxkqaveymcrgi",
+      "parent_project_ref": "bkkmsbxrxkqaveymcrgi",
+      "is_default": true,
+      "status": "FUNCTIONS_DEPLOYED"
+    }
+  ],
+  "backup_http_status": 200,
+  "backup_response_keys": [
+    "region",
+    "walg_enabled",
+    "pitr_enabled",
+    "backups",
+    "physical_backup_data"
+  ],
+  "backup_metadata": {
+    "region": "eu-west-1",
+    "walg_enabled": true,
+    "pitr_enabled": false
+  },
+  "backups": [
+    {
+      "id": 2189281988,
+      "inserted_at": "2026-11-07T02:07:35.793Z",
+      "status": "COMPLETED",
+      "is_physical_backup": true,
+      "database_size": null,
+      "backup_size": null,
+      "finished_at": null,
+      "created_at": null
+    },
+    {
+      "id": 2180471707,
+      "inserted_at": "2026-11-06T04:01:26.060Z",
+      "status": "COMPLETED",
+      "is_physical_backup": true,
+      "database_size": null,
+      "backup_size": null,
+      "finished_at": null,
+      "created_at": null
+    }
+  ],
+  "physical_backup_data": {},
+  "sql_http_status": 201,
+  "catalog": [
+    {
+      "database": "postgres",
+      "role": "postgres",
+      "can_create_public_objects": true,
+      "public_tables": [],
+      "auth_user_count": 0,
+      "storage_object_count": 0,
+      "migration_table": null
+    }
+  ]
+}

@@ -267,7 +267,7 @@ def test_tenant_readonly_duplicate_and_unsafe_facts(client, db):
     as_user("merchant")
     with db.begin() as c:
         c.execute(
-            text("UPDATE organization_member SET role='analyst' WHERE organization_id=:o"),
+            text("UPDATE organization_members SET role='analyst' WHERE organization_id=:o"),
             {"o": org},
         )
         c.execute(
@@ -281,7 +281,7 @@ def test_tenant_readonly_duplicate_and_unsafe_facts(client, db):
 def test_source_suspension_and_unknown_age_hide_previously_indexed_listing(client, db):
     uid, org, lid, f = ready(client, db)
     with db.begin() as c:
-        c.execute(text("UPDATE organization SET suspended=true WHERE id=:o"), {"o": org})
+        c.execute(text("UPDATE organizations SET suspended=true WHERE id=:o"), {"o": org})
     assert client.post("/v1/recommendations/matches", json=req()).json()["organic"] == []
     as_user("unverified")
     result = client.post("/v1/recommendations/matches", json=req()).json()
@@ -528,7 +528,7 @@ def test_inflight_revocation_discards_provider_output(client, db, monkeypatch):
     class RevokingTestProvider(TestOnlyProvider):
         def prepare(self, facts, originals, features, idempotency_key):
             with db.begin() as c:
-                c.execute(text("UPDATE organization SET suspended=true WHERE id=:id"), {"id": org})
+                c.execute(text("UPDATE organizations SET suspended=true WHERE id=:id"), {"id": org})
             return super().prepare(facts, originals, features, idempotency_key)
 
     monkeypatch.setattr(catalog_jobs, "_adapter", RevokingTestProvider())

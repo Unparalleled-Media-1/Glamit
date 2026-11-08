@@ -1,0 +1,199 @@
+{
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "branch": "main",
+  "observed_at": "2026-11-07T09:19:39.531203+00:00",
+  "release_sha256": "6bbfa5666253a4600ae78c1d23d68d8516d138fa5769fb04ee3e5ff83450f005",
+  "production_modified": false,
+  "recovery_point": {
+    "id": 2189281988,
+    "inserted_at": "2026-11-07T02:07:35.793Z",
+    "status": "COMPLETED",
+    "is_physical_backup": true
+  },
+  "previous_revisions": [
+    {
+      "version_num": "0012_hosted_routines"
+    }
+  ],
+  "revisions": [
+    {
+      "version_num": "0012_hosted_routines"
+    }
+  ],
+  "tables": [
+    {
+      "name": "account_eligibility",
+      "rls": true
+    },
+    {
+      "name": "alembic_version",
+      "rls": true
+    },
+    {
+      "name": "api_request_counters",
+      "rls": true
+    },
+    {
+      "name": "app_user",
+      "rls": true
+    },
+    {
+      "name": "audit_event",
+      "rls": true
+    },
+    {
+      "name": "catalog_ai_job",
+      "rls": true
+    },
+    {
+      "name": "catalog_approval",
+      "rls": true
+    },
+    {
+      "name": "catalog_listing",
+      "rls": true
+    },
+    {
+      "name": "catalog_media",
+      "rls": true
+    },
+    {
+      "name": "catalog_projection",
+      "rls": true
+    },
+    {
+      "name": "catalog_revision",
+      "rls": true
+    },
+    {
+      "name": "consent_event",
+      "rls": true
+    },
+    {
+      "name": "credit_account",
+      "rls": true
+    },
+    {
+      "name": "credit_journal",
+      "rls": true
+    },
+    {
+      "name": "credit_posting",
+      "rls": true
+    },
+    {
+      "name": "credit_reservation",
+      "rls": true
+    },
+    {
+      "name": "idempotency_record",
+      "rls": true
+    },
+    {
+      "name": "look",
+      "rls": true
+    },
+    {
+      "name": "look_revision",
+      "rls": true
+    },
+    {
+      "name": "market_policy_version",
+      "rls": true
+    },
+    {
+      "name": "merchant_profiles",
+      "rls": true
+    },
+    {
+      "name": "organization_members",
+      "rls": true
+    },
+    {
+      "name": "organizations",
+      "rls": true
+    },
+    {
+      "name": "outbox_event",
+      "rls": true
+    },
+    {
+      "name": "personal_routine",
+      "rls": true
+    },
+    {
+      "name": "policy_document",
+      "rls": true
+    },
+    {
+      "name": "product_categories",
+      "rls": true
+    },
+    {
+      "name": "product_variants",
+      "rls": true
+    },
+    {
+      "name": "products",
+      "rls": true
+    },
+    {
+      "name": "professional_profiles",
+      "rls": true
+    },
+    {
+      "name": "profiles",
+      "rls": true
+    },
+    {
+      "name": "saved_requirement",
+      "rls": true
+    },
+    {
+      "name": "staff_grant",
+      "rls": true
+    },
+    {
+      "name": "style_passports",
+      "rls": true
+    },
+    {
+      "name": "user_preferences",
+      "rls": true
+    },
+    {
+      "name": "workspace_capability",
+      "rls": true
+    },
+    {
+      "name": "workspace_draft",
+      "rls": true
+    },
+    {
+      "name": "workspace_invitation",
+      "rls": true
+    },
+    {
+      "name": "workspace_role",
+      "rls": true
+    }
+  ],
+  "rpc_permissions": [
+    {
+      "proname": "glam_api_gate",
+      "anon_execute": false,
+      "user_execute": true
+    },
+    {
+      "proname": "glam_api_v1",
+      "anon_execute": false,
+      "user_execute": true
+    },
+    {
+      "proname": "glam_backend_status",
+      "anon_execute": false,
+      "user_execute": true
+    }
+  ],
+  "status": "VERIFIED"
+}

@@ -1,0 +1,10 @@
+{
+  "result": "PASS",
+  "scope": "fresh LOCAL PostgreSQL replay of exact release SQL",
+  "public_table_count": 38,
+  "alembic_revision": "0010_supabase_foundation",
+  "stripe_sandbox_tables": false,
+  "initial_export_failure": "comment-prefixed migration omitted; corrected capture and verified fresh replay before any remote execution",
+  "release_sha256": "aa1c508a9e847ee0115405e5a5bae99659fdcd2b4ee1f728c21fa3be4b0ff854",
+  "normalized_release_replay": "PASS on a third fresh local database"
+}

@@ -1,0 +1,52 @@
+All checks passed!
+147 files already formatted
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0
+rootdir: /workspace/Glamit
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.16.0, hypothesis-6.170.14
+collected 205 items
+
+tests/test_auth.py ...........                                           [  5%]
+tests/test_catalog.py .................................                  [ 21%]
+tests/test_commerce_policy.py ........                                   [ 25%]
+tests/test_credits.py .....                                              [ 27%]
+tests/test_db_safety.py ..                                               [ 28%]
+tests/test_foundation_deployment_guards.py ....                          [ 30%]
+tests/test_integrations.py .......................                       [ 41%]
+tests/test_looks_api.py .....                                            [ 44%]
+tests/test_migrations.py .                                               [ 44%]
+tests/test_ranking.py ...                                                [ 46%]
+tests/test_request_security.py ...                                       [ 47%]
+tests/test_rls.py .                                                      [ 48%]
+tests/test_settings.py ...                                               [ 49%]
+tests/test_stripe_sandbox.py ...............................             [ 64%]
+tests/test_supabase_foundation.py .....................                  [ 75%]
+tests/test_supabase_preflight_inventory.py ......                        [ 78%]
+tests/test_supabase_probe.py ................                            [ 85%]
+tests/test_workspaces.py .............................                   [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /workspace/Glamit/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 205 passed, 1 warning in 19.85s ========================
+
+> glam-ai@0.1.0 check:client-runtime
+> node scripts/check-client-runtime.mjs
+
+Client runtime checks passed: shared React instances and web hook rendering
+
+> glam-ai@0.1.0 typecheck
+> npm run typecheck --workspaces
+
+
+> @glam/mobile@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @glam/web@0.1.0 typecheck
+> tsc --noEmit

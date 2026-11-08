@@ -1,12 +1,15 @@
 import hashlib
 import json
+import os
 from typing import Annotated
 from uuid import UUID, uuid4
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Response
 from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import bindparam, text
 from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from glam_api.auth import Principal, get_principal
@@ -28,10 +31,22 @@ from glam_api.contracts import (
 )
 from glam_api.credits import balance
 from glam_api.db import get_session
+from glam_api.deployment import cors_origins, deployment_revision
 from glam_api.observability import http_error, request_evidence, validation_error
 from glam_api.workspaces import build_router
 
-app = FastAPI(title="GLAM AI", version="0.1.0", docs_url=None, redoc_url=None)
+app = FastAPI(title="GLAM Beauty", version="0.1.0", docs_url=None, redoc_url=None)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=cors_origins(
+        os.environ.get("GLAM_ALLOWED_ORIGINS", ""),
+        os.environ.get("GLAM_DEPLOYMENT_ENV") == "production",
+    ),
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "PATCH", "PUT", "DELETE"],
+    allow_headers=["Authorization", "Content-Type", "Idempotency-Key", "X-Request-ID"],
+    expose_headers=["X-Request-ID"],
+)
 app.middleware("http")(request_evidence)
 app.add_exception_handler(HTTPException, http_error)
 app.add_exception_handler(RequestValidationError, validation_error)
@@ -47,6 +62,19 @@ def digest(value) -> str:
 
 
 def user(db: Session, identity: Principal) -> UUID:
+    if identity.issuer == "https://bkkmsbxrxkqaveymcrgi.supabase.co/auth/v1":
+        try:
+            sid, subject = UUID(identity.session_id or ""), UUID(identity.subject)
+        except ValueError:
+            raise HTTPException(401, "Active Supabase session required") from None
+        if not db.scalar(
+            text(
+                "SELECT EXISTS(SELECT 1 FROM auth.sessions WHERE id=:id AND user_id=:u "
+                "AND (not_after IS NULL OR not_after>now()))"
+            ),
+            {"id": sid, "u": subject},
+        ):
+            raise HTTPException(401, "Session was revoked or expired")
     db.execute(
         text(
             "INSERT INTO app_user(id,issuer,subject) VALUES (:id,:i,:s) "
@@ -129,15 +157,18 @@ def require_look_consent(db, uid):
 
 @app.get("/health/live")
 def live():
-    return {"status": "alive"}
+    return {"status": "alive", "commit": deployment_revision()}
 
 
 @app.get("/health/ready")
 def ready(db: Db):
     from glam_api.config import get_settings
 
-    head = db.scalar(text("SELECT version_num FROM alembic_version"))
-    if head != "0008_catalog_market_policy":
+    try:
+        applied = set(db.scalars(text("SELECT version_num FROM alembic_version")))
+    except SQLAlchemyError:
+        raise HTTPException(503, "Database readiness is unavailable") from None
+    if "0014_creator_studio" not in applied:
         raise HTTPException(503, "Database migration is not current")
     if not get_settings().oidc_issuer:
         raise HTTPException(503, "Identity provider is not configured")
@@ -199,12 +230,12 @@ def create_organization(body: NewOrganization, db: Db, identity: Identity, key: 
         return result
     org_id = uuid4()
     db.execute(
-        text("INSERT INTO organization(id,name) VALUES (:id,:name)"),
+        text("INSERT INTO organizations(id,name) VALUES (:id,:name)"),
         {"id": org_id, "name": body.name},
     )
     db.execute(
         text(
-            "INSERT INTO organization_member(organization_id,user_id,role) VALUES (:o,:u,'owner')"
+            "INSERT INTO organization_members(organization_id,user_id,role) VALUES (:o,:u,'owner')"
         ),
         {"o": org_id, "u": uid},
     )
@@ -218,8 +249,8 @@ def get_organization(org_id: UUID, db: Db, identity: Identity):
     row = (
         db.execute(
             text(
-                "SELECT o.id,o.name,m.role FROM organization o "
-                "JOIN organization_member m ON m.organization_id=o.id "
+                "SELECT o.id,o.name,m.role FROM organizations o "
+                "JOIN organization_members m ON m.organization_id=o.id "
                 "WHERE o.id=:id AND m.user_id=:u AND m.active AND NOT o.suspended"
             ),
             {"id": org_id, "u": uid},

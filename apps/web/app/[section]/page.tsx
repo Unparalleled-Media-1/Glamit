@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
-import GlamApp from "../../components/GlamApp";
-import type { Page } from "../../../../packages/product/platform";
+import AccountRoutes from "../../components/AccountRoutes";
 const sections = [
   "offer",
   "results",
@@ -48,5 +47,5 @@ export default async function Section({
 }) {
   const { section } = await params;
   if (!sections.includes(section)) notFound();
-  return <GlamApp start={section as Page} />;
+  return <AccountRoutes initialPath={"/" + section} />;
 }

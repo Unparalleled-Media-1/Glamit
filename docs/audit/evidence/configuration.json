@@ -1,0 +1,8 @@
+{
+  "scope": "Codex credential metadata only; actual Railway variables uninspected",
+  "database_url_present": true,
+  "railway_token_present": false,
+  "valid_url": true,
+  "original_project_target": true,
+  "privileged_database_role": true
+}

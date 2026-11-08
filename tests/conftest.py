@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from uuid import uuid4
 
 import pytest
@@ -27,8 +28,14 @@ def engine():
     previous = os.environ.get("GLAM_DATABASE_URL")
     os.environ["GLAM_DATABASE_URL"] = url
     get_settings.cache_clear()
-    command.upgrade(Config("alembic.ini"), "head")
     engine = create_engine(url, hide_parameters=True)
+    # Local disposable Auth contract fixture only. Real Supabase Auth is never
+    # created or modified by application migrations.
+    with engine.begin() as connection:
+        connection.execute(text(Path("tests/fixtures/supabase_auth.sql").read_text()))
+    # Both branches are tested locally; hosted application deployment targets
+    # application@head and cannot traverse the guarded sandbox sibling.
+    command.upgrade(Config("alembic.ini"), "heads")
     yield engine
     engine.dispose()
     if previous is None:
@@ -43,7 +50,8 @@ def db(engine):
     with engine.begin() as connection:
         connection.execute(
             text(
-                "TRUNCATE app_user, organization, policy_document, outbox_event, audit_event "
+                "TRUNCATE app_user, organizations, policy_document, outbox_event, "
+                "audit_event, auth.users, product_categories "
                 "RESTART IDENTITY CASCADE"
             )
         )

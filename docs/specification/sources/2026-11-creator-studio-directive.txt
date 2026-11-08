@@ -1,0 +1,349 @@
+Yes. GLAM AI should integrate TikTok, Instagram, YouTube, Facebook and Pinterest, primarily for influencers and beauty creators. But I would make an important distinction: social login is not the same as connecting a creator's social media account.
+
+A consumer might use Google or Apple to sign in. An influencer should be able to connect their TikTok or Instagram account to build a GLAM AI creator storefront, showcase content, recommend products and earn commissions.
+
+## Recommended social integrations
+
+![Tickets](https://images.openai.com/static-rsc-4/oADQw61qW3dqAY3vFeZrTYWqzIngcaWchubd7IkqhTaEhPf3MYu0l2YxHv0QEX3b1oUi69qkzOgXvn2MsZOvVXC4foqoVd-qcrr72ZolIydjPYD15_mfsEvQnH_K8WV7ivOSJ2nKcdTqwQeaqc6SMqJr9MhH4o8uMJ6VtX9TcZM?purpose=inline)
+
+Add to Favorites
+
+TikTok — Highest priority Creator profile linking, beauty videos, shoppable looks, referral links and campaign attribution. Approved TikTok API capabilities can support account information and eligible video access.
+
+![Educação Aberta/Instagram - Wikiversidade](https://images.openai.com/static-rsc-4/fAc8K-3NVtT-1gf_MgVFmYdJEPgxgRCCPEwHAqTFZ8ZThcDZ9ObNLT1rSWDx7E509gK-mc8h2K3ZrI22NGVQe3bc1i8A3VgmNnQU8iE8ZgQ5IMzyTJp5VV7yrLiu_T39Fb--ic3JoEsDPsBudKxHo9_nIymHtoVokeYFTu22HQQ?purpose=inline)
+
+Add to Favorites
+
+Instagram — Highest priority Makeup tutorials, hairstyle portfolios, fashion inspiration, professional profiles, creator collaborations and shoppable GLAM AI looks.
+
+![Social media square youtube - Free Icon PNG, SVG](https://images.openai.com/static-rsc-4/YpC2SrrNurNhnFeq2TSSdXHvbEcdPLbPOGG6x-YUiAtkpO2B2d7dayEqrbtbwdH7_XMnsFOsLUdsWRa5rs1M5KwpU9hFzdQZciwElynoPN-qNeOnYe-tMPRV7noBudw1M1IIlNPUTOWxWiuRtBduzRV4JxhWOBpqfx_7K9LCDF4?purpose=inline)
+
+Add to Favorites
+
+YouTube — High priority Long-form tutorials, product reviews, embedded creator videos and campaign performance where authorized.
+
+![Pinterest social media icon. 7 | Premium Photo  - rawpixel](https://images.openai.com/static-rsc-4/l7PC5JdG_ZyY5Duo4rsSpyaC9PVERhceMQ4XkKL5cAbKJ-afCOeqGSiklfnrzIPls1aW5Tp7g5G_us41RJuKKEtCSj0gXTgSPioSO9P2BYIRQh6UIsNUgctBza5_wokoxhhKnkEWaseCMqtd8XpF_c_eNXN_199g0ozGvMLhpUc?purpose=inline)
+
+Add to Favorites
+
+Pinterest — High priority Hairstyle inspiration, mood boards, wedding looks, saved collections and visual discovery.
+
+![Facebook vector social media icon | Premium Vector  - rawpixel](https://images.openai.com/static-rsc-4/g658AFxOQVRWg9bSCmlIySpISuu5w6IIXoX4_MZUDtXLYqzJdjpzJq_hlN5mKbBILvxmssSGNIVeQfwjSMJUriHDTErIC-g5clW1f2FGEQWpp10slMxYz2nItD4UWJLL3pPn8BN07BrGmHZcCiSLsYh7lEzBF__oK_faok35HrE?purpose=inline)
+
+Add to Favorites
+
+Facebook — Secondary priority Creator pages, beauty business profiles, promotional campaigns and approved social sharing.
+
+## How this should work inside GLAM AI
+
+Creator Studio
+
+Concept
+
+![](https://images.openai.com/static-rsc-4/8RB5a-NVrvlbQeK3mQ13DSwcFz18Ef1dQOnXefKYY8yYGypyZLA-EemXFjafUPGcREib_d7BzOW0I2dt_frn3ws2OsTSCarte3Xwf1bJO1IiLGKRW_wA6YbOHKcaorQfdAvURZMjuQMxZfEIq3XVnOsVynmJNcPSoJdPW9PK3LA?purpose=inline)
+
+Add to Favorites
+
+My Creator Profile
+
+Connect social channels, curate looks and manage campaigns.
+
+Accounts
+
+My Shop
+
+Earnings
+
+Creator capabilities
+
+* Connect and verify social accounts
+
+* Create shoppable makeup, hair and outfit looks
+
+* Generate tracked product and referral links
+
+* Apply for brand campaigns
+
+* View attributed sales and eligible earnings
+
+The strongest commercial opportunity is turning influencer content into purchases. For example, a creator posts a makeup tutorial on TikTok, links to their GLAM AI look, and followers can find the products used, try a similar style with AI, and purchase from participating merchants.
+
+GLAM AI earns its approved marketplace commission on eligible product transactions. Any creator commission must be separately agreed and accounted for; it should not be invented by the builder.
+
+## Codex implementation instruction
+
+GLAM AI — SOCIAL MEDIA INTEGRATIONS AND INFLUENCER CREATOR STUDIO
+
+# GLAM AI — SOCIAL MEDIA INTEGRATIONS AND INFLUENCER CREATOR STUDIO
+
+Implement social media account connections primarily for GLAM AI creators, influencers, beauty professionals and brands.
+
+This is separate from consumer social login.
+
+Use the existing Supabase project `bkkmsbxrxkqaveymcrgi` and the existing GLAM AI identity and organization model.
+
+## PRIORITY PLATFORMS
+
+1. TikTok
+
+2. Instagram
+
+3. YouTube
+
+4. Pinterest
+
+5. Facebook
+
+## CREATOR ONBOARDING
+
+Allow an authenticated GLAM AI user to activate a Creator profile without registering a second account.
+
+Create a Creator Studio with:
+
+* Public creator profile
+
+* Social account connections
+
+* Creator portfolio
+
+* Shoppable looks
+
+* Product collections
+
+* Referral links
+
+* Brand campaign opportunities
+
+* Earnings dashboard
+
+* Performance analytics
+
+## SOCIAL ACCOUNT CONNECTIONS
+
+Implement official OAuth account authorization where supported.
+
+Store:
+
+* Provider
+
+* Provider account identifier
+
+* Display name
+
+* Public profile URL
+
+* Connection status
+
+* Authorized scopes
+
+* Token expiry metadata
+
+* Last successful synchronization
+
+* Connection errors
+
+Store tokens encrypted in an approved server-side secret store or suitably protected encrypted credential storage. Never expose access or refresh tokens to clients.
+
+Allow users to disconnect accounts and revoke access.
+
+Do not request unnecessary permissions.
+
+Do not scrape private social media data or bypass platform restrictions.
+
+## PLATFORM INTEGRATIONS
+
+TikTok:
+
+* Official account linking
+
+* Authorized profile data
+
+* Eligible video discovery
+
+* Creator video associations
+
+* Tracked GLAM AI referral links
+
+* Approved sharing or publishing capabilities where available
+
+Instagram:
+
+* Supported Instagram professional-account connections
+
+* Authorized media retrieval
+
+* Portfolio display
+
+* Shoppable GLAM AI look associations
+
+* Eligible insights where permissions allow
+
+YouTube:
+
+* Google OAuth
+
+* Channel linking
+
+* Authorized video retrieval
+
+* Tutorial and product associations
+
+* Eligible channel analytics
+
+Pinterest:
+
+* Supported account authorization
+
+* Boards and pins where permitted
+
+* Mood board integration
+
+* Inspiration collections
+
+Facebook:
+
+* Authorized page connections
+
+* Eligible page content
+
+* Campaign and creator associations
+
+For each provider, check current official API eligibility, permission requirements, rate limits, app review and permitted use cases before implementing capabilities.
+
+If an API capability is unavailable, provide a compliant manual link or creator-submitted content alternative. Do not claim an unsupported integration is live.
+
+## SHOPPABLE CREATOR CONTENT
+
+Allow creators to:
+
+* Build a GLAM AI look
+
+* Attach merchant products
+
+* Publish a creator collection
+
+* Generate shareable links
+
+* Track permitted attribution events
+
+* Display eligible earned commissions
+
+Prevent creators from claiming products are endorsed by brands without authorization.
+
+## BRAND CAMPAIGN MARKETPLACE
+
+Allow merchants and brands to:
+
+* Create creator campaign briefs
+
+* Define deliverables and eligibility
+
+* Invite or review applicants
+
+* Approve content
+
+* Track campaign milestones
+
+* View attributable conversions
+
+* Manage agreed creator compensation
+
+Clearly label sponsored content.
+
+## DATABASE
+
+Audit existing tables first.
+
+Add missing compatible structures for:
+
+* Creator profiles
+
+* Connected social accounts
+
+* Social media items
+
+* Creator looks
+
+* Shoppable content
+
+* Campaign briefs
+
+* Campaign applications
+
+* Campaign deliverables
+
+* Referral attribution
+
+* Creator commission agreements
+
+* Creator earnings
+
+* Payout eligibility
+
+* Social sync logs
+
+Use organization-aware RLS and secure token handling.
+
+## DESIGN
+
+Use GLAM AI's existing editorial typography, cream background, dark text and canonical rose accent.
+
+Use recognizable official social media branding.
+
+Create polished mobile and web Creator Studio experiences.
+
+## TESTING
+
+Verify:
+
+* Creator activation
+
+* Social OAuth callback
+
+* Account connection and disconnection
+
+* Token refresh
+
+* Missing permission handling
+
+* API rate-limit handling
+
+* Media synchronization
+
+* Shoppable look creation
+
+* Referral attribution
+
+* Campaign application
+
+* Creator earnings calculation
+
+* Creator access isolation
+
+* Unauthorized access prevention
+
+Do not mark a provider as connected without a successful real API test.
+
+Do not launch automated posting or payouts without the required approvals.
+
+## DELIVERY
+
+Implement, connect to Supabase, test, and provide a provider-by-provider operational report.
+
+Distinguish:
+
+* Fully operational
+
+* Awaiting credentials
+
+* Awaiting platform approval
+
+* Not supported by provider API
+
+* Deferred
+
+Preserve existing consumer authentication, marketplace functionality and financial rules.
+
+My recommendation: launch the creator side with TikTok and Instagram first, alongside shoppable GLAM AI profiles and tracked links. YouTube, Pinterest and Facebook can follow without delaying the consumer marketplace.
+
+That creates a direct growth loop: influencer content → AI try-on → product discovery → purchase → attributable creator earnings.

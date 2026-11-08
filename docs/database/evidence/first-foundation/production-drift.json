@@ -1,0 +1,32 @@
+{
+  "columns": {
+    "production_count": 237,
+    "local_release_count": 237,
+    "missing_from_production": [],
+    "unexpected_in_production": []
+  },
+  "indexes": {
+    "production_count": 73,
+    "local_release_count": 73,
+    "missing_from_production": [],
+    "unexpected_in_production": []
+  },
+  "constraints": {
+    "production_count": 180,
+    "local_release_count": 180,
+    "missing_from_production": [],
+    "unexpected_in_production": []
+  },
+  "policies": {
+    "production_count": 18,
+    "local_release_count": 18,
+    "missing_from_production": [],
+    "unexpected_in_production": []
+  },
+  "functions": {
+    "production_count": 8,
+    "expected_count": 7,
+    "missing_from_production": [],
+    "existing_platform_functions": [["public", "rls_auto_enable", true, "v"]]
+  }
+}

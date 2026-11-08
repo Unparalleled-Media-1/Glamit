@@ -1,0 +1,21 @@
+{
+  "observed_at": "2026-11-08T05:44:53.437206+00:00",
+  "scope": "OPTIONS preflight only; no sign-in, mutation or customer data",
+  "results": [
+    {
+      "origin": "https://www.glam.beauty",
+      "status": 403,
+      "allow_origin": null
+    },
+    {
+      "origin": "https://glamit-web-production.up.railway.app",
+      "status": 403,
+      "allow_origin": null
+    },
+    {
+      "origin": "https://www.glamit.beauty",
+      "status": 204,
+      "allow_origin": "https://www.glamit.beauty"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+✔ legacy gates cannot omit the fifteen current QA review gates (2.437669ms)
+✔ duplicate, blocked and missing QA gates cannot be treated as passes (0.406631ms)
+✔ fifteen green labels without commit-bound evidence cannot certify QA (0.185023ms)
+✔ legacy eleven green labels cannot bypass the twelve current gates (2.833585ms)
+✔ local success and fresh documents do not replace deployed Railway evidence (0.645283ms)
+✔ structurally complete synthetic evidence validates; it proves no provider operation (1.150229ms)
+✔ wrong deployed commit, failed readiness and blocked deployed journeys are rejected (1.418343ms)
+✔ duplicate or malformed gate sets fail closed without crashing (1.943094ms)
+✔ Missing or partial evidence cannot certify launch (1.802658ms)
+✔ Green gate labels do not replace actual financial, hardware or approval evidence (2.029863ms)
+✔ Stale evidence and changed source are rejected (3.527777ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 183.819396

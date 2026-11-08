@@ -13,6 +13,7 @@ import {
 } from "../../../packages/product/journey";
 import type { Journey, LookPart } from "../../../packages/product/journey";
 type Props = {
+  accountAvailable?: boolean;
   page: Page;
   data: Journey;
   setData: Dispatch<SetStateAction<Journey>>;
@@ -54,7 +55,9 @@ function Portrait({ panel = 0 }: { panel?: number }) {
     />
   );
 }
-export default function StylingJourney({ page, data: s, setData, go }: Props) {
+export default function StylingJourney({
+  page, data: s, setData, go, accountAvailable = false,
+}: Props) {
   const [part, setPart] = useState<LookPart>("Hair");
   const [draft, setDraft] = useState("");
   const [item, setItem] = useState("");
@@ -303,6 +306,8 @@ export default function StylingJourney({ page, data: s, setData, go }: Props) {
             </div>
             <div
               className="conversation-messages"
+              role="log"
+              aria-live="polite"
               aria-label="Your styling brief"
             >
               {s.messages.map((m, i) => (
@@ -739,7 +744,9 @@ export default function StylingJourney({ page, data: s, setData, go }: Props) {
         <p className="fine">
           Only your approved text and look selections are stored here. No
           selfies, attachment files, conversations, inferred identity or
-          uncomputed analysis reports. Account sync is not connected.
+          uncomputed analysis reports. {accountAvailable
+            ? "This plan stays on this device. Account details and routines are saved separately after sign-in."
+            : "Account sync is not connected."}
         </p>
         {market}
         <h3>Saved looks ({s.saved.length})</h3>

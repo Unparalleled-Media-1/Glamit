@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "File selection and camera require explicit consent",
+    "Valid photo with empty MIME type reaches local preview",
+    "Accessible Choose a photo opens real file chooser",
+    "Synthetic browser camera capture reaches preview",
+    "Cancel clears camera stream",
+    "Malformed image shows an inline error",
+    "Desktop and mobile photo controls fit the viewport",
+    "Browser camera denial displays recovery guidance",
+    "No external photo upload or provider request"
+  ],
+  "scope": "Synthetic Chromium media only; physical devices and server upload unverified"
+}

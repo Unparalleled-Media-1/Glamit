@@ -1,3 +1,7 @@
+# Current hosted integration status — 7 November 2026
+
+Supabase core Auth/API/database operations are verified on the original production project; see the [current deployment report](database/DATABASE_DEPLOYMENT_REPORT.md). Stripe read-only connectivity returned **livemode=true**, so test financial execution is blocked. No live financial mutation occurred. The full GLAM backend and production web connection are incomplete. The following earlier snapshot is retained as historical preparation evidence.
+
 # Service integration readiness
 
 **Latest payment authority — 6 November 2026:** Zanzu Technologies Inc. operates GLAM AI. The user authorized **Stripe Connect test mode only**, including additive sandbox financial tables and the existing 10% completed physical-item policy. Existing production financial records, live payment activation and production Supabase remain protected. See [payment architecture](payments/PAYMENT_ARCHITECTURE.md), [readiness](payments/STRIPE_CONNECT_READINESS.md) and [financial regression](payments/PAYMENT_REGRESSION_REPORT.md). Isolated tests pass; actual Stripe acceptance is blocked and integration is not complete.

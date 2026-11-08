@@ -1,0 +1,42 @@
+{
+  "observed_at": "2026-11-08T05:56:54.454Z",
+  "scope": "Chromium keyboard/history/offline UI checks; not VoiceOver/TalkBack or native-device testing",
+  "checks": [
+    {
+      "name": "Skip link moves keyboard focus to main",
+      "status": "PASSED"
+    },
+    {
+      "name": "Browser Back restores route and screen",
+      "status": "PASSED"
+    },
+    {
+      "name": "Workspace skip link focuses main: /business",
+      "status": "PASSED"
+    },
+    {
+      "name": "Workspace skip link focuses main: /admin",
+      "status": "PASSED"
+    },
+    {
+      "name": "Workspace dialog initial focus, Escape and focus restoration",
+      "status": "PASSED"
+    },
+    {
+      "name": "Personalized Results deep link has truthful empty state",
+      "status": "PASSED"
+    },
+    {
+      "name": "Offline transition announces unavailable network operations",
+      "status": "PASSED"
+    },
+    {
+      "name": "Photo permission gates local file input",
+      "status": "PASSED"
+    },
+    {
+      "name": "Disallowed file type rejected before any upload",
+      "status": "PASSED"
+    }
+  ]
+}

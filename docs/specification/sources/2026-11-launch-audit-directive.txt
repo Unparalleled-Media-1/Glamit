@@ -1,0 +1,748 @@
+For GLAM AI, I recommend a complete automated click-through audit, functional repair and public-launch certification.
+
+Codex must behave like a real user, merchant, beauty professional, creator, advertiser and administrator. It should open every screen, click every actionable element, complete actual workflows, identify failures, fix them, and repeat the tests until the application is stable.
+
+The goal is not simply to achieve a green build. It is to prove that GLAM AI works end to end, including its AI features, Supabase database, Stripe Connect, SMS OTP, biometrics, marketplace, bookings and administration.
+
+One important distinction: we can require 100% of defined critical tests to pass, but no software can be guaranteed 100% bug-free. Public deployment should be based on documented test coverage, security checks and release gates—not an unsupported claim of perfection.
+
+# GLAM AI — Public launch readiness
+
+Target launch standards
+
+Not yet verified
+
+# 100%
+
+Critical user journeys passing
+
+# 0
+
+Open P0/P1 defects
+
+# 100%
+
+Defined financial tests passing
+
+# 100%
+
+Required access-control tests passing
+
+These are acceptance targets, not measured results from the current GLAM AI application.
+
+## 1. Everything Codex must click through and test
+
+| Module                | Mandatory real-world test                                 |
+| --------------------- | --------------------------------------------------------- |
+| Homepage              | Every CTA, menu, link, search, responsive layout          |
+| Registration          | SMS OTP, Google, Apple, Facebook where configured         |
+| Biometrics            | Face ID, Touch ID, Android biometrics on real devices     |
+| User profile          | Create, edit, save, reload, delete                        |
+| Face Analysis         | Upload image → analyze → personalized results             |
+| Hair Analysis         | Upload → recommendations → save                           |
+| Color Analysis        | Analyze → personalized palette → product matches          |
+| AI Studio             | Generate makeover → compare → save → retrieve             |
+| AI Advisor            | Conversation → contextual recommendations → history       |
+| Personal Stylist      | Preferences → complete outfit → virtual preview           |
+| Destination Stylist   | Destination → weather → outfit → packing list             |
+| Event Stylist         | Invitation upload → occasion styling → shopping           |
+| Digital Wardrobe      | Upload clothing → create outfits → save                   |
+| Marketplace           | Search, filter, product details, variants, inventory      |
+| Local discovery       | Current/shopping location → nearby eligible merchants     |
+| Merchant dashboard    | Onboard → Snap & List → publish → manage orders           |
+| Shopping cart         | Add, update, remove, multi-merchant checkout              |
+| Stripe Connect        | Test payment → 10% commission → merchant allocations      |
+| Orders                | Payment → fulfillment → tracking → refund                 |
+| Professional bookings | Availability → booking → reschedule → cancellation        |
+| Creator dashboard     | Publish look → link products → attribution                |
+| Advertising           | Create campaign → geographic targeting → reporting        |
+| Notifications         | OTP, email, push, order and booking updates               |
+| Administration        | All dashboards, approvals, moderation, financial controls |
+| Security              | Unauthorized access, RLS, API abuse, secrets protection   |
+| Mobile                | iOS, Android, touch targets, safe areas, keyboards        |
+| Deployment            | Builds, domain, HTTPS, monitoring, rollback               |
+
+A page is not considered functional because it loads. It must perform its intended action and persist the correct results.
+
+## 2. The Codex master execution prompt
+
+Copy this into Codex. It is designed to prevent the familiar cycle where fixing one feature breaks three others.
+
+GLAM AI — COMPLETE CLICK-THROUGH FUNCTIONAL AUDIT, AUTO-REPAIR AND PUBLIC LAUNCH CERTIFICATION
+
+# GLAM AI — COMPLETE CLICK-THROUGH FUNCTIONAL AUDIT, AUTO-REPAIR AND PUBLIC LAUNCH CERTIFICATION
+
+## MISSION
+
+Conduct a comprehensive, evidence-based functional audit of the entire GLAM AI application.
+
+This is an EXECUTION task.
+
+Do not produce another planning-only report.
+
+Your responsibility is to inspect, run, interact with, test, repair and retest every implemented GLAM AI feature until the defined public-launch acceptance criteria are met.
+
+The application must be evaluated from the perspective of real consumers, merchants, beauty professionals, creators, advertisers and administrators.
+
+Do not claim 100% functionality without corresponding automated and manual test evidence.
+
+## SYSTEM CONFIGURATION
+
+Operating company:
+Zanzu Technologies Inc., United States.
+
+Supabase project:
+bkkmsbxrxkqaveymcrgi
+
+Supabase branch:
+main (PRODUCTION).
+
+Primary payment provider:
+Stripe Connect.
+
+Physical-product marketplace commission:
+10% of the approved eligible item amount.
+
+Authentication:
+SMS OTP primary, optional Google/Apple/Facebook, supported mobile biometrics.
+
+Preserve all existing commercial rules, design patterns and approved functionality.
+
+Do not create another Supabase project or revive the deleted development branch.
+
+Do not perform destructive production database changes or live financial transactions during testing.
+
+## PHASE 1 — DISCOVER AND RUN THE ENTIRE APPLICATION
+
+1. Inspect all repository packages, frontend routes, backend endpoints, mobile screens and admin dashboards.
+
+2. Identify the current framework, test tools, build scripts and deployment environment.
+
+3. Verify GitHub main is current and all approved feature branches have been reconciled.
+
+4. Install dependencies using the existing lockfiles.
+
+5. Run the actual frontend and backend applications.
+
+6. Inspect browser console errors, network failures, server logs and API responses.
+
+7. Identify every visible and hidden navigation route.
+
+8. Enumerate every button, link, menu, input, modal, tab, dropdown and actionable component.
+
+9. Identify disabled, decorative, placeholder and disconnected controls.
+
+10. Generate a complete route and interaction inventory.
+
+Use Playwright for browser click-through testing where compatible with the existing stack.
+
+Use the appropriate native testing framework for React Native/Expo if present.
+
+Do not replace the application with mock screens merely to pass tests.
+
+## PHASE 2 — AUTOMATED CLICK-THROUGH CRAWLER
+
+Build a reusable interaction-testing system that:
+
+1. Opens every accessible application route.
+
+2. Captures screenshots at supported desktop and mobile viewport sizes.
+
+3. Identifies interactive elements using accessible roles and stable selectors.
+
+4. Clicks every safe, non-destructive actionable element.
+
+5. Verifies the expected navigation or state change.
+
+6. Tests form validation and submission.
+
+7. Tests modals, drawers, dropdowns and filters.
+
+8. Tests back navigation and deep links.
+
+9. Detects broken images, layout overflow and inaccessible controls.
+
+10. Detects JavaScript exceptions and failed network requests.
+
+11. Records console errors and backend errors.
+
+12. Detects dead-end workflows.
+
+13. Produces reproducible failure traces.
+
+Do not blindly click payment, delete, publish, send-message, transfer, payout or other irreversible actions.
+
+Use dedicated test accounts, isolated test records and explicit safe-action allowlists.
+
+Do not submit real purchases or send unsolicited communications.
+
+## PHASE 3 — CONSUMER JOURNEY TESTS
+
+Test the complete consumer experience:
+
+A. Open GLAM AI without an account.
+B. Explore homepage and product discovery.
+C. Register with SMS OTP.
+D. Verify the OTP.
+E. Create a profile.
+F. Save personal styling preferences.
+G. Upload an analysis image with consent.
+H. Receive real analysis results.
+I. Generate personalized styling recommendations.
+J. Open AI Studio.
+K. Create a makeover or virtual try-on.
+L. Save and reopen the generated look.
+M. Find matching marketplace products.
+N. Filter by shopping location and delivery destination.
+O. Add products from multiple merchants.
+P. Complete a Stripe test-mode payment.
+Q. Confirm the order and merchant allocations.
+R. Review order status and notifications.
+S. Request a refund in the test environment.
+T. Verify the corresponding ledger adjustments.
+
+Also test the Personal Stylist, Event Stylist, Destination Stylist, Digital Wardrobe and AI Advisor.
+
+Do not substitute hardcoded AI responses or fabricated product availability for production integrations.
+
+## PHASE 4 — AUTHENTICATION TESTS
+
+Test:
+
+* SMS OTP registration
+
+* Existing-user login
+
+* Invalid OTP
+
+* Expired OTP
+
+* OTP resend and throttling
+
+* International phone formats
+
+* Google OAuth
+
+* Apple OAuth
+
+* Facebook OAuth
+
+* Secure account linking
+
+* Session refresh
+
+* Logout and session revocation
+
+* Passwordless account recovery
+
+* iOS biometric unlock
+
+* Android biometric unlock
+
+* Biometric fallback
+
+Do not mark social login or biometrics as passing unless the relevant provider or real device test has actually succeeded.
+
+## PHASE 5 — AI FUNCTIONALITY
+
+Test:
+
+* Face Analysis
+
+* Hair Analysis
+
+* Skin appearance analysis
+
+* Color and undertone analysis
+
+* AI Advisor
+
+* AI Personal Stylist
+
+* AI Studio
+
+* Makeup transformations
+
+* Hair color transformations
+
+* Hairstyle transformations
+
+* Outfit virtual try-on
+
+* Universal Look Search
+
+* Visual Product Search
+
+* Digital Wardrobe
+
+* Event Stylist
+
+* Destination Stylist
+
+* Weather-aware dressing
+
+* Saved looks and recommendations
+
+Verify that:
+
+1. The correct AI provider is invoked.
+
+2. User inputs are processed.
+
+3. The output is genuinely generated or retrieved.
+
+4. Errors are handled.
+
+5. User data persists correctly.
+
+6. Results can be reopened.
+
+7. User corrections are supported.
+
+8. No unsupported medical diagnosis or appearance scoring occurs.
+
+9. Private imagery is protected.
+
+10. Relevant products are matched using real catalogue data.
+
+## PHASE 6 — MERCHANT AND MARKETPLACE TESTING
+
+Create authorized test merchant accounts.
+
+Test:
+
+* Merchant onboarding
+
+* Organization membership
+
+* Stripe connected-account status
+
+* Merchant storefront creation
+
+* Snap & List
+
+* Product drafts
+
+* Product publication
+
+* Product variants
+
+* Inventory changes
+
+* Pricing updates
+
+* Product moderation
+
+* Customer discovery
+
+* Merchant order acceptance
+
+* Fulfillment
+
+* Shipping status
+
+* Refunds and returns
+
+* Merchant analytics
+
+* Settlement statements
+
+Test multi-merchant isolation.
+
+Merchant A must never be able to edit Merchant B's inventory, orders or financial records.
+
+## PHASE 7 — STRIPE AND FINANCIAL TESTING
+
+Use Stripe test mode only.
+
+Verify:
+
+* Payment Intent creation
+
+* Payment confirmation
+
+* Webhook signature verification
+
+* Duplicate webhook handling
+
+* Out-of-order event handling
+
+* Multi-merchant allocation
+
+* GLAM AI 10% commission calculation
+
+* Stripe processing fee accounting
+
+* Merchant transfer eligibility
+
+* Refund reversals
+
+* Chargebacks
+
+* Reconciliation
+
+* Merchant statements
+
+* No double transfers
+
+* No negative or inconsistent balances
+
+Use exact monetary calculations.
+
+Do not assume the existence of Stripe payment tables proves Stripe connectivity.
+
+Do not initiate real payouts or live charges.
+
+## PHASE 8 — PROFESSIONAL BOOKINGS
+
+Test:
+
+* Professional onboarding
+
+* Service listing
+
+* Availability management
+
+* Appointment selection
+
+* Double-booking prevention
+
+* Booking confirmation
+
+* Rescheduling
+
+* Cancellation
+
+* Booking notifications
+
+* Professional dashboard
+
+* Customer booking history
+
+* Booking payments where configured
+
+Do not invent a professional booking commission rate.
+
+## PHASE 9 — CREATORS, ADVERTISING AND ADMIN
+
+Test:
+
+* Creator onboarding and storefronts
+
+* Shoppable looks
+
+* Referral attribution
+
+* Affiliate tracking
+
+* Advertiser registration
+
+* Campaign creation
+
+* Location targeting
+
+* Budget enforcement
+
+* Sponsored placement labeling
+
+* Campaign reporting
+
+* Admin role permissions
+
+* Merchant approval
+
+* Product moderation
+
+* User support
+
+* Financial reporting
+
+* Audit logs
+
+* Feature flag management
+
+## PHASE 10 — SUPABASE END-TO-END VERIFICATION
+
+Connect to the authorized Supabase project and verify:
+
+1. Database tables exist.
+
+2. Migration history is consistent.
+
+3. RLS is enabled where required.
+
+4. RLS policies enforce ownership.
+
+5. Authentication is operational.
+
+6. Storage policies are secure.
+
+7. API queries return real records.
+
+8. Writes persist and can be retrieved.
+
+9. Foreign keys and constraints work.
+
+10. Financial records cannot be edited by ordinary clients.
+
+11. Application services use the intended database.
+
+12. No duplicate or competing database connections exist.
+
+Run negative authorization tests against representative roles.
+
+Do not expose service-role credentials in client applications.
+
+## PHASE 11 — RESPONSIVE AND VISUAL TESTING
+
+Test:
+
+* Desktop browsers
+
+* Mobile web
+
+* Supported iPhone screen sizes
+
+* Supported Android screen sizes
+
+* Tablet layouts where applicable
+
+* Portrait and landscape where supported
+
+* Keyboard navigation
+
+* Screen readers
+
+* Loading states
+
+* Empty states
+
+* Error states
+
+* Slow network behavior
+
+Preserve GLAM AI's approved premium editorial design.
+
+Use screenshot comparison and visual regression testing.
+
+Do not redesign the entire application as a workaround for functional defects.
+
+## PHASE 12 — AUTOMATIC DEFECT REPAIR
+
+For each identified failure:
+
+1. Assign a unique defect ID.
+
+2. Record severity and affected feature.
+
+3. Capture screenshot, trace or logs.
+
+4. Identify the actual root cause.
+
+5. Write a failing regression test.
+
+6. Implement the smallest safe fix.
+
+7. Run the affected tests.
+
+8. Run dependent workflow tests.
+
+9. Run the broader regression suite.
+
+10. Confirm the original defect is fixed without introducing new failures.
+
+Do not suppress tests, weaken assertions, bypass authentication or hardcode successful responses to make tests pass.
+
+Do not silently change financial policies.
+
+Commit fixes in small, reviewable changes.
+
+## PHASE 13 — SECURITY AND PERFORMANCE
+
+Run:
+
+* Dependency vulnerability scanning
+
+* Secret exposure scanning
+
+* Authorization tests
+
+* RLS penetration-style tests
+
+* API rate-limit tests
+
+* OTP abuse tests
+
+* File upload validation
+
+* Image privacy tests
+
+* Webhook replay tests
+
+* Payment tampering tests
+
+* Accessibility checks
+
+* Core Web Vitals checks
+
+* API performance tests
+
+* Database query performance checks
+
+* Backup and recovery verification
+
+Report unresolved risks.
+
+## PHASE 14 — PUBLIC RELEASE GATES
+
+Define and enforce:
+
+G1 — Repository and build integrity
+G2 — Authentication and account security
+G3 — Consumer AI functionality
+G4 — Marketplace and merchant operations
+G5 — Payments and financial correctness
+G6 — Bookings and professional operations
+G7 — Privacy, security and access control
+G8 — Responsive UX and accessibility
+G9 — Reliability, monitoring and recovery
+G10 — Pilot user acceptance testing
+G11 — Final public launch approval
+
+Public deployment is blocked if:
+
+* Any P0 or P1 defect remains open.
+
+* A critical user journey fails.
+
+* Payment reconciliation fails.
+
+* Authentication or RLS isolation fails.
+
+* Sensitive user images are publicly exposed.
+
+* Required third-party credentials are missing for advertised live functionality.
+
+* Production rollback or recovery is unverified.
+
+* Required legal and privacy controls are incomplete.
+
+A nonessential feature may be excluded from launch only if it is safely disabled, hidden from public navigation, and explicitly documented as deferred.
+
+## PHASE 15 — REQUIRED TEST EVIDENCE
+
+Produce:
+
+docs/launch/ROUTE_AND_BUTTON_INVENTORY.md
+docs/launch/CLICKTHROUGH_TEST_REPORT.md
+docs/launch/CONSUMER_E2E_REPORT.md
+docs/launch/AI_FUNCTIONALITY_REPORT.md
+docs/launch/AUTHENTICATION_REPORT.md
+docs/launch/MERCHANT_MARKETPLACE_REPORT.md
+docs/launch/STRIPE_FINANCIAL_REPORT.md
+docs/launch/BOOKING_REPORT.md
+docs/launch/SUPABASE_VERIFICATION.md
+docs/launch/SECURITY_PRIVACY_REPORT.md
+docs/launch/MOBILE_RESPONSIVE_REPORT.md
+docs/launch/DEFECT_REGISTER.md
+docs/launch/REGRESSION_TEST_RESULTS.md
+docs/launch/PUBLIC_LAUNCH_GO_NO_GO.md
+
+Store screenshots, traces and reproducible test results in the appropriate test artifact directory.
+
+Provide a dashboard summarizing:
+
+* Total routes discovered
+
+* Total interactive elements tested
+
+* Total workflows tested
+
+* Passed
+
+* Failed
+
+* Blocked
+
+* Skipped
+
+* Defects fixed
+
+* Remaining defects
+
+* External integrations verified
+
+* Production deployment readiness
+
+Do not count skipped or blocked tests as passed.
+
+## PHASE 16 — RELEASE LOCK
+
+Once all required tests pass:
+
+1. Freeze new feature development.
+
+2. Merge reviewed fixes into GitHub main.
+
+3. Run a clean build from main.
+
+4. Confirm Supabase migration consistency.
+
+5. Tag the release candidate.
+
+6. Deploy to a protected staging environment.
+
+7. Run smoke tests against the deployed candidate.
+
+8. Perform pilot UAT.
+
+9. Obtain explicit final launch approval.
+
+10. Deploy the approved release.
+
+11. Monitor errors and critical transactions.
+
+12. Maintain a tested rollback plan.
+
+Do not deploy publicly without explicit final approval.
+
+## FINAL EXECUTION RULE
+
+Start immediately with route discovery and click-through automation.
+
+Do not stop after generating documentation.
+
+Continue through defect discovery, repair, regression testing and release certification.
+
+If an external credential, real device, account permission or production authorization is required, report that specific blocker.
+
+Do not declare GLAM AI ready for public launch until every mandatory release gate has passed with evidence.
+
+## 3. Make Codex produce a visual click-through report
+
+A useful way to prevent false completion claims is to require a screenshot, trace and result for each important journey.
+
+Example launch-test evidence
+
+|                    |                                            |
+| ------------------ | ------------------------------------------ |
+| Test               | Evidence required                          |
+| Login              | OTP verification and authenticated session |
+| Face Analysis      | Input, API result and saved report         |
+| AI Makeover        | Actual generated output and reopened look  |
+| Product purchase   | Test payment, order and inventory update   |
+| Commission         | Stripe test event and reconciled ledger    |
+| Booking            | Confirmed appointment and conflict test    |
+| Merchant isolation | Cross-organization access denied           |
+
+## 4. The most important launch decision
+
+I would split the work into two release stages.
+
+Stage A — Technical release candidate: Every required user journey works, database and Stripe test integrations are verified, critical security tests pass, and the build is stable.
+
+Stage B — Public launch: A controlled pilot has passed, legal and privacy requirements are met, real-device testing is complete, monitoring and rollback are in place, and you have explicitly approved publication.
+
+For GLAM AI, do not let Codex launch simply because all buttons respond. The decisive proof is that a real user can sign up, receive an AI styling result, preview a look, find a genuine merchant product, complete a test checkout, and have the corresponding order and financial records reconcile correctly.
+
+That should be the non-negotiable launch standard.

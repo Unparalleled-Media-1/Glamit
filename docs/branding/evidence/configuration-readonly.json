@@ -1,0 +1,54 @@
+{
+  "observed_at": "2026-11-08T12:09:07.469280+00:00",
+  "scope": "Read-only public CORS/JWKS probes; no real user token, login, data write or settings change",
+  "origins": [
+    {
+      "origin": "https://www.glam.beauty",
+      "preflight": 403,
+      "allow_origin": null,
+      "unauthenticated_get": 403,
+      "get_allow_origin": null
+    },
+    {
+      "origin": "https://glam.beauty",
+      "preflight": 403,
+      "allow_origin": null,
+      "unauthenticated_get": 403,
+      "get_allow_origin": null
+    },
+    {
+      "origin": "https://glamit-web-production.up.railway.app",
+      "preflight": 403,
+      "allow_origin": null,
+      "unauthenticated_get": 403,
+      "get_allow_origin": null
+    },
+    {
+      "origin": "https://www.glamit.beauty",
+      "preflight": 204,
+      "allow_origin": "https://www.glamit.beauty",
+      "unauthenticated_get": 401,
+      "get_allow_origin": "https://www.glamit.beauty"
+    },
+    {
+      "origin": "https://untrusted.example",
+      "preflight": 403,
+      "allow_origin": null,
+      "unauthenticated_get": 403,
+      "get_allow_origin": null
+    }
+  ],
+  "jwks": {
+    "http_status": 200,
+    "key_count": 1,
+    "algorithms": [
+      "ES256"
+    ]
+  },
+  "oidc_variables_configured_in_codex": {
+    "GLAM_OIDC_ISSUER": true,
+    "GLAM_OIDC_AUDIENCE": true,
+    "GLAM_OIDC_JWKS_URL": true
+  },
+  "authenticated_success": "NOT TESTED; no consented real user session supplied"
+}

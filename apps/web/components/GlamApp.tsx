@@ -1,5 +1,7 @@
 "use client";
 
+import PhotoCapture from "./PhotoCapture";
+import { supportedPhoto } from "../lib/photo-file";
 import { appPath, sectionFromPath, capabilitiesPath } from "../lib/paths";
 import { useEffect, useReducer, useRef, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
@@ -23,6 +25,9 @@ import { BeautyAnalysis, BeautyStudio, BeautyColor } from "./BeautyExperience";
 import { studioPart } from "../../../packages/product/beauty";
 import { editorialProducts } from "../../../packages/product/editorial-products";
 import GoldenCommerce from "./GoldenCommerce";
+import CreatorStudio from "./CreatorStudio";
+import HostedAccount, { hostedAccountConfigured } from "./HostedAccount";
+import { useAccountSession } from "../lib/use-account-session";
 import PersonalizedResults from "./PersonalizedResults";
 import VerifiedProductDetail from "./VerifiedProductDetail";
 import DestinationStylist from "./DestinationStylist";
@@ -47,7 +52,7 @@ import type {
   RequirementDraft,
 } from "../../../packages/product/catalog";
 
-const pages: Page[] = [
+export const pages: Page[] = [
   "offer",
   "results",
   "destination",
@@ -169,10 +174,13 @@ function Notice({ children }: { children: React.ReactNode }) {
 export default function GlamApp({
   start = "home",
   connection,
+  onAccountNavigate,
 }: {
   start?: Page;
   connection?: CompanionConnection;
+  onAccountNavigate?: (path: string) => void;
 }) {
+  const {session:hostedSession,setSession:setHostedSession,error:accountError,retry:retryAccount}=useAccountSession(path=>{const next=sectionFromPath(path) as Page;if(pages.includes(next))go(next);});
   const [journey, setJourney] = useState(freshJourney);
   const [memoryReady, setMemoryReady] = useState(false);
   const [memoryError, setMemoryError] = useState("");
@@ -228,6 +236,8 @@ export default function GlamApp({
   const [advisor, setAdvisor] = useState("");
   const [compare, setCompare] = useState(50);
   const [showSwitcher, setShowSwitcher] = useState(false);
+  const [activeWorkspace,setActiveWorkspace]=useState<string|null>(null);
+  useEffect(()=>{if(!hostedSession?.workspaces?.some(w=>w.organization_id+':'+w.workspace===activeWorkspace))setActiveWorkspace(null);},[hostedSession,activeWorkspace]);
   const [online, setOnline] = useState(true);
   const [checking, setChecking] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -296,27 +306,27 @@ export default function GlamApp({
     setPhotoBusy(false);
     if (inputRef.current) inputRef.current.value = "";
   }
-  async function choosePhoto(e: ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  async function preparePhoto(file: File) {
     const ticket = ++selection.current;
     setError("");
     if (!consent) {
       setError("Choose local-preview permission first.");
-      e.target.value = "";
       return;
     }
-    if (
-      !["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
-      file.size > 10485760
-    ) {
+    if (file.size > 10485760) {
       setError("Choose a JPEG, PNG or WebP image smaller than 10 MB.");
-      e.target.value = "";
       return;
     }
     setPhotoBusy(true);
-    const uri = URL.createObjectURL(file);
+    let uri: string | null = null;
     try {
+      const supported = await supportedPhoto(file);
+      if (ticket !== selection.current) return;
+      if (!supported) {
+        setError("Choose a JPEG, PNG or WebP image. HEIC files must be exported as JPEG first.");
+        return;
+      }
+      uri = URL.createObjectURL(file);
       const img = new Image();
       img.src = uri;
       await img.decode();
@@ -335,7 +345,6 @@ export default function GlamApp({
       if (issue) {
         URL.revokeObjectURL(uri);
         setError(issue);
-        e.target.value = "";
         return;
       }
       if (photoRef.current) URL.revokeObjectURL(photoRef.current.uri);
@@ -343,12 +352,17 @@ export default function GlamApp({
       setPhoto(candidate);
       go("quality");
     } catch {
-      URL.revokeObjectURL(uri);
+      if (uri) URL.revokeObjectURL(uri);
       if (ticket === selection.current)
         setError("This image could not be opened. Try another image.");
     } finally {
       if (ticket === selection.current) setPhotoBusy(false);
     }
+  }
+  async function choosePhoto(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (file) await preparePhoto(file);
   }
   async function checkAnalysis() {
     if (checking) return;
@@ -393,7 +407,9 @@ export default function GlamApp({
       },
     });
     setMessage(
-      "Routine saved for this session. Account sync is not connected.",
+      hostedAccountConfigured
+        ? "Routine saved for this session. To save an account routine, sign in from Profile."
+        : "Routine saved for this session. Account sync is not connected.",
     );
   }
   const btn = (label: string, next: Page, secondary = false) => (
@@ -529,20 +545,13 @@ export default function GlamApp({
                 I have permission to use this image and want a device-only
                 preview.
               </label>
-              <label
-                className={`button ${!consent || photoBusy ? "disabled" : ""}`}
-              >
-                Choose a photo
-                <input
-                  ref={inputRef}
-                  data-testid="photo-input"
-                  className="visually-hidden"
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp"
-                  disabled={!consent || photoBusy}
-                  onChange={choosePhoto}
-                />
-              </label>
+              <p id="photo-consent-help" className="fine">{consent ? "Choose a file or open your camera for a private preview." : "Tick the permission checkbox above to choose or take a photo."}</p>
+              <div className="actions">
+                <button type="button" className="button" disabled={!consent || photoBusy} onClick={() => inputRef.current?.click()} aria-describedby="photo-consent-help">Choose a photo</button>
+                <PhotoCapture allowed={consent && !photoBusy} onPhoto={file => void preparePhoto(file)} />
+              </div>
+              <input ref={inputRef} data-testid="photo-input" aria-label="Choose a photo file" className="visually-hidden" type="file" accept="image/jpeg,image/png,image/webp" disabled={!consent || photoBusy} onChange={choosePhoto} />
+              {error && <p className="error" role="alert">{error}</p>}
               <p className="fine">
                 JPEG, PNG or WebP · under 10 MB · at least 480 × 480 pixels
               </p>
@@ -896,24 +905,16 @@ export default function GlamApp({
             )}
             <StylingJourney
               page="profile"
+              accountAvailable={hostedAccountConfigured}
               data={journey}
               setData={setJourney}
               go={go}
             />
             <div className="split">
               <section className="panel">
-                <h2>Personal account</h2>
-                {unavailable(capabilityReasons.account)}
-                <button
-                  className="button"
-                  onClick={() =>
-                    setMessage(
-                      "Google sign-in will use the selected Supabase project when it is connected. No password is collected here.",
-                    )
-                  }
-                >
-                  Continue with Google
-                </button>
+                {accountError && <p role="alert">{accountError} <button className="text-button" onClick={()=>retryAccount()}>Retry account connection</button></p>}
+                <HostedAccount session={hostedSession} setSession={setHostedSession} />
+                <CreatorStudio key={hostedSession?.profile.id || "guest"} token={hostedSession?.token} />
                 <button
                   ref={switchButton}
                   className="button secondary"
@@ -1023,7 +1024,14 @@ export default function GlamApp({
                   Session routines<span>{state.routines.length}</span>
                 </li>
                 <li>
-                  Account sync<span>Not connected</span>
+                  {hostedAccountConfigured
+                    ? "Account details & routines"
+                    : "Account sync"}
+                  <span>
+                    {hostedAccountConfigured
+                      ? (hostedSession ? "Signed in" : "Sign in required")
+                      : "Not connected"}
+                  </span>
                 </li>
               </ul>
               <button
@@ -1243,8 +1251,8 @@ export default function GlamApp({
         Skip to content
       </a>
       <header className="site-header">
-        <a href={appPath("/")} className="brand" aria-label="GLAM AI home">
-          <Icon name="spark" /> GLAM <span>AI</span>
+        <a href={appPath("/")} className="brand" aria-label="GLAM Beauty home">
+          <Icon name="spark" /> GLAM <span>Beauty</span>
         </a>
         <nav className="desktop-nav" aria-label="Main navigation">
           {webTabs.map((n) => (
@@ -1275,8 +1283,11 @@ export default function GlamApp({
       </header>
       <div className="connection-bar">
         <span className="status-dot" />
-        Interactive preview · AI, account & commerce connections pending
+        {hostedAccountConfigured
+          ? `${hostedSession ? "Signed in" : "Sign-in available"} · AI and shopping connections pending`
+          : "Interactive preview · AI, account & commerce connections pending"}
       </div>
+      {accountError && !hostedSession && <Notice>{accountError} <button className="text-button" onClick={()=>go("profile")}>Choose a sign-in method</button></Notice>}
       {!online && (
         <Notice>
           You’re offline. Session notes remain available; no upload or
@@ -1289,7 +1300,7 @@ export default function GlamApp({
         tabIndex={-1}
         className="consumer-main"
       >
-        {error && (
+        {error && page !== "consent" && (
           <div className="error" role="alert">
             {error}
           </div>
@@ -1360,13 +1371,13 @@ export default function GlamApp({
       </main>
       <footer className="site-footer">
         <a className="brand" href={appPath("/")}>
-          GLAM AI
+          GLAM Beauty
         </a>
         <span>Understand your features. Explore your possibilities.</span>
         <div>
           <button onClick={() => go("privacy")}>Privacy</button>
-          <a href={appPath("/business")}>Business portal</a>
-          <a href={appPath("/admin")}>Admin</a>
+          <a href={appPath("/business")} onClick={event => { if(onAccountNavigate){event.preventDefault();onAccountNavigate("/business");} }}>Business portal</a>
+          <a href={appPath("/admin")} onClick={event => { if(onAccountNavigate){event.preventDefault();onAccountNavigate("/admin");} }}>Admin</a>
         </div>
       </footer>
       <nav className="mobile-nav" aria-label="Personal navigation">
@@ -1406,12 +1417,18 @@ export default function GlamApp({
         </p>
         <div className="workspace-personal">
           <strong>Personal</strong>
-          <span>Current workspace</span>
+          <span>{activeWorkspace ? "Available personal workspace" : "Current workspace"}</span>
+          {hostedSession && <button className="text-button" onClick={()=>{setActiveWorkspace(null);setShowSwitcher(false);}}>Use Personal</button>}
         </div>
+        {hostedSession?.workspaces?.map(w=><button className="button secondary" key={w.organization_id+':'+w.workspace} aria-pressed={activeWorkspace===w.organization_id+':'+w.workspace} onClick={()=>{setActiveWorkspace(w.organization_id+':'+w.workspace);setShowSwitcher(false);setMessage(`Active workspace: ${w.name} · ${w.workspace}. Permissions are checked by the server.`);}}>{w.name} · {w.workspace}</button>)}
         <Notice>
-          {capabilityReasons.account} No business workspaces are authorized.
+          {hostedAccountConfigured
+            ? hostedSession
+              ? (hostedSession.workspaces?.length ? "Only server-authorized workspaces are shown. Business execution still depends on its connected services." : "No verified business workspace is available for this account.")
+              : "Sign in to load your authorized workspaces. Signing in does not grant business permissions."
+            : `${capabilityReasons.account} No business workspaces are authorized.`}
         </Notice>
-        <a className="button secondary" href={appPath("/business")}>
+        <a className="button secondary" href={appPath("/business")} onClick={event => { if(onAccountNavigate){event.preventDefault();onAccountNavigate("/business");} }}>
           View business tools & requirements
         </a>
       </dialog>

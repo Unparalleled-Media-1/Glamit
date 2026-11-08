@@ -1,0 +1,302 @@
+[
+  {
+    "method": "POST",
+    "path": "/v1/organizations/{org}/catalog/listings",
+    "source": "services/api/src/glam_api/catalog.py:235",
+    "function": "create"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/organizations/{org}/catalog/listings/bulk",
+    "source": "services/api/src/glam_api/catalog.py:270",
+    "function": "bulk_create"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/organizations/{org}/catalog/listings",
+    "source": "services/api/src/glam_api/catalog.py:288",
+    "function": "list_owned"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/organizations/{org}/catalog/listings/{lid}",
+    "source": "services/api/src/glam_api/catalog.py:309",
+    "function": "detail"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/organizations/{org}/catalog/listings/{lid}/revisions",
+    "source": "services/api/src/glam_api/catalog.py:316",
+    "function": "revise"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/admin/catalog/review-queue",
+    "source": "services/api/src/glam_api/catalog.py:350",
+    "function": "review_queue"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/admin/catalog/{lid}/revisions/{revision}/review",
+    "source": "services/api/src/glam_api/catalog.py:367",
+    "function": "review"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/organizations/{org}/catalog/listings/{lid}/publish",
+    "source": "services/api/src/glam_api/catalog.py:408",
+    "function": "publish"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/organizations/{org}/catalog/publish-bulk",
+    "source": "services/api/src/glam_api/catalog.py:427",
+    "function": "publish_bulk"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/organizations/{org}/catalog/listings/{lid}/withdraw",
+    "source": "services/api/src/glam_api/catalog.py:437",
+    "function": "withdraw"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/organizations/{org}/catalog/listings/{lid}/rollback",
+    "source": "services/api/src/glam_api/catalog.py:453",
+    "function": "rollback"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/recommendations/matches",
+    "source": "services/api/src/glam_api/catalog.py:484",
+    "function": "match_requirements"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/recommendations/listings/{lid}",
+    "source": "services/api/src/glam_api/catalog.py:488",
+    "function": "qualified_detail"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/me/saved-requirements",
+    "source": "services/api/src/glam_api/catalog.py:495",
+    "function": "save_requirement"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/me/saved-requirements",
+    "source": "services/api/src/glam_api/catalog.py:515",
+    "function": "saved"
+  },
+  {
+    "method": "DELETE",
+    "path": "/v1/me/saved-requirements/{sid}",
+    "source": "services/api/src/glam_api/catalog.py:529",
+    "function": "delete_saved"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/organizations/{org}/catalog/listings/{lid}/enhancements",
+    "source": "services/api/src/glam_api/catalog.py:551",
+    "function": "enhance"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/organizations/{org}/catalog/listings/{lid}/enhancements/{jid}",
+    "source": "services/api/src/glam_api/catalog.py:598",
+    "function": "job"
+  },
+  {
+    "method": "GET",
+    "path": "/health/live",
+    "source": "services/api/src/glam_api/main.py:159",
+    "function": "live"
+  },
+  {
+    "method": "GET",
+    "path": "/health/ready",
+    "source": "services/api/src/glam_api/main.py:164",
+    "function": "ready"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/me",
+    "source": "services/api/src/glam_api/main.py:179",
+    "function": "me"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/me/credits",
+    "source": "services/api/src/glam_api/main.py:184",
+    "function": "credits"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/policies",
+    "source": "services/api/src/glam_api/main.py:189",
+    "function": "policies"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/policies/{policy_id}/consent",
+    "source": "services/api/src/glam_api/main.py:202",
+    "function": "consent"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/organizations",
+    "source": "services/api/src/glam_api/main.py:226",
+    "function": "create_organization"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/organizations/{org_id}",
+    "source": "services/api/src/glam_api/main.py:247",
+    "function": "get_organization"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/looks",
+    "source": "services/api/src/glam_api/main.py:267",
+    "function": "create_look"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/looks/{look_id}/revisions",
+    "source": "services/api/src/glam_api/main.py:283",
+    "function": "revise_look"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/looks/{look_id}/revisions/{revision_no}",
+    "source": "services/api/src/glam_api/main.py:324",
+    "function": "get_revision"
+  },
+  {
+    "method": "DELETE",
+    "path": "/v1/looks/{look_id}",
+    "source": "services/api/src/glam_api/main.py:344",
+    "function": "delete_look"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/me/workspaces",
+    "source": "services/api/src/glam_api/workspaces.py:176",
+    "function": "list_workspaces"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/organizations/{org}/workspaces/{workspace}/drafts",
+    "source": "services/api/src/glam_api/workspaces.py:209",
+    "function": "drafts"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/organizations/{org}/workspaces/{workspace}/drafts",
+    "source": "services/api/src/glam_api/workspaces.py:229",
+    "function": "create_draft"
+  },
+  {
+    "method": "DELETE",
+    "path": "/v1/organizations/{org}/workspaces/{workspace}/drafts/{draft}",
+    "source": "services/api/src/glam_api/workspaces.py:260",
+    "function": "delete_draft"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/me/routines",
+    "source": "services/api/src/glam_api/workspaces.py:288",
+    "function": "routines"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/me/routines",
+    "source": "services/api/src/glam_api/workspaces.py:302",
+    "function": "save_routine"
+  },
+  {
+    "method": "DELETE",
+    "path": "/v1/me/routines/{routine}",
+    "source": "services/api/src/glam_api/workspaces.py:329",
+    "function": "delete_routine"
+  },
+  {
+    "method": "PUT",
+    "path": "/v1/me/routines/{routine}",
+    "source": "services/api/src/glam_api/workspaces.py:348",
+    "function": "update_routine"
+  },
+  {
+    "method": "PUT",
+    "path": "/v1/organizations/{org}/workspaces/{workspace}/drafts/{draft}",
+    "source": "services/api/src/glam_api/workspaces.py:381",
+    "function": "update_draft"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/organizations/{org}/workspaces/{workspace}/invitations",
+    "source": "services/api/src/glam_api/workspaces.py:430",
+    "function": "invite"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/me/workspace-invitations",
+    "source": "services/api/src/glam_api/workspaces.py:464",
+    "function": "invitations"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/me/workspace-invitations/{invitation}/accept",
+    "source": "services/api/src/glam_api/workspaces.py:488",
+    "function": "accept"
+  },
+  {
+    "method": "DELETE",
+    "path": "/v1/organizations/{org}/workspaces/{workspace}/invitations/{invitation}",
+    "source": "services/api/src/glam_api/workspaces.py:541",
+    "function": "revoke_invite"
+  },
+  {
+    "method": "DELETE",
+    "path": "/v1/organizations/{org}/workspaces/{workspace}/roles/{member}/{role}",
+    "source": "services/api/src/glam_api/workspaces.py:560",
+    "function": "revoke_role"
+  },
+  {
+    "method": "GET",
+    "path": "/v1/admin/context",
+    "source": "services/api/src/glam_api/workspaces.py:589",
+    "function": "staff_context"
+  },
+  {
+    "method": "POST",
+    "path": "/v1/analysis/requests",
+    "source": "services/api/src/glam_api/workspaces.py:628",
+    "function": "analysis_unavailable"
+  },
+  {
+    "method": "POST",
+    "path": "/stripe-test/orders",
+    "source": "services/api/src/glam_api/payments/app.py:51",
+    "function": "order"
+  },
+  {
+    "method": "POST",
+    "path": "/stripe-test/orders/{identifier}/checkout",
+    "source": "services/api/src/glam_api/payments/app.py:62",
+    "function": "checkout"
+  },
+  {
+    "method": "POST",
+    "path": "/stripe-test/merchants/{account}/onboarding",
+    "source": "services/api/src/glam_api/payments/app.py:67",
+    "function": "onboarding"
+  },
+  {
+    "method": "POST",
+    "path": "/stripe-test/webhook",
+    "source": "services/api/src/glam_api/payments/app.py:84",
+    "function": "webhook"
+  }
+]

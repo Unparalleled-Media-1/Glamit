@@ -1,0 +1,7 @@
+
+> glam-ai@0.1.0 test:launch-accessibility
+> node tests/launch/accessibility.cjs
+
+Inventoried desktop: 8 routes
+Inventoried iphone-web: 8 routes
+{"routes":39,"route_viewport_visits":16,"rendered_control_occurrences":482,"console_errors":0,"page_errors":0,"http_errors":0,"overflow":0,"broken_images":0,"accessibility_violations":0}

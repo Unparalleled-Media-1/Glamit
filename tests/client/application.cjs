@@ -565,82 +565,42 @@ const net = require("node:net");
       "Golden commerce studies: optional destination save/cancel, category/detail selection, no fabricated offer, component-preserving reference handoff and reversible Studio controls",
     );
     await page.goto(origin + "/business");
-    const configs = await page
-      .locator('select[aria-label="Review workspace tools"] option')
-      .allTextContents();
-    assert.equal(configs.length, 5);
-    for (const role of [
-      "merchant",
-      "advertiser",
-      "professional",
-      "creator",
-      "affiliate",
-    ]) {
-      await page.getByLabel("Review workspace tools").selectOption(role);
-      const buttons = page
-        .getByRole("navigation", { name: "Workspace modules" })
-        .getByRole("button");
-      const names = await buttons.allTextContents();
-      for (let i = 0; i < names.length; i++) {
-        await buttons.nth(i).click();
-        assert.match(await page.locator("main h1").innerText(), /\S/);
-      }
-      await buttons.first().click();
-      await capture(role + "-workspace");
-    }
-    await page.getByLabel("Review workspace tools").selectOption("merchant");
     await page
-      .getByLabel("Draft title", { exact: true })
-      .fill("Local catalog plan");
-    await page
-      .getByRole("button", { name: "Save session planning draft" })
-      .click();
+      .getByRole("heading", { name: "Your business workspace starts here" })
+      .waitFor();
+    assert.equal(await page.getByLabel("Review workspace tools").count(), 0);
+    assert.equal(
+      await page.getByRole("navigation", { name: "Workspace modules" }).count(),
+      0,
+    );
     assert(
       await page
-        .getByRole("heading", { name: "Local catalog plan" })
+        .getByRole("link", { name: "Sign in", exact: true })
         .isVisible(),
     );
-    await page.getByLabel("Review workspace tools").selectOption("advertiser");
-    assert.equal(
-      await page.getByRole("heading", { name: "Local catalog plan" }).count(),
-      0,
-    );
-    await page
-      .getByRole("navigation", { name: "Workspace modules" })
-      .getByRole("button", { name: /Create Campaign/ })
-      .click();
-    for (const n of [
-      "Eligible products",
-      "Placement",
-      "Budget",
-      "Creative",
-      "Review",
-      "Launch",
-    ])
-      await page
-        .getByRole("button", { name: "Next: " + n, exact: true })
-        .click();
     assert(
       await page
-        .getByRole("button", { name: "Launch unavailable" })
-        .isDisabled(),
+        .getByRole("link", {
+          name: "Register your business account",
+          exact: true,
+        })
+        .isVisible(),
     );
     pass(
-      "All business role modules, isolated session draft save/reset and evidence-gated campaign wizard",
+      "Business route requires sign-in and presents registration before workspace access",
     );
     await page.goto(origin + "/admin");
-    await page.getByLabel("Review admin role layout").selectOption("Support");
+    await page
+      .getByRole("heading", { name: "Staff sign-in required" })
+      .waitFor();
+    assert.equal(await page.getByLabel("Review admin role layout").count(), 0);
     assert.equal(
-      await page
-        .getByRole("navigation", { name: "Admin modules" })
-        .getByRole("button", { name: /Commerce/ })
-        .count(),
+      await page.getByRole("navigation", { name: "Admin modules" }).count(),
       0,
     );
-    assert.match(await page.locator("main").innerText(), /Access denied/);
     await capture("admin");
     pass(
-      "Public admin inventory reveals no privileged controls or business data",
+      "Guest admin route exposes only staff sign-in, no role picker or private module navigation",
     );
     for (const route of [
       "/report",
@@ -704,156 +664,6 @@ const net = require("node:net");
     );
     pass(
       "Embedded organic/sponsored no-match sections across all report contexts and saved user requirements",
-    );
-    await page.goto(origin + "/business");
-    await page
-      .getByRole("navigation", { name: "Workspace modules" })
-      .getByRole("button", { name: /Snap & List/ })
-      .click();
-    await page
-      .getByTestId("merchant-images")
-      .setInputFiles(
-        path.resolve(__dirname, "../../apps/web/public/images/products.webp"),
-      );
-    await page.getByText("Original · Unchanged", { exact: true }).waitFor();
-    await page
-      .getByRole("button", {
-        name: "Continue to enhancement options",
-        exact: true,
-      })
-      .click();
-    assert(
-      await page
-        .getByRole("button", {
-          name: "Run AI preparation — connection required",
-          exact: true,
-        })
-        .isDisabled(),
-    );
-    await page
-      .getByRole("checkbox", { name: "Clean background", exact: true })
-      .check();
-    await page
-      .getByRole("button", {
-        name: "Continue with a manual listing draft",
-        exact: true,
-      })
-      .click();
-    for (const [label, value] of [
-      ["Product title", "Session braiding extensions"],
-      ["Source SKU / product identifier", "LOCAL-SKU-1"],
-      ["Merchant price", "100.00"],
-      ["Confirmed stock quantity", "5"],
-      ["Delivery country code", "ZA"],
-      ["Source evidence reference", "packaging-reference"],
-      ["Merchant HTTPS destination", "https://merchant.invalid/product"],
-    ])
-      await page.getByLabel(label, { exact: true }).fill(value);
-    await page.getByRole("checkbox").check();
-    await page
-      .getByRole("button", {
-        name: "Save reviewed session listing draft",
-        exact: true,
-      })
-      .click();
-    assert.match(
-      await page.locator(".snap-list [role=status]").innerText(),
-      /nothing|no listing/i,
-    );
-    await capture("merchant-snap-list-review");
-    await page
-      .getByRole("button", {
-        name: "Save reviewed session listing draft",
-        exact: true,
-      })
-      .click();
-    assert.match(
-      await page.locator(".snap-list [role=status]").innerText(),
-      /already has a session draft/,
-    );
-    await page
-      .getByRole("button", {
-        name: "Review publication requirements",
-        exact: true,
-      })
-      .click();
-    assert(
-      await page
-        .getByRole("button", {
-          name: "Publish — verified connections required",
-          exact: true,
-        })
-        .isDisabled(),
-    );
-    await page
-      .getByRole("navigation", { name: "Workspace modules" })
-      .getByRole("button", { name: /Catalog Health/ })
-      .click();
-    assert.match(
-      await page.locator("main").innerText(),
-      /your actual session drafts/,
-    );
-    await page
-      .getByRole("navigation", { name: "Workspace modules" })
-      .getByRole("button", { name: /Draft Listings/ })
-      .click();
-    assert(
-      await page
-        .getByRole("heading", { name: "Session braiding extensions" })
-        .isVisible(),
-    );
-    await page
-      .getByRole("button", {
-        name: "Delete session listing draft",
-        exact: true,
-      })
-      .click();
-    assert(
-      await page
-        .getByText("No session listing drafts.", { exact: true })
-        .isVisible(),
-    );
-    const importedDraft = {
-      id: "untrusted-import-id",
-      title: "Imported session draft",
-      category: "hair",
-      sku: "IMPORTED-1",
-      description: "Test-only facts",
-      price: "20.00",
-      currency: "ZAR",
-      stock: "0",
-      country: "ZA",
-      source: "test-packaging",
-      destination: "https://merchant.invalid/product",
-      condition: "new",
-      reviewed: true,
-      photoCount: 8,
-    };
-    await page.getByTestId("merchant-bulk-import").setInputFiles({
-      name: "drafts.json",
-      mimeType: "application/json",
-      buffer: Buffer.from(JSON.stringify([importedDraft])),
-    });
-    await page
-      .getByRole("heading", { name: "Imported session draft", exact: true })
-      .waitFor();
-    const downloadEvent = page.waitForEvent("download");
-    await page
-      .getByRole("button", { name: "Download session draft JSON", exact: true })
-      .click();
-    const downloaded = await downloadEvent;
-    const parsed = JSON.parse(fs.readFileSync(await downloaded.path(), "utf8"));
-    assert.equal(parsed[0].reviewed, false);
-    assert.equal(parsed[0].photoCount, 0);
-    assert.notEqual(parsed[0].id, importedDraft.id);
-    await page
-      .getByRole("button", {
-        name: "Delete session listing draft",
-        exact: true,
-      })
-      .click();
-    pass(
-      "Snap & List originals, unavailable AI, manual factual review, duplicate rejection, session catalog health and publication guard",
     );
     for (const width of [320, 390, 768, 1440, 1920]) {
       await page.setViewportSize({ width, height: width <= 390 ? 844 : 1000 });

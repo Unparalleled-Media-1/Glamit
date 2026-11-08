@@ -68,7 +68,7 @@ const assert = require("node:assert/strict");
         external.push(r.url());
     });
     await page.goto(origin + base + "/");
-    await page.getByRole("heading", { name: "Explore GLAM AI." }).waitFor();
+    await page.getByRole("heading", { name: "Explore GLAM Beauty." }).waitFor();
     let app = page.frameLocator("iframe");
     await app
       .getByRole("button", { name: "Analyze My Face", exact: true })

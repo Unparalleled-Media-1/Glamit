@@ -1,4 +1,2 @@
-import GlamApp from "../components/GlamApp";
-export default function Home() {
-  return <GlamApp />;
-}
+import AccountRoutes from "../components/AccountRoutes";
+export default function Home() { return <AccountRoutes initialPath="/" />; }

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "GLAM AI",
+    "name": "GLAM Beauty",
     "slug": "glam-ai",
     "version": "0.1.0",
     "orientation": "portrait",
@@ -16,11 +16,25 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Choose a photo for a private device-only GLAM AI preview. Upload and analysis need separate authorization.",
-          "cameraPermission": "Take a photo for a private GLAM AI preview after you choose to start the camera.",
+          "photosPermission": "Choose a photo for a private device-only GLAM Beauty preview. Upload and analysis need separate authorization.",
+          "cameraPermission": "Take a photo for a private GLAM Beauty preview after you choose to start the camera.",
           "microphonePermission": false
         }
+      ],
+      "expo-web-browser",
+      [
+        "expo-secure-store",
+        {
+          "faceIDPermission": "Allow GLAM Beauty to unlock your saved session with Face ID."
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow GLAM Beauty to unlock your saved session with Face ID."
+        }
       ]
-    ]
+    ],
+    "scheme": "glamai"
   }
 }

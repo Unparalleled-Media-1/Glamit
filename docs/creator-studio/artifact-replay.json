@@ -1,0 +1,9 @@
+{
+  "local_only": true,
+  "revision": "0014_creator_studio",
+  "public_table_count": 55,
+  "all_public_rls": true,
+  "sandbox_excluded": true,
+  "exact_artifact_replay": "passed",
+  "production_modified": false
+}

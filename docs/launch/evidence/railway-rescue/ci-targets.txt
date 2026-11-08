@@ -1,0 +1,14 @@
+✔ web-only work does not build mobile or API (1.740082ms)
+✔ native-only work does not build web or API (0.373542ms)
+✔ API-only work is independent (0.148677ms)
+✔ shared JS changes test both clients (0.146371ms)
+✔ contracts test consumers and API; docs do not redeploy (0.110342ms)
+✔ release-audit changes select the checks that execute them (0.177758ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 65.66831

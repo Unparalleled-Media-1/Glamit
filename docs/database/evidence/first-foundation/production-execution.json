@@ -1,0 +1,564 @@
+{
+  "observed_at": "2026-11-07T08:00:49.063307+00:00",
+  "parent_project": "bkkmsbxrxkqaveymcrgi",
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "branch": "main (PRODUCTION)",
+  "production_modified": true,
+  "apply_requested": true,
+  "revision": "0010_supabase_foundation",
+  "release_sha256": "aa1c508a9e847ee0115405e5a5bae99659fdcd2b4ee1f728c21fa3be4b0ff854",
+  "recovery_point": {
+    "id": 2189281988,
+    "inserted_at": "2026-11-07T02:07:35.793Z",
+    "status": "COMPLETED",
+    "is_physical_backup": true
+  },
+  "pre_migration_snapshot": {
+    "public_tables": [],
+    "auth_users": 0,
+    "storage_objects": 0
+  },
+  "migration_execution": "CONFIRMED_SUCCESS",
+  "public_tables": [
+    "account_eligibility",
+    "alembic_version",
+    "app_user",
+    "audit_event",
+    "catalog_ai_job",
+    "catalog_approval",
+    "catalog_listing",
+    "catalog_media",
+    "catalog_projection",
+    "catalog_revision",
+    "consent_event",
+    "credit_account",
+    "credit_journal",
+    "credit_posting",
+    "credit_reservation",
+    "idempotency_record",
+    "look",
+    "look_revision",
+    "market_policy_version",
+    "merchant_profiles",
+    "organization_members",
+    "organizations",
+    "outbox_event",
+    "personal_routine",
+    "policy_document",
+    "product_categories",
+    "product_variants",
+    "products",
+    "professional_profiles",
+    "profiles",
+    "saved_requirement",
+    "staff_grant",
+    "style_passports",
+    "user_preferences",
+    "workspace_capability",
+    "workspace_draft",
+    "workspace_invitation",
+    "workspace_role"
+  ],
+  "alembic_revisions": ["0010_supabase_foundation"],
+  "requested_table_security": [
+    {
+      "table_name": "account_eligibility",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "alembic_version",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "app_user",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "audit_event",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "catalog_ai_job",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "catalog_approval",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "catalog_listing",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "catalog_media",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "catalog_projection",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "catalog_revision",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "consent_event",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "credit_account",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "credit_journal",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "credit_posting",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "credit_reservation",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "idempotency_record",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "look",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "look_revision",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "market_policy_version",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "merchant_profiles",
+      "rls_enabled": true,
+      "policy_count": 1
+    },
+    {
+      "table_name": "organization_members",
+      "rls_enabled": true,
+      "policy_count": 1
+    },
+    {
+      "table_name": "organizations",
+      "rls_enabled": true,
+      "policy_count": 1
+    },
+    {
+      "table_name": "outbox_event",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "personal_routine",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "policy_document",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "product_categories",
+      "rls_enabled": true,
+      "policy_count": 1
+    },
+    {
+      "table_name": "product_variants",
+      "rls_enabled": true,
+      "policy_count": 1
+    },
+    {
+      "table_name": "products",
+      "rls_enabled": true,
+      "policy_count": 1
+    },
+    {
+      "table_name": "professional_profiles",
+      "rls_enabled": true,
+      "policy_count": 1
+    },
+    {
+      "table_name": "profiles",
+      "rls_enabled": true,
+      "policy_count": 3
+    },
+    {
+      "table_name": "saved_requirement",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "staff_grant",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "style_passports",
+      "rls_enabled": true,
+      "policy_count": 4
+    },
+    {
+      "table_name": "user_preferences",
+      "rls_enabled": true,
+      "policy_count": 4
+    },
+    {
+      "table_name": "workspace_capability",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "workspace_draft",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "workspace_invitation",
+      "rls_enabled": true,
+      "policy_count": 0
+    },
+    {
+      "table_name": "workspace_role",
+      "rls_enabled": true,
+      "policy_count": 0
+    }
+  ],
+  "foreign_keys": [
+    {
+      "source": "account_eligibility",
+      "target": "app_user",
+      "constraint_name": "account_eligibility_user_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "audit_event",
+      "target": "app_user",
+      "constraint_name": "audit_event_actor_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "catalog_ai_job",
+      "target": "catalog_revision",
+      "constraint_name": "catalog_ai_job_listing_id_base_revision_fkey",
+      "validated": true
+    },
+    {
+      "source": "catalog_ai_job",
+      "target": "app_user",
+      "constraint_name": "catalog_ai_job_requester_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "catalog_approval",
+      "target": "catalog_revision",
+      "constraint_name": "catalog_approval_listing_id_revision_fkey",
+      "validated": true
+    },
+    {
+      "source": "catalog_approval",
+      "target": "app_user",
+      "constraint_name": "catalog_approval_reviewer_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "catalog_listing",
+      "target": "catalog_revision",
+      "constraint_name": "catalog_listing_id_current_revision_fkey",
+      "validated": true
+    },
+    {
+      "source": "catalog_listing",
+      "target": "catalog_revision",
+      "constraint_name": "catalog_listing_id_published_revision_fkey",
+      "validated": true
+    },
+    {
+      "source": "catalog_listing",
+      "target": "organizations",
+      "constraint_name": "catalog_listing_organization_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "catalog_media",
+      "target": "catalog_listing",
+      "constraint_name": "catalog_media_listing_id_organization_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "catalog_media",
+      "target": "catalog_media",
+      "constraint_name": "catalog_media_original_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "catalog_projection",
+      "target": "catalog_listing",
+      "constraint_name": "catalog_projection_listing_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "catalog_revision",
+      "target": "app_user",
+      "constraint_name": "catalog_revision_author_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "catalog_revision",
+      "target": "catalog_listing",
+      "constraint_name": "catalog_revision_listing_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "consent_event",
+      "target": "policy_document",
+      "constraint_name": "consent_event_policy_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "consent_event",
+      "target": "app_user",
+      "constraint_name": "consent_event_user_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "credit_account",
+      "target": "app_user",
+      "constraint_name": "credit_account_user_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "credit_journal",
+      "target": "credit_account",
+      "constraint_name": "credit_journal_user_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "credit_posting",
+      "target": "credit_journal",
+      "constraint_name": "credit_posting_journal_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "credit_posting",
+      "target": "credit_account",
+      "constraint_name": "credit_posting_user_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "credit_reservation",
+      "target": "credit_account",
+      "constraint_name": "credit_reservation_user_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "idempotency_record",
+      "target": "app_user",
+      "constraint_name": "idempotency_record_user_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "look",
+      "target": "app_user",
+      "constraint_name": "look_owner_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "look_revision",
+      "target": "look",
+      "constraint_name": "look_revision_look_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "market_policy_version",
+      "target": "app_user",
+      "constraint_name": "market_policy_version_reviewed_by_fkey",
+      "validated": true
+    },
+    {
+      "source": "merchant_profiles",
+      "target": "organizations",
+      "constraint_name": "merchant_profiles_organization_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "organization_members",
+      "target": "organizations",
+      "constraint_name": "organization_member_organization_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "organization_members",
+      "target": "app_user",
+      "constraint_name": "organization_member_user_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "personal_routine",
+      "target": "app_user",
+      "constraint_name": "personal_routine_owner_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "product_categories",
+      "target": "product_categories",
+      "constraint_name": "product_categories_parent_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "product_variants",
+      "target": "organizations",
+      "constraint_name": "product_variants_organization_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "product_variants",
+      "target": "products",
+      "constraint_name": "product_variants_product_id_organization_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "products",
+      "target": "product_categories",
+      "constraint_name": "products_category_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "products",
+      "target": "catalog_listing",
+      "constraint_name": "products_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "products",
+      "target": "catalog_listing",
+      "constraint_name": "products_id_organization_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "products",
+      "target": "merchant_profiles",
+      "constraint_name": "products_merchant_profile_id_organization_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "products",
+      "target": "organizations",
+      "constraint_name": "products_organization_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "professional_profiles",
+      "target": "organizations",
+      "constraint_name": "professional_profiles_organization_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "profiles",
+      "target": "auth.users",
+      "constraint_name": "profiles_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "saved_requirement",
+      "target": "app_user",
+      "constraint_name": "saved_requirement_owner_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "staff_grant",
+      "target": "app_user",
+      "constraint_name": "staff_grant_user_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "style_passports",
+      "target": "profiles",
+      "constraint_name": "style_passports_profile_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "user_preferences",
+      "target": "profiles",
+      "constraint_name": "user_preferences_profile_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "workspace_capability",
+      "target": "organizations",
+      "constraint_name": "workspace_capability_organization_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "workspace_draft",
+      "target": "app_user",
+      "constraint_name": "workspace_draft_author_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "workspace_draft",
+      "target": "workspace_capability",
+      "constraint_name": "workspace_draft_organization_id_workspace_fkey",
+      "validated": true
+    },
+    {
+      "source": "workspace_invitation",
+      "target": "app_user",
+      "constraint_name": "workspace_invitation_invited_by_fkey",
+      "validated": true
+    },
+    {
+      "source": "workspace_invitation",
+      "target": "workspace_capability",
+      "constraint_name": "workspace_invitation_organization_id_workspace_fkey",
+      "validated": true
+    },
+    {
+      "source": "workspace_invitation",
+      "target": "app_user",
+      "constraint_name": "workspace_invitation_recipient_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "workspace_role",
+      "target": "organization_members",
+      "constraint_name": "workspace_role_organization_id_user_id_fkey",
+      "validated": true
+    },
+    {
+      "source": "workspace_role",
+      "target": "workspace_capability",
+      "constraint_name": "workspace_role_organization_id_workspace_fkey",
+      "validated": true
+    }
+  ],
+  "status": "VERIFIED"
+}

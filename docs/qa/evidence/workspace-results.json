@@ -1,0 +1,351 @@
+{
+  "scope": "Local UI transport doubles only; no actual OTP delivery, staff grant or production write",
+  "checks": [
+    "Guest direct dashboard route exposes entry links, no dashboard or role selector",
+    "Business registration is reachable and uses the existing Auth form",
+    "Verified sign-in returns to business; no unapproved role is granted",
+    "Failed organization request retries with the same idempotency reference, name only, and stays pending verification",
+    "Only server-approved roles appear; read-only workspace tools are disabled",
+    "Sign-out clears workspace content and returns to business login",
+    "Admin has no public registration or role impersonation; failed staff check denies dashboard",
+    "Verified staff context limits navigation to actual server modules",
+    "Expired/rejected session removes private content",
+    "Unconfigured Auth stays unavailable instead of simulating sign-in",
+    "Mobile entry has no horizontal overflow",
+    "Untrusted login return target is rejected and cannot leave the app"
+  ],
+  "calls": [
+    {
+      "path": "/auth/v1/settings",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/otp",
+      "method": "POST",
+      "body": {
+        "phone": "+27821234567",
+        "data": {},
+        "create_user": true,
+        "gotrue_meta_security": {},
+        "channel": "sms"
+      },
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/verify",
+      "method": "POST",
+      "body": {
+        "phone": "+27821234567",
+        "token": "123456",
+        "type": "sms",
+        "gotrue_meta_security": {}
+      },
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/user",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/profile",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/routines",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/workspaces",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/user",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/profile",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/routines",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/workspaces",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/organizations",
+      "method": "POST",
+      "body": {
+        "name": "Test organization"
+      },
+      "idempotency": "9c87db8e-6de1-47db-bed2-839751664b56"
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/organizations",
+      "method": "POST",
+      "body": {
+        "name": "Test organization"
+      },
+      "idempotency": "9c87db8e-6de1-47db-bed2-839751664b56"
+    },
+    {
+      "path": "/auth/v1/user",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/profile",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/routines",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/workspaces",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/logout",
+      "method": "POST",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/settings",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/settings",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/otp",
+      "method": "POST",
+      "body": {
+        "phone": "+27821234567",
+        "data": {},
+        "create_user": false,
+        "gotrue_meta_security": {},
+        "channel": "sms"
+      },
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/verify",
+      "method": "POST",
+      "body": {
+        "phone": "+27821234567",
+        "token": "123456",
+        "type": "sms",
+        "gotrue_meta_security": {}
+      },
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/user",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/profile",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/routines",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/workspaces",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/user",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/profile",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/routines",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/workspaces",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/admin/context",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/user",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/profile",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/routines",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/workspaces",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/admin/context",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/user",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/settings",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/settings",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/otp",
+      "method": "POST",
+      "body": {
+        "phone": "+27821234567",
+        "data": {},
+        "create_user": true,
+        "gotrue_meta_security": {},
+        "channel": "sms"
+      },
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/verify",
+      "method": "POST",
+      "body": {
+        "phone": "+27821234567",
+        "token": "123456",
+        "type": "sms",
+        "gotrue_meta_security": {}
+      },
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/user",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/profile",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/routines",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/workspaces",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/auth/v1/user",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/profile",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/routines",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    },
+    {
+      "path": "/functions/v1/glam-api/v1/me/workspaces",
+      "method": "GET",
+      "body": null,
+      "idempotency": null
+    }
+  ],
+  "errors": []
+}

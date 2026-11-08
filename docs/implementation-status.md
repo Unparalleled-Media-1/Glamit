@@ -1,3 +1,23 @@
+## 8 November — private workspace entry candidate and functional QA
+
+Business and staff routes now use private entry gates with business login/registration, safe return routing, approved-organization selection and server-scoped staff modules. Organization registration cannot grant verified capabilities or staff access. Local evidence: 268 PostgreSQL tests, 12 conditional UI checks, 11 actual guest-route checks and 4 isolated review-layout groups passed. Actual provider authentication and deployed correction remain unverified. The [fourteen QA deliverables](qa/PUBLIC_LAUNCH_GO_NO_GO.md) retain NO-GO; fifteen new QA gates supplement the existing twelve-gate release lock. Fresh read-only CI at07:08UTC still serves ff62f64: web readiness now200 (build configuration scope only),78/86 anonymous responses200; four new entry paths return404 across two viewports. Both deployed dashboards still expose public role selectors and no sign-in/register entry. No public deployment, database migration or financial mutation.
+
+## 8 November — product-completeness audit and P0 candidate
+
+140 atomic requirements across all27 requested modules are mapped in [the feature audit](audit/GLAM_BEAUTY_FEATURE_COVERAGE_REPORT.md):82 partial,28 missing,19 placeholders,6 credential-blocked,2 platform-blocked,2 broken,1 untested,0 fully verified. Fresh read-only production check remains0013/41 RLS-enabled tables/0 buckets; phone/social disabled; Stripe live key is blocked from mutations. Actual externalCI now observes merged default ff62f64,78 route responses200,live200/ready503; critical journeys0/31. A fail-closed public-key check for production web Docker builds is locally repaired/tested; runtime configuration and PR28 photo deployment remain unresolved. No agent production deployment, schema mutation, live payment or scope reduction.
+
+## 7 November — Railway rescue and feature freeze
+
+No new features. Actual default `feat/platform-foundations` now includes PR26 at `d846b94`; no literal `main` exists. Actual deployed service SHA/logs remain unknown. The user clarified the token was added in Railway service settings, not the Codex execution environment; current agent credential/network access remains absent. Local crawl:117 visits,3048 control occurrences,99 role/module layouts; deployed:0 reached routes,39 blocked. The twelve-gate release lock now requires fresh deployed Railway/health/rollback/critical-journey evidence. 260 PostgreSQL and8 lock tests pass locally; no live business/provider/financial/native success inferred. [Current NO-GO and evidence](launch/PUBLIC_LAUNCH_GO_NO_GO.md).
+
+## 7 November — existing Railway investigation / independent build candidate
+
+GitHub default is `feat/platform-foundations`; no branch named `main` exists. PR24/25 are now merged at `2eff5df`; the reported Railway source matches that default. Actual Railway source/logs/deployed SHA remain unverified: project token and applied network access are absent. Preserve existing project/service; no additional services, public redeployment or domain switch authorized until the release candidate is approved. Independent Docker/CI/EAS preparation passes 260 backend tests, local image health/CORS/SSR smoke checks, TypeScript and iOS/Android JS exports; signed builds/live cross-device testing remain blocked. See [deployment investigation and gates](deployment/independent/REPORT.md).
+
+## 7 November — GLAM Beauty / Creator Studio draft
+
+Confirmed display name: **GLAM Beauty**. Active web/mobile UI, metadata and build titles updated; canonical visual tokens and auth schemes preserved. Exact inline brand artwork still needs downloadable source files. Private Creator Studio draft flows are implemented and tested locally; migration 0014 and the clients are not deployed. No live social provider, shoppable publication, campaign execution, referral earnings or payouts are operational. See [implementation and provider report](creator-studio/IMPLEMENTATION_REPORT.md) for 251-test regression evidence and open gates.
+
 # Implementation evidence and remaining gates
 
 **Latest payment authority — 6 November 2026:** Zanzu Technologies Inc. operates GLAM AI. The user authorized **Stripe Connect test mode only**, including additive sandbox financial tables and the existing 10% completed physical-item policy. Existing production financial records, live payment activation and production Supabase remain protected. See [payment architecture](payments/PAYMENT_ARCHITECTURE.md), [readiness](payments/STRIPE_CONNECT_READINESS.md) and [financial regression](payments/PAYMENT_REGRESSION_REPORT.md). Isolated tests pass; actual Stripe acceptance is blocked and integration is not complete.

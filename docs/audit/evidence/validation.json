@@ -1,0 +1,58 @@
+{
+  "observed_at": "2026-11-08T05:58:30.499989+00:00",
+  "backend": {
+    "status": "PASSED",
+    "tests": 260,
+    "database": "local disposable _test only",
+    "warnings": 1,
+    "environment_recovery": "Initial attempts: stopped/starting local container; after pg_isready, final260 passed"
+  },
+  "traceability_integrity": {
+    "status": "PASSED",
+    "tests": 3,
+    "scope": "Audit integrity only, not product completion"
+  },
+  "web_typecheck": "PASSED",
+  "mobile_typecheck": "PASSED",
+  "web_build": "PASSED",
+  "web_ui_groups": 13,
+  "golden_candidate_dimensions": 28,
+  "accessibility": {
+    "local_route_viewport_visits": 16,
+    "automated_violations": 0,
+    "scope": "Local browser only; no physical screen reader"
+  },
+  "keyboard_checks": 9,
+  "native_export": {
+    "ios": "PASSED JavaScript/Hermes export only",
+    "android": "PASSED JavaScript/Hermes export only",
+    "signed_builds": false,
+    "physical_devices": false
+  },
+  "native_auth": "PASSED with test doubles only",
+  "production_web_guard": {
+    "before": "FAILED expected missing-key regression",
+    "after": "PASSED absent/offline/public/privileged cases",
+    "docker_missing_key": "EXPECTED FAILURE at public-key guard",
+    "docker_public_fixture": "PASSED build and startup health; not live provider connectivity"
+  },
+  "real_ai_provider_calls": "BLOCKED missing credentials and unmounted orchestration",
+  "real_stripe_financial_tests": "BLOCKED currentkey live mode; mutations0",
+  "qualified_deployed_journeys": {
+    "passed": 0,
+    "required": 31
+  },
+  "performance_load": "NOT TESTED against actual full services",
+  "restore_rollback": "BLOCKED no rehearsal",
+  "security_scan": "PASSED current source/bundles only; no whole Git history or rotation proof",
+  "production_mutations": 0,
+  "ruff": "PASSED",
+  "source_scan": {
+    "observed_at": "2026-11-08T06:04:22.490853+00:00",
+    "scope": "Current tracked/untracked nonignored source plus prepared web/native bundles; not full Git history or remote secret rotation proof",
+    "files_scanned": 1153,
+    "privileged_values_checked": 5,
+    "matches": [],
+    "status": "PASSED"
+  }
+}

@@ -1,0 +1,20 @@
+
+> glam-ai@0.1.0 test:launch-gates
+> node --test tests/launch/release-gates.test.cjs tests/launch/railway-release-lock.test.cjs
+
+✔ legacy eleven green labels cannot bypass the twelve current gates (2.039606ms)
+✔ local success and fresh documents do not replace deployed Railway evidence (0.458708ms)
+✔ structurally complete synthetic evidence validates; it proves no provider operation (0.799879ms)
+✔ wrong deployed commit, failed readiness and blocked deployed journeys are rejected (1.163976ms)
+✔ duplicate or malformed gate sets fail closed without crashing (1.441939ms)
+✔ Missing or partial evidence cannot certify launch (0.940754ms)
+✔ Green gate labels do not replace actual financial, hardware or approval evidence (0.513401ms)
+✔ Stale evidence and changed source are rejected (0.902031ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 72.055922

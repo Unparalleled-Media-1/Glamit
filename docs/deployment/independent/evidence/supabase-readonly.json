@@ -1,0 +1,33 @@
+{
+  "observed_at": "2026-11-07T18:36:03.962384+00:00",
+  "production_modified": false,
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "target_origin": "https://www.glam.beauty",
+  "supabase_status": "ACTIVE_HEALTHY",
+  "auth": {
+    "site_url": "https://www.glamit.beauty",
+    "uri_allow_list": "https://www.glamit.beauty/auth/callback,glamai://auth/callback",
+    "external_phone_enabled": false,
+    "external_google_enabled": false,
+    "external_apple_enabled": false,
+    "external_facebook_enabled": false
+  },
+  "migration_history": [
+    {
+      "version_num": "0013_passwordless_accounts"
+    }
+  ],
+  "new_origin_edge_preflight": {
+    "status": 403,
+    "allowed_origin": null
+  },
+  "runtime_db_credential": {
+    "parseable": true,
+    "original_project_host": true,
+    "administrative_username": true
+  },
+  "railway_access": {
+    "RAILWAY_TOKEN": false,
+    "RAILWAY_API_TOKEN": false
+  }
+}

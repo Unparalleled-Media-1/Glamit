@@ -1,0 +1,53 @@
+name: Native store build candidate
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        type: choice
+        options: [ios, android, all]
+        required: true
+      approved_commit:
+        description: Exact reviewed commit SHA; this builds a candidate and does not submit it
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: native-store-${{ inputs.platform }}
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: mobile-store-build
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      EAS_PROJECT_ID: ${{ vars.EAS_PROJECT_ID }}
+      EXPO_OWNER: ${{ vars.EXPO_OWNER }}
+      GLAM_IOS_BUNDLE_IDENTIFIER: ${{ vars.GLAM_IOS_BUNDLE_IDENTIFIER }}
+      GLAM_ANDROID_PACKAGE: ${{ vars.GLAM_ANDROID_PACKAGE }}
+      EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.EXPO_PUBLIC_SUPABASE_ANON_KEY }}
+      GLAM_BUILD_ENV: production
+      EXPO_NO_TELEMETRY: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - name: Require reviewed source and registered build configuration
+        env:
+          APPROVED_SHA: ${{ inputs.approved_commit }}
+        run: |
+          test "$APPROVED_SHA" = "$GITHUB_SHA"
+          for name in EXPO_TOKEN EAS_PROJECT_ID EXPO_OWNER GLAM_IOS_BUNDLE_IDENTIFIER GLAM_ANDROID_PACKAGE EXPO_PUBLIC_SUPABASE_ANON_KEY; do
+            test -n "${!name}" || { echo "Missing required build configuration: $name"; exit 1; }
+          done
+          test -f apps/mobile/assets/brand/app-icon.png
+          test -f apps/mobile/assets/brand/splash.png
+      - run: npm ci --ignore-scripts
+      - run: node scripts/check-browser-auth-config.mjs
+      - run: npm run typecheck --workspace=@glam/mobile
+      - name: Build native candidates; no store submission
+        working-directory: apps/mobile
+        env:
+          PLATFORM: ${{ inputs.platform }}
+        run: npx --yes eas-cli@27.5.0 build --platform "$PLATFORM" --profile production --non-interactive --wait

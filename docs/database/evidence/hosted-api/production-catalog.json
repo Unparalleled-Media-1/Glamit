@@ -1,0 +1,433 @@
+{
+  "head": [
+    "0012_hosted_routines"
+  ],
+  "tables": [
+    {
+      "rls": true,
+      "name": "account_eligibility"
+    },
+    {
+      "rls": true,
+      "name": "alembic_version"
+    },
+    {
+      "rls": true,
+      "name": "api_request_counters"
+    },
+    {
+      "rls": true,
+      "name": "app_user"
+    },
+    {
+      "rls": true,
+      "name": "audit_event"
+    },
+    {
+      "rls": true,
+      "name": "catalog_ai_job"
+    },
+    {
+      "rls": true,
+      "name": "catalog_approval"
+    },
+    {
+      "rls": true,
+      "name": "catalog_listing"
+    },
+    {
+      "rls": true,
+      "name": "catalog_media"
+    },
+    {
+      "rls": true,
+      "name": "catalog_projection"
+    },
+    {
+      "rls": true,
+      "name": "catalog_revision"
+    },
+    {
+      "rls": true,
+      "name": "consent_event"
+    },
+    {
+      "rls": true,
+      "name": "credit_account"
+    },
+    {
+      "rls": true,
+      "name": "credit_journal"
+    },
+    {
+      "rls": true,
+      "name": "credit_posting"
+    },
+    {
+      "rls": true,
+      "name": "credit_reservation"
+    },
+    {
+      "rls": true,
+      "name": "idempotency_record"
+    },
+    {
+      "rls": true,
+      "name": "look"
+    },
+    {
+      "rls": true,
+      "name": "look_revision"
+    },
+    {
+      "rls": true,
+      "name": "market_policy_version"
+    },
+    {
+      "rls": true,
+      "name": "merchant_profiles"
+    },
+    {
+      "rls": true,
+      "name": "organization_members"
+    },
+    {
+      "rls": true,
+      "name": "organizations"
+    },
+    {
+      "rls": true,
+      "name": "outbox_event"
+    },
+    {
+      "rls": true,
+      "name": "personal_routine"
+    },
+    {
+      "rls": true,
+      "name": "policy_document"
+    },
+    {
+      "rls": true,
+      "name": "product_categories"
+    },
+    {
+      "rls": true,
+      "name": "product_variants"
+    },
+    {
+      "rls": true,
+      "name": "products"
+    },
+    {
+      "rls": true,
+      "name": "professional_profiles"
+    },
+    {
+      "rls": true,
+      "name": "profiles"
+    },
+    {
+      "rls": true,
+      "name": "saved_requirement"
+    },
+    {
+      "rls": true,
+      "name": "staff_grant"
+    },
+    {
+      "rls": true,
+      "name": "style_passports"
+    },
+    {
+      "rls": true,
+      "name": "user_preferences"
+    },
+    {
+      "rls": true,
+      "name": "workspace_capability"
+    },
+    {
+      "rls": true,
+      "name": "workspace_draft"
+    },
+    {
+      "rls": true,
+      "name": "workspace_invitation"
+    },
+    {
+      "rls": true,
+      "name": "workspace_role"
+    }
+  ],
+  "indexes": 75,
+  "policies": [
+    {
+      "name": "counters_server_only",
+      "roles": [
+        "anon",
+        "authenticated"
+      ],
+      "table": "api_request_counters",
+      "command": "ALL"
+    },
+    {
+      "name": "merchants_read_org",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "merchant_profiles",
+      "command": "SELECT"
+    },
+    {
+      "name": "members_read_org",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "organization_members",
+      "command": "SELECT"
+    },
+    {
+      "name": "organizations_read_member",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "organizations",
+      "command": "SELECT"
+    },
+    {
+      "name": "categories_read_active",
+      "roles": [
+        "anon",
+        "authenticated"
+      ],
+      "table": "product_categories",
+      "command": "SELECT"
+    },
+    {
+      "name": "variants_read_org",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "product_variants",
+      "command": "SELECT"
+    },
+    {
+      "name": "products_read_org",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "products",
+      "command": "SELECT"
+    },
+    {
+      "name": "professionals_read_org",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "professional_profiles",
+      "command": "SELECT"
+    },
+    {
+      "name": "profiles_insert_self",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "profiles",
+      "command": "INSERT"
+    },
+    {
+      "name": "profiles_select_self",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "profiles",
+      "command": "SELECT"
+    },
+    {
+      "name": "profiles_update_self",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "profiles",
+      "command": "UPDATE"
+    },
+    {
+      "name": "passports_delete_self",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "style_passports",
+      "command": "DELETE"
+    },
+    {
+      "name": "passports_insert_self",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "style_passports",
+      "command": "INSERT"
+    },
+    {
+      "name": "passports_select_self",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "style_passports",
+      "command": "SELECT"
+    },
+    {
+      "name": "passports_update_self",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "style_passports",
+      "command": "UPDATE"
+    },
+    {
+      "name": "preferences_delete_self",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "user_preferences",
+      "command": "DELETE"
+    },
+    {
+      "name": "preferences_insert_self",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "user_preferences",
+      "command": "INSERT"
+    },
+    {
+      "name": "preferences_select_self",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "user_preferences",
+      "command": "SELECT"
+    },
+    {
+      "name": "preferences_update_self",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "user_preferences",
+      "command": "UPDATE"
+    }
+  ],
+  "profiles": 0,
+  "functions": [
+    {
+      "name": "bootstrap_identity",
+      "schema": "glam_private",
+      "search_path": [
+        "search_path=\"\""
+      ],
+      "security_definer": true
+    },
+    {
+      "name": "canonical_json",
+      "schema": "glam_private",
+      "search_path": [
+        "search_path=\"\""
+      ],
+      "security_definer": false
+    },
+    {
+      "name": "current_app_user_id",
+      "schema": "glam_private",
+      "search_path": [
+        "search_path=\"\""
+      ],
+      "security_definer": true
+    },
+    {
+      "name": "glam_core_api_v1",
+      "schema": "glam_private",
+      "search_path": [
+        "search_path=\"\""
+      ],
+      "security_definer": true
+    },
+    {
+      "name": "is_org_member",
+      "schema": "glam_private",
+      "search_path": [
+        "search_path=\"\""
+      ],
+      "security_definer": true
+    },
+    {
+      "name": "touch_updated_at",
+      "schema": "glam_private",
+      "search_path": [
+        "search_path=\"\""
+      ],
+      "security_definer": false
+    },
+    {
+      "name": "enforce_credit_balance",
+      "schema": "public",
+      "search_path": null,
+      "security_definer": false
+    },
+    {
+      "name": "glam_api_gate",
+      "schema": "public",
+      "search_path": [
+        "search_path=\"\""
+      ],
+      "security_definer": true
+    },
+    {
+      "name": "glam_api_v1",
+      "schema": "public",
+      "search_path": [
+        "search_path=\"\""
+      ],
+      "security_definer": true
+    },
+    {
+      "name": "glam_backend_status",
+      "schema": "public",
+      "search_path": [
+        "search_path=\"\""
+      ],
+      "security_definer": true
+    },
+    {
+      "name": "protect_journal",
+      "schema": "public",
+      "search_path": null,
+      "security_definer": false
+    },
+    {
+      "name": "protect_posting_insert",
+      "schema": "public",
+      "search_path": null,
+      "security_definer": false
+    },
+    {
+      "name": "reject_mutation",
+      "schema": "public",
+      "search_path": null,
+      "security_definer": false
+    },
+    {
+      "name": "rls_auto_enable",
+      "schema": "public",
+      "search_path": [
+        "search_path=pg_catalog"
+      ],
+      "security_definer": true
+    }
+  ],
+  "auth_users": 0,
+  "foreign_keys": 52,
+  "organizations": 0,
+  "sandbox_present": false,
+  "private_routines": 0,
+  "unvalidated_foreign_keys": 0
+}

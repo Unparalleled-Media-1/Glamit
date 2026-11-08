@@ -1,0 +1,669 @@
+For GLAM AI, I would now put all new feature development on hold and instruct Codex to focus on two objectives:
+
+1. Fix and verify every existing feature through automated click-through testing, including the full consumer, merchant, influencer, professional and administrator journeys.
+
+2. Resolve the Railway deployment problems permanently, so the application builds, deploys, connects to Supabase and stays operational after deployment.
+
+The most important change is that Codex must test the actual deployed application, not just the local development environment. A feature that works locally but fails on Railway is not ready for public launch.
+
+## GLAM AI public-launch acceptance criteria
+
+Current status
+
+Launch not verified
+
+# 100%
+
+Critical journeys passing
+
+# 0
+
+Critical or high-severity defects
+
+# 100%
+
+Required security and payment tests passing
+
+# PASS
+
+Railway production deployment and smoke tests
+
+These are release targets, not verified current results. A successful build alone does not satisfy them.
+
+I would treat Railway as a separate, mandatory release gate. Codex should identify whether the failure comes from the repository, build configuration, runtime startup, environment variables, Supabase connectivity, routing or application health checks before making changes.
+
+## 1. First, fix Railway deployment
+
+Railway failures often arise because a multi-service application is being deployed as if it were a single application, or because the build succeeds but the service cannot start or pass its health check.
+
+For GLAM AI, the intended architecture should be verified against the actual repository before choosing Railway settings.
+
+GLAM AI — Web / Mobile
+
+Next.js web, React Native/Expo mobile if confirmed in repository
+
+Railway
+
+Web and FastAPI services, workers if needed
+
+Supabase
+
+Auth, PostgreSQL, Storage, RLS
+
+External integrations
+
+OpenAI · Stripe Connect · SMS OTP · Social OAuth · Weather
+
+Target architecture for verification, not a claim that these services are already deployed.
+
+The immediate Railway investigation should establish whether each service has the correct root directory, install/build/start commands, port binding, environment variables, domain routing and health endpoint.
+
+For a FastAPI service, for example, Railway must be able to reach a server listening on `0.0.0.0` and the injected `PORT`. A healthy build with a server bound only to `127.0.0.1` can still produce an unavailable deployment.
+
+## 2. Send this master instruction to Codex
+
+GLAM AI — RAILWAY DEPLOYMENT RESCUE + COMPLETE CLICK-THROUGH AUDIT + PUBLIC RELEASE LOCK
+
+# GLAM AI — RAILWAY DEPLOYMENT RESCUE + COMPLETE CLICK-THROUGH AUDIT + PUBLIC RELEASE LOCK
+
+## PRIMARY MISSION
+
+Stop adding new features.
+
+Stabilize the complete GLAM AI application, fix Railway deployment failures, connect all existing functionality to the correct backend, and run a full automated and manual click-through audit.
+
+This is an implementation and defect-remediation task, not a planning exercise.
+
+Do not report success based solely on local builds, generated documentation or passing unit tests.
+
+The final objective is a verified, deployable release candidate suitable for controlled public-launch approval.
+
+## SYSTEM OF RECORD
+
+* Application: GLAM AI
+
+* Company: Zanzu Technologies Inc.
+
+* Supabase project: bkkmsbxrxkqaveymcrgi
+
+* Supabase database branch: main (PRODUCTION)
+
+* Hosting: Railway, subject to repository architecture verification
+
+* Payments: Stripe Connect
+
+* Physical-product platform commission: 10%
+
+* Authentication: SMS OTP, optional Google/Apple/Facebook, mobile biometrics
+
+* Creator connections: TikTok, Instagram, YouTube, Pinterest, Facebook
+
+Do not create another Supabase project.
+
+Do not recreate the deleted Supabase development branch.
+
+Do not expose secrets or enable real payment transactions during automated testing.
+
+## PHASE 1 — DIAGNOSE RAILWAY BEFORE MAKING CHANGES
+
+Inspect:
+
+1. Repository structure and package managers.
+
+2. Railway project and service configuration where access is available.
+
+3. Existing railway.json, railway.toml, Dockerfiles, Procfiles and Nixpacks settings.
+
+4. Root directory of every Railway service.
+
+5. Build and start commands.
+
+6. Runtime versions and dependency lockfiles.
+
+7. Environment variable names and scopes.
+
+8. Health checks and restart behavior.
+
+9. Domain routing and HTTPS.
+
+10. Available build, deployment and runtime logs.
+
+Classify each failure accurately:
+
+* Repository or source checkout failure
+
+* Dependency installation failure
+
+* Build failure
+
+* Runtime startup failure
+
+* Wrong port or host binding
+
+* Missing environment variable
+
+* Incorrect service root directory
+
+* Missing build output
+
+* Database connection failure
+
+* Migration failure
+
+* Health-check failure
+
+* Runtime crash or restart loop
+
+* Memory or resource exhaustion
+
+* Incorrect frontend API URL
+
+* OAuth callback or CORS failure
+
+Provide the actual log evidence for the identified root cause.
+
+Do not randomly change deployment settings or repeatedly redeploy without a diagnosis.
+
+If Railway credentials or logs are inaccessible, report exactly which logs or access permissions are required.
+
+## PHASE 2 — REPAIR THE RAILWAY SERVICE ARCHITECTURE
+
+Determine the correct deployment topology from the actual repository.
+
+If the repository contains a Next.js web frontend and a FastAPI backend, configure them as separate Railway services where appropriate.
+
+Do not attempt to run incompatible services through one startup command.
+
+For each service:
+
+* Set the correct root directory.
+
+* Use the repository's actual package manager.
+
+* Set the correct build command.
+
+* Set the correct start command.
+
+* Configure supported runtime versions.
+
+* Bind the server to 0.0.0.0 and Railway's PORT.
+
+* Configure the correct public or private service networking.
+
+* Provide an appropriate health endpoint.
+
+* Set a health-check timeout compatible with normal startup.
+
+* Configure restart behavior.
+
+* Set production environment variables securely.
+
+* Avoid unnecessary public exposure of internal services.
+
+For FastAPI, inspect the actual ASGI application import path before constructing the start command.
+
+For Next.js, verify the production build and server startup configuration.
+
+For Expo/React Native, do not treat native mobile applications as Railway web services. Deploy only their appropriate backend and web components on Railway.
+
+Preserve the existing architecture wherever practical.
+
+## PHASE 3 — ENVIRONMENT AND SUPABASE VERIFICATION
+
+Verify that Railway services connect to:
+
+Supabase project: bkkmsbxrxkqaveymcrgi
+
+Verify:
+
+* Correct Supabase URL
+
+* Correct client/server key separation
+
+* Correct database connection configuration
+
+* Required SSL settings
+
+* Connection pooling suitability
+
+* Migration history
+
+* Supabase Auth configuration
+
+* Storage bucket access
+
+* RLS permissions
+
+* Backend service permissions
+
+Check the presence of required OpenAI, Stripe, SMS, OAuth, weather and other integration secrets.
+
+Do not print secret values.
+
+Do not fabricate missing credentials.
+
+Do not put service-role keys into frontend or mobile builds.
+
+Do not overwrite production credentials with development credentials.
+
+Run read-only database connectivity checks before testing controlled writes.
+
+## PHASE 4 — BUILD A COMPLETE CLICK-THROUGH INVENTORY
+
+Enumerate all implemented:
+
+* Web routes
+
+* Mobile screens
+
+* Admin pages
+
+* Buttons
+
+* Links
+
+* Forms
+
+* Tabs
+
+* Modals
+
+* Dropdowns
+
+* Search and filter controls
+
+* Upload actions
+
+* Checkout actions
+
+* Booking actions
+
+* Creator actions
+
+* Merchant actions
+
+For every actionable element, record:
+
+* Route or screen
+
+* Element name
+
+* Expected behavior
+
+* Actual behavior
+
+* Backend dependency
+
+* Test status
+
+* Defect ID if failed
+
+Use Playwright for web testing.
+
+Use appropriate native mobile testing tools for mobile workflows.
+
+Run tests at desktop and mobile viewport sizes.
+
+Test actual deployed Railway URLs as well as local builds.
+
+## PHASE 5 — COMPLETE ROLE-BASED JOURNEY TESTS
+
+Test all implemented functionality for:
+
+CONSUMER:
+Registration, login, profile, Style Passport, AI analysis, AI Studio, Personal Stylist, Digital Wardrobe, shopping, checkout, orders, bookings and notifications.
+
+MERCHANT:
+Onboarding, storefront, Snap & List, products, variants, inventory, promotions, orders, fulfillment, refunds and financial reporting.
+
+BEAUTY PROFESSIONAL:
+Profile, services, availability, bookings, cancellations and customer communication.
+
+CREATOR / INFLUENCER:
+Creator onboarding, social account connections, shoppable looks, referral attribution, campaigns and earnings.
+
+ADVERTISER:
+Campaign creation, targeting, budgets, placements and analytics.
+
+ADMIN:
+User management, merchant approvals, product moderation, payments, refunds, bookings, AI oversight, advertisements, support and audit logs.
+
+Test role isolation and unauthorized access.
+
+Do not count inaccessible or unconfigured functionality as passing.
+
+## PHASE 6 — AUTHENTICATION TESTS
+
+Verify:
+
+* SMS OTP delivery and verification
+
+* Invalid and expired OTP
+
+* Resend and abuse controls
+
+* Supabase session creation
+
+* Google OAuth
+
+* Apple OAuth
+
+* Facebook OAuth
+
+* Account linking
+
+* Session refresh
+
+* Logout
+
+* Mobile biometric session unlock
+
+* Account recovery
+
+* Guest exploration
+
+* Redirect back to intended action
+
+Test real OAuth providers and real devices where required.
+
+Hide unconfigured authentication methods from the public interface.
+
+Do not replace provider integrations with simulated successful responses.
+
+## PHASE 7 — AI FEATURE TESTS
+
+Verify all implemented AI functionality, including:
+
+* Face analysis
+
+* Hair analysis
+
+* Skin appearance analysis
+
+* Personal color analysis
+
+* AI Advisor
+
+* Personal Stylist
+
+* AI Studio
+
+* Makeup transformations
+
+* Hairstyle transformations
+
+* Virtual try-on
+
+* Universal Look Search
+
+* Visual Product Search
+
+* Digital Wardrobe
+
+* Event styling
+
+* Destination styling
+
+* Weather-aware styling
+
+For each:
+
+1. Submit valid user input.
+
+2. Verify the real provider request.
+
+3. Verify the response.
+
+4. Confirm the result is displayed correctly.
+
+5. Confirm persistence to Supabase where required.
+
+6. Reopen the result.
+
+7. Test provider failure and timeout handling.
+
+8. Verify user privacy and authorization.
+
+Do not report AI functionality as working if the screen only displays a placeholder.
+
+## PHASE 8 — MARKETPLACE AND STRIPE TESTS
+
+Use Stripe test mode only.
+
+Verify:
+
+* Product discovery
+
+* Product details
+
+* Variant selection
+
+* Inventory accuracy
+
+* Cart persistence
+
+* Multi-merchant checkout
+
+* Payment confirmation
+
+* Stripe webhook verification
+
+* Idempotent event processing
+
+* Order creation
+
+* Merchant allocation
+
+* 10% physical-product platform commission
+
+* Refund accounting
+
+* Partial refunds
+
+* Disputes
+
+* Settlement reconciliation
+
+Never run live charges or payouts as part of this audit.
+
+Financial tests must be deterministic and repeatable.
+
+## PHASE 9 — DEFECT REMEDIATION
+
+For every failure:
+
+1. Record a reproducible defect.
+
+2. Assign P0, P1, P2 or P3 severity.
+
+3. Identify the root cause.
+
+4. Add a failing regression test.
+
+5. Apply the smallest safe fix.
+
+6. Retest the affected function.
+
+7. Retest dependent functions.
+
+8. Run the broader regression suite.
+
+9. Verify the deployed version where applicable.
+
+10. Update the defect register.
+
+Do not weaken tests, bypass RLS, hide errors or return fake success responses to achieve green results.
+
+Do not introduce new features during this phase.
+
+## PHASE 10 — RAILWAY DEPLOYMENT VERIFICATION
+
+After fixes:
+
+1. Run clean builds.
+
+2. Run unit and integration tests.
+
+3. Run security and dependency checks.
+
+4. Create a release candidate.
+
+5. Deploy to an isolated Railway preview or staging service using the existing approved infrastructure.
+
+6. Verify all services become healthy.
+
+7. Test API health and readiness endpoints.
+
+8. Verify frontend-to-backend requests.
+
+9. Verify Supabase connectivity.
+
+10. Verify server-side AI provider connectivity.
+
+11. Run browser click-through tests against deployed URLs.
+
+12. Verify CORS and OAuth redirects.
+
+13. Verify static assets and uploaded media.
+
+14. Check runtime logs for unhandled exceptions.
+
+15. Verify restart and recovery behavior.
+
+16. Verify rollback to the previous known-good release.
+
+Do not use production database resets or destructive test fixtures.
+
+Do not create a second Supabase database.
+
+## PHASE 11 — RELEASE ACCEPTANCE GATES
+
+Required gates:
+
+G1: Railway deployment and service health
+G2: Build and dependency integrity
+G3: Authentication and sessions
+G4: Consumer AI workflows
+G5: Marketplace and merchant workflows
+G6: Stripe financial correctness
+G7: Professional bookings
+G8: Creator, social and advertising functions
+G9: Supabase security and RLS
+G10: Responsive design and accessibility
+G11: Monitoring, backup and rollback
+G12: Pilot UAT and final release approval
+
+Acceptance requirements:
+
+* Zero unresolved P0/P1 defects
+
+* 100% of mandatory critical journeys passing
+
+* 100% of mandatory financial correctness tests passing
+
+* 100% of required access-control tests passing
+
+* Healthy Railway services
+
+* No unresolved startup or runtime crashes
+
+* No critical secrets exposure
+
+* Verified production database connectivity
+
+* Verified rollback capability
+
+* Documented handling of any deferred noncritical features
+
+Do not represent skipped, blocked or untested items as passed.
+
+## PHASE 12 — REQUIRED DELIVERABLES
+
+Create:
+
+docs/launch/RAILWAY_ROOT_CAUSE_REPORT.md
+docs/launch/RAILWAY_SERVICE_CONFIGURATION.md
+docs/launch/DEPLOYMENT_VERIFICATION.md
+docs/launch/CLICKTHROUGH_INVENTORY.md
+docs/launch/CLICKTHROUGH_RESULTS.md
+docs/launch/DEFECT_REGISTER.md
+docs/launch/REGRESSION_RESULTS.md
+docs/launch/INTEGRATION_STATUS.md
+docs/launch/SECURITY_REPORT.md
+docs/launch/PUBLIC_LAUNCH_GO_NO_GO.md
+
+Include:
+
+* Actual Railway build and runtime error evidence
+
+* Root cause and implemented fix
+
+* Service names and public URLs
+
+* Git commit SHA
+
+* Deployed commit SHA
+
+* Test counts
+
+* Passed, failed, blocked and skipped tests
+
+* Screenshots and Playwright traces
+
+* API health results
+
+* Supabase connectivity results
+
+* Integration verification
+
+* Remaining launch blockers
+
+## FINAL RULE
+
+Do not mark GLAM AI as publicly deployable until Railway is stable and the complete mandatory click-through suite passes against the deployed release candidate.
+
+Do not deploy publicly without explicit final approval.
+
+Start with Railway root-cause diagnosis and then execute the complete repair and verification workflow.
+
+## 3. Railway checks I would prioritize immediately
+
+| Symptom                          | What Codex should inspect                                     |
+| -------------------------------- | ------------------------------------------------------------- |
+| Build failed                     | Dependency versions, lockfiles, root directory, build command |
+| Build succeeded, app unavailable | Start command, `PORT`, host binding, health check             |
+| App repeatedly restarts          | Runtime exception, missing secrets, memory usage              |
+| Frontend works, API fails        | Backend URL, service networking, CORS                         |
+| Login fails after deployment     | Supabase keys, OAuth redirect URLs, cookie configuration      |
+| Database queries fail            | Connection string, SSL, pooler, RLS, migration state          |
+| AI works locally, fails online   | Server-side API key, provider access, timeouts                |
+| Stripe webhooks fail             | Public endpoint, signing secret, event processing             |
+| Page refresh returns 404         | Framework routing and deployment configuration                |
+
+## 4. The release sequence I recommend
+
+1. Railway recovery
+
+   Fix build, startup, networking and service health until the application is reliably accessible.
+
+2. Full click-through repair
+
+   Run every supported user journey, correct defects and lock regression tests.
+
+3. Deployed release-candidate testing
+
+   Test the real Railway URLs, Supabase connections, external providers and mobile devices.
+
+4. Controlled pilot
+
+   Allow a small group of real users, merchants and creators to test the product before wider release.
+
+5. Public launch approval
+
+   Publish only after all mandatory gates pass and monitoring and rollback are verified.
+
+### One thing I need from you to diagnose Railway specifically
+
+Send me the latest Railway deployment error log or a screenshot of the failed deployment. The most useful information is the first actual error in the build or runtime logs, along with whether the failing service is the frontend or backend.
+
+With that, I can help you give Codex a targeted fix instead of having it repeatedly modify deployment settings and introduce more regressions.

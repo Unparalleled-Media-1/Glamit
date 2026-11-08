@@ -1,8 +1,11 @@
+import { productName } from "../../../packages/product/brand";
+import { siteOrigin } from "../../../packages/product/site";
 import type { Metadata, Viewport } from "next";
 import "./styles.css";
 import "./golden-tokens.css";
 import "./golden-screens.css";
 import "./personal-results.css";
+import "./authentication.css";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -10,7 +13,9 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 export const metadata: Metadata = {
-  title: "GLAM AI",
+  metadataBase: new URL(siteOrigin),
+  title: productName,
+  applicationName: productName,
   description:
     "Understand your features. Discover your colors. Explore your look. Learn how to achieve it.",
 };

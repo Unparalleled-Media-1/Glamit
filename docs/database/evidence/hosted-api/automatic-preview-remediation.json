@@ -1,0 +1,22 @@
+{
+  "reason": "Existing GitHub integration automatically created an unwanted preview for PR22; restore user-authorized original-project-only state.",
+  "automatically_created_preview": {
+    "name": "feat/operational-supabase-backend",
+    "project_ref": "qemjkjekmtnktoimnjkt",
+    "pr_number": 22,
+    "created_at": "2026-11-07T09:14:59.478766+00:00",
+    "with_data": false,
+    "persistent": false
+  },
+  "preview_removal_http_status": 200,
+  "disable_preview_branching_http_status": 200,
+  "preview_branching_disabled": true,
+  "final_inventory_http_status": 200,
+  "final_branches": [],
+  "original_production_query_http_status": 201,
+  "original_production_revision": [
+    {
+      "version_num": "0012_hosted_routines"
+    }
+  ]
+}

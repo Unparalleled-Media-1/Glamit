@@ -1,0 +1,15 @@
+{
+  "parent_project": "bkkmsbxrxkqaveymcrgi",
+  "operation": "create development branch within existing project",
+  "production_schema_changed": false,
+  "http_status": 201,
+  "branch": {
+    "id": "19a1ab46-fc68-48ed-8874-f620a11890d8",
+    "name": "glam-foundation-dev",
+    "project_ref": "vmzfiahjdfcuyzlyvewz",
+    "parent_project_ref": "bkkmsbxrxkqaveymcrgi",
+    "is_default": false,
+    "status": "CREATING_PROJECT",
+    "persistent": false
+  }
+}

@@ -1,0 +1,1067 @@
+{
+  "observed_at": "2026-11-07T16:45:28.624Z",
+  "scope": "UI state transitions only, no provider success claims. External/mutating network blocked. Fixed versioned allowlist; unknown controls skipped.",
+  "artifact_directory": "/workspace/artifacts/glam-launch",
+  "results": [
+    {
+      "route": "/",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/"
+    },
+    {
+      "route": "/",
+      "viewport": "desktop",
+      "control_id": 1,
+      "name": "GLAM AI home",
+      "tag": "a",
+      "status": "PASSED_IDEMPOTENT",
+      "path": "/"
+    },
+    {
+      "route": "/",
+      "viewport": "desktop",
+      "control_id": 31,
+      "name": "GLAM AI",
+      "tag": "a",
+      "status": "PASSED_IDEMPOTENT",
+      "path": "/"
+    },
+    {
+      "route": "/offer",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/offer"
+    },
+    {
+      "route": "/results",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/results"
+    },
+    {
+      "route": "/destination",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/destination"
+    },
+    {
+      "route": "/cart",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/cart"
+    },
+    {
+      "route": "/cart",
+      "viewport": "desktop",
+      "control_id": 10,
+      "name": "01 / Cart",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/cart"
+    },
+    {
+      "route": "/checkout",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/checkout"
+    },
+    {
+      "route": "/checkout",
+      "viewport": "desktop",
+      "control_id": 11,
+      "name": "02 / Checkout",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/checkout"
+    },
+    {
+      "route": "/orders",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/orders"
+    },
+    {
+      "route": "/orders",
+      "viewport": "desktop",
+      "control_id": 12,
+      "name": "03 / Order status",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/orders"
+    },
+    {
+      "route": "/shop",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/shop"
+    },
+    {
+      "route": "/product",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/product"
+    },
+    {
+      "route": "/event",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/event"
+    },
+    {
+      "route": "/event",
+      "viewport": "desktop",
+      "control_id": 11,
+      "name": "Event Stylist",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/event"
+    },
+    {
+      "route": "/event",
+      "viewport": "desktop",
+      "control_id": 14,
+      "name": "A wedding guest look",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/event"
+    },
+    {
+      "route": "/event",
+      "viewport": "desktop",
+      "control_id": 15,
+      "name": "A five-minute routine",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/event"
+    },
+    {
+      "route": "/event",
+      "viewport": "desktop",
+      "control_id": 16,
+      "name": "Make the look more relaxed",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/event"
+    },
+    {
+      "route": "/builder",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/builder"
+    },
+    {
+      "route": "/analyze",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/analyze"
+    },
+    {
+      "route": "/hair",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/hair"
+    },
+    {
+      "route": "/skin",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/skin"
+    },
+    {
+      "route": "/body-fit",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/body-fit"
+    },
+    {
+      "route": "/consent",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/consent"
+    },
+    {
+      "route": "/quality",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/quality"
+    },
+    {
+      "route": "/goals",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/goals"
+    },
+    {
+      "route": "/report",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/report"
+    },
+    {
+      "route": "/color",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/color"
+    },
+    {
+      "route": "/guide",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/guide"
+    },
+    {
+      "route": "/studio",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/studio"
+    },
+    {
+      "route": "/advisor",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/advisor"
+    },
+    {
+      "route": "/advisor",
+      "viewport": "desktop",
+      "control_id": 10,
+      "name": "AI Personal Stylist",
+      "tag": "button",
+      "status": "NO_OBSERVED_CHANGE",
+      "path": "/advisor",
+      "screenshot": "interaction-desktop-1.png"
+    },
+    {
+      "route": "/advisor",
+      "viewport": "desktop",
+      "control_id": 14,
+      "name": "A wedding guest look",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/advisor"
+    },
+    {
+      "route": "/advisor",
+      "viewport": "desktop",
+      "control_id": 15,
+      "name": "A five-minute routine",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/advisor"
+    },
+    {
+      "route": "/advisor",
+      "viewport": "desktop",
+      "control_id": 16,
+      "name": "Make the look more relaxed",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/advisor"
+    },
+    {
+      "route": "/profile",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/profile"
+    },
+    {
+      "route": "/profile",
+      "viewport": "desktop",
+      "control_id": 9,
+      "name": "Open profile",
+      "tag": "button",
+      "status": "NO_OBSERVED_CHANGE",
+      "path": "/profile",
+      "screenshot": "interaction-desktop-2.png"
+    },
+    {
+      "route": "/history",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/history"
+    },
+    {
+      "route": "/privacy",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/privacy"
+    },
+    {
+      "route": "/privacy",
+      "viewport": "desktop",
+      "control_id": 14,
+      "name": "Privacy",
+      "tag": "button",
+      "status": "NO_OBSERVED_CHANGE",
+      "path": "/privacy",
+      "screenshot": "interaction-desktop-3.png"
+    },
+    {
+      "route": "/explore",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/explore"
+    },
+    {
+      "route": "/complete",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/complete"
+    },
+    {
+      "route": "/complete",
+      "viewport": "desktop",
+      "control_id": 8,
+      "name": "Change shopping location",
+      "tag": "button",
+      "status": "NO_OBSERVED_CHANGE",
+      "path": "/complete",
+      "screenshot": "interaction-desktop-4.png"
+    },
+    {
+      "route": "/complete",
+      "viewport": "desktop",
+      "control_id": 26,
+      "name": "Complete the Look",
+      "tag": "button",
+      "status": "NO_OBSERVED_CHANGE",
+      "path": "/complete",
+      "screenshot": "interaction-desktop-5.png"
+    },
+    {
+      "route": "/screenshot",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/screenshot"
+    },
+    {
+      "route": "/screenshot",
+      "viewport": "desktop",
+      "control_id": 14,
+      "name": "A wedding guest look",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/screenshot"
+    },
+    {
+      "route": "/screenshot",
+      "viewport": "desktop",
+      "control_id": 15,
+      "name": "A five-minute routine",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/screenshot"
+    },
+    {
+      "route": "/screenshot",
+      "viewport": "desktop",
+      "control_id": 16,
+      "name": "Make the look more relaxed",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/screenshot"
+    },
+    {
+      "route": "/budget",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/budget"
+    },
+    {
+      "route": "/booking",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/booking"
+    },
+    {
+      "route": "/wardrobe",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/wardrobe"
+    },
+    {
+      "route": "/calendar",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/calendar"
+    },
+    {
+      "route": "/groups",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/groups"
+    },
+    {
+      "route": "/agent",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/agent"
+    },
+    {
+      "route": "/business",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to workspace",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/business"
+    },
+    {
+      "route": "/admin",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to workspace",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/admin"
+    },
+    {
+      "route": "/auth/callback",
+      "viewport": "desktop",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/auth/callback"
+    },
+    {
+      "route": "/",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/"
+    },
+    {
+      "route": "/",
+      "viewport": "iphone-web",
+      "control_id": 1,
+      "name": "GLAM AI home",
+      "tag": "a",
+      "status": "PASSED_IDEMPOTENT",
+      "path": "/"
+    },
+    {
+      "route": "/",
+      "viewport": "iphone-web",
+      "control_id": 25,
+      "name": "GLAM AI",
+      "tag": "a",
+      "status": "PASSED_IDEMPOTENT",
+      "path": "/"
+    },
+    {
+      "route": "/offer",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/offer"
+    },
+    {
+      "route": "/results",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/results"
+    },
+    {
+      "route": "/destination",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/destination"
+    },
+    {
+      "route": "/cart",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/cart"
+    },
+    {
+      "route": "/cart",
+      "viewport": "iphone-web",
+      "control_id": 4,
+      "name": "01 / Cart",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/cart"
+    },
+    {
+      "route": "/checkout",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/checkout"
+    },
+    {
+      "route": "/checkout",
+      "viewport": "iphone-web",
+      "control_id": 5,
+      "name": "02 / Checkout",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/checkout"
+    },
+    {
+      "route": "/orders",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/orders"
+    },
+    {
+      "route": "/orders",
+      "viewport": "iphone-web",
+      "control_id": 6,
+      "name": "03 / Order status",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/orders"
+    },
+    {
+      "route": "/shop",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/shop"
+    },
+    {
+      "route": "/product",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/product"
+    },
+    {
+      "route": "/event",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/event"
+    },
+    {
+      "route": "/event",
+      "viewport": "iphone-web",
+      "control_id": 5,
+      "name": "Event Stylist",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/event"
+    },
+    {
+      "route": "/event",
+      "viewport": "iphone-web",
+      "control_id": 8,
+      "name": "A wedding guest look",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/event"
+    },
+    {
+      "route": "/event",
+      "viewport": "iphone-web",
+      "control_id": 9,
+      "name": "A five-minute routine",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/event"
+    },
+    {
+      "route": "/event",
+      "viewport": "iphone-web",
+      "control_id": 10,
+      "name": "Make the look more relaxed",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/event"
+    },
+    {
+      "route": "/builder",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/builder"
+    },
+    {
+      "route": "/analyze",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/analyze"
+    },
+    {
+      "route": "/hair",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/hair"
+    },
+    {
+      "route": "/skin",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/skin"
+    },
+    {
+      "route": "/body-fit",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/body-fit"
+    },
+    {
+      "route": "/consent",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/consent"
+    },
+    {
+      "route": "/quality",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/quality"
+    },
+    {
+      "route": "/goals",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/goals"
+    },
+    {
+      "route": "/report",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/report"
+    },
+    {
+      "route": "/color",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/color"
+    },
+    {
+      "route": "/guide",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/guide"
+    },
+    {
+      "route": "/studio",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/studio"
+    },
+    {
+      "route": "/advisor",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/advisor"
+    },
+    {
+      "route": "/advisor",
+      "viewport": "iphone-web",
+      "control_id": 4,
+      "name": "AI Personal Stylist",
+      "tag": "button",
+      "status": "NO_OBSERVED_CHANGE",
+      "path": "/advisor",
+      "screenshot": "interaction-iphone-web-1.png"
+    },
+    {
+      "route": "/advisor",
+      "viewport": "iphone-web",
+      "control_id": 8,
+      "name": "A wedding guest look",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/advisor"
+    },
+    {
+      "route": "/advisor",
+      "viewport": "iphone-web",
+      "control_id": 9,
+      "name": "A five-minute routine",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/advisor"
+    },
+    {
+      "route": "/advisor",
+      "viewport": "iphone-web",
+      "control_id": 10,
+      "name": "Make the look more relaxed",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/advisor"
+    },
+    {
+      "route": "/profile",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/profile"
+    },
+    {
+      "route": "/profile",
+      "viewport": "iphone-web",
+      "control_id": 3,
+      "name": "Open profile",
+      "tag": "button",
+      "status": "NO_OBSERVED_CHANGE",
+      "path": "/profile",
+      "screenshot": "interaction-iphone-web-2.png"
+    },
+    {
+      "route": "/history",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/history"
+    },
+    {
+      "route": "/privacy",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/privacy"
+    },
+    {
+      "route": "/privacy",
+      "viewport": "iphone-web",
+      "control_id": 8,
+      "name": "Privacy",
+      "tag": "button",
+      "status": "NO_OBSERVED_CHANGE",
+      "path": "/privacy",
+      "screenshot": "interaction-iphone-web-3.png"
+    },
+    {
+      "route": "/explore",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/explore"
+    },
+    {
+      "route": "/complete",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/complete"
+    },
+    {
+      "route": "/complete",
+      "viewport": "iphone-web",
+      "control_id": 2,
+      "name": "Change shopping location",
+      "tag": "button",
+      "status": "NO_OBSERVED_CHANGE",
+      "path": "/complete",
+      "screenshot": "interaction-iphone-web-4.png"
+    },
+    {
+      "route": "/complete",
+      "viewport": "iphone-web",
+      "control_id": 20,
+      "name": "Complete the Look",
+      "tag": "button",
+      "status": "NO_OBSERVED_CHANGE",
+      "path": "/complete",
+      "screenshot": "interaction-iphone-web-5.png"
+    },
+    {
+      "route": "/screenshot",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/screenshot"
+    },
+    {
+      "route": "/screenshot",
+      "viewport": "iphone-web",
+      "control_id": 8,
+      "name": "A wedding guest look",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/screenshot"
+    },
+    {
+      "route": "/screenshot",
+      "viewport": "iphone-web",
+      "control_id": 9,
+      "name": "A five-minute routine",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/screenshot"
+    },
+    {
+      "route": "/screenshot",
+      "viewport": "iphone-web",
+      "control_id": 10,
+      "name": "Make the look more relaxed",
+      "tag": "button",
+      "status": "PASSED",
+      "path": "/screenshot"
+    },
+    {
+      "route": "/budget",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/budget"
+    },
+    {
+      "route": "/booking",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/booking"
+    },
+    {
+      "route": "/wardrobe",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/wardrobe"
+    },
+    {
+      "route": "/calendar",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/calendar"
+    },
+    {
+      "route": "/groups",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/groups"
+    },
+    {
+      "route": "/agent",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/agent"
+    },
+    {
+      "route": "/business",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to workspace",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/business"
+    },
+    {
+      "route": "/admin",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to workspace",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/admin"
+    },
+    {
+      "route": "/auth/callback",
+      "viewport": "iphone-web",
+      "control_id": 0,
+      "name": "Skip to content",
+      "tag": "a",
+      "status": "PASSED",
+      "path": "/auth/callback"
+    }
+  ],
+  "unexpected_errors": [],
+  "counts": {
+    "PASSED": 102,
+    "PASSED_IDEMPOTENT": 4,
+    "NO_OBSERVED_CHANGE": 10
+  }
+}

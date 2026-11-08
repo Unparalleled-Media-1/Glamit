@@ -1,0 +1,3866 @@
+{
+  "observed_at": "2026-11-07T16:47:42.925Z",
+  "source_commit": "748555ab1d02983707d5f19fe2e914bb16853723",
+  "routes": [
+    "/",
+    "/offer",
+    "/results",
+    "/destination",
+    "/cart",
+    "/checkout",
+    "/orders",
+    "/shop",
+    "/product",
+    "/event",
+    "/builder",
+    "/analyze",
+    "/hair",
+    "/skin",
+    "/body-fit",
+    "/consent",
+    "/quality",
+    "/goals",
+    "/report",
+    "/color",
+    "/guide",
+    "/studio",
+    "/advisor",
+    "/profile",
+    "/history",
+    "/privacy",
+    "/explore",
+    "/complete",
+    "/screenshot",
+    "/budget",
+    "/booking",
+    "/wardrobe",
+    "/calendar",
+    "/groups",
+    "/agent",
+    "/business",
+    "/admin",
+    "/login",
+    "/auth/callback"
+  ],
+  "source_controls": [
+    {
+      "file": "apps/web/components/AccountSecurity.tsx",
+      "line": 210,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/AccountSecurity.tsx",
+      "line": 225,
+      "tag": "form",
+      "label": null,
+      "handler": [
+        "onSubmit"
+      ]
+    },
+    {
+      "file": "apps/web/components/AccountSecurity.tsx",
+      "line": 235,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/AccountSecurity.tsx",
+      "line": 247,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/AccountSecurity.tsx",
+      "line": 258,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/AccountSecurity.tsx",
+      "line": 265,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/AccountSecurity.tsx",
+      "line": 281,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 116,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 121,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 134,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 152,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 175,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 191,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 207,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 213,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 240,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 259,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 303,
+      "tag": "button",
+      "label": "\"Start Face Analysis\"",
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 319,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 359,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 362,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 376,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 473,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 482,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 520,
+      "tag": "button",
+      "label": "{\n                saved\n                  ? \"Remove session inspiration favorite\"\n                  : \"Favorite this inspiration for this session\"\n              }",
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 558,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 561,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 562,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 566,
+      "tag": "button",
+      "label": "{v.name}",
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 587,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 602,
+      "tag": "button",
+      "label": "{`${family} swatch ${i + 1}`}",
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 620,
+      "tag": "select",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 634,
+      "tag": "input",
+      "label": "\"Requested intensity\"",
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 648,
+      "tag": "input",
+      "label": "\"Comparison handle\"",
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 668,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 676,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 711,
+      "tag": "input",
+      "label": "\"Personal preview comparison\"",
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 731,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 737,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 749,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 781,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BeautyExperience.tsx",
+      "line": 795,
+      "tag": "button",
+      "label": "{`${mood} color ${i + 1}`}",
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 90,
+      "tag": "a",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 95,
+      "tag": "a",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 104,
+      "tag": "select",
+      "label": "\"Review workspace tools\"",
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 120,
+      "tag": "select",
+      "label": "\"Review admin role layout\"",
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 137,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 150,
+      "tag": "a",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 223,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 291,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 322,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 330,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 337,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 344,
+      "tag": "form",
+      "label": null,
+      "handler": [
+        "onSubmit"
+      ]
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 367,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 377,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 386,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 404,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 420,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/BusinessPortal.tsx",
+      "line": 439,
+      "tag": "a",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/ContextualRecommendations.tsx",
+      "line": 166,
+      "tag": "select",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/ContextualRecommendations.tsx",
+      "line": 177,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/ContextualRecommendations.tsx",
+      "line": 187,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/ContextualRecommendations.tsx",
+      "line": 196,
+      "tag": "select",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/ContextualRecommendations.tsx",
+      "line": 208,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/ContextualRecommendations.tsx",
+      "line": 214,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/ContextualRecommendations.tsx",
+      "line": 223,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/ContextualRecommendations.tsx",
+      "line": 282,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/ContextualRecommendations.tsx",
+      "line": 285,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/ContextualRecommendations.tsx",
+      "line": 301,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 26,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 29,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 38,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 46,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 58,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 66,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 75,
+      "tag": "textarea",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 84,
+      "tag": "textarea",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 92,
+      "tag": "select",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 104,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 108,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 174,
+      "tag": "form",
+      "label": null,
+      "handler": [
+        "onSubmit"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 187,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 193,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 201,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 214,
+      "tag": "button",
+      "label": "{\"Remove \" + i.name}",
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 231,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/DestinationStylist.tsx",
+      "line": 234,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 407,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 428,
+      "tag": "input",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 528,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 543,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 603,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 627,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 639,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 784,
+      "tag": "form",
+      "label": null,
+      "handler": [
+        "onSubmit"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 788,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 796,
+      "tag": "textarea",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 804,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 827,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 841,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 913,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 915,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 938,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 957,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 971,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1034,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1045,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1060,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1075,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1117,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1132,
+      "tag": "form",
+      "label": null,
+      "handler": [
+        "onSubmit"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1142,
+      "tag": "input",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1152,
+      "tag": "select",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1159,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1180,
+      "tag": "input",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1187,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1230,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1247,
+      "tag": "a",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1251,
+      "tag": "a",
+      "label": "\"GLAM AI home\"",
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1256,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1265,
+      "tag": "button",
+      "label": "\"Change shopping location\"",
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1273,
+      "tag": "button",
+      "label": "\"Open profile\"",
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1287,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1320,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1323,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1370,
+      "tag": "a",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1375,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1376,
+      "tag": "a",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1377,
+      "tag": "a",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1382,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1394,
+      "tag": "dialog",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1402,
+      "tag": "button",
+      "label": "\"Close workspace switcher\"",
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1418,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1420,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GlamApp.tsx",
+      "line": 1428,
+      "tag": "a",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 52,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 91,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 122,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 135,
+      "tag": "button",
+      "label": "{\"View \" + v.name}",
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 175,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 186,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 215,
+      "tag": "button",
+      "label": "{v.name + \" reference color\"}",
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 233,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 237,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 257,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 291,
+      "tag": "dialog",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 300,
+      "tag": "button",
+      "label": "\"Close shopping destination\"",
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 315,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 323,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 331,
+      "tag": "select",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/GoldenCommerce.tsx",
+      "line": 344,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/HostedAccount.tsx",
+      "line": 169,
+      "tag": "form",
+      "label": null,
+      "handler": [
+        "onSubmit"
+      ]
+    },
+    {
+      "file": "apps/web/components/HostedAccount.tsx",
+      "line": 171,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/HostedAccount.tsx",
+      "line": 179,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/HostedAccount.tsx",
+      "line": 180,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/HostedAccount.tsx",
+      "line": 202,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/HostedAccount.tsx",
+      "line": 211,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/HostedAccount.tsx",
+      "line": 221,
+      "tag": "form",
+      "label": null,
+      "handler": [
+        "onSubmit"
+      ]
+    },
+    {
+      "file": "apps/web/components/HostedAccount.tsx",
+      "line": 228,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/HostedAccount.tsx",
+      "line": 240,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/HostedAccount.tsx",
+      "line": 251,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/MarketplaceJourney.tsx",
+      "line": 33,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MarketplaceJourney.tsx",
+      "line": 36,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MarketplaceJourney.tsx",
+      "line": 39,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MarketplaceJourney.tsx",
+      "line": 47,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MarketplaceJourney.tsx",
+      "line": 82,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MarketplaceJourney.tsx",
+      "line": 102,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MarketplaceJourney.tsx",
+      "line": 118,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MarketplaceJourney.tsx",
+      "line": 128,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MarketplaceJourney.tsx",
+      "line": 152,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MarketplaceJourney.tsx",
+      "line": 169,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/MarketplaceJourney.tsx",
+      "line": 211,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MarketplaceJourney.tsx",
+      "line": 220,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 99,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 198,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 211,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 219,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 226,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 261,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 285,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 301,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 314,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 334,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 337,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 354,
+      "tag": "select",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 369,
+      "tag": "select",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 383,
+      "tag": "select",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 400,
+      "tag": "textarea",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 410,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 420,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 423,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 449,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 452,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/MerchantSnapList.tsx",
+      "line": 458,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 176,
+      "tag": "form",
+      "label": null,
+      "handler": [
+        "onSubmit"
+      ]
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 178,
+      "tag": "select",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 191,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 203,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 214,
+      "tag": "form",
+      "label": null,
+      "handler": [
+        "onSubmit"
+      ]
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 216,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 233,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 236,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 244,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 261,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 275,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 284,
+      "tag": "form",
+      "label": null,
+      "handler": [
+        "onSubmit"
+      ]
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 286,
+      "tag": "input",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 295,
+      "tag": "input",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 303,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 307,
+      "tag": "a",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 308,
+      "tag": "a",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/PasswordlessSignIn.tsx",
+      "line": 310,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/PersonalizedResults.tsx",
+      "line": 72,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/PersonalizedResults.tsx",
+      "line": 94,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/PersonalizedResults.tsx",
+      "line": 107,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/PersonalizedResults.tsx",
+      "line": 128,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/PersonalizedResults.tsx",
+      "line": 167,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/PersonalizedResults.tsx",
+      "line": 179,
+      "tag": "textarea",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/PersonalizedResults.tsx",
+      "line": 186,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/PersonalizedResults.tsx",
+      "line": 209,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/PersonalizedResults.tsx",
+      "line": 226,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/PersonalizedResults.tsx",
+      "line": 238,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 87,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 118,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 129,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 147,
+      "tag": "select",
+      "label": "\"Currency\"",
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 162,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 181,
+      "tag": "input",
+      "label": "\"Add inspiration or invitation\"",
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 244,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 282,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 282,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 282,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 282,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 302,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 320,
+      "tag": "form",
+      "label": null,
+      "handler": [
+        "onSubmit"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 338,
+      "tag": "textarea",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 346,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 375,
+      "tag": "select",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 424,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 441,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 485,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 505,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 513,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 529,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 634,
+      "tag": "form",
+      "label": null,
+      "handler": [
+        "onSubmit"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 651,
+      "tag": "input",
+      "label": null,
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 658,
+      "tag": "button",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 676,
+      "tag": "input",
+      "label": "{\"Edit \" + v.name}",
+      "handler": [
+        "onChange"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 690,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 700,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 759,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 771,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/StylingJourney.tsx",
+      "line": 791,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/VerifiedMatches.tsx",
+      "line": 57,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/VerifiedProductDetail.tsx",
+      "line": 17,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/VerifiedProductDetail.tsx",
+      "line": 68,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/VerifiedProductDetail.tsx",
+      "line": 77,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/VerifiedProductDetail.tsx",
+      "line": 111,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/WebLogin.tsx",
+      "line": 22,
+      "tag": "a",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/web/components/WebLogin.tsx",
+      "line": 29,
+      "tag": "button",
+      "label": null,
+      "handler": [
+        "onClick"
+      ]
+    },
+    {
+      "file": "apps/web/components/WebLogin.tsx",
+      "line": 35,
+      "tag": "a",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 74,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 351,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 493,
+      "tag": "Switch",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 506,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 511,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 546,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 566,
+      "tag": "Switch",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 663,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 671,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 679,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 693,
+      "tag": "Switch",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 705,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 768,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 779,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 791,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 835,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 845,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 908,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 917,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 959,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 970,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 1003,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 1021,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 1046,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 1069,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 1074,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 1126,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 1172,
+      "tag": "Modal",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 1185,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 1186,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 1195,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/App.tsx",
+      "line": 1208,
+      "tag": "Button",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 69,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 117,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 120,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 130,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 162,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 177,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 189,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 208,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 228,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 249,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 277,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 290,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 337,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 338,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 354,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 427,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 468,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 498,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 506,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 509,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 529,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 553,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 577,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 605,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 625,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 635,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 649,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 654,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 659,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 670,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 675,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 716,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/BeautyExperience.tsx",
+      "line": 735,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 37,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 91,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 107,
+      "tag": "Switch",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 116,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 129,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 151,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 160,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 173,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 185,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 189,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 216,
+      "tag": "Switch",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 221,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 232,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 249,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 280,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 311,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 322,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 327,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 361,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 368,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 386,
+      "tag": "Switch",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 399,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 409,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 410,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 411,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 449,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 466,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 480,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 502,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 534,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 541,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 542,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/CompanionViews.tsx",
+      "line": 546,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/ContextualRecommendations.tsx",
+      "line": 120,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/ContextualRecommendations.tsx",
+      "line": 154,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/ContextualRecommendations.tsx",
+      "line": 209,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/ContextualRecommendations.tsx",
+      "line": 221,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/ContextualRecommendations.tsx",
+      "line": 231,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/ContextualRecommendations.tsx",
+      "line": 243,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 39,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 106,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 136,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 152,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 170,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 205,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 214,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 239,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 258,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 259,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 281,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 297,
+      "tag": "Modal",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 320,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 328,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 338,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 360,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/GoldenCommerce.tsx",
+      "line": 372,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/MerchantSnapList.tsx",
+      "line": 51,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/MerchantSnapList.tsx",
+      "line": 145,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/MerchantSnapList.tsx",
+      "line": 181,
+      "tag": "Switch",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/MerchantSnapList.tsx",
+      "line": 233,
+      "tag": "Switch",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/MerchantSnapList.tsx",
+      "line": 267,
+      "tag": "Switch",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 43,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 105,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 116,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 129,
+      "tag": "Switch",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 147,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 160,
+      "tag": "Switch",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 178,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 231,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 271,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 272,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 273,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 277,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 296,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 305,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 349,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 361,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 374,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 400,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 407,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 420,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 493,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 501,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 523,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 537,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 545,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 574,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 585,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/StylingJourney.tsx",
+      "line": 602,
+      "tag": "Action",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/auth/NativeAccount.tsx",
+      "line": 69,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/auth/NativeAccount.tsx",
+      "line": 297,
+      "tag": "Modal",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/auth/NativeAccount.tsx",
+      "line": 315,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/auth/NativeAccount.tsx",
+      "line": 326,
+      "tag": "Pressable",
+      "label": null,
+      "handler": [
+        "onPress"
+      ]
+    },
+    {
+      "file": "apps/mobile/auth/NativeAccount.tsx",
+      "line": 345,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    },
+    {
+      "file": "apps/mobile/auth/NativeAccount.tsx",
+      "line": 371,
+      "tag": "TextInput",
+      "label": null,
+      "handler": []
+    }
+  ],
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/health/live"
+    },
+    {
+      "method": "GET",
+      "path": "/health/ready"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/admin/catalog/review-queue"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/admin/catalog/{lid}/revisions/{revision}/review"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/admin/context"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/analysis/requests"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/looks"
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/looks/{look_id}"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/looks/{look_id}/revisions"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/looks/{look_id}/revisions/{revision_no}"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/me"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/me/credits"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/me/routines"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/me/routines"
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/me/routines/{routine}"
+    },
+    {
+      "method": "PUT",
+      "path": "/v1/me/routines/{routine}"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/me/saved-requirements"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/me/saved-requirements"
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/me/saved-requirements/{sid}"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/me/workspace-invitations"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/me/workspace-invitations/{invitation}/accept"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/me/workspaces"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organizations"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/organizations/{org_id}"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/organizations/{org}/catalog/listings"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organizations/{org}/catalog/listings"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organizations/{org}/catalog/listings/bulk"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/organizations/{org}/catalog/listings/{lid}"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organizations/{org}/catalog/listings/{lid}/enhancements"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/organizations/{org}/catalog/listings/{lid}/enhancements/{jid}"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organizations/{org}/catalog/listings/{lid}/publish"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organizations/{org}/catalog/listings/{lid}/revisions"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organizations/{org}/catalog/listings/{lid}/rollback"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organizations/{org}/catalog/listings/{lid}/withdraw"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organizations/{org}/catalog/publish-bulk"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/organizations/{org}/workspaces/{workspace}/drafts"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organizations/{org}/workspaces/{workspace}/drafts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/organizations/{org}/workspaces/{workspace}/drafts/{draft}"
+    },
+    {
+      "method": "PUT",
+      "path": "/v1/organizations/{org}/workspaces/{workspace}/drafts/{draft}"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/organizations/{org}/workspaces/{workspace}/invitations"
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/organizations/{org}/workspaces/{workspace}/invitations/{invitation}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/organizations/{org}/workspaces/{workspace}/roles/{member}/{role}"
+    },
+    {
+      "method": "GET",
+      "path": "/v1/policies"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/policies/{policy_id}/consent"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/recommendations/listings/{lid}"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/recommendations/matches"
+    }
+  ],
+  "scope": "Source declarations only. Runtime inventory and functional proof are separate."
+}
