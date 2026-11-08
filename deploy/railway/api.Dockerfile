@@ -12,9 +12,7 @@ WORKDIR /app
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_PYTHON_DOWNLOADS=never
 COPY pyproject.toml uv.lock ./
 COPY services/api services/api
-RUN --mount=type=secret,id=proxy_ca \
-    if [ -f /run/secrets/proxy_ca ]; then export SSL_CERT_FILE=/run/secrets/proxy_ca; fi; \
-    uv sync --frozen --no-dev --no-editable
+RUN uv sync --frozen --no-dev --no-editable
 FROM base AS runtime
 WORKDIR /app
 ENV PATH=/app/.venv/bin:$PATH PYTHONUNBUFFERED=1 PORT=8000 SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
