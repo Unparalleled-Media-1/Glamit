@@ -1,0 +1,1 @@
+{"artifact": "db/migrations/releases/0015_application.sql", "revision": "0015_private_media", "sha256": "67f172d7ea775b7fa65895ab5f77250e61debf53969f4ed2801a8995cffdcf12"}

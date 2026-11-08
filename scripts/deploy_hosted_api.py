@@ -9,6 +9,7 @@ from pathlib import Path
 
 import httpx
 from deploy_application_foundation import PROJECT, validate_backup, validate_branch
+from glam_api.private_media import PRIVATE_MEDIA_CATALOG_SQL, validate_private_media_catalog
 
 
 def validate_original_target(branches, metadata):
@@ -30,6 +31,7 @@ def deploy(apply=False, release="0011"):
         "0012": ("0011_hosted_api", "0012_hosted_routines"),
         "0013": ("0012_hosted_routines", "0013_passwordless_accounts"),
         "0014": ("0013_passwordless_accounts", "0014_creator_studio"),
+        "0015": ("0014_creator_studio", "0015_private_media"),
     }
     predecessor, revision = lineage[release]
     artifact = Path(f"db/migrations/releases/{release}_application.sql")
@@ -96,6 +98,9 @@ def deploy(apply=False, release="0011"):
             raise RuntimeError("rpc_permissions_verification_failed")
         if any(not r["rls"] for r in report["tables"]):
             raise RuntimeError("rls_verification_failed")
+        if release == "0015":
+            report["private_media_catalog"] = query(PRIVATE_MEDIA_CATALOG_SQL)
+            validate_private_media_catalog(report["private_media_catalog"])
         report["status"] = "VERIFIED"
     return report
 
@@ -104,7 +109,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply-production-approved", action="store_true")
     parser.add_argument("--report", required=True)
-    parser.add_argument("--release", choices=["0011", "0012", "0013", "0014"], default="0011")
+    parser.add_argument(
+        "--release", choices=["0011", "0012", "0013", "0014", "0015"], default="0011"
+    )
     args = parser.parse_args()
     try:
         result = deploy(args.apply_production_approved, args.release)

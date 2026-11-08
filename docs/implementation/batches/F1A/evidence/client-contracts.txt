@@ -1,0 +1,8 @@
+
+> glam-ai@0.1.0 test:private-media
+> node tests/client/private-media.cjs
+
+PASS Web actual WebCrypto shared HTTP/hashing contract (not native runtime)
+PASS iOS source / explicit native Crypto port double shared HTTP/hashing contract (not native runtime)
+PASS Android source / explicit native Crypto port double shared HTTP/hashing contract (not native runtime)
+PASS session fencing, byte snapshots, response validation and redacted error recovery

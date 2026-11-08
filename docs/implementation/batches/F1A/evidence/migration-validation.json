@@ -1,0 +1,11 @@
+{
+  "scope": "Local PostgreSQL only; no production migration applied",
+  "canonical_predecessor": "0014_creator_studio",
+  "candidate_revision": "0015_private_media",
+  "release_sha256": "67f172d7ea775b7fa65895ab5f77250e61debf53969f4ed2801a8995cffdcf12",
+  "canonical_sources_match": true,
+  "exact_generated_sql_replayed": true,
+  "sandbox_0009_excluded": true,
+  "rollback_requires_empty_registry_and_provider_api_bucket_removal": true,
+  "production_approval": "REQUIRED for both pending0014 and0015"
+}

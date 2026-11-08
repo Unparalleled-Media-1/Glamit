@@ -33,6 +33,7 @@ def engine():
     # created or modified by application migrations.
     with engine.begin() as connection:
         connection.execute(text(Path("tests/fixtures/supabase_auth.sql").read_text()))
+        connection.execute(text(Path("tests/fixtures/supabase_storage.sql").read_text()))
     # Both branches are tested locally; hosted application deployment targets
     # application@head and cannot traverse the guarded sandbox sibling.
     command.upgrade(Config("alembic.ini"), "heads")
