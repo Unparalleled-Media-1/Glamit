@@ -1,6 +1,7 @@
 import BrandLogo from "./BrandLogo";
 import CreatorStudio from "./CreatorStudio";
 import NativeAIStylist from "./NativeAIStylist";
+import NativePrivatePhotos from "./NativePrivatePhotos";
 import NativeAccount from "./auth/NativeAccount";
 import { useNativeAccount } from "./auth/use-native-account";
 import { useEffect, useReducer, useRef, useState } from "react";
@@ -778,6 +779,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
               "Your private goals, session routines and authorized workspaces.",
             )}
             <NativeAccount auth={nativeAccount}/>
+            <NativePrivatePhotos account={nativeAccount.account} apiOrigin={process.env.EXPO_PUBLIC_GLAM_API_ORIGIN || ""}/>
             <CreatorStudio key={nativeAccount.account?.profile.id || "guest"} token={nativeAccount.account?.token}/>
             <Button title="Switch workspace" secondary onPress={()=>setSwitcher(true)}/>
 

@@ -51,7 +51,8 @@
     "check:railway": "node scripts/check-railway-config.mjs && node --test tests/client/railway-build-config.test.mjs",
     "test:native-photo": "node tests/mobile/photo-native.cjs",
     "test:ai-stylist": "node tests/client/ai-stylist.cjs",
-    "test:native-stylist": "node tests/mobile/ai-stylist-native.cjs"
+    "test:native-stylist": "node tests/mobile/ai-stylist-native.cjs",
+    "test:native-photos": "node tests/mobile/private-photos-native.cjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
