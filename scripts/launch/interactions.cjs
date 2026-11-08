@@ -7,7 +7,7 @@ const { chromium } = require(
   "../../docs/design-preview/node_modules/playwright",
 );
 const policy = require("../../tests/launch/safe-actions.json"),
-  inventory = require("../../docs/launch/evidence/clickthrough.json");
+  inventory = JSON.parse(fs.readFileSync(path.join(process.env.GLAM_LAUNCH_EVIDENCE || path.join(__dirname, "../../docs/launch/evidence"), "clickthrough.json"), "utf8"));
 const root = path.resolve(__dirname, "../.."),
   out = process.env.GLAM_LAUNCH_ARTIFACTS || "/workspace/artifacts/glam-launch";
 const report = {
@@ -237,10 +237,10 @@ const fingerprint = (page) =>
     }
     fs.writeFileSync(
       path.join(
-        root,
+        process.env.GLAM_LAUNCH_EVIDENCE || path.join(root, "docs/launch/evidence"),
         process.env.GLAM_INTERACTIONS_RECHECK === "1"
-          ? "docs/launch/evidence/interactions-recheck.json"
-          : "docs/launch/evidence/interactions.json",
+          ? "interactions-recheck.json"
+          : "interactions.json",
       ),
       JSON.stringify(report, null, 2) + "\n",
     );

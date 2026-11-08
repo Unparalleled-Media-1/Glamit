@@ -9,7 +9,7 @@ test("Green gate labels do not replace actual financial, hardware or approval ev
   const errors = validateLaunch({
     observed_at: new Date().toISOString(),
     gates: Array.from(
-      { length: 11 },
+      { length: 12 },
       (_, i) => ({ id: "G" + (i + 1), status: "PASSED" }),
     ),
     workflows: [{ status: "PASSED" }],

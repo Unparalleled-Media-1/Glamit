@@ -17,7 +17,7 @@ def main():
         .split("\0")
     )
     files = [Path(name) for name in names if name and Path(name).is_file()]
-    bundles = [Path("dist/godaddy-web"), Path("apps/mobile/dist")]
+    bundles = [Path("dist/godaddy-web"), Path("apps/mobile/dist"), Path("apps/web/.next/static")]
     for directory in bundles:
         if directory.is_dir():
             files.extend(p for p in directory.rglob("*") if p.is_file())
@@ -52,7 +52,9 @@ def main():
         "matches": matches,
         "status": "PASSED" if not matches else "REVIEW_REQUIRED",
     }
-    Path("docs/launch/evidence/secret-scan.json").write_text(json.dumps(result, indent=2) + "\n")
+    (
+        Path(os.environ.get("GLAM_LAUNCH_EVIDENCE", "docs/launch/evidence")) / "secret-scan.json"
+    ).write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps({k: v for k, v in result.items() if k != "matches"}))
     if matches:
         raise SystemExit(1)

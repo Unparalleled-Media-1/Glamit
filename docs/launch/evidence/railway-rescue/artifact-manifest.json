@@ -1,0 +1,50 @@
+{
+  "scope": "Local audit traces and real deployed-access failure trace; not native device/provider evidence",
+  "artifacts": [
+    {
+      "path": "/workspace/artifacts/glam-railway-rescue/android-web.zip",
+      "bytes": 2728278,
+      "sha256": "b52a11c3fe46c75dc7189e1f7aced7377c03f38ee4e4ecd967b3bc670c5a3fb5"
+    },
+    {
+      "path": "/workspace/artifacts/glam-railway-rescue/deployed-access-trace.zip",
+      "bytes": 45155,
+      "sha256": "94d57ab9a8d9dcf3a372edb1db9fb9b25fe1ccb7c6f380ddedb54ba3b7b12046"
+    },
+    {
+      "path": "/workspace/artifacts/glam-railway-rescue/desktop.zip",
+      "bytes": 5828170,
+      "sha256": "cf68cb199193c1bea72ae80796b87a637edb0db207616dae392c2f30b76f0bb0"
+    },
+    {
+      "path": "/workspace/artifacts/glam-railway-rescue/interactions-desktop.zip",
+      "bytes": 123636443,
+      "sha256": "c659a9e999c776731c6b5b3afc3ddc948bc1d86b5c52c0a2fbdf1f201b78f171"
+    },
+    {
+      "path": "/workspace/artifacts/glam-railway-rescue/interactions-iphone-web.zip",
+      "bytes": 107909975,
+      "sha256": "b4052fe1fdd0fc8940d2e811cb04756f59732bb48bcbf734c6a3eac0e3ae3552"
+    },
+    {
+      "path": "/workspace/artifacts/glam-railway-rescue/iphone-web.zip",
+      "bytes": 6223851,
+      "sha256": "f959658591b2c500d1980e2cda474bcee92cbcc7e345a22b459cd4a12e19293d"
+    },
+    {
+      "path": "/workspace/artifacts/glam-railway-rescue/landscape-web.zip",
+      "bytes": 1868086,
+      "sha256": "5a886ec9c5a4d08287f41b5016d9a5395a86705c98bb9e334408822230493265"
+    },
+    {
+      "path": "/workspace/artifacts/glam-railway-rescue/tablet.zip",
+      "bytes": 3222940,
+      "sha256": "f0ff144f4ca546961475aceec0303560bdc17cddf22b5d4fff61ab53bc2f6cdc"
+    },
+    {
+      "path": "/workspace/artifacts/glam-railway-rescue/workspace-layouts.zip",
+      "bytes": 5611004,
+      "sha256": "441b18cbd648a626a6d92bf2b48bd0f1e35d43e5f8d11a22646dab1ceb525fa8"
+    }
+  ]
+}

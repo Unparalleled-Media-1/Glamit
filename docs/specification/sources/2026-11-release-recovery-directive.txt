@@ -1,0 +1,266 @@
+## GLAM Beauty — Release audit assessment
+
+Codex has made meaningful progress on the release controls, but GLAM Beauty is still not ready for public deployment.
+
+The most important improvement is that the release validator can no longer accept green labels without evidence that the actual Railway deployment works.
+
+However, the audit also reveals that your biggest remaining problem is deployment access and verification, not necessarily broken application code.
+
+Public launch status
+
+NO-GO
+
+# 0 / 31
+
+Deployed critical journeys completed
+
+# 12
+
+Unresolved P1 items
+
+# 39
+
+Routes discovered
+
+# 260
+
+PostgreSQL tests passed locally
+
+Figures reported by Codex; not independently verified against the live Railway environment.
+
+### What is actually established
+
+| Area                    | Result                                                                |
+| ----------------------- | --------------------------------------------------------------------- |
+| GitHub branch           | `feat/platform-foundations` is the reported default; no `main` exists |
+| Release validator       | Improved, with negative tests and 12 mandatory gates                  |
+| Local code checks       | Passing                                                               |
+| Supabase                | Reported healthy, 41 public tables with RLS                           |
+| Railway browser testing | Blocked by proxy tunnel failure                                       |
+| Railway deployment logs | Not accessed                                                          |
+| Deployed commit SHA     | Unknown                                                               |
+| SMS / social login      | Disabled                                                              |
+| GLAM Beauty domain CORS | Edge Function returns 403                                             |
+| Stripe                  | Live-mode configuration detected; financial mutations blocked         |
+| Public deployment       | Not approved                                                          |
+
+One correction to my earlier advice: there is no reason to switch Railway to a nonexistent GitHub `main` branch. Keep `feat/platform-foundations` as the release source for now. A later branch rename or migration can be handled separately, without blocking launch preparation.
+
+## The next step: unblock Railway, then repair the remaining failures
+
+I would not commission another full application audit yet. Codex has already collected extensive local evidence. Repeating the same tests without access to the deployed environment will not establish readiness.
+
+Instead, work through these priorities.
+
+1. Give Codex the correct Railway access
+
+   The token was reportedly added to Railway service variables. That makes it available to the running Railway service, not automatically to Codex.
+
+   Configure a project-scoped `RAILWAY_TOKEN` in the Codex execution environment's secure secrets, not in GLAM Beauty's public application configuration. Remove any unnecessary copy from Railway service variables after checking dependencies. Never expose the value.
+
+2. Resolve the browser proxy failure
+
+   `net::ERR_TUNNEL_CONNECTION_FAILED` means the browser could not reach the deployed site through its required network path. It does not prove that GLAM Beauty itself is broken.
+
+   Codex should test DNS, proxy configuration, outbound HTTPS and the Railway hostname separately. If its environment cannot access Railway, use a GitHub Actions runner or another authorized test runner with working network access.
+
+3. Repair authentication and CORS
+
+   Configure a supported SMS provider, verify OTP delivery and establish the correct GLAM Beauty production origins. Diagnose the Edge Function's CORS 403 and distinguish preflight failures from authorization failures. Enable social providers only after their credentials and callbacks are verified.
+
+4. Verify Stripe safely
+
+   Because live mode was detected, do not run payment mutation tests against the existing live configuration. Use separately configured Stripe test-mode credentials and webhooks for end-to-end financial verification.
+
+5. Complete the 31 deployed journeys
+
+   Once Railway is reachable, run all 31 critical workflows against the exact deployed commit. Repair failures, repeat regression tests and produce the final release decision.
+
+## Send this next instruction to Codex
+
+GLAM BEAUTY — RELEASE RECOVERY EXECUTION, NOT ANOTHER LOCAL AUDIT
+
+# GLAM BEAUTY — RELEASE RECOVERY EXECUTION, NOT ANOTHER LOCAL AUDIT
+
+Continue from the existing Railway-first release audit at commit `d846b94` on `feat/platform-foundations`.
+
+Keep feature development frozen.
+
+Preserve the corrected version 2 release-lock validator, the 12 mandatory gates, all regression tests and the ten existing launch reports.
+
+## 1. RESPECT THE ACTUAL GIT STATE
+
+The repository currently has no `main` branch.
+
+The default branch is `feat/platform-foundations`.
+
+PR21–26 are reported merged.
+
+Do not attempt to switch Railway to a nonexistent branch.
+
+Do not create, rename, delete or force-update branches merely to satisfy a deployment convention.
+
+## 2. RESTORE DEPLOYMENT VISIBILITY
+
+Railway project:
+`3f490939-cffd-4468-8c25-d90146f1b308`
+
+Railway environment:
+`93eeefda-99b8-462b-9041-421f9f5903ca`
+
+Railway web service:
+`d2a011b7-929e-4302-809a-27ca7345621a`
+
+Verify whether the Codex execution environment has an authorized Railway token.
+
+Do not assume that a token configured inside Railway service variables is available to Codex.
+
+If access is unavailable, report the exact missing access requirement.
+
+Once access works, retrieve actual deployment and runtime logs, deployment status, deployed commit SHA, service configuration and health-check results.
+
+Do not print tokens or secrets.
+
+## 3. RESOLVE NETWORK TESTING
+
+Investigate the Chromium proxy error:
+
+`net::ERR_TUNNEL_CONNECTION_FAILED`
+
+Distinguish:
+
+* Codex environment networking failure
+
+* Proxy configuration failure
+
+* DNS failure
+
+* Railway service unavailability
+
+* Application runtime failure
+
+Do not classify all 39 blocked routes as application defects without evidence.
+
+If the Codex environment cannot reach Railway, configure an authorized CI-based Playwright runner with suitable network access.
+
+The runner must upload screenshots, traces, test results and deployed commit evidence.
+
+## 4. REPAIR DEMONSTRATED APPLICATION BLOCKERS
+
+After obtaining the necessary access, prioritize:
+
+A. Railway build and runtime health
+
+B. Frontend-to-API connectivity
+
+C. Supabase production connectivity and authorization
+
+D. GLAM Beauty domain CORS failures
+
+E. SMS OTP provider setup and verification
+
+F. OAuth provider configuration and callbacks
+
+G. Stripe test-mode integration and financial reconciliation
+
+H. Cross-platform authentication and session persistence
+
+I. All critical consumer, merchant, creator, professional and admin journeys
+
+Do not enable unconfigured integrations or simulate successful provider calls.
+
+Do not perform live financial mutations.
+
+Do not change production database records destructively.
+
+## 5. EXECUTE DEPLOYED END-TO-END TESTS
+
+Test the actual Railway deployment, not just localhost.
+
+For every critical journey, capture:
+
+* Test identifier
+
+* Expected behavior
+
+* Actual behavior
+
+* Deployed commit SHA
+
+* Test timestamp
+
+* HTTP/API evidence
+
+* Screenshot or trace
+
+* Pass, fail or blocked status
+
+* Defect reference
+
+All 31 critical journeys must be completed successfully before the corresponding release gate can pass.
+
+## 6. CORRECT DEFECTS WITHOUT REGRESSIONS
+
+For each demonstrated defect:
+
+1. Reproduce.
+
+2. Identify root cause.
+
+3. Add a failing test.
+
+4. Implement the smallest safe fix.
+
+5. Run local regression tests.
+
+6. Deploy through the existing approved release workflow.
+
+7. Verify the deployed correction.
+
+8. Update the defect register.
+
+Do not modify unrelated features.
+
+## 7. FINAL RELEASE DECISION
+
+Maintain NO-GO until:
+
+* All 12 mandatory gates pass.
+
+* The deployed commit SHA is verified.
+
+* Railway HTTPS health and readiness checks pass.
+
+* All 31 critical deployed journeys pass.
+
+* Backend, Supabase and CORS checks pass.
+
+* Required authentication methods work.
+
+* Financial tests pass in test mode.
+
+* Rollback evidence exists.
+
+* No P0/P1 defects remain.
+
+* Required real-device testing is complete.
+
+* Explicit final public-launch approval is received.
+
+Update the existing reports rather than creating duplicate audit documents.
+
+Return the exact remaining blockers and the actions required to remove them.
+
+Start with Railway access and network verification. Do not repeat the full local audit until deployed testing is possible.
+
+## What I would do immediately
+
+First action: correct Railway token placement
+
+Open the Codex environment settings and add `RAILWAY_TOKEN` under secure environment secrets. Then restart the Codex environment so the new secret is available.
+
+The fact that Railway itself has the token does not give Codex permission to inspect Railway. This is the clearest immediate access issue identified in the report.
+
+After that, the next Codex run should produce something genuinely new: actual Railway deployment logs, the deployed SHA, and either successful live-site test results or a precise network-access blocker.
+
+I would keep GLAM Beauty at NO-GO until that evidence exists. The improved release validator is valuable, but it is the foundation for launch verification—not the launch verification itself.

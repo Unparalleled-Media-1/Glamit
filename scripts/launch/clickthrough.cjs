@@ -8,7 +8,7 @@ const fs = require("node:fs"),
   net = require("node:net"),
   { spawn } = require("node:child_process");
 const ROOT = path.resolve(__dirname, "../.."),
-  EVIDENCE = path.join(ROOT, "docs/launch/evidence");
+  EVIDENCE = process.env.GLAM_LAUNCH_EVIDENCE || path.join(ROOT, "docs/launch/evidence");
 const OUTPUT = process.env.GLAM_LAUNCH_ARTIFACTS ||
   "/workspace/artifacts/glam-launch";
 fs.mkdirSync(OUTPUT, { recursive: true });

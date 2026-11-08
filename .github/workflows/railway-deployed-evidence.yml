@@ -1,0 +1,36 @@
+name: Railway deployed read-only evidence
+on:
+  pull_request:
+    paths:
+      - .github/workflows/railway-deployed-evidence.yml
+      - scripts/launch/railway-ci-probe.cjs
+      - tests/launch/railway-ci-probe.test.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  deployed-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+      - run: node --test tests/launch/railway-ci-probe.test.cjs
+      - run: npm ci --ignore-scripts --prefix docs/design-preview
+      - run: node docs/design-preview/node_modules/playwright/cli.js install --with-deps chromium
+      - name: Probe the existing Railway deployment without mutations
+        run: node scripts/launch/railway-ci-probe.cjs
+        env:
+          GLAM_LAUNCH_ARTIFACTS: ${{ runner.temp }}/railway-deployed-evidence
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: railway-deployed-evidence-${{ github.run_id }}
+          path: ${{ runner.temp }}/railway-deployed-evidence
+          if-no-files-found: error
+          retention-days: 14
+      - name: Record evidence scope
+        if: always()
+        run: echo 'Read-only deployed evidence collected. A green collection job does not pass the 31 journeys or authorize launch; inspect report.json.' >> "$GITHUB_STEP_SUMMARY"

@@ -676,4 +676,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if (E / "railway-rescue/deployed-clickthrough.json").exists():
+        from rescue_report import main as railway_report
+
+        railway_report()
+    else:
+        main()

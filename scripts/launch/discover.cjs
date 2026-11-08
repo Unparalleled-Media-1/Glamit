@@ -80,6 +80,9 @@ for (
           handler: attrs.filter((a) =>
             /^on(Press|Click|Change|Submit)$/.test(a.name.text)
           ).map((a) => a.name.text),
+          handler_source: Object.fromEntries(attrs.filter((a) =>
+            /^on(Press|Click|Change|Submit)$/.test(a.name.text)
+          ).map((a) => [a.name.text, a.initializer?.getText(s).slice(0,5000) || null])),
         });
       }
     }
@@ -108,7 +111,7 @@ const value = {
     "Source declarations only. Runtime inventory and functional proof are separate.",
 };
 fs.writeFileSync(
-  path.join(root, "docs/launch/evidence/source-inventory.json"),
+  path.join(process.env.GLAM_LAUNCH_EVIDENCE || path.join(root, "docs/launch/evidence"), "source-inventory.json"),
   JSON.stringify(value, null, 2) + "\n",
 );
 console.log(

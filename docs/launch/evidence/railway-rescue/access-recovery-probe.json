@@ -1,0 +1,16 @@
+{
+  "target": "glamit-web-production.up.railway.app",
+  "local_dns": {
+    "status": "FAILED_LOCAL_RESOLVER",
+    "errno": -3
+  },
+  "https_proxy_present": true,
+  "proxy_scheme": "http",
+  "railway_token_present": false,
+  "railway_api_token_present": false,
+  "outer_executor_https_result": "CONNECT_TUNNEL_REFUSED_HTTP_403",
+  "application_response_received": false,
+  "classification": "Managed egress proxy refused the tunnel before a Railway application response; not evidence of application runtime failure. GitHub HTTPS API succeeds through the inherited proxy.",
+  "observed_at": "2026-11-07T20:23:58.399162+00:00",
+  "github_secret_name_inventory": "HTTP 403: repository integration lacks actions-secrets read permission; no secret values requested"
+}
