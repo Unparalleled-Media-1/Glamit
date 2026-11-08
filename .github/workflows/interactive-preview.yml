@@ -33,17 +33,17 @@ jobs:
       - run: npm run test:preview
       - run: npm run export --workspace=@glam/mobile
       - run: python scripts/archive-recent-builds.py
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: glam-interactive-preview
           path: dist/interactive-preview
           include-hidden-files: true
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: glam-last-24-hours-source-snapshots
           path: dist/build-snapshots/*.zip
           compression-level: 0
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: glam-ios-android-javascript-exports
           path: apps/mobile/dist
