@@ -1,0 +1,15 @@
+✖ tests/client/production-web-config.test.mjs (157.579444ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 168.326201
+
+✖ failing tests:
+
+test at tests/client/production-web-config.test.mjs:1:1
+✖ tests/client/production-web-config.test.mjs (157.579444ms)
+  'test failed'

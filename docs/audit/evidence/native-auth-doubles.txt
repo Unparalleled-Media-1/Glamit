@@ -1,0 +1,7 @@
+
+> glam-ai@0.1.0 test:auth
+> node tests/auth/contracts.cjs && node tests/auth/native-gate.cjs
+
+Auth contract doubles passed: international E.164, safe destinations, generic errors, biometric-protected secrets/cancellation, rotation/deletion and native S256 PKCE.
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+Native gate doubles passed: no refresh unlock without biometric proof; cancellation, background locking, fresh proof and logout reject stale events.

@@ -1,0 +1,44 @@
+
+> glam-ai@0.1.0 build:web
+> npm run build --workspace=@glam/web
+
+
+> @glam/web@0.1.0 build
+> node ../../scripts/check-browser-auth-config.mjs && next build
+
+Public auth build configuration checked; no privileged key was accepted.
+▲ Next.js 16.4.5 (Turbopack)
+✓ Running next.config.ts took 44ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1650ms
+  Running TypeScript ...
+  Finished TypeScript in 2.2s ...
+  Collecting page data using 4 workers ...
+  Generating static pages using 4 workers (0/42) ...
+  Generating static pages using 4 workers (10/42)
+  Generating static pages using 4 workers (20/42)
+  Generating static pages using 4 workers (31/42)
+✓ Generating static pages using 4 workers (42/42) in 371ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├   /[section]
+│ ├ ● /offer
+│ ├ ● /results
+│ ├ ● /destination
+│ └ ● [+31 more paths]
+├ ○ /admin
+├ ƒ /api/capabilities
+├ ƒ /api/health/live
+├ ƒ /api/health/ready
+├ ○ /auth/callback
+├ ○ /business
+└ ○ /login
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand

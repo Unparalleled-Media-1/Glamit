@@ -1,0 +1,790 @@
+# GLAM Beauty — Complete Feature Audit & Implementation Verification
+
+We should now conduct a full product-completeness audit of everything discussed for GLAM Beauty (formerly GLAM AI), comparing the agreed requirements against what Codex has actually built.
+
+This needs to go beyond the previous click-through audit. A click-through test checks whether existing buttons work; a feature-completeness audit also discovers features that were never built, screens that are missing, and workflows that exist only as placeholders.
+
+The audit should cover the website, iOS app, Android app, shared backend, Supabase, Railway, integrations and administration.
+
+### The standard for calling a feature complete
+
+A feature should only receive 100% complete status when all relevant parts are verified:
+
+1
+
+Interface exists
+
+The feature is accessible in the correct web or mobile experience.
+
+2
+
+Backend works
+
+Real API operations execute successfully, with appropriate permissions.
+
+3
+
+Supabase connected
+
+Data is stored, retrieved and secured correctly.
+
+4
+
+External integrations work
+
+Real providers respond where the feature depends on them.
+
+5
+
+End-to-end tested
+
+The complete journey succeeds, including failure and recovery cases.
+
+6
+
+Deployed and verified
+
+The exact released version works on Railway or a real mobile build.
+
+The latest Codex report does not establish that GLAM Beauty is fully built. It reported 39 routes, 41 public Supabase tables, 31 uncompleted deployed critical journeys, disabled SMS/social authentication, and unresolved Railway verification. Those are the starting findings, not a passing audit.
+
+## 1. Full GLAM Beauty feature inventory
+
+This is the baseline Codex must reconcile with the repository. It includes features explicitly discussed, plus supporting capabilities required to make those features operational.
+
+## 96 audit checkpoints
+
+Across 10 product and operational areas
+
+Expand all
+
+Identity & onboarding
+
+8 checkpoints
+
+SMS OTP signup and login
+
+Google, Apple and Facebook login
+
+Face ID, Touch ID and Android biometrics
+
+Guest exploration
+
+One account with multiple roles
+
+Secure account linking
+
+Profile, privacy, consent and account deletion
+
+Session refresh, recovery and logout
+
+AI Beauty Analysis
+
+7 checkpoints
+
+Face shape and facial-feature analysis
+
+Nonmedical skin appearance analysis
+
+Hair type, texture and condition analysis
+
+Personal colour and undertone analysis
+
+Personalized beauty recommendations
+
+Style Passport with saved user-approved results
+
+Image privacy, correction and deletion
+
+AI Studio & Virtual Try-On
+
+8 checkpoints
+
+AI makeover generation
+
+Virtual makeup try-on
+
+Hairstyle and hair-colour previews
+
+Outfit and accessory virtual try-on
+
+Live Look Builder across beauty and fashion
+
+Before-and-after comparison
+
+Save, edit, share and reopen looks
+
+Generation history, errors and retries
+
+Personal Styling & Discovery
+
+10 checkpoints
+
+Conversational AI Beauty Advisor
+
+AI Personal Stylist
+
+Occasion and event styling
+
+Destination and weather-based outfits
+
+Packing lists
+
+Digital Wardrobe
+
+Outfit combinations using owned items
+
+Universal Look Search from screenshots
+
+Visual product search from photos
+
+Location-aware recommendations
+
+Shopping & Marketplace
+
+10 checkpoints
+
+Merchants & Professionals
+
+11 checkpoints
+
+Creators & Social Media
+
+11 checkpoints
+
+Advertising & Growth
+
+9 checkpoints
+
+Payments & Financial Controls
+
+9 checkpoints
+
+Platform, Admin & Release
+
+13 checkpoints
+
+These are audit requirements, not confirmed implementation results. Some integrations may legitimately be blocked pending credentials, approvals or real-device testing.
+
+## 2. Master Codex instruction — audit, build missing features, repair and verify
+
+This instruction explicitly tells Codex to use the existing product rather than creating another application, and to implement missing approved functionality without breaking what already works.
+
+GLAM BEAUTY — COMPLETE PRODUCT AUDIT, FEATURE GAP CLOSURE AND 100% VERIFIED IMPLEMENTATION
+
+# GLAM BEAUTY — COMPLETE PRODUCT AUDIT, FEATURE GAP CLOSURE AND 100% VERIFIED IMPLEMENTATION
+
+## MISSION
+
+Conduct a comprehensive, evidence-based audit of every GLAM Beauty feature discussed and approved.
+
+Our objective is to ensure that every approved feature is genuinely implemented, connected, functional, secure and available in its intended website or mobile experience.
+
+This is an AUDIT + IMPLEMENTATION + REPAIR + VERIFICATION assignment.
+
+Do not create a new application.
+
+Do not produce a checklist and claim completion without inspecting and testing the actual code.
+
+Do not add speculative features beyond the approved GLAM Beauty scope.
+
+## PROJECT IDENTITY
+
+Brand: GLAM Beauty
+Website: [https://www.glam.beauty](https://www.glam.beauty)
+Former product name: GLAM AI
+
+Company: Zanzu Technologies Inc.
+
+Repository: Unparalleled-Media-1/Glamit
+
+Current reported default branch: feat/platform-foundations
+
+Last reported audit baseline: d846b94
+
+Railway project: elegant-dedication
+
+Supabase project: bkkmsbxrxkqaveymcrgi
+
+Supabase branch: main (PRODUCTION)
+
+Use actual repository and deployment state if newer than the audit baseline.
+
+Preserve one repository, one production Supabase backend, and independent web, API and mobile release processes.
+
+## PART A — REQUIREMENTS RECONCILIATION
+
+Read the existing product requirements, repository documentation, route inventory, tests, pull requests, feature flags, database migrations and launch audit reports.
+
+Use the GLAM Beauty feature inventory supplied in this conversation as the acceptance baseline.
+
+Audit every module:
+
+1. Authentication and user identity
+
+2. AI Beauty Analysis
+
+3. Style Passport
+
+4. AI Studio and virtual try-on
+
+5. AI Advisor and Personal Stylist
+
+6. Occasion, destination and weather styling
+
+7. Digital Wardrobe
+
+8. Universal Look Search
+
+9. Visual Product Search
+
+10. Marketplace and shopping
+
+11. Merchant onboarding and Snap & List
+
+12. Shopping cart and multi-merchant orders
+
+13. Stripe Connect and financial controls
+
+14. Beauty professional and tailor bookings
+
+15. Creator Studio
+
+16. TikTok, Instagram, YouTube, Pinterest and Facebook connections
+
+17. Shoppable creator content
+
+18. Referrals, affiliate attribution and campaigns
+
+19. Location-aware advertising
+
+20. Subscriptions and AI usage
+
+21. Notifications
+
+22. Administration and moderation
+
+23. Web/mobile shared account and data
+
+24. Supabase security and Storage
+
+25. Railway deployment
+
+26. iOS/Android release preparation
+
+27. Monitoring, recovery and release readiness
+
+## PART B — FEATURE TRACEABILITY MATRIX
+
+Create:
+
+docs/audit/GLAM_BEAUTY_MASTER_FEATURE_MATRIX.csv
+
+For EVERY feature and subfeature record:
+
+* Unique feature ID
+
+* Module
+
+* Approved requirement
+
+* Priority: launch-critical / launch-optional / future
+
+* Intended platform: web / iOS / Android / admin / backend
+
+* Expected user journey
+
+* Actual frontend route or mobile screen
+
+* Actual component and source file
+
+* API endpoint or service function
+
+* Database tables and migration IDs
+
+* Storage buckets
+
+* External provider dependency
+
+* Environment and secret requirements, names only
+
+* Existing test files
+
+* Git commit or PR evidence
+
+* Local test result
+
+* Deployed test result
+
+* Real-device test result where applicable
+
+* Security verification result
+
+* Defect ID
+
+* Implementation status
+
+* Remaining blockers
+
+* Responsible remediation step
+
+Use these statuses:
+
+VERIFIED COMPLETE
+PARTIALLY IMPLEMENTED
+MISSING
+BROKEN
+PLACEHOLDER
+BLOCKED BY CREDENTIALS
+BLOCKED BY PLATFORM APPROVAL
+BLOCKED BY DEPLOYMENT ACCESS
+NOT TESTED
+APPROVED FOR LATER PHASE
+
+Do not count NOT TESTED, BLOCKED or PLACEHOLDER as VERIFIED COMPLETE.
+
+## PART C — AUDIT BOTH WEB AND MOBILE
+
+Inspect every implemented website route and mobile screen.
+
+Determine whether each feature:
+
+* Exists in both platforms where required
+
+* Exists only on web
+
+* Exists only on mobile
+
+* Is intentionally admin-only
+
+* Is linked from navigation
+
+* Is accessible with the correct role
+
+* Has functioning buttons and forms
+
+* Uses the actual backend
+
+* Persists data
+
+* Handles errors
+
+* Supports mobile responsiveness
+
+* Has test coverage
+
+Do not assume a responsive website is equivalent to a native mobile implementation.
+
+For Expo/React Native, verify actual native screens and build configuration.
+
+## PART D — BACKEND AND DATABASE AUDIT
+
+Inspect the original Supabase production project.
+
+The previous report identified 41 public tables at schema version 0013; recheck rather than assuming that count remains current.
+
+For every approved feature:
+
+1. Identify the necessary data model.
+
+2. Verify the existing tables.
+
+3. Verify migration history.
+
+4. Verify constraints and indexes.
+
+5. Verify RLS and organization ownership.
+
+6. Verify Storage access.
+
+7. Verify the corresponding backend service.
+
+8. Verify read/write behavior.
+
+9. Verify data retention and deletion requirements.
+
+Do not create duplicate tables.
+
+Do not reset production.
+
+Validate schema changes locally before requesting production deployment.
+
+## PART E — AI FUNCTIONALITY AUDIT
+
+Test all AI features using real provider calls in an authorized test environment.
+
+Verify:
+
+* Input validation
+
+* User consent
+
+* Provider invocation
+
+* Genuine generated or retrieved output
+
+* Output display
+
+* Persistence
+
+* User corrections
+
+* Reopening saved results
+
+* Failure recovery
+
+* Privacy protection
+
+* Usage accounting
+
+No hardcoded AI responses masquerading as live results.
+
+Do not infer protected demographic attributes or generate medical diagnoses.
+
+## PART F — AUTHENTICATION
+
+Verify:
+
+* SMS OTP
+
+* Google login
+
+* Apple login
+
+* Facebook login
+
+* Mobile biometrics
+
+* Guest exploration
+
+* One identity across multiple roles
+
+* Secure account linking
+
+* Session lifecycle
+
+* Account recovery
+
+* Profile creation
+
+* Account deletion
+
+The previous audit reported SMS and social providers disabled.
+
+Do not mark them complete until actual provider tests succeed.
+
+If credentials or provider approvals are missing, identify them precisely without exposing secret values.
+
+## PART G — CREATOR AND SOCIAL MEDIA INTEGRATIONS
+
+Verify that Creator Studio supports:
+
+* Creator activation
+
+* TikTok account linking
+
+* Instagram linking
+
+* YouTube linking
+
+* Pinterest linking
+
+* Facebook Page linking
+
+* Account disconnection
+
+* Authorized media retrieval
+
+* Shoppable creator looks
+
+* Product associations
+
+* Referral attribution
+
+* Brand campaign applications
+
+* Earnings records
+
+Use only official, permitted provider APIs.
+
+Do not fabricate audience metrics, permissions or API capabilities.
+
+## PART H — MARKETPLACE AND PAYMENTS
+
+Test:
+
+* Merchant registration
+
+* Product catalog
+
+* Snap & List
+
+* Inventory
+
+* Search and filtering
+
+* Multi-merchant cart
+
+* Checkout
+
+* Order splitting
+
+* Stripe test payments
+
+* 10% eligible physical-product commission
+
+* Refunds
+
+* Chargebacks
+
+* Merchant settlements
+
+* Reconciliation
+
+* Merchant access isolation
+
+Use Stripe test mode for all financial mutations.
+
+Do not enable live payments as part of the audit.
+
+Do not invent unapproved professional booking or creator commission percentages.
+
+## PART I — RAILWAY AND DEPLOYED VERIFICATION
+
+The previous audit reported:
+
+* Chromium proxy tunnel failure
+
+* Zero deployed critical journeys completed
+
+* Unknown deployed SHA
+
+* Unknown actual Railway runtime logs
+
+* Unresolved domain CORS failure
+
+Resolve deployment visibility before claiming launch readiness.
+
+If Codex cannot access Railway, configure an authorized CI-based test runner or report the exact access blocker.
+
+Test the actual deployed commit.
+
+Verify:
+
+* HTTPS
+
+* Web health
+
+* API readiness
+
+* Frontend/backend communication
+
+* Supabase connectivity
+
+* CORS
+
+* Auth callbacks
+
+* Asset delivery
+
+* Runtime stability
+
+* Rollback
+
+Do not change Railway services or domains without demonstrated need and authorization.
+
+## PART J — REMEDIATION
+
+For every missing or broken approved feature:
+
+1. Confirm the approved requirement.
+
+2. Determine whether it is launch-critical or deferred.
+
+3. Identify dependencies.
+
+4. Write a failing test.
+
+5. Implement or repair the feature.
+
+6. Connect the actual backend and database.
+
+7. Verify security.
+
+8. Run local tests.
+
+9. Run dependent regression tests.
+
+10. Verify the deployed feature when access is available.
+
+11. Update the feature matrix.
+
+Work in small, reviewable batches.
+
+Do not simultaneously rewrite unrelated modules.
+
+Do not bypass release gates to speed up implementation.
+
+## PART K — PRIORITY ORDER
+
+Priority 0: Security, data integrity, deployment visibility and financial correctness.
+
+Priority 1: Authentication, AI core journeys, Style Passport, product discovery, checkout and critical merchant operations.
+
+Priority 2: Professional bookings, Creator Studio, social integrations, Digital Wardrobe, visual search, advertising and growth.
+
+Priority 3: Optional advanced experiences and approved later-phase functionality.
+
+Where an approved feature is launch-critical, it must be complete before public release.
+
+Where a feature is optional and incomplete, safely hide or disable it and obtain explicit approval to defer it.
+
+Do not silently reduce scope.
+
+## PART L — REQUIRED TESTING
+
+Run:
+
+* Unit tests
+
+* Database migration tests
+
+* API integration tests
+
+* RLS and authorization tests
+
+* Playwright browser click-through tests
+
+* Mobile component and device tests
+
+* Provider integration tests
+
+* Stripe test-mode reconciliation
+
+* Visual regression
+
+* Accessibility
+
+* Performance
+
+* Security and secret scanning
+
+* Deployed smoke tests
+
+* End-to-end critical user journeys
+
+Test consumer, merchant, professional, creator, advertiser and administrator roles.
+
+Preserve the existing release-lock version 2 requirements.
+
+## PART M — DELIVERABLES
+
+Produce:
+
+1. GLAM_BEAUTY_MASTER_FEATURE_MATRIX.csv
+
+2. GLAM_BEAUTY_FEATURE_COVERAGE_REPORT.md
+
+3. WEB_VS_MOBILE_PARITY_REPORT.md
+
+4. AI_FEATURE_AUDIT.md
+
+5. AUTHENTICATION_AUDIT.md
+
+6. MARKETPLACE_AND_PAYMENTS_AUDIT.md
+
+7. CREATOR_SOCIAL_INTEGRATION_AUDIT.md
+
+8. SUPABASE_BACKEND_AUDIT.md
+
+9. RAILWAY_DEPLOYMENT_AUDIT.md
+
+10. MISSING_FEATURE_IMPLEMENTATION_PLAN.md
+
+11. DEFECT_AND_REGRESSION_REGISTER.md
+
+12. PUBLIC_LAUNCH_GO_NO_GO.md
+
+Include exact source-file references, test results, screenshots, traces and deployed evidence.
+
+## PART N — COMPLETION REPORT
+
+Report:
+
+* Total approved features
+
+* Fully verified features
+
+* Partially implemented features
+
+* Missing features
+
+* Broken features
+
+* Placeholder features
+
+* Blocked integrations
+
+* Web/mobile parity gaps
+
+* Security defects
+
+* Financial defects
+
+* Railway blockers
+
+* Remaining launch-critical work
+
+* Release readiness decision
+
+Calculate coverage using explicit counts and distinguish code presence from tested operational readiness.
+
+A feature is not 100% complete merely because a route, button, table or test fixture exists.
+
+Do not mark the entire product complete while mandatory deployed tests are blocked.
+
+## EXECUTION RULE
+
+First create the real feature matrix from repository evidence.
+
+Then repair and implement approved gaps in dependency order.
+
+Keep unrelated new feature development frozen.
+
+Preserve the working application and database.
+
+Do not deploy to production or activate live payments without the relevant approval.
+
+Continue until all launch-critical features are verified or report the exact remaining blockers.
+
+The final deliverable is an evidence-backed GLAM Beauty product-completeness audit and a tested release candidate, not another unsupported completion claim.
+
+## 3. How I want the results presented
+
+Codex should give you a measurable report, not just “everything is complete.”
+
+Example evidence-based audit format
+
+|                           |         |                                                        |
+| ------------------------- | ------- | ------------------------------------------------------ |
+| Feature                   | Status  | Evidence / gap                                         |
+| SMS OTP                   | Blocked | Provider disabled in previous audit                    |
+| Supabase schema           | Partial | 41 public tables reported; feature coverage unverified |
+| Railway deployed journeys | Blocked | 0 of 31 completed in previous audit                    |
+| Creator Studio            | Unknown | Requires source and deployed verification              |
+| AI virtual try-on         | Unknown | Requires real-provider generation test                 |
+| Stripe checkout           | Blocked | Live-mode mutations withheld; test-mode proof needed   |
+
+Illustrative audit entries based on the previous Codex report, not new verification.
+
+## 4. My recommendation on launch scope
+
+There is an important decision here: all approved features should ultimately be implemented, but not every advanced feature has to block the first public release.
+
+I would make SMS authentication, Style Passport, core AI beauty analysis, AI Studio, product discovery, merchant catalog, secure checkout, basic bookings where advertised, and essential administration the first release's mandatory journeys.
+
+Advanced social integrations, group styling, complex influencer campaigns and other nonessential capabilities can be released afterward—provided they are clearly identified as deferred, safely hidden where incomplete, and you approve that scope.
+
+This avoids turning the public launch into an indefinite development project while still holding Codex accountable for the complete GLAM Beauty vision.
+
+The immediate next deliverable should be the master feature matrix, showing precisely what exists, what is missing, what is broken, and what has actually passed testing. Only after that should Codex begin closing the gaps.
