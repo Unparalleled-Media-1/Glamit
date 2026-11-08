@@ -33,7 +33,17 @@ def target(xml, label):
             left, top, right, bottom = map(int, numbers.groups())
             if right > left and bottom > top:
                 return str((left + right) // 2), str((top + bottom) // 2)
-    raise RuntimeError(f"Actual native tab not found: {label}")
+    visible = sorted(
+        {
+            node.get(key, "")
+            for node in ET.fromstring(xml).iter("node")
+            for key in ("text", "content-desc")
+            if node.get(key)
+        }
+    )
+    raise RuntimeError(
+        f"Actual native tab not found: {label}; visible native labels: {visible[:30]}"
+    )
 
 
 def main():
@@ -46,6 +56,8 @@ def main():
         ("Profile", "profile"),
     ]:
         xml = hierarchy()
+        (OUTPUT / f"before-{name}.xml").write_bytes(xml)
+        (OUTPUT / f"before-{name}.png").write_bytes(adb("exec-out", "screencap", "-p"))
         x, y = target(xml, label)
         adb("shell", "input", "tap", x, y)
         time.sleep(2)
@@ -57,4 +69,13 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        OUTPUT.mkdir(parents=True, exist_ok=True)
+        try:
+            (OUTPUT / "runtime.txt").write_bytes(
+                adb("logcat", "-d", "-t", "500", "ReactNativeJS:E", "AndroidRuntime:E", "*:S")
+            )
+        except subprocess.CalledProcessError:
+            pass
