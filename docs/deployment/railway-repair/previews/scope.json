@@ -1,0 +1,14 @@
+{
+  "nativeDevice": false,
+  "engine": "Chromium",
+  "source": "Actual web application in interactive review hub",
+  "ios": {
+    "width": 390,
+    "height": 844
+  },
+  "android": {
+    "width": 412,
+    "height": 915
+  },
+  "nativeBuilds": "Not included: EAS registration/signing/device setup required"
+}

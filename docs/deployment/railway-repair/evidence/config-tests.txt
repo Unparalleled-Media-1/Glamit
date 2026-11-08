@@ -1,0 +1,19 @@
+✔ web-only work does not build mobile or API (3.079196ms)
+✔ native-only work does not build web or API (0.477348ms)
+✔ API-only work is independent (0.213934ms)
+✔ shared JS changes test both clients (0.294949ms)
+✔ contracts test consumers and API; docs do not redeploy (0.195563ms)
+✔ photo regression changes run the web checks (0.189439ms)
+✔ Railway config validation changes check both deployment images (0.098887ms)
+✔ web: actual Dockerfile and readiness path exist from repository root (0.787811ms)
+✔ web: empty, default-root and wrong-service Dockerfile paths are refused (1.312312ms)
+✔ api: actual Dockerfile and readiness path exist from repository root (0.11024ms)
+✔ api: empty, default-root and wrong-service Dockerfile paths are refused (0.165219ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 74.926235

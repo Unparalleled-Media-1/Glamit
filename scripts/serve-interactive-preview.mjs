@@ -16,6 +16,8 @@ const mime = {
   ".css": "text/css",
   ".json": "application/json",
   ".webp": "image/webp",
+  ".png": "image/png",
+  ".webm": "video/webm",
 };
 const server = http.createServer(async (req, res) => {
   try {

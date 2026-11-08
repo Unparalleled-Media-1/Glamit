@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
+import BrandLogo from "../apps/web/components/BrandLogo";
 import GlamApp from "../apps/web/components/GlamApp";
 import BusinessPortal from "../apps/web/components/BusinessPortal";
 import { sectionFromPath, appPath } from "../apps/web/lib/paths";
@@ -84,18 +85,23 @@ const tasks = [
 ];
 function PreviewHub() {
   const [task, setTask] = useState(0);
-  const [device, setDevice] = useState<"phone" | "desktop">("phone");
+  const [device, setDevice] = useState<"ios" | "android" | "desktop">(() => {
+    const requested = new URLSearchParams(location.search).get("device");
+    return requested === "android" || requested === "desktop"
+      ? requested
+      : "ios";
+  });
   const [reload, setReload] = useState(0);
   const t = tasks[task];
   return (
     <div className="preview-hub">
       <header className="preview-header">
         <a href={base + "/"} className="preview-wordmark">
-          ✧ GLAM <span>Beauty</span>
+          <BrandLogo />
         </a>
         <span className="preview-label">INTERACTIVE DESIGN REVIEW</span>
         <a
-          href="https://github.com/Unparalleled-Media-1/Glamit/tree/feat/personalized-results-journey"
+          href="https://github.com/Unparalleled-Media-1/Glamit/tree/feat/platform-foundations"
           target="_blank"
           rel="noreferrer"
         >
@@ -109,7 +115,8 @@ function PreviewHub() {
             <h1>Explore GLAM Beauty.</h1>
           </div>
           <span className="preview-status">
-            Responsive web preview · Live connections off
+            iOS/Android browser layouts · Not native builds · Live connections
+            off
           </span>
         </div>
         <section className="preview-toolbar" aria-label="Preview controls">
@@ -136,10 +143,16 @@ function PreviewHub() {
             aria-label="Preview viewport"
           >
             <button
-              aria-pressed={device === "phone"}
-              onClick={() => setDevice("phone")}
+              aria-pressed={device === "ios"}
+              onClick={() => setDevice("ios")}
             >
-              Phone
+              iOS
+            </button>
+            <button
+              aria-pressed={device === "android"}
+              onClick={() => setDevice("android")}
+            >
+              Android
             </button>
             <button
               aria-pressed={device === "desktop"}

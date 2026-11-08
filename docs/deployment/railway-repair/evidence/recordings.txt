@@ -1,0 +1,1 @@
+PASS 18 actual browser recordings. Native iOS/Android and live end-to-end acceptance remain blocked.

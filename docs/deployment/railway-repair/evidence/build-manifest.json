@@ -1,0 +1,14 @@
+{
+  "scope": "Local Docker image builds, original asset delivery, browser layouts and native JavaScript exports; no Railway deployment or native device proof",
+  "images": {
+    "web": "sha256:4ae4de64886f30d8b1a6202931df7ee2f778f4fd989eb9d9aa8a3ad6ad237031",
+    "api": "sha256:bf1bcc4b34d42ea242c69f4d89c842e5a9450226b741e9ae6a407816ae2e1b62"
+  },
+  "dockerfile_sha256": {
+    "deploy/railway/web.Dockerfile": "663dd3a8bd5dffd193025d93bda668350e700b9b3e163604ac66a57f03639520",
+    "deploy/railway/api.Dockerfile": "4f1f89d21935c3fcbdd2bdc987cde0893570c548b4d6780b527da3b8ea1e4f20"
+  },
+  "recording_files": 18,
+  "production_database_writes": false,
+  "native_device_runs": false
+}

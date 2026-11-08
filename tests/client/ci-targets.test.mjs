@@ -8,3 +8,5 @@ test("shared JS changes test both clients", () => { const t=targets(["packages/p
 test("contracts test consumers and API; docs do not redeploy", () => { assert(targets(["packages/contracts/openapi.json"]).backend); assert.deepEqual(targets(["docs/deployment/README.md"]), {web:false,mobile:false,backend:false,edge:false}); });
 
 test("photo regression changes run the web checks", () => assert.deepEqual(targets(["tests/photo/flow.cjs"]), {web:true,mobile:false,backend:false,edge:false}));
+
+test("Railway config validation changes check both deployment images", () => {const t=targets(["scripts/check-railway-config.mjs"]);assert(t.web && t.backend);});
