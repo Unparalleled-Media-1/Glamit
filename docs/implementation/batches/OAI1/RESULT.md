@@ -18,7 +18,7 @@ Opaque attempt IDs commit before provider I/O. The actor lock serializes quota/d
 
 The hourly attempt bound is operational, not customer pricing. Existing credits, 10% marketplace commission and financial logic are unchanged. Backend audit read/write permissions and authoritative visibility must pass before attempts; client DB roles cannot bypass the guard. All consent, active-session and eligibility checks run again before response disclosure. Withdrawal/regrant cannot revive a stale reply.
 
-Native controls include real service checks, legal-policy display, explicit grant/withdrawal, withdrawal retry, duplicate-tap locking, account/token fencing, local cancellation and honest error states. Briefs and replies stay in session state and are not transferred to another account or the old device planning notes. Leaving the screen cancels local delivery; it cannot guarantee cancellation of an already submitted provider operation. Other native consumer CompanionConnection operations remain unconnected and are not excused by the OpenAI key.
+Native controls include real service checks, legal-policy display, explicit grant/withdrawal, withdrawal retry (including uncertain grant delivery), duplicate-tap locking, account/token fencing, local cancellation and honest error states. Briefs and replies stay in session state and are not transferred to another account or the old device planning notes. Leaving the screen cancels local delivery; it cannot guarantee cancellation of an already submitted provider operation. Other native consumer CompanionConnection operations remain unconnected and are not excused by the OpenAI key.
 
 ## Verification
 

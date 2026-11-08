@@ -5,7 +5,9 @@
 react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
 react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
 react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
 PASS ios real native Advisor handlers: authenticated HTTP, explicit consent, duplicate-tap lock, account/token fencing, withdrawal/retry, no stale response (OS/HTTP doubled)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
 react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
 react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
 react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer

@@ -73,7 +73,7 @@ export default function NativeAIStylist({ account, apiOrigin, onLogin }: {
         patch({ busy: "", status: results[0].status === "fulfilled" ? results[0].value : null, policy: results[1].status === "fulfilled" ? results[1].value : null, error: results.find(r => r.status === "rejected")?.status === "rejected" ? failure((results.find(r => r.status === "rejected") as PromiseRejectedResult).reason) : "" });
     }
     async function consent(value: boolean) {
-        if (!client || !state.policy || generation !== current.current.generation || (value && busyRef.current))
+        if (!client || !state.policy || generation !== current.current.generation || (value && (busyRef.current || state.withdrawalPending)))
             return;
         pending.current?.abort();
         const g = generation, ticket = ++request.current, controller = new AbortController();
@@ -90,7 +90,7 @@ export default function NativeAIStylist({ account, apiOrigin, onLogin }: {
         catch (error) {
             if (valid(g, ticket)) {
                 busyRef.current = 0;
-                patch({ busy: "", error: value ? failure(error) : "Consent withdrawal was not confirmed. Retry withdrawing it; the response stays hidden." });
+                patch({ busy: "", withdrawalPending: true, error: value ? "Consent could not be confirmed. Withdraw the uncertain grant before choosing again." : "Consent withdrawal was not confirmed. Retry withdrawing it; the response stays hidden." });
             }
         }
     }
@@ -130,7 +130,7 @@ export default function NativeAIStylist({ account, apiOrigin, onLogin }: {
         }
         else
             patch({ brief, reply: null }); }} placeholder="Describe your occasion, preferences and what you already own…" style={s.input}/>
-      {state.policy && <><Text style={s.body}>{state.policy.content}</Text><View style={s.row}><Switch accessibilityLabel="Allow this text brief to be processed by OpenAI" value={state.consent} disabled={!!state.busy && !state.consent} onValueChange={value => void consent(value)}/><Text style={[s.body, { flex: 1 }]}>I agree to send this styling brief under the displayed policy.</Text></View></>}
+      {state.policy && <><Text style={s.body}>{state.policy.content}</Text><View style={s.row}><Switch accessibilityLabel="Allow this text brief to be processed by OpenAI" value={state.consent} disabled={(!!state.busy && !state.consent) || state.withdrawalPending} onValueChange={value => void consent(value)}/><Text style={[s.body, { flex: 1 }]}>I agree to send this styling brief under the displayed policy.</Text></View></>}
       {button(state.busy || "Ask my AI stylist", () => void ask(), !!state.busy || !state.consent || !state.brief.trim() || state.status?.state !== "CONNECTED" || !state.status.advice_enabled || !state.status.model_configured)}
       {state.withdrawalPending && !state.busy && button("Retry withdrawing AI consent", () => void consent(false))}
       {state.busy === "Asking your AI stylist…" && button("Stop waiting", () => { request.current++; pending.current?.abort(); busyRef.current = 0; patch({ busy: "", reply: null, error: "Stopped waiting locally. The provider may already have processed the request." }); })}
