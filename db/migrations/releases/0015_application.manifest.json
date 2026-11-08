@@ -1,0 +1,33 @@
+{
+  "target": "0015_private_media",
+  "starting_revision": "0014_creator_studio",
+  "revision": "0015_private_media",
+  "excluded_sandbox": "0009_stripe_test_ledger",
+  "artifact": "db/migrations/releases/0015_application.sql",
+  "sha256": "67f172d7ea775b7fa65895ab5f77250e61debf53969f4ed2801a8995cffdcf12",
+  "statement_count": 2,
+  "canonical_sources": {
+    "db/migrations/versions/0001_foundations.py": "cacbb66a16253b2058a3b3a617302762d86358bfa12e4180e66af08ad0a7f1ef",
+    "db/migrations/versions/0001_foundations.sql": "e38ccde698b49b661cb12a6a8d9594c5b34f7233a13b3544d6a9ccabee41a369",
+    "db/migrations/versions/0002_credit_safety.py": "06af2b198ead5940aa61fafe809aaf9396426f0316e40a8a6e9aaa83c2d3b5d3",
+    "db/migrations/versions/0003_server_only_access.py": "d1ff935b7f5cd120d014b9a3aa842e1f7109c40dc76f4524b11196b644cb0d20",
+    "db/migrations/versions/0004_analysis_workspaces.py": "44511886ab3a27de455722a84b58e1712cd2ad1b2e06fe36b95449bf1d980159",
+    "db/migrations/versions/0005_workspace_invitations.py": "73316c2f14713e4a1c3629a69fa99c043b426d5bdd983472bf2b918c80cada40",
+    "db/migrations/versions/0006_staff_context.py": "51d968048c7fd51dd85a9a76942fe98fdb950b74789382844e65a89e7ec98081",
+    "db/migrations/versions/0007_contextual_catalog.py": "de5670f34d6a2720669111601d2cbaaef0c5720bb6721accc966d79ccef27f96",
+    "db/migrations/versions/0008_catalog_market_policy.py": "c405c3395f90a7c87cdbabddf38f4776f75eca34b6be38f0635bd4913a24c54e",
+    "db/migrations/versions/0009_stripe_test_ledger.py": "6479a6946a73a5c378b4aa1e589234db6f279cb6900fc8d1b060d83264503b82",
+    "db/migrations/versions/0010_supabase_foundation.py": "98551b52756ff2cdc1fb7c08de752f2da49bb3d4da53a26eeabcb51a4ce14166",
+    "db/migrations/versions/0010_supabase_foundation.sql": "c5897352fb565dba4683d19ab3e87488daac525c97f1d5cd38e371bd1cb6db18",
+    "db/migrations/versions/0011_hosted_api.py": "d6495d752143fe9814b788745a6251e17a4ed3a7b97f29f1d822182ef3f57f10",
+    "db/migrations/versions/0011_hosted_api.sql": "3be91fbd418db690bdf94bdb45417579414990f25ffa49396d306e2d8a72dd98",
+    "db/migrations/versions/0012_hosted_routines.py": "dbf9773fa1f4b8f33b9bf97dd4842a9b25ed3c376aefd82d43cde60a057b8b1d",
+    "db/migrations/versions/0012_hosted_routines.sql": "7d8986135803b2f99bb50fbb31401f25d3573e16c61bbc4e50b54cf3772ba313",
+    "db/migrations/versions/0013_passwordless_accounts.py": "636027aeb5c116feab3fd7a45579021481066602259e0a374aef24b86c526fc1",
+    "db/migrations/versions/0013_passwordless_accounts.sql": "3a34d34888f89a9f18a88e4926f723986e9e05a869352c179cf85f20da99b8d9",
+    "db/migrations/versions/0014_creator_studio.py": "004791c47ce511dafc53f7d181758c9c5453f80ca56454dadf0f927f96558c73",
+    "db/migrations/versions/0014_creator_studio.sql": "d7444ac2929df2d97455a26777fa5915d414fcba1904f5de6054fa08c2daf657",
+    "db/migrations/versions/0015_private_media.py": "1890886ef5769c70e26836fd1c0362fa4877cbbcf190ee92ac4dc010dccc7f1c",
+    "db/migrations/versions/0015_private_media.sql": "f4d2c559c2ce7663d87e36e86ee54d0f6ee2b7eb84d653b54154bb07e229e19c"
+  }
+}

@@ -33,6 +33,7 @@ def export(
         if c.scalar(text("SELECT count(*) FROM pg_tables WHERE schemaname='public'")):
             raise RuntimeError("Build database must be empty; no automatic deletion is permitted")
         c.execute(text(Path("tests/fixtures/supabase_auth.sql").read_text()))
+        c.execute(text(Path("tests/fixtures/supabase_storage.sql").read_text()))
     statements = []
 
     def capture(conn, cursor, statement, parameters, context, executemany):

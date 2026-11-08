@@ -33,6 +33,7 @@ from glam_api.credits import balance
 from glam_api.db import get_session
 from glam_api.deployment import cors_origins, deployment_revision
 from glam_api.observability import http_error, request_evidence, validation_error
+from glam_api.private_media import build_media_router
 from glam_api.workspaces import build_router
 
 app = FastAPI(title="GLAM Beauty", version="0.1.0", docs_url=None, redoc_url=None)
@@ -168,8 +169,13 @@ def ready(db: Db):
         applied = set(db.scalars(text("SELECT version_num FROM alembic_version")))
     except SQLAlchemyError:
         raise HTTPException(503, "Database readiness is unavailable") from None
-    if "0014_creator_studio" not in applied:
+    if not applied.intersection({"0014_creator_studio", "0015_private_media"}):
         raise HTTPException(503, "Database migration is not current")
+    if (
+        os.environ.get("GLAM_PRIVATE_MEDIA_ENABLED") == "true"
+        and "0015_private_media" not in applied
+    ):
+        raise HTTPException(503, "Private media migration is not current")
     if not get_settings().oidc_issuer:
         raise HTTPException(503, "Identity provider is not configured")
     return {"status": "ready", "scope": "foundation_api"}
@@ -360,3 +366,5 @@ def delete_look(look_id: UUID, db: Db, identity: Identity):
 app.include_router(build_router(user, audit, replay, remember))
 
 app.include_router(build_catalog_router(user, audit, replay, remember))
+
+app.include_router(build_media_router(user, audit))
