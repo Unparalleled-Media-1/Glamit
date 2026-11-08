@@ -1,0 +1,10 @@
+locator.waitFor: Timeout 4000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('heading', { name: 'A clear starting point.' }) to be visible[22m
+
+    at /workspace/Glamit/tests/photo/flow.cjs:19:68 {
+  log: [
+    "  - waiting for getByRole('heading', { name: 'A clear starting point.' }) to be visible"
+  ],
+  name: 'TimeoutError'
+}

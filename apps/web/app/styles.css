@@ -4414,3 +4414,7 @@ body:has(.beauty-shell) {
 .creator-studio input:not([type=checkbox]), .creator-studio textarea, .creator-studio select { width: 100%; min-width: 0; min-height: 48px; }
 .creator-studio .draft { overflow-wrap: anywhere; }
 .creator-studio :is(input, textarea, select):focus-visible { outline: 2px solid var(--glam-palette-rose); outline-offset: 2px; }
+
+.photo-camera-dialog { max-width: min(540px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow: auto; border: 1px solid var(--glam-palette-line); border-radius: var(--glam-radius-card); padding: 24px; background: var(--glam-palette-ivory); color: var(--glam-palette-ink); }
+.photo-camera-dialog::backdrop { background: rgb(24 23 25 / 75%); }
+.photo-camera-dialog video { display: block; width: 100%; max-height: 50dvh; object-fit: contain; background: var(--glam-palette-charcoal); border-radius: 12px; }

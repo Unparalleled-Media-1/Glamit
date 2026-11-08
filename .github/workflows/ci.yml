@@ -94,6 +94,7 @@ jobs:
       - run: npm ci --ignore-scripts --prefix docs/design-preview
       - run: node docs/design-preview/node_modules/playwright/cli.js install --with-deps chromium
       - run: npm run test:web
+      - run: npm run test:photo
       - run: npm run test:golden
       - run: npm run test:connections
       - run: npm run test:hosted-account
