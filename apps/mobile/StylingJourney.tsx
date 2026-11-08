@@ -27,6 +27,7 @@ type Props = {
   data: Journey;
   setData: Dispatch<SetStateAction<Journey>>;
   go: (p: Page) => void;
+  advicePanel?: React.ReactNode;
 };
 function Action({
   title,
@@ -53,7 +54,7 @@ function Action({
     </Pressable>
   );
 }
-export default function StylingJourney({ page, data: d, setData, go }: Props) {
+export default function StylingJourney({ page, data: d, setData, go, advicePanel }: Props) {
   const [part, setPart] = useState<LookPart>("Hair");
   const [draft, setDraft] = useState("");
   const [item, setItem] = useState("");
@@ -276,6 +277,7 @@ export default function StylingJourney({ page, data: d, setData, go }: Props) {
           />
           <Action title="Personalized Results" onPress={() => go("results")} />
         </View>
+        {page === "advisor" && advicePanel ? advicePanel : (
         <View style={s.card}>
           <Text style={s.symbol}>✧</Text>
           <Text style={s.section}>Start anywhere.</Text>
@@ -317,6 +319,7 @@ export default function StylingJourney({ page, data: d, setData, go }: Props) {
             }}
           />
         </View>
+        )}
         {attachments}
         <View style={s.card}>
           <Text style={s.section}>The details make it yours.</Text>

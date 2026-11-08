@@ -1,7 +1,8 @@
-"""Candidate provider contracts; test doubles are not live qualification evidence.
+"""Server provider contracts; doubles are never live qualification evidence.
 
-Only authenticated server orchestration may call these adapters after consent,
-retention/licensing, model, spend and age/market checks. No routes are installed here.
+The default-off text stylist route supplies auth/consent, adult and attempt controls.
+Photo/generation adapters still require qualified persistent orchestration. Global
+market, provider-retention and release qualification remain independent gates.
 """
 
 import base64
@@ -44,6 +45,12 @@ class Direction(BaseModel):
     tool: Literal["Hair Try-On", "Hair Color", "Makeup Match", "Glow-Up Preview", "Look Remix"]
     style: str = Field(min_length=1, max_length=160)
 
+    @model_validator(mode="after")
+    def nonempty(self):
+        if any(not v.strip() for v in [self.id, self.title, self.rationale, self.style]):
+            raise ValueError("Empty direction fields are unsupported")
+        return self
+
 
 class ProviderAnalysis(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -65,6 +72,46 @@ class ProviderAdvice(BaseModel):
     uncertainty: str = Field(min_length=1, max_length=1000)
     directions: list[Direction] = Field(max_length=12)
 
+    @model_validator(mode="after")
+    def honest_advice(self):
+        if not self.message.strip() or not self.uncertainty.strip():
+            raise ValueError("Empty advice is unsupported")
+        if len({d.id for d in self.directions}) != len(self.directions):
+            raise ValueError("Directions must be unique")
+        return self
+
+
+def structured_text(result, prefix):
+    if not isinstance(result, dict) or result.get("status") != "completed" or result.get("error"):
+        raise IntegrationError(prefix + "_not_completed")
+    outputs = result.get("output")
+    if not isinstance(outputs, list):
+        raise IntegrationError(prefix + "_schema_rejected")
+    texts = []
+    for output in outputs:
+        if not isinstance(output, dict):
+            raise IntegrationError(prefix + "_schema_rejected")
+        if output.get("type") == "reasoning":
+            continue
+        if output.get("type") != "message" or output.get("role", "assistant") != "assistant":
+            raise IntegrationError(prefix + "_schema_rejected")
+        if output.get("status", "completed") != "completed":
+            raise IntegrationError(prefix + "_not_completed")
+        content = output.get("content")
+        if not isinstance(content, list):
+            raise IntegrationError(prefix + "_schema_rejected")
+        for part in content:
+            if not isinstance(part, dict):
+                raise IntegrationError(prefix + "_schema_rejected")
+            if part.get("type") == "refusal":
+                raise IntegrationError(prefix + "_refused")
+            if part.get("type") != "output_text" or not isinstance(part.get("text"), str):
+                raise IntegrationError(prefix + "_schema_rejected")
+            texts.append(part["text"])
+    if len(texts) != 1 or len(texts[0]) > 32768:
+        raise IntegrationError(prefix + "_schema_rejected")
+    return texts[0]
+
 
 class OpenAI(Adapter):
     key_name = "OPENAI_API_KEY"
@@ -73,12 +120,20 @@ class OpenAI(Adapter):
     def health(self):
         return self.probe("openai", "/v1/models", lambda r: isinstance(r.get("data"), list))
 
+    def model_health(self):
+        model = self.config.openai_model
+        if not re.fullmatch(r"[A-Za-z0-9._:-]{1,160}", model):
+            return Readiness("openai", False, reason="valid model configuration required")
+        return self.probe("openai", "/v1/models/" + model, lambda r: r.get("id") == model)
+
     def advise(self, messages: list[str], *, consent: bool):
         if not consent:
             raise IntegrationError("processing_consent_required")
         if not self.config.openai_model:
             raise IntegrationError("qualified_model_required")
-        if not 1 <= len(messages) <= 30 or any(not m.strip() or len(m) > 2000 for m in messages):
+        if not 1 <= len(messages) <= 30 or any(
+            not isinstance(m, str) or not m.strip() or len(m) > 2000 for m in messages
+        ):
             raise IntegrationError("invalid_styling_brief")
         result = self.call(
             "POST",
@@ -110,17 +165,9 @@ class OpenAI(Adapter):
                 "max_output_tokens": 2400,
             },
         )
-        if result.get("status") != "completed":
-            raise IntegrationError("advice_not_completed")
-        texts = [
-            part.get("text", "")
-            for output in result.get("output", [])
-            if output.get("type") == "message"
-            for part in output.get("content", [])
-            if part.get("type") == "output_text"
-        ]
+        content = structured_text(result, "advice")
         try:
-            return ProviderAdvice.model_validate_json("".join(texts))
+            return ProviderAdvice.model_validate_json(content)
         except (ValueError, TypeError):
             raise IntegrationError("advice_schema_rejected") from None
 
@@ -179,17 +226,9 @@ class OpenAI(Adapter):
                 "max_output_tokens": 2400,
             },
         )
-        if result.get("status") != "completed":
-            raise IntegrationError("analysis_not_completed")
-        texts = [
-            part.get("text", "")
-            for output in result.get("output", [])
-            if output.get("type") == "message"
-            for part in output.get("content", [])
-            if part.get("type") == "output_text"
-        ]
+        content = structured_text(result, "analysis")
         try:
-            return ProviderAnalysis.model_validate_json("".join(texts))
+            return ProviderAnalysis.model_validate_json(content)
         except (ValueError, TypeError):
             raise IntegrationError("analysis_schema_rejected") from None
 

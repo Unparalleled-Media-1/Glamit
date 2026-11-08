@@ -271,3 +271,45 @@ def test_advisor_uses_only_explicit_brief_and_refuses_missing_consent():
     assert body["store"] is False
     assert "input_image" not in json.dumps(body)
     assert body["input"][0]["content"][0]["text"] == "TEST birthday outfit"
+
+
+@pytest.mark.parametrize(
+    "result",
+    [
+        None,
+        [],
+        {"status": "completed", "output": None},
+        {"status": "completed", "output": [None]},
+        {
+            "status": "completed",
+            "output": [
+                {"type": "message", "content": [{"type": "refusal", "refusal": "fixture refusal"}]}
+            ],
+        },
+        {
+            "status": "completed",
+            "output": [{"type": "message", "content": [{"type": "output_text", "text": None}]}],
+        },
+    ],
+)
+def test_openai_advice_rejects_refusal_and_malformed_protocol(result):
+    class Malformed:
+        def send(self, *args):
+            return result
+
+    with pytest.raises(IntegrationError):
+        OpenAI(config(), Malformed()).advise(["Test styling brief"], consent=True)
+
+
+def test_openai_model_probe_checks_exact_qualified_model_and_never_advises():
+    good = Double({"id": "test-model"})
+    assert OpenAI(config(), good).model_health().state == State.CONNECTED
+    assert good.calls[0][0:2] == ("GET", "https://api.openai.com/v1/models/test-model")
+    assert (
+        OpenAI(config(), Double({"id": "different-model"})).model_health().state == State.DEGRADED
+    )
+    cfg = config()
+    cfg.openai_model = "https://attacker.example"
+    invalid = Double()
+    assert OpenAI(cfg, invalid).model_health().state == State.NOT_CONFIGURED
+    assert not invalid.calls

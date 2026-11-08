@@ -1,0 +1,11 @@
+{
+  "service": "openai",
+  "configured": false,
+  "state": "NOT CONFIGURED",
+  "reason": "credentials absent; blocked: qualified OpenAI model configuration",
+  "scope": "configuration_only",
+  "live_advice_verification": "NOT RUN",
+  "photo_analysis_verification": "NOT RUN",
+  "production_changes": false,
+  "model_configured": false
+}

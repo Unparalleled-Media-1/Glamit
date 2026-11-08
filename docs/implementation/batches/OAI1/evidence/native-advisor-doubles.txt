@@ -1,0 +1,12 @@
+
+> glam-ai@0.1.0 test:native-stylist
+> node tests/mobile/ai-stylist-native.cjs
+
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+PASS ios real native Advisor handlers: authenticated HTTP, explicit consent, duplicate-tap lock, account/token fencing, withdrawal/retry, no stale response (OS/HTTP doubled)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+PASS android real native Advisor handlers: authenticated HTTP, explicit consent, duplicate-tap lock, account/token fencing, withdrawal/retry, no stale response (OS/HTTP doubled)

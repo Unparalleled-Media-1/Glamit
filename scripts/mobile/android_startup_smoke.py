@@ -46,6 +46,20 @@ def target(xml, label):
     )
 
 
+def ready_tab(label, timeout=30):
+    deadline = time.monotonic() + timeout
+    while True:
+        xml = hierarchy()
+        try:
+            return xml, target(xml, label)
+        except RuntimeError:
+            if not adb("shell", "pidof", PACKAGE).strip():
+                raise RuntimeError("Native application exited before UI readiness") from None
+            if time.monotonic() >= deadline:
+                raise
+            time.sleep(1)
+
+
 def main():
     OUTPUT.mkdir(parents=True, exist_ok=True)
     for label, name in [
@@ -55,10 +69,9 @@ def main():
         ("AI Advisor", "advisor"),
         ("Profile", "profile"),
     ]:
-        xml = hierarchy()
+        xml, (x, y) = ready_tab(label)
         (OUTPUT / f"before-{name}.xml").write_bytes(xml)
         (OUTPUT / f"before-{name}.png").write_bytes(adb("exec-out", "screencap", "-p"))
-        x, y = target(xml, label)
         adb("shell", "input", "tap", x, y)
         time.sleep(2)
         if not adb("shell", "pidof", PACKAGE).strip():

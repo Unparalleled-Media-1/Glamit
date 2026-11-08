@@ -1,0 +1,17 @@
+/** Shared transport contracts only; no live OpenAI request. */
+const assert=require('node:assert/strict'),{build}=require('esbuild'),Module=require('node:module');
+(async()=>{const result=await build({entryPoints:['packages/product/ai-stylist.ts'],bundle:true,write:false,platform:'node',format:'cjs'});const m=new Module(process.cwd()+'/stylist-contract.cjs',module);m.filename=process.cwd()+'/stylist-contract.cjs';m.paths=module.paths;m._compile(result.outputFiles[0].text,m.filename);const{createStylistClient}=m.exports;
+ const subject='11111111-1111-4111-8111-111111111111',policy='22222222-2222-4222-8222-222222222222',key='33333333-3333-4333-8333-333333333333';let session={subject,token:'fixture-session'},calls=[];
+ const advice=()=>({id:key,subject,provider:'openai',model:'fixture-model',completed_at:new Date().toISOString(),advice:{message:'Fixture-only advice',uncertainty:'Fixture only',directions:[]}});
+ let reply=advice();const transport=async(url,init)=>{calls.push({url,init});return new Response(JSON.stringify(reply),{status:200})};
+ const client=createStylistClient({apiOrigin:'https://api.example',getSession:()=>session,fetch:transport});
+ await client.ask(['A fixture brief'],policy,key);assert.equal(calls.length,1);assert.equal(calls[0].init.redirect,'error');assert.equal(calls[0].init.credentials,'omit');assert.equal(calls[0].init.headers.Authorization,'Bearer fixture-session');assert.deepEqual(JSON.parse(calls[0].init.body),{messages:['A fixture brief'],policy_id:policy,consent:true});
+ for(const origin of ['http://api.example','https://user:password@api.example','https://api.example/path','https://api.example?owner=bob'])assert.throws(()=>createStylistClient({apiOrigin:origin,getSession:()=>session}),/invalid_styling_origin/);
+ reply={...advice(),subject:'other-account'};await assert.rejects(()=>client.ask(['brief'],policy,key),/styling_response_invalid/);
+ reply=advice();reply.advice.directions=[{id:'x',title:'x',rationale:'x',style:'x',tool:'unsafe-tool'}];await assert.rejects(()=>client.ask(['brief'],policy,key),/styling_response_invalid/);
+ reply={...advice(),server_secret:'must not propagate'};const safe=await client.ask(['brief'],policy,key);assert(!JSON.stringify(safe).includes('must not propagate'));
+ let finish;const pending=createStylistClient({apiOrigin:'https://api.example',getSession:()=>session,fetch:()=>new Promise(r=>finish=r)}).ask(['brief'],policy,key);session={subject:'bob',token:'bob-fixture'};finish(new Response(JSON.stringify(advice())));await assert.rejects(()=>pending,/styling_session_changed/);
+ session={subject,token:'fixture-session'};const abort=new AbortController();abort.abort();const before=calls.length;await assert.rejects(()=>client.ask(['brief'],policy,key,abort.signal),/styling_request_cancelled/);assert.equal(calls.length,before);
+ let failedCalls=0;const broken=createStylistClient({apiOrigin:'https://api.example',getSession:()=>session,fetch:async()=>{failedCalls++;return new Response(JSON.stringify({message:'private upstream secret must not propagate'}),{status:503})}});await assert.rejects(()=>broken.ask(['brief'],policy,key),e=>e.code==='styling_request_failed'&&!e.message.includes('private upstream'));assert.equal(failedCalls,1);
+ console.log('PASS shared AI styling transport: exact authenticated API contract, bounded response/schema, no credential propagation, session/abort fences and no automatic retry');
+})().catch(e=>{console.error(e);process.exitCode=1});

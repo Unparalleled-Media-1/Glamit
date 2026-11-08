@@ -1,0 +1,690 @@
+# GLAM Beauty — Master instruction to complete the real iOS and Android apps
+
+Codex has now confirmed something important: GLAM Beauty already has a genuine React Native/Expo application. It does not need to be rebuilt from scratch.
+
+The problem is that the native application is incomplete. Its existing screens, navigation, backend connections and operational workflows need to be finished.
+
+I recommend directing Codex to complete the existing native app systematically, rather than spending another development cycle creating browser prototypes or redesigning screens.
+
+The objective should be a premium mobile experience comparable in usability and polish to established beauty, fashion and lifestyle apps, while preserving GLAM Beauty's distinctive AI-first positioning.
+
+## The mobile experience we're building
+
+Proposed consumer app structure
+
+Home
+
+Analyze
+
+Studio
+
+Discover
+
+Profile
+
+Core navigation stays simple. Style Passport, Digital Wardrobe, Saved Looks, Shop, bookings and creator content are reached through the appropriate native stacks and contextual entry points.
+
+## Copy this entire instruction into Codex
+
+# GLAM BEAUTY — COMPLETE THE EXISTING NATIVE iOS & ANDROID APPLICATIONS
+
+## EXECUTIVE DIRECTIVE
+
+We are now entering the FINAL NATIVE MOBILE IMPLEMENTATION phase of GLAM Beauty.
+
+The existing `apps/mobile` application is confirmed to contain substantial genuine React Native/Expo code, including native views, camera/photo picker, SecureStore and biometric APIs.
+
+DO NOT rebuild the application from scratch.
+
+DO NOT create another responsive website.
+
+DO NOT create another HTML prototype and present it as the mobile application.
+
+DO NOT wrap the website in a WebView.
+
+DO NOT create a separate mobile backend or duplicate Supabase project.
+
+**Your mission is to complete, connect, repair, polish and test the existing native applications for iOS and Android until every approved mobile feature is genuinely implemented.**
+
+The web application remains the acquisition channel for consumers and the primary desktop workspace for business roles.
+
+The native applications are the primary GLAM Beauty consumer experience.
+
+---
+
+# 1. NON-NEGOTIABLE ENGINEERING RULES
+
+1. Preserve the existing Expo/React Native codebase.
+2. Preserve working components and business logic.
+3. Use the existing Railway backend and Supabase infrastructure.
+4. Reuse shared API contracts and domain logic.
+5. Do not copy web DOM components into React Native.
+6. Do not use WebViews to substitute for unfinished native screens.
+7. Do not introduce another authentication system.
+8. Do not invent successful AI responses or marketplace transactions.
+9. Do not bypass RLS or privacy protections.
+10. Do not mutate production Supabase without approved migrations.
+11. Do not activate live Stripe transactions.
+12. Do not mark native features complete based on browser previews.
+13. Do not run another broad audit instead of implementation.
+14. Fix confirmed defects in small, dependency-ordered batches.
+15. Maintain the existing release-lock and regression controls.
+
+All approved mobile features must be completed even if external API credentials are still pending.
+
+Provider activation and real-device verification must be reported separately.
+
+---
+
+# 2. REPAIR THE NATIVE APPLICATION FOUNDATION FIRST
+
+Inspect and complete the existing `apps/mobile` architecture.
+
+## Native navigation
+
+Implement a proper navigation architecture using the existing routing library where possible.
+
+Required consumer bottom navigation:
+
+- Home
+- Analyze
+- AI Studio
+- Discover
+- Profile
+
+Implement nested native stacks for:
+
+- Analysis results
+- Style Passport
+- Digital Wardrobe
+- Saved Looks
+- Product details
+- Cart and checkout
+- Orders
+- Professional profiles
+- Bookings
+- Creator profiles
+- Notifications
+- Settings
+- Authentication
+- Account management
+
+Verify:
+
+- Correct back navigation.
+- Android hardware back behavior.
+- iOS native back gestures.
+- Deep links.
+- Authenticated route guards.
+- Role-specific navigation.
+- Navigation state restoration.
+- Session expiration.
+- Modal dismissal.
+- Safe-area handling.
+- Keyboard avoidance.
+- Screen lifecycle cleanup.
+
+Do not replace a functioning router unnecessarily.
+
+## App lifecycle
+
+Handle:
+
+- App startup.
+- Background and foreground transitions.
+- Session restoration.
+- Network loss and recovery.
+- Interrupted uploads.
+- Interrupted AI jobs.
+- App termination.
+- Deep-link cold starts.
+- Memory pressure.
+- Duplicate submissions.
+
+No stale asynchronous operation may update a screen or persist sensitive information after the user leaves, withdraws consent or changes account.
+
+---
+
+# 3. COMPLETE THE NATIVE PHOTO AND ANALYSIS FLOW
+
+This is the first implementation priority.
+
+Codex has identified a specific defect:
+
+An asynchronous camera/photo picker may return after consent is withdrawn or the user navigates away.
+
+Fix this with a robust lifecycle and session-fencing implementation.
+
+Required protections:
+
+- Capture the current authenticated user.
+- Capture the current consent epoch.
+- Capture the active screen/request generation.
+- Invalidate outstanding operations when consent changes.
+- Invalidate outstanding operations on logout/account switch.
+- Prevent stale picker results from being uploaded.
+- Prevent stale responses from updating UI.
+- Prevent duplicate uploads.
+- Clean up temporary sensitive media appropriately.
+- Ensure deletion remains available after consent withdrawal.
+
+Do not rely only on a component-mounted flag.
+
+Then connect the full native workflow:
+
+1. User opens Analyze.
+2. User grants required consent.
+3. User opens the native camera or photo library.
+4. User selects or captures a photo.
+5. App validates the selected image.
+6. Photo uploads through the authenticated private-media API.
+7. Upload progress is displayed.
+8. Backend creates a persistent analysis job.
+9. App displays actual job progress.
+10. Results are retrieved from the backend.
+11. User reviews results and confidence/uncertainty.
+12. User corrects supported findings.
+13. Corrected results are saved.
+14. Style Passport is updated.
+15. Results are accessible across sessions and devices.
+16. User can delete applicable photos and results.
+
+Preserve all F1A private-media protections.
+
+If F1B analysis persistence is incomplete, implement the missing backend work through the approved migration process.
+
+Do not fabricate results while the AI provider is unconfigured.
+
+---
+
+# 4. COMPLETE THE NATIVE AI STUDIO
+
+The AI Studio must be a genuinely mobile-first experience.
+
+Implement:
+
+- Native camera and gallery entry.
+- Makeup virtual try-on.
+- Hairstyle virtual try-on.
+- Hair colour previews.
+- Outfit styling.
+- Accessories.
+- Before-and-after comparison.
+- Swipeable results.
+- Generation progress.
+- Job cancellation where supported.
+- Retry handling.
+- Saved looks.
+- Reopening saved looks.
+- Sharing and exporting.
+- Appropriate permissions.
+- Error and offline states.
+
+Use actual generation jobs and provider adapters.
+
+Where provider credentials are absent, complete the code and contract tests but clearly show that live generation is unavailable.
+
+Never display a stock photo or simulated result as a genuine AI transformation.
+
+---
+
+# 5. COMPLETE PERSONAL STYLING AND BEAUTY FEATURES
+
+Implement native workflows for:
+
+- AI Beauty Advisor.
+- AI Personal Stylist.
+- Style Passport.
+- Personal colour palette.
+- Digital Wardrobe.
+- Outfit recommendations.
+- Event styling.
+- Destination styling.
+- Weather-aware styling.
+- Packing recommendations.
+- Saved looks.
+- Styling history.
+- Universal Look Search.
+- Screenshot-based discovery.
+- Visual product search.
+
+Every saved item must persist through the shared backend.
+
+A user must be able to sign in on one device and retrieve authorized saved data on another.
+
+Use actual API contracts, not screen-local placeholder arrays.
+
+---
+
+# 6. COMPLETE THE NATIVE MARKETPLACE
+
+Implement a fully operational mobile shopping experience.
+
+Required:
+
+- Product discovery.
+- Search.
+- Categories.
+- Filters.
+- Sorting.
+- Product details.
+- Variants.
+- Stock availability.
+- Merchant storefronts.
+- Nearby merchants.
+- Wishlist.
+- Durable cart.
+- Multi-merchant checkout.
+- Delivery addresses.
+- Shipping quotes.
+- Server-calculated totals.
+- Stripe payment integration.
+- Order confirmation.
+- Order history.
+- Order tracking.
+- Returns.
+- Refund requests.
+- Reviews.
+
+Verify the 10% GLAM Beauty commission on eligible physical-product sales.
+
+Use Stripe test mode only until separately authorized.
+
+Do not mark checkout functional if it merely displays a success screen without an actual persisted order and verified payment state.
+
+---
+
+# 7. COMPLETE PROFESSIONAL BOOKINGS
+
+Build native experiences for:
+
+- Salon discovery.
+- Beauty professional discovery.
+- Tailor/designer discovery.
+- Professional profiles.
+- Service selection.
+- Availability.
+- Booking.
+- Rescheduling.
+- Cancellation.
+- Booking history.
+- Notifications.
+- Reviews.
+
+Booking operations must be atomic and protected against double booking.
+
+No locally simulated bookings may be presented as completed transactions.
+
+---
+
+# 8. COMPLETE CREATOR AND SOCIAL EXPERIENCES
+
+Implement:
+
+- Creator discovery.
+- Creator profiles.
+- Shoppable looks.
+- Product tagging.
+- Saved creator content.
+- Creator following where approved.
+- Campaign participation.
+- Referral attribution.
+- Earnings visibility.
+- Content sharing.
+
+Connect supported social provider integrations through official APIs.
+
+Where social credentials or approvals are missing, complete the adapter and authorization flows without pretending that accounts are connected.
+
+Prioritize native creator content creation and publishing workflows where supported.
+
+---
+
+# 9. IMPLEMENT ROLE-SPECIFIC MOBILE WORKSPACES
+
+GLAM Beauty is consumer-mobile-first, but business users also need functional mobile companions.
+
+## Consumer
+
+Full native experience.
+
+## Creator
+
+Native content creation, storefront, collaborations, earnings and notifications.
+
+## Beauty professional
+
+Appointments, availability, client communication, services and booking management.
+
+## Merchant
+
+Orders, inventory alerts, product management essentials, fulfillment and notifications.
+
+## Advertiser
+
+Campaign overview, alerts and essential monitoring. Advanced campaign configuration remains web-first.
+
+## Affiliate / partner
+
+Referrals, attribution, performance and earnings.
+
+## Administrator
+
+Only approved essential mobile operations, such as alerts and urgent moderation. Full administration remains web-first.
+
+Use the same account identity with secure role switching.
+
+Enforce authorization on the backend, not only by hiding UI controls.
+
+---
+
+# 10. NATIVE DESIGN AND USER EXPERIENCE
+
+The app must feel like a premium, modern beauty and personal styling product.
+
+Use GLAM Beauty's approved brand identity.
+
+Prioritize:
+
+- Elegant editorial typography.
+- Premium rose/pink/ivory visual language.
+- Appropriate dark-theme support.
+- Camera-first interaction.
+- High-quality image presentation.
+- Native bottom tabs.
+- Native sheets and modals.
+- Touch-friendly controls.
+- Smooth screen transitions.
+- Swipe gestures where useful.
+- Haptic feedback where appropriate.
+- Skeleton loading states.
+- Clear progress indicators.
+- Meaningful empty states.
+- Accessible contrast and labels.
+- Consistent component spacing.
+
+Do not copy the desktop web layout directly.
+
+Do not introduce visual redesigns that conflict with approved branding.
+
+Optimize the consumer journey:
+
+Understand me → Analyze me → Style me → Show me → Save my look → Discover products/services → Buy or book.
+
+Keep shopping secondary to the core beauty analysis and styling experience.
+
+---
+
+# 11. AUTHENTICATION AND ACCOUNT MANAGEMENT
+
+Use Supabase Auth as the canonical identity provider.
+
+Complete native implementations for:
+
+- SMS OTP.
+- Google login.
+- Apple login.
+- Facebook login.
+- Secure session storage.
+- Session refresh.
+- Logout.
+- Account switching.
+- Role switching.
+- Biometric returning-user unlock.
+- Account recovery.
+- Profile editing.
+- Privacy settings.
+- Data export requests.
+- Account deletion.
+
+Do not claim real-provider login success before configuration.
+
+Implement all credential-independent code and tests.
+
+Never place private API keys in the mobile application bundle.
+
+---
+
+# 12. PUSH NOTIFICATIONS AND DEEP LINKS
+
+Implement native notification infrastructure for:
+
+- Analysis completion.
+- AI generation completion.
+- Order updates.
+- Booking confirmations.
+- Booking changes.
+- Creator activity.
+- Campaign updates.
+- Merchant orders.
+- Account security alerts.
+
+Verify:
+
+- Notification permissions.
+- Device token registration.
+- Token refresh.
+- Account logout cleanup.
+- Notification preferences.
+- Correct deep-link destinations.
+- Foreground handling.
+- Background handling.
+- Cold-start navigation.
+
+Provider delivery tests remain pending until credentials are configured.
+
+---
+
+# 13. iOS AND ANDROID INDEPENDENT BUILD REQUIREMENTS
+
+Configure and verify:
+
+## iOS
+
+- Bundle identifier.
+- App display name.
+- App icon.
+- Splash screen.
+- Camera permissions.
+- Photo library permissions.
+- Associated domains.
+- URL schemes.
+- Apple Sign In entitlement where applicable.
+- Push notification entitlement.
+- EAS iOS build configuration.
+- Simulator build.
+- Signed device build when credentials are available.
+
+## Android
+
+- Application ID.
+- App display name.
+- App icon.
+- Splash screen.
+- Camera permissions.
+- Media permissions.
+- Android deep links.
+- Notification permissions.
+- Android biometric support.
+- EAS Android build configuration.
+- Emulator build.
+- Signed device build when credentials are available.
+
+Use one shared React Native codebase with appropriate platform-specific behavior.
+
+Do not create separate duplicated applications unless there is a demonstrated technical requirement.
+
+---
+
+# 14. TEST EVERY NATIVE INTERACTION
+
+Discover every actual native screen and actionable control.
+
+For every button or tappable item verify:
+
+1. It is visible under the correct conditions.
+2. It is accessible.
+3. It responds to touch.
+4. It performs the intended action.
+5. It navigates correctly.
+6. It calls the correct API where applicable.
+7. It persists the expected data.
+8. It handles failure.
+9. It handles session expiry.
+10. It handles rapid repeated taps.
+11. It handles app backgrounding.
+12. It does not leak sensitive information.
+
+Test actual native components using suitable React Native test tools.
+
+Use iOS simulators and Android emulators for interaction tests where available.
+
+Use installed physical devices for hardware-dependent verification.
+
+Do not substitute web browser testing.
+
+---
+
+# 15. REGRESSION AND RELEASE CONTROL
+
+Maintain the existing 140-feature matrix and defect register.
+
+For each native implementation batch:
+
+- Identify feature IDs.
+- Identify defect IDs.
+- Implement the smallest safe correction.
+- Add regression tests.
+- Run TypeScript checks.
+- Run relevant backend tests.
+- Run native tests.
+- Build iOS and Android where possible.
+- Update completion evidence.
+
+Do not repeatedly restart broad audits.
+
+Do not close defects without evidence.
+
+Do not change production Supabase without exact-SQL approval.
+
+Do not enable live payments.
+
+Do not merge incomplete work into the release candidate.
+
+---
+
+# 16. EXECUTION ORDER
+
+Complete the native application in this order:
+
+PHASE M1 — Navigation, app lifecycle, authentication/session integration and the asynchronous photo-picker defect.
+
+PHASE M2 — Private photo upload, analysis jobs, saved results and Style Passport.
+
+PHASE M3 — AI Studio, makeup/hairstyle try-on and saved looks.
+
+PHASE M4 — Personal Stylist, Digital Wardrobe, Event/Destination Stylist and visual search.
+
+PHASE M5 — Marketplace, cart, test checkout, orders and fulfillment.
+
+PHASE M6 — Professional bookings and creator experiences.
+
+PHASE M7 — Merchant, professional, creator, advertiser and partner companion workspaces.
+
+PHASE M8 — Notifications, deep links, offline recovery, accessibility and performance.
+
+PHASE M9 — Actual iOS/Android builds, emulator testing, installed-device testing and release certification.
+
+Respect dependencies between phases. Backend work may proceed in parallel only when contracts are stable.
+
+---
+
+# 17. REQUIRED REPORTING
+
+After each phase provide:
+
+- Features completed.
+- Defects fixed.
+- Screens connected.
+- Backend endpoints connected.
+- Persistence verified.
+- Native tests passed.
+- iOS status.
+- Android status.
+- Missing credentials.
+- Migration approvals required.
+- Remaining work.
+
+Use separate completion measurements:
+
+SOURCE IMPLEMENTATION
+
+LOCAL FUNCTIONAL VERIFICATION
+
+NATIVE BUILD VERIFICATION
+
+REAL-DEVICE VERIFICATION
+
+PROVIDER ACTIVATION
+
+DEPLOYED BACKEND VERIFICATION
+
+Never combine these into a misleading 100% figure.
+
+---
+
+# 18. FINAL ACCEPTANCE
+
+The native applications can be declared BUILD COMPLETE only when:
+
+- Every approved native screen is implemented.
+- Every applicable button and tappable action works.
+- Navigation and back-stack behavior are correct.
+- Every credential-independent backend workflow is operational.
+- Persistent user data works.
+- AI provider adapters are complete.
+- Marketplace and booking operations are complete.
+- Native authentication code is complete.
+- iOS and Android build checks pass where the build environment permits.
+- No unresolved P0/P1 implementation defects remain.
+- All applicable credential-independent tests pass.
+
+Public release additionally requires:
+
+- Activated authentication providers.
+- Live AI-provider verification.
+- Stripe test-mode payment certification.
+- Hosted Supabase verification.
+- Deployed Railway API verification.
+- Installed-device testing.
+- App Store / Google Play readiness.
+- Final security and privacy review.
+- Explicit owner GO decision.
+
+---
+
+# IMMEDIATE ACTION
+
+Continue the controlled native repair work already started.
+
+Finish the asynchronous photo-picker consent/session lifecycle fix and prove it with regression tests.
+
+Then complete the native navigation and app-entry integration.
+
+After that, connect the actual photo-analysis screens to the F1A/F1B backend workflow.
+
+Do not stop after fixing the picker.
+
+Continue systematically through M1–M9, completing and testing each phase before marking it done.
+
+**The objective is not another prototype. It is a genuinely functional, polished, production-quality GLAM Beauty mobile application for both iOS and Android.**
+
+## One important instruction about how Codex should work
+
+I would have Codex use implementation batches rather than a single enormous code change. That reduces the risk of fixing the camera flow while breaking authentication, navigation or shopping.
+
+For example, the first batch should deliver a working native navigation stack and safe camera/photo-picker lifecycle. The second should deliver an actual saved analysis workflow. The third should connect AI Studio.
+
+Each batch should produce passing tests and a concrete demonstration before moving forward.
+
+The most important shift: GLAM Beauty's mobile apps should now be treated as the primary consumer product—not smaller versions of the website. The website should attract customers and direct them toward the mobile app, while preserving the desktop tools needed by merchants, professionals, creators, advertisers and administrators.

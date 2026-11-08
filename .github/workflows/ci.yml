@@ -127,6 +127,7 @@ jobs:
       - run: npm run test:launch-gates
       - run: npm run test:auth
       - run: npm run test:private-media
+      - run: npm run test:ai-stylist
       - run: node --test tests/client/production-web-config.test.mjs
       - run: npm run test:public-config
       - run: npm run typecheck:godaddy
@@ -165,10 +166,12 @@ jobs:
       - run: node scripts/ci/frozen-install.mjs node
       - run: npm run typecheck --workspace=@glam/mobile
       - run: npm run test:native-photo
+      - run: npm run test:native-stylist
       - run: npm run test:client
       - run: node tests/client/mobile-build-config.cjs
       - run: npm run test:auth
       - run: npm run test:private-media
+      - run: npm run test:ai-stylist
       - run: npm exec --workspace=@glam/mobile -- expo install --check
       - run: npm run export --workspace=@glam/mobile
       - uses: actions/upload-artifact@v7

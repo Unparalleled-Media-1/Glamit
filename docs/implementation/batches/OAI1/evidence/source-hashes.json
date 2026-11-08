@@ -1,0 +1,11 @@
+{
+  "services/api/src/glam_api/ai_stylist.py": "2891bd8f46eb90d3977e6cfd17ab30d44be1298d9ca8776cdd082229f1318fab",
+  "services/api/src/glam_api/integrations/providers.py": "3a25833ea23c385949d0a12c24bd575d98ddfe8b031d56a0df2bc2a9c9b9bb74",
+  "packages/product/ai-stylist.ts": "7fcc64105b5cd66d2b61949bf88f943839a573e809cdd7bcffd8f4ad59748650",
+  "apps/mobile/NativeAIStylist.tsx": "e2fabe27509f85df08f23665f807f833ba379a77ef53eb90eb222e40f8705a35",
+  "apps/mobile/App.tsx": "9ceada89f004854eb1185a1492c9fbeb9e26cd6d3a197c6dce9a69c87d20faa6",
+  "apps/mobile/StylingJourney.tsx": "99c924ccbde7155e3d4256a99fd0f8ae20872d71dd2912a0c4a69fe174aae2a1",
+  "tests/test_ai_stylist.py": "a0117e697da42d75055c3cd5cf995d78c114beb700765104c83a6406ee1d3894",
+  "tests/client/ai-stylist.cjs": "b9094566a8d62539a50548070f4d5f1418440153346a2fb37a0ee6ad2480d420",
+  "tests/mobile/ai-stylist-native.cjs": "dfdd8b08f257efbfe13e00532e7d0374325fd9ed510e06c20f75c979b82b9285"
+}

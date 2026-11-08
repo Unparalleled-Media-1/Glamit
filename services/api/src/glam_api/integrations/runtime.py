@@ -1,7 +1,8 @@
 """No secret values, provider bodies, private media or exception strings enter public status.
 
-These adapters are internal and unmounted: they do not bypass existing auth/consent,
-change the database, initiate payments or make the client operational.
+Provider transport/configuration does not itself activate a feature or prove a live
+integration. The guarded text stylist router is separate; photo/generation orchestration
+and commercial activation must not be inferred from authenticated model metadata.
 """
 
 import json
@@ -185,7 +186,7 @@ def readiness(config: ProviderConfig) -> list[Readiness]:
         configured = bool(spec.secrets) and all(k in config.values for k in spec.secrets)
         gate = spec.gate
         if spec.name == "openai" and not config.openai_model:
-            gate = "qualified analysis model configuration"
+            gate = "qualified OpenAI model configuration"
         if spec.name == "fashn" and not config.fashn_model:
             gate = "qualified try-on model configuration"
         if spec.name == "open_meteo":
