@@ -1,0 +1,11 @@
+{
+  "adb_available": true,
+  "adb_exit_code": 0,
+  "connected_android_devices": 0,
+  "kvm_available": false,
+  "xcrun_available": false,
+  "EXPO_TOKEN_present": false,
+  "EAS_PROJECT_ID_present": false,
+  "actual_native_device_tests": "NOT TESTED",
+  "scope": "Tool/device readiness only; no device serials or credentials recorded"
+}

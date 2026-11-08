@@ -17,3 +17,5 @@ Audit completeness: source inventory and anonymous browser breadth are measured.
 No production migrations, authentication configuration changes, financial records, live charges, domain switches or public deployments were performed. Approval of migration0014/exact SQL and public launch remains separate.
 
 See the four independent platform/parity reports, detailed CSV inventories, end-to-end results and FINAL_PUBLIC_RELEASE_CHECKLIST.md.
+
+GitHub handoff: [PR33](https://github.com/Unparalleled-Media-1/Glamit/pull/33) is open against `feat/platform-foundations`; not merged or deployed. Foundation CI passed at `6f489df614a79e93f3c3b6ec6e110618d75fb096` (see evidence/final/github-ci.json). Fresh live-branch reconciliation is in BRANCH_INVENTORY_RECONCILIATION.md; the earlier46 cached refs are not46 live GitHub branches.
