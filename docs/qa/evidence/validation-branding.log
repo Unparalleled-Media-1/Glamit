@@ -1,0 +1,5 @@
+
+> glam-ai@0.1.0 test:auth-branding
+> node tests/auth-branding/visual.cjs
+
+Auth branding: equal controls, desktop/mobile WCAG, OTP and three S256 provider handoffs passed; unavailable methods hidden.

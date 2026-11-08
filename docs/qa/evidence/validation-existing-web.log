@@ -1,0 +1,17 @@
+
+> glam-ai@0.1.0 test:web
+> node tests/client/application.cjs
+
+PASS Consent-gated photo selection, invalid-file rejection, technical review, goals and honest uncomputed report
+PASS Editable routine save/checklist, dedicated Makeup Match, original-preserving Studio and reset
+PASS Beauty category routing, Studio reference/shade selection and session favorite, illustrative color explorer, no fabricated transformation
+PASS Unsent Advisor, unauthorized workspace switcher, focus restoration, photo deletion and no persisted private data
+PASS Event brief continuity, independent look components, wardrobe reuse, returning profile, approved metadata persistence and deletion; no fabricated AI or offers
+PASS Golden commerce studies: optional destination save/cancel, category/detail selection, no fabricated offer, component-preserving reference handoff and reversible Studio controls
+PASS Business route requires sign-in and presents registration before workspace access
+PASS Guest admin route exposes only staff sign-in, no role picker or private module navigation
+PASS Embedded organic/sponsored no-match sections across all report contexts and saved user requirements
+PASS Sixth Results pattern: separate user corrections, honest analysis/checkout gates, destination checklist continuity and no fabricated order
+PASS Six golden patterns plus uncomputed report captured at iPhone, Android-sized phone, tablet and desktop; candidate baselines await visual approval
+PASS Responsive 320–1920px, five analysis-first mobile destinations, offline guard, reduced motion and no external requests/errors
+12 application groups passed
