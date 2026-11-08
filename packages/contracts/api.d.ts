@@ -140,6 +140,76 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/analysis/jobs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** History */
+        get: operations["history_v1_analysis_jobs_get"];
+        put?: never;
+        /** Submit */
+        post: operations["submit_v1_analysis_jobs_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/analysis/jobs/{job_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Status */
+        get: operations["status_v1_analysis_jobs__job_id__get"];
+        put?: never;
+        post?: never;
+        /** Cancel */
+        delete: operations["cancel_v1_analysis_jobs__job_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/analysis/jobs/{job_id}/report": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Report */
+        get: operations["report_v1_analysis_jobs__job_id__report_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/analysis/policy": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Policy */
+        get: operations["policy_v1_analysis_policy_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/analysis/requests": {
         parameters: {
             query?: never;
@@ -872,6 +942,28 @@ export interface components {
              */
             policy_id: string;
         };
+        /** AnalysisReportRead */
+        AnalysisReportRead: {
+            /**
+             * Completed At
+             * Format: date-time
+             */
+            completed_at: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Model */
+            model: string;
+            observations: components["schemas"]["ProviderAnalysis"];
+            /**
+             * Provider
+             * @default openai
+             * @constant
+             */
+            provider: "openai";
+        };
         /** BulkListings */
         BulkListings: {
             /** Listings */
@@ -1068,6 +1160,23 @@ export interface components {
             /** Features */
             features: ("background" | "lighting" | "description" | "tags" | "ocr" | "translation" | "advertising")[];
         };
+        /** Finding */
+        Finding: {
+            /**
+             * Certainty
+             * @enum {string}
+             */
+            certainty: "supported" | "tentative" | "unavailable";
+            /** Estimate */
+            estimate: string | null;
+            /**
+             * Key
+             * @enum {string}
+             */
+            key: "face-shape" | "eyes" | "brows" | "lips" | "undertone";
+            /** Uncertainty */
+            uncertainty: string;
+        };
         /** HTTPValidationError */
         HTTPValidationError: {
             /** Detail */
@@ -1131,19 +1240,25 @@ export interface components {
              */
             state: "pending" | "accepted" | "revoked";
         };
-        /** JobRead */
-        JobRead: {
+        /** JobRequest */
+        JobRequest: {
             /**
-             * Id
+             * Consent
+             * @constant
+             */
+            consent: true;
+            /** Goals */
+            goals: ("Understand my features" | "Discover my colors" | "Makeup techniques" | "Hair & grooming" | "A practical routine")[];
+            /**
+             * Media Id
              * Format: uuid
              */
-            id: string;
+            media_id: string;
             /**
-             * State
-             * @enum {string}
+             * Policy Id
+             * Format: uuid
              */
-            state: "queued" | "processing" | "review_ready" | "failed" | "cancelled";
-            suggestions?: components["schemas"]["Suggestions"] | null;
+            policy_id: string;
         };
         /** ListingFacts */
         ListingFacts: {
@@ -1477,6 +1592,13 @@ export interface components {
             /** Uncertainty */
             uncertainty: string;
         };
+        /** ProviderAnalysis */
+        ProviderAnalysis: {
+            /** Directions */
+            directions: components["schemas"]["Direction"][];
+            /** Findings */
+            findings: components["schemas"]["Finding"][];
+        };
         /** PublishChoice */
         PublishChoice: {
             /** Revision */
@@ -1692,6 +1814,52 @@ export interface components {
              */
             workspace: "merchant" | "advertiser" | "professional" | "creator" | "affiliate";
         };
+        /** JobRead */
+        glam_api__analysis_jobs__JobRead: {
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /** Error Code */
+            error_code: string | null;
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+            /** Finished At */
+            finished_at: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Media Id
+             * Format: uuid
+             */
+            media_id: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "queued" | "running" | "completed" | "failed" | "cancelled" | "expired";
+        };
+        /** JobRead */
+        glam_api__catalog_contracts__JobRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "queued" | "processing" | "review_ready" | "failed" | "cancelled";
+            suggestions?: components["schemas"]["Suggestions"] | null;
+        };
     };
     responses: never;
     parameters: never;
@@ -1875,6 +2043,174 @@ export interface operations {
         };
     };
     policy_v1_ai_stylist_policy_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PolicyRead"];
+                };
+            };
+        };
+    };
+    history_v1_analysis_jobs_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["glam_api__analysis_jobs__JobRead"][];
+                };
+            };
+        };
+    };
+    submit_v1_analysis_jobs_post: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["JobRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["glam_api__analysis_jobs__JobRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    status_v1_analysis_jobs__job_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                job_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["glam_api__analysis_jobs__JobRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    cancel_v1_analysis_jobs__job_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                job_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["glam_api__analysis_jobs__JobRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    report_v1_analysis_jobs__job_id__report_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                job_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AnalysisReportRead"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    policy_v1_analysis_policy_get: {
         parameters: {
             query?: never;
             header?: never;
@@ -2813,7 +3149,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["JobRead"];
+                    "application/json": components["schemas"]["glam_api__catalog_contracts__JobRead"];
                 };
             };
             /** @description Validation Error */
@@ -2846,7 +3182,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["JobRead"];
+                    "application/json": components["schemas"]["glam_api__catalog_contracts__JobRead"];
                 };
             };
             /** @description Validation Error */

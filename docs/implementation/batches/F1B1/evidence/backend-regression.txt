@@ -1,0 +1,50 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0
+rootdir: /workspace/Glamit
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.16.0, hypothesis-6.170.14
+collected 374 items
+
+tests/audit/test_matrix_contract.py ...                                  [  0%]
+tests/test_ai_stylist.py ......................                          [  6%]
+tests/test_analysis_jobs.py ..........................                   [ 13%]
+tests/test_auth.py ...........                                           [ 16%]
+tests/test_catalog.py .................................                  [ 25%]
+tests/test_commerce_policy.py ........                                   [ 27%]
+tests/test_creator_security.py ....                                      [ 28%]
+tests/test_creator_studio.py ..............                              [ 32%]
+tests/test_credits.py .....                                              [ 33%]
+tests/test_cross_session_data.py .                                       [ 33%]
+tests/test_db_safety.py ..                                               [ 34%]
+tests/test_dependency_consistency.py ...                                 [ 35%]
+tests/test_deployment_runtime.py ........                                [ 37%]
+tests/test_foundation_deployment_guards.py ....                          [ 38%]
+tests/test_hosted_api.py ......................                          [ 44%]
+tests/test_hosted_deployment_target.py .....                             [ 45%]
+tests/test_integrations.py ..............................                [ 53%]
+tests/test_looks_api.py .....                                            [ 55%]
+tests/test_migrations.py .                                               [ 55%]
+tests/test_native_smoke_readiness.py ...                                 [ 56%]
+tests/test_passwordless_accounts.py .....                                [ 57%]
+tests/test_private_media.py ..........................                   [ 64%]
+tests/test_private_media_migration.py ......                             [ 66%]
+tests/test_private_storage.py ...........                                [ 68%]
+tests/test_qa_evidence.py ..                                             [ 69%]
+tests/test_ranking.py ...                                                [ 70%]
+tests/test_request_security.py ...                                       [ 71%]
+tests/test_rls.py .                                                      [ 71%]
+tests/test_settings.py ....                                              [ 72%]
+tests/test_stripe_sandbox.py ...............................             [ 80%]
+tests/test_supabase_foundation.py .....................                  [ 86%]
+tests/test_supabase_preflight_inventory.py ......                        [ 87%]
+tests/test_supabase_probe.py ................                            [ 92%]
+tests/test_workspaces.py .............................                   [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /workspace/Glamit/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 374 passed, 1 warning in 52.44s ========================

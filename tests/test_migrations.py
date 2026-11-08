@@ -6,12 +6,13 @@ from sqlalchemy import text
 def test_canonical_application_head_is_separate_from_guarded_test_sandbox(db):
     script = ScriptDirectory.from_config(Config("alembic.ini"))
     heads = set(script.get_heads())
-    assert heads == {"0009_stripe_test_ledger", "0015_private_media"}
-    assert script.get_revision("application@head").revision == "0015_private_media"
+    assert heads == {"0009_stripe_test_ledger", "0016_analysis_jobs"}
+    assert script.get_revision("application@head").revision == "0016_analysis_jobs"
     lineage = {r.revision for r in script.walk_revisions("base", "application@head")}
     assert "0008_catalog_market_policy" in lineage
     assert "0014_creator_studio" in lineage
     assert script.get_revision("0015_private_media").down_revision == "0014_creator_studio"
+    assert script.get_revision("0016_analysis_jobs").down_revision == "0015_private_media"
     assert "0009_stripe_test_ledger" not in lineage
     with db.connect() as connection:
         assert set(connection.scalars(text("SELECT version_num FROM alembic_version"))) == heads

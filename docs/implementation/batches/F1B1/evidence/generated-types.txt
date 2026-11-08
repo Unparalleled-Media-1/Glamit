@@ -1,0 +1,6 @@
+
+> glam-ai@0.1.0 contracts:generate
+> openapi-typescript packages/contracts/openapi.json -o packages/contracts/api.d.ts
+
+✨ openapi-typescript 7.13.0
+🚀 packages/contracts/openapi.json → packages/contracts/api.d.ts [297.1ms]
