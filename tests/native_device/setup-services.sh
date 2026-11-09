@@ -14,7 +14,7 @@ if [ "$(uname -s)" = Darwin ]; then
   git -C "$RUNNER_TEMP/glam-applesimutils-source" fetch --depth=1 origin 73f9c36afd5208e2d71be1150e0c9bd26ac1ca71
   git -C "$RUNNER_TEMP/glam-applesimutils-source" checkout --detach FETCH_HEAD
   test "$(git -C "$RUNNER_TEMP/glam-applesimutils-source" rev-parse HEAD)" = 73f9c36afd5208e2d71be1150e0c9bd26ac1ca71
-  git -C "$RUNNER_TEMP/glam-applesimutils-source" submodule update --init --recursive --depth=1
+  git -C "$RUNNER_TEMP/glam-applesimutils-source" -c url.https://github.com/.insteadOf=git@github.com: submodule update --init --recursive --depth=1
   (cd "$RUNNER_TEMP/glam-applesimutils-source" && bash ./buildForBrew.sh "$RUNNER_TEMP/glam-applesimutils-install")
   "$RUNNER_TEMP/glam-applesimutils-install/bin/applesimutils" --version
   echo "$RUNNER_TEMP/glam-applesimutils-install/bin" >> "$GITHUB_PATH"
