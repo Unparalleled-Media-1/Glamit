@@ -21,6 +21,13 @@ def tap(node):
     adb("shell", "input", "tap", str((left + right) // 2), str((top + bottom) // 2))
 
 
+def launcher_wait(nodes):
+    # Only the known emulator launcher; never dismiss a GLAM or Settings ANR.
+    if not any(n.get("text") == "Quickstep isn't responding" for n in nodes):
+        return None
+    return next((n for n in nodes if n.get("text") == "Wait"), None)
+
+
 def main():
     OUTPUT.mkdir(parents=True, exist_ok=True)
     # Only called on the disposable local-verification CI emulator, never a real device.
@@ -32,13 +39,22 @@ def main():
     adb("shell", "wm", "dismiss-keyguard")
     adb("shell", "locksettings", "set-pin", "1234")
     adb("shell", "am", "start", "-a", "android.settings.FINGERPRINT_ENROLL")
+    launcher_waited = False
     for _attempt in range(35):
         adb("shell", "uiautomator", "dump", "/sdcard/glam-enrollment.xml")
         raw = adb("exec-out", "cat", "/sdcard/glam-enrollment.xml")
         (OUTPUT / "fingerprint-settings.xml").write_bytes(raw)
         nodes = list(ET.fromstring(raw).iter("node"))
         fields = [n for n in nodes if n.get("class", "").endswith("EditText")]
-        if any(n.get("text", "") == "Device locked" for n in nodes):
+        wait = launcher_wait(nodes)
+        if wait is not None and not launcher_waited:
+            (OUTPUT / "enrollment-launcher-anr.xml").write_bytes(raw)
+            (OUTPUT / "enrollment-launcher-anr.png").write_bytes(adb("exec-out", "screencap", "-p"))
+            tap(wait)
+            launcher_waited = True
+            adb("shell", "am", "start", "-a", "android.settings.FINGERPRINT_ENROLL")
+            continue
+        if any("Device locked" in [n.get("text"), n.get("content-desc")] for n in nodes):
             adb("shell", "input", "keyevent", "WAKEUP")
             adb("shell", "input", "swipe", "500", "1400", "500", "300", "400")
         elif fields:
