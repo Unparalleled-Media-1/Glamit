@@ -1,25 +1,41 @@
-# Flutter F1 — OPEN, not visually approved
+# Flutter F1 — native interaction checks PASS; visual approval OPEN
 
-Five independent Flutter screens, native navigation and reversible local preview interactions are implemented. At source `49ab61872f24d5fd9a73e3afd90c3cd8f5dd5bfa`, Dart analysis and all six widget tests pass. Android's installed main-entry Flutter app passed the complete OS-driven journey, all five required screenshot checks, runtime-error checks and installed-package verification. iOS compiled and installed, then failed its post-save brief confirmation after capturing Home, Analyze and Studio. Its full five-screen journey has not passed. A targeted follow-up adds an explicit saved-state semantic identifier and verifies the actual typed brief before saving; the complete iOS/Android journey must pass again at the changed source. No visual approval is inferred from these checks.
+The independent five-screen Flutter app has passed Dart analysis, all six widget tests and separate installed Android/iOS OS-driven journeys at source **`abfad3e96e09a24750b3dd7c5bb56d1e3caaa202`**. This is the tested application source, not a claim that later documentation-only commits were installed. [Successful verification run](https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42634999178).
 
-[Exact verification run](https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42631958289). [Android screenshots, video, tested emulator APK and receipts](https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42631958289/artifacts/13682166648). This executor cannot download the artifact because its fresh signed Azure download host is denied by the enforced network policy. The saved network draft is not active merely because it was saved. No screenshot visual inspection or comparison against Expo is claimed.
-
-Brand colours: ivory#f8f3ef, blush#f6c6d8, rose#b76d8c, mauve#78546c, charcoal#181719, champagne#dcc7a8, ink#30252d, muted#786772, line#dfd1d5 from packages/product/consumer-design.json. Reused assets are approved artwork/editorial imagery, not old layouts. All UI is authored as independent Flutter widgets. Fonts are local Cormorant Garamond/Manrope with their OFL licenses.
-
-The reviewed older Expo artifact SHA803e28ea5fc255a068452bbb8bc8dd2400ded9c6 resolves on GitHub to a merge of native implementation31d8ac4 into c8b74a8. Current base7216423 contains that implementation through merged PR43. PR44's later acceptance fixes remain separately preserved; they are not merged, deleted or represented as Flutter work. Existing Expo startup/failed journey artifacts are historical and do not qualify this Flutter milestone.
-
-| Measure | Current status |
+| Measure | Current evidence |
 | --- | --- |
-| F1 source implementation | Five Flutter screens and local interactions compile; F2 remains outside this gate |
-| Functional verification | Dart analysis and six widget tests PASS; Android OS journey PASS; iOS post-save confirmation FAIL; targeted rerun pending |
-| Android Flutter installed runtime | PASS on API35 x86_64 emulator, source49ab618; five OS screenshots and recording retained |
-| iOS Flutter installed runtime | Built/installed; failed post-save confirmation; partial screenshots only |
-| Visual comparison/approval | NOT REVIEWED; explicit user approval required |
-| Full platform/F2 functionality | NOT IMPLEMENTED in Flutter; intentionally outside F1 |
-| Physical devices/store signing | NOT CONFIGURED / NOT TESTED |
-| Production/launch | NOT AUTHORIZED / NOT ESTABLISHED |
+| F1 implementation | Home, Analyze, Studio, Discover and Profile are genuine independent Flutter widgets with go_router navigation and Riverpod session-local state |
+| Source checks | Dart analysis and all six widget tests PASS, including two phone sizes,2x system text, native sheets and the local brief/bookmark/detail/Profile collection journey |
+| Android | PASS: actual installed main-entry app, API35 x86_64 emulator, OS interaction flow, five screenshot validations, runtime and package checks |
+| iOS | PASS: actual installed main-entry app, iPhone simulator, separate OS flow, five screenshot validations, runtime and bundle-identifier checks |
+| Visual inspection/comparison | NOT REVIEWED here: executor cannot download signed artifacts under enforced network policy |
+| User visual approval | PENDING; F1 acceptance remains OPEN |
+| F2/backend/Auth/camera/provider operations | NOT CONNECTED in Flutter; deferred until explicit visual approval |
+| Physical devices/store signing | NOT TESTED / NOT CONFIGURED |
+| Production/launch | NOT CHANGED / NOT ESTABLISHED |
 
-The mandatory stop is the user's explicit visual gate in docs/specification/sources/2026-11-flutter-final-directive.txt: “STOP after this visual milestone and wait for explicit approval of the mobile design.” Build success cannot approve the appearance. No production migration, settings, live AI/payment, deployment or old-mobile merge/deletion occurs here.
+## Native review packages
+
+- [Android: five native screenshots, OS recording, tested x86_64 emulator APK, source/runtime receipts](https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42634999178/artifacts/13681844657).
+- [iOS: five native screenshots, OS recording, simulator application ZIP, source/runtime receipts](https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42634999178/artifacts/13682947604).
+- [Resolved native inputs and the single dependency lock shared by both builds](https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42634999178/artifacts/13681574019).
+- [Source-check logs](https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42634999178/artifacts/13681184775).
+
+Main screenshots: `01-home.png`, `02-analyze.png`, `03-studio.png`, `04-discover.png`, `05-profile.png`. Additional captures cover the native photo sheet, detail navigation and saved collection. `interaction.mp4` retains OS recording; `receipt.json`, SDK/source metadata, hashes and runtime logs identify the tested application. Installation instructions are in apps/flutter_app/README.md. These are emulator/simulator review packages, not ARM-phone, physical-iPhone, store or TestFlight releases.
+
+The automated native checks validate the required PNG headers/sizes and record hashes; this is not an appearance review. Artifact metadata and successful individual job steps are retained in `evidence/native-acceptance-abfad3e.json`. The executor's enforced network policy rejects fresh signed Azure artifact downloads. The saved network draft is not activated by saving it. No inline screenshot viewing, recording inspection, or visual comparison against Expo is claimed. That comparison and the user's design decision remain outstanding before acceptance.
+
+## Scope and design provenance
+
+Brand colours come from packages/product/consumer-design.json: ivory#f8f3ef, blush#f6c6d8, rose#b76d8c, mauve#78546c, charcoal#181719, champagne#dcc7a8, ink#30252d, muted#786772, line#dfd1d5. Original approved logos/editorial assets are retained. New compositions use bundled Cormorant Garamond and Manrope fonts with their OFL licenses. Source inspection confirms Flutter widgets, not WebViews, HTML or JSX layout templates; appearance approval requires the actual captures.
+
+The older Expo artifact SHA803e28ea5fc255a068452bbb8bc8dd2400ded9c6 resolves to a merge of31d8ac4 into c8b74a8; base7216423 contains that implementation via PR43. PR44 remains separately preserved. No old app source was merged, deleted or represented as Flutter evidence. Existing web/mobile/backend/Auth/database/financial files remain unchanged. Preview briefs/bookmarks are session-local; the Studio monochrome control is an on-device colour study, not AI try-on. No camera, account, AI, merchant or transaction success is fabricated.
+
+The user's mandatory gate in [the exact directive](../../../specification/sources/2026-11-flutter-final-directive.txt) is: “STOP after this visual milestone and wait for explicit approval of the mobile design.” F2 is not started; draft PR45 remains unmerged. No production, signing registration, migrations, deployment, live AI or payments were changed.
+
+## Preserved failed and superseded attempts
+
+Earlier partial, failed and superseded runs below remain failures; the subsequent successful run does not rewrite their evidence.
 
 Sourcea44a173 passed Dart analysis and all five widget tests, including compact/large phone layouts and2x system text. Its Android binary compiled/installed and captured Home, Analyze, photo sheet and Studio, then the native test failed at the unit-only TestTextInput.hide API (isRegistered=false). A real outside-field tap/focus dismissal replaces that test API; production input code also exposes the native Done action. This is a confirmed installed-test repair, not a passed full native milestone.
 

@@ -28,7 +28,7 @@ Native F1 capture uses Maestro on the normal lib/main.dart application. The earl
 
 ## Running the retained native review builds
 
-Download each platform artifact from the exact verification run linked in `docs/implementation/batches/FLUTTER_F1/STATUS.md`. These are review builds, not store releases.
+Download each platform artifact from the [successful sourceabfad3e verification run](https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42634999178), also linked in `docs/implementation/batches/FLUTTER_F1/STATUS.md`. Both independent OS interaction jobs passed at that source; appearance approval is pending. These are review builds, not store releases.
 
 Android requires a running x86_64 Android emulator (the CI reference is API35). Install the artifact's tested APK:
 

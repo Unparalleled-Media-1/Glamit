@@ -1,0 +1,253 @@
+{
+  "verified_at": "2026-11-09T16:48:28.459428+02:00",
+  "time_zone": "Africa/Johannesburg",
+  "source_commit": "abfad3e96e09a24750b3dd7c5bb56d1e3caaa202",
+  "run_url": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42634999178",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "name": "source",
+      "id": 129220707280,
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python3 scripts/flutter/run_command.py artifacts/flutter-f1/bootstrap.txt bash scripts/flutter/bootstrap-platforms.sh",
+          "conclusion": "success"
+        },
+        {
+          "name": "Resolve a single dependency lock for BOTH platforms",
+          "conclusion": "success"
+        },
+        {
+          "name": "Analyse genuine Dart sources",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify navigation, local state and compact layouts",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify generator preserves authored source",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "ios",
+      "id": 129221468033,
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/download-artifact@v7",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run flutter pub get --enforce-lockfile",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bash scripts/flutter/install-maestro.sh",
+          "conclusion": "success"
+        },
+        {
+          "name": "Compile Flutter main entry before simulator boot",
+          "conclusion": "success"
+        },
+        {
+          "name": "Retain built simulator app even when UI verification fails",
+          "conclusion": "success"
+        },
+        {
+          "name": "Boot actual iOS simulator",
+          "conclusion": "success"
+        },
+        {
+          "name": "Actual installed Flutter iOS interactions and screenshots",
+          "conclusion": "success"
+        },
+        {
+          "name": "Retain main-entry simulator application (NOT TestFlight)",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "android",
+      "id": 129221468046,
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/download-artifact@v7",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run flutter pub get --enforce-lockfile",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bash scripts/flutter/install-maestro.sh",
+          "conclusion": "success"
+        },
+        {
+          "name": "Compile Flutter main entry before emulator boot",
+          "conclusion": "success"
+        },
+        {
+          "name": "Retain built emulator APK even when UI verification fails",
+          "conclusion": "success"
+        },
+        {
+          "name": "Enable emulator KVM",
+          "conclusion": "success"
+        },
+        {
+          "name": "Actual installed Flutter Android interactions and screenshots",
+          "conclusion": "success"
+        },
+        {
+          "name": "Build separately labelled main-entry review APK",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 13682947604,
+      "name": "flutter-f1-ios-native-screens-recording-simulator",
+      "size_in_bytes": 116830458,
+      "expired": false
+    },
+    {
+      "id": 13681844657,
+      "name": "flutter-f1-android-native-screens-recording-apk",
+      "size_in_bytes": 64855968,
+      "expired": false
+    },
+    {
+      "id": 13681574019,
+      "name": "flutter-f1-resolved-native-inputs",
+      "size_in_bytes": 2955766,
+      "expired": false
+    },
+    {
+      "id": 13681184775,
+      "name": "flutter-f1-source-checks",
+      "size_in_bytes": 1688,
+      "expired": false
+    }
+  ],
+  "artifact_contents_visually_inspected": false,
+  "artifact_download_in_executor": "BLOCKED_NETWORK_POLICY",
+  "visual_approval": "PENDING_USER_REVIEW",
+  "physical_devices": "NOT_TESTED",
+  "f2": "NOT_STARTED",
+  "production": "NOT_CHANGED"
+}
