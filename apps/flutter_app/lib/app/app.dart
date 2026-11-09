@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/semantics.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -40,10 +41,24 @@ Page<void> nativePage(BuildContext context, GoRouterState state, Widget child) =
     ? CupertinoPage<void>(key: state.pageKey, child: child)
     : MaterialPage<void>(key: state.pageKey, child: child);
 
-class GlamBeautyApp extends ConsumerWidget {
+class GlamBeautyApp extends ConsumerStatefulWidget {
   const GlamBeautyApp({super.key});
   @override
-  Widget build(BuildContext context, WidgetRef ref) => MaterialApp.router(
+  ConsumerState<GlamBeautyApp> createState() => _GlamBeautyAppState();
+}
+
+class _GlamBeautyAppState extends ConsumerState<GlamBeautyApp> {
+  late final SemanticsHandle _semantics;
+  @override
+  void initState() {
+    super.initState();
+    // Keep real native accessibility nodes available from the first frame.
+    _semantics = WidgetsBinding.instance.ensureSemantics();
+  }
+  @override
+  void dispose() { _semantics.dispose(); super.dispose(); }
+  @override
+  Widget build(BuildContext context) => MaterialApp.router(
     title: 'GLAM Beauty', debugShowCheckedModeBanner: false,
     theme: glamTheme(), routerConfig: ref.watch(routerProvider),
   );

@@ -8,13 +8,6 @@ export GLAM_FLUTTER_EVIDENCE="$task_repo_root/artifacts/flutter-f1/$platform"
 mkdir -p "$GLAM_FLUTTER_EVIDENCE"
 git rev-parse HEAD > "$GLAM_FLUTTER_EVIDENCE/source-sha.txt"
 flutter --version --machine > "$GLAM_FLUTTER_EVIDENCE/flutter-version.json"
-cd apps/flutter_app
-if [ "$platform" = android ]; then
-  flutter build apk --debug --target lib/main.dart --target-platform=android-x64 --no-pub
-else
-  flutter build ios --simulator --debug --no-codesign --target lib/main.dart --no-pub
-fi
-cd "$task_repo_root"
 if [ "$platform" = android ]; then
   device=$(adb get-serialno)
   case "$device" in emulator-*) ;; *) echo 'F1 requires a disposable emulator'; exit 1 ;; esac
@@ -60,8 +53,13 @@ trap cleanup EXIT
 export MAESTRO_CLI_NO_ANALYTICS=1
 export MAESTRO_CLI_ANALYSIS_NOTIFICATION_DISABLED=true
 echo "::notice title=Flutter F1 native runtime::Starting OS-driven $platform Flutter interactions"
+set +e
 maestro --device "$device" test -e EVIDENCE_DIR="$GLAM_FLUTTER_EVIDENCE" apps/flutter_app/maestro/visual_gate.yaml --test-output-dir "$GLAM_FLUTTER_EVIDENCE/maestro"
+ui_status=$?
+set -e
+if [ "$ui_status" -ne 0 ]; then python3 scripts/flutter/failure-evidence.py "$platform" "$device" || true; fi
 cleanup
+if [ "$ui_status" -ne 0 ]; then tail -n 32 "$GLAM_FLUTTER_EVIDENCE/runtime.txt"; exit "$ui_status"; fi
 if [ "$platform" = android ]; then
   adb shell pm path com.glambeauty.visualreview > "$GLAM_FLUTTER_EVIDENCE/installed-app-path.txt"
   grep -q '^package:' "$GLAM_FLUTTER_EVIDENCE/installed-app-path.txt"
