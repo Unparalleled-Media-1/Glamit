@@ -578,6 +578,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
               {goals.map((n) => (
                 <View key={n} style={s.switchRow}>
                   <Switch
+                    testID={"analysis-goal-" + goals.indexOf(n)}
                     accessibilityLabel={n}
                     value={state.goals.includes(n)}
                     onValueChange={() =>

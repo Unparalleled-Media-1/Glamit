@@ -23,7 +23,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: native-verification-${{ github.event.pull_request.number || github.ref }}
+  group: native-verification-${{ github.event.pull_request.number || github.ref }}-${{ inputs.platform || 'both' }}-${{ inputs.device_journey && 'device' || 'startup' }}
   cancel-in-progress: true
 env:
   CI: '1'

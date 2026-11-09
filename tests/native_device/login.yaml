@@ -19,14 +19,16 @@ appId: com.glambeauty.localverification
           element:
             text: "Mobile number"
           direction: DOWN
-      - tapOn: "Mobile number"
+      - tapOn:
+          id: "auth-mobile-number"
       - inputText: "+27820000001"
       - hideKeyboard
       - tapOn: "Continue with SMS"
       - extendedWaitUntil:
           visible: "Verification code"
           timeout: 15000
-      - tapOn: "Verification code"
+      - tapOn:
+          id: "auth-verification-code"
       - inputText: "246810"
       - hideKeyboard
       - tapOn: "Verify code"

@@ -44,7 +44,8 @@ appId: com.glambeauty.localverification
     element:
       text: "Understand my features"
     direction: UP
-- tapOn: "Understand my features"
+- tapOn:
+    id: "analysis-goal-0"
 - scrollUntilVisible:
     element:
       text: "Review permissions and run analysis"
@@ -80,8 +81,10 @@ appId: com.glambeauty.localverification
       text: "Upload privately and request analysis"
     direction: DOWN
 - tapOn: "Upload privately and request analysis"
-- extendedWaitUntil:
-    visible: "Analysis queued.*"
+- scrollUntilVisible:
+    element:
+      text: "Analysis queued.*"
+    direction: DOWN
     timeout: 30000
 - takeScreenshot: ${EVIDENCE_DIR}/05-queued
 - repeat:
