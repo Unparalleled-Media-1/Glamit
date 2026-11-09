@@ -39,7 +39,7 @@ def main():
     adb("shell", "wm", "dismiss-keyguard")
     adb("shell", "locksettings", "set-pin", "1234")
     adb("shell", "am", "start", "-a", "android.settings.FINGERPRINT_ENROLL")
-    launcher_waited = False
+    launcher_recoveries = 0
     for _attempt in range(35):
         adb("shell", "uiautomator", "dump", "/sdcard/glam-enrollment.xml")
         raw = adb("exec-out", "cat", "/sdcard/glam-enrollment.xml")
@@ -47,11 +47,21 @@ def main():
         nodes = list(ET.fromstring(raw).iter("node"))
         fields = [n for n in nodes if n.get("class", "").endswith("EditText")]
         wait = launcher_wait(nodes)
-        if wait is not None and not launcher_waited:
-            (OUTPUT / "enrollment-launcher-anr.xml").write_bytes(raw)
-            (OUTPUT / "enrollment-launcher-anr.png").write_bytes(adb("exec-out", "screencap", "-p"))
-            tap(wait)
-            launcher_waited = True
+        if wait is not None and launcher_recoveries < 2:
+            (OUTPUT / f"enrollment-launcher-anr-{launcher_recoveries}.xml").write_bytes(raw)
+            (OUTPUT / f"enrollment-launcher-anr-{launcher_recoveries}.png").write_bytes(
+                adb("exec-out", "screencap", "-p")
+            )
+            if launcher_recoveries == 0:
+                tap(wait)
+                print("Retained unrelated Quickstep ANR; selected Wait once", flush=True)
+            else:
+                close = next((n for n in nodes if n.get("text") == "Close app"), None)
+                if close is None:
+                    raise RuntimeError("Known launcher dialog has no recovery action")
+                tap(close)
+                print("Retained recurrent Quickstep ANR; closed only emulator launcher", flush=True)
+            launcher_recoveries += 1
             adb("shell", "am", "start", "-a", "android.settings.FINGERPRINT_ENROLL")
             continue
         if any("Device locked" in [n.get("text"), n.get("content-desc")] for n in nodes):
@@ -61,6 +71,7 @@ def main():
             tap(fields[0])
             adb("shell", "input", "text", "1234")
             adb("shell", "input", "keyevent", "66")
+            print("Entered disposable emulator test PIN through native UI", flush=True)
         else:
             done = next((n for n in nodes if n.get("text", "").lower() == "done"), None)
             if done is not None:
@@ -81,6 +92,7 @@ def main():
                 None,
             )
             if target is not None:
+                print("Native Settings action: " + target.get("text", ""), flush=True)
                 tap(target)
             else:
                 adb("emu", "finger", "touch", "1")
