@@ -6,6 +6,7 @@ import "./golden-tokens.css";
 import "./golden-screens.css";
 import "./personal-results.css";
 import "./authentication.css";
+import "./public-site.css";
 
 export const viewport: Viewport = {
   width: "device-width",

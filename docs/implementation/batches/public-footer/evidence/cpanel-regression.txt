@@ -1,0 +1,5 @@
+
+> glam-ai@0.1.0 test:godaddy
+> node tests/client/godaddy-web.cjs
+
+GoDaddy package: 8 route loads, mobile scrolling, account fields and no unexpected external requests passed.

@@ -7,6 +7,7 @@ import "../../apps/web/app/golden-tokens.css";
 import "../../apps/web/app/golden-screens.css";
 import "../../apps/web/app/personal-results.css";
 import "../../apps/web/app/authentication.css";
+import "../../apps/web/app/public-site.css";
 
 const section = sectionFromPath(location.pathname);
 createRoot(document.getElementById("root")!).render(
