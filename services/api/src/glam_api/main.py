@@ -13,6 +13,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from glam_api.ai_stylist import build_stylist_router
+from glam_api.analysis_jobs import build_analysis_router
 from glam_api.auth import Principal, get_principal
 from glam_api.catalog import build_catalog_router
 from glam_api.contracts import (
@@ -170,13 +171,15 @@ def ready(db: Db):
         applied = set(db.scalars(text("SELECT version_num FROM alembic_version")))
     except SQLAlchemyError:
         raise HTTPException(503, "Database readiness is unavailable") from None
-    if not applied.intersection({"0014_creator_studio", "0015_private_media"}):
+    current_heads = {"0014_creator_studio", "0015_private_media", "0016_analysis_jobs"}
+    if not applied.intersection(current_heads):
         raise HTTPException(503, "Database migration is not current")
-    if (
-        os.environ.get("GLAM_PRIVATE_MEDIA_ENABLED") == "true"
-        and "0015_private_media" not in applied
+    if os.environ.get("GLAM_PRIVATE_MEDIA_ENABLED") == "true" and not applied.intersection(
+        {"0015_private_media", "0016_analysis_jobs"}
     ):
         raise HTTPException(503, "Private media migration is not current")
+    if os.environ.get("GLAM_ANALYSIS_ENABLED") == "true" and "0016_analysis_jobs" not in applied:
+        raise HTTPException(503, "Analysis migration is not current")
     if not get_settings().oidc_issuer:
         raise HTTPException(503, "Identity provider is not configured")
     return {"status": "ready", "scope": "foundation_api"}
@@ -371,3 +374,4 @@ app.include_router(build_catalog_router(user, audit, replay, remember))
 app.include_router(build_media_router(user, audit))
 
 app.include_router(build_stylist_router(user, audit))
+app.include_router(build_analysis_router(user, audit))

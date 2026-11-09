@@ -1,0 +1,206 @@
+# GLAM Beauty — Complete iOS & Android Mobile App Audit Checklist
+
+This checklist is designed specifically for the actual Expo/React Native applications, not the responsive website or browser prototypes.
+
+It covers functionality, UI/UX, backend integration, AI services, security, payments, native hardware, and App Store/Google Play readiness.
+
+Audit rule: A screen existing in source code does not mean the feature works. Every approved feature must be tested from the actual native application through its backend and persistent data.
+
+## 1. Audit progress tracker
+
+Interactive audit checklist
+
+# 0 / 60 checks
+
+0% marked complete
+
+Mark an item only when its evidence has been verified. All items begin unchecked; this is not a measurement of current app completion.
+
+1\. Native architecture & build0 of 6 verified
+
+Real React Native components, not WebViews
+
+iOS simulator compiles, installs and launches
+
+Android emulator compiles, installs and launches
+
+Signed iOS and Android builds verified
+
+Correct app IDs, icons, splash screens and permissions
+
+No production secrets embedded in app
+
+2\. Navigation & UI/UX0 of 6 verified
+
+Five-tab consumer navigation works
+
+Native back stacks, gestures and Android back work
+
+Every screen and button performs its intended action
+
+Modals, sheets, keyboards and safe areas work
+
+Dark/light themes and GLAM branding are consistent
+
+Small screens, tablets and accessibility tested
+
+3\. Authentication & accounts0 of 6 verified
+
+4\. Photo & face analysis0 of 6 verified
+
+5\. AI Studio & personal styling0 of 6 verified
+
+6\. Marketplace & payments0 of 6 verified
+
+7\. Professionals, creators & business roles0 of 6 verified
+
+8\. Notifications & deep links0 of 6 verified
+
+9\. Security, reliability & performance0 of 6 verified
+
+10\. Store release & production0 of 6 verified
+
+Reset checklist Copy audit results
+
+## 2. GLAM Beauty's known outstanding priorities
+
+Based on the latest implementation reports, these are the areas I would audit first:
+
+| Priority | Area                       | Known issue                                              |
+| -------- | -------------------------- | -------------------------------------------------------- |
+| P0       | Native service integration | Consumer `CompanionConnection` is not fully wired        |
+| P0       | AI analysis                | Persistent jobs, reports and corrections incomplete      |
+| P0       | Native navigation          | Proper native stacks and back handling missing           |
+| P0       | OpenAI Advisor             | Code exists; live provider not yet configured            |
+| P1       | AI Studio                  | Real image generation and saved results incomplete       |
+| P1       | Marketplace                | Full native purchasing journey unverified                |
+| P1       | Notifications              | Native push infrastructure missing                       |
+| P1       | Privacy                    | Full deletion, export and retention lifecycle incomplete |
+| P1       | Device verification        | Physical iOS/Android testing outstanding                 |
+
+These priorities are drawn from the implementation findings, not a fresh independent production audit.
+
+## 3. Copy-paste Codex audit and remediation instruction
+
+# GLAM BEAUTY — NATIVE MOBILE APPLICATION AUDIT AND REMEDIATION
+
+Audit the actual Expo/React Native applications in apps/mobile for iOS and Android.
+
+This is a targeted verification-and-repair exercise, not another endless platform-wide audit.
+
+Use the existing 140-feature matrix, defect register, native screen inventories and implementation batch reports as the baseline.
+
+## Scope
+
+Audit and verify:
+
+1. Native architecture and compilation.
+2. All native screens, routes, buttons and interactions.
+3. Authentication, biometric security and account recovery.
+4. Camera, permissions, photo lifecycle and consent.
+5. Private media, AI analysis and Style Passport.
+6. AI Studio, Advisor and saved looks.
+7. Digital Wardrobe, personal styling and discovery.
+8. Marketplace, checkout, orders and refunds.
+9. Professional bookings and creator features.
+10. Role-specific merchant and business companion screens.
+11. Notifications, deep links and app lifecycle.
+12. Privacy, security, performance and accessibility.
+13. iOS simulator and physical-device verification.
+14. Android emulator and physical-device verification.
+15. App Store and Google Play release readiness.
+
+## Mandatory audit methodology
+
+For every native feature record:
+
+- Feature ID.
+- Platform.
+- Native screen/component.
+- User role.
+- Expected behavior.
+- Actual observed behavior.
+- Backend endpoint.
+- Persistence mechanism.
+- Credential requirements.
+- Test evidence.
+- Defect ID if applicable.
+- Severity.
+- Implementation status.
+- Verification status.
+
+Classify evidence separately as:
+
+SOURCE EXISTS\
+LOCAL TEST PASSED\
+SIMULATOR/EMULATOR VERIFIED\
+PHYSICAL DEVICE VERIFIED\
+BACKEND INTEGRATION VERIFIED\
+LIVE PROVIDER VERIFIED\
+PRODUCTION VERIFIED
+
+Never count source presence or browser previews as native functionality.
+
+## Required execution
+
+Start with the highest-risk existing gaps:
+
+- Missing CompanionConnection at app entry.
+- Missing native navigation stack.
+- Persistent photo/analysis pipeline.
+- OpenAI Advisor live integration.
+- AI Studio generation.
+- Native marketplace checkout.
+- Notifications and deep links.
+
+For each confirmed defect:
+
+1. Reproduce it.
+2. Identify the smallest safe fix.
+3. Implement the correction.
+4. Add a regression test.
+5. Run affected native and backend tests.
+6. Verify iOS and Android independently.
+7. Update the existing authoritative defect register.
+
+Do not generate a new duplicate feature matrix.
+
+Do not create another HTML mobile prototype.
+
+Do not mark external credential blockers as completed features.
+
+## Security and deployment restrictions
+
+No production database migrations without exact-SQL approval, backup and rollback evidence.
+
+No live Stripe transactions.
+
+No production deployment without authorization.
+
+No fabricated AI results, account approvals or merchant transactions.
+
+No secret keys in mobile or web client bundles.
+
+Preserve approved 10% marketplace commission and existing identity rules.
+
+## Deliverables
+
+Produce:
+
+- Native audit results by platform and role.
+- Updated existing feature/defect records.
+- P0/P1/P2 issue list.
+- Screen-to-API connectivity report.
+- Actual iOS simulator evidence.
+- Actual Android emulator evidence.
+- Physical-device testing gaps.
+- Provider activation gaps.
+- A prioritized repair sequence.
+
+Proceed with fixes in controlled batches.
+
+The goal is to eliminate implementation defects and achieve genuine native feature completeness, while keeping external-provider activation and production certification as separately reported release gates.
+
+Do not stop at reporting problems. Fix all credential-independent defects within the authorized scope.
+
+Recommended acceptance standard: GLAM Beauty should only be considered ready for public mobile launch when the core Analyze → Results → Style Passport → AI Studio → Discover → Purchase/Booking journeys work on the real native applications, with verified backend persistence and no unresolved release-blocking defects.

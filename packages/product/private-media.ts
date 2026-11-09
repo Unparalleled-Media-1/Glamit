@@ -65,57 +65,110 @@ export function createPrivateMediaClient(options: {
   const transport = options.fetch || globalThis.fetch;
   const session = (expected?: string) => {
     const token = options.getToken();
-    if (!token || (expected && token !== expected)) throw new PrivateMediaError("media_session_changed");
+    if (!token || token.length > 16384 || /[\r\n]/.test(token) || (expected && token !== expected))
+      throw new PrivateMediaError("media_session_changed");
     return token;
   };
   const id = (value: string) => {
     if (!UUID.test(value)) throw new PrivateMediaError("invalid_media_identifier");
     return value;
   };
-  async function request(path: string, token: string, init: RequestInit = {}) {
+  const active = (token: string, signal?: AbortSignal) => {
     session(token);
-    let response: Response;
+    if (signal?.aborted) throw new PrivateMediaError("private_media_request_cancelled");
+  };
+  async function request(path: string, token: string, init: RequestInit = {}, signal?: AbortSignal, binary = false) {
+    active(token, signal);
+    const controller = new AbortController();
+    const abort = () => controller.abort();
+    signal?.addEventListener("abort", abort, { once: true });
+    let timedOut = false;
+    const timer = setTimeout(() => { timedOut = true; controller.abort(); }, 30000);
+    const checkpoint = () => {
+      active(token, signal);
+      if (timedOut) throw new PrivateMediaError("private_media_request_timed_out", true);
+    };
     try {
-      response = await transport(origin.origin + path, {
-        ...init, redirect: "error", cache: "no-store",
+      const response = await transport(origin.origin + path, {
+        ...init, redirect: "error", cache: "no-store", credentials: "omit", signal: controller.signal,
         headers: { ...init.headers, Authorization: "Bearer " + token },
       });
-    } catch {
-      throw new PrivateMediaError("private_media_transport_unavailable", true);
-    }
-    session(token);
-    if (!response.ok) {
+      checkpoint();
+      if (response.redirected || (response.url && new URL(response.url).origin !== origin.origin))
+        throw new PrivateMediaError("private_media_response_invalid");
+      const limit = binary && response.ok ? MAX_BYTES : 65536;
+      const size = Number(response.headers.get("content-length") || 0);
+      if (!Number.isSafeInteger(size) || size < 0 || size > limit)
+        throw new PrivateMediaError("private_media_response_too_large");
+      if (binary && response.ok && response.headers.get("content-type")?.split(";")[0] !== "image/png")
+        throw new PrivateMediaError("private_media_response_invalid");
+      // Expo fetch and browsers expose bounded streaming. The fallback supports older
+      // transports, with the same post-read size/session/cancellation checks.
+      let bytes: Uint8Array | undefined;
+      const reader = response.body?.getReader();
+      if (reader) {
+        const chunks: Uint8Array[] = [];
+        let length = 0, complete = false;
+        const cancelReader = () => { void reader.cancel().catch(() => {}); };
+        controller.signal.addEventListener("abort", cancelReader, { once: true });
+        try {
+          while (true) {
+            const chunk = await reader.read();
+            checkpoint();
+            if (chunk.done) { complete = true; break; }
+            length += chunk.value.byteLength;
+            if (length > limit) throw new PrivateMediaError("private_media_response_too_large");
+            chunks.push(chunk.value);
+          }
+          bytes = new Uint8Array(length);
+          let offset = 0;
+          for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
+        } finally {
+          controller.signal.removeEventListener("abort", cancelReader);
+          if (!complete) cancelReader();
+          reader.releaseLock();
+        }
+      }
+      if (binary && response.ok) {
+        const data = bytes ? bytes.buffer : await response.arrayBuffer();
+        checkpoint();
+        if (data.byteLength > limit) throw new PrivateMediaError("private_media_response_too_large");
+        return data;
+      }
+      const raw = bytes ? new TextDecoder().decode(bytes) : await response.text();
+      checkpoint();
+      if (raw.length > limit || new TextEncoder().encode(raw).byteLength > limit)
+        throw new PrivateMediaError("private_media_response_too_large");
+      let value: unknown;
+      try { value = JSON.parse(raw); }
+      catch { throw new PrivateMediaError("private_media_response_invalid"); }
+      if (response.ok) return value;
       // Never surface a provider body, photo bytes, token or exception text in the UI.
       let code = "private_media_request_failed";
-      try {
-        const error = await response.json();
-        session(token);
+      if (value && typeof value === "object") {
+        const error = value as Record<string, unknown>;
         const candidate = typeof error.message === "string" ? error.message : error.code;
-        if (knownErrors.has(candidate)) code = candidate;
-      } catch (error) {
-        if (error instanceof PrivateMediaError) throw error;
+        if (typeof candidate === "string" && knownErrors.has(candidate)) code = candidate;
       }
       const retryable = response.status === 429 || (response.status >= 500 &&
         ["private_media_request_failed", "storage_unavailable", "storage_write_not_confirmed",
           "storage_delete_not_confirmed"].includes(code));
       throw new PrivateMediaError(code, retryable, response.status);
-    }
-    return response;
-  }
-  async function json<T>(path: string, token: string, init: RequestInit = {}): Promise<T> {
-    const response = await request(path, token, init);
-    try {
-      const result = await response.json();
-      session(token);
-      return result as T;
     } catch (error) {
+      checkpoint();
       if (error instanceof PrivateMediaError) throw error;
-      throw new PrivateMediaError("private_media_response_invalid");
+      throw new PrivateMediaError("private_media_transport_unavailable", true);
+    } finally {
+      clearTimeout(timer);
+      signal?.removeEventListener("abort", abort);
     }
+  }
+  async function json<T>(path: string, token: string, init: RequestInit = {}, signal?: AbortSignal): Promise<T> {
+    return await request(path, token, init, signal) as T;
   }
   return {
-    status: async () => {
-      const value = await json<Record<string, unknown>>("/v1/media/status", session());
+    status: async (signal?: AbortSignal) => {
+      const value = await json<Record<string, unknown>>("/v1/media/status", session(), {}, signal);
       if (!value || value.scope !== "private_media_storage" ||
           !["NOT CONFIGURED", "DEGRADED", "CONNECTED"].includes(value.state as string)) {
         throw new PrivateMediaError("private_media_response_invalid");
@@ -125,36 +178,40 @@ export function createPrivateMediaClient(options: {
         code: typeof value.code === "string" && knownErrors.has(value.code) ? value.code : undefined,
       };
     },
-    policy: () => json<components["schemas"]["PolicyRead"]>("/v1/media/policy", session()),
-    consent: (policyId: string, action: "granted" | "withdrawn", requestKey: string) =>
-      json<components["schemas"]["ConsentResult"]>(`/v1/policies/${id(policyId)}/consent`, session(), {
+    policy: async (signal?: AbortSignal): Promise<components["schemas"]["PolicyRead"]> => {
+      const value = await json<components["schemas"]["PolicyRead"]>("/v1/media/policy", session(), {}, signal);
+      if (!value || !UUID.test(value.id) || value.purpose !== "private_photo_storage" ||
+          typeof value.version !== "string" || !value.version.trim() || value.version.length > 200 ||
+          typeof value.content !== "string" || !value.content.trim() || value.content.length > 60000)
+        throw new PrivateMediaError("private_media_response_invalid");
+      return { id: value.id, purpose: value.purpose, version: value.version, content: value.content };
+    },
+    consent: async (policyId: string, action: "granted" | "withdrawn", requestKey: string, signal?: AbortSignal): Promise<components["schemas"]["ConsentResult"]> => {
+      if (!["granted", "withdrawn"].includes(action)) throw new PrivateMediaError("invalid_media_consent");
+      const value = await json<components["schemas"]["ConsentResult"]>(`/v1/policies/${id(policyId)}/consent`, session(), {
         method: "POST", headers: { "Content-Type": "application/json", "Idempotency-Key": id(requestKey) },
         body: JSON.stringify({ action }),
-      }),
-    list: async () => {
-      const values = await json<unknown>("/v1/media", session());
+      }, signal);
+      if (!value || !UUID.test(value.id) || value.action !== action) throw new PrivateMediaError("private_media_response_invalid");
+      return { id: value.id, action: value.action };
+    },
+    list: async (signal?: AbortSignal) => {
+      const values = await json<unknown>("/v1/media", session(), {}, signal);
       if (!Array.isArray(values) || values.length > 100) {
         throw new PrivateMediaError("private_media_response_invalid");
       }
       return values.map(media);
     },
-    metadata: async (mediaId: string) => media(await json(`/v1/media/${id(mediaId)}`, session())),
-    remove: async (mediaId: string) => media(await json(`/v1/media/${id(mediaId)}`, session(), { method: "DELETE" })),
-    async download(mediaId: string) {
-      const token = session();
-      const response = await request(`/v1/media/${id(mediaId)}/content`, token);
-      if (response.headers.get("content-type")?.split(";")[0] !== "image/png") {
-        throw new PrivateMediaError("private_media_response_invalid");
-      }
-      const value = await response.arrayBuffer();
-      session(token);
-      if (value.byteLength > MAX_BYTES) throw new PrivateMediaError("private_media_response_too_large");
-      return value;
+    metadata: async (mediaId: string, signal?: AbortSignal) => media(await json(`/v1/media/${id(mediaId)}`, session(), {}, signal)),
+    remove: async (mediaId: string, signal?: AbortSignal) => media(await json(`/v1/media/${id(mediaId)}`, session(), { method: "DELETE" }, signal)),
+    async download(mediaId: string, signal?: AbortSignal) {
+      return await request(`/v1/media/${id(mediaId)}/content`, session(), {}, signal, true) as ArrayBuffer;
     },
     async uploadPhoto(input: {
       data: ArrayBuffer; contentType: MediaIntent["content_type"]; policyId: string;
-    }, requestKey: string) {
+    }, requestKey: string, signal?: AbortSignal) {
       const token = session();
+      active(token, signal);
       id(requestKey); id(input.policyId);
       if (!input.data.byteLength || input.data.byteLength > MAX_BYTES) {
         throw new PrivateMediaError("private_photo_size_invalid");
@@ -162,7 +219,7 @@ export function createPrivateMediaClient(options: {
       const data = input.data.slice(0);
       const contentType = input.contentType, policyId = input.policyId;
       const hash = await options.sha256(data);
-      session(token);
+      active(token, signal);
       if (!/^[a-f0-9]{64}$/.test(hash)) throw new PrivateMediaError("private_photo_digest_invalid");
       const body: MediaIntent = {
         content_type: contentType, policy_id: policyId,
@@ -171,12 +228,12 @@ export function createPrivateMediaClient(options: {
       const intent = media(await json("/v1/media", token, {
         method: "POST", headers: { "Content-Type": "application/json", "Idempotency-Key": requestKey },
         body: JSON.stringify(body),
-      }));
+      }, signal));
       if (intent.state === "ready") return intent;
       if (intent.state !== "pending") throw new PrivateMediaError("private_photo_not_uploadable");
       return media(await json(`/v1/media/${id(intent.id)}/content`, token, {
         method: "PUT", headers: { "Content-Type": contentType }, body: data,
-      }));
+      }, signal));
     },
   };
 }
