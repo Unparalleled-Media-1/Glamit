@@ -6,9 +6,7 @@ appId: com.glambeauty.localverification
     clearState: false
 - tapOn: "Profile"
 - takeScreenshot: ${EVIDENCE_DIR}/08-real-process-relaunch
-- tapOn:
-    text: "Unlock with device biometrics"
-    optional: true
+- tapOn: "Unlock with device biometrics"
 - extendedWaitUntil:
     visible: "Your GLAM account"
     timeout: 20000

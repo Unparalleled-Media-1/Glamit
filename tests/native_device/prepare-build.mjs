@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 const env=process.env;
-if (env.CI!=='1' || env.GLAM_BUILD_ENV!=='development' ||
+if (!['1','true'].includes(env.CI) || env.GLAM_BUILD_ENV!=='development' ||
     env.GLAM_IOS_BUNDLE_IDENTIFIER!=='com.glambeauty.localverification' ||
     env.GLAM_ANDROID_PACKAGE!=='com.glambeauty.localverification' ||
     env.EXPO_PUBLIC_GLAM_API_ORIGIN!=='https://native-fixture.invalid' ||

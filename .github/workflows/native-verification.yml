@@ -15,6 +15,11 @@ on:
         description: 'Run isolated native photo/Passport UI acceptance (never production)'
         type: boolean
         default: false
+      platform:
+        description: 'Affected native platform to verify'
+        type: choice
+        options: [both, ios, android]
+        default: both
 permissions:
   contents: read
 concurrency:
@@ -32,6 +37,7 @@ env:
   EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ inputs.device_journey && 'sb_publishable_nativefixture0000000000000000' || '' }}
 jobs:
   ios-simulator:
+    if: ${{ !inputs.platform || inputs.platform == 'both' || inputs.platform == 'ios' }}
     runs-on: macos-latest
     timeout-minutes: 45
     steps:
@@ -54,7 +60,7 @@ jobs:
           java-version: '17'
       - name: Prepare isolated native device services
         if: inputs.device_journey
-        run: bash tests/native_device/setup-services.sh
+        run: python3 scripts/mobile/run_logged.py artifacts/native-device/setup.txt bash tests/native_device/setup-services.sh
       - name: Generate actual iOS native project
         run: npm exec --workspace=@glam/mobile -- expo prebuild --platform ios --no-install
       - name: Permit loopback in this isolated fixture binary only
@@ -93,7 +99,7 @@ jobs:
       - name: Exercise installed iOS photo to Passport journey
         if: inputs.device_journey
         run: |
-          bash tests/native_device/run-journey.sh ios
+          python3 scripts/mobile/run_logged.py artifacts/native-device/journey-log.txt bash tests/native_device/run-journey.sh ios
       - uses: actions/upload-artifact@v7
         if: always()
         with:
@@ -104,6 +110,7 @@ jobs:
             artifacts/native-fixture-build.json
           if-no-files-found: warn
   android-emulator:
+    if: ${{ !inputs.platform || inputs.platform == 'both' || inputs.platform == 'android' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -139,7 +146,7 @@ jobs:
           java-version: '17'
       - name: Prepare isolated native device services
         if: inputs.device_journey
-        run: bash tests/native_device/setup-services.sh
+        run: python3 scripts/mobile/run_logged.py artifacts/native-device/setup.txt bash tests/native_device/setup-services.sh
       - name: Generate actual Android native project
         run: npm exec --workspace=@glam/mobile -- expo prebuild --platform android --no-install
       - name: Permit loopback in this isolated fixture binary only
@@ -175,7 +182,7 @@ jobs:
             adb logcat -d -t 300 ReactNativeJS:E AndroidRuntime:E '*:S' > artifacts/native-android/runtime.txt
             git rev-parse HEAD > artifacts/native-android/source-sha.txt
             if [ "$GLAM_NATIVE_DEVICE_JOURNEY" = true ]; then
-              bash tests/native_device/run-journey.sh android
+              python3 scripts/mobile/run_logged.py artifacts/native-device/journey-log.txt bash tests/native_device/run-journey.sh android
             fi
       - uses: actions/upload-artifact@v7
         if: always()

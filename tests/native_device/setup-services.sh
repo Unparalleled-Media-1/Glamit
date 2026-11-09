@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 # CI only, disposable local services. No production connection or credential is used.
 set -euo pipefail
-test "${CI:-}" = 1
+printf 'CI fixture guards: CI=%s stage=%s device_journey=%s\n' "${CI:-unset}" "${GLAM_BUILD_ENV:-unset}" "${GLAM_NATIVE_DEVICE_JOURNEY:-unset}"
+case "${CI:-}" in 1|true) ;; *) exit 1 ;; esac
 test "${GLAM_NATIVE_DEVICE_JOURNEY:-}" = true
 mkdir -p artifacts/native-device
 if [ "$(uname -s)" = Darwin ]; then
   if ! brew --prefix postgresql@17 >/dev/null 2>&1; then brew install postgresql@17; fi
+  brew tap wix/brew
+  brew install applesimutils
+  applesimutils --version
   task_pg_bin="$(brew --prefix postgresql@17)/bin"
   "$task_pg_bin/initdb" -D "$RUNNER_TEMP/glam-native-pg" -U glam --auth=trust
   "$task_pg_bin/pg_ctl" -D "$RUNNER_TEMP/glam-native-pg" -l "$RUNNER_TEMP/glam-native-pg.log" -o '-h 127.0.0.1 -p 55439' start

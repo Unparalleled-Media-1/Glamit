@@ -7,6 +7,14 @@ appId: com.glambeauty.localverification
     - ${FIXTURE_PHOTO}
 - tapOn: "Profile"
 - runFlow: login.yaml
+- scrollUntilVisible:
+    element:
+      text: "Enable biometric login"
+    direction: DOWN
+- tapOn: "Enable biometric login"
+- extendedWaitUntil:
+    visible: "Biometric unlock enabled on this device."
+    timeout: 25000
 - takeScreenshot: ${EVIDENCE_DIR}/01-authenticated
 - tapOn: "Analyze"
 - scrollUntilVisible:

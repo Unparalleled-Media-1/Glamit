@@ -7,14 +7,28 @@ mkdir -p artifacts/native-device
 export MAESTRO_CLI_NO_ANALYTICS=1
 export MAESTRO_CLI_ANALYSIS_NOTIFICATION_DISABLED=true
 if [ "$platform" = android ]; then
+  python3 tests/native_device/android-enroll.py
   adb reverse tcp:8765 tcp:8765
   adb shell screenrecord /sdcard/glam-native-passport.mp4 >/dev/null 2>&1 &
   recording_pid=$!
 else
+  applesimutils --booted --biometricEnrollment YES
+  applesimutils --booted --bundle com.glambeauty.localverification --setPermissions faceid=YES
   xcrun simctl io booted recordVideo artifacts/native-device/journey.mp4 > artifacts/native-device/video.txt 2>&1 &
   recording_pid=$!
 fi
+# Drive the real OS biometric challenge with the enrolled virtual finger/face.
+# No biometric or secure-store API in the application is replaced.
+(
+  while true; do
+    if [ "$platform" = android ]; then adb emu finger touch 1 >/dev/null 2>&1 || true
+    else applesimutils --booted --biometricMatch >/dev/null 2>&1 || true; fi
+    sleep 2
+  done
+) &
+biometric_pid=$!
 cleanup() {
+  kill "$biometric_pid" 2>/dev/null || true
   if [ "$platform" = android ]; then
     adb shell pkill -INT screenrecord || true
     kill "$recording_pid" 2>/dev/null || true
@@ -42,6 +56,17 @@ if [ "$core_status" -eq 0 ]; then
     if [ "$relaunch_status" -eq 0 ]; then
       curl --fail --silent http://127.0.0.1:8765/__fixture/assert-passport > artifacts/native-device/postgres-after-relaunch.json
       after_status=$?
+      if [ "$after_status" -eq 0 ]; then
+        python3 - <<'PYPROOF'
+import json
+from pathlib import Path
+before=json.loads(Path('artifacts/native-device/postgres-before-relaunch.json').read_text())
+after=json.loads(Path('artifacts/native-device/postgres-after-relaunch.json').read_text())
+assert after['revision']==before['revision'], 'Passport revision changed during process restart'
+assert after['refresh_count']>before['refresh_count'], 'No authenticated secure-session refresh after process restart'
+PYPROOF
+        after_status=$?
+      fi
     fi
   fi
 fi
