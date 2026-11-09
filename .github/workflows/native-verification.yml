@@ -15,6 +15,10 @@ on:
         description: 'Run isolated native photo/Passport UI acceptance (never production)'
         type: boolean
         default: false
+      enrollment_probe:
+        description: 'Diagnose only virtual Android biometric enrollment; not app acceptance'
+        type: boolean
+        default: false
       platform:
         description: 'Affected native platform to verify'
         type: choice
@@ -23,7 +27,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: native-verification-${{ github.event.pull_request.number || github.ref }}-${{ inputs.platform || 'both' }}-${{ inputs.device_journey && 'device' || 'startup' }}
+  group: native-verification-${{ github.event.pull_request.number || github.ref }}-${{ inputs.platform || 'both' }}-${{ inputs.enrollment_probe && 'enrollment' || inputs.device_journey && 'device' || 'startup' }}
   cancel-in-progress: true
 env:
   CI: '1'
@@ -38,7 +42,7 @@ env:
 jobs:
   ios-simulator:
     name: ${{ inputs.device_journey && 'iOS isolated core and relaunch' || 'ios-simulator' }}
-    if: ${{ !inputs.platform || inputs.platform == 'both' || inputs.platform == 'ios' }}
+    if: ${{ !inputs.enrollment_probe && (!inputs.platform || inputs.platform == 'both' || inputs.platform == 'ios') }}
     runs-on: macos-latest
     timeout-minutes: 45
     steps:
@@ -112,7 +116,7 @@ jobs:
           if-no-files-found: warn
   android-emulator:
     name: ${{ inputs.device_journey && 'Android isolated core and relaunch' || 'android-emulator' }}
-    if: ${{ !inputs.platform || inputs.platform == 'both' || inputs.platform == 'android' }}
+    if: ${{ !inputs.enrollment_probe && (!inputs.platform || inputs.platform == 'both' || inputs.platform == 'android') }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -194,3 +198,32 @@ jobs:
             artifacts/native-fixture-build.json
             apps/mobile/android/app/build/outputs/apk/release/*.apk
           if-no-files-found: warn
+
+  android-enrollment-probe:
+    name: Android virtual biometric setup (not app acceptance)
+    if: inputs.enrollment_probe
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Enable emulator KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          script: python3 scripts/mobile/run_logged.py artifacts/native-device/enrollment.txt python3 tests/native_device/android-enroll.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: virtual-android-enrollment-diagnostics-not-app-acceptance
+          path: artifacts/native-device

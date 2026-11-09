@@ -65,8 +65,17 @@ def main():
                 adb("emu", "finger", "touch", "1")
         time.sleep(0.5)
     (OUTPUT / "fingerprint-enrollment-failed.png").write_bytes(adb("exec-out", "screencap", "-p"))
+    visible = sorted(
+        {
+            node.get(key, "")[:100]
+            for node in nodes
+            if node.get("password") != "true"
+            for key in ["text", "content-desc"]
+            if node.get(key)
+        }
+    )[:20]
     raise RuntimeError(
-        "Native emulator enrollment did not complete; no biometric acceptance claimed"
+        "Native enrollment did not complete; visible Settings labels: " + repr(visible)
     )
 
 

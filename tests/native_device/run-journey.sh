@@ -70,6 +70,9 @@ PYPROOF
     fi
   fi
 fi
+if [ "$core_status" -ne 0 ] || [ "$relaunch_status" -ne 0 ]; then
+  python3 tests/native_device/capture-failure.py "$platform" || true
+fi
 python3 - "$platform" "$core_status" "$before_status" "$relaunch_status" "$after_status" <<'PY'
 import json,sys
 from pathlib import Path
