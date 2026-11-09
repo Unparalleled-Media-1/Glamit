@@ -1,0 +1,10 @@
+{
+  "packages/product/public-site.ts": "4b3b3b5946eed3c9e29a7e7538d3d041456ff0a346c8a10e60b85420141d4310",
+  "apps/web/components/SiteFooter.tsx": "e645193194f4432f27676e596963a140bc1200019eed75293a6cd703911c8f5b",
+  "apps/web/components/PublicIcons.tsx": "f2cabe0aa772960f1ce98058c4fe3e9679382b7b3a49ed2f78a4b594342f65f9",
+  "apps/web/components/PublicInformationPage.tsx": "f5df96dc2e82c2461470f527cdf03b8b75f63b1a2d03c309f915429b08129989",
+  "apps/web/components/AccountRoutes.tsx": "7de2cf88c84e15bd87ffcf6009b6350918837598713f4f61e22700478e34b749",
+  "apps/web/components/GlamApp.tsx": "4213daea25972b465509d0bfa85b82d76089b6fe4a0d4027c5c8efb6c9a2f964",
+  "apps/web/app/public-site.css": "73578d487b5e81283327ddbdbe4b1d0ffc97adf18a7393cff77f27bab85c2d6f",
+  "tests/client/public-footer.cjs": "e833ce69b61c90a68b1d4444d4c84f8433c48cea9d1eaf1d95204a48df9e09fb"
+}

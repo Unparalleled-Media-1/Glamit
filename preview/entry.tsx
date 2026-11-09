@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import BrandLogo from "../apps/web/components/BrandLogo";
 import GlamApp from "../apps/web/components/GlamApp";
+import PublicInformationPage from "../apps/web/components/PublicInformationPage";
+import { isPublicPage } from "../packages/product/public-site";
 import BusinessPortal from "../apps/web/components/BusinessPortal";
 import { sectionFromPath, appPath } from "../apps/web/lib/paths";
 import type { Page } from "../packages/product/platform";
@@ -10,6 +12,7 @@ import "../apps/web/app/golden-tokens.css";
 import "../apps/web/app/golden-screens.css";
 import "../apps/web/app/personal-results.css";
 import "./preview.css";
+import "../apps/web/app/public-site.css";
 const base = process.env.PREVIEW_SITE_BASE || "";
 const tasks = [
   {
@@ -220,7 +223,7 @@ const isApp =
 const section = sectionFromPath(location.pathname);
 createRoot(document.getElementById("root")!).render(
   isApp ? (
-    section === "business" ? (
+    isPublicPage(section) ? <PublicInformationPage section={section}/> : section === "business" ? (
       <BusinessPortal
         startModule={
           new URLSearchParams(location.search).get("module") || undefined

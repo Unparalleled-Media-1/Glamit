@@ -1,0 +1,5 @@
+
+> glam-ai@0.1.0 build:godaddy
+> node scripts/build-godaddy-web.mjs
+
+GoDaddy static-host upload build prepared in dist/godaddy-web; no hosting files or DNS were changed.

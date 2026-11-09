@@ -1,5 +1,6 @@
 "use client";
 import BrandLogo from "./BrandLogo";
+import SiteFooter, { MobileAppPrompt, SiteLink } from "./SiteFooter";
 
 import PhotoCapture from "./PhotoCapture";
 import { supportedPhoto } from "../lib/photo-file";
@@ -1266,6 +1267,7 @@ export default function GlamApp({
             </button>
           ))}
         </nav>
+        <SiteLink className="header-app-cta" to="/get-app" onNavigate={onAccountNavigate}>Get the GLAM app</SiteLink>
         <button
           className="market-trigger"
           onClick={() => go("complete")}
@@ -1295,6 +1297,7 @@ export default function GlamApp({
           transaction is submitted.
         </Notice>
       )}
+      {["home", "analyze", "studio", "results", "advisor", "guide", "event", "destination", "wardrobe"].includes(page) && <MobileAppPrompt onNavigate={onAccountNavigate}/>}
       <main
         id="main-content"
         ref={mainRef}
@@ -1370,17 +1373,7 @@ export default function GlamApp({
           />
         )}
       </main>
-      <footer className="site-footer">
-        <a className="brand" href={appPath("/")}>
-          <BrandLogo dark={["home", "analyze", "studio"].includes(page)} />
-        </a>
-        <span>Understand your features. Explore your possibilities.</span>
-        <div>
-          <button onClick={() => go("privacy")}>Privacy</button>
-          <a href={appPath("/business")} onClick={event => { if(onAccountNavigate){event.preventDefault();onAccountNavigate("/business");} }}>Business portal</a>
-          <a href={appPath("/admin")} onClick={event => { if(onAccountNavigate){event.preventDefault();onAccountNavigate("/admin");} }}>Admin</a>
-        </div>
-      </footer>
+      <SiteFooter dark={["home", "analyze", "studio"].includes(page)} onNavigate={onAccountNavigate} onPrivacy={()=>go("privacy")}/>
       <nav className="mobile-nav" aria-label="Personal navigation">
         {mobileTabs.map((n, i) => (
           <button

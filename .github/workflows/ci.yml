@@ -143,6 +143,15 @@ jobs:
       - run: npm run test:preview
         env:
           GLAM_DEVICE_PREVIEWS: ${{ runner.temp }}/device-previews
+      - run: npm run test:public-footer
+        env:
+          GLAM_PUBLIC_EVIDENCE: ${{ runner.temp }}/public-footer
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-footer-web-screenshots
+          path: ${{ runner.temp }}/public-footer
+          if-no-files-found: warn
       - uses: actions/upload-artifact@v4
         if: always()
         with:

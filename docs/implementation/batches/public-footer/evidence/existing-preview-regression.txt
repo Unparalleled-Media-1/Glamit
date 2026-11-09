@@ -1,0 +1,5 @@
+
+> glam-ai@0.1.0 test:preview
+> node tests/client/preview.cjs
+
+PASS static preview: repository-prefixed assets/routes, phone/desktop viewport, real app journeys, Studio handoff, Merchant Snap & List, denied switching and disconnected capabilities; no external requests or runtime errors

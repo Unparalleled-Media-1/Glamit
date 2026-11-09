@@ -20,6 +20,7 @@
     "test:web": "node tests/client/application.cjs",
     "build:preview": "node scripts/build-interactive-preview.mjs",
     "test:preview": "node tests/client/preview.cjs",
+    "test:public-footer": "node tests/client/public-footer.cjs",
     "preview:serve": "node scripts/serve-interactive-preview.mjs",
     "typecheck:preview": "tsc --noEmit -p preview/tsconfig.json",
     "design:tokens": "node scripts/generate-consumer-tokens.mjs",
