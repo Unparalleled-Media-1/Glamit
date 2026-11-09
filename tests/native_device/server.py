@@ -241,14 +241,14 @@ def device_environment(engine, root):
                 "created_at": datetime.now(UTC).isoformat(),
             }
 
-        def issue():
+        def issue(sid):
             now = int(time.time())
             token = jwt.encode(
                 {
                     "iss": ISSUER,
                     "aud": "authenticated",
                     "sub": str(subject),
-                    "session_id": str(session_id),
+                    "session_id": str(sid),
                     "iat": now,
                     "exp": now + 3600,
                     "aal": "aal1",
@@ -258,7 +258,7 @@ def device_environment(engine, root):
                 algorithm="ES256",
             )
             refresh = secrets.token_urlsafe(32)
-            refresh_tokens[hashlib.sha256(refresh.encode()).hexdigest()] = session_id
+            refresh_tokens[hashlib.sha256(refresh.encode()).hexdigest()] = sid
             return {
                 "access_token": token,
                 "refresh_token": refresh,
@@ -293,7 +293,13 @@ def device_environment(engine, root):
                 ):
                     raise HTTPException(400, "Invalid or expired fixture challenge")
                 event("test_identity_authenticated")
-                return issue()
+                sid = uuid4()
+                with engine.begin() as db:
+                    db.execute(
+                        text("INSERT INTO auth.sessions(id,user_id) VALUES(:id,:user)"),
+                        {"id": sid, "user": subject},
+                    )
+                return issue(sid)
 
         identity_dependency = Depends(principal)
 
@@ -320,7 +326,7 @@ def device_environment(engine, root):
                 if request.query_params.get("grant_type") != "refresh_token" or not live:
                     raise HTTPException(401, "Fixture refresh rejected")
                 event("test_session_refreshed")
-                return issue()
+                return issue(sid)
 
         @app.post("/auth/v1/logout")
         def logout(identity=identity_dependency):

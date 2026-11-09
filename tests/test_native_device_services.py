@@ -3,6 +3,7 @@
 import hashlib
 from uuid import uuid4
 
+import jwt
 import pytest
 from fastapi.testclient import TestClient
 from native_device.server import (
@@ -159,3 +160,43 @@ def test_fixture_storage_rejects_path_escape(tmp_path):
     with pytest.raises(RuntimeError):
         storage.put("../outside.png", b"fixture")
     assert not (tmp_path / "outside.png").exists()
+
+
+def test_fixture_reauthentication_creates_a_fresh_session_after_logout(db, tmp_path):
+    with device_environment(db, tmp_path) as fixture, TestClient(fixture.app) as client:
+        original = login(client)
+        client.headers["Authorization"] = "Bearer " + original["access_token"]
+        assert client.get("/auth/v1/user").status_code == 200
+        assert client.post("/auth/v1/logout").status_code == 200
+        assert client.get("/auth/v1/user").status_code == 401
+        replacement = login(client)
+        client.headers["Authorization"] = "Bearer " + replacement["access_token"]
+        assert client.get("/auth/v1/user").status_code == 200
+        assert replacement["access_token"] != original["access_token"]
+
+
+def test_fixture_expired_session_rejects_access_and_refresh_but_allows_fresh_login(db, tmp_path):
+    with device_environment(db, tmp_path) as fixture, TestClient(fixture.app) as client:
+        original = login(client)
+        # Test-only inspection of this fixture's token, never an authentication decision.
+        sid = jwt.decode(original["access_token"], options={"verify_signature": False})[
+            "session_id"
+        ]
+        with db.begin() as connection:
+            connection.execute(
+                text("UPDATE auth.sessions SET not_after=now()-interval '1 second' WHERE id=:id"),
+                {"id": sid},
+            )
+        client.headers["Authorization"] = "Bearer " + original["access_token"]
+        assert client.get("/auth/v1/user").status_code == 401
+        assert client.get("/v1/me/analysis-passport").status_code == 401
+        assert (
+            client.post(
+                "/auth/v1/token?grant_type=refresh_token",
+                json={"refresh_token": original["refresh_token"]},
+            ).status_code
+            == 401
+        )
+        replacement = login(client)
+        client.headers["Authorization"] = "Bearer " + replacement["access_token"]
+        assert client.get("/auth/v1/user").status_code == 200

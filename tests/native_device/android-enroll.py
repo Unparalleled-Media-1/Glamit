@@ -26,20 +26,25 @@ def main():
     # Only called on the disposable local-verification CI emulator, never a real device.
     if "emulator-" not in adb("get-serialno").decode():
         raise RuntimeError("Fingerprint fixture enrollment requires an emulator")
+    adb("shell", "svc", "power", "stayon", "true")
+    adb("shell", "settings", "put", "system", "screen_off_timeout", "1800000")
+    adb("shell", "input", "keyevent", "WAKEUP")
+    adb("shell", "wm", "dismiss-keyguard")
     adb("shell", "locksettings", "set-pin", "1234")
     adb("shell", "am", "start", "-a", "android.settings.FINGERPRINT_ENROLL")
-    entered_pin = False
     for _attempt in range(35):
         adb("shell", "uiautomator", "dump", "/sdcard/glam-enrollment.xml")
         raw = adb("exec-out", "cat", "/sdcard/glam-enrollment.xml")
         (OUTPUT / "fingerprint-settings.xml").write_bytes(raw)
         nodes = list(ET.fromstring(raw).iter("node"))
         fields = [n for n in nodes if n.get("class", "").endswith("EditText")]
-        if fields and not entered_pin:
+        if any(n.get("text", "") == "Device locked" for n in nodes):
+            adb("shell", "input", "keyevent", "WAKEUP")
+            adb("shell", "input", "swipe", "500", "1400", "500", "300", "400")
+        elif fields:
             tap(fields[0])
             adb("shell", "input", "text", "1234")
             adb("shell", "input", "keyevent", "66")
-            entered_pin = True
         else:
             done = next((n for n in nodes if n.get("text", "").lower() == "done"), None)
             if done is not None:
