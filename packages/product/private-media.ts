@@ -1,4 +1,5 @@
 /** Shared authenticated Web/React Native transport. Never stores bytes, tokens or public URLs. */
+import { createAnalysisOperations } from "./analysis";
 import type { components } from "../contracts/api";
 
 export type Media = components["schemas"]["MediaRead"];
@@ -6,6 +7,7 @@ export type MediaIntent = components["schemas"]["MediaIntent"];
 const MAX_BYTES = 10 * 1024 * 1024;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const knownErrors = new Set([
+  "analysis_correction_revision_conflict", "style_passport_revision_conflict",
   "private_media_not_configured", "private_storage_not_configured",
   "reviewed_media_retention_configuration_required", "private_media_migration_required",
   "private_media_runtime_permissions_required", "private_bucket_not_qualified",
@@ -56,6 +58,7 @@ export class PrivateMediaError extends Error {
 export function createPrivateMediaClient(options: {
   apiOrigin: string;
   getToken: () => string | null;
+  getSubject?: () => string | undefined;
   sha256: (data: ArrayBuffer) => Promise<string>;
   fetch?: typeof globalThis.fetch;
 }) {
@@ -167,6 +170,7 @@ export function createPrivateMediaClient(options: {
     return await request(path, token, init, signal) as T;
   }
   return {
+    ...createAnalysisOperations((path, init, signal) => json(path, session(), init, signal), () => options.getSubject?.()),
     status: async (signal?: AbortSignal) => {
       const value = await json<Record<string, unknown>>("/v1/media/status", session(), {}, signal);
       if (!value || value.scope !== "private_media_storage" ||

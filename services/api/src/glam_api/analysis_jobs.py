@@ -73,7 +73,7 @@ class JobRequest(BaseModel):
         return values
 
 
-class JobRead(BaseModel):
+class AnalysisJobRead(BaseModel):
     id: UUID
     media_id: UUID
     state: Literal["queued", "running", "completed", "failed", "cancelled", "expired"]
@@ -193,6 +193,9 @@ def live(db, row):
 
 
 def expire(db, job_id):
+    from glam_api.analysis_privacy import redact_analysis_dependents
+
+    redact_analysis_dependents(db, job_id)
     db.execute(
         text("""UPDATE analysis_job SET state='expired',result=NULL,
       finished_at=coalesce(finished_at,clock_timestamp()),error_code='analysis_privacy_scope_expired'
@@ -223,7 +226,7 @@ def job(db, uid, job_id):
 
 
 def read(row):
-    return JobRead.model_validate(dict(row))
+    return AnalysisJobRead.model_validate(dict(row))
 
 
 def build_analysis_router(user, audit):
@@ -235,7 +238,7 @@ def build_analysis_router(user, audit):
         user(db, identity)
         return dict(current_policy(db))
 
-    @router.post("/v1/analysis/jobs", response_model=JobRead, status_code=202)
+    @router.post("/v1/analysis/jobs", response_model=AnalysisJobRead, status_code=202)
     def submit(
         body: JobRequest,
         key: Key,
@@ -310,7 +313,7 @@ def build_analysis_router(user, audit):
         audit(db, uid, "analysis.queued", row["id"])
         return read(row)
 
-    @router.get("/v1/analysis/jobs", response_model=list[JobRead])
+    @router.get("/v1/analysis/jobs", response_model=list[AnalysisJobRead])
     def history(db: Db, identity: Identity, response: Response):
         response.headers["Cache-Control"] = "no-store, private"
         uid = user(db, identity)
@@ -324,20 +327,23 @@ def build_analysis_router(user, audit):
         ).all()
         return [read(job(db, uid, identifier)) for identifier in ids]
 
-    @router.get("/v1/analysis/jobs/{job_id}", response_model=JobRead)
+    @router.get("/v1/analysis/jobs/{job_id}", response_model=AnalysisJobRead)
     def status(job_id: UUID, db: Db, identity: Identity, response: Response):
         response.headers["Cache-Control"] = "no-store, private"
         uid = user(db, identity)
         schema(db)
         return read(job(db, uid, job_id))
 
-    @router.delete("/v1/analysis/jobs/{job_id}", response_model=JobRead)
+    @router.delete("/v1/analysis/jobs/{job_id}", response_model=AnalysisJobRead)
     def cancel(job_id: UUID, db: Db, identity: Identity, response: Response):
         response.headers["Cache-Control"] = "no-store, private"
         uid = user(db, identity)
         schema(db)
         row = job(db, uid, job_id)
         if row["state"] != "expired":
+            from glam_api.analysis_privacy import redact_analysis_dependents
+
+            redact_analysis_dependents(db, job_id)
             row = (
                 db.execute(
                     text(

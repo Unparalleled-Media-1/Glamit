@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
+import AccountRoutes from "../apps/web/components/AccountRoutes";
 import BrandLogo from "../apps/web/components/BrandLogo";
 import GlamApp from "../apps/web/components/GlamApp";
 import PublicInformationPage from "../apps/web/components/PublicInformationPage";
@@ -223,7 +224,7 @@ const isApp =
 const section = sectionFromPath(location.pathname);
 createRoot(document.getElementById("root")!).render(
   isApp ? (
-    isPublicPage(section) ? <PublicInformationPage section={section}/> : section === "business" ? (
+    ["business/login", "business/register", "login", "register", "admin/login"].includes(section) ? <AccountRoutes initialPath={"/" + section}/> : isPublicPage(section) ? <PublicInformationPage section={section}/> : section === "business" ? (
       <BusinessPortal
         startModule={
           new URLSearchParams(location.search).get("module") || undefined

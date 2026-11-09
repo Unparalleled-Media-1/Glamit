@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import AccountRoutes from "../../components/AccountRoutes";
-import { publicPageLinks } from "../../../../packages/product/public-site";
+import { businessPageLinks, publicPageLinks } from "../../../../packages/product/public-site";
 const sections = [
   ...publicPageLinks.map(page => page.slug),
+  ...businessPageLinks.map(page => page.slug),
   "offer",
   "results",
   "destination",

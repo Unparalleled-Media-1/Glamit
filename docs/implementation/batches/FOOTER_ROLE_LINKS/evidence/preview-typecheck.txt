@@ -1,0 +1,4 @@
+
+> glam-ai@0.1.0 typecheck:preview
+> tsc --noEmit -p preview/tsconfig.json
+

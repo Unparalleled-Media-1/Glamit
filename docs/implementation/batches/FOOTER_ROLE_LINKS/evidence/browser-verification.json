@@ -1,0 +1,68 @@
+{
+  "scope": "website browser only",
+  "nativeDevice": false,
+  "routes": [
+    "terms",
+    "privacy-policy",
+    "cookies",
+    "returns",
+    "accessibility",
+    "contact",
+    "get-app"
+  ],
+  "widths": [
+    320,
+    360,
+    390,
+    412,
+    768,
+    1024,
+    1440
+  ],
+  "email": "hello@glamit.beauty",
+  "accessibilityChecks": [
+    {
+      "route": "home footer",
+      "engine": "4.14.0",
+      "violations": []
+    },
+    {
+      "route": "terms",
+      "engine": "4.14.0",
+      "violations": []
+    },
+    {
+      "route": "privacy-policy",
+      "engine": "4.14.0",
+      "violations": []
+    },
+    {
+      "route": "cookies",
+      "engine": "4.14.0",
+      "violations": []
+    },
+    {
+      "route": "returns",
+      "engine": "4.14.0",
+      "violations": []
+    },
+    {
+      "route": "accessibility",
+      "engine": "4.14.0",
+      "violations": []
+    },
+    {
+      "route": "contact",
+      "engine": "4.14.0",
+      "violations": []
+    },
+    {
+      "route": "get-app",
+      "engine": "4.14.0",
+      "violations": []
+    }
+  ],
+  "consoleErrors": [],
+  "externalRequests": [],
+  "sameDocumentBusinessHandoff": true
+}

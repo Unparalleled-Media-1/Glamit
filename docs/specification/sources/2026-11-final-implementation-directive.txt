@@ -1,0 +1,146 @@
+# GLAM BEAUTY — FINAL IMPLEMENTATION AND COMPLETION DIRECTIVE
+
+## Objective
+
+Complete all approved GLAM Beauty features across Web, iOS and Android.
+
+Stop producing repeated platform-wide audits, duplicate feature matrices and browser prototypes.
+
+Use the existing authoritative feature matrix and defect register.
+
+The target is 100% credential-independent implementation completeness, independently verified on each applicable platform.
+
+Production readiness is a separate release gate.
+
+## Priority 1 — Deliver one complete native consumer journey
+
+Implement and demonstrate:
+
+1. Launch the actual Expo application.
+2. Authenticate a test user.
+3. Grant the approved analysis consent.
+4. Capture or select a photo using native controls.
+5. Upload the photo to private storage.
+6. Create a durable backend analysis job.
+7. Process the job through the approved provider adapter.
+8. Retrieve a persisted report.
+9. Display the report in the native app.
+10. Correct a supported analysis finding.
+11. Persist the correction.
+12. Update the user's Style Passport.
+13. Close and reopen the application.
+14. Retrieve the corrected Style Passport.
+15. Repeat on iOS and Android.
+16. Verify privacy, consent withdrawal and deletion behavior.
+
+Do not use fabricated results or local-only persistence.
+
+Where live provider access is unavailable, complete and test the full orchestration against a clearly identified deterministic test adapter, then leave live-provider qualification pending.
+
+## Priority 2 — Complete native navigation and service wiring
+
+Finish the actual React Native navigation architecture.
+
+Connect the existing native screens to authenticated backend services.
+
+Implement proper native stacks, Android back handling, iOS gestures, deep links, session restoration, role switching and consistent loading/error/offline states.
+
+Do not rebuild working screens unnecessarily.
+
+## Priority 3 — Complete remaining product functionality
+
+Proceed in controlled implementation batches:
+
+- AI Studio and real generation jobs.
+- Personal Stylist, Digital Wardrobe and saved looks.
+- Event/Destination Stylist and weather integration.
+- Product discovery, catalog and durable cart.
+- Stripe test-mode checkout and order fulfillment.
+- Professional bookings.
+- Creator and social functionality.
+- Merchant, professional, advertiser and partner workspaces.
+- Notifications and deep linking.
+- Identity, recovery and privacy lifecycle.
+- Accessibility, performance and security.
+
+Preserve the approved 10% physical-product marketplace commission.
+
+Do not invent unapproved fees.
+
+## Priority 4 — Complete the website
+
+The website must primarily promote the mobile applications to consumers.
+
+Keep complete desktop functionality for merchants, advertisers, administrators and other business roles requiring advanced management tools.
+
+Implement valid app-store links when available, deep-link fallbacks, correct authentication callbacks and approved legal content.
+
+Do not claim deployment completion without verifying the actual served commit and production journeys.
+
+## Priority 5 — Prove native applications
+
+Produce actual iOS and Android builds.
+
+Verify both independently.
+
+Require native interaction evidence, not browser screenshots.
+
+Separate simulator/emulator verification from physical-device verification.
+
+Complete signing and store configuration when approved credentials are available.
+
+## Priority 6 — Maintain strict implementation controls
+
+For every batch:
+
+1. Identify existing requirement and defect IDs.
+2. Reproduce the defect.
+3. Implement the correction.
+4. Add regression tests.
+5. Verify persistence and backend effects.
+6. Run relevant web, iOS and Android checks.
+7. Update the authoritative records.
+8. Report exactly what remains.
+
+Do not mark a requirement complete from source presence, mocked responses or successful compilation alone.
+
+## Production safety
+
+Do not apply pending Supabase migrations without exact-SQL approval and verified recovery procedures.
+
+Do not enable production AI photo processing without approved consent, eligibility and retention policies.
+
+Do not perform live Stripe payment tests.
+
+Do not deploy or merge unapproved production changes.
+
+## Reporting
+
+After each batch report:
+
+- Features completed.
+- Defects resolved.
+- Screens operational.
+- Backend persistence verified.
+- Web test results.
+- iOS test results.
+- Android test results.
+- Provider activation blockers.
+- Production approval requirements.
+- Next implementation batch.
+
+Continue implementing until all credential-independent approved requirements are complete.
+
+Do not restart the entire audit after every batch.
+
+## Immediate next action
+
+Begin with the native photo-to-Style-Passport journey.
+
+Complete the existing backend integration, missing persistent operations and native UI connections.
+
+Demonstrate the complete journey on iOS and Android using the approved test environment.
+
+Only then proceed to the next dependency-ordered implementation batch.
+
+The objective is a complete, operational GLAM Beauty platform—not a collection of individually passing components.

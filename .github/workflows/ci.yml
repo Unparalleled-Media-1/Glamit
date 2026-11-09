@@ -54,6 +54,11 @@ jobs:
       - run: node scripts/ci/frozen-install.mjs python
       - run: uv run --frozen ruff check .
       - run: uv run --frozen ruff format --check .
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: node scripts/ci/frozen-install.mjs node
       - run: uv run --frozen pytest
       - run: uv run --frozen python scripts/export_contracts.py --check
       - run: docker build -f deploy/railway/api.Dockerfile -t glam-beauty-api:deployment-test .
