@@ -51,4 +51,6 @@ task_maestro_binary=$(find "$RUNNER_TEMP/glam-maestro" -path '*/bin/maestro' -ty
 test -n "$task_maestro_binary"
 chmod +x "$task_maestro_binary"
 dirname "$task_maestro_binary" >> "$GITHUB_PATH"
+"$task_maestro_binary" check-syntax tests/native_device/core.yaml
+"$task_maestro_binary" check-syntax tests/native_device/relaunch.yaml
 node tests/native_device/prepare-build.mjs

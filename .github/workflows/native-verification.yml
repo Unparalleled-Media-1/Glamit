@@ -37,6 +37,7 @@ env:
   EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ inputs.device_journey && 'sb_publishable_nativefixture0000000000000000' || '' }}
 jobs:
   ios-simulator:
+    name: ${{ inputs.device_journey && 'iOS isolated core and relaunch' || 'ios-simulator' }}
     if: ${{ !inputs.platform || inputs.platform == 'both' || inputs.platform == 'ios' }}
     runs-on: macos-latest
     timeout-minutes: 45
@@ -110,6 +111,7 @@ jobs:
             artifacts/native-fixture-build.json
           if-no-files-found: warn
   android-emulator:
+    name: ${{ inputs.device_journey && 'Android isolated core and relaunch' || 'android-emulator' }}
     if: ${{ !inputs.platform || inputs.platform == 'both' || inputs.platform == 'android' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
@@ -181,9 +183,7 @@ jobs:
             python3 scripts/mobile/run_logged.py artifacts/native-android/navigation.txt python3 scripts/mobile/android_startup_smoke.py
             adb logcat -d -t 300 ReactNativeJS:E AndroidRuntime:E '*:S' > artifacts/native-android/runtime.txt
             git rev-parse HEAD > artifacts/native-android/source-sha.txt
-            if [ "$GLAM_NATIVE_DEVICE_JOURNEY" = true ]; then
-              python3 scripts/mobile/run_logged.py artifacts/native-device/journey-log.txt bash tests/native_device/run-journey.sh android
-            fi
+            if [ "$GLAM_NATIVE_DEVICE_JOURNEY" = true ]; then python3 scripts/mobile/run_logged.py artifacts/native-device/journey-log.txt bash tests/native_device/run-journey.sh android; fi
       - uses: actions/upload-artifact@v7
         if: always()
         with:

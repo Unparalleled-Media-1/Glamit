@@ -4,7 +4,7 @@ appId: com.glambeauty.localverification
     clearState: true
 - assertVisible: "ISOLATED TEST SERVICES.*"
 - addMedia:
-    - ${FIXTURE_PHOTO}
+    - ../../artifacts/native-device/test-photo.png
 - tapOn: "Profile"
 - runFlow: login.yaml
 - scrollUntilVisible:

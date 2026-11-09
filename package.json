@@ -53,7 +53,7 @@
     "test:native-photo": "node tests/mobile/photo-native.cjs",
     "test:ai-stylist": "node tests/client/ai-stylist.cjs",
     "test:native-stylist": "node tests/mobile/ai-stylist-native.cjs",
-    "test:device-fixture": "node tests/mobile/device-fixture-transport.cjs",
+    "test:device-fixture": "tsc --noEmit -p tests/native_device/tsconfig.json && node tests/mobile/device-fixture-transport.cjs",
     "test:native-photos": "node tests/mobile/private-photos-native.cjs"
   },
   "devDependencies": {
