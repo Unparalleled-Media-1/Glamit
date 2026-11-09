@@ -1,0 +1,29 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_analysis_job_requires_explicit_configuration _______________
+
+client = <starlette.testclient.TestClient object at 0x7f76e17214f0>
+media = namespace(uid='9635f3a0-3cc3-4dbf-a06b-518e54e654e1', policy='a9f2f06c-f766-4373-bf2b-f35266e08f8b', store=<test_priva...(\x00\xa2\x8a(\x00\xa2\x8a(\x00\xa2\x8a(\x00\xa2\x8a(\x00\xa2\x8a(\x00\xa2\x8a(\x00\xa2\x8a(\x00\xa2\x8a(\x03\xff\xd9')
+
+    def test_analysis_job_requires_explicit_configuration(client, media):
+        media_id = upload(client, media)
+        response = client.post(
+            "/v1/analysis/jobs",
+            json={"media_id": media_id, "policy_id": str(uuid4()), "consent": True,
+                  "goals": ["Understand my features"]},
+            headers={"Idempotency-Key": str(uuid4())},
+        )
+>       assert response.status_code == 503
+E       assert 404 == 503
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+tests/test_analysis_jobs.py:17: AssertionError
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /workspace/Glamit/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_analysis_jobs.py::test_analysis_job_requires_explicit_configuration
+1 failed, 1 warning in 0.77s

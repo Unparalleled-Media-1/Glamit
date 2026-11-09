@@ -14,8 +14,8 @@ from test_private_media import create
 from test_private_media import media as media
 
 
-def migration():
-    file = Path("db/migrations/versions/0015_private_media.py")
+def migration(name="0015_private_media"):
+    file = Path(f"db/migrations/versions/{name}.py")
     spec = importlib.util.spec_from_file_location("private_media_migration", file)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
@@ -93,9 +93,11 @@ def test_empty_only_rollback_and_reapply_are_transactionally_reversible(db):
                 # No production migration or application path sets this internal Storage GUC.
                 c.execute(text("SET LOCAL storage.allow_delete_query='true'"))
                 c.execute(text("DELETE FROM storage.buckets WHERE id='glam-private-media'"))
+                migration("0016_analysis_jobs").downgrade()
                 migration().downgrade()
                 assert c.scalar(text("SELECT to_regclass('public.private_media')")) is None
                 migration().upgrade()
+                migration("0016_analysis_jobs").upgrade()
                 assert c.scalar(text("SELECT to_regclass('public.private_media')")) is not None
         finally:
             transaction.rollback()

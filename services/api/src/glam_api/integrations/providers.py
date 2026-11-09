@@ -1,7 +1,7 @@
 """Server provider contracts; doubles are never live qualification evidence.
 
 The default-off text stylist route supplies auth/consent, adult and attempt controls.
-Photo/generation adapters still require qualified persistent orchestration. Global
+Default-off analysis jobs add durable photo orchestration; generation remains pending. Global
 market, provider-retention and release qualification remain independent gates.
 """
 
@@ -30,6 +30,8 @@ class Finding(BaseModel):
 
     @model_validator(mode="after")
     def honest_estimate(self):
+        if not self.uncertainty.strip():
+            raise ValueError("Explain uncertainty")
         if (self.certainty == "unavailable") != (self.estimate is None):
             raise ValueError("Unavailable findings must not carry an estimate")
         if self.estimate is not None and not self.estimate.strip():

@@ -34,6 +34,7 @@ jobs:
       - run: node scripts/ci/frozen-install.mjs node
       - run: npm run test:native-photo
       - run: npm run test:native-stylist
+      - run: npm run test:native-photos
       - name: Generate actual iOS native project
         run: npm exec --workspace=@glam/mobile -- expo prebuild --platform ios --no-install
       - name: Install CocoaPods dependencies from the native project root
@@ -97,6 +98,7 @@ jobs:
       - run: node scripts/ci/frozen-install.mjs node
       - run: npm run test:native-photo
       - run: npm run test:native-stylist
+      - run: npm run test:native-photos
       - name: Generate actual Android native project
         run: npm exec --workspace=@glam/mobile -- expo prebuild --platform android --no-install
       - name: Install compile SDK and NDK

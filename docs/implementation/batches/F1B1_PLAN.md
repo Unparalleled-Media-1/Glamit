@@ -1,0 +1,13 @@
+# F1B1 — durable analysis jobs and reports
+
+Dependency-ordered continuation of the approved photo → analysis → corrected saved results objective. Scope: GB-014 face/features, scoped GB-019 qualitative uncertainty, GB-021 saved reports/history and GB-022 private media. Corrections and Style Passport remain follow-up work. No broad feature closure.
+
+Add candidate0016_analysis_jobs after0015: server-only owner/media-bound jobs, unique request keys, bounded goals, consent epoch, pinned model, bounded expiry, terminal-state/result constraints and indexes. Empty-only rollback preserves valuable jobs. Existing Alembic history is canonical; no production application of0014/0015/0016 without exact-SQL/recovery/approval.
+
+Implement authenticated submission/status/report/cancellation plus approved analysis-policy lookup. Preserve the current unavailable legacy endpoint until consumer integration is implemented. Reuse normalized private media and OpenAI cosmetic-observation adapter; no raw URL/image input to submission. Separate cosmetic_photo_analysis consent is proposed contract, never inserted/approved outside isolated test fixtures. Require trusted adult eligibility, current storage/analysis consent, configured retention/rate bounds, explicit dispatch/data-handling flags and actual provider model/key. Default off.
+
+Worker claims/commits one attempted dispatch before provider I/O, holds no database locks during the call, rechecks privacy and cancellation before saving output, and never automatically retries an ambiguous billable call. Interrupted work becomes a visible failure. Stored reports retain qualitative uncertainty; invalid output cannot become success. Expired/deleted/withdrawn media or analysis consent blocks access and triggers result redaction. User cancellation clears results; no fake provider output exists in runtime.
+
+Test with disposable PostgreSQL and explicit Storage/OpenAI doubles: missing endpoint before, owner/session/policy/eligibility/expiry fences, durable reload, conflicting/repeated keys and concurrent worker claims, cancellation, malformed/refused/provider failure, post-call withdrawal, restart/interruption, no locks during provider I/O, redaction, client-role denial and empty-only rollback. Generate canonical OpenAPI contracts and run dependent regression.
+
+Not included in this slice: persisted correction revisions/Style Passport, native upload/report UI, image generation or actual live/provider/device certification. These remain application work after the durable job/report foundation, not excuses based on missing keys. Existing authentication, customer credits and10% item commission remain unchanged.

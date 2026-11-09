@@ -1,0 +1,9 @@
+{
+  "services/api/src/glam_api/analysis_jobs.py": "962406a209aaadd0e1211efaf5f6b0ef1fe572518646455c2d14f22ccd17dfc7",
+  "services/api/src/glam_api/integrations/providers.py": "1497b7182c2ab1358faa9592872c7278c0aa3960fcdd9ad7ba0a80cf4aaa31bc",
+  "services/api/src/glam_api/main.py": "9908d4c5f5a9c838857394afc07f8cc78e2e30c04f97e9d7c404239265e3f86a",
+  "services/api/src/glam_api/worker.py": "43d80e6601d33bcf07927d7ed8c2fc708ecd8b7eb79d191372052a11378e6d99",
+  "db/migrations/versions/0016_analysis_jobs.py": "7fcd17072ae6b89b00987c47c2d36d82426930bc5883d604c6066278dad06ec5",
+  "db/migrations/versions/0016_analysis_jobs.sql": "fab2a6e0cce0a8877319f570a0a9cb06072555470a8e5922826cc2ee371ae4cd",
+  "tests/test_analysis_jobs.py": "ebb348e387f9bb669b810c30d1d68f02a5cdc60a632e7ae636a7882459211bdf"
+}

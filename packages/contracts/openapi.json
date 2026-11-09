@@ -72,6 +72,41 @@
         "title": "AdviceRequest",
         "type": "object"
       },
+      "AnalysisReportRead": {
+        "properties": {
+          "completed_at": {
+            "format": "date-time",
+            "title": "Completed At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "observations": {
+            "$ref": "#/components/schemas/ProviderAnalysis"
+          },
+          "provider": {
+            "const": "openai",
+            "default": "openai",
+            "title": "Provider",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "model",
+          "completed_at",
+          "observations"
+        ],
+        "title": "AnalysisReportRead",
+        "type": "object"
+      },
       "BulkListings": {
         "additionalProperties": false,
         "properties": {
@@ -554,6 +589,57 @@
         "title": "EnhancementRequest",
         "type": "object"
       },
+      "Finding": {
+        "additionalProperties": false,
+        "properties": {
+          "certainty": {
+            "enum": [
+              "supported",
+              "tentative",
+              "unavailable"
+            ],
+            "title": "Certainty",
+            "type": "string"
+          },
+          "estimate": {
+            "anyOf": [
+              {
+                "maxLength": 240,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Estimate"
+          },
+          "key": {
+            "enum": [
+              "face-shape",
+              "eyes",
+              "brows",
+              "lips",
+              "undertone"
+            ],
+            "title": "Key",
+            "type": "string"
+          },
+          "uncertainty": {
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Uncertainty",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "estimate",
+          "certainty",
+          "uncertainty"
+        ],
+        "title": "Finding",
+        "type": "object"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -679,41 +765,48 @@
         "title": "InviteRead",
         "type": "object"
       },
-      "JobRead": {
+      "JobRequest": {
         "additionalProperties": false,
         "properties": {
-          "id": {
+          "consent": {
+            "const": true,
+            "title": "Consent",
+            "type": "boolean"
+          },
+          "goals": {
+            "items": {
+              "enum": [
+                "Understand my features",
+                "Discover my colors",
+                "Makeup techniques",
+                "Hair & grooming",
+                "A practical routine"
+              ],
+              "type": "string"
+            },
+            "maxItems": 5,
+            "minItems": 1,
+            "title": "Goals",
+            "type": "array"
+          },
+          "media_id": {
             "format": "uuid",
-            "title": "Id",
+            "title": "Media Id",
             "type": "string"
           },
-          "state": {
-            "enum": [
-              "queued",
-              "processing",
-              "review_ready",
-              "failed",
-              "cancelled"
-            ],
-            "title": "State",
+          "policy_id": {
+            "format": "uuid",
+            "title": "Policy Id",
             "type": "string"
-          },
-          "suggestions": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/Suggestions"
-              },
-              {
-                "type": "null"
-              }
-            ]
           }
         },
         "required": [
-          "id",
-          "state"
+          "media_id",
+          "policy_id",
+          "consent",
+          "goals"
         ],
-        "title": "JobRead",
+        "title": "JobRequest",
         "type": "object"
       },
       "ListingFacts": {
@@ -1523,6 +1616,34 @@
         "title": "ProviderAdvice",
         "type": "object"
       },
+      "ProviderAnalysis": {
+        "additionalProperties": false,
+        "properties": {
+          "directions": {
+            "items": {
+              "$ref": "#/components/schemas/Direction"
+            },
+            "maxItems": 12,
+            "title": "Directions",
+            "type": "array"
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/Finding"
+            },
+            "maxItems": 5,
+            "minItems": 5,
+            "title": "Findings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "findings",
+          "directions"
+        ],
+        "title": "ProviderAnalysis",
+        "type": "object"
+      },
       "PublishChoice": {
         "additionalProperties": false,
         "properties": {
@@ -2113,6 +2234,113 @@
         ],
         "title": "WorkspaceRead",
         "type": "object"
+      },
+      "glam_api__analysis_jobs__JobRead": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "finished_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finished At"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "media_id": {
+            "format": "uuid",
+            "title": "Media Id",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed",
+              "cancelled",
+              "expired"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "media_id",
+          "state",
+          "created_at",
+          "expires_at",
+          "finished_at",
+          "error_code"
+        ],
+        "title": "JobRead",
+        "type": "object"
+      },
+      "glam_api__catalog_contracts__JobRead": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "queued",
+              "processing",
+              "review_ready",
+              "failed",
+              "cancelled"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "suggestions": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Suggestions"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "state"
+        ],
+        "title": "JobRead",
+        "type": "object"
       }
     },
     "securitySchemes": {
@@ -2366,6 +2594,242 @@
     "/v1/ai/stylist/policy": {
       "get": {
         "operationId": "policy_v1_ai_stylist_policy_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Policy"
+      }
+    },
+    "/v1/analysis/jobs": {
+      "get": {
+        "operationId": "history_v1_analysis_jobs_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/glam_api__analysis_jobs__JobRead"
+                  },
+                  "title": "Response History V1 Analysis Jobs Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "History"
+      },
+      "post": {
+        "operationId": "submit_v1_analysis_jobs_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/glam_api__analysis_jobs__JobRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Submit"
+      }
+    },
+    "/v1/analysis/jobs/{job_id}": {
+      "delete": {
+        "operationId": "cancel_v1_analysis_jobs__job_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Job Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/glam_api__analysis_jobs__JobRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Cancel"
+      },
+      "get": {
+        "operationId": "status_v1_analysis_jobs__job_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Job Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/glam_api__analysis_jobs__JobRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Status"
+      }
+    },
+    "/v1/analysis/jobs/{job_id}/report": {
+      "get": {
+        "operationId": "report_v1_analysis_jobs__job_id__report_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Job Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalysisReportRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Report"
+      }
+    },
+    "/v1/analysis/policy": {
+      "get": {
+        "operationId": "policy_v1_analysis_policy_get",
         "responses": {
           "200": {
             "content": {
@@ -3773,7 +4237,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/JobRead"
+                  "$ref": "#/components/schemas/glam_api__catalog_contracts__JobRead"
                 }
               }
             },
@@ -3838,7 +4302,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/JobRead"
+                  "$ref": "#/components/schemas/glam_api__catalog_contracts__JobRead"
                 }
               }
             },

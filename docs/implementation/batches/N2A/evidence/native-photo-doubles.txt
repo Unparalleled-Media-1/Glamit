@@ -1,0 +1,20 @@
+
+> glam-ai@0.1.0 test:native-photo
+> node tests/mobile/photo-native.cjs
+
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+PASS ios actual native App photo handlers: stale permission, withdrawal, owned-copy/retry, original preservation, duplicate taps, navigation/unmount fencing, least-privilege picker (OS ports doubled)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+PASS android actual native App photo handlers: stale permission, withdrawal, owned-copy/retry, original preservation, duplicate taps, navigation/unmount fencing, least-privilege picker (OS ports doubled)
