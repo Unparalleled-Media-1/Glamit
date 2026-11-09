@@ -14,56 +14,90 @@ class DiscoverScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(previewProvider);
+    final header = Padding(
+      padding: const EdgeInsets.fromLTRB(24, 12, 16, 12),
+      child: Row(children: [
+        Expanded(child: Text('Find your next feeling.',
+          style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: GlamColors.ivory))),
+        RoundAction(icon: Icons.bookmarks_outlined, label: 'Saved inspiration', dark: true,
+          onPressed: () => context.push('/collection/saved')),
+      ]),
+    );
+    final filters = SizedBox(height: 54, child: ListView.separated(
+      padding: const EdgeInsets.symmetric(horizontal: 24), scrollDirection: Axis.horizontal,
+      separatorBuilder: (_, _) => const SizedBox(width: 20), itemCount: 4,
+      itemBuilder: (_, i) => TextButton(key: ValueKey('discover-filter-$i'),
+        onPressed: () => ref.read(previewProvider.notifier).filter(i),
+        child: Text(['For you', 'Looks', 'Products', 'Professionals'][i], style: TextStyle(
+          color: state.filter == i ? GlamColors.blush : const Color(0xffcbb8c3),
+          fontWeight: state.filter == i ? FontWeight.w700 : FontWeight.w400))),
+    ));
+    final Widget feed;
+    if (state.filter == 3) {
+      feed = const SingleChildScrollView(child: Padding(padding: EdgeInsets.all(28), child: Column(
+        mainAxisSize: MainAxisSize.min, children: [
+          Icon(Icons.location_on_outlined, color: GlamColors.blush, size: 36), SizedBox(height: 20),
+          Text('Good people, closer to you.', textAlign: TextAlign.center,
+            style: TextStyle(fontFamily: 'Cormorant', fontSize: 34, color: GlamColors.ivory)),
+          SizedBox(height: 12), Text('Professional discovery is not connected in this preview. No location has been requested or local listing invented.',
+            textAlign: TextAlign.center, style: TextStyle(color: Color(0xffcbb8c3))),
+        ],
+      )));
+    } else {
+      feed = PageView.builder(key: ValueKey('discover-feed-${state.filter}'),
+        scrollDirection: Axis.vertical, itemCount: 3, itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.fromLTRB(16, 6, 16, 16),
+          child: _DiscoverySlide(index: index, products: state.filter == 2,
+            saved: state.saved.contains(index), onSave: () => ref.read(previewProvider.notifier).toggleSaved(index)),
+        ),
+      );
+    }
+    final largeText = MediaQuery.textScalerOf(context).scale(14) > 20;
     return ColoredBox(key: const ValueKey('screen-discover'), color: GlamColors.charcoal,
-      child: SafeArea(bottom: false, child: Column(children: [
-        Padding(padding: const EdgeInsets.fromLTRB(24, 12, 16, 12), child: Row(children: [
-          Expanded(child: Text('Find your next feeling.', style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: GlamColors.ivory))),
-          RoundAction(icon: Icons.bookmarks_outlined, label: 'Saved inspiration', dark: true,
-            onPressed: () => context.push('/collection/saved')),
-        ])),
-        SizedBox(height: 54, child: ListView.separated(padding: const EdgeInsets.symmetric(horizontal: 24),
-          scrollDirection: Axis.horizontal, separatorBuilder: (_, _) => const SizedBox(width: 20), itemCount: 4,
-          itemBuilder: (_, i) => TextButton(key: ValueKey('discover-filter-$i'),
-            onPressed: () => ref.read(previewProvider.notifier).filter(i),
-            child: Text(['For you', 'Looks', 'Products', 'Professionals'][i], style: TextStyle(
-              color: state.filter == i ? GlamColors.blush : const Color(0xffcbb8c3),
-              fontWeight: state.filter == i ? FontWeight.w700 : FontWeight.w400))))),
-        Expanded(child: state.filter == 3 ? const Center(child: Padding(padding: EdgeInsets.all(28), child: Column(
-          mainAxisSize: MainAxisSize.min, children: [
-            Icon(Icons.location_on_outlined, color: GlamColors.blush, size: 36), SizedBox(height: 20),
-            Text('Good people, closer to you.', textAlign: TextAlign.center, style: TextStyle(fontFamily: 'Cormorant', fontSize: 34, color: GlamColors.ivory)),
-            SizedBox(height: 12), Text('Professional discovery is not connected in this preview. No location has been requested or local listing invented.',
-              textAlign: TextAlign.center, style: TextStyle(color: Color(0xffcbb8c3))),
-          ]))) : PageView.builder(key: ValueKey('discover-feed-${state.filter}'),
-            scrollDirection: Axis.vertical, itemCount: 3, itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.fromLTRB(16, 6, 16, 16), child: ClipRRect(borderRadius: BorderRadius.circular(30),
-                child: Stack(fit: StackFit.expand, children: [
-                  Portrait(index: state.filter == 2 ? index : [2, 1, 0][index], asset: state.filter == 2 ? productAsset : beautyAsset),
-                  const DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.center,
-                    end: Alignment.bottomCenter, colors: [Colors.transparent, Color(0xf5181719)]))),
-                  Positioned(top: 16, right: 16, child: RoundAction(key: ValueKey('save-look-$index'),
-                    icon: state.saved.contains(index) ? Icons.bookmark : Icons.bookmark_outline,
-                    label: state.saved.contains(index) ? 'Unsave inspiration' : 'Save inspiration', dark: true,
-                    active: state.saved.contains(index), onPressed: () => ref.read(previewProvider.notifier).toggleSaved(index))),
-                  Positioned(left: 24, right: 24, bottom: 24, child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Eyebrow(state.filter == 2 ? 'Product inspiration' : 'GLAM editorial', color: GlamColors.champagne),
-                    const SizedBox(height: 10), Text(state.filter == 2 ? 'Your everyday rituals.' : lookNames[index],
-                      style: Theme.of(context).textTheme.displayMedium!.copyWith(color: GlamColors.ivory)),
-                    const SizedBox(height: 10), Text(state.filter == 2 ? 'Reference imagery. No catalog, stock or price is connected.' : lookNotes[index],
-                      style: const TextStyle(color: GlamColors.ivory, fontSize: 12)),
-                    const SizedBox(height: 16), OutlinedButton.icon(key: ValueKey('open-look-$index'),
-                      style: OutlinedButton.styleFrom(foregroundColor: GlamColors.ivory, side: const BorderSide(color: Colors.white60),
-                        minimumSize: const Size(48, 48)),
-                      onPressed: () => context.push('/look/$index'), label: const Text('Explore the edit'), icon: const Icon(Icons.arrow_forward, size: 18)),
-                    const SizedBox(height: 10), const Text('Editorial reference · swipe for more', style: TextStyle(color: Color(0xffdfd1d5), fontSize: 10)),
-                  ])),
-                ]),
-              ),
-            ),
-          )),
-      ])),
+      child: SafeArea(bottom: false, child: largeText
+        ? CustomScrollView(slivers: [SliverToBoxAdapter(child: header), SliverToBoxAdapter(child: filters),
+            SliverToBoxAdapter(child: SizedBox(height: 680, child: feed))])
+        : Column(children: [header, filters, Expanded(child: feed)])),
     );
   }
+}
+
+class _DiscoverySlide extends StatelessWidget {
+  const _DiscoverySlide({required this.index, required this.products, required this.saved, required this.onSave});
+  final int index;
+  final bool products, saved;
+  final VoidCallback onSave;
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(builder: (context, constraints) =>
+    ClipRRect(borderRadius: BorderRadius.circular(30), child: Stack(fit: StackFit.expand, children: [
+      Portrait(index: products ? index : [2, 1, 0][index], asset: products ? productAsset : beautyAsset),
+      const DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.center,
+        end: Alignment.bottomCenter, colors: [Colors.transparent, Color(0xf5181719)]))),
+      Positioned(left: 24, right: 24, bottom: 24, child: ConstrainedBox(
+        constraints: BoxConstraints(maxHeight: (constraints.maxHeight - 96).clamp(0.0, double.infinity).toDouble()),
+        child: SingleChildScrollView(reverse: true, child: Column(mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Eyebrow(products ? 'Product inspiration' : 'GLAM editorial', color: GlamColors.champagne),
+            const SizedBox(height: 10), Text(products ? 'Your everyday rituals.' : lookNames[index],
+              style: Theme.of(context).textTheme.displayMedium!.copyWith(color: GlamColors.ivory)),
+            const SizedBox(height: 10), Text(products ? 'Reference imagery. No catalog, stock or price is connected.' : lookNotes[index],
+              style: const TextStyle(color: GlamColors.ivory, fontSize: 12)),
+            const SizedBox(height: 16), OutlinedButton.icon(key: ValueKey('open-look-$index'),
+              style: OutlinedButton.styleFrom(foregroundColor: GlamColors.ivory,
+                side: const BorderSide(color: Colors.white60), minimumSize: const Size(48, 48)),
+              onPressed: () => context.push('/look/$index'), label: const Text('Explore the edit'),
+              icon: const Icon(Icons.arrow_forward, size: 18)),
+            const SizedBox(height: 10), const Text('Editorial reference · swipe for more',
+              style: TextStyle(color: Color(0xffdfd1d5), fontSize: 10)),
+          ],
+        )),
+      )),
+      Positioned(top: 16, right: 16, child: RoundAction(key: ValueKey('save-look-$index'),
+        icon: saved ? Icons.bookmark : Icons.bookmark_outline,
+        label: saved ? 'Unsave inspiration' : 'Save inspiration', dark: true,
+        active: saved, onPressed: onSave)),
+    ])),
+  );
 }
 
 class LookScreen extends ConsumerWidget {

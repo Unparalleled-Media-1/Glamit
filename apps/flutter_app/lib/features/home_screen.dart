@@ -23,27 +23,24 @@ class HomeScreen extends ConsumerWidget {
                 body: 'Your reminders and updates will live here. There are no notifications in this design preview.'))),
           ]),
         ))),
-        SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child:
-          ClipRRect(borderRadius: BorderRadius.circular(32), child: SizedBox(
-            height: (MediaQuery.sizeOf(context).height < 760 ? 410.0 : 470.0) + (MediaQuery.textScalerOf(context).scale(14) > 20 ? 180 : 0),
-            child: Stack(fit: StackFit.expand, children: [
-              const Portrait(index: 0),
-              const DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(
-                begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                colors: [Colors.transparent, Color(0x35181719), Color(0xf5181719)], stops: [0, .4, 1]))),
-              Positioned(top: 20, left: 20, child: DecoratedBox(decoration: BoxDecoration(
-                color: Colors.black38, borderRadius: BorderRadius.circular(20)),
+        SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: ClipRRect(borderRadius: BorderRadius.circular(32), child: Stack(children: [
+            const Positioned.fill(child: Portrait(index: 0)),
+            const Positioned.fill(child: DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(
+              begin: Alignment.topCenter, end: Alignment.bottomCenter,
+              colors: [Colors.transparent, Color(0x35181719), Color(0xf5181719)], stops: [0, .4, 1])))),
+            Padding(padding: const EdgeInsets.all(24), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              DecoratedBox(decoration: BoxDecoration(color: Colors.black38, borderRadius: BorderRadius.circular(20)),
                 child: const Padding(padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  child: Eyebrow('Beauty, on your terms', color: GlamColors.ivory)))),
-              Positioned(left: 24, right: 24, bottom: 24, child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('Your beauty,\nin focus.', style: Theme.of(context).textTheme.displayLarge!.copyWith(color: GlamColors.ivory)),
-                const SizedBox(height: 12), const Text('A new way to see your possibilities.', style: TextStyle(color: GlamColors.ivory, fontSize: 13)),
-                const SizedBox(height: 22), FilledButton.icon(key: const ValueKey('home-analyze'),
-                  onPressed: () => context.go('/analyze'), icon: const Icon(Icons.center_focus_strong),
-                  label: const Text('Find my beauty blueprint')),
-              ])),
-            ]),
-          )),
+                  child: Eyebrow('Beauty, on your terms', color: GlamColors.ivory))),
+              SizedBox(height: MediaQuery.sizeOf(context).height < 760 ? 88 : 138),
+              Text('Your beauty,\nin focus.', style: Theme.of(context).textTheme.displayLarge!.copyWith(color: GlamColors.ivory)),
+              const SizedBox(height: 12), const Text('A new way to see your possibilities.', style: TextStyle(color: GlamColors.ivory, fontSize: 13)),
+              const SizedBox(height: 22), FilledButton.icon(key: const ValueKey('home-analyze'),
+                onPressed: () => context.go('/analyze'), icon: const Icon(Icons.center_focus_strong),
+                label: const Text('Find my beauty blueprint')),
+            ])),
+          ])),
         )),
         SliverPadding(padding: const EdgeInsets.fromLTRB(24, 24, 24, 10), sliver: SliverToBoxAdapter(child: Row(children: [
           Expanded(child: Text('A little more you.', style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: GlamColors.ivory))),

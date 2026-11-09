@@ -44,8 +44,8 @@ class StudioScreen extends ConsumerWidget {
                 child: const Eyebrow('Colour study · not AI', color: GlamColors.ivory))),
               Positioned(bottom: 20, left: 18, right: 18, child: Column(children: [
                 const Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  Text('Monochrome', style: TextStyle(color: Colors.white, fontSize: 11, shadows: [Shadow(blurRadius: 6)])),
-                  Text('Original', style: TextStyle(color: Colors.white, fontSize: 11, shadows: [Shadow(blurRadius: 6)])),
+                  Expanded(child: Text('Monochrome', style: TextStyle(color: Colors.white, fontSize: 11, shadows: [Shadow(blurRadius: 6)]))),
+                  Expanded(child: Text('Original', textAlign: TextAlign.end, style: TextStyle(color: Colors.white, fontSize: 11, shadows: [Shadow(blurRadius: 6)]))),
                 ]),
                 Slider(key: const ValueKey('studio-comparison'), value: state.compare, onChanged: controller.compare,
                   activeColor: GlamColors.blush, inactiveColor: Colors.white60,
