@@ -49,9 +49,16 @@ def main():
             if node.get(key)
         ]
     else:
-        result = subprocess.run(
-            ["maestro", "hierarchy"], capture_output=True, text=True, timeout=30
-        )
+        try:
+            result = subprocess.run(
+                ["maestro", "hierarchy", "--no-reinstall-driver"],
+                capture_output=True,
+                text=True,
+                timeout=30,
+            )
+        except subprocess.TimeoutExpired:
+            print("Native hierarchy timed out; retained UI failure remains unresolved")
+            return
         (target / "failed-native-hierarchy.txt").write_text(result.stdout + result.stderr)
         if result.returncode:
             print("Native hierarchy capture unavailable; retained failure remains unresolved")

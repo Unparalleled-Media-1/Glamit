@@ -1126,6 +1126,8 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
           <Pressable
             key={n}
             accessibilityRole="tab"
+            accessibilityLabel={n}
+            testID={`native-tab-${n.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
             accessibilityState={{
               selected: reviewRole ? i === 0 : state.page === tabPage[n],
             }}

@@ -9,7 +9,8 @@ appId: com.glambeauty.localverification
     commands:
       - addMedia:
           - ../../artifacts/native-device/test-photo.png
-- tapOn: "Profile"
+- tapOn:
+    id: "native-tab-profile"
 - runFlow: login.yaml
 - scrollUntilVisible:
     element:
@@ -20,7 +21,8 @@ appId: com.glambeauty.localverification
     visible: "Biometric unlock enabled on this device."
     timeout: 25000
 - takeScreenshot: ${EVIDENCE_DIR}/01-authenticated
-- tapOn: "Analyze"
+- tapOn:
+    id: "native-tab-analyze"
 - scrollUntilVisible:
     element:
       text: "Choose my photo"

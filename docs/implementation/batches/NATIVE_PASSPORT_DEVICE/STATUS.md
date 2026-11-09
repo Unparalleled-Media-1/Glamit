@@ -16,7 +16,7 @@ The optional device_journey dispatch on the existing read-only native workflow b
 
 | Gate | Status |
 | --- | --- |
-| Full isolated service regression | PASS,395 tests; not native acceptance |
+| Full isolated service regression | PASS,400 tests; not native acceptance |
 | Actual signed test-auth SDK protocol | PASS locally; not OS/session restoration |
 | iOS installed core journey | FAIL in run42588059441: simulator media import timed out before analysis |
 | Android installed core journey | BLOCKED in run42588059441 by virtual fingerprint setup; journey not exercised |
@@ -55,3 +55,14 @@ Draft PR44 contains this acceptance batch against feat/platform-foundations. Git
 Current local checks: web production build PASS (requires process-capable executor), web/mobile TypeScript PASS, full Ruff PASS, auth/native-photo/private-photo/stylist regression scripts PASS with their explicitly stated doubles. Full backend398 passed plus seven focused auth/storage tests (including added expiry) and three diagnostic/overlay safety tests. These support implementation verification only. Screenshots/artifact downloads remain403-blocked; no visual review is claimed.
 
 Full final local backend regression:400 passed. Web production build, web/mobile typechecks, full Ruff and targeted native/Auth contract regressions pass. These are not installed acceptance. Run42594335049 retained a repeated Quickstep ANR after Wait; the next emulator-only setup captures both occurrences and may close the exact unrelated launcher on recurrence before returning to Settings. GLAM/Settings ANRs remain excluded. All twelve installed failure/privacy cases remain NOT TESTED until the core journey reaches them.
+
+## Latest independent verification (9 November)
+
+- Implementation: consent acknowledgment reset and selected-photo return path implemented; isolated device fixture/services/flows exist. This is scoped source completeness, not platform-wide100%.
+- Functional verification:400 backend tests, production web build, TypeScript, Ruff and targeted native/Auth contract regressions pass locally. Current CI backend/hosted-API/mobile source checks also pass.
+- Platform verification: Android enrollment-only run42595090105 PASSED on73c12b6 (not app acceptance). Full Android journey run42595457844 is pending its own result on that source. iOS journey run42593022087 on605593d compiled/installed/launched and imported the photo, then FAILED to locate the Profile tab before authentication. Prior compiled/installed startup evidence does not close either complete journey or the twelve privacy/failure scenarios.
+- Launch readiness: NOT ESTABLISHED. No production migration, deployment, live AI/payment or physical-device acceptance occurred in this batch. Artifact downloads remain403-blocked; no visual review inferred.
+
+Draft PR: https://github.com/Unparalleled-Media-1/Glamit/pull/44. Both complete native journeys must ultimately pass against the same exact source; enrollment-only and earlier-source results cannot close that requirement.
+
+Run42593022087 is now complete: Apple simctl photo import PASSED; the core flow failed at Profile lookup. The exact annotation is retained. Native tab controls grouped decorative symbols with text and had no explicit accessible name. A failing-before regression confirms that omission; all tabs now have explicit accessible names/stable test IDs, and the installed flows select the native IDs. Targeted actual-App handler regressions pass for both OS configurations and TypeScript passes. These are source-level repairs pending rebuilt native evidence. Diagnostic hierarchy collection now avoids unnecessary native-driver reinstallation and retains a timeout as unresolved rather than replacing the original failure. The acceptance JSON now lists all twelve required privacy/failure cases individually as NOT TESTED, with exact source/build/run metadata.

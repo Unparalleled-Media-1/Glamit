@@ -86,14 +86,25 @@ if [ "$core_status" -ne 0 ] || [ "$relaunch_status" -ne 0 ]; then
   python3 tests/native_device/capture-failure.py "$platform" || true
 fi
 python3 - "$platform" "$core_status" "$before_status" "$relaunch_status" "$after_status" <<'PY'
-import json,sys
+import json,os,subprocess,sys
 from pathlib import Path
 status=lambda n:'PASS' if n=='0' else 'NOT TESTED' if n=='125' else 'FAIL'
+cases = [
+  'consent_withdrawal_while_picker_open', 'consent_withdrawal_during_upload',
+  'consent_withdrawal_during_analysis', 'account_switch_during_pending_request',
+  'process_termination_during_upload', 'network_interruption', 'expired_authentication',
+  'duplicate_submissions', 'conflicting_corrections', 'media_deletion_report_invalidation',
+  'cleanup_failure_and_retry', 'regrant_without_resurrection',
+]
 result={'platform':sys.argv[1],'evidence':'actual installed native UI + isolated services',
+        'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+        'build_identifier':'com.glambeauty.localverification',
+        'ci_run_url':'https://github.com/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],
         'provider':'deterministic-device-fixture-v1, not OpenAI',
         'core_ui':status(sys.argv[2]),'postgres_before_relaunch':status(sys.argv[3]),
         'real_process_relaunch_ui':status(sys.argv[4]),'postgres_after_relaunch':status(sys.argv[5]),
-        'required_failure_privacy_scenarios':'NOT TESTED', 'full_batch_acceptance':'OPEN',
+        'required_failure_privacy_scenarios':{name:'NOT TESTED' for name in cases},
+        'full_batch_acceptance':'OPEN',
         'physical_devices':'NOT TESTED','production':'NOT VERIFIED'}
 Path('artifacts/native-device/acceptance.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps(result))

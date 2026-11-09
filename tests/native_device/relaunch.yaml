@@ -4,7 +4,8 @@ appId: com.glambeauty.localverification
 - stopApp
 - launchApp:
     clearState: false
-- tapOn: "Profile"
+- tapOn:
+    id: "native-tab-profile"
 - takeScreenshot: ${EVIDENCE_DIR}/08-real-process-relaunch
 - tapOn: "Unlock with device biometrics"
 - extendedWaitUntil:
