@@ -8,7 +8,13 @@ on:
       - 'package-lock.json'
       - '.github/workflows/native-verification.yml'
       - 'scripts/mobile/**'
+      - 'tests/native_device/**'
   workflow_dispatch:
+    inputs:
+      device_journey:
+        description: 'Run isolated native photo/Passport UI acceptance (never production)'
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -21,6 +27,9 @@ env:
   # Local verification IDs only; never registered/published by this workflow.
   GLAM_IOS_BUNDLE_IDENTIFIER: com.glambeauty.localverification
   GLAM_ANDROID_PACKAGE: com.glambeauty.localverification
+  GLAM_NATIVE_DEVICE_JOURNEY: ${{ inputs.device_journey && 'true' || 'false' }}
+  EXPO_PUBLIC_GLAM_API_ORIGIN: ${{ inputs.device_journey && 'https://native-fixture.invalid' || '' }}
+  EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ inputs.device_journey && 'sb_publishable_nativefixture0000000000000000' || '' }}
 jobs:
   ios-simulator:
     runs-on: macos-latest
@@ -35,8 +44,22 @@ jobs:
       - run: npm run test:native-photo
       - run: npm run test:native-stylist
       - run: npm run test:native-photos
+      - run: npm run test:device-fixture
+      - uses: astral-sh/setup-uv@v7
+        if: inputs.device_journey
+      - uses: actions/setup-java@v5
+        if: inputs.device_journey
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Prepare isolated native device services
+        if: inputs.device_journey
+        run: bash tests/native_device/setup-services.sh
       - name: Generate actual iOS native project
         run: npm exec --workspace=@glam/mobile -- expo prebuild --platform ios --no-install
+      - name: Permit loopback in this isolated fixture binary only
+        if: inputs.device_journey
+        run: node tests/native_device/prepare-build.mjs --native-permissions ios
       - name: Install CocoaPods dependencies from the native project root
         working-directory: apps/mobile/ios
         run: python3 ../../../scripts/mobile/run_logged.py ../../../artifacts/native-ios/pods.txt pod install
@@ -67,11 +90,18 @@ jobs:
           sleep 10
           xcrun simctl io "$simulator_id" screenshot artifacts/native-ios/home.png
           git rev-parse HEAD > artifacts/native-ios/source-sha.txt
+      - name: Exercise installed iOS photo to Passport journey
+        if: inputs.device_journey
+        run: |
+          bash tests/native_device/run-journey.sh ios
       - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: actual-ios-simulator-build-and-startup
-          path: artifacts/native-ios
+          path: |
+            artifacts/native-ios
+            artifacts/native-device
+            artifacts/native-fixture-build.json
           if-no-files-found: warn
   android-emulator:
     runs-on: ubuntu-latest
@@ -99,8 +129,22 @@ jobs:
       - run: npm run test:native-photo
       - run: npm run test:native-stylist
       - run: npm run test:native-photos
+      - run: npm run test:device-fixture
+      - uses: astral-sh/setup-uv@v7
+        if: inputs.device_journey
+      - uses: actions/setup-java@v5
+        if: inputs.device_journey
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Prepare isolated native device services
+        if: inputs.device_journey
+        run: bash tests/native_device/setup-services.sh
       - name: Generate actual Android native project
         run: npm exec --workspace=@glam/mobile -- expo prebuild --platform android --no-install
+      - name: Permit loopback in this isolated fixture binary only
+        if: inputs.device_journey
+        run: node tests/native_device/prepare-build.mjs --native-permissions android
       - name: Install compile SDK and NDK
         run: python3 scripts/mobile/run_logged.py artifacts/native-android/sdk-install.txt sdkmanager 'platforms;android-37.0' 'build-tools;37.0.0' 'ndk;27.1.12297006' 'cmake;3.22.1'
       - name: Compile local verification APK with bundled JavaScript
@@ -130,11 +174,16 @@ jobs:
             python3 scripts/mobile/run_logged.py artifacts/native-android/navigation.txt python3 scripts/mobile/android_startup_smoke.py
             adb logcat -d -t 300 ReactNativeJS:E AndroidRuntime:E '*:S' > artifacts/native-android/runtime.txt
             git rev-parse HEAD > artifacts/native-android/source-sha.txt
+            if [ "$GLAM_NATIVE_DEVICE_JOURNEY" = true ]; then
+              bash tests/native_device/run-journey.sh android
+            fi
       - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: actual-android-apk-and-emulator-startup
           path: |
             artifacts/native-android
+            artifacts/native-device
+            artifacts/native-fixture-build.json
             apps/mobile/android/app/build/outputs/apk/release/*.apk
           if-no-files-found: warn

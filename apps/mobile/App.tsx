@@ -772,6 +772,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
               "Your private goals, session routines and authorized workspaces.",
             )}
             <NativeAccount auth={nativeAccount}/>
+            {photo && <Button title="Continue selected photo analysis" onPress={() => go("results")}/>}
             <NativeAnalysisJourney account={nativeAccount.account} apiOrigin={process.env.EXPO_PUBLIC_GLAM_API_ORIGIN || ""}
               goals={[]} privacyRevision={privacyRevision}/>
             <NativePrivatePhotos account={nativeAccount.account} apiOrigin={process.env.EXPO_PUBLIC_GLAM_API_ORIGIN || ""} onMediaChanged={() => setPrivacyRevision(v => v + 1)}/>

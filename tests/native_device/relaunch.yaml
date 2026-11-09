@@ -1,0 +1,24 @@
+appId: com.glambeauty.localverification
+---
+# This requires real OS secure-session enrollment; no replacement authentication hook.
+- stopApp
+- launchApp:
+    clearState: false
+- tapOn: "Profile"
+- takeScreenshot: ${EVIDENCE_DIR}/08-real-process-relaunch
+- tapOn:
+    text: "Unlock with device biometrics"
+    optional: true
+- extendedWaitUntil:
+    visible: "Your GLAM account"
+    timeout: 20000
+- scrollUntilVisible:
+    element:
+      text: "Reload saved analysis and passport"
+    direction: DOWN
+- tapOn: "Reload saved analysis and passport"
+- scrollUntilVisible:
+    element:
+      text: "DEVICE FIXTURE CORRECTION.*"
+    direction: DOWN
+- takeScreenshot: ${EVIDENCE_DIR}/09-reloaded-correction

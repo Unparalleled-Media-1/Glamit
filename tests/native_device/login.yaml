@@ -1,0 +1,23 @@
+appId: com.glambeauty.localverification
+---
+- tapOn:
+    text: "Use SMS or a linked account"
+    optional: true
+- scrollUntilVisible:
+    element:
+      text: "Mobile number"
+    direction: DOWN
+- tapOn: "Mobile number"
+- inputText: "+27820000001"
+- hideKeyboard
+- tapOn: "Continue with SMS"
+- extendedWaitUntil:
+    visible: "Verification code"
+    timeout: 15000
+- tapOn: "Verification code"
+- inputText: "246810"
+- hideKeyboard
+- tapOn: "Verify code"
+- extendedWaitUntil:
+    visible: "Your GLAM account"
+    timeout: 15000

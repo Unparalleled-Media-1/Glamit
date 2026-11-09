@@ -1,0 +1,207 @@
+## GLAM Beauty — Native Analysis & Style Passport milestone review
+
+This is a substantial improvement over the previous implementation. Codex now reports that the actual React Native controls are connected to persistent backend operations, rather than merely displaying screens or mocked results.
+
+The most significant achievement is the reported end-to-end integration test:
+
+Backend regression suite
+
+Reported passed
+
+# 388 tests
+
+Native component → FastAPI → PostgreSQL
+
+Saved corrections and Style Passport
+
+Consent withdrawal and account fencing
+
+Actual installed-app journey
+
+Not verified
+
+These are Codex's reported test results, not independent verification of the binaries or repository.
+
+### What has improved
+
+The implementation now reportedly supports private uploads, durable analysis jobs, saved report revisions, user corrections and a selected Style Passport snapshot. It also addresses important correctness risks: concurrent corrections, duplicate submissions, ownership restrictions, consent withdrawal and stale responses after an account change.
+
+The remaining gap is no longer simply missing persistence code. It is proving that the entire workflow works inside the installed iOS and Android applications.
+
+The current component tests use synthetic photos and explicit test providers. Reopening a React component does not demonstrate that data survives an actual operating-system app restart.
+
+## Next milestone: NATIVE-PASSPORT-DEVICE — real installed-app verification
+
+I recommend keeping this implementation batch open until the real applications demonstrate the complete journey. Do not proceed straight to another large feature build without this proof.
+
+# GLAM BEAUTY — NATIVE-PASSPORT-DEVICE ACCEPTANCE BATCH
+
+## Objective
+
+Take the existing native analysis and Style Passport implementation from passing component/API/PostgreSQL tests to verified, installed iOS and Android application journeys.
+
+Preserve the working implementation. Do not rebuild it, replace it with a browser prototype or start another platform-wide audit.
+
+## 1. Establish the exact source baseline
+
+Identify the source commit containing the native analysis implementation, migrations 0014–0017 and associated test changes.
+
+Confirm that both native builds use that exact source.
+
+Report current GitHub Actions results and preserve failed-run evidence.
+
+Do not merge or deploy without authorization.
+
+## 2. Prepare an isolated integration environment
+
+Use a disposable PostgreSQL database and isolated storage/test services.
+
+Apply canonical migrations 0014, 0015, 0016 and 0017 in order, verifying dependencies and rollback behavior.
+
+Configure authenticated test identities, approved test consent and eligibility fixtures, private-media storage and the deterministic analysis adapter.
+
+Do not alter production Supabase, Railway, Stripe or real user records.
+
+Do not fabricate production consent or eligibility.
+
+## 3. Install actual native applications
+
+Build, install and launch:
+
+- iOS simulator application.
+- Android emulator APK.
+
+Use genuine native binaries, not Expo web, Playwright browser previews or React component renders.
+
+Ensure the native applications can reach the isolated integration backend.
+
+## 4. Execute the complete native journey
+
+On BOTH iOS and Android:
+
+1. Launch the installed application.
+2. Authenticate a test account.
+3. Navigate to Analyze.
+4. Review and grant the required consent.
+5. Open the actual OS photo picker.
+6. Select a permitted test image.
+7. Upload through the authenticated private-media API.
+8. Confirm server-side private storage.
+9. Start the durable analysis job.
+10. Observe actual queued/running/completed states.
+11. Retrieve the saved report.
+12. Correct an analysis finding.
+13. Persist the correction.
+14. Select and save the corrected Style Passport snapshot.
+15. Fully terminate the application process.
+16. Relaunch the installed application.
+17. Restore the authenticated session.
+18. Open the saved Style Passport.
+19. Confirm the corrected result and revision persist.
+20. Verify the authorized backend records.
+
+The deterministic test provider must be explicitly identified in the evidence. Do not describe its output as live OpenAI analysis.
+
+## 5. Test failure and privacy scenarios
+
+Verify:
+
+- Consent withdrawal while picker is open.
+- Consent withdrawal during upload.
+- Consent withdrawal during analysis.
+- Account switching during a pending request.
+- App termination during upload.
+- Network interruption.
+- Expired authentication.
+- Duplicate submissions.
+- Conflicting corrections.
+- Media deletion and report invalidation.
+- Failed cleanup and retry.
+- Regranting consent does not resurrect withdrawn data.
+
+Test actual OS behavior wherever possible.
+
+## 6. Capture independent evidence
+
+For each platform provide:
+
+- Source commit.
+- Native build identifier.
+- CI run and job links.
+- Installed-app launch result.
+- Screenshots of each major journey stage.
+- Interaction logs.
+- Backend request/response evidence with sensitive data redacted.
+- PostgreSQL persistence assertions.
+- Process-death/relaunch evidence.
+- Pass/fail status for each step.
+
+If an artifact cannot be downloaded, report that limitation explicitly. Do not silently upgrade it to a visual pass.
+
+## 7. Repair any failures
+
+For each failed step:
+
+- Reproduce.
+- Identify the root cause.
+- Apply the smallest safe correction.
+- Add regression coverage.
+- Rebuild the affected native application.
+- Rerun the failed journey.
+- Check for regressions on the other platform.
+
+Do not accept component-only tests as substitutes for a failed installed-app test.
+
+## 8. Preserve production release gates
+
+Keep production migrations 0014–0017 unapplied until exact SQL, verified backup/recovery and explicit approval.
+
+Keep GLAM_ANALYSIS_ENABLED disabled in production until provider, policy, retention and deployment requirements are approved.
+
+Do not activate live payments or production AI processing.
+
+## 9. Acceptance decision
+
+Mark this batch PASSED only if the complete installed-app journey succeeds on both iOS and Android against the isolated integration backend.
+
+Report separately:
+
+- iOS simulator acceptance.
+- Android emulator acceptance.
+- Physical iOS device acceptance.
+- Physical Android device acceptance.
+- Live OpenAI/provider qualification.
+- Production backend verification.
+
+Do not claim physical-device or production acceptance from simulator success.
+
+## 10. After this batch
+
+Continue the existing implementation roadmap without another broad audit:
+
+1. Proper native navigation and authenticated service composition.
+2. Real AI Studio generation and saved looks.
+3. Styling, wardrobe and discovery.
+4. Marketplace, bookings and business operations.
+5. Notifications, identity and privacy.
+6. Website/mobile conversion.
+7. Full platform release certification.
+
+Preserve the GLAM Beauty mobile-first strategy throughout.
+
+Begin the installed-app verification now.
+
+## Release status
+
+| Milestone                         | Decision                 |
+| --------------------------------- | ------------------------ |
+| Native persistence implementation | Strong reported progress |
+| Component-to-database integration | Reported passing         |
+| Installed iOS journey             | Pending                  |
+| Installed Android journey         | Pending                  |
+| Production migration approval     | Not granted              |
+| Public launch                     | No-go                    |
+
+One additional point: migration 0017 should not be approved solely because its disposable-database tests pass. Before production application, the complete dependency chain (0014–0017), exact SQL, role privileges, recovery procedure and existing-data impact need review.
+
+Once the installed-app milestone passes, the focus should shift to AI Studio, shopping, bookings and the remaining native features. The objective remains complete functional applications across web, iOS and Android—not just a successful analysis demonstration.
