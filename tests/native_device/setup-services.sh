@@ -7,14 +7,14 @@ test "${GLAM_NATIVE_DEVICE_JOURNEY:-}" = true
 mkdir -p artifacts/native-device
 if [ "$(uname -s)" = Darwin ]; then
   if ! brew --prefix postgresql@17 >/dev/null 2>&1; then brew install postgresql@17; fi
-  # Install the reviewed official source release without trusting a third-party tap.
-  curl --fail --location --retry 2 --output "$RUNNER_TEMP/glam-applesimutils.tar.gz" https://github.com/wix/AppleSimulatorUtils/releases/download/0.9.12/AppleSimulatorUtils-0.9.12.tar.gz
-  printf '%s  %s\n' 4d6d02311959388ff5c28e2f4781848dbe1ca07f34b1d81d273940e099020b09 "$RUNNER_TEMP/glam-applesimutils.tar.gz" | shasum -a 256 -c -
+  # Exact official0.9.12 source commit; no third-party tap trust changes.
   mkdir -p "$RUNNER_TEMP/glam-applesimutils-source"
-  tar -xzf "$RUNNER_TEMP/glam-applesimutils.tar.gz" -C "$RUNNER_TEMP/glam-applesimutils-source"
-  task_apple_build=$(find "$RUNNER_TEMP/glam-applesimutils-source" -name buildForBrew.sh -type f -print -quit)
-  test -n "$task_apple_build"
-  (cd "$(dirname "$task_apple_build")" && bash ./buildForBrew.sh "$RUNNER_TEMP/glam-applesimutils-install")
+  git -C "$RUNNER_TEMP/glam-applesimutils-source" init
+  git -C "$RUNNER_TEMP/glam-applesimutils-source" remote add origin https://github.com/wix/AppleSimulatorUtils.git
+  git -C "$RUNNER_TEMP/glam-applesimutils-source" fetch --depth=1 origin 73f9c36afd5208e2d71be1150e0c9bd26ac1ca71
+  git -C "$RUNNER_TEMP/glam-applesimutils-source" checkout --detach FETCH_HEAD
+  test "$(git -C "$RUNNER_TEMP/glam-applesimutils-source" rev-parse HEAD)" = 73f9c36afd5208e2d71be1150e0c9bd26ac1ca71
+  (cd "$RUNNER_TEMP/glam-applesimutils-source" && bash ./buildForBrew.sh "$RUNNER_TEMP/glam-applesimutils-install")
   "$RUNNER_TEMP/glam-applesimutils-install/bin/applesimutils" --version
   echo "$RUNNER_TEMP/glam-applesimutils-install/bin" >> "$GITHUB_PATH"
   task_pg_bin="$(brew --prefix postgresql@17)/bin"
