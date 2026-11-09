@@ -72,7 +72,7 @@ class ProfileScreen extends ConsumerWidget {
         if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Support email copied')));
       }, icon: const Icon(Icons.copy_outlined), label: const Text('hello@glamit.beauty')),
       const SizedBox(height: 12), FilledButton(key: const ValueKey('clear-preview'), onPressed: () {
-        ref.read(previewProvider.notifier).clear(); Navigator.pop(context);
+        ref.read(previewProvider.notifier).clear(); Navigator.of(context, rootNavigator: true).pop();
       }, child: const Text('Clear preview selections')),
     ],
   ));
@@ -82,8 +82,8 @@ class _Group extends StatelessWidget {
   const _Group({required this.children});
   final List<Widget> children;
   @override
-  Widget build(BuildContext context) => ClipRRect(borderRadius: BorderRadius.circular(24),
-    child: ColoredBox(color: Colors.white.withValues(alpha: .65), child: Column(children: children)));
+  Widget build(BuildContext context) => Material(borderRadius: BorderRadius.circular(24),
+    clipBehavior: Clip.antiAlias, color: Colors.white.withValues(alpha: .65), child: Column(children: children));
 }
 class _Count extends StatelessWidget {
   const _Count({required this.value, required this.label});
@@ -148,7 +148,7 @@ class AdvisorScreen extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 12), child: OutlinedButton(
             onPressed: () => glamSheet(context, SheetContent(title: title,
               body: 'Your personal styling conversation will begin here. AI advice is not connected in this design preview; no prompt has been sent.',
-              children: [FilledButton(onPressed: () { Navigator.pop(context); context.go('/studio'); }, child: const Text('Build a creative brief'))])),
+              children: [FilledButton(onPressed: () { Navigator.of(context, rootNavigator: true).pop(); context.go('/studio'); }, child: const Text('Build a creative brief'))])),
             style: OutlinedButton.styleFrom(minimumSize: const Size(48, 56)), child: Text(title))),
         const SizedBox(height: 20), const Text('No AI response is simulated.', style: TextStyle(color: GlamColors.muted, fontSize: 11)),
       ],

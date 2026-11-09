@@ -23,7 +23,7 @@ class _AnalyzeScreenState extends State<AnalyzeScreen> {
         Expanded(child: Text('You will always choose whether a photo may be stored or analysed.'))]),
       const SizedBox(height: 24),
       FilledButton(key: const ValueKey('photo-guide'), onPressed: () {
-        Navigator.pop(context); setState(() => guide = (guide + 1) % tips.length);
+        Navigator.of(context, rootNavigator: true).pop(); setState(() => guide = (guide + 1) % tips.length);
       }, child: const Text('Explore photo guidance')),
     ],
   ));
