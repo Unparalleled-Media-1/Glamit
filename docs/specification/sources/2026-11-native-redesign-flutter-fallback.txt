@@ -1,0 +1,230 @@
+I agree with the direction you're pushing for: GLAM Beauty must feel and function like a premium, purpose-built iOS and Android application—not a website squeezed into a phone screen.
+
+But there is an important technical distinction. React Native is capable of producing fully native applications. The problem may not be the programming language; it may be that Codex has reproduced the website's layout, navigation and interaction patterns inside React Native.
+
+Flutter is a valid alternative, and I would authorize a controlled Flutter migration if the existing implementation cannot meet the native experience requirements. I would not authorize an immediate wholesale rewrite without first establishing what is wrong with the current UI.
+
+## What must change
+
+[Issue with my product grid on mobile view](https://images.openai.com/static-rsc-4/regYcZJXGsYQSVMxHrNz5jx2S3Zw3ga46rRCvNZ85mL5ouOO_YtXA-Wju3moiB8oF5GmQrxtvOzdeXTaBX8Ny-GPahfqt3-U0hEmQtzNT_IMywkt8q0Kx0hPg2ib4fdiGZExgAEDEWBdj4wxJEKyz4EiTsp5o-OAeutmK177STw?purpose=inline)
+
+What we must avoid
+
+Desktop-style layouts, excessive scrolling, web-like forms, static cards and browser navigation patterns.
+
+[Beauty Make Up AI Mobile - Magic Cam by Jëlly for Odama on Dribbble](https://images.openai.com/static-rsc-4/R80HDJ0Jd3jpnh_NOsdmQSSs0iCRvX6pM7pZjgz6FXYbFhlOs08i1SMz70x93oFGeb0AOmfJ_aA-9BjWtqhSH14PbElVW_P58nOjPtaboed5BtbWGOAFERJ1tjQre7ES82UudhLFbCk3YzAk7IxfthVlsEYBVUAsAnLFZ1138wI?purpose=inline)
+
+What GLAM should become
+
+Camera-first, touch-first, immersive, gesture-driven and designed around native mobile workflows.
+
+The images above are illustrative design references, not screenshots of your existing application.
+
+## React Native versus Flutter
+
+| Requirement                             | React Native / Expo | Flutter |
+| --------------------------------------- | ------------------- | ------- |
+| Genuine installed iOS/Android apps      | Yes                 | Yes     |
+| Native camera and photo access          | Yes                 | Yes     |
+| Biometric authentication                | Yes                 | Yes     |
+| Native-feeling navigation               | Yes                 | Yes     |
+| Smooth animations and gestures          | Yes                 | Yes     |
+| Custom beauty and AI Studio interfaces  | Yes                 | Yes     |
+| Reuse existing GLAM mobile source       | High                | Low     |
+| Reuse existing FastAPI/Supabase backend | Yes                 | Yes     |
+| Rewrite risk                            | Lower               | Higher  |
+
+Flutter would give you excellent control over custom mobile UI rendering and animation. However, switching frameworks alone will not fix disconnected backend operations, incomplete user journeys or poor UX decisions.
+
+My recommendation is a short, strict native-experience acceptance gate. If the current React Native implementation cannot satisfy it, move to Flutter without further rounds of cosmetic repairs.
+
+## Send Codex this directive
+
+# GLAM BEAUTY — MANDATORY TRUE NATIVE APP REDESIGN, WITH FLUTTER FALLBACK
+
+## Executive directive
+
+The existing iOS and Android builds are not acceptable as the final GLAM Beauty mobile applications.
+
+Although the current Expo/React Native code compiles, the resulting application still resembles a mobile version of the website.
+
+Our requirement is a genuine, premium, mobile-first application designed specifically for iOS and Android.
+
+STOP treating successful compilation, native components or screenshots of website-style layouts as evidence of acceptable mobile UX.
+
+Do not continue copying web layouts into native screens.
+
+## 1. Native experience requirements
+
+Redesign the consumer application around mobile interaction rather than desktop page structure.
+
+Required primary navigation:
+
+- Home
+- Analyze
+- Studio
+- Discover
+- Profile
+
+Use proper navigation stacks, gestures, native transitions, full-screen experiences, bottom sheets, safe areas, haptic feedback where appropriate, platform-specific keyboard behavior and accessible touch targets.
+
+The AI Advisor must be accessible from Home, Studio and relevant styling journeys without occupying a permanent primary tab.
+
+## 2. Required screen experience
+
+HOME:\
+A personalized, visually premium discovery experience with clear entry points to Analyze, Studio, styling recommendations and saved looks.
+
+ANALYZE:\
+A camera-first interface with native capture, gallery selection, privacy consent, upload progress, analysis progress and saved results.
+
+AI STUDIO:\
+An immersive creative workspace with hairstyle, makeup and outfit tools, image comparison, editing, generation progress, saved results and export.
+
+DISCOVER:\
+A native discovery feed for looks, creators, tutorials, products and professionals. Support meaningful native interactions rather than static cards.
+
+PROFILE:\
+Style Passport, wardrobe, saved looks, orders, bookings, subscriptions, privacy settings and authorized workspace switching.
+
+## 3. Do not discard existing backend functionality
+
+Preserve and reuse:
+
+- FastAPI services.
+- Supabase authentication and database.
+- Private-media APIs.
+- Durable analysis jobs.
+- Report corrections.
+- Style Passport persistence.
+- OpenAI provider integrations.
+- Existing commercial and financial rules.
+- Organization/RBAC architecture.
+- Security and privacy controls.
+
+The mobile client must consume these services through authenticated, typed APIs.
+
+Do not rewrite the backend simply because the mobile UI framework changes.
+
+## 4. React Native acceptance gate
+
+Implement a focused native UX proof using the existing React Native codebase.
+
+Deliver five redesigned screens:
+
+1. Home.
+2. Analyze.
+3. Studio.
+4. Discover.
+5. Profile.
+
+Requirements:
+
+- No WebViews for the primary consumer experience.
+- No copied web layout structures.
+- Proper native navigation.
+- Meaningful touch interactions.
+- Premium GLAM visual identity.
+- Responsive loading and error states.
+- Real API integration where existing operations are available.
+- iOS simulator demonstration.
+- Android emulator demonstration.
+- Actual native interaction recordings or screenshots.
+
+Demonstrate navigation, camera/gallery selection and the existing persistent analysis workflow.
+
+Do not substitute HTML prototypes, static browser mockups or screenshots from apps/web.
+
+## 5. Flutter migration decision
+
+If the current React Native architecture cannot deliver the required experience without disproportionate complexity or recurring regressions, recommend Flutter and document the specific technical blockers.
+
+Do not migrate solely because the existing UI looks like a website.
+
+If migration is justified:
+
+Create a new Flutter mobile application alongside the existing implementation.
+
+Do not delete apps/mobile until Flutter reaches verified functional parity.
+
+Use:
+
+- Flutter and Dart.
+- Platform-appropriate Material/Cupertino behavior.
+- go_router or another approved navigation system.
+- Riverpod or another consistent state-management architecture.
+- Secure credential storage.
+- Native camera/photo plugins.
+- Biometric authentication.
+- Typed FastAPI clients.
+- Supabase Auth integration.
+- Platform-specific notification support.
+
+Implement the five core screens and complete the native photo → analysis → correction → Style Passport journey first.
+
+Then compare Flutter against React Native using the same functional and UX acceptance criteria.
+
+## 6. Flutter parity requirements
+
+The Flutter implementation must preserve all approved functionality, including:
+
+- Consumer AI analysis and styling.
+- AI Studio.
+- Saved looks and wardrobe.
+- Marketplace and checkout.
+- Professional bookings.
+- Creator operations.
+- Role switching.
+- Notifications and deep links.
+- Consent and privacy.
+- Accessibility.
+- iOS and Android security.
+
+Merchant, advertiser, salon and partner native companions must also be accounted for in the migration plan.
+
+Do not silently drop features to make the Flutter prototype appear complete.
+
+## 7. Build and verification
+
+For either framework, require:
+
+- Actual iOS simulator application.
+- Actual Android emulator application.
+- Correct native application identifiers.
+- Native navigation and OS interaction tests.
+- Backend-connected functional journeys.
+- Process-death and session restoration.
+- Independent iOS/Android acceptance.
+- Physical-device testing before release.
+
+Provide actual installed-app evidence, not browser screenshots.
+
+## 8. Decision report
+
+Return:
+
+1. Why the current application feels like a website.
+2. Whether the problem is UI architecture, navigation, framework limitations or incomplete implementation.
+3. What can be retained.
+4. What must be rebuilt.
+5. React Native remediation effort.
+6. Flutter migration effort and risks.
+7. The recommended framework, supported by evidence.
+8. A functioning five-screen native proof.
+9. The remaining work to achieve complete iOS/Android applications.
+
+## Non-negotiable acceptance standard
+
+GLAM Beauty must feel like a premium mobile beauty application from the first interaction.
+
+A user should not experience a website layout inside an installed app.
+
+A native app is not complete merely because its code uses React Native or Flutter.
+
+Proceed with the native-experience proof and make the framework decision based on the actual installed applications.
+
+Do not perform production migrations, deployment or live payment changes without approval.
+
+The decision I would make: Give React Native one focused opportunity to prove a genuinely redesigned five-tab mobile experience, not another platform-wide repair cycle. If Codex cannot produce that experience reliably, move the mobile client to Flutter while keeping the existing FastAPI, Supabase and web platform intact.
+
+That way, changing the mobile framework does not force you to rebuild the entire GLAM Beauty business platform.
