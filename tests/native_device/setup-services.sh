@@ -6,7 +6,8 @@ case "${CI:-}" in 1|true) ;; *) exit 1 ;; esac
 test "${GLAM_NATIVE_DEVICE_JOURNEY:-}" = true
 mkdir -p artifacts/native-device
 if [ "$(uname -s)" = Darwin ]; then
-  if ! brew --prefix postgresql@17 >/dev/null 2>&1; then brew install postgresql@17; fi
+  task_pg_bin="$(brew --prefix postgresql@17)/bin"
+  if [ ! -x "$task_pg_bin/initdb" ]; then brew install postgresql@17; fi
   # Exact official0.9.12 source commit; no third-party tap trust changes.
   mkdir -p "$RUNNER_TEMP/glam-applesimutils-source"
   git -C "$RUNNER_TEMP/glam-applesimutils-source" init
@@ -35,7 +36,10 @@ for attempt in $(seq 1 30); do
   if curl --fail --silent http://127.0.0.1:8765/__fixture/ready > artifacts/native-device/ready.json; then break; fi
   sleep 1
 done
-curl --fail --silent http://127.0.0.1:8765/__fixture/ready > artifacts/native-device/ready.json
+if ! curl --fail --silent http://127.0.0.1:8765/__fixture/ready > artifacts/native-device/ready.json; then
+  tail -n 70 artifacts/native-device/server.txt
+  exit 1
+fi
 .venv/bin/python - <<'PY'
 from PIL import Image
 Image.new('RGB',(600,800),'#f6c6d8').save('artifacts/native-device/test-photo.png')
