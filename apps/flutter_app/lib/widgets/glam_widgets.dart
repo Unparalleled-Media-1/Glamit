@@ -35,13 +35,15 @@ class RoundAction extends StatelessWidget {
   final VoidCallback onPressed;
   final bool dark, active;
   @override
-  Widget build(BuildContext context) => IconButton(
+  Widget build(BuildContext context) => Semantics(
+    identifier: key is ValueKey<String> ? (key as ValueKey<String>).value : null,
+    child: IconButton(
     tooltip: label, onPressed: () { HapticFeedback.selectionClick(); onPressed(); },
     style: IconButton.styleFrom(
       foregroundColor: active ? GlamColors.ink : dark ? GlamColors.ivory : GlamColors.ink,
       backgroundColor: active ? GlamColors.blush : dark ? Colors.black.withValues(alpha: .3) : Colors.white.withValues(alpha: .7),
       side: BorderSide(color: dark ? Colors.white24 : GlamColors.line.withValues(alpha: .6)),
-    ), icon: Icon(icon, size: 22));
+    ), icon: Icon(icon, size: 22)));
 }
 
 Future<T?> glamSheet<T>(BuildContext context, Widget child) => showModalBottomSheet<T>(
@@ -85,12 +87,14 @@ class NativeRow extends StatelessWidget {
   final String? subtitle;
   final VoidCallback onTap;
   @override
-  Widget build(BuildContext context) => ListTile(
+  Widget build(BuildContext context) => Semantics(
+    identifier: 'row-${title.toLowerCase().replaceAll(RegExp(r"[^a-z0-9]+"), "-")}',
+    child: ListTile(
     minTileHeight: 64, contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
     leading: Icon(icon, color: GlamColors.mauve), title: Text(title),
     subtitle: subtitle == null ? null : Text(subtitle!, style: const TextStyle(fontSize: 11)),
     trailing: const Icon(Icons.chevron_right, size: 20, color: GlamColors.muted), onTap: onTap,
-  );
+  ));
 }
 
 class EmptyMoment extends StatelessWidget {

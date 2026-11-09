@@ -75,6 +75,7 @@ jobs:
           path: apps/flutter_app
       - working-directory: apps/flutter_app
         run: flutter pub get --enforce-lockfile
+      - run: bash scripts/flutter/install-maestro.sh
       - name: Enable emulator KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -91,7 +92,6 @@ jobs:
       - name: Build separately labelled main-entry review APK
         working-directory: apps/flutter_app
         run: |
-          flutter build apk --debug --target lib/main.dart --no-pub
           mkdir -p ../../artifacts/flutter-f1/android/distribution
           cp build/app/outputs/flutter-apk/app-debug.apk ../../artifacts/flutter-f1/android/distribution/glam-beauty-f1-review.apk
           shasum -a 256 ../../artifacts/flutter-f1/android/distribution/glam-beauty-f1-review.apk > ../../artifacts/flutter-f1/android/distribution/SHA256SUMS
@@ -121,6 +121,11 @@ jobs:
           path: apps/flutter_app
       - working-directory: apps/flutter_app
         run: flutter pub get --enforce-lockfile
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: bash scripts/flutter/install-maestro.sh
       - name: Boot actual iOS simulator
         run: |
           mkdir -p artifacts/flutter-f1/ios
@@ -136,7 +141,6 @@ jobs:
       - name: Retain main-entry simulator application (NOT TestFlight)
         working-directory: apps/flutter_app
         run: |
-          flutter build ios --simulator --debug --no-codesign --target lib/main.dart --no-pub
           ditto -c -k --sequesterRsrc --keepParent build/ios/iphonesimulator/Runner.app ../../artifacts/flutter-f1/ios/glam-beauty-f1-simulator.zip
           shasum -a 256 ../../artifacts/flutter-f1/ios/glam-beauty-f1-simulator.zip > ../../artifacts/flutter-f1/ios/SHA256SUMS
       - uses: actions/upload-artifact@v7

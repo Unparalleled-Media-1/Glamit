@@ -17,7 +17,7 @@ def main():
         print(reader.read(), end="", flush=True)
     if process.returncode:
         content = target.read_text(errors="replace")
-        for label, part in [("first", content[:5000]), ("last", content[-5000:])]:
+        for label, part in [("first", content[:3500]), ("last", content[-3500:])]:
             escaped = part.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
             print(f"::error title=Flutter F1 {label} failure evidence::{escaped}")
     raise SystemExit(process.returncode)

@@ -61,7 +61,7 @@ class _AnalyzeScreenState extends State<AnalyzeScreen> {
                   decoration: BoxDecoration(color: guide == i ? GlamColors.blush : Colors.white30, borderRadius: BorderRadius.circular(8))))))))),
           const SizedBox(height: 4), Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             Expanded(child: _SourceAction(key: const ValueKey('analyze-gallery'), icon: Icons.photo_library_outlined, label: 'Gallery', onTap: () => source(false))),
-            Semantics(label: 'Camera', button: true, child: InkWell(key: const ValueKey('analyze-camera'),
+            Semantics(identifier: 'analyze-camera', label: 'Camera', button: true, child: InkWell(key: const ValueKey('analyze-camera'),
               onTap: () => source(true), borderRadius: BorderRadius.circular(48),
               child: Container(width: 84, height: 84, padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: GlamColors.blush, width: 2)),

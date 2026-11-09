@@ -68,7 +68,7 @@ class MobileShell extends StatelessWidget {
               const icons = [Icons.home_outlined, Icons.center_focus_strong_outlined,
                 Icons.auto_awesome_outlined, Icons.explore_outlined, Icons.person_outline];
               final selected = shell.currentIndex == index;
-              return Expanded(child: Semantics(selected: selected, button: true,
+              return Expanded(child: Semantics(identifier: 'tab-${labels[index].toLowerCase()}', selected: selected, button: true,
                 label: labels[index], excludeSemantics: true,
                 child: InkWell(key: ValueKey('tab-${labels[index].toLowerCase()}'),
                   borderRadius: BorderRadius.circular(24),

@@ -18,8 +18,10 @@ flutter test
 flutter run -d <native-device-id>
 ```
 
-The bootstrap generates native shells from the pinned official SDK without overwriting authored Dart. CI resolves one lock and shares it between iOS/Android. Generated native inputs, exact lock, installed screenshots/videos, logs and binary receipts are retained. Local SDK setup is presently network-blocked; do not claim local Dart analysis or device verification from source inspection.
+The bootstrap generates native shells from the pinned official SDK without overwriting authored Dart. CI resolves one lock and shares it between iOS/Android. Generated native inputs, exact lock, OS-driven installed screenshots/videos, logs and binary receipts are retained. Local SDK setup is presently network-blocked; do not claim local Dart analysis or device verification from source inspection.
 
 Review identifier: com.glambeauty.visualreview, unregistered/local-only. Android output is a CI debug-signed review APK, not an approved store build. The iOS .app ZIP targets simulators and is not an .ipa/TestFlight build. Store identifiers, developer teams, signing and physical-device verification remain separate requirements.
 
 Stop after actual F1 screenshots and interactions for user visual approval. Do not continue functional migration or merge/deploy until authorized. Canonical services, Expo source and financial rules remain unchanged.
+
+Native F1 capture uses Maestro on the normal lib/main.dart application. The earlier Flutter test-binding capture harness is retained in Git history; its failed/partial outputs are not accepted as this milestone. The six widget tests and the OS-driven journey must both pass before native interaction evidence is accepted.

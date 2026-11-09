@@ -110,7 +110,7 @@ class _BriefComposerState extends ConsumerState<_BriefComposer> {
         textInputAction: TextInputAction.done,
         onEditingComplete: () => FocusScope.of(context).unfocus(),
         onTapOutside: (_) => FocusScope.of(context).unfocus(),
-        decoration: InputDecoration(hintText: 'Soft rose tones, an effortless evening…',
+        decoration: InputDecoration(labelText: 'Creative brief', hintText: 'Soft rose tones, an effortless evening…',
           filled: true, fillColor: Colors.white, border: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: BorderSide.none))),
       const SizedBox(height: 16), FilledButton(key: const ValueKey('brief-save'), onPressed: () {
         ref.read(previewProvider.notifier).brief(text.text); Navigator.of(context, rootNavigator: true).pop();

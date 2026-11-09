@@ -55,6 +55,46 @@ void main() {
     expect(failures, isEmpty, reason: 'Every primary screen must support large system text');
   });
 
+  testWidgets('A creative brief and saved edit survive native stack round trips', (tester) async {
+    tester.view.physicalSize = const Size(430, 932);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    await tester.pumpWidget(const ProviderScope(child: GlamBeautyApp()));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('tab-studio')));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.byKey(const ValueKey('studio-brief')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('studio-brief')));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byKey(const ValueKey('brief-input')), 'Soft rose, an effortless evening');
+    await tester.tap(find.text('What are you imagining?'));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.byKey(const ValueKey('brief-save')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('brief-save')));
+    await tester.pumpAndSettle();
+    expect(find.text('Brief kept for this preview. No AI image generated.'), findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('tab-discover')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('save-look-0')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('open-look-0')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('screen-look')), findsOneWidget);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('tab-profile')));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('Saved inspiration'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Saved inspiration'));
+    await tester.pumpAndSettle();
+    expect(find.text('The soft-focus edit'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('Camera preview is honest and native sheet dismisses without photo access', (tester) async {
     await tester.pumpWidget(const ProviderScope(child: GlamBeautyApp()));
     await tester.pumpAndSettle();

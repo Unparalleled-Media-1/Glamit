@@ -17,6 +17,8 @@ path.write_text(source)
 path = Path('android/app/src/main/AndroidManifest.xml')
 source, count = re.subn(r'android:label="[^"]+"', 'android:label="GLAM Beauty"', path.read_text())
 assert count == 1, 'Android launcher label must match the approved brand'
+if 'android:enableOnBackInvokedCallback=' not in source:
+    source = source.replace('<application', '<application android:enableOnBackInvokedCallback="true"', 1)
 path.write_text(source)
 path = Path('ios/Runner.xcodeproj/project.pbxproj')
 source = path.read_text()
