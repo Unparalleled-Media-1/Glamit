@@ -5,7 +5,7 @@ const assert = require('node:assert/strict'), fs = require('node:fs'), path = re
 const { buildSync } = require('esbuild'), os = require('node:os');
 const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'glam-footer-'));
 buildSync({ entryPoints: ['packages/product/public-site.ts'], bundle: true, platform: 'node', outfile: path.join(temporary, 'config.cjs') });
-const { checkedPublicLink, publicSite, publicPageLinks } = require(path.join(temporary, 'config.cjs'));
+const { checkedPublicLink, publicSite, publicPageLinks, businessPageLinks } = require(path.join(temporary, 'config.cjs'));
 assert.equal(publicSite.email, 'hello@glamit.beauty');
 assert.equal(publicSite.operator, 'Zanzu Technologies Inc.');
 assert.equal(publicSite.iosUrl, null); assert.equal(publicSite.androidUrl, null);
@@ -85,6 +85,30 @@ assert.equal(checkedPublicLink('android', 'https://play.google.com/store/apps/de
         const fallback=page.getByRole('link',{name:'Continue exploring on the web',exact:true});
         assert.equal(await fallback.getAttribute('href'),base+'/analyze');
         await page.screenshot({path:path.join(output,'mobile-browser-get-app.png'),fullPage:true});
+      }
+    }
+    for (const width of [390,1440]) {
+      await page.setViewportSize({width,height:900});
+      for (const business of businessPageLinks) {
+        await page.goto(origin+base+'/');
+        await page.locator('.public-footer').getByRole('link',{name:business.label,exact:true}).click();
+        await page.getByRole('heading',{name:business.title,level:1}).waitFor();
+        assert(new URL(page.url()).pathname.replace(/\/$/,'').endsWith('/'+business.slug));
+        assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Business page overflow: '+business.slug);
+        const login=page.getByRole('link',{name:'Sign in for '+business.label.toLowerCase(),exact:true});
+        assert.equal(await login.getAttribute('href'),base+'/business/login');
+        const registration=page.locator('main').getByRole('link',{name:'Register your business account',exact:true});
+        assert.equal(await registration.getAttribute('href'),base+'/business/register');
+        await login.click();
+        assert(new URL(page.url()).pathname.replace(/\/$/,'').endsWith('/business/login'));
+        await page.getByRole('heading',{name:'Sign in to your business workspace',level:1}).waitFor();
+        await page.goto(origin+base+'/'+business.slug+'/');
+        await page.getByRole('heading',{name:business.title,level:1}).waitFor();
+        await page.locator('main').getByRole('link',{name:'Register your business account',exact:true}).click();
+        await page.getByRole('heading',{name:'Create your GLAM Beauty account',level:1}).waitFor();
+        await page.goto(origin+base+'/'+business.slug+'/');
+        const accessibility=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();
+        assert.deepEqual(accessibility.violations.map(v=>({id:v.id,impact:v.impact})),[],'Business-page accessibility: '+business.slug);
       }
     }
     await page.goto(origin+base+'/contact/');

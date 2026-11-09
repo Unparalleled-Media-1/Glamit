@@ -1,7 +1,7 @@
 import BrandLogo from "./BrandLogo";
 import SiteFooter, { StoreLinks, SiteLink } from "./SiteFooter";
 import { appPath } from "../lib/paths";
-import { publicPageLinks, publicSite } from "../../../packages/product/public-site";
+import { businessPageLinks, publicPageLinks, publicSite } from "../../../packages/product/public-site";
 import type { PublicPage } from "../../../packages/product/public-site";
 
 const documents = {
@@ -37,13 +37,25 @@ const documents = {
 } as const;
 
 export default function PublicInformationPage({ section, onNavigate }: { section: PublicPage; onNavigate?: (path: string) => void }) {
-  const title = publicPageLinks.find(p => p.slug === section)!.label;
+  const business = businessPageLinks.find(p => p.slug === section);
+  const title = business?.title || publicPageLinks.find(p => p.slug === section)!.label;
   const document = section in documents ? documents[section as keyof typeof documents] : null;
   return <div className="public-information">
     <a className="skip-link" href="#public-content">Skip to content</a>
     <header className="public-information-header"><SiteLink to="/" label="GLAM Beauty home" onNavigate={onNavigate}><BrandLogo/></SiteLink><nav aria-label="Public navigation"><SiteLink to="/get-app" onNavigate={onNavigate}>Get the GLAM app</SiteLink><SiteLink to="/business" onNavigate={onNavigate}>For business</SiteLink></nav></header>
     <main id="public-content" className="public-information-main" tabIndex={-1}>
       <p className="public-eyebrow">GLAM BEAUTY</p><h1>{title}</h1>
+      {business && <>
+        <p className="public-lead">{business.description}</p>
+        <section><h2>Your business workspace</h2><p>{business.details}</p></section>
+        <section><h2>Get started</h2><p>Use one GLAM Beauty account. Organization membership and workspace permissions are verified separately; these links do not grant a role.</p>
+          <p><SiteLink className="public-primary-link" to="/business/login" onNavigate={onNavigate}>Sign in for {business.label.toLowerCase()}</SiteLink></p>
+          <p><SiteLink to="/business/register" onNavigate={onNavigate}>Register your business account</SiteLink></p>
+          <p><SiteLink to="/business" onNavigate={onNavigate}>Open your approved workspaces</SiteLink></p>
+        </section>
+        {business.slug === "creators" && <section><h2>Made for mobile</h2><p>See current iOS and Android app availability while we prepare for release.</p><SiteLink to="/get-app" onNavigate={onNavigate}>Get the GLAM app</SiteLink></section>}
+        <section><h2>Questions or verification help?</h2><p><SiteLink to="/contact" onNavigate={onNavigate}>Contact GLAM Beauty</SiteLink></p></section>
+      </>}
       {document && <><div className="public-review-note"><strong>Draft for operator review</strong><p>This legal document has not yet received final operator approval. For current questions or requests, contact <a href={"mailto:" + publicSite.email}>{publicSite.email}</a>.</p></div>{document.map(([heading, body]) => <section key={heading}><h2>{heading}</h2><p>{body}</p></section>)}<p><a href={appPath("/privacy")}>Open Privacy & data controls</a></p></>}
       {section === "contact" && <>
         <p className="public-lead">A question about GLAM Beauty, your account or your business? Get in touch.</p>

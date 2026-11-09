@@ -1,7 +1,7 @@
 import BrandLogo from "./BrandLogo";
 import PublicIcon from "./PublicIcons";
 import { appPath } from "../lib/paths";
-import { publicPageLinks, publicSite } from "../../../packages/product/public-site";
+import { businessPageLinks, publicPageLinks, publicSite } from "../../../packages/product/public-site";
 import type { MouseEvent, ReactNode } from "react";
 import "../app/public-site.css";
 
@@ -32,7 +32,7 @@ export default function SiteFooter({ dark = false, onNavigate, onPrivacy, showBu
         <a href={"mailto:" + publicSite.email}>{publicSite.email}</a>
       </div>
       <nav aria-label="Legal and help"><h2>Legal & help</h2>{publicPageLinks.filter(p => p.slug !== "get-app").map(p => <SiteLink key={p.slug} to={"/" + p.slug} onNavigate={onNavigate}>{p.label}</SiteLink>)}<SiteLink to="/privacy" onNavigate={onPrivacy ? () => onPrivacy() : onNavigate}>Privacy & data controls</SiteLink></nav>
-      <nav aria-label="Business workspaces"><h2>For business</h2><SiteLink to="/business" onNavigate={onNavigate}>Business portal</SiteLink>{showBusinessRegistration && <SiteLink to="/business/register" onNavigate={onNavigate}>Register your business</SiteLink>}<p>Merchants, advertisers, professionals, creators and partners.</p><SiteLink to="/admin" onNavigate={onNavigate}>Admin sign in</SiteLink></nav>
+      <nav aria-label="Business workspaces"><h2>For business</h2><SiteLink to="/business" onNavigate={onNavigate}>Business portal</SiteLink>{showBusinessRegistration && <SiteLink to="/business/register" onNavigate={onNavigate}>Register your business</SiteLink>}{businessPageLinks.map(page => <SiteLink key={page.slug} to={"/" + page.slug} onNavigate={onNavigate}>{page.label}</SiteLink>)}<SiteLink to="/admin" onNavigate={onNavigate}>Admin sign in</SiteLink></nav>
       <div><h2>Get the GLAM app</h2><p>iOS and Android apps are coming soon. Explore GLAM on the web while we prepare for release.</p><StoreLinks onNavigate={onNavigate}/><SiteLink to="/get-app" onNavigate={onNavigate}>App availability & web access</SiteLink>
         <h2 className="public-social-heading">Follow GLAM Beauty</h2>
         {!publicSite.social.some(s => s.url) && <p>Official social profiles coming soon.</p>}

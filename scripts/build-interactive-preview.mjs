@@ -61,6 +61,7 @@ await cp("apps/web/public/images", path.join(root, "images"), {
 });
 const routes = [
   "terms", "privacy-policy", "cookies", "returns", "accessibility", "contact", "get-app",
+  "merchants", "advertisers", "professionals", "creators", "partners",
   "offer",
   "results",
   "destination",
@@ -97,6 +98,7 @@ const routes = [
   "event",
   "builder",
   "business",
+  "business/login", "business/register", "login", "register", "admin/login",
   "admin",
 ];
 for (const route of routes) {
