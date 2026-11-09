@@ -25,6 +25,7 @@ void main() {
     await screen('home', '01-home');
     await screen('analyze', '02-analyze');
     await tester.ensureVisible(find.byKey(const ValueKey('analyze-camera')));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey('analyze-camera')));
     await tester.pumpAndSettle();
     expect(find.textContaining('Camera capture is not connected'), findsOneWidget);
@@ -37,6 +38,7 @@ void main() {
     await tester.drag(find.byKey(const ValueKey('studio-comparison')), const Offset(60, 0));
     await tester.pumpAndSettle();
     await tester.ensureVisible(find.byKey(const ValueKey('studio-brief')));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey('studio-brief')));
     await tester.pumpAndSettle();
     await tester.enterText(find.byKey(const ValueKey('brief-input')), 'Soft rose, an effortless evening');
@@ -57,6 +59,7 @@ void main() {
     await tester.pumpAndSettle();
     await screen('profile', '05-profile');
     await tester.ensureVisible(find.text('Saved inspiration'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Saved inspiration'));
     await tester.pumpAndSettle();
     expect(find.text('The soft-focus edit'), findsOneWidget);

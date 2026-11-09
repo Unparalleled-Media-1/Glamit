@@ -50,7 +50,7 @@ class HomeScreen extends ConsumerWidget {
           IconButton(tooltip: 'Open Discover', onPressed: () => context.go('/discover'),
             icon: const Icon(Icons.arrow_forward, color: GlamColors.blush)),
         ]))),
-        SliverToBoxAdapter(child: SizedBox(height: MediaQuery.textScalerOf(context).scale(13) > 18 ? 210 : 132, child: ListView(
+        SliverToBoxAdapter(child: SizedBox(height: 160 + (MediaQuery.textScalerOf(context).scale(13) - 13) * 10, child: ListView(
           scrollDirection: Axis.horizontal, padding: const EdgeInsets.symmetric(horizontal: 24), children: [
             _QuickEntry(title: 'Your personal stylist', subtitle: 'Start with a feeling', icon: Icons.chat_bubble_outline,
               onTap: () => context.push('/advisor')),

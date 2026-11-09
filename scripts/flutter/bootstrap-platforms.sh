@@ -14,6 +14,10 @@ source = path.read_text()
 source, count = re.subn(r'applicationId = "[^"]+"', f'applicationId = "{identifier}"', source)
 assert count == 1, 'Android application ID must be explicit'
 path.write_text(source)
+path = Path('android/app/src/main/AndroidManifest.xml')
+source, count = re.subn(r'android:label="[^"]+"', 'android:label="GLAM Beauty"', path.read_text())
+assert count == 1, 'Android launcher label must match the approved brand'
+path.write_text(source)
 path = Path('ios/Runner.xcodeproj/project.pbxproj')
 source = path.read_text()
 source, count = re.subn(r'PRODUCT_BUNDLE_IDENTIFIER = com\.glambeauty\.visual\.[^;]+;',
