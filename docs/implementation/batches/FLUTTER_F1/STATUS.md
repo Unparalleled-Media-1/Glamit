@@ -18,3 +18,7 @@ The reviewed older Expo artifact SHA803e28ea5fc255a068452bbb8bc8dd2400ded9c6 res
 | Production/launch | NOT AUTHORIZED / NOT ESTABLISHED |
 
 The mandatory stop is the user's explicit visual gate in docs/specification/sources/2026-11-flutter-final-directive.txt: “STOP after this visual milestone and wait for explicit approval of the mobile design.” Build success cannot approve the appearance. No production migration, settings, live AI/payment, deployment or old-mobile merge/deletion occurs here.
+
+Sourcea44a173 passed Dart analysis and all five widget tests, including compact/large phone layouts and2x system text. Its Android binary compiled/installed and captured Home, Analyze, photo sheet and Studio, then the native test failed at the unit-only TestTextInput.hide API (isRegistered=false). A real outside-field tap/focus dismissal replaces that test API; production input code also exposes the native Done action. This is a confirmed installed-test repair, not a passed full native milestone.
+
+An additional host-callback OS screenshot path was rejected during SDK source review: Flutter's native screenshot callbacks are delivered after test completion, so an OS capture there can show the wrong screen. It is removed before acceptance. Only the official per-step native Flutter screenshots and separately recorded OS video qualify; no late OS still is accepted or represented as a per-screen capture.

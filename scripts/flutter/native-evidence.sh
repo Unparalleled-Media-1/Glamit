@@ -43,8 +43,6 @@ cleanup() {
 }
 trap cleanup EXIT
 cd apps/flutter_app
-export GLAM_FLUTTER_PLATFORM="$platform"
-export GLAM_FLUTTER_DEVICE_ID="$device"
 echo "::notice title=Flutter F1 native runtime::Starting actual installed $platform Flutter interaction test"
 flutter drive "${application_args[@]}" --no-pub --driver=test_driver/visual_driver.dart --target=integration_test/visual_gate_test.dart -d "$device"
 if [ "$platform" = android ]; then
@@ -66,10 +64,8 @@ for name in names:
     image=root.joinpath(name+'.png')
     data=image.read_bytes()
     assert data.startswith(b'\x89PNG\r\n\x1a\n') and len(data)>10000, name+' native screenshot missing'
-    composite=root.joinpath(name+'-os.png').read_bytes()
-    assert composite.startswith(b'\x89PNG\r\n\x1a\n') and len(composite)>10000, name+' OS capture missing'
     images[name]={'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),
-        'os_composite_sha256':hashlib.sha256(composite).hexdigest()}
+        'capture':'Flutter integration_test native runtime, at this screen step'}
 receipt={'platform':sys.argv[1], 'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
     'dependency_lock_sha256':hashlib.sha256(Path('pubspec.lock').read_bytes()).hexdigest(),
     'bundle_id':'com.glambeauty.visualreview', 'identifier_scope':'unregistered local review only',
