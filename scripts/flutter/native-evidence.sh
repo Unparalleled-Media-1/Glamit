@@ -7,7 +7,17 @@ export GLAM_FLUTTER_EVIDENCE="$task_repo_root/artifacts/flutter-f1/$platform"
 mkdir -p "$GLAM_FLUTTER_EVIDENCE"
 git rev-parse HEAD > "$GLAM_FLUTTER_EVIDENCE/source-sha.txt"
 flutter --version --machine > "$GLAM_FLUTTER_EVIDENCE/flutter-version.json"
+# Compile before recording so the video captures interactions, not build idle time.
+cd apps/flutter_app
 if [ "$platform" = android ]; then
+  flutter build apk --debug --target integration_test/visual_gate_test.dart --no-pub
+else
+  flutter build ios --simulator --debug --no-codesign --target integration_test/visual_gate_test.dart --no-pub
+fi
+cd "$task_repo_root"
+application_args=()
+if [ "$platform" = android ]; then
+  application_args=(--use-application-binary=build/app/outputs/flutter-apk/app-debug.apk)
   device=$(adb get-serialno)
   case "$device" in emulator-*) ;; *) echo 'F1 requires a disposable emulator'; exit 1 ;; esac
   adb shell svc power stayon true
@@ -34,7 +44,16 @@ cleanup() {
 trap cleanup EXIT
 cd apps/flutter_app
 echo "::notice title=Flutter F1 native runtime::Starting actual installed $platform Flutter interaction test"
-flutter drive --no-pub --driver=test_driver/visual_driver.dart --target=integration_test/visual_gate_test.dart -d "$device"
+flutter drive "${application_args[@]}" --no-pub --driver=test_driver/visual_driver.dart --target=integration_test/visual_gate_test.dart -d "$device"
+if [ "$platform" = android ]; then
+  adb shell pm path com.glambeauty.visualreview > "$GLAM_FLUTTER_EVIDENCE/installed-app-path.txt"
+  grep -q '^package:' "$GLAM_FLUTTER_EVIDENCE/installed-app-path.txt"
+  adb shell getprop ro.build.version.release > "$GLAM_FLUTTER_EVIDENCE/os-version.txt"
+else
+  xcrun simctl get_app_container "$device" com.glambeauty.visualreview app > "$GLAM_FLUTTER_EVIDENCE/installed-app-path.txt"
+  plutil -extract CFBundleIdentifier raw -o - "$(cat "$GLAM_FLUTTER_EVIDENCE/installed-app-path.txt")/Info.plist" > "$GLAM_FLUTTER_EVIDENCE/installed-identifier.txt"
+  test "$(cat "$GLAM_FLUTTER_EVIDENCE/installed-identifier.txt")" = com.glambeauty.visualreview
+fi
 python3 - "$platform" <<'PY'
 import hashlib,json,os,subprocess,sys
 from pathlib import Path

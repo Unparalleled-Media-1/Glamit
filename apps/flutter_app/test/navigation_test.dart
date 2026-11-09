@@ -45,11 +45,14 @@ void main() {
     addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
     await tester.pumpWidget(const ProviderScope(child: GlamBeautyApp()));
     await tester.pumpAndSettle();
+    final failures = <String>[];
     for (final name in ['home', 'analyze', 'studio', 'discover', 'profile']) {
       await tester.tap(find.byKey(ValueKey('tab-$name')));
       await tester.pumpAndSettle();
-      expect(tester.takeException(), isNull, reason: '$name with large system text');
+      final error = tester.takeException();
+      if (error != null) failures.add('$name: $error');
     }
+    expect(failures, isEmpty, reason: 'Every primary screen must support large system text');
   });
 
   testWidgets('Camera preview is honest and native sheet dismisses without photo access', (tester) async {

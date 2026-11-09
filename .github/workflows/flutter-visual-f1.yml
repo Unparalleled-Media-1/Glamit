@@ -128,14 +128,15 @@ jobs:
           device=$(jq -r '[.devices[][] | select(.isAvailable and (.name | startswith("iPhone")))][0].udid' artifacts/flutter-f1/ios/simulators.json)
           test "$device" != null
           echo "$device" > artifacts/flutter-f1/ios/device-id.txt
-          xcrun simctl boot "$device"
+          state=$(jq -r --arg id "$device" '.devices[][] | select(.udid == $id) | .state' artifacts/flutter-f1/ios/simulators.json)
+          if [ "$state" != Booted ]; then xcrun simctl boot "$device"; fi
           xcrun simctl bootstatus "$device" -b
       - name: Actual installed Flutter iOS interactions and screenshots
         run: python3 scripts/flutter/run_command.py artifacts/flutter-f1/ios/native-test.txt bash scripts/flutter/native-evidence.sh ios
       - name: Retain main-entry simulator application (NOT TestFlight)
         working-directory: apps/flutter_app
         run: |
-          flutter build ios --simulator --debug --target lib/main.dart --no-pub
+          flutter build ios --simulator --debug --no-codesign --target lib/main.dart --no-pub
           ditto -c -k --sequesterRsrc --keepParent build/ios/iphonesimulator/Runner.app ../../artifacts/flutter-f1/ios/glam-beauty-f1-simulator.zip
           shasum -a 256 ../../artifacts/flutter-f1/ios/glam-beauty-f1-simulator.zip > ../../artifacts/flutter-f1/ios/SHA256SUMS
       - uses: actions/upload-artifact@v7
