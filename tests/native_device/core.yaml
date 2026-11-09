@@ -3,8 +3,12 @@ appId: com.glambeauty.localverification
 - launchApp:
     clearState: true
 - assertVisible: "ISOLATED TEST SERVICES.*"
-- addMedia:
-    - ../../artifacts/native-device/test-photo.png
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - addMedia:
+          - ../../artifacts/native-device/test-photo.png
 - tapOn: "Profile"
 - runFlow: login.yaml
 - scrollUntilVisible:

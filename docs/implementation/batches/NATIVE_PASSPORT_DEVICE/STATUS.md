@@ -6,7 +6,7 @@ The user's native acceptance and dashboard specifications are preserved verbatim
 
 Fixture services use real FastAPI/private-media/analysis/Passport code, canonical PostgreSQL tables and migrations, signed ES256 test identities, an explicit filesystem storage adapter and deterministic-device-fixture-v1. Production targets and non-_test databases are refused before connection. Test OTP never sends an SMS; no live OpenAI call occurs. Test policy/eligibility is labelled and exists only locally. The native bundle keeps the actual App, SDK/hooks, Expo picker/Crypto/File and secure storage; only the fixture transport maps its two logical origins to loopback and rejects all other destinations. Test-only native cleartext permission changes are generated after strict CI/development/local-verification identifier guards, never committed into production configuration. This does not qualify production Auth, TLS or providers.
 
-393 backend tests pass, including five new fixture tests for signed authentication/refresh rotation, upload → corrected Passport persistence, withdrawal plus physical file cleanup, invalid challenges/JWTs, production-target refusal and path traversal. The real Supabase JS SDK also completed OTP/getUser/refresh against the standalone fixture server. Native photo port regressions, TypeScript, Ruff/format, YAML/shell parsing and fixture-transport/build guard checks pass locally. These remain service/SDK/source tests, not installed-app evidence.
+395 backend tests pass, including five new fixture tests for signed authentication/refresh rotation, upload → corrected Passport persistence, withdrawal plus physical file cleanup, invalid challenges/JWTs, production-target refusal and path traversal. The real Supabase JS SDK also completed OTP/getUser/refresh against the standalone fixture server. Native photo port regressions, TypeScript, Ruff/format, YAML/shell parsing and fixture-transport/build guard checks pass locally. These remain service/SDK/source tests, not installed-app evidence.
 
 A confirmed source navigation gap is repaired: after signing in from a selected-photo Results prompt, Profile now offers Continue selected photo analysis rather than forcing another picker round trip. Authentication and background-lock rules are preserved.
 
@@ -16,10 +16,10 @@ The optional device_journey dispatch on the existing read-only native workflow b
 
 | Gate | Status |
 | --- | --- |
-| Full isolated service regression | PASS,393 tests; not native acceptance |
+| Full isolated service regression | PASS,395 tests; not native acceptance |
 | Actual signed test-auth SDK protocol | PASS locally; not OS/session restoration |
-| iOS installed core journey | NOT TESTED pending CI execution |
-| Android installed core journey | NOT TESTED pending CI execution |
+| iOS installed core journey | FAIL in run42588059441: simulator media import timed out before analysis |
+| Android installed core journey | BLOCKED in run42588059441 by virtual fingerprint setup; journey not exercised |
 | Actual process death / secure-session restoration | NOT TESTED; requires real OS behavior/enrollment |
 | All mandatory failure/privacy scenarios on both OSes | NOT TESTED |
 | Physical iOS / Android | NOT TESTED |
@@ -41,3 +41,7 @@ Run42583762024 reached the simulator utility source compile and failed with miss
 Run42584650885 successfully built the pinned simulator utility after HTTPS submodule initialization, then failed because brew --prefix returned a path for an uninstalled PostgreSQL17 package. The next setup checks the actual initdb executable before deciding whether to install PostgreSQL. Its exact diagnostic is retained; no installed app step passed in that run.
 
 Actual installed-stage results: run42585264004 built/installed/launched iOS and then Maestro failed before the core UI flow because addMedia validated its variable path before interpolation. Run42585842996 built/launched Android and the emulator action's per-line shell parser rejected the multiline fixture if block (exit2). The pinned parsers confirm both causes; the next source uses a literal flow-relative photo path, one supported shell command line and Maestro check-syntax before native compilation. Native journey acceptance remains OPEN; neither case is reported as an application journey pass. Full local regression is now395 passing tests, including the launcher-overlay allow/deny safety checks.
+
+Run42588059441 on1cd2260 compiled, installed and launched both native apps. iOS then failed in Maestro addMedia with a subprocess timeout, before authentication/analysis; Android stopped in actual Settings biometric setup. Focused probe42589490804 on3366b20 exposed the unhandled MORE button. Exact annotations are retained. The next source handles MORE and imports the synthetic iOS photo through Apple simctl with a bounded timeout; the actual application still uses the OS picker. UI phases are time bounded with safe service milestones and retained failure diagnostics. No installed journey pass is inferred.
+
+A failing-before component→real API/PostgreSQL regression reproduced local consent acknowledgments remaining checked after withdrawal. The application now clears both checkboxes, and the two OS component configurations pass withdrawal/regrant assertions. This is a verified source/service repair, not installed-device privacy acceptance. Two diagnostic tests also pass for password-node exclusion and bounded UI labels.

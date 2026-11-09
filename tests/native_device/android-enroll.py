@@ -54,7 +54,7 @@ def main():
                     n
                     for n in nodes
                     if n.get("text", "").lower()
-                    in {"next", "i agree", "agree", "continue", "start", "set up"}
+                    in {"next", "i agree", "agree", "continue", "start", "set up", "more"}
                     and n.get("enabled") == "true"
                 ),
                 None,

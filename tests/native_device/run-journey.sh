@@ -12,6 +12,11 @@ if [ "$platform" = android ]; then
   adb shell screenrecord /sdcard/glam-native-passport.mp4 >/dev/null 2>&1 &
   recording_pid=$!
 else
+  python3 - <<'PYMEDIA'
+import subprocess
+subprocess.run(["xcrun", "simctl", "addmedia", "booted", "artifacts/native-device/test-photo.png"], check=True, timeout=90)
+print("::notice title=Isolated native progress::Synthetic test photo imported through Apple simctl", flush=True)
+PYMEDIA
   applesimutils --booted --biometricEnrollment YES
   applesimutils --booted --bundle com.glambeauty.localverification --setPermissions faceid=YES
   xcrun simctl io booted recordVideo artifacts/native-device/journey.mp4 > artifacts/native-device/video.txt 2>&1 &
@@ -27,7 +32,10 @@ fi
   done
 ) &
 biometric_pid=$!
+python3 tests/native_device/annotate-events.py &
+observer_pid=$!
 cleanup() {
+  kill "$observer_pid" 2>/dev/null || true
   kill "$biometric_pid" 2>/dev/null || true
   if [ "$platform" = android ]; then
     adb shell pkill -INT screenrecord || true
@@ -42,8 +50,10 @@ cleanup() {
 }
 trap cleanup EXIT
 set +e
-maestro test -e EVIDENCE_DIR="$PWD/artifacts/native-device" -e FIXTURE_PHOTO="$PWD/artifacts/native-device/test-photo.png" tests/native_device/core.yaml --test-output-dir artifacts/native-device/maestro-core
+echo "::notice title=Isolated native progress::Starting actual OS core journey"
+python3 tests/native_device/maestro-step.py 600 test -e EVIDENCE_DIR="$PWD/artifacts/native-device" -e FIXTURE_PHOTO="$PWD/artifacts/native-device/test-photo.png" tests/native_device/core.yaml --test-output-dir artifacts/native-device/maestro-core
 core_status=$?
+echo "::notice title=Isolated native progress::Core UI command exit $core_status"
 relaunch_status=125
 before_status=125
 after_status=125
@@ -51,8 +61,10 @@ if [ "$core_status" -eq 0 ]; then
   curl --fail --silent http://127.0.0.1:8765/__fixture/assert-passport > artifacts/native-device/postgres-before-relaunch.json
   before_status=$?
   if [ "$before_status" -eq 0 ]; then
-    maestro test -e EVIDENCE_DIR="$PWD/artifacts/native-device" tests/native_device/relaunch.yaml --test-output-dir artifacts/native-device/maestro-relaunch
+    echo "::notice title=Isolated native progress::Starting actual process termination and relaunch"
+    python3 tests/native_device/maestro-step.py 300 test -e EVIDENCE_DIR="$PWD/artifacts/native-device" tests/native_device/relaunch.yaml --test-output-dir artifacts/native-device/maestro-relaunch
     relaunch_status=$?
+    echo "::notice title=Isolated native progress::Process relaunch UI command exit $relaunch_status"
     if [ "$relaunch_status" -eq 0 ]; then
       curl --fail --silent http://127.0.0.1:8765/__fixture/assert-passport > artifacts/native-device/postgres-after-relaunch.json
       after_status=$?
