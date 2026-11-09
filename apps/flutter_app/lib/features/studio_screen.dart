@@ -106,12 +106,12 @@ class _BriefComposerState extends ConsumerState<_BriefComposer> {
   @override
   Widget build(BuildContext context) => SheetContent(title: 'What are you imagining?',
     body: 'Give your next look a little direction. This saves a local preview brief; generation is not connected.', children: [
-      TextField(key: const ValueKey('brief-input'), controller: text, maxLength: 300, minLines: 2, maxLines: 4,
+      Semantics(identifier: 'brief-input', child: TextField(key: const ValueKey('brief-input'), controller: text, maxLength: 300, minLines: 2, maxLines: 4,
         textInputAction: TextInputAction.done,
         onEditingComplete: () => FocusScope.of(context).unfocus(),
         onTapOutside: (_) => FocusScope.of(context).unfocus(),
         decoration: InputDecoration(labelText: 'Creative brief', hintText: 'Soft rose tones, an effortless evening…',
-          filled: true, fillColor: Colors.white, border: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: BorderSide.none))),
+          filled: true, fillColor: Colors.white, border: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: BorderSide.none)))),
       const SizedBox(height: 16), FilledButton(key: const ValueKey('brief-save'), onPressed: () {
         ref.read(previewProvider.notifier).brief(text.text); Navigator.of(context, rootNavigator: true).pop();
       }, child: const Text('Keep this brief')),

@@ -93,10 +93,10 @@ jobs:
         working-directory: apps/flutter_app
         run: |
           mkdir -p ../../artifacts/flutter-f1/android/distribution
-          cp build/app/outputs/flutter-apk/app-debug.apk ../../artifacts/flutter-f1/android/distribution/glam-beauty-f1-review.apk
-          shasum -a 256 ../../artifacts/flutter-f1/android/distribution/glam-beauty-f1-review.apk > ../../artifacts/flutter-f1/android/distribution/SHA256SUMS
+          cp build/app/outputs/flutter-apk/app-debug.apk ../../artifacts/flutter-f1/android/distribution/glam-beauty-f1-android-x64-emulator.apk
+          shasum -a 256 ../../artifacts/flutter-f1/android/distribution/glam-beauty-f1-android-x64-emulator.apk > ../../artifacts/flutter-f1/android/distribution/SHA256SUMS
           signer=$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -1)
-          "$signer" verify --print-certs ../../artifacts/flutter-f1/android/distribution/glam-beauty-f1-review.apk > ../../artifacts/flutter-f1/android/distribution/signing-certificate.txt
+          "$signer" verify --print-certs ../../artifacts/flutter-f1/android/distribution/glam-beauty-f1-android-x64-emulator.apk > ../../artifacts/flutter-f1/android/distribution/signing-certificate.txt
       - uses: actions/upload-artifact@v7
         if: always()
         with:

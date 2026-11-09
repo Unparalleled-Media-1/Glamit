@@ -20,7 +20,7 @@ flutter run -d <native-device-id>
 
 The bootstrap generates native shells from the pinned official SDK without overwriting authored Dart. CI resolves one lock and shares it between iOS/Android. Generated native inputs, exact lock, OS-driven installed screenshots/videos, logs and binary receipts are retained. Local SDK setup is presently network-blocked; do not claim local Dart analysis or device verification from source inspection.
 
-Review identifier: com.glambeauty.visualreview, unregistered/local-only. Android output is a CI debug-signed review APK, not an approved store build. The iOS .app ZIP targets simulators and is not an .ipa/TestFlight build. Store identifiers, developer teams, signing and physical-device verification remain separate requirements.
+Review identifier: com.glambeauty.visualreview, unregistered/local-only. Android output is a CI debug-signed x86_64 emulator APK (API35), not an ARM-phone or approved store build. The iOS .app ZIP targets simulators and is not an .ipa/TestFlight build. Store identifiers, developer teams, signing and physical-device verification remain separate requirements.
 
 Stop after actual F1 screenshots and interactions for user visual approval. Do not continue functional migration or merge/deploy until authorized. Canonical services, Expo source and financial rules remain unchanged.
 

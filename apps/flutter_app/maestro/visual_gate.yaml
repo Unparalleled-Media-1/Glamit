@@ -5,26 +5,27 @@ appId: com.glambeauty.visualreview
     visible:
       id: tab-home
     timeout: 30000
-- takeScreenshot: ${EVIDENCE_DIR}/01-home
+- takeScreenshot: 01-home
 - tapOn:
     id: tab-analyze
 - assertVisible: 'Find your light.'
-- takeScreenshot: ${EVIDENCE_DIR}/02-analyze
+- takeScreenshot: 02-analyze
 - tapOn:
     id: analyze-camera
 - assertVisible: 'Your camera. Your choice.'
-- takeScreenshot: ${EVIDENCE_DIR}/06-native-photo-sheet
+- takeScreenshot: 06-native-photo-sheet
 - tapOn: 'Explore photo guidance'
 - assertVisible: 'Face forward, comfortably'
 - tapOn:
     id: tab-studio
-- takeScreenshot: ${EVIDENCE_DIR}/03-studio
+- takeScreenshot: 03-studio
 - scrollUntilVisible:
     element:
       text: 'Imagine a look'
     direction: DOWN
 - tapOn: 'Imagine a look'
-- tapOn: 'Creative brief'
+- tapOn:
+    id: brief-input
 - inputText: 'Soft rose, an effortless evening'
 - tapOn: 'What are you imagining\?'
 - scrollUntilVisible:
@@ -32,20 +33,23 @@ appId: com.glambeauty.visualreview
       text: 'Keep this brief'
     direction: DOWN
 - tapOn: 'Keep this brief'
-- assertVisible: 'Brief kept for this preview. No AI image generated.'
+- scrollUntilVisible:
+    element:
+      text: 'Brief kept for this preview. No AI image generated.'
+    direction: DOWN
 - tapOn:
     id: tab-discover
-- takeScreenshot: ${EVIDENCE_DIR}/04-discover
+- takeScreenshot: 04-discover
 - tapOn:
     id: save-look-0
 - tapOn:
     id: open-look-0
 - assertVisible: 'The soft-focus edit'
-- takeScreenshot: ${EVIDENCE_DIR}/07-native-look-stack
+- takeScreenshot: 07-native-look-stack
 - tapOn: 'Back'
 - tapOn:
     id: tab-profile
-- takeScreenshot: ${EVIDENCE_DIR}/05-profile
+- takeScreenshot: 05-profile
 - scrollUntilVisible:
     element:
       id: row-saved-inspiration
@@ -53,4 +57,4 @@ appId: com.glambeauty.visualreview
 - tapOn:
     id: row-saved-inspiration
 - assertVisible: 'The soft-focus edit'
-- takeScreenshot: ${EVIDENCE_DIR}/08-local-saved-inspiration
+- takeScreenshot: 08-local-saved-inspiration

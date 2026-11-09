@@ -73,7 +73,7 @@ else
 fi
 cd apps/flutter_app
 python3 - "$platform" <<'PY'
-import hashlib,json,os,re,subprocess,sys
+import hashlib,json,os,re,shutil,subprocess,sys
 from pathlib import Path
 root=Path(os.environ['GLAM_FLUTTER_EVIDENCE'])
 runtime=root.joinpath('runtime.txt').read_text(errors='replace')
@@ -81,7 +81,12 @@ assert not re.search(r'RenderFlex overflowed|Unhandled Exception|EXCEPTION CAUGH
 names=['01-home','02-analyze','03-studio','04-discover','05-profile']
 images={}
 for name in names:
-    data=root.joinpath(name+'.png').read_bytes()
+    target=root.joinpath(name+'.png')
+    if not target.exists():
+        candidates=list(root.rglob(name+'.png'))
+        assert len(candidates)==1, name+' must have one actual OS screenshot'
+        shutil.copyfile(candidates[0],target)
+    data=target.read_bytes()
     assert data.startswith(b'\x89PNG\r\n\x1a\n') and len(data)>10000, name+' native screenshot missing'
     images[name]={'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),
         'capture':'OS screenshot during Maestro input on the installed main-entry Flutter app'}
