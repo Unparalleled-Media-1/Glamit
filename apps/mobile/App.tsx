@@ -2,6 +2,9 @@ import BrandLogo from "./BrandLogo";
 import CreatorStudio from "./CreatorStudio";
 import NativeAIStylist from "./NativeAIStylist";
 import NativePrivatePhotos from "./NativePrivatePhotos";
+import NativeAnalysisJourney from "./NativeAnalysisJourney";
+import type { AnalysisGoal } from "../../packages/product/analysis";
+import { usePersonalResults } from "../../packages/product/use-personal-results";
 import NativeAccount from "./auth/NativeAccount";
 import { useNativeAccount } from "./auth/use-native-account";
 import { useEffect, useReducer, useRef, useState } from "react";
@@ -122,12 +125,10 @@ function Title({ title, copy }: { title: string; copy: string }) {
   );
 }
 import {
-  PersonalResults,
   PersonalPreview,
   Destination,
   Marketplace,
 } from "./CompanionViews";
-import { usePersonalResults } from "../../packages/product/use-personal-results";
 import { useDestination } from "../../packages/product/use-destination";
 import { useMarketplace } from "../../packages/product/use-marketplace";
 import type { CompanionConnection } from "../../packages/product/companion";
@@ -194,6 +195,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
   const [editorialProduct, setEditorialProduct] = useState(0);
   const [photo, setPhoto] = useState<Photo | null>(null);
   const personal = usePersonalResults(connection, photo?.uri, state.goals);
+  const [privacyRevision, setPrivacyRevision] = useState(0);
   const trip = useDestination(connection);
   const marketplace = useMarketplace(connection, journey);
   const photoRef = useRef<Photo | null>(null);
@@ -412,21 +414,19 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
                   : "makeover"
                 : "face";
   function content() {
-    if (state.page === "results")
-      return (
-        <PersonalResults
-          photo={photo}
-          personal={personal}
-          connection={connection}
-          go={go}
-          onDirection={(d) => {
-            personal.choose(d);
-            dispatch({ type: "tool", value: d.tool });
-            dispatch({ type: "style", value: d.style });
-            go("studio");
-          }}
-        />
-      );
+    if (["results", "report", "history"].includes(state.page))
+      return <NativeAnalysisJourney account={nativeAccount.account}
+        apiOrigin={process.env.EXPO_PUBLIC_GLAM_API_ORIGIN || ""}
+        photoUri={state.page === "history" ? undefined : photo?.uri} goals={state.goals as AnalysisGoal[]}
+        privacyRevision={privacyRevision} onLogin={() => go("profile")}
+        readPhoto={async () => {
+          const current = photoRef.current;
+          if (!current || !consentRef.current || !ownedCopies.current.has(current.uri)) throw Error("local_photo_permission_required");
+          const data = await new File(current.uri).arrayBuffer();
+          if (photoRef.current !== current || !consentRef.current || !ownedCopies.current.has(current.uri) || data.byteLength !== current.bytes)
+            throw Error("local_photo_changed");
+          return data;
+        }}/>
     if (state.page === "destination")
       return <Destination trip={trip} connection={connection} go={go} />;
     if (["offer", "cart", "checkout", "orders"].includes(state.page))
@@ -555,7 +555,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
               <Text style={s.listItem}>
                 Face / lighting checks: Not evaluated
               </Text>
-              <Text style={s.listItem}>Upload: None</Text>
+              <Text style={s.listItem}>This is your device preview. Review server permissions before uploading.</Text>
               {nav("Choose my goals", "goals")}
               <Button
                 title="Clear / retake photo"
@@ -587,8 +587,8 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
                   <Text style={s.flexText}>{n}</Text>
                 </View>
               ))}
-              <Note text={capabilityReasons.analysis} />
-              <Button title="Run analysis — connection required" disabled />
+              <Note text="Review your account, privacy permissions and service readiness before requesting analysis." />
+              <Button title="Review permissions and run analysis" onPress={() => go("results")} />
               {nav("View report workspace", "report", true)}
               {nav("Open Personalized Results", "results", true)}
             </Card>
@@ -597,7 +597,6 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
       case "hair":
       case "skin":
       case "body-fit":
-      case "report":
         return (
           <>
             {heading(
@@ -768,18 +767,20 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
       case "profile":
         return (
           <>
+            {heading(
+              "Your space. Your choices.",
+              "Your private goals, session routines and authorized workspaces.",
+            )}
+            <NativeAccount auth={nativeAccount}/>
+            <NativeAnalysisJourney account={nativeAccount.account} apiOrigin={process.env.EXPO_PUBLIC_GLAM_API_ORIGIN || ""}
+              goals={[]} privacyRevision={privacyRevision}/>
+            <NativePrivatePhotos account={nativeAccount.account} apiOrigin={process.env.EXPO_PUBLIC_GLAM_API_ORIGIN || ""} onMediaChanged={() => setPrivacyRevision(v => v + 1)}/>
             <StylingJourney
               page="profile"
               data={journey}
               setData={setJourney}
               go={go}
             />
-            {heading(
-              "Your space. Your choices.",
-              "Your private goals, session routines and authorized workspaces.",
-            )}
-            <NativeAccount auth={nativeAccount}/>
-            <NativePrivatePhotos account={nativeAccount.account} apiOrigin={process.env.EXPO_PUBLIC_GLAM_API_ORIGIN || ""}/>
             <CreatorStudio key={nativeAccount.account?.profile.id || "guest"} token={nativeAccount.account?.token}/>
             <Button title="Switch workspace" secondary onPress={()=>setSwitcher(true)}/>
 
@@ -813,23 +814,6 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
                   )
                 }
               />
-            </Card>
-          </>
-        );
-      case "history":
-        return (
-          <>
-            {heading(
-              "Your history belongs to you.",
-              "Real completed operations will appear here.",
-            )}
-            <Card>
-              <Text style={s.h2}>No saved analysis reports.</Text>
-              <Text style={s.body}>
-                No photo has been analyzed or transformed.
-              </Text>
-              {nav("Start Face Analysis", "analyze")}
-              {nav("View session routines", "guide", true)}
             </Card>
           </>
         );

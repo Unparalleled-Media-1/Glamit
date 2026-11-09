@@ -1,0 +1,5 @@
+
+> glam-ai@0.1.0 build:preview
+> node scripts/build-interactive-preview.mjs
+
+Interactive preview built in /workspace/Glamit/dist/interactive-preview; serve at / with the repository base preserved.

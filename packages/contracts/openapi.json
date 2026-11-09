@@ -72,6 +72,126 @@
         "title": "AdviceRequest",
         "type": "object"
       },
+      "AnalysisJobRead": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "finished_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finished At"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "media_id": {
+            "format": "uuid",
+            "title": "Media Id",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed",
+              "cancelled",
+              "expired"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "media_id",
+          "state",
+          "created_at",
+          "expires_at",
+          "finished_at",
+          "error_code"
+        ],
+        "title": "AnalysisJobRead",
+        "type": "object"
+      },
+      "AnalysisJourneyStatus": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "scope": {
+            "const": "cosmetic_analysis_and_passport",
+            "default": "cosmetic_analysis_and_passport",
+            "title": "Scope",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "NOT CONFIGURED",
+              "DEGRADED",
+              "CONNECTED"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "state",
+          "code"
+        ],
+        "title": "AnalysisJourneyStatus",
+        "type": "object"
+      },
+      "AnalysisPermissions": {
+        "properties": {
+          "analysis": {
+            "$ref": "#/components/schemas/PurposePermission"
+          },
+          "eligible": {
+            "title": "Eligible",
+            "type": "boolean"
+          },
+          "storage": {
+            "$ref": "#/components/schemas/PurposePermission"
+          }
+        },
+        "required": [
+          "storage",
+          "analysis",
+          "eligible"
+        ],
+        "title": "AnalysisPermissions",
+        "type": "object"
+      },
       "AnalysisReportRead": {
         "properties": {
           "completed_at": {
@@ -360,6 +480,125 @@
         "title": "ConsentResult",
         "type": "object"
       },
+      "CorrectedReportRead": {
+        "properties": {
+          "completed_at": {
+            "format": "date-time",
+            "title": "Completed At",
+            "type": "string"
+          },
+          "correction_revision": {
+            "title": "Correction Revision",
+            "type": "integer"
+          },
+          "corrections": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "propertyNames": {
+              "enum": [
+                "face-shape",
+                "eyes",
+                "brows",
+                "lips",
+                "undertone"
+              ]
+            },
+            "title": "Corrections",
+            "type": "object"
+          },
+          "directions": {
+            "items": {
+              "$ref": "#/components/schemas/Direction"
+            },
+            "title": "Directions",
+            "type": "array"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/EffectiveFinding"
+            },
+            "title": "Findings",
+            "type": "array"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "media_id": {
+            "format": "uuid",
+            "title": "Media Id",
+            "type": "string"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "provider": {
+            "const": "openai",
+            "default": "openai",
+            "title": "Provider",
+            "type": "string"
+          },
+          "subject": {
+            "title": "Subject",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "media_id",
+          "subject",
+          "model",
+          "completed_at",
+          "expires_at",
+          "correction_revision",
+          "corrections",
+          "findings",
+          "directions"
+        ],
+        "title": "CorrectedReportRead",
+        "type": "object"
+      },
+      "CorrectionRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "corrections": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "propertyNames": {
+              "enum": [
+                "face-shape",
+                "eyes",
+                "brows",
+                "lips",
+                "undertone"
+              ]
+            },
+            "title": "Corrections",
+            "type": "object"
+          },
+          "expected_revision": {
+            "maximum": 2147483646.0,
+            "minimum": 0.0,
+            "title": "Expected Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "expected_revision",
+          "corrections"
+        ],
+        "title": "CorrectionRequest",
+        "type": "object"
+      },
       "CreditBalance": {
         "additionalProperties": false,
         "properties": {
@@ -553,6 +792,86 @@
           "expected_revision"
         ],
         "title": "DraftUpdate",
+        "type": "object"
+      },
+      "EffectiveFinding": {
+        "properties": {
+          "ai_certainty": {
+            "enum": [
+              "supported",
+              "tentative",
+              "unavailable"
+            ],
+            "title": "Ai Certainty",
+            "type": "string"
+          },
+          "ai_estimate": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ai Estimate"
+          },
+          "display_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Value"
+          },
+          "key": {
+            "enum": [
+              "face-shape",
+              "eyes",
+              "brows",
+              "lips",
+              "undertone"
+            ],
+            "title": "Key",
+            "type": "string"
+          },
+          "source": {
+            "enum": [
+              "ai",
+              "user"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
+          "uncertainty": {
+            "title": "Uncertainty",
+            "type": "string"
+          },
+          "user_correction": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Correction"
+          }
+        },
+        "required": [
+          "key",
+          "ai_estimate",
+          "ai_certainty",
+          "uncertainty",
+          "user_correction",
+          "display_value",
+          "source"
+        ],
+        "title": "EffectiveFinding",
         "type": "object"
       },
       "EnhancementRequest": {
@@ -763,6 +1082,43 @@
           "state"
         ],
         "title": "InviteRead",
+        "type": "object"
+      },
+      "JobRead": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "queued",
+              "processing",
+              "review_ready",
+              "failed",
+              "cancelled"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "suggestions": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Suggestions"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "state"
+        ],
+        "title": "JobRead",
         "type": "object"
       },
       "JobRequest": {
@@ -1554,6 +1910,81 @@
         "title": "OrganizationResult",
         "type": "object"
       },
+      "PassportRead": {
+        "properties": {
+          "analysis": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CorrectedReportRead"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "analysis_state": {
+            "enum": [
+              "empty",
+              "ready",
+              "expired"
+            ],
+            "title": "Analysis State",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "profile_id": {
+            "format": "uuid",
+            "title": "Profile Id",
+            "type": "string"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "profile_id",
+          "revision",
+          "analysis_state",
+          "analysis"
+        ],
+        "title": "PassportRead",
+        "type": "object"
+      },
+      "PassportSelection": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_correction_revision": {
+            "maximum": 2147483646.0,
+            "minimum": 0.0,
+            "title": "Expected Correction Revision",
+            "type": "integer"
+          },
+          "expected_passport_revision": {
+            "maximum": 2147483646.0,
+            "minimum": 1.0,
+            "title": "Expected Passport Revision",
+            "type": "integer"
+          },
+          "job_id": {
+            "format": "uuid",
+            "title": "Job Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_id",
+          "expected_passport_revision",
+          "expected_correction_revision"
+        ],
+        "title": "PassportSelection",
+        "type": "object"
+      },
       "PolicyRead": {
         "additionalProperties": false,
         "properties": {
@@ -1657,6 +2088,23 @@
           "revision"
         ],
         "title": "PublishChoice",
+        "type": "object"
+      },
+      "PurposePermission": {
+        "properties": {
+          "granted": {
+            "title": "Granted",
+            "type": "boolean"
+          },
+          "policy": {
+            "$ref": "#/components/schemas/PolicyRead"
+          }
+        },
+        "required": [
+          "policy",
+          "granted"
+        ],
+        "title": "PurposePermission",
         "type": "object"
       },
       "Requirement": {
@@ -2234,113 +2682,6 @@
         ],
         "title": "WorkspaceRead",
         "type": "object"
-      },
-      "glam_api__analysis_jobs__JobRead": {
-        "properties": {
-          "created_at": {
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
-          },
-          "error_code": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Error Code"
-          },
-          "expires_at": {
-            "format": "date-time",
-            "title": "Expires At",
-            "type": "string"
-          },
-          "finished_at": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Finished At"
-          },
-          "id": {
-            "format": "uuid",
-            "title": "Id",
-            "type": "string"
-          },
-          "media_id": {
-            "format": "uuid",
-            "title": "Media Id",
-            "type": "string"
-          },
-          "state": {
-            "enum": [
-              "queued",
-              "running",
-              "completed",
-              "failed",
-              "cancelled",
-              "expired"
-            ],
-            "title": "State",
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "media_id",
-          "state",
-          "created_at",
-          "expires_at",
-          "finished_at",
-          "error_code"
-        ],
-        "title": "JobRead",
-        "type": "object"
-      },
-      "glam_api__catalog_contracts__JobRead": {
-        "additionalProperties": false,
-        "properties": {
-          "id": {
-            "format": "uuid",
-            "title": "Id",
-            "type": "string"
-          },
-          "state": {
-            "enum": [
-              "queued",
-              "processing",
-              "review_ready",
-              "failed",
-              "cancelled"
-            ],
-            "title": "State",
-            "type": "string"
-          },
-          "suggestions": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/Suggestions"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "id",
-          "state"
-        ],
-        "title": "JobRead",
-        "type": "object"
       }
     },
     "securitySchemes": {
@@ -2623,7 +2964,7 @@
               "application/json": {
                 "schema": {
                   "items": {
-                    "$ref": "#/components/schemas/glam_api__analysis_jobs__JobRead"
+                    "$ref": "#/components/schemas/AnalysisJobRead"
                   },
                   "title": "Response History V1 Analysis Jobs Get",
                   "type": "array"
@@ -2669,7 +3010,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/glam_api__analysis_jobs__JobRead"
+                  "$ref": "#/components/schemas/AnalysisJobRead"
                 }
               }
             },
@@ -2714,7 +3055,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/glam_api__analysis_jobs__JobRead"
+                  "$ref": "#/components/schemas/AnalysisJobRead"
                 }
               }
             },
@@ -2757,7 +3098,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/glam_api__analysis_jobs__JobRead"
+                  "$ref": "#/components/schemas/AnalysisJobRead"
                 }
               }
             },
@@ -2780,6 +3121,116 @@
           }
         ],
         "summary": "Status"
+      }
+    },
+    "/v1/analysis/jobs/{job_id}/corrected-report": {
+      "get": {
+        "operationId": "report_v1_analysis_jobs__job_id__corrected_report_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Job Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorrectedReportRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Report"
+      }
+    },
+    "/v1/analysis/jobs/{job_id}/corrections": {
+      "post": {
+        "operationId": "save_correction_v1_analysis_jobs__job_id__corrections_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Job Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CorrectionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorrectedReportRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Save Correction"
       }
     },
     "/v1/analysis/jobs/{job_id}/report": {
@@ -2827,6 +3278,29 @@
         "summary": "Report"
       }
     },
+    "/v1/analysis/permissions": {
+      "get": {
+        "operationId": "permissions_v1_analysis_permissions_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalysisPermissions"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Permissions"
+      }
+    },
     "/v1/analysis/policy": {
       "get": {
         "operationId": "policy_v1_analysis_policy_get",
@@ -2871,6 +3345,29 @@
           }
         ],
         "summary": "Analysis Unavailable"
+      }
+    },
+    "/v1/analysis/status": {
+      "get": {
+        "operationId": "status_v1_analysis_status_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalysisJourneyStatus"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Status"
       }
     },
     "/v1/looks": {
@@ -3108,6 +3605,70 @@
           }
         ],
         "summary": "Me"
+      }
+    },
+    "/v1/me/analysis-passport": {
+      "get": {
+        "operationId": "get_passport_v1_me_analysis_passport_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PassportRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Passport"
+      },
+      "put": {
+        "operationId": "select_analysis_v1_me_analysis_passport_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PassportSelection"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PassportRead"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Select Analysis"
       }
     },
     "/v1/me/credits": {
@@ -4237,7 +4798,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/glam_api__catalog_contracts__JobRead"
+                  "$ref": "#/components/schemas/JobRead"
                 }
               }
             },
@@ -4302,7 +4863,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/glam_api__catalog_contracts__JobRead"
+                  "$ref": "#/components/schemas/JobRead"
                 }
               }
             },

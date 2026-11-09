@@ -22,9 +22,10 @@ const stateLabels: Record<Media["state"], string> = {
 };
 
 /** Owner-scoped server metadata only. No photo bytes, analysis or device-library access. */
-export default function NativePrivatePhotos({ account, apiOrigin }: {
+export default function NativePrivatePhotos({ account, apiOrigin, onMediaChanged }: {
   account: CoreAccount | null;
   apiOrigin: string;
+  onMediaChanged?: () => void;
 }) {
   const scope = useRef({ subject: account?.profile.id, token: account?.token, origin: apiOrigin, generation: 0 });
   if (scope.current.subject !== account?.profile.id || scope.current.token !== account?.token || scope.current.origin !== apiOrigin)
@@ -77,6 +78,7 @@ export default function NativePrivatePhotos({ account, apiOrigin }: {
         if (!valid()) return;
         if (result.id !== row.id || !["deleted", "deletion_pending"].includes(result.state))
           throw new PrivateMediaError("private_media_response_invalid");
+        onMediaChanged?.();
         setStored(v => v.generation === generation ? { ...v, rows: v.rows?.map(item => item.id === result.id ? result : item) || null } : v);
       }) },
     ]);

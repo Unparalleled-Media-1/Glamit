@@ -1,0 +1,19 @@
+{
+  "apps/mobile/App.tsx": "ae07038a63bac270090c261f416448c9a31396f23fb1c3c30bcc7f23d732b497",
+  "apps/mobile/NativeAnalysisJourney.tsx": "a6a51cf18d30e19c83873be4dfdb95bdbceae7a345cb83d8d94412aeddc15f4e",
+  "apps/mobile/NativePrivatePhotos.tsx": "a3629c54b2dbcb771f2eb140cbc600e3f5a4bb54eeb3f09e650c68d2531a500e",
+  "apps/mobile/private-media.ts": "4121182018db0ac32beaea4c690f2af5154581abc244be79c304f63182ae3894",
+  "packages/product/analysis.ts": "25942523a540d0f1028d9def86b6977db8c0c57ed591eecc40ab3891a17b2972",
+  "packages/product/private-media.ts": "489fac44ec14f17b5a43639d1aab0c32f5091f8f5bf0414d4deb6d00df5da2ed",
+  "services/api/src/glam_api/analysis_passport.py": "592064c579d6203ba625be406fc090620144483e5cea48a60d6c3a54a103e3c8",
+  "services/api/src/glam_api/analysis_privacy.py": "758048528611b16fdebcfccb88da9e26727a591f2092e9ad1bc2dac3d44df2d1",
+  "services/api/src/glam_api/analysis_jobs.py": "5928d7345ac6ae4fb4b6ce74ede560276ac3e9af5846be143c40dfe54762183d",
+  "services/api/src/glam_api/main.py": "72789cfe13cdf35eb6fd6f195a08965e86ce640494fc3246eb3de555b46923a6",
+  "db/migrations/versions/0017_analysis_passport.py": "64785802d66b11a4aa9c67ee67b03fbb03fe7b41cda4a17a27c798e03f37e0b1",
+  "db/migrations/versions/0017_analysis_passport.sql": "09f3d986c951e27043df8287ea042a1bb3ffddb737417778e55d4772668df0c2",
+  "tests/test_analysis_passport.py": "e694228c47209080e0381d260ddef246f150310d1278d93e56c02f24df9e1ecd",
+  "tests/test_native_analysis_workflow.py": "808b41446bcb190a653a72c52d134f0b8295e62c3f03df344642917619d748c3",
+  "tests/mobile/analysis-passport-workflow.cjs": "a1c86b17a1d5389b10a751c5fa4b58661d31fa52c691598a1e230a6561cf7290",
+  "packages/contracts/api.d.ts": "dcad75b4b96e13afcbcbe41317c00786b01c0ef949ce2a3ed11f6d9025859771",
+  "packages/contracts/openapi.json": "43b254cc6fb8dd0ee85a765869f1244be42af0a927723bf98d3af5a4be0c4193"
+}

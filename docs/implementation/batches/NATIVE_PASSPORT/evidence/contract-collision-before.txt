@@ -1,0 +1,6 @@
+
+> glam-ai@0.1.0 typecheck:preview
+> tsc --noEmit -p preview/tsconfig.json
+
+packages/product/api.ts(267,40): error TS2339: Property 'JobRead' does not exist on type '{ AdviceRead: { advice: { directions: { id: string; rationale: string; style: string; title: string; tool: "Glow-Up Preview" | "Hair Try-On" | "Hair Color" | "Makeup Match" | "Look Remix"; }[]; message: string; uncertainty: string; }; ... 4 more ...; subject: string; }; ... 57 more ...; glam_api__catalog_contracts__...'.
+packages/product/api.ts(278,40): error TS2339: Property 'JobRead' does not exist on type '{ AdviceRead: { advice: { directions: { id: string; rationale: string; style: string; title: string; tool: "Glow-Up Preview" | "Hair Try-On" | "Hair Color" | "Makeup Match" | "Look Remix"; }[]; message: string; uncertainty: string; }; ... 4 more ...; subject: string; }; ... 57 more ...; glam_api__catalog_contracts__...'.

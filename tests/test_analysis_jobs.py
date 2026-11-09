@@ -474,9 +474,13 @@ def test_candidate_analysis_migration_empty_only_rollback(client, db, analysis):
         tx = c.begin()
         try:
             with Operations.context(MigrationContext.configure(c)):
+                from test_private_media_migration import migration as load_migration
+
+                load_migration("0017_analysis_passport").downgrade()
                 migration.downgrade()
                 assert c.scalar(text("SELECT to_regclass('public.analysis_job')")) is None
                 migration.upgrade()
+                load_migration("0017_analysis_passport").upgrade()
                 assert c.scalar(text("SELECT to_regclass('public.analysis_job')")) is not None
         finally:
             tx.rollback()
