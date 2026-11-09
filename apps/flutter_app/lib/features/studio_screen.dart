@@ -32,10 +32,13 @@ class StudioScreen extends ConsumerWidget {
           ClipRRect(borderRadius: BorderRadius.circular(32), child: SizedBox(
             height: MediaQuery.sizeOf(context).height < 760 ? 330 : 410,
             child: Stack(fit: StackFit.expand, children: [
-              const Portrait(index: 1),
-              ClipRect(clipper: _ComparisonClip(state.compare), child: const ColorFiltered(
-                colorFilter: ColorFilter.matrix([.21,.72,.07,0,0, .21,.72,.07,0,0, .21,.72,.07,0,0, 0,0,0,1,0]),
-                child: Portrait(index: 1))),
+              InteractiveViewer(key: const ValueKey('studio-canvas'), minScale: 1, maxScale: 3,
+                child: Stack(fit: StackFit.expand, children: [
+                  const Portrait(index: 1),
+                  ClipRect(clipper: _ComparisonClip(state.compare), child: const ColorFiltered(
+                    colorFilter: ColorFilter.matrix([.21,.72,.07,0,0, .21,.72,.07,0,0, .21,.72,.07,0,0, 0,0,0,1,0]),
+                    child: Portrait(index: 1))),
+                ])),
               Positioned(top: 18, left: 18, child: Container(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.circular(20)),
                 child: const Eyebrow('Colour study · not AI', color: GlamColors.ivory))),

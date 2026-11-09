@@ -27,7 +27,7 @@ class DiscoverScreen extends ConsumerWidget {
             onPressed: () => ref.read(previewProvider.notifier).filter(i),
             child: Text(['For you', 'Looks', 'Products', 'Professionals'][i], style: TextStyle(
               color: state.filter == i ? GlamColors.blush : const Color(0xffcbb8c3),
-              fontWeight: state.filter == i ? FontWeight.w700 : FontWeight.w400)))),
+              fontWeight: state.filter == i ? FontWeight.w700 : FontWeight.w400))))),
         Expanded(child: state.filter == 3 ? const Center(child: Padding(padding: EdgeInsets.all(28), child: Column(
           mainAxisSize: MainAxisSize.min, children: [
             Icon(Icons.location_on_outlined, color: GlamColors.blush, size: 36), SizedBox(height: 20),

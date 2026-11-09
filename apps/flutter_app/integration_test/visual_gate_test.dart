@@ -40,7 +40,7 @@ void main() {
     await tester.tap(find.byKey(const ValueKey('studio-brief')));
     await tester.pumpAndSettle();
     await tester.enterText(find.byKey(const ValueKey('brief-input')), 'Soft rose, an effortless evening');
-    await tester.testTextInput.hide();
+    tester.testTextInput.hide();
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey('brief-save')));
     await tester.pumpAndSettle();
