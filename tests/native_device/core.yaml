@@ -2,7 +2,10 @@ appId: com.glambeauty.localverification
 ---
 - launchApp:
     clearState: true
-- assertVisible: "ISOLATED TEST SERVICES.*"
+- extendedWaitUntil:
+    visible:
+      id: "native-fixture-banner"
+    timeout: 20000
 - runFlow:
     when:
       platform: Android
