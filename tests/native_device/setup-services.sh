@@ -7,9 +7,16 @@ test "${GLAM_NATIVE_DEVICE_JOURNEY:-}" = true
 mkdir -p artifacts/native-device
 if [ "$(uname -s)" = Darwin ]; then
   if ! brew --prefix postgresql@17 >/dev/null 2>&1; then brew install postgresql@17; fi
-  brew tap wix/brew
-  brew install applesimutils
-  applesimutils --version
+  # Install the reviewed official source release without trusting a third-party tap.
+  curl --fail --location --retry 2 --output "$RUNNER_TEMP/glam-applesimutils.tar.gz" https://github.com/wix/AppleSimulatorUtils/releases/download/0.9.12/AppleSimulatorUtils-0.9.12.tar.gz
+  printf '%s  %s\n' 4d6d02311959388ff5c28e2f4781848dbe1ca07f34b1d81d273940e099020b09 "$RUNNER_TEMP/glam-applesimutils.tar.gz" | shasum -a 256 -c -
+  mkdir -p "$RUNNER_TEMP/glam-applesimutils-source"
+  tar -xzf "$RUNNER_TEMP/glam-applesimutils.tar.gz" -C "$RUNNER_TEMP/glam-applesimutils-source"
+  task_apple_build=$(find "$RUNNER_TEMP/glam-applesimutils-source" -name buildForBrew.sh -type f -print -quit)
+  test -n "$task_apple_build"
+  (cd "$(dirname "$task_apple_build")" && bash ./buildForBrew.sh "$RUNNER_TEMP/glam-applesimutils-install")
+  "$RUNNER_TEMP/glam-applesimutils-install/bin/applesimutils" --version
+  echo "$RUNNER_TEMP/glam-applesimutils-install/bin" >> "$GITHUB_PATH"
   task_pg_bin="$(brew --prefix postgresql@17)/bin"
   "$task_pg_bin/initdb" -D "$RUNNER_TEMP/glam-native-pg" -U glam --auth=trust
   "$task_pg_bin/pg_ctl" -D "$RUNNER_TEMP/glam-native-pg" -l "$RUNNER_TEMP/glam-native-pg.log" -o '-h 127.0.0.1 -p 55439' start

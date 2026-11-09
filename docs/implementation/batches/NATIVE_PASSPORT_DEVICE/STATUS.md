@@ -27,3 +27,9 @@ The optional device_journey dispatch on the existing read-only native workflow b
 | Production0014–0017 / deployment / public launch | NOT AUTHORIZED by this batch |
 
 Baseline startup run42577021413 passed on31d8ac4. That source and its artifact links remain historical startup evidence, not evidence of the new device journey. New dispatch run IDs and failures will be recorded separately.
+
+## Retained installed-run failures
+
+Run42581848514 on8ee82d8 failed before device journeys: Android Gradle distribution download returned HTTP504; iOS fixture setup stopped before useful artifact output. No installed operation was counted as passed. Run42582624960 on4df28c1 retained the exact iOS cause: Homebrew refused the untrusted Wix tap. Annotations are saved in evidence/; complete log/artifact downloads remain403-blocked in this executor. A correction uses the reviewed official AppleSimulatorUtils0.9.12 source archive with its published SHA-256 and a local user-owned build; no Homebrew trust setting is weakened. The next dispatch repeats both platforms against one new source.
+
+The test runner now provisions virtual-device biometric enrollment and drives actual OS challenges, leaving the application SDK, hook and secure-store implementations unchanged. A successful relaunch must preserve the PostgreSQL revision and produce an additional authenticated refresh event. This is planned/implemented test machinery until the installed jobs demonstrate it; no simulator success or full batch acceptance is inferred from source.
