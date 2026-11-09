@@ -27,6 +27,7 @@ appId: com.glambeauty.visualreview
 - tapOn:
     id: brief-input
 - inputText: 'Soft rose, an effortless evening'
+- assertVisible: 'Soft rose, an effortless evening'
 - tapOn: 'What are you imagining\?'
 - scrollUntilVisible:
     element:
@@ -35,8 +36,9 @@ appId: com.glambeauty.visualreview
 - tapOn: 'Keep this brief'
 - scrollUntilVisible:
     element:
-      text: 'Brief kept for this preview. No AI image generated.'
+      id: brief-status-saved
     direction: DOWN
+- assertVisible: 'Refine my brief'
 - tapOn:
     id: tab-discover
 - takeScreenshot: 04-discover

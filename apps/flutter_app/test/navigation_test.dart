@@ -76,6 +76,8 @@ void main() {
     await tester.tap(find.byKey(const ValueKey('brief-save')));
     await tester.pumpAndSettle();
     expect(find.text('Brief kept for this preview. No AI image generated.'), findsOneWidget);
+    expect(find.byWidgetPredicate((widget) => widget is Semantics && widget.properties.identifier == 'brief-status-saved'), findsOneWidget);
+    expect(find.text('Refine my brief'), findsOneWidget);
     await tester.tap(find.byKey(const ValueKey('tab-discover')));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey('save-look-0')));

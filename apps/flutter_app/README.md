@@ -25,3 +25,23 @@ Review identifier: com.glambeauty.visualreview, unregistered/local-only. Android
 Stop after actual F1 screenshots and interactions for user visual approval. Do not continue functional migration or merge/deploy until authorized. Canonical services, Expo source and financial rules remain unchanged.
 
 Native F1 capture uses Maestro on the normal lib/main.dart application. The earlier Flutter test-binding capture harness is retained in Git history; its failed/partial outputs are not accepted as this milestone. The six widget tests and the OS-driven journey must both pass before native interaction evidence is accepted.
+
+## Running the retained native review builds
+
+Download each platform artifact from the exact verification run linked in `docs/implementation/batches/FLUTTER_F1/STATUS.md`. These are review builds, not store releases.
+
+Android requires a running x86_64 Android emulator (the CI reference is API35). Install the artifact's tested APK:
+
+```sh
+adb install -r distribution/glam-beauty-f1-android-x64-emulator.apk
+adb shell monkey -p com.glambeauty.visualreview 1
+```
+
+iOS requires macOS/Xcode and a booted compatible iPhone simulator. Extract `glam-beauty-f1-simulator.zip`, then:
+
+```sh
+xcrun simctl install booted Runner.app
+xcrun simctl launch booted com.glambeauty.visualreview
+```
+
+The artifact root contains `01-home.png` through `05-profile.png`, `interaction.mp4`, source/runtime receipts and logs after the full OS flow passes. Inspect that platform's job result and receipt rather than assuming compilation or artifact upload proves interaction success. Neither artifact installs on a physical iPhone/ARM Android phone as a published application.

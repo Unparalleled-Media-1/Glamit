@@ -75,8 +75,10 @@ class StudioScreen extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             FilledButton.icon(key: const ValueKey('studio-brief'), onPressed: () => glamSheet(context, const _BriefComposer()),
               icon: const Icon(Icons.auto_awesome_outlined), label: Text(state.brief.isEmpty ? 'Imagine a look' : 'Refine my brief')),
-            const SizedBox(height: 12), Text(state.brief.isEmpty ? 'Editorial reference · create a brief to explore the interaction.' : 'Brief kept for this preview. No AI image generated.',
-              textAlign: TextAlign.center, style: const TextStyle(color: Color(0xffcbb8c3), fontSize: 10)),
+            const SizedBox(height: 12), Semantics(
+              identifier: state.brief.isEmpty ? 'brief-status-empty' : 'brief-status-saved', liveRegion: true,
+              child: Text(state.brief.isEmpty ? 'Editorial reference · create a brief to explore the interaction.' : 'Brief kept for this preview. No AI image generated.',
+                textAlign: TextAlign.center, style: const TextStyle(color: Color(0xffcbb8c3), fontSize: 10))),
           ],
         ))),
       ])),
