@@ -196,6 +196,7 @@ void main() {
       h.controller.photo=File('test/fixtures/picker-fixture.png').readAsBytesSync();
       await tester.pumpWidget(MaterialApp(theme:MobileDesign.theme(),home:MediaQuery(
         data:const MediaQueryData(textScaler:TextScaler.linear(2)),child:Scaffold(body:ReportScreen(controller:h.controller)))));
+      await tester.runAsync(() => precacheImage(MemoryImage(h.controller.photo!),tester.element(find.byType(PrivatePhoto))));
       await tester.pumpAndSettle();
       expect(find.byType(DraggableScrollableSheet),findsOneWidget);
       expect(find.text('Save to Style Passport'),findsOneWidget);
