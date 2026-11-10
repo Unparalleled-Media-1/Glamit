@@ -36,6 +36,7 @@ jobs:
       - name: Analyze clean Flutter source
         run: python3 scripts/flutter/run_command.py artifacts/analyze-restart/analyze.txt bash -c 'cd apps/glam_mobile && flutter analyze --no-fatal-infos'
       - name: Contract privacy recovery and native-layout checks (isolated tests)
+        timeout-minutes: 5
         run: python3 scripts/flutter/run_command.py artifacts/analyze-restart/tests.txt bash -c 'cd apps/glam_mobile && flutter test --no-pub'
       - name: Verify native generator preserves authored app
         run: git diff --exit-code -- apps/glam_mobile/lib apps/glam_mobile/pubspec.yaml

@@ -35,8 +35,13 @@ class PhotoSource {
       // Delete only a copied temporary file; never remove the user's original library item.
       try {
         final temp = await (await getTemporaryDirectory()).resolveSymbolicLinks();
+        final documents = await getApplicationDocumentsDirectory();
+        final sandbox = await documents.parent.resolveSymbolicLinks();
         final path = await File(file.path).resolveSymbolicLinks();
-        if (path.startsWith('$temp${Platform.pathSeparator}')) await File(path).delete();
+        final ownedTemp = path.startsWith('$temp${Platform.pathSeparator}') ||
+          path.startsWith('$sandbox${Platform.pathSeparator}tmp${Platform.pathSeparator}') ||
+          path.startsWith('$sandbox${Platform.pathSeparator}cache${Platform.pathSeparator}');
+        if (ownedTemp) await File(path).delete();
       } catch (_) { /* OS cache cleanup may retry; no permanent photo is deleted. */ }
     }
   }

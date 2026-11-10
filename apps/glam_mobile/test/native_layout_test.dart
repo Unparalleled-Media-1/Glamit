@@ -26,9 +26,11 @@ void main() {
     expect(find.textContaining('not been simulated'),findsOneWidget);
   });
   testWidgets('Private decoded photo is evicted after the review surface is removed',(tester)async {
-    final bytes=await File('test/fixtures/picker-fixture.png').readAsBytes();
+    final bytes=File('test/fixtures/picker-fixture.png').readAsBytesSync();
     final provider=MemoryImage(bytes);
-    await tester.pumpWidget(MaterialApp(home:PrivatePhoto(bytes:bytes)));await tester.pumpAndSettle();
+    await tester.pumpWidget(MaterialApp(home:PrivatePhoto(bytes:bytes)));
+    await tester.runAsync(() => precacheImage(provider,tester.element(find.byType(PrivatePhoto))));
+    await tester.pumpAndSettle();
     expect(PaintingBinding.instance.imageCache.containsKey(provider),isTrue);
     await tester.pumpWidget(const SizedBox());await tester.pumpAndSettle();
     expect(PaintingBinding.instance.imageCache.containsKey(provider),isFalse);
