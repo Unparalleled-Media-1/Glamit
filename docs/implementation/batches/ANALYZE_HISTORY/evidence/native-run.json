@@ -1,0 +1,62 @@
+{
+  "run_id": 42849509362,
+  "source_commit": "df4f22cb4d2c587cb86bd8cac87a0fe4ffa18871",
+  "html_url": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42849509362",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 129945957663,
+      "name": "source",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-10T15:55:56Z",
+      "completed_at": "2026-11-10T15:56:53Z"
+    },
+    {
+      "id": 129946574698,
+      "name": "ios",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-10T15:56:57Z",
+      "completed_at": "2026-11-10T16:13:22Z"
+    },
+    {
+      "id": 129946574847,
+      "name": "android",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-10T15:56:56Z",
+      "completed_at": "2026-11-10T16:05:40Z"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 13781580531,
+      "name": "analyze-restart-android-native",
+      "size_in_bytes": 110347098,
+      "expired": false
+    },
+    {
+      "id": 13780550437,
+      "name": "analyze-restart-source-checks",
+      "size_in_bytes": 2749,
+      "expired": false
+    },
+    {
+      "id": 13780243668,
+      "name": "analyze-restart-ios-native",
+      "size_in_bytes": 188308798,
+      "expired": false
+    },
+    {
+      "id": 13778384448,
+      "name": "analyze-restart-native-inputs",
+      "size_in_bytes": 2958667,
+      "expired": false
+    }
+  ],
+  "physical_devices": "NOT TESTED",
+  "live_analysis_and_passport": "BLOCKED",
+  "production": "UNCHANGED"
+}

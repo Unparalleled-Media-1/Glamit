@@ -1,5 +1,7 @@
 # Analyze restart — native inputs verified; real vertical slice BLOCKED
 
+The subsequent [Analyze history continuation](../ANALYZE_HISTORY/RESULT.md) adds authenticated history/private-photo recovery, 26 passing isolated tests and fresh Android/iOS native packages, including a separately identified, physically untested ARM64 phone-review APK. The baseline evidence below remains historical and does not replace that continuation's live blockers.
+
 The [latest user directive](../../../specification/sources/2026-11-controlled-flutter-restart.txt) replaces the five-screen prototype cycle with one complete Analyze feature before design approval or other feature expansion. The first COMPLETE feature gate remains OPEN; this report is not approval or a claim of an operational analysis product.
 
 ## Preservation and source
