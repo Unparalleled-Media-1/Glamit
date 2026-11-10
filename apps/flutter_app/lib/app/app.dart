@@ -97,7 +97,7 @@ class _PlatformTabs extends StatelessWidget {
     if (Theme.of(context).platform == TargetPlatform.iOS) {
       return CupertinoTabBar(currentIndex: index, onTap: onSelect, backgroundColor: background,
         activeColor: dark ? GlamColors.blush : GlamColors.mauve, inactiveColor: dark ? Colors.white60 : GlamColors.muted,
-        items: List.generate(5, (i) => BottomNavigationBarItem(icon: icon(i), label: labels[i]))));
+        items: List.generate(5, (i) => BottomNavigationBarItem(icon: icon(i), label: labels[i])));
     }
     return NavigationBarTheme(data: NavigationBarThemeData(labelTextStyle: WidgetStateProperty.resolveWith((states) => TextStyle(fontSize: 11, color: dark ? GlamColors.ivory : GlamColors.ink))),
       child: NavigationBar(selectedIndex: index, onDestinationSelected: onSelect, backgroundColor: background,
