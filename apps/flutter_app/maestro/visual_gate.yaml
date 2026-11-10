@@ -8,7 +8,7 @@ appId: com.glambeauty.visualreview
 - takeScreenshot: 01-home
 - tapOn:
     id: tab-analyze
-- assertVisible: 'Find your light.'
+- assertVisible: 'PHOTO GUIDE · CAMERA OFFLINE'
 - takeScreenshot: 02-analyze
 - tapOn:
     id: analyze-camera

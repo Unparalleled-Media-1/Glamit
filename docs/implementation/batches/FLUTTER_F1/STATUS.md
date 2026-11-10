@@ -1,6 +1,8 @@
-# Flutter F1 — native interaction checks PASS; visual approval OPEN
+# Flutter F1 — appearance REJECTED; revision pending native verification
 
-The independent five-screen Flutter app has passed Dart analysis, all six widget tests and separate installed Android/iOS OS-driven journeys at source **`abfad3e96e09a24750b3dd7c5bb56d1e3caaa202`**. This is the tested application source, not a claim that later documentation-only commits were installed. [Successful verification run](https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42634999178).
+The user rejected the previous appearance on 10 November as still resembling mobile web. The next revision replaces the promotional Home, scroll-page Analyze/Studio, large Profile promotional block and inset Discover card with task-focused native compositions and platform tab bars. New native verification is required; prior passes below apply only to the rejected candidate. F2 remains paused.
+
+The previous independent five-screen Flutter app passed Dart analysis, all six widget tests and separate installed Android/iOS OS-driven journeys at source **`abfad3e96e09a24750b3dd7c5bb56d1e3caaa202`**. This is the tested application source, not a claim that later documentation-only commits were installed. [Successful verification run](https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42634999178).
 
 | Measure | Current evidence |
 | --- | --- |

@@ -74,37 +74,34 @@ class MobileShell extends StatelessWidget {
       value: dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
       child: Scaffold(backgroundColor: dark ? GlamColors.charcoal : GlamColors.ivory,
         body: shell,
-        bottomNavigationBar: DecoratedBox(
-          decoration: BoxDecoration(color: dark ? GlamColors.charcoal : GlamColors.ivory,
-            border: Border(top: BorderSide(color: dark ? Colors.white12 : GlamColors.line))),
-          child: SafeArea(top: false, child: Padding(padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
-            child: Row(children: List.generate(5, (index) {
-              const labels = ['Home', 'Analyze', 'Studio', 'Discover', 'Profile'];
-              const icons = [Icons.home_outlined, Icons.center_focus_strong_outlined,
-                Icons.auto_awesome_outlined, Icons.explore_outlined, Icons.person_outline];
-              final selected = shell.currentIndex == index;
-              return Expanded(child: Semantics(identifier: 'tab-${labels[index].toLowerCase()}', selected: selected, button: true,
-                label: labels[index], excludeSemantics: true,
-                child: InkWell(key: ValueKey('tab-${labels[index].toLowerCase()}'),
-                  borderRadius: BorderRadius.circular(24),
-                  onTap: () { HapticFeedback.selectionClick(); shell.goBranch(index, initialLocation: selected); },
-                  child: Padding(padding: const EdgeInsets.symmetric(vertical: 5), child: Column(mainAxisSize: MainAxisSize.min, children: [
-                    AnimatedContainer(duration: const Duration(milliseconds: 180),
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
-                      decoration: BoxDecoration(color: selected ? GlamColors.blush : Colors.transparent,
-                        borderRadius: BorderRadius.circular(18)),
-                      child: Icon(icons[index], size: 23,
-                        color: selected ? GlamColors.ink : dark ? GlamColors.ivory : GlamColors.muted)),
-                    const SizedBox(height: 3), Text(labels[index], style: TextStyle(fontSize: 10,
-                      fontWeight: selected ? FontWeight.w700 : FontWeight.w400,
-                      color: selected ? dark ? GlamColors.blush : GlamColors.ink : dark ? GlamColors.ivory : GlamColors.muted)),
-                  ])),
-                ),
-              ));
-            })),
-          )),
-        ),
+        bottomNavigationBar: _PlatformTabs(index: shell.currentIndex, dark: dark, onSelect: (index) {
+          HapticFeedback.selectionClick(); shell.goBranch(index, initialLocation: index == shell.currentIndex);
+        }),
       ),
     );
+  }
+}
+
+class _PlatformTabs extends StatelessWidget {
+  const _PlatformTabs({required this.index, required this.dark, required this.onSelect});
+  final int index;
+  final bool dark;
+  final ValueChanged<int> onSelect;
+  static const labels = ['Home', 'Analyze', 'Studio', 'Discover', 'Profile'];
+  static const icons = [Icons.home_outlined, Icons.center_focus_strong_outlined, Icons.auto_awesome_outlined, Icons.explore_outlined, Icons.person_outline];
+  Widget icon(int i) => Semantics(identifier: 'tab-${labels[i].toLowerCase()}', label: labels[i], button: true, selected: i == index,
+    child: SizedBox(key: ValueKey('tab-${labels[i].toLowerCase()}'), width: 32, height: 28, child: Icon(icons[i])));
+  @override
+  Widget build(BuildContext context) {
+    final background = dark ? GlamColors.charcoal : GlamColors.ivory;
+    if (Theme.of(context).platform == TargetPlatform.iOS) {
+      return CupertinoTabBar(currentIndex: index, onTap: onSelect, backgroundColor: background,
+        activeColor: dark ? GlamColors.blush : GlamColors.mauve, inactiveColor: dark ? Colors.white60 : GlamColors.muted,
+        items: List.generate(5, (i) => BottomNavigationBarItem(icon: icon(i), label: labels[i]))));
+    }
+    return NavigationBarTheme(data: NavigationBarThemeData(labelTextStyle: WidgetStateProperty.resolveWith((states) => TextStyle(fontSize: 11, color: dark ? GlamColors.ivory : GlamColors.ink))),
+      child: NavigationBar(selectedIndex: index, onDestinationSelected: onSelect, backgroundColor: background,
+      indicatorColor: GlamColors.blush, height: 72,
+      destinations: List.generate(5, (i) => NavigationDestination(icon: IconTheme(data: IconThemeData(color: i == index ? GlamColors.ink : dark ? GlamColors.ivory : GlamColors.muted), child: icon(i)), label: labels[i]))));
   }
 }

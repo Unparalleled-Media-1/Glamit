@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:glam_beauty/app/app.dart';
@@ -111,4 +113,31 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Face forward, comfortably'), findsOneWidget);
   });
+  for (final platform in [TargetPlatform.iOS, TargetPlatform.android]) {
+    testWidgets('Camera and Studio controls stay on the first viewport on $platform', (tester) async {
+      debugDefaultTargetPlatformOverride = platform;
+      addTearDown(() => debugDefaultTargetPlatformOverride = null);
+      tester.view.physicalSize = const Size(360, 740);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      await tester.pumpWidget(const ProviderScope(child: GlamBeautyApp()));
+      await tester.pumpAndSettle();
+      expect(find.byType(platform == TargetPlatform.iOS ? CupertinoTabBar : NavigationBar), findsOneWidget);
+      await tester.tap(find.byKey(const ValueKey('tab-analyze')));
+      await tester.pumpAndSettle();
+      final camera = tester.getRect(find.byKey(const ValueKey('analyze-camera')));
+      expect(camera.bottom, lessThan(tester.getRect(find.byType(platform == TargetPlatform.iOS ? CupertinoTabBar : NavigationBar)).top));
+      expect(camera.height, greaterThanOrEqualTo(48));
+      await tester.tap(find.byKey(const ValueKey('tab-studio')));
+      await tester.pumpAndSettle();
+      final canvas = tester.getRect(find.byKey(const ValueKey('studio-canvas')));
+      expect(canvas.height, greaterThan(160));
+      await tester.tap(find.byKey(const ValueKey('studio-brief')));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const ValueKey('brief-input')), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
 }

@@ -16,72 +16,45 @@ class StudioScreen extends ConsumerWidget {
     final state = ref.watch(previewProvider);
     final controller = ref.read(previewProvider.notifier);
     return ColoredBox(key: const ValueKey('screen-studio'), color: GlamColors.charcoal,
-      child: SafeArea(bottom: false, child: CustomScrollView(slivers: [
-        SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.fromLTRB(24, 10, 16, 14), child: Row(children: [
-          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Eyebrow('The creative space', color: GlamColors.champagne),
-            Text('Studio', style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: GlamColors.ivory)),
+      child: SafeArea(bottom: false, child: LayoutBuilder(builder: (context, bounds) => Column(children: [
+        Padding(padding: const EdgeInsets.fromLTRB(12, 4, 12, 4), child: Row(children: [
+          const Expanded(child: Text('Studio', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700, color: GlamColors.ivory))),
+          RoundAction(icon: Icons.chat_bubble_outline, label: 'Ask your stylist', dark: true, onPressed: () => context.push('/advisor')),
+          RoundAction(icon: Icons.info_outline, label: 'Studio settings', dark: true, onPressed: () => glamSheet(context,
+            const SheetContent(title: 'Colour study', body: 'Pinch to zoom. Drag to compare the reference in monochrome. This is an on-device colour study, not an AI transformation.'))),
+        ])),
+        Expanded(child: Stack(fit: StackFit.expand, children: [
+          InteractiveViewer(key: const ValueKey('studio-canvas'), minScale: 1, maxScale: 3, child: Stack(fit: StackFit.expand, children: [
+            const Portrait(index: 1),
+            ClipRect(clipper: _ComparisonClip(state.compare), child: const ColorFiltered(
+              colorFilter: ColorFilter.matrix([.21,.72,.07,0,0, .21,.72,.07,0,0, .21,.72,.07,0,0, 0,0,0,1,0]), child: Portrait(index: 1))),
           ])),
-          RoundAction(icon: Icons.chat_bubble_outline, label: 'Ask your stylist', dark: true,
-            onPressed: () => context.push('/advisor')),
-          const SizedBox(width: 8), RoundAction(icon: Icons.tune, label: 'Studio settings', dark: true,
-            onPressed: () => glamSheet(context, const SheetContent(title: 'Make room to experiment.',
-              body: 'Pinch the reference to explore details. Drag the comparison control for an on-device monochrome study. This is an editorial reference, not an AI transformation.'))),
-        ]))),
-        SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child:
-          ClipRRect(borderRadius: BorderRadius.circular(32), child: SizedBox(
-            height: MediaQuery.sizeOf(context).height < 760 ? 330 : 410,
-            child: Stack(fit: StackFit.expand, children: [
-              InteractiveViewer(key: const ValueKey('studio-canvas'), minScale: 1, maxScale: 3,
-                child: Stack(fit: StackFit.expand, children: [
-                  const Portrait(index: 1),
-                  ClipRect(clipper: _ComparisonClip(state.compare), child: const ColorFiltered(
-                    colorFilter: ColorFilter.matrix([.21,.72,.07,0,0, .21,.72,.07,0,0, .21,.72,.07,0,0, 0,0,0,1,0]),
-                    child: Portrait(index: 1))),
-                ])),
-              Positioned(top: 18, left: 18, child: Container(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.circular(20)),
-                child: const Eyebrow('Colour study · not AI', color: GlamColors.ivory))),
-              Positioned(bottom: 20, left: 18, right: 18, child: Column(children: [
-                const Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  Expanded(child: Text('Monochrome', style: TextStyle(color: Colors.white, fontSize: 11, shadows: [Shadow(blurRadius: 6)]))),
-                  Expanded(child: Text('Original', textAlign: TextAlign.end, style: TextStyle(color: Colors.white, fontSize: 11, shadows: [Shadow(blurRadius: 6)]))),
-                ]),
-                Slider(key: const ValueKey('studio-comparison'), value: state.compare, onChanged: controller.compare,
-                  activeColor: GlamColors.blush, inactiveColor: Colors.white60,
-                  semanticFormatterCallback: (value) => '${(value * 100).round()} percent monochrome'),
-              ])),
+          const Positioned(top: 12, left: 16, child: DecoratedBox(decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.all(Radius.circular(12))),
+            child: Padding(padding: EdgeInsets.all(8), child: Text('Reference · not AI', style: TextStyle(color: Colors.white, fontSize: 11))))),
+          Positioned(bottom: 8, left: 16, right: 16, child: DecoratedBox(decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.circular(20)),
+            child: Slider(key: const ValueKey('studio-comparison'), value: state.compare, onChanged: controller.compare,
+              activeColor: GlamColors.blush, inactiveColor: Colors.white60, semanticFormatterCallback: (value) => '${(value * 100).round()} percent monochrome'))),
+        ])),
+        ConstrainedBox(constraints: BoxConstraints(maxHeight: bounds.maxHeight * .48), child: SingleChildScrollView(child: Padding(
+          padding: const EdgeInsets.fromLTRB(12, 8, 12, 10), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            SizedBox(height: MediaQuery.textScalerOf(context).scale(13) + 38, child: ListView.separated(scrollDirection: Axis.horizontal,
+              itemCount: tools.length, separatorBuilder: (_, _) => const SizedBox(width: 6), itemBuilder: (_, i) => ChoiceChip(
+                key: ValueKey('tool-$i'), selected: state.tool == i, label: Text(tools[i]), showCheckmark: false,
+                selectedColor: GlamColors.blush, backgroundColor: const Color(0xff2e2830), side: BorderSide.none,
+                labelStyle: TextStyle(color: state.tool == i ? GlamColors.ink : GlamColors.ivory), onSelected: (_) => controller.tool(i)))),
+            Row(children: [
+              const Padding(padding: EdgeInsets.only(right: 8), child: Text('Mood', style: TextStyle(color: GlamColors.ivory, fontSize: 12))),
+              Expanded(child: SizedBox(height: 48, child: ListView(scrollDirection: Axis.horizontal, children: List.generate(moods.length, (i) => Semantics(label: 'Mood ${i + 1}', selected: state.mood == i, button: true,
+                child: InkWell(key: ValueKey('mood-$i'), onTap: () => controller.mood(i), child: SizedBox(width: 48, child: Center(child: Container(width: 26, height: 26,
+                  decoration: BoxDecoration(shape: BoxShape.circle, color: moods[i], border: Border.all(color: state.mood == i ? Colors.white : Colors.transparent, width: 3)))))))))),
             ]),
-          )),
-        )),
-        SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.fromLTRB(12, 16, 12, 6), child: SizedBox(height: 54,
-          child: ListView.separated(scrollDirection: Axis.horizontal, itemCount: tools.length,
-            separatorBuilder: (_, _) => const SizedBox(width: 8), itemBuilder: (_, index) => ChoiceChip(
-              key: ValueKey('tool-$index'), selected: state.tool == index, label: Text(tools[index]),
-              selectedColor: GlamColors.blush, backgroundColor: const Color(0xff2e2830),
-              labelStyle: TextStyle(color: state.tool == index ? GlamColors.ink : GlamColors.ivory),
-              side: BorderSide.none, showCheckmark: false, onSelected: (_) => controller.tool(index)),
-          ),
-        ))),
-        SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 24), child: Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: 2, children: [
-          const Padding(padding: EdgeInsets.only(right: 12), child: Eyebrow('The mood', color: GlamColors.champagne)),
-          ...List.generate(moods.length, (i) => Semantics(label: 'Mood ${i + 1}', selected: state.mood == i, button: true,
-            child: InkWell(key: ValueKey('mood-$i'), onTap: () => controller.mood(i), borderRadius: BorderRadius.circular(24),
-              child: SizedBox(width: 44, height: 48, child: Center(child: Container(width: 26, height: 26,
-                decoration: BoxDecoration(shape: BoxShape.circle, color: moods[i],
-                  border: Border.all(color: state.mood == i ? Colors.white : Colors.transparent, width: 3)))))))),
-        ]))),
-        SliverPadding(padding: const EdgeInsets.fromLTRB(24, 12, 24, 24), sliver: SliverToBoxAdapter(child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             FilledButton.icon(key: const ValueKey('studio-brief'), onPressed: () => glamSheet(context, const _BriefComposer()),
-              icon: const Icon(Icons.auto_awesome_outlined), label: Text(state.brief.isEmpty ? 'Imagine a look' : 'Refine my brief')),
-            const SizedBox(height: 12), Semantics(
-              identifier: state.brief.isEmpty ? 'brief-status-empty' : 'brief-status-saved', liveRegion: true,
-              child: Text(state.brief.isEmpty ? 'Editorial reference · create a brief to explore the interaction.' : 'Brief kept for this preview. No AI image generated.',
+              icon: const Icon(Icons.edit_outlined), label: Text(state.brief.isEmpty ? 'Imagine a look' : 'Refine my brief')),
+            const SizedBox(height: 6), Semantics(identifier: state.brief.isEmpty ? 'brief-status-empty' : 'brief-status-saved', liveRegion: true,
+              child: Text(state.brief.isEmpty ? 'Session-only brief · generation offline' : 'Brief kept for this preview. No AI image generated.',
                 textAlign: TextAlign.center, style: const TextStyle(color: Color(0xffcbb8c3), fontSize: 10))),
-          ],
-        ))),
-      ])),
+          ])))),
+      ]))),
     );
   }
 }

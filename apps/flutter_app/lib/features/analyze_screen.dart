@@ -29,51 +29,36 @@ class _AnalyzeScreenState extends State<AnalyzeScreen> {
   ));
   @override
   Widget build(BuildContext context) => ColoredBox(key: const ValueKey('screen-analyze'), color: GlamColors.charcoal,
-    child: SafeArea(bottom: false, child: CustomScrollView(slivers: [
-      SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.fromLTRB(20, 8, 20, 12), child: Row(children: [
-        RoundAction(icon: Icons.close, label: 'Return Home', dark: true, onPressed: () => context.go('/home')),
-        const Expanded(child: Center(child: Eyebrow('Your beauty blueprint', color: GlamColors.champagne))),
-        RoundAction(icon: Icons.help_outline, label: 'Photo privacy', dark: true,
-          onPressed: () => glamSheet(context, const SheetContent(title: 'Permission comes first.',
-            body: 'Photos are personal. This visual preview does not access a camera, gallery or server. Storage and analysis will each require your explicit permission.'))),
-      ]))),
-      SliverPadding(padding: const EdgeInsets.symmetric(horizontal: 28), sliver: SliverToBoxAdapter(child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('Find your light.', style: Theme.of(context).textTheme.displayMedium!.copyWith(color: GlamColors.ivory)),
-          const SizedBox(height: 8), const Text('A thoughtful starting point. Always in your control.', style: TextStyle(color: Color(0xffcbb8c3))),
-          const SizedBox(height: 22),
-          SizedBox(height: MediaQuery.sizeOf(context).height < 760 ? 270 : 340,
-            width: double.infinity, child: ClipRRect(borderRadius: BorderRadius.circular(36), child: Stack(fit: StackFit.expand, children: [
-              const DecoratedBox(decoration: BoxDecoration(gradient: RadialGradient(
-                colors: [Color(0xff47333f), Color(0xff252126)], radius: .85))),
-              const CustomPaint(painter: _FaceGuide()),
-              const Positioned(top: 22, left: 22, child: Row(children: [Icon(Icons.circle, size: 7, color: GlamColors.blush),
-                SizedBox(width: 8), Text('PHOTO GUIDE', style: TextStyle(fontSize: 10, letterSpacing: 2, color: GlamColors.ivory))])),
-              Positioned(bottom: 20, left: 16, right: 16, child: AnimatedSwitcher(duration: const Duration(milliseconds: 220),
-                child: Text(tips[guide], key: ValueKey(guide), textAlign: TextAlign.center,
-                  style: const TextStyle(color: GlamColors.ivory, fontSize: 12)))),
-            ]))),
-          const SizedBox(height: 16), Row(mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(3, (i) => Semantics(label: 'Photo tip ${i + 1}', button: true, selected: guide == i,
-              child: InkWell(key: ValueKey('guide-$i'), onTap: () => setState(() => guide = i),
-                child: SizedBox(width: 48, height: 48, child: Center(child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 180), height: 4, width: guide == i ? 24 : 8,
-                  decoration: BoxDecoration(color: guide == i ? GlamColors.blush : Colors.white30, borderRadius: BorderRadius.circular(8))))))))),
-          const SizedBox(height: 4), Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            Expanded(child: _SourceAction(key: const ValueKey('analyze-gallery'), icon: Icons.photo_library_outlined, label: 'Gallery', onTap: () => source(false))),
-            Semantics(identifier: 'analyze-camera', label: 'Camera', button: true, child: InkWell(key: const ValueKey('analyze-camera'),
-              onTap: () => source(true), borderRadius: BorderRadius.circular(48),
-              child: Container(width: 84, height: 84, padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: GlamColors.blush, width: 2)),
-                child: Container(decoration: const BoxDecoration(shape: BoxShape.circle, color: GlamColors.blush),
-                  child: const Icon(Icons.camera_alt_outlined, color: GlamColors.ink, size: 28))))),
-            Expanded(child: _SourceAction(icon: Icons.article_outlined, label: 'Reports', onTap: () => context.push('/collection/passport'))),
-          ]),
-          const SizedBox(height: 20), const Center(child: Text('No photos taken or uploaded', style: TextStyle(color: Color(0xffcbb8c3), fontSize: 11))),
-          const SizedBox(height: 24),
-        ],
-      ))),
-    ])),
+    child: SafeArea(bottom: false, child: LayoutBuilder(builder: (context, bounds) {
+      final large = MediaQuery.textScalerOf(context).scale(14) > 20;
+      final content = Column(children: [
+        Padding(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4), child: Row(children: [
+          RoundAction(icon: Icons.close, label: 'Return Home', dark: true, onPressed: () => context.go('/home')),
+          const Expanded(child: Text('Analyze', textAlign: TextAlign.center, style: TextStyle(color: GlamColors.ivory, fontSize: 18, fontWeight: FontWeight.w600))),
+          RoundAction(icon: Icons.help_outline, label: 'Photo privacy', dark: true, onPressed: () => glamSheet(context,
+            const SheetContent(title: 'Photo privacy', body: 'This visual preview does not access a camera, gallery or server. Storage and analysis will require explicit permission.'))),
+        ])),
+        Expanded(child: GestureDetector(onHorizontalDragEnd: (details) => setState(() => guide = (guide + (details.primaryVelocity! < 0 ? 1 : 2)) % 3),
+          child: Stack(fit: StackFit.expand, children: [
+            const DecoratedBox(decoration: BoxDecoration(gradient: RadialGradient(colors: [Color(0xff47333f), GlamColors.charcoal], radius: .9))),
+            const CustomPaint(painter: _FaceGuide()),
+            const Positioned(top: 12, left: 20, right: 20, child: Text('PHOTO GUIDE · CAMERA OFFLINE', textAlign: TextAlign.center, style: TextStyle(color: GlamColors.champagne, fontSize: 10, letterSpacing: 1))),
+            Positioned(bottom: 12, left: 24, right: 24, child: Text(tips[guide], textAlign: TextAlign.center, style: const TextStyle(color: GlamColors.ivory, fontSize: 14))),
+          ]))),
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: List.generate(3, (i) => Semantics(label: 'Photo tip ${i + 1}', button: true, selected: guide == i,
+          child: InkWell(key: ValueKey('guide-$i'), onTap: () => setState(() => guide = i), child: SizedBox(width: 48, height: 48,
+            child: Center(child: Container(height: 4, width: guide == i ? 24 : 8, decoration: BoxDecoration(color: guide == i ? GlamColors.blush : Colors.white30, borderRadius: BorderRadius.circular(8))))))))),
+        Padding(padding: const EdgeInsets.symmetric(horizontal: 24), child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Expanded(child: _SourceAction(key: const ValueKey('analyze-gallery'), icon: Icons.photo_library_outlined, label: 'Gallery', onTap: () => source(false))),
+          Semantics(identifier: 'analyze-camera', label: 'Camera', button: true, child: InkWell(key: const ValueKey('analyze-camera'), onTap: () => source(true), borderRadius: BorderRadius.circular(44),
+            child: Container(width: 80, height: 80, padding: const EdgeInsets.all(5), decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: GlamColors.blush, width: 2)),
+              child: const DecoratedBox(decoration: BoxDecoration(shape: BoxShape.circle, color: GlamColors.blush), child: Icon(Icons.camera_alt_outlined, size: 28, color: GlamColors.ink))))),
+          Expanded(child: _SourceAction(icon: Icons.article_outlined, label: 'Reports', onTap: () => context.push('/collection/passport'))),
+        ])),
+        const Padding(padding: EdgeInsets.symmetric(vertical: 14), child: Text('No photos taken or uploaded', style: TextStyle(color: Color(0xffcbb8c3), fontSize: 11))),
+      ]);
+      return large ? SingleChildScrollView(child: SizedBox(height: bounds.maxHeight < 800 ? 800 : bounds.maxHeight, child: content)) : content;
+    })),
   );
 }
 

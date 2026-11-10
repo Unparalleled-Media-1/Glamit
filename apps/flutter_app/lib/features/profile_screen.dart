@@ -12,38 +12,25 @@ class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(previewProvider);
     return ColoredBox(key: const ValueKey('screen-profile'), color: GlamColors.ivory,
       child: SafeArea(bottom: false, child: CustomScrollView(slivers: [
         SliverPadding(padding: const EdgeInsets.fromLTRB(24, 16, 16, 24), sliver: SliverToBoxAdapter(child: Row(children: [
-          Expanded(child: Text('Your own rhythm.', style: Theme.of(context).textTheme.headlineLarge)),
+          Expanded(child: const Text('Profile', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700))),
           RoundAction(icon: Icons.more_horiz, label: 'Preview options', onPressed: () => _privacy(context, ref)),
         ]))),
         SliverPadding(padding: const EdgeInsets.symmetric(horizontal: 24), sliver: SliverToBoxAdapter(child: Row(children: [
           ClipRRect(borderRadius: BorderRadius.circular(24), child: Image.asset('assets/brand/app-icon.png', width: 76, height: 76)),
           const SizedBox(width: 18), Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Eyebrow('A space that is yours'), const SizedBox(height: 6),
-            Text('Make it personal.', style: Theme.of(context).textTheme.headlineMedium),
+            const Text('Guest', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)), const SizedBox(height: 6),
+            const Text('No account connected', style: TextStyle(color: GlamColors.muted, fontSize: 12)),
             TextButton(key: const ValueKey('profile-signin'), style: TextButton.styleFrom(padding: EdgeInsets.zero,
               alignment: Alignment.centerLeft), onPressed: () => glamSheet(context, const SheetContent(
                 title: 'One identity. All of you.', body: 'Sign-in is not connected in this Flutter design preview. No account is active, and no credentials are collected.')),
-              child: const Text('Explore account access →')),
+              child: const Text('Sign in')),
           ])),
         ]))),
-        SliverPadding(padding: const EdgeInsets.fromLTRB(24, 24, 24, 16), sliver: SliverToBoxAdapter(child:
-          Material(color: GlamColors.ink, borderRadius: BorderRadius.circular(28), child: InkWell(
-            key: const ValueKey('profile-passport'), borderRadius: BorderRadius.circular(28), onTap: () => context.push('/collection/passport'),
-            child: Padding(padding: const EdgeInsets.all(24), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Row(children: [Expanded(child: Eyebrow('Style Passport', color: GlamColors.champagne)), Icon(Icons.north_east, color: GlamColors.blush, size: 22)]),
-              const SizedBox(height: 20), Text('The details\nthat make you, you.', style: Theme.of(context).textTheme.headlineLarge!.copyWith(color: GlamColors.ivory)),
-              const SizedBox(height: 12), const Text('Your palette, preferences and beauty story.', style: TextStyle(color: Color(0xffdfd1d5), fontSize: 12)),
-            ])),
-          )),
-        )),
-        SliverPadding(padding: const EdgeInsets.fromLTRB(24, 0, 24, 20), sliver: SliverToBoxAdapter(child: Row(children: [
-          _Count(value: '${state.saved.length}', label: 'Collected edits'),
-          const _Count(value: '0', label: 'Saved reports'),
-          _Count(value: state.brief.isEmpty ? '0' : '1', label: 'Creative briefs'),
+        SliverPadding(padding: const EdgeInsets.fromLTRB(24, 24, 24, 16), sliver: SliverToBoxAdapter(child: _Group(children: [
+          NativeRow(icon: Icons.fingerprint, title: 'Style Passport', subtitle: 'No saved report', onTap: () => context.push('/collection/passport')),
         ]))),
         SliverPadding(padding: const EdgeInsets.symmetric(horizontal: 24), sliver: SliverToBoxAdapter(child: Column(children: [
           _Group(children: [
@@ -85,16 +72,6 @@ class _Group extends StatelessWidget {
   Widget build(BuildContext context) => Material(borderRadius: BorderRadius.circular(24),
     clipBehavior: Clip.antiAlias, color: Colors.white.withValues(alpha: .65), child: Column(children: children));
 }
-class _Count extends StatelessWidget {
-  const _Count({required this.value, required this.label});
-  final String value, label;
-  @override
-  Widget build(BuildContext context) => Expanded(child: Column(children: [
-    Text(value, style: Theme.of(context).textTheme.headlineLarge), const SizedBox(height: 4),
-    Text(label, textAlign: TextAlign.center, style: const TextStyle(fontSize: 10, color: GlamColors.muted)),
-  ]));
-}
-
 class CollectionScreen extends ConsumerWidget {
   const CollectionScreen({super.key, required this.kind});
   final String kind;
