@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:glam_beauty/app/app.dart';
@@ -115,8 +114,6 @@ void main() {
   });
   for (final platform in [TargetPlatform.iOS, TargetPlatform.android]) {
     testWidgets('Camera and Studio controls stay on the first viewport on $platform', (tester) async {
-      debugDefaultTargetPlatformOverride = platform;
-      addTearDown(() => debugDefaultTargetPlatformOverride = null);
       tester.view.physicalSize = const Size(360, 740);
       tester.view.devicePixelRatio = 1;
       addTearDown(tester.view.resetPhysicalSize);
@@ -137,7 +134,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byKey(const ValueKey('brief-input')), findsOneWidget);
       expect(tester.takeException(), isNull);
-    });
+    }, variant: TargetPlatformVariant({platform}));
   }
 
 }
