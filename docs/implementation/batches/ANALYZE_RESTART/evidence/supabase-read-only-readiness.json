@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-10",
+  "time_zone": "Africa/Johannesburg",
+  "project": "bkkmsbxrxkqaveymcrgi",
+  "function_metadata": {
+    "glam-api": "ACTIVE"
+  },
+  "auth_provider_activation": {
+    "email": true,
+    "phone": false,
+    "google": false,
+    "apple": false,
+    "facebook": false
+  },
+  "read_only_relation_lookup": {
+    "private_media": null,
+    "analysis_job": null,
+    "analysis_correction": null,
+    "style_passport_analysis": null
+  },
+  "rows_of_user_data_read": false,
+  "writes_performed": false,
+  "app_authentication_verified": false
+}

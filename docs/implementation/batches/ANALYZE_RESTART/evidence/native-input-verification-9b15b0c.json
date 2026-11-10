@@ -1,0 +1,243 @@
+{
+  "verified_at": "2026-11-10T11:22:53.538221+02:00",
+  "time_zone": "Africa/Johannesburg",
+  "source_commit": "9b15b0c9b23d89b52df0ce4324c4bf4ec2bd4416",
+  "run_url": "https://github.com/Unparalleled-Media-1/Glamit/actions/runs/42786667941",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 129729495338,
+      "name": "source",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python3 scripts/flutter/run_command.py artifacts/analyze-restart/bootstrap.txt bash scripts/analyze-restart/bootstrap.sh",
+          "conclusion": "success"
+        },
+        {
+          "name": "Resolve one native dependency lock",
+          "conclusion": "success"
+        },
+        {
+          "name": "Analyze clean Flutter source",
+          "conclusion": "success"
+        },
+        {
+          "name": "Contract privacy recovery and native-layout checks (isolated tests)",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify native generator preserves authored app",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 129729941401,
+      "name": "android",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/download-artifact@v7",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run flutter pub get --enforce-lockfile",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bash scripts/analyze-restart/install-maestro.sh",
+          "conclusion": "success"
+        },
+        {
+          "name": "Compile actual native camera application",
+          "conclusion": "success"
+        },
+        {
+          "name": "Retain actual emulator APK and checksum",
+          "conclusion": "success"
+        },
+        {
+          "name": "Enable emulator KVM",
+          "conclusion": "success"
+        },
+        {
+          "name": "Actual camera permission capture and return navigation",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 129729942134,
+      "name": "ios",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/download-artifact@v7",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run flutter pub get --enforce-lockfile",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run bash scripts/analyze-restart/install-maestro.sh",
+          "conclusion": "success"
+        },
+        {
+          "name": "Compile actual iOS native application",
+          "conclusion": "success"
+        },
+        {
+          "name": "Retain actual simulator application",
+          "conclusion": "success"
+        },
+        {
+          "name": "Boot actual iPhone simulator",
+          "conclusion": "success"
+        },
+        {
+          "name": "Actual library selection and iOS swipe-back (not physical camera proof)",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 13751411514,
+      "name": "analyze-restart-ios-native",
+      "bytes": 171819104
+    },
+    {
+      "id": 13749617990,
+      "name": "analyze-restart-source-checks",
+      "bytes": 2517
+    },
+    {
+      "id": 13749194435,
+      "name": "analyze-restart-android-native",
+      "bytes": 54261101
+    },
+    {
+      "id": 13748978200,
+      "name": "analyze-restart-native-inputs",
+      "bytes": 2958667
+    }
+  ],
+  "source_checks": "Dart analysis and19 isolated tests PASS",
+  "android_native_evidence_artifact": 13749194435,
+  "ios_native_evidence_artifact": 13751411514,
+  "live_analysis_ids": [],
+  "live_account_save_ids": [],
+  "live_backend": "BLOCKED by missing target schema/qualified endpoints/public build configuration/test identity",
+  "physical_devices": "NOT TESTED",
+  "visual_comparison": "NOT PERFORMED here; signed downloads blocked",
+  "first_complete_feature": "NOT ACCEPTED",
+  "design_approval": "NOT REQUESTED for an incomplete real slice",
+  "production": "UNCHANGED"
+}

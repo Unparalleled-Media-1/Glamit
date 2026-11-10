@@ -1,0 +1,42 @@
+appId: com.glambeauty.analyzereview
+---
+- launchApp:
+    clearState: true
+    permissions:
+      camera: unset
+- assertVisible: 'Analyze'
+- takeScreenshot: 01-camera-entry
+- tapOn:
+    id: native-shutter
+- extendedWaitUntil:
+    visible:
+      id: 'camera-source-error|native-camera-live'
+    timeout: 45000
+- takeScreenshot: 02-native-camera-capability
+- tapOn: 'Photo library'
+- extendedWaitUntil:
+    visible: 'Cancel'
+    timeout: 30000
+- takeScreenshot: 06-native-photo-picker
+- tapOn:
+    text: '(?s)Photo,.*'
+    index: 0
+- extendedWaitUntil:
+    visible:
+      id: native-photo-review
+    timeout: 30000
+- takeScreenshot: 03-library-photo-review
+- tapOn: 'Analyze this photo'
+- assertVisible:
+    id: auth-unconfigured
+- takeScreenshot: 04-connection-blocker
+- tapOn: 'Close sign-in'
+- swipe:
+    start: '1%,45%'
+    end: '85%,45%'
+    duration: 500
+- extendedWaitUntil:
+    visible:
+      id: native-shutter
+    timeout: 10000
+- takeScreenshot: 05-native-return
