@@ -1,5 +1,7 @@
 # Analyze history and private-photo recovery — scoped continuation
 
+Subsequent database update (10 November 2026, 18:28 SAST): the user authorized creation of the backend tables. Canonical0014–0017 are now applied and independently verified in original production; the schema-absence observation below is historical. See [actual deployment results](../../../database/analysis-schema/RESULT.md). Live API/runtime/policy/provider/device qualification remains outstanding.
+
 The clean Flutter app remains in apps/glam_mobile on feat/flutter-analyze-vertical-slice, under [draft PR46](https://github.com/Unparalleled-Media-1/Glamit/pull/46). This batch completes additional Analyze client operations; it does not close the first real backend journey or approve the mobile design.
 
 ## Implementation and verification

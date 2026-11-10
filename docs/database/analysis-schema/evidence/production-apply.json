@@ -1,0 +1,3008 @@
+{
+  "project_ref": "bkkmsbxrxkqaveymcrgi",
+  "branch": "main (PRODUCTION)",
+  "observed_at": "2026-11-10T16:28:04.888309+00:00",
+  "release_sha256": "4009f93e7fa8a9eaba3750623b0b3190ad77cdf8aceae86ed940b09c7ba96af0",
+  "production_modified": true,
+  "write_attempted": true,
+  "before": {
+    "bucket": null,
+    "tables": [],
+    "columns": [],
+    "indexes": [],
+    "policies": [],
+    "triggers": [],
+    "functions": [
+      {
+        "name": "glam_api_v1",
+        "schema": "public",
+        "definition": "CREATE OR REPLACE FUNCTION public.glam_api_v1(p_method text, p_path text, p_body jsonb DEFAULT '{}'::jsonb, p_key text DEFAULT NULL::text)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\nDECLARE uid uuid; subject_id uuid; result jsonb; did uuid;\nBEGIN\n IF p_path NOT IN ('/v1/me/notifications','/v1/me/devices','/v1/me/consents') AND p_path NOT LIKE '/v1/me/devices/%' THEN\n  RETURN glam_private.glam_routines_api_v1(p_method,p_path,p_body,p_key);\n END IF;\n IF p_body IS NULL OR jsonb_typeof(p_body)<>'object' OR octet_length(p_body::text)>32768 THEN RAISE SQLSTATE 'PT422' USING MESSAGE='VALIDATION_ERROR'; END IF;\n uid:=glam_private.bootstrap_identity();subject_id:=auth.uid();\n IF NOT (public.glam_api_gate()->>'allowed')::boolean THEN RAISE SQLSTATE 'PT429' USING MESSAGE='RATE_LIMITED'; END IF;\n IF p_path='/v1/me/notifications' THEN\n  IF p_method='PATCH' THEN\n   IF p_body-ARRAY['sms_updates','email_updates','push_updates','expected_revision']<>'{}'\n    OR jsonb_typeof(p_body->'expected_revision') IS DISTINCT FROM 'number'\n    OR EXISTS(SELECT 1 FROM jsonb_each(p_body) f WHERE f.key<>'expected_revision' AND jsonb_typeof(f.value)<>'boolean') THEN RAISE SQLSTATE 'PT422' USING MESSAGE='VALIDATION_ERROR'; END IF;\n   UPDATE public.notification_preferences SET sms_updates=coalesce((p_body->>'sms_updates')::boolean,sms_updates),email_updates=coalesce((p_body->>'email_updates')::boolean,email_updates),push_updates=coalesce((p_body->>'push_updates')::boolean,push_updates),revision=revision+1,updated_at=now()\n    WHERE profile_id=subject_id AND revision=(p_body->>'expected_revision')::integer RETURNING to_jsonb(notification_preferences) INTO result;\n   IF result IS NULL THEN RAISE SQLSTATE 'PT409' USING MESSAGE='REVISION_CONFLICT'; END IF;\n   RETURN result;\n  ELSIF p_method='GET' THEN RETURN (SELECT to_jsonb(n) FROM public.notification_preferences n WHERE profile_id=subject_id); END IF;\n ELSIF p_path='/v1/me/consents' AND p_method='GET' THEN\n  RETURN coalesce((SELECT jsonb_agg(to_jsonb(e)) FROM\n   (SELECT DISTINCT ON (p.purpose) p.purpose,c.policy_id,c.action,c.created_at FROM public.consent_event c JOIN public.policy_document p ON p.id=c.policy_id WHERE c.user_id=uid ORDER BY p.purpose,c.sequence DESC) e),'[]'::jsonb);\n ELSIF p_path='/v1/me/devices' AND p_method='GET' THEN\n  RETURN coalesce((SELECT jsonb_agg(to_jsonb(d)) FROM public.device_auth_preferences d WHERE d.profile_id=subject_id),'[]'::jsonb);\n ELSIF p_path LIKE '/v1/me/devices/%' THEN\n  IF p_path !~ '^/v1/me/devices/[a-fA-F0-9-]{36}$' THEN RAISE SQLSTATE 'PT404' USING MESSAGE='NOT_FOUND'; END IF;\n  BEGIN did:=split_part(p_path,'/',5)::uuid; EXCEPTION WHEN invalid_text_representation THEN RAISE SQLSTATE 'PT422' USING MESSAGE='VALIDATION_ERROR'; END;\n  IF did IS NULL THEN RAISE SQLSTATE 'PT422' USING MESSAGE='VALIDATION_ERROR'; END IF;\n  IF p_method='PUT' THEN\n   IF p_body-ARRAY['platform','biometric_enabled']<>'{}' OR p_body->>'platform' NOT IN ('ios','android') OR jsonb_typeof(p_body->'platform') IS DISTINCT FROM 'string' OR jsonb_typeof(p_body->'biometric_enabled') IS DISTINCT FROM 'boolean' THEN RAISE SQLSTATE 'PT422' USING MESSAGE='VALIDATION_ERROR'; END IF;\n   INSERT INTO public.device_auth_preferences(profile_id,device_id,platform,biometric_enabled) VALUES(subject_id,did,p_body->>'platform',(p_body->>'biometric_enabled')::boolean)\n   ON CONFLICT(profile_id,device_id) DO UPDATE SET platform=excluded.platform,biometric_enabled=excluded.biometric_enabled,updated_at=now() RETURNING to_jsonb(device_auth_preferences) INTO result;\n   RETURN result;\n  ELSIF p_method='DELETE' THEN DELETE FROM public.device_auth_preferences WHERE profile_id=subject_id AND device_id=did; RETURN 'null'::jsonb; END IF;\n END IF;\n RAISE SQLSTATE 'PT405' USING MESSAGE='METHOD_NOT_ALLOWED';\nEND $function$\n"
+      }
+    ],
+    "revisions": [
+      "0013_passwordless_accounts"
+    ],
+    "constraints": [],
+    "public_tables": [
+      "account_eligibility",
+      "alembic_version",
+      "api_request_counters",
+      "app_user",
+      "audit_event",
+      "catalog_ai_job",
+      "catalog_approval",
+      "catalog_listing",
+      "catalog_media",
+      "catalog_projection",
+      "catalog_revision",
+      "consent_event",
+      "credit_account",
+      "credit_journal",
+      "credit_posting",
+      "credit_reservation",
+      "device_auth_preferences",
+      "idempotency_record",
+      "look",
+      "look_revision",
+      "market_policy_version",
+      "merchant_profiles",
+      "notification_preferences",
+      "organization_members",
+      "organizations",
+      "outbox_event",
+      "personal_routine",
+      "policy_document",
+      "product_categories",
+      "product_variants",
+      "products",
+      "professional_profiles",
+      "profiles",
+      "saved_requirement",
+      "staff_grant",
+      "style_passports",
+      "user_preferences",
+      "workspace_capability",
+      "workspace_draft",
+      "workspace_invitation",
+      "workspace_role"
+    ],
+    "storage_policy": null
+  },
+  "recovery_point": {
+    "id": 2218686776,
+    "inserted_at": "2026-11-10T02:07:39.186Z",
+    "status": "COMPLETED",
+    "is_physical_backup": true
+  },
+  "status": "VERIFIED",
+  "after": {
+    "bucket": {
+      "id": "glam-private-media",
+      "name": "glam-private-media",
+      "public": false,
+      "file_size_limit": 10485760,
+      "allowed_mime_types": [
+        "image/png"
+      ]
+    },
+    "tables": [
+      {
+        "rls": true,
+        "name": "creator_private.social_credentials",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": false
+      },
+      {
+        "rls": true,
+        "name": "public.analysis_correction",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": false
+      },
+      {
+        "rls": true,
+        "name": "public.analysis_job",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": false
+      },
+      {
+        "rls": true,
+        "name": "public.connected_social_accounts",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.creator_attribution_events",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.creator_campaign_applications",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.creator_campaign_briefs",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.creator_campaign_deliverables",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.creator_collection_items",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.creator_collections",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.creator_commission_agreements",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.creator_earnings",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.creator_payout_eligibility",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.creator_profiles",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.creator_referrals",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.creator_social_sync_logs",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.private_media",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": false
+      },
+      {
+        "rls": true,
+        "name": "public.social_media_items",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "name": "public.style_passport_analysis",
+        "anon_write": false,
+        "anon_select": false,
+        "authenticated_write": false,
+        "authenticated_select": false
+      }
+    ],
+    "columns": [
+      {
+        "type": "uuid",
+        "table": "creator_private.social_credentials",
+        "column": "connection_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "creator_private.social_credentials",
+        "column": "creator_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "creator_private.social_credentials",
+        "column": "key_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "bytea",
+        "table": "creator_private.social_credentials",
+        "column": "encrypted_envelope",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "creator_private.social_credentials",
+        "column": "updated_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.analysis_correction",
+        "column": "id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.analysis_correction",
+        "column": "job_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.analysis_correction",
+        "column": "owner_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "public.analysis_correction",
+        "column": "revision",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.analysis_correction",
+        "column": "request_key",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.analysis_correction",
+        "column": "request_hash",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "jsonb",
+        "table": "public.analysis_correction",
+        "column": "corrections",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.analysis_correction",
+        "column": "created_at",
+        "default": "clock_timestamp()",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.analysis_correction",
+        "column": "redacted_at",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "public.analysis_job",
+        "column": "id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.analysis_job",
+        "column": "owner_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.analysis_job",
+        "column": "media_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.analysis_job",
+        "column": "request_key",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.analysis_job",
+        "column": "request_hash",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.analysis_job",
+        "column": "policy_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "int8",
+        "table": "public.analysis_job",
+        "column": "consent_sequence",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.analysis_job",
+        "column": "session_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "jsonb",
+        "table": "public.analysis_job",
+        "column": "goals",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.analysis_job",
+        "column": "model",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.analysis_job",
+        "column": "state",
+        "default": "'queued'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.analysis_job",
+        "column": "created_at",
+        "default": "clock_timestamp()",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.analysis_job",
+        "column": "expires_at",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.analysis_job",
+        "column": "attempt_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.analysis_job",
+        "column": "attempted_at",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.analysis_job",
+        "column": "finished_at",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "jsonb",
+        "table": "public.analysis_job",
+        "column": "result",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "public.analysis_job",
+        "column": "error_code",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "public.connected_social_accounts",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.connected_social_accounts",
+        "column": "creator_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.connected_social_accounts",
+        "column": "provider",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.connected_social_accounts",
+        "column": "provider_account_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "public.connected_social_accounts",
+        "column": "display_name",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.connected_social_accounts",
+        "column": "profile_url",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.connected_social_accounts",
+        "column": "status",
+        "default": "'manual_unverified'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "_text",
+        "table": "public.connected_social_accounts",
+        "column": "authorized_scopes",
+        "default": "'{}'::text[]",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.connected_social_accounts",
+        "column": "token_expires_at",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.connected_social_accounts",
+        "column": "last_sync_at",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "public.connected_social_accounts",
+        "column": "error_code",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "int4",
+        "table": "public.connected_social_accounts",
+        "column": "revision",
+        "default": "1",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.connected_social_accounts",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.connected_social_accounts",
+        "column": "updated_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_attribution_events",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_attribution_events",
+        "column": "referral_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_attribution_events",
+        "column": "source_event_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_attribution_events",
+        "column": "event_kind",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_attribution_events",
+        "column": "verification_status",
+        "default": "'pending'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.creator_attribution_events",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_campaign_applications",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_campaign_applications",
+        "column": "campaign_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_campaign_applications",
+        "column": "creator_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_campaign_applications",
+        "column": "pitch",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_campaign_applications",
+        "column": "status",
+        "default": "'submitted'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.creator_campaign_applications",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_campaign_briefs",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_campaign_briefs",
+        "column": "organization_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_campaign_briefs",
+        "column": "title",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_campaign_briefs",
+        "column": "deliverables",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_campaign_briefs",
+        "column": "eligibility",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_campaign_briefs",
+        "column": "compensation_terms",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_campaign_briefs",
+        "column": "disclosure",
+        "default": "'Sponsored'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_campaign_briefs",
+        "column": "status",
+        "default": "'draft'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "public.creator_campaign_briefs",
+        "column": "revision",
+        "default": "1",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.creator_campaign_briefs",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_campaign_deliverables",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_campaign_deliverables",
+        "column": "application_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_campaign_deliverables",
+        "column": "creator_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_campaign_deliverables",
+        "column": "title",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_campaign_deliverables",
+        "column": "content_url",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_campaign_deliverables",
+        "column": "status",
+        "default": "'submitted'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.creator_campaign_deliverables",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_collection_items",
+        "column": "collection_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_collection_items",
+        "column": "product_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "public.creator_collection_items",
+        "column": "position",
+        "default": "0",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_collections",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_collections",
+        "column": "creator_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_collections",
+        "column": "title",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_collections",
+        "column": "description",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_collections",
+        "column": "disclosure",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "bool",
+        "table": "public.creator_collections",
+        "column": "sponsored",
+        "default": "false",
+        "nullable": "NO"
+      },
+      {
+        "type": "bool",
+        "table": "public.creator_collections",
+        "column": "rights_confirmed",
+        "default": "false",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_collections",
+        "column": "status",
+        "default": "'draft'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "public.creator_collections",
+        "column": "revision",
+        "default": "1",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.creator_collections",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_commission_agreements",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_commission_agreements",
+        "column": "creator_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_commission_agreements",
+        "column": "organization_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "public.creator_commission_agreements",
+        "column": "rate_bps",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_commission_agreements",
+        "column": "funded_by",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_commission_agreements",
+        "column": "basis",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_commission_agreements",
+        "column": "currency",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_commission_agreements",
+        "column": "terms",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_commission_agreements",
+        "column": "status",
+        "default": "'draft'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_commission_agreements",
+        "column": "evidence_reference",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.creator_commission_agreements",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_earnings",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_earnings",
+        "column": "creator_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_earnings",
+        "column": "agreement_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_earnings",
+        "column": "attribution_event_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_earnings",
+        "column": "source_event_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_earnings",
+        "column": "currency",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "int8",
+        "table": "public.creator_earnings",
+        "column": "amount_minor",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_earnings",
+        "column": "event_kind",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.creator_earnings",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_payout_eligibility",
+        "column": "creator_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_payout_eligibility",
+        "column": "status",
+        "default": "'not_verified'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_payout_eligibility",
+        "column": "evidence_reference",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.creator_payout_eligibility",
+        "column": "verified_at",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_profiles",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_profiles",
+        "column": "profile_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_profiles",
+        "column": "organization_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_profiles",
+        "column": "handle",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_profiles",
+        "column": "display_name",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_profiles",
+        "column": "bio",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_profiles",
+        "column": "status",
+        "default": "'draft'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "public.creator_profiles",
+        "column": "revision",
+        "default": "1",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.creator_profiles",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.creator_profiles",
+        "column": "updated_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_referrals",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_referrals",
+        "column": "creator_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_referrals",
+        "column": "collection_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_referrals",
+        "column": "code",
+        "default": "replace((gen_random_uuid())::text, '-'::text, ''::text)",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_referrals",
+        "column": "disclosure",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.creator_referrals",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_social_sync_logs",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.creator_social_sync_logs",
+        "column": "connection_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_social_sync_logs",
+        "column": "status",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.creator_social_sync_logs",
+        "column": "error_code",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "int4",
+        "table": "public.creator_social_sync_logs",
+        "column": "item_count",
+        "default": "0",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.creator_social_sync_logs",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.private_media",
+        "column": "id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.private_media",
+        "column": "owner_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.private_media",
+        "column": "request_key",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.private_media",
+        "column": "request_hash",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "public.private_media",
+        "column": "policy_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "int8",
+        "table": "public.private_media",
+        "column": "consent_sequence",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.private_media",
+        "column": "object_key",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.private_media",
+        "column": "state",
+        "default": "'pending'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.private_media",
+        "column": "input_mime",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "public.private_media",
+        "column": "input_size",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "public.private_media",
+        "column": "input_sha256",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "int4",
+        "table": "public.private_media",
+        "column": "stored_size",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "public.private_media",
+        "column": "stored_sha256",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "int4",
+        "table": "public.private_media",
+        "column": "width",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "int4",
+        "table": "public.private_media",
+        "column": "height",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.private_media",
+        "column": "created_at",
+        "default": "clock_timestamp()",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.private_media",
+        "column": "expires_at",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.private_media",
+        "column": "deletion_requested_at",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.private_media",
+        "column": "deleted_at",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "int4",
+        "table": "public.private_media",
+        "column": "purge_attempts",
+        "default": "0",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.private_media",
+        "column": "next_purge_at",
+        "default": "clock_timestamp()",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.private_media",
+        "column": "last_error_code",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "public.social_media_items",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.social_media_items",
+        "column": "creator_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.social_media_items",
+        "column": "connection_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "public.social_media_items",
+        "column": "provider",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.social_media_items",
+        "column": "source_url",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.social_media_items",
+        "column": "title",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.social_media_items",
+        "column": "description",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "bool",
+        "table": "public.social_media_items",
+        "column": "rights_confirmed",
+        "default": "false",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.social_media_items",
+        "column": "source",
+        "default": "'creator_submitted'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "public.social_media_items",
+        "column": "publication_status",
+        "default": "'draft'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.social_media_items",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.style_passport_analysis",
+        "column": "passport_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.style_passport_analysis",
+        "column": "owner_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "public.style_passport_analysis",
+        "column": "job_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "public.style_passport_analysis",
+        "column": "correction_revision",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "public.style_passport_analysis",
+        "column": "selected_at",
+        "default": "clock_timestamp()",
+        "nullable": "NO"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "social_credentials_pkey",
+        "table": "creator_private.social_credentials",
+        "definition": "CREATE UNIQUE INDEX social_credentials_pkey ON creator_private.social_credentials USING btree (connection_id)"
+      },
+      {
+        "name": "analysis_correction_job_id_revision_key",
+        "table": "public.analysis_correction",
+        "definition": "CREATE UNIQUE INDEX analysis_correction_job_id_revision_key ON public.analysis_correction USING btree (job_id, revision)"
+      },
+      {
+        "name": "analysis_correction_owner",
+        "table": "public.analysis_correction",
+        "definition": "CREATE INDEX analysis_correction_owner ON public.analysis_correction USING btree (owner_id, job_id, revision DESC)"
+      },
+      {
+        "name": "analysis_correction_owner_id_request_key_key",
+        "table": "public.analysis_correction",
+        "definition": "CREATE UNIQUE INDEX analysis_correction_owner_id_request_key_key ON public.analysis_correction USING btree (owner_id, request_key)"
+      },
+      {
+        "name": "analysis_correction_pkey",
+        "table": "public.analysis_correction",
+        "definition": "CREATE UNIQUE INDEX analysis_correction_pkey ON public.analysis_correction USING btree (id)"
+      },
+      {
+        "name": "analysis_job_expiry",
+        "table": "public.analysis_job",
+        "definition": "CREATE INDEX analysis_job_expiry ON public.analysis_job USING btree (expires_at, owner_id) WHERE (state <> 'expired'::text)"
+      },
+      {
+        "name": "analysis_job_id_owner_for_passport",
+        "table": "public.analysis_job",
+        "definition": "CREATE UNIQUE INDEX analysis_job_id_owner_for_passport ON public.analysis_job USING btree (id, owner_id)"
+      },
+      {
+        "name": "analysis_job_owner",
+        "table": "public.analysis_job",
+        "definition": "CREATE INDEX analysis_job_owner ON public.analysis_job USING btree (owner_id, created_at DESC, id)"
+      },
+      {
+        "name": "analysis_job_owner_id_request_key_key",
+        "table": "public.analysis_job",
+        "definition": "CREATE UNIQUE INDEX analysis_job_owner_id_request_key_key ON public.analysis_job USING btree (owner_id, request_key)"
+      },
+      {
+        "name": "analysis_job_pending",
+        "table": "public.analysis_job",
+        "definition": "CREATE INDEX analysis_job_pending ON public.analysis_job USING btree (created_at, id) WHERE (state = 'queued'::text)"
+      },
+      {
+        "name": "analysis_job_pkey",
+        "table": "public.analysis_job",
+        "definition": "CREATE UNIQUE INDEX analysis_job_pkey ON public.analysis_job USING btree (id)"
+      },
+      {
+        "name": "connected_social_accounts_creator_id_provider_key",
+        "table": "public.connected_social_accounts",
+        "definition": "CREATE UNIQUE INDEX connected_social_accounts_creator_id_provider_key ON public.connected_social_accounts USING btree (creator_id, provider)"
+      },
+      {
+        "name": "connected_social_accounts_id_creator_id_key",
+        "table": "public.connected_social_accounts",
+        "definition": "CREATE UNIQUE INDEX connected_social_accounts_id_creator_id_key ON public.connected_social_accounts USING btree (id, creator_id)"
+      },
+      {
+        "name": "connected_social_accounts_pkey",
+        "table": "public.connected_social_accounts",
+        "definition": "CREATE UNIQUE INDEX connected_social_accounts_pkey ON public.connected_social_accounts USING btree (id)"
+      },
+      {
+        "name": "creator_attribution_events_pkey",
+        "table": "public.creator_attribution_events",
+        "definition": "CREATE UNIQUE INDEX creator_attribution_events_pkey ON public.creator_attribution_events USING btree (id)"
+      },
+      {
+        "name": "creator_attribution_events_source_event_id_key",
+        "table": "public.creator_attribution_events",
+        "definition": "CREATE UNIQUE INDEX creator_attribution_events_source_event_id_key ON public.creator_attribution_events USING btree (source_event_id)"
+      },
+      {
+        "name": "creator_campaign_applications_campaign_id_creator_id_key",
+        "table": "public.creator_campaign_applications",
+        "definition": "CREATE UNIQUE INDEX creator_campaign_applications_campaign_id_creator_id_key ON public.creator_campaign_applications USING btree (campaign_id, creator_id)"
+      },
+      {
+        "name": "creator_campaign_applications_id_creator_id_key",
+        "table": "public.creator_campaign_applications",
+        "definition": "CREATE UNIQUE INDEX creator_campaign_applications_id_creator_id_key ON public.creator_campaign_applications USING btree (id, creator_id)"
+      },
+      {
+        "name": "creator_campaign_applications_pkey",
+        "table": "public.creator_campaign_applications",
+        "definition": "CREATE UNIQUE INDEX creator_campaign_applications_pkey ON public.creator_campaign_applications USING btree (id)"
+      },
+      {
+        "name": "creator_campaign_briefs_id_organization_id_key",
+        "table": "public.creator_campaign_briefs",
+        "definition": "CREATE UNIQUE INDEX creator_campaign_briefs_id_organization_id_key ON public.creator_campaign_briefs USING btree (id, organization_id)"
+      },
+      {
+        "name": "creator_campaign_briefs_pkey",
+        "table": "public.creator_campaign_briefs",
+        "definition": "CREATE UNIQUE INDEX creator_campaign_briefs_pkey ON public.creator_campaign_briefs USING btree (id)"
+      },
+      {
+        "name": "creator_campaign_org",
+        "table": "public.creator_campaign_briefs",
+        "definition": "CREATE INDEX creator_campaign_org ON public.creator_campaign_briefs USING btree (organization_id)"
+      },
+      {
+        "name": "creator_campaign_deliverables_pkey",
+        "table": "public.creator_campaign_deliverables",
+        "definition": "CREATE UNIQUE INDEX creator_campaign_deliverables_pkey ON public.creator_campaign_deliverables USING btree (id)"
+      },
+      {
+        "name": "creator_collection_items_pkey",
+        "table": "public.creator_collection_items",
+        "definition": "CREATE UNIQUE INDEX creator_collection_items_pkey ON public.creator_collection_items USING btree (collection_id, product_id)"
+      },
+      {
+        "name": "creator_collections_id_creator_id_key",
+        "table": "public.creator_collections",
+        "definition": "CREATE UNIQUE INDEX creator_collections_id_creator_id_key ON public.creator_collections USING btree (id, creator_id)"
+      },
+      {
+        "name": "creator_collections_pkey",
+        "table": "public.creator_collections",
+        "definition": "CREATE UNIQUE INDEX creator_collections_pkey ON public.creator_collections USING btree (id)"
+      },
+      {
+        "name": "creator_commission_agreements_id_creator_id_key",
+        "table": "public.creator_commission_agreements",
+        "definition": "CREATE UNIQUE INDEX creator_commission_agreements_id_creator_id_key ON public.creator_commission_agreements USING btree (id, creator_id)"
+      },
+      {
+        "name": "creator_commission_agreements_pkey",
+        "table": "public.creator_commission_agreements",
+        "definition": "CREATE UNIQUE INDEX creator_commission_agreements_pkey ON public.creator_commission_agreements USING btree (id)"
+      },
+      {
+        "name": "creator_earnings_pkey",
+        "table": "public.creator_earnings",
+        "definition": "CREATE UNIQUE INDEX creator_earnings_pkey ON public.creator_earnings USING btree (id)"
+      },
+      {
+        "name": "creator_earnings_source_event_id_key",
+        "table": "public.creator_earnings",
+        "definition": "CREATE UNIQUE INDEX creator_earnings_source_event_id_key ON public.creator_earnings USING btree (source_event_id)"
+      },
+      {
+        "name": "creator_payout_eligibility_pkey",
+        "table": "public.creator_payout_eligibility",
+        "definition": "CREATE UNIQUE INDEX creator_payout_eligibility_pkey ON public.creator_payout_eligibility USING btree (creator_id)"
+      },
+      {
+        "name": "creator_profiles_handle_key",
+        "table": "public.creator_profiles",
+        "definition": "CREATE UNIQUE INDEX creator_profiles_handle_key ON public.creator_profiles USING btree (handle)"
+      },
+      {
+        "name": "creator_profiles_org",
+        "table": "public.creator_profiles",
+        "definition": "CREATE INDEX creator_profiles_org ON public.creator_profiles USING btree (organization_id)"
+      },
+      {
+        "name": "creator_profiles_pkey",
+        "table": "public.creator_profiles",
+        "definition": "CREATE UNIQUE INDEX creator_profiles_pkey ON public.creator_profiles USING btree (id)"
+      },
+      {
+        "name": "creator_profiles_profile_id_key",
+        "table": "public.creator_profiles",
+        "definition": "CREATE UNIQUE INDEX creator_profiles_profile_id_key ON public.creator_profiles USING btree (profile_id)"
+      },
+      {
+        "name": "creator_referrals_code_key",
+        "table": "public.creator_referrals",
+        "definition": "CREATE UNIQUE INDEX creator_referrals_code_key ON public.creator_referrals USING btree (code)"
+      },
+      {
+        "name": "creator_referrals_creator_id_collection_id_key",
+        "table": "public.creator_referrals",
+        "definition": "CREATE UNIQUE INDEX creator_referrals_creator_id_collection_id_key ON public.creator_referrals USING btree (creator_id, collection_id)"
+      },
+      {
+        "name": "creator_referrals_pkey",
+        "table": "public.creator_referrals",
+        "definition": "CREATE UNIQUE INDEX creator_referrals_pkey ON public.creator_referrals USING btree (id)"
+      },
+      {
+        "name": "creator_social_sync_logs_pkey",
+        "table": "public.creator_social_sync_logs",
+        "definition": "CREATE UNIQUE INDEX creator_social_sync_logs_pkey ON public.creator_social_sync_logs USING btree (id)"
+      },
+      {
+        "name": "private_media_expiry",
+        "table": "public.private_media",
+        "definition": "CREATE INDEX private_media_expiry ON public.private_media USING btree (expires_at, owner_id) WHERE (state <> 'deleted'::text)"
+      },
+      {
+        "name": "private_media_id_owner_for_analysis",
+        "table": "public.private_media",
+        "definition": "CREATE UNIQUE INDEX private_media_id_owner_for_analysis ON public.private_media USING btree (id, owner_id)"
+      },
+      {
+        "name": "private_media_object_key_key",
+        "table": "public.private_media",
+        "definition": "CREATE UNIQUE INDEX private_media_object_key_key ON public.private_media USING btree (object_key)"
+      },
+      {
+        "name": "private_media_owner",
+        "table": "public.private_media",
+        "definition": "CREATE INDEX private_media_owner ON public.private_media USING btree (owner_id, created_at DESC, id)"
+      },
+      {
+        "name": "private_media_owner_id_request_key_key",
+        "table": "public.private_media",
+        "definition": "CREATE UNIQUE INDEX private_media_owner_id_request_key_key ON public.private_media USING btree (owner_id, request_key)"
+      },
+      {
+        "name": "private_media_pkey",
+        "table": "public.private_media",
+        "definition": "CREATE UNIQUE INDEX private_media_pkey ON public.private_media USING btree (id)"
+      },
+      {
+        "name": "social_media_items_creator_id_source_url_key",
+        "table": "public.social_media_items",
+        "definition": "CREATE UNIQUE INDEX social_media_items_creator_id_source_url_key ON public.social_media_items USING btree (creator_id, source_url)"
+      },
+      {
+        "name": "social_media_items_id_creator_id_key",
+        "table": "public.social_media_items",
+        "definition": "CREATE UNIQUE INDEX social_media_items_id_creator_id_key ON public.social_media_items USING btree (id, creator_id)"
+      },
+      {
+        "name": "social_media_items_pkey",
+        "table": "public.social_media_items",
+        "definition": "CREATE UNIQUE INDEX social_media_items_pkey ON public.social_media_items USING btree (id)"
+      },
+      {
+        "name": "style_passport_analysis_job",
+        "table": "public.style_passport_analysis",
+        "definition": "CREATE INDEX style_passport_analysis_job ON public.style_passport_analysis USING btree (job_id, owner_id)"
+      },
+      {
+        "name": "style_passport_analysis_pkey",
+        "table": "public.style_passport_analysis",
+        "definition": "CREATE UNIQUE INDEX style_passport_analysis_pkey ON public.style_passport_analysis USING btree (passport_id)"
+      }
+    ],
+    "policies": [
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_connections_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.connected_social_accounts",
+        "using": "glam_private.creator_access(creator_id)"
+      },
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_events_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.creator_attribution_events",
+        "using": "(EXISTS ( SELECT 1\n   FROM creator_referrals r\n  WHERE ((r.id = creator_attribution_events.referral_id) AND glam_private.creator_access(r.creator_id))))"
+      },
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_applications_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.creator_campaign_applications",
+        "using": "(glam_private.creator_access(creator_id) OR (EXISTS ( SELECT 1\n   FROM creator_campaign_briefs b\n  WHERE ((b.id = creator_campaign_applications.campaign_id) AND glam_private.is_org_member(b.organization_id)))))"
+      },
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_campaign_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.creator_campaign_briefs",
+        "using": "glam_private.is_org_member(organization_id)"
+      },
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_deliverables_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.creator_campaign_deliverables",
+        "using": "glam_private.creator_access(creator_id)"
+      },
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_items_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.creator_collection_items",
+        "using": "(EXISTS ( SELECT 1\n   FROM creator_collections c\n  WHERE ((c.id = creator_collection_items.collection_id) AND glam_private.creator_access(c.creator_id))))"
+      },
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_collections_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.creator_collections",
+        "using": "glam_private.creator_access(creator_id)"
+      },
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_agreements_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.creator_commission_agreements",
+        "using": "(glam_private.creator_access(creator_id) OR glam_private.is_org_member(organization_id))"
+      },
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_earnings_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.creator_earnings",
+        "using": "glam_private.creator_access(creator_id)"
+      },
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_payout_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.creator_payout_eligibility",
+        "using": "glam_private.creator_access(creator_id)"
+      },
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_profile_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.creator_profiles",
+        "using": "glam_private.creator_access(id)"
+      },
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_referrals_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.creator_referrals",
+        "using": "glam_private.creator_access(creator_id)"
+      },
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_sync_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.creator_social_sync_logs",
+        "using": "(EXISTS ( SELECT 1\n   FROM connected_social_accounts a\n  WHERE ((a.id = creator_social_sync_logs.connection_id) AND glam_private.creator_access(a.creator_id))))"
+      },
+      {
+        "cmd": "SELECT",
+        "kind": "PERMISSIVE",
+        "name": "creator_media_scope",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "public.social_media_items",
+        "using": "glam_private.creator_access(creator_id)"
+      }
+    ],
+    "triggers": [
+      {
+        "name": "analysis_correction_immutable",
+        "table": "analysis_correction",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER analysis_correction_immutable BEFORE DELETE OR UPDATE ON public.analysis_correction FOR EACH ROW EXECUTE FUNCTION guard_analysis_correction()"
+      },
+      {
+        "name": "creator_events_immutable",
+        "table": "creator_attribution_events",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER creator_events_immutable BEFORE DELETE OR UPDATE ON public.creator_attribution_events FOR EACH ROW EXECUTE FUNCTION glam_private.creator_append_only()"
+      },
+      {
+        "name": "creator_earnings_immutable",
+        "table": "creator_earnings",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER creator_earnings_immutable BEFORE DELETE OR UPDATE ON public.creator_earnings FOR EACH ROW EXECUTE FUNCTION glam_private.creator_append_only()"
+      },
+      {
+        "name": "analysis_passport_owner",
+        "table": "style_passport_analysis",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER analysis_passport_owner BEFORE INSERT OR UPDATE ON public.style_passport_analysis FOR EACH ROW EXECUTE FUNCTION guard_analysis_passport_owner()"
+      }
+    ],
+    "functions": [
+      {
+        "name": "creator_access",
+        "schema": "glam_private",
+        "definition": "CREATE OR REPLACE FUNCTION glam_private.creator_access(cid uuid, writing boolean DEFAULT false)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\n SELECT EXISTS(SELECT 1 FROM public.creator_profiles p\n WHERE p.id=cid AND glam_private.active_profile_id() IS NOT NULL AND\n ((p.organization_id IS NULL AND p.profile_id=glam_private.active_profile_id()) OR\n  (p.organization_id IS NOT NULL AND EXISTS(\n   SELECT 1 FROM public.organization_members m\n   JOIN public.organizations o ON o.id=m.organization_id\n   JOIN public.workspace_capability c ON c.organization_id=o.id\n   WHERE o.id=p.organization_id AND m.user_id=glam_private.current_app_user_id()\n   AND m.active AND NOT o.suspended AND c.workspace='creator' AND c.status='verified' AND c.expires_at>now()\n   AND EXISTS(SELECT 1 FROM public.account_eligibility e WHERE e.user_id=m.user_id AND e.age_band='eligible_adult' AND e.expires_at>now())\n   AND (m.role='owner' OR EXISTS(SELECT 1 FROM public.workspace_role r WHERE r.organization_id=o.id AND r.user_id=m.user_id AND r.workspace='creator'\n     AND (NOT writing OR r.role IN ('admin','creator'))))))))\n$function$\n"
+      },
+      {
+        "name": "creator_append_only",
+        "schema": "glam_private",
+        "definition": "CREATE OR REPLACE FUNCTION glam_private.creator_append_only()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO ''\nAS $function$\nBEGIN RAISE EXCEPTION 'CREATOR_EVIDENCE_APPEND_ONLY'; END $function$\n"
+      },
+      {
+        "name": "creator_url",
+        "schema": "glam_private",
+        "definition": "CREATE OR REPLACE FUNCTION glam_private.creator_url(provider text, url text, media boolean DEFAULT false)\n RETURNS boolean\n LANGUAGE plpgsql\n IMMUTABLE\n SET search_path TO ''\nAS $function$\nBEGIN\n IF length(url)>2048 OR url ~ '[[:space:]\\\\]' OR url !~ '^https://' THEN RETURN false; END IF;\n CASE provider\n WHEN 'tiktok' THEN RETURN url ~* ('^https://(www\\.)?tiktok\\.com/@[A-Za-z0-9_.]+'||(CASE WHEN media THEN '/video/[0-9]+/?$' ELSE '/?$' END));\n WHEN 'instagram' THEN RETURN CASE WHEN media THEN url ~* '^https://(www\\.)?instagram\\.com/(p|reel)/[A-Za-z0-9_-]+/?$' ELSE url ~* '^https://(www\\.)?instagram\\.com/[A-Za-z0-9_.]+/?$' AND url !~* '/(accounts|direct|explore|p|reel)/?$' END;\n WHEN 'youtube' THEN RETURN CASE WHEN media THEN url ~* '^https://(www\\.)?youtube\\.com/watch\\?v=[A-Za-z0-9_-]{11}$' OR url ~* '^https://youtu\\.be/[A-Za-z0-9_-]{11}$' ELSE url ~* '^https://(www\\.)?youtube\\.com/(@[^/?#]+|channel/[A-Za-z0-9_-]+)/?$' END;\n WHEN 'pinterest' THEN RETURN url ~* ('^https://(www\\.)?pinterest\\.com/'||(CASE WHEN media THEN 'pin/[0-9]+/?$' ELSE '[A-Za-z0-9_]+/?$' END));\n WHEN 'facebook' THEN RETURN CASE WHEN media THEN url ~* '^https://(www\\.)?facebook\\.com/[A-Za-z0-9_.-]+/(videos|posts)/[A-Za-z0-9]+/?$' ELSE url ~* '^https://(www\\.)?facebook\\.com/([A-Za-z0-9_.-]+/?|profile\\.php\\?id=[0-9]+)$' AND url !~* '/(login|logout|dialog|share|sharer)(/|\\?|$)' END;\n ELSE RETURN false; END CASE;\nEND $function$\n"
+      },
+      {
+        "name": "glam_api_v1",
+        "schema": "public",
+        "definition": "CREATE OR REPLACE FUNCTION public.glam_api_v1(p_method text, p_path text, p_body jsonb DEFAULT '{}'::jsonb, p_key text DEFAULT NULL::text)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\nDECLARE uid uuid;actor uuid;cid uuid;rid uuid;rowid uuid;result jsonb;profile_row public.creator_profiles;\nBEGIN\n IF p_path NOT LIKE '/v1/me/creator%' THEN\n  RETURN glam_private.glam_account_api_v1(p_method,p_path,p_body,p_key);\n END IF;\n IF p_body IS NULL OR jsonb_typeof(p_body)<>'object' OR octet_length(p_body::text)>32768 THEN RAISE SQLSTATE 'PT422' USING MESSAGE='VALIDATION_ERROR'; END IF;\n uid:=glam_private.bootstrap_identity();actor:=auth.uid();\n IF NOT (public.glam_api_gate()->>'allowed')::boolean THEN RAISE SQLSTATE 'PT429' USING MESSAGE='RATE_LIMITED'; END IF;\n IF p_method<>'GET' AND NOT EXISTS(SELECT 1 FROM public.account_eligibility e WHERE e.user_id=uid AND e.age_band='eligible_adult' AND e.expires_at>now()) THEN RAISE SQLSTATE 'PT403' USING MESSAGE='CREATOR_ADULT_ELIGIBILITY_REQUIRED'; END IF;\n IF p_path='/v1/me/creator' AND p_method='GET' THEN\n  SELECT * INTO profile_row FROM public.creator_profiles WHERE profile_id=actor;\n  IF NOT FOUND THEN RETURN jsonb_build_object('profile',NULL,'connections','[]'::jsonb,'media','[]'::jsonb,'collections','[]'::jsonb,'applications','[]'::jsonb,'agreements','[]'::jsonb,'earnings','[]'::jsonb,'referrals','[]'::jsonb,'payout_eligibility','not_verified','oauth_available',false,'posting_available',false,'payouts_available',false); END IF;\n  cid:=profile_row.id;\n  RETURN jsonb_build_object('profile',to_jsonb(profile_row),\n   'connections',coalesce((SELECT jsonb_agg(to_jsonb(a) ORDER BY a.provider) FROM public.connected_social_accounts a WHERE creator_id=cid),'[]'::jsonb),\n   'media',coalesce((SELECT jsonb_agg(to_jsonb(m) ORDER BY created_at DESC) FROM public.social_media_items m WHERE creator_id=cid),'[]'::jsonb),\n   'collections',coalesce((SELECT jsonb_agg(to_jsonb(c) ORDER BY created_at DESC) FROM public.creator_collections c WHERE creator_id=cid),'[]'::jsonb),\n   'applications',coalesce((SELECT jsonb_agg(to_jsonb(a) ORDER BY created_at DESC) FROM public.creator_campaign_applications a WHERE creator_id=cid),'[]'::jsonb),\n   'agreements',coalesce((SELECT jsonb_agg(to_jsonb(a)) FROM public.creator_commission_agreements a WHERE creator_id=cid),'[]'::jsonb),\n   'earnings',coalesce((SELECT jsonb_agg(to_jsonb(e) ORDER BY created_at DESC) FROM public.creator_earnings e WHERE creator_id=cid),'[]'::jsonb),\n   'referrals',coalesce((SELECT jsonb_agg(to_jsonb(r)) FROM public.creator_referrals r WHERE creator_id=cid),'[]'::jsonb),\n   'payout_eligibility',coalesce((SELECT status FROM public.creator_payout_eligibility WHERE creator_id=cid),'not_verified'),\n   'oauth_available',false,'posting_available',false,'payouts_available',false);\n ELSIF p_path='/v1/me/creator/profile' AND p_method IN ('POST','PATCH') THEN\n  IF p_body-ARRAY['handle','display_name','bio','expected_revision']<>'{}' THEN RAISE SQLSTATE 'PT422' USING MESSAGE='UNEXPECTED_PROFILE_FIELD'; END IF;\n  SELECT * INTO profile_row FROM public.creator_profiles WHERE profile_id=actor FOR UPDATE;\n  IF FOUND THEN\n   IF p_method='POST' THEN RAISE SQLSTATE 'PT409' USING MESSAGE='CREATOR_PROFILE_EXISTS'; END IF;\n   IF (p_body->>'expected_revision')::integer IS DISTINCT FROM profile_row.revision THEN RAISE SQLSTATE 'PT409' USING MESSAGE='REVISION_CONFLICT'; END IF;\n   UPDATE public.creator_profiles SET handle=coalesce(p_body->>'handle',handle),display_name=coalesce(p_body->>'display_name',display_name),bio=coalesce(p_body->>'bio',bio),revision=revision+1,updated_at=now() WHERE id=profile_row.id RETURNING to_jsonb(creator_profiles) INTO result;\n  ELSE\n   IF p_method<>'POST' THEN RAISE SQLSTATE 'PT404' USING MESSAGE='CREATOR_NOT_FOUND'; END IF;\n   INSERT INTO public.creator_profiles(profile_id,handle,display_name,bio) VALUES(actor,p_body->>'handle',p_body->>'display_name',coalesce(p_body->>'bio','')) RETURNING to_jsonb(creator_profiles) INTO result;\n   INSERT INTO public.creator_payout_eligibility(creator_id) VALUES((result->>'id')::uuid);\n  END IF;\n  INSERT INTO public.audit_event(id,actor_id,action,resource_id) VALUES(gen_random_uuid(),uid,'creator.profile.saved',(result->>'id')::uuid);\n  RETURN result;\n END IF;\n SELECT id INTO cid FROM public.creator_profiles WHERE profile_id=actor;\n IF cid IS NULL THEN RAISE SQLSTATE 'PT404' USING MESSAGE='CREATOR_NOT_FOUND'; END IF;\n IF p_path='/v1/me/creator/connections' AND p_method='POST' THEN\n  IF p_body-ARRAY['provider','profile_url','display_name']<>'{}' OR NOT coalesce(glam_private.creator_url(p_body->>'provider',p_body->>'profile_url'),false) THEN RAISE SQLSTATE 'PT422' USING MESSAGE='INVALID_SOCIAL_PROFILE'; END IF;\n  -- An actual OAuth connection may not be silently downgraded without revocation.\n  IF EXISTS(SELECT 1 FROM public.connected_social_accounts WHERE creator_id=cid AND provider=p_body->>'provider' AND (status NOT IN ('manual_unverified','revoked') OR EXISTS(SELECT 1 FROM creator_private.social_credentials sc WHERE sc.connection_id=connected_social_accounts.id))) THEN RAISE SQLSTATE 'PT409' USING MESSAGE='DISCONNECT_REQUIRED'; END IF;\n  INSERT INTO public.connected_social_accounts(creator_id,provider,profile_url,display_name)\n   VALUES(cid,p_body->>'provider',p_body->>'profile_url',coalesce(p_body->>'display_name',''))\n   ON CONFLICT(creator_id,provider) DO UPDATE SET profile_url=excluded.profile_url,display_name=excluded.display_name,status='manual_unverified',provider_account_id=NULL,authorized_scopes='{}',token_expires_at=NULL,last_sync_at=NULL,error_code=NULL,revision=public.connected_social_accounts.revision+1,updated_at=now() RETURNING to_jsonb(connected_social_accounts) INTO result;\n  RETURN result;\n ELSIF p_path ~ '^/v1/me/creator/connections/[a-fA-F0-9-]{36}$' AND p_method='DELETE' THEN\n  rowid:=split_part(p_path,'/',6)::uuid;\n  IF EXISTS(SELECT 1 FROM public.connected_social_accounts WHERE id=rowid AND creator_id=cid AND (status NOT IN ('manual_unverified','revoked') OR EXISTS(SELECT 1 FROM creator_private.social_credentials sc WHERE sc.connection_id=connected_social_accounts.id))) THEN RAISE SQLSTATE 'PT409' USING MESSAGE='PROVIDER_REVOCATION_REQUIRED'; END IF;\n  UPDATE public.connected_social_accounts SET status='revoked',authorized_scopes='{}',token_expires_at=NULL,updated_at=now() WHERE id=rowid AND creator_id=cid;\n  IF NOT FOUND THEN RAISE SQLSTATE 'PT404' USING MESSAGE='NOT_FOUND'; END IF;\n  RETURN '{}'::jsonb;\n ELSIF p_path='/v1/me/creator/media' AND p_method='POST' THEN\n  IF p_body-ARRAY['provider','source_url','title','description','rights_confirmed']<>'{}' OR jsonb_typeof(p_body->'rights_confirmed') IS DISTINCT FROM 'boolean' OR NOT coalesce(glam_private.creator_url(p_body->>'provider',p_body->>'source_url',true),false) THEN RAISE SQLSTATE 'PT422' USING MESSAGE='INVALID_CONTENT'; END IF;\n  IF NOT (p_body->>'rights_confirmed')::boolean THEN RAISE SQLSTATE 'PT422' USING MESSAGE='CONTENT_RIGHTS_REQUIRED'; END IF;\n  INSERT INTO public.social_media_items(creator_id,provider,source_url,title,description,rights_confirmed) VALUES(cid,p_body->>'provider',p_body->>'source_url',p_body->>'title',coalesce(p_body->>'description',''),true) RETURNING to_jsonb(social_media_items) INTO result;\n  RETURN result;\n ELSIF p_path='/v1/me/creator/collections' AND p_method='POST' THEN\n  IF p_body-ARRAY['title','description','disclosure','sponsored','rights_confirmed','product_ids']<>'{}' OR jsonb_typeof(p_body->'sponsored') IS DISTINCT FROM 'boolean' OR jsonb_typeof(p_body->'rights_confirmed') IS DISTINCT FROM 'boolean' OR jsonb_typeof(p_body->'product_ids') IS DISTINCT FROM 'array' OR jsonb_array_length(p_body->'product_ids')>100 THEN RAISE SQLSTATE 'PT422' USING MESSAGE='INVALID_COLLECTION'; END IF;\n  IF NOT (p_body->>'rights_confirmed')::boolean THEN RAISE SQLSTATE 'PT422' USING MESSAGE='CONTENT_RIGHTS_REQUIRED'; END IF;\n  INSERT INTO public.creator_collections(creator_id,title,description,disclosure,sponsored,rights_confirmed) VALUES(cid,p_body->>'title',coalesce(p_body->>'description',''),coalesce(p_body->>'disclosure',''),(p_body->>'sponsored')::boolean,(p_body->>'rights_confirmed')::boolean) RETURNING id INTO rid;\n  IF jsonb_array_length(p_body->'product_ids')>0 THEN RAISE SQLSTATE 'PT409' USING MESSAGE='QUALIFIED_CATALOG_SELECTION_REQUIRED'; END IF;\n  RETURN (SELECT to_jsonb(c) FROM public.creator_collections c WHERE id=rid);\n ELSIF p_method='DELETE' AND p_path ~ '^/v1/me/creator/(media|collections)/[a-fA-F0-9-]{36}$' THEN\n  rowid:=split_part(p_path,'/',6)::uuid;\n  IF split_part(p_path,'/',5)='media' THEN\n   DELETE FROM public.social_media_items WHERE id=rowid AND creator_id=cid AND publication_status='draft';\n  ELSE\n   DELETE FROM public.creator_collections WHERE id=rowid AND creator_id=cid AND status='draft';\n  END IF;\n  IF NOT FOUND THEN RAISE SQLSTATE 'PT404' USING MESSAGE='NOT_FOUND'; END IF;\n  RETURN '{}'::jsonb;\n ELSIF p_path='/v1/me/creator/earnings' AND p_method='GET' THEN\n  RETURN jsonb_build_object('entries',coalesce((SELECT jsonb_agg(to_jsonb(e)) FROM public.creator_earnings e WHERE creator_id=cid),'[]'::jsonb),'balance',NULL,'payouts_available',false,'reason','VERIFIED_FINANCIAL_EVENTS_REQUIRED');\n ELSIF p_path LIKE '/v1/me/creator/%/publish' THEN\n  RAISE SQLSTATE 'PT409' USING MESSAGE='PUBLICATION_QUALIFICATION_REQUIRED';\n ELSIF p_path LIKE '/v1/me/creator/%/authorize' OR p_path LIKE '/v1/me/creator/%/sync' THEN\n  RAISE SQLSTATE 'PT503' USING MESSAGE='SOCIAL_PROVIDER_NOT_QUALIFIED';\n END IF;\n RAISE SQLSTATE 'PT501' USING MESSAGE='CREATOR_OPERATION_NOT_IMPLEMENTED';\nEND $function$\n"
+      },
+      {
+        "name": "guard_analysis_correction",
+        "schema": "public",
+        "definition": "CREATE OR REPLACE FUNCTION public.guard_analysis_correction()\n RETURNS trigger\n LANGUAGE plpgsql\nAS $function$\nBEGIN\n  IF TG_OP='UPDATE' AND OLD.redacted_at IS NULL AND NEW.corrections IS NULL\n    AND NEW.redacted_at IS NOT NULL AND\n    (to_jsonb(NEW)-ARRAY['corrections','redacted_at'])=\n    (to_jsonb(OLD)-ARRAY['corrections','redacted_at']) THEN RETURN NEW; END IF;\n  RAISE EXCEPTION 'Correction revisions are immutable except for privacy redaction';\nEND $function$\n"
+      },
+      {
+        "name": "guard_analysis_passport_owner",
+        "schema": "public",
+        "definition": "CREATE OR REPLACE FUNCTION public.guard_analysis_passport_owner()\n RETURNS trigger\n LANGUAGE plpgsql\nAS $function$\nBEGIN\n  IF NOT EXISTS(SELECT 1 FROM public.style_passports p JOIN public.app_user u\n    ON u.id=NEW.owner_id AND u.subject=p.profile_id::text\n    AND u.issuer='https://bkkmsbxrxkqaveymcrgi.supabase.co/auth/v1'\n    WHERE p.id=NEW.passport_id) THEN\n    RAISE EXCEPTION 'Canonical passport owner mismatch';\n  END IF;\n  IF NEW.correction_revision>0 AND NOT EXISTS(SELECT 1 FROM public.analysis_correction c\n    WHERE c.job_id=NEW.job_id AND c.owner_id=NEW.owner_id\n      AND c.revision=NEW.correction_revision AND c.redacted_at IS NULL) THEN\n    RAISE EXCEPTION 'Correction snapshot unavailable';\n  END IF;\n  RETURN NEW;\nEND $function$\n"
+      }
+    ],
+    "revisions": [
+      "0017_analysis_passport"
+    ],
+    "constraints": [
+      {
+        "name": "analysis_correction_check",
+        "table": "analysis_correction",
+        "validated": true,
+        "definition": "CHECK (((corrections IS NULL) = (redacted_at IS NOT NULL)))"
+      },
+      {
+        "name": "analysis_correction_corrections_check",
+        "table": "analysis_correction",
+        "validated": true,
+        "definition": "CHECK (((corrections IS NULL) OR (jsonb_typeof(corrections) = 'object'::text)))"
+      },
+      {
+        "name": "analysis_correction_job_id_owner_id_fkey",
+        "table": "analysis_correction",
+        "validated": true,
+        "definition": "FOREIGN KEY (job_id, owner_id) REFERENCES analysis_job(id, owner_id)"
+      },
+      {
+        "name": "analysis_correction_job_id_revision_key",
+        "table": "analysis_correction",
+        "validated": true,
+        "definition": "UNIQUE (job_id, revision)"
+      },
+      {
+        "name": "analysis_correction_owner_id_fkey",
+        "table": "analysis_correction",
+        "validated": true,
+        "definition": "FOREIGN KEY (owner_id) REFERENCES app_user(id)"
+      },
+      {
+        "name": "analysis_correction_owner_id_request_key_key",
+        "table": "analysis_correction",
+        "validated": true,
+        "definition": "UNIQUE (owner_id, request_key)"
+      },
+      {
+        "name": "analysis_correction_pkey",
+        "table": "analysis_correction",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "analysis_correction_request_hash_check",
+        "table": "analysis_correction",
+        "validated": true,
+        "definition": "CHECK ((request_hash ~ '^[a-f0-9]{64}$'::text))"
+      },
+      {
+        "name": "analysis_correction_revision_check",
+        "table": "analysis_correction",
+        "validated": true,
+        "definition": "CHECK ((revision > 0))"
+      },
+      {
+        "name": "analysis_job_check",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "CHECK ((expires_at > created_at))"
+      },
+      {
+        "name": "analysis_job_check1",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "CHECK (((state = 'completed'::text) = (result IS NOT NULL)))"
+      },
+      {
+        "name": "analysis_job_check2",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "CHECK (((state <> 'completed'::text) OR ((finished_at IS NOT NULL) AND (attempt_id IS NOT NULL))))"
+      },
+      {
+        "name": "analysis_job_check3",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "CHECK (((state <> 'running'::text) OR ((attempt_id IS NOT NULL) AND (attempted_at IS NOT NULL))))"
+      },
+      {
+        "name": "analysis_job_check4",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "CHECK (((attempt_id IS NULL) = (attempted_at IS NULL)))"
+      },
+      {
+        "name": "analysis_job_consent_sequence_fkey",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "FOREIGN KEY (consent_sequence) REFERENCES consent_event(sequence)"
+      },
+      {
+        "name": "analysis_job_error_code_check",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "CHECK (((error_code IS NULL) OR (error_code ~ '^[a-z_]{1,100}$'::text)))"
+      },
+      {
+        "name": "analysis_job_goals_check",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "CHECK (((jsonb_typeof(goals) = 'array'::text) AND ((jsonb_array_length(goals) >= 1) AND (jsonb_array_length(goals) <= 5))))"
+      },
+      {
+        "name": "analysis_job_media_id_owner_id_fkey",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "FOREIGN KEY (media_id, owner_id) REFERENCES private_media(id, owner_id)"
+      },
+      {
+        "name": "analysis_job_model_check",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "CHECK (((length(model) >= 1) AND (length(model) <= 128)))"
+      },
+      {
+        "name": "analysis_job_owner_id_fkey",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "FOREIGN KEY (owner_id) REFERENCES app_user(id)"
+      },
+      {
+        "name": "analysis_job_owner_id_request_key_key",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "UNIQUE (owner_id, request_key)"
+      },
+      {
+        "name": "analysis_job_pkey",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "analysis_job_policy_id_fkey",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "FOREIGN KEY (policy_id) REFERENCES policy_document(id)"
+      },
+      {
+        "name": "analysis_job_request_hash_check",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "CHECK ((request_hash ~ '^[a-f0-9]{64}$'::text))"
+      },
+      {
+        "name": "analysis_job_result_check",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "CHECK (((result IS NULL) OR (jsonb_typeof(result) = 'object'::text)))"
+      },
+      {
+        "name": "analysis_job_state_check",
+        "table": "analysis_job",
+        "validated": true,
+        "definition": "CHECK ((state = ANY (ARRAY['queued'::text, 'running'::text, 'completed'::text, 'failed'::text, 'cancelled'::text, 'expired'::text])))"
+      },
+      {
+        "name": "connected_social_accounts_check",
+        "table": "connected_social_accounts",
+        "validated": true,
+        "definition": "CHECK (((status <> 'connected'::text) OR ((provider_account_id IS NOT NULL) AND (last_sync_at IS NOT NULL))))"
+      },
+      {
+        "name": "connected_social_accounts_creator_id_fkey",
+        "table": "connected_social_accounts",
+        "validated": true,
+        "definition": "FOREIGN KEY (creator_id) REFERENCES creator_profiles(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "connected_social_accounts_creator_id_provider_key",
+        "table": "connected_social_accounts",
+        "validated": true,
+        "definition": "UNIQUE (creator_id, provider)"
+      },
+      {
+        "name": "connected_social_accounts_display_name_check",
+        "table": "connected_social_accounts",
+        "validated": true,
+        "definition": "CHECK ((length(display_name) <= 160))"
+      },
+      {
+        "name": "connected_social_accounts_error_code_check",
+        "table": "connected_social_accounts",
+        "validated": true,
+        "definition": "CHECK (((error_code IS NULL) OR (error_code ~ '^[A-Z_]{3,100}$'::text)))"
+      },
+      {
+        "name": "connected_social_accounts_id_creator_id_key",
+        "table": "connected_social_accounts",
+        "validated": true,
+        "definition": "UNIQUE (id, creator_id)"
+      },
+      {
+        "name": "connected_social_accounts_pkey",
+        "table": "connected_social_accounts",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "connected_social_accounts_profile_url_check",
+        "table": "connected_social_accounts",
+        "validated": true,
+        "definition": "CHECK ((length(profile_url) <= 2048))"
+      },
+      {
+        "name": "connected_social_accounts_provider_account_id_check",
+        "table": "connected_social_accounts",
+        "validated": true,
+        "definition": "CHECK (((length(provider_account_id) >= 1) AND (length(provider_account_id) <= 512)))"
+      },
+      {
+        "name": "connected_social_accounts_provider_check",
+        "table": "connected_social_accounts",
+        "validated": true,
+        "definition": "CHECK ((provider = ANY (ARRAY['tiktok'::text, 'instagram'::text, 'youtube'::text, 'pinterest'::text, 'facebook'::text])))"
+      },
+      {
+        "name": "connected_social_accounts_revision_check",
+        "table": "connected_social_accounts",
+        "validated": true,
+        "definition": "CHECK ((revision > 0))"
+      },
+      {
+        "name": "connected_social_accounts_status_check",
+        "table": "connected_social_accounts",
+        "validated": true,
+        "definition": "CHECK ((status = ANY (ARRAY['manual_unverified'::text, 'connected'::text, 'expired'::text, 'revoked'::text, 'error'::text])))"
+      },
+      {
+        "name": "creator_attribution_events_event_kind_check",
+        "table": "creator_attribution_events",
+        "validated": true,
+        "definition": "CHECK ((event_kind = ANY (ARRAY['consented_interaction'::text, 'verified_sale'::text, 'verified_refund'::text])))"
+      },
+      {
+        "name": "creator_attribution_events_pkey",
+        "table": "creator_attribution_events",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "creator_attribution_events_referral_id_fkey",
+        "table": "creator_attribution_events",
+        "validated": true,
+        "definition": "FOREIGN KEY (referral_id) REFERENCES creator_referrals(id)"
+      },
+      {
+        "name": "creator_attribution_events_source_event_id_check",
+        "table": "creator_attribution_events",
+        "validated": true,
+        "definition": "CHECK (((length(source_event_id) >= 1) AND (length(source_event_id) <= 240)))"
+      },
+      {
+        "name": "creator_attribution_events_source_event_id_key",
+        "table": "creator_attribution_events",
+        "validated": true,
+        "definition": "UNIQUE (source_event_id)"
+      },
+      {
+        "name": "creator_attribution_events_verification_status_check",
+        "table": "creator_attribution_events",
+        "validated": true,
+        "definition": "CHECK ((verification_status = ANY (ARRAY['pending'::text, 'verified'::text, 'rejected'::text])))"
+      },
+      {
+        "name": "creator_campaign_applications_campaign_id_creator_id_key",
+        "table": "creator_campaign_applications",
+        "validated": true,
+        "definition": "UNIQUE (campaign_id, creator_id)"
+      },
+      {
+        "name": "creator_campaign_applications_campaign_id_fkey",
+        "table": "creator_campaign_applications",
+        "validated": true,
+        "definition": "FOREIGN KEY (campaign_id) REFERENCES creator_campaign_briefs(id)"
+      },
+      {
+        "name": "creator_campaign_applications_creator_id_fkey",
+        "table": "creator_campaign_applications",
+        "validated": true,
+        "definition": "FOREIGN KEY (creator_id) REFERENCES creator_profiles(id)"
+      },
+      {
+        "name": "creator_campaign_applications_id_creator_id_key",
+        "table": "creator_campaign_applications",
+        "validated": true,
+        "definition": "UNIQUE (id, creator_id)"
+      },
+      {
+        "name": "creator_campaign_applications_pitch_check",
+        "table": "creator_campaign_applications",
+        "validated": true,
+        "definition": "CHECK (((length(btrim(pitch)) >= 1) AND (length(btrim(pitch)) <= 4000)))"
+      },
+      {
+        "name": "creator_campaign_applications_pkey",
+        "table": "creator_campaign_applications",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "creator_campaign_applications_status_check",
+        "table": "creator_campaign_applications",
+        "validated": true,
+        "definition": "CHECK ((status = ANY (ARRAY['submitted'::text, 'accepted'::text, 'declined'::text, 'withdrawn'::text])))"
+      },
+      {
+        "name": "creator_campaign_briefs_compensation_terms_check",
+        "table": "creator_campaign_briefs",
+        "validated": true,
+        "definition": "CHECK (((length(btrim(compensation_terms)) >= 1) AND (length(btrim(compensation_terms)) <= 4000)))"
+      },
+      {
+        "name": "creator_campaign_briefs_deliverables_check",
+        "table": "creator_campaign_briefs",
+        "validated": true,
+        "definition": "CHECK (((length(btrim(deliverables)) >= 1) AND (length(btrim(deliverables)) <= 4000)))"
+      },
+      {
+        "name": "creator_campaign_briefs_disclosure_check",
+        "table": "creator_campaign_briefs",
+        "validated": true,
+        "definition": "CHECK (((length(btrim(disclosure)) >= 1) AND (length(btrim(disclosure)) <= 500)))"
+      },
+      {
+        "name": "creator_campaign_briefs_eligibility_check",
+        "table": "creator_campaign_briefs",
+        "validated": true,
+        "definition": "CHECK ((length(eligibility) <= 2000))"
+      },
+      {
+        "name": "creator_campaign_briefs_id_organization_id_key",
+        "table": "creator_campaign_briefs",
+        "validated": true,
+        "definition": "UNIQUE (id, organization_id)"
+      },
+      {
+        "name": "creator_campaign_briefs_organization_id_fkey",
+        "table": "creator_campaign_briefs",
+        "validated": true,
+        "definition": "FOREIGN KEY (organization_id) REFERENCES organizations(id)"
+      },
+      {
+        "name": "creator_campaign_briefs_pkey",
+        "table": "creator_campaign_briefs",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "creator_campaign_briefs_revision_check",
+        "table": "creator_campaign_briefs",
+        "validated": true,
+        "definition": "CHECK ((revision > 0))"
+      },
+      {
+        "name": "creator_campaign_briefs_status_check",
+        "table": "creator_campaign_briefs",
+        "validated": true,
+        "definition": "CHECK ((status = ANY (ARRAY['draft'::text, 'open'::text, 'closed'::text, 'suspended'::text])))"
+      },
+      {
+        "name": "creator_campaign_briefs_title_check",
+        "table": "creator_campaign_briefs",
+        "validated": true,
+        "definition": "CHECK (((length(btrim(title)) >= 1) AND (length(btrim(title)) <= 240)))"
+      },
+      {
+        "name": "creator_campaign_deliverables_application_id_creator_id_fkey",
+        "table": "creator_campaign_deliverables",
+        "validated": true,
+        "definition": "FOREIGN KEY (application_id, creator_id) REFERENCES creator_campaign_applications(id, creator_id)"
+      },
+      {
+        "name": "creator_campaign_deliverables_content_url_check",
+        "table": "creator_campaign_deliverables",
+        "validated": true,
+        "definition": "CHECK ((length(content_url) <= 2048))"
+      },
+      {
+        "name": "creator_campaign_deliverables_pkey",
+        "table": "creator_campaign_deliverables",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "creator_campaign_deliverables_status_check",
+        "table": "creator_campaign_deliverables",
+        "validated": true,
+        "definition": "CHECK ((status = ANY (ARRAY['submitted'::text, 'approved'::text, 'changes_requested'::text])))"
+      },
+      {
+        "name": "creator_campaign_deliverables_title_check",
+        "table": "creator_campaign_deliverables",
+        "validated": true,
+        "definition": "CHECK (((length(btrim(title)) >= 1) AND (length(btrim(title)) <= 240)))"
+      },
+      {
+        "name": "creator_collection_items_collection_id_fkey",
+        "table": "creator_collection_items",
+        "validated": true,
+        "definition": "FOREIGN KEY (collection_id) REFERENCES creator_collections(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "creator_collection_items_pkey",
+        "table": "creator_collection_items",
+        "validated": true,
+        "definition": "PRIMARY KEY (collection_id, product_id)"
+      },
+      {
+        "name": "creator_collection_items_position_check",
+        "table": "creator_collection_items",
+        "validated": true,
+        "definition": "CHECK (((\"position\" >= 0) AND (\"position\" <= 99)))"
+      },
+      {
+        "name": "creator_collection_items_product_id_fkey",
+        "table": "creator_collection_items",
+        "validated": true,
+        "definition": "FOREIGN KEY (product_id) REFERENCES products(id)"
+      },
+      {
+        "name": "creator_collections_check",
+        "table": "creator_collections",
+        "validated": true,
+        "definition": "CHECK (((NOT sponsored) OR (length(btrim(disclosure)) > 0)))"
+      },
+      {
+        "name": "creator_collections_creator_id_fkey",
+        "table": "creator_collections",
+        "validated": true,
+        "definition": "FOREIGN KEY (creator_id) REFERENCES creator_profiles(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "creator_collections_description_check",
+        "table": "creator_collections",
+        "validated": true,
+        "definition": "CHECK ((length(description) <= 4000))"
+      },
+      {
+        "name": "creator_collections_disclosure_check",
+        "table": "creator_collections",
+        "validated": true,
+        "definition": "CHECK ((length(disclosure) <= 1000))"
+      },
+      {
+        "name": "creator_collections_id_creator_id_key",
+        "table": "creator_collections",
+        "validated": true,
+        "definition": "UNIQUE (id, creator_id)"
+      },
+      {
+        "name": "creator_collections_pkey",
+        "table": "creator_collections",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "creator_collections_revision_check",
+        "table": "creator_collections",
+        "validated": true,
+        "definition": "CHECK ((revision > 0))"
+      },
+      {
+        "name": "creator_collections_status_check",
+        "table": "creator_collections",
+        "validated": true,
+        "definition": "CHECK ((status = ANY (ARRAY['draft'::text, 'published'::text, 'rejected'::text])))"
+      },
+      {
+        "name": "creator_collections_title_check",
+        "table": "creator_collections",
+        "validated": true,
+        "definition": "CHECK (((length(btrim(title)) >= 1) AND (length(btrim(title)) <= 240)))"
+      },
+      {
+        "name": "creator_commission_agreements_basis_check",
+        "table": "creator_commission_agreements",
+        "validated": true,
+        "definition": "CHECK ((basis = 'eligible_item_net'::text))"
+      },
+      {
+        "name": "creator_commission_agreements_check",
+        "table": "creator_commission_agreements",
+        "validated": true,
+        "definition": "CHECK (((status <> 'signed'::text) OR ((evidence_reference IS NOT NULL) AND (length(btrim(evidence_reference)) > 0))))"
+      },
+      {
+        "name": "creator_commission_agreements_creator_id_fkey",
+        "table": "creator_commission_agreements",
+        "validated": true,
+        "definition": "FOREIGN KEY (creator_id) REFERENCES creator_profiles(id)"
+      },
+      {
+        "name": "creator_commission_agreements_currency_check",
+        "table": "creator_commission_agreements",
+        "validated": true,
+        "definition": "CHECK ((currency ~ '^[A-Z]{3}$'::text))"
+      },
+      {
+        "name": "creator_commission_agreements_funded_by_check",
+        "table": "creator_commission_agreements",
+        "validated": true,
+        "definition": "CHECK ((funded_by = ANY (ARRAY['merchant'::text, 'platform'::text])))"
+      },
+      {
+        "name": "creator_commission_agreements_id_creator_id_key",
+        "table": "creator_commission_agreements",
+        "validated": true,
+        "definition": "UNIQUE (id, creator_id)"
+      },
+      {
+        "name": "creator_commission_agreements_organization_id_fkey",
+        "table": "creator_commission_agreements",
+        "validated": true,
+        "definition": "FOREIGN KEY (organization_id) REFERENCES organizations(id)"
+      },
+      {
+        "name": "creator_commission_agreements_pkey",
+        "table": "creator_commission_agreements",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "creator_commission_agreements_rate_bps_check",
+        "table": "creator_commission_agreements",
+        "validated": true,
+        "definition": "CHECK (((rate_bps >= 0) AND (rate_bps <= 10000)))"
+      },
+      {
+        "name": "creator_commission_agreements_status_check",
+        "table": "creator_commission_agreements",
+        "validated": true,
+        "definition": "CHECK ((status = ANY (ARRAY['draft'::text, 'signed'::text, 'revoked'::text])))"
+      },
+      {
+        "name": "creator_commission_agreements_terms_check",
+        "table": "creator_commission_agreements",
+        "validated": true,
+        "definition": "CHECK (((length(btrim(terms)) >= 1) AND (length(btrim(terms)) <= 4000)))"
+      },
+      {
+        "name": "creator_earnings_agreement_id_creator_id_fkey",
+        "table": "creator_earnings",
+        "validated": true,
+        "definition": "FOREIGN KEY (agreement_id, creator_id) REFERENCES creator_commission_agreements(id, creator_id)"
+      },
+      {
+        "name": "creator_earnings_attribution_event_id_fkey",
+        "table": "creator_earnings",
+        "validated": true,
+        "definition": "FOREIGN KEY (attribution_event_id) REFERENCES creator_attribution_events(id)"
+      },
+      {
+        "name": "creator_earnings_check",
+        "table": "creator_earnings",
+        "validated": true,
+        "definition": "CHECK ((((event_kind = 'earned'::text) AND (amount_minor >= 0)) OR ((event_kind = 'reversed'::text) AND (amount_minor <= 0))))"
+      },
+      {
+        "name": "creator_earnings_currency_check",
+        "table": "creator_earnings",
+        "validated": true,
+        "definition": "CHECK ((currency ~ '^[A-Z]{3}$'::text))"
+      },
+      {
+        "name": "creator_earnings_event_kind_check",
+        "table": "creator_earnings",
+        "validated": true,
+        "definition": "CHECK ((event_kind = ANY (ARRAY['earned'::text, 'reversed'::text])))"
+      },
+      {
+        "name": "creator_earnings_pkey",
+        "table": "creator_earnings",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "creator_earnings_source_event_id_check",
+        "table": "creator_earnings",
+        "validated": true,
+        "definition": "CHECK (((length(source_event_id) >= 1) AND (length(source_event_id) <= 240)))"
+      },
+      {
+        "name": "creator_earnings_source_event_id_key",
+        "table": "creator_earnings",
+        "validated": true,
+        "definition": "UNIQUE (source_event_id)"
+      },
+      {
+        "name": "creator_payout_eligibility_check",
+        "table": "creator_payout_eligibility",
+        "validated": true,
+        "definition": "CHECK (((status <> 'eligible'::text) OR ((evidence_reference IS NOT NULL) AND (verified_at IS NOT NULL))))"
+      },
+      {
+        "name": "creator_payout_eligibility_creator_id_fkey",
+        "table": "creator_payout_eligibility",
+        "validated": true,
+        "definition": "FOREIGN KEY (creator_id) REFERENCES creator_profiles(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "creator_payout_eligibility_pkey",
+        "table": "creator_payout_eligibility",
+        "validated": true,
+        "definition": "PRIMARY KEY (creator_id)"
+      },
+      {
+        "name": "creator_payout_eligibility_status_check",
+        "table": "creator_payout_eligibility",
+        "validated": true,
+        "definition": "CHECK ((status = ANY (ARRAY['not_verified'::text, 'ineligible'::text, 'eligible'::text, 'suspended'::text])))"
+      },
+      {
+        "name": "social_credentials_connection_id_creator_id_fkey",
+        "table": "creator_private.social_credentials",
+        "validated": true,
+        "definition": "FOREIGN KEY (connection_id, creator_id) REFERENCES connected_social_accounts(id, creator_id)"
+      },
+      {
+        "name": "social_credentials_connection_id_fkey",
+        "table": "creator_private.social_credentials",
+        "validated": true,
+        "definition": "FOREIGN KEY (connection_id) REFERENCES connected_social_accounts(id)"
+      },
+      {
+        "name": "social_credentials_encrypted_envelope_check",
+        "table": "creator_private.social_credentials",
+        "validated": true,
+        "definition": "CHECK ((octet_length(encrypted_envelope) >= 28))"
+      },
+      {
+        "name": "social_credentials_key_id_check",
+        "table": "creator_private.social_credentials",
+        "validated": true,
+        "definition": "CHECK (((length(key_id) >= 1) AND (length(key_id) <= 100)))"
+      },
+      {
+        "name": "social_credentials_pkey",
+        "table": "creator_private.social_credentials",
+        "validated": true,
+        "definition": "PRIMARY KEY (connection_id)"
+      },
+      {
+        "name": "creator_profiles_bio_check",
+        "table": "creator_profiles",
+        "validated": true,
+        "definition": "CHECK ((length(bio) <= 4000))"
+      },
+      {
+        "name": "creator_profiles_display_name_check",
+        "table": "creator_profiles",
+        "validated": true,
+        "definition": "CHECK (((length(btrim(display_name)) >= 1) AND (length(btrim(display_name)) <= 160)))"
+      },
+      {
+        "name": "creator_profiles_handle_check",
+        "table": "creator_profiles",
+        "validated": true,
+        "definition": "CHECK (((handle ~ '^[a-z0-9][a-z0-9_-]{2,39}$'::text) AND (handle <> ALL (ARRAY['admin'::text, 'api'::text, 'auth'::text, 'support'::text, 'privacy'::text, 'terms'::text, 'login'::text, 'creator'::text]))))"
+      },
+      {
+        "name": "creator_profiles_handle_key",
+        "table": "creator_profiles",
+        "validated": true,
+        "definition": "UNIQUE (handle)"
+      },
+      {
+        "name": "creator_profiles_organization_id_fkey",
+        "table": "creator_profiles",
+        "validated": true,
+        "definition": "FOREIGN KEY (organization_id) REFERENCES organizations(id)"
+      },
+      {
+        "name": "creator_profiles_pkey",
+        "table": "creator_profiles",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "creator_profiles_profile_id_fkey",
+        "table": "creator_profiles",
+        "validated": true,
+        "definition": "FOREIGN KEY (profile_id) REFERENCES profiles(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "creator_profiles_profile_id_key",
+        "table": "creator_profiles",
+        "validated": true,
+        "definition": "UNIQUE (profile_id)"
+      },
+      {
+        "name": "creator_profiles_revision_check",
+        "table": "creator_profiles",
+        "validated": true,
+        "definition": "CHECK ((revision > 0))"
+      },
+      {
+        "name": "creator_profiles_status_check",
+        "table": "creator_profiles",
+        "validated": true,
+        "definition": "CHECK ((status = ANY (ARRAY['draft'::text, 'published'::text, 'suspended'::text])))"
+      },
+      {
+        "name": "creator_referrals_code_key",
+        "table": "creator_referrals",
+        "validated": true,
+        "definition": "UNIQUE (code)"
+      },
+      {
+        "name": "creator_referrals_collection_id_creator_id_fkey",
+        "table": "creator_referrals",
+        "validated": true,
+        "definition": "FOREIGN KEY (collection_id, creator_id) REFERENCES creator_collections(id, creator_id)"
+      },
+      {
+        "name": "creator_referrals_creator_id_collection_id_key",
+        "table": "creator_referrals",
+        "validated": true,
+        "definition": "UNIQUE (creator_id, collection_id)"
+      },
+      {
+        "name": "creator_referrals_creator_id_fkey",
+        "table": "creator_referrals",
+        "validated": true,
+        "definition": "FOREIGN KEY (creator_id) REFERENCES creator_profiles(id)"
+      },
+      {
+        "name": "creator_referrals_disclosure_check",
+        "table": "creator_referrals",
+        "validated": true,
+        "definition": "CHECK (((length(btrim(disclosure)) >= 1) AND (length(btrim(disclosure)) <= 1000)))"
+      },
+      {
+        "name": "creator_referrals_pkey",
+        "table": "creator_referrals",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "creator_social_sync_logs_connection_id_fkey",
+        "table": "creator_social_sync_logs",
+        "validated": true,
+        "definition": "FOREIGN KEY (connection_id) REFERENCES connected_social_accounts(id)"
+      },
+      {
+        "name": "creator_social_sync_logs_error_code_check",
+        "table": "creator_social_sync_logs",
+        "validated": true,
+        "definition": "CHECK (((error_code IS NULL) OR (error_code ~ '^[A-Z_]{3,100}$'::text)))"
+      },
+      {
+        "name": "creator_social_sync_logs_item_count_check",
+        "table": "creator_social_sync_logs",
+        "validated": true,
+        "definition": "CHECK ((item_count >= 0))"
+      },
+      {
+        "name": "creator_social_sync_logs_pkey",
+        "table": "creator_social_sync_logs",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "creator_social_sync_logs_status_check",
+        "table": "creator_social_sync_logs",
+        "validated": true,
+        "definition": "CHECK ((status = ANY (ARRAY['succeeded'::text, 'failed'::text, 'rate_limited'::text, 'permission_required'::text])))"
+      },
+      {
+        "name": "private_media_check",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK ((expires_at > created_at))"
+      },
+      {
+        "name": "private_media_check1",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK ((object_key = ((((owner_id)::text || '/'::text) || (id)::text) || '.png'::text)))"
+      },
+      {
+        "name": "private_media_check2",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK (((state <> 'ready'::text) OR ((stored_size IS NOT NULL) AND (stored_sha256 IS NOT NULL) AND (width IS NOT NULL) AND (height IS NOT NULL))))"
+      },
+      {
+        "name": "private_media_check3",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK (((state = 'deleted'::text) OR ((input_size IS NOT NULL) AND (input_sha256 IS NOT NULL) AND (request_hash IS NOT NULL))))"
+      },
+      {
+        "name": "private_media_check4",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK (((state <> 'deleted'::text) OR ((deleted_at IS NOT NULL) AND (input_size IS NULL) AND (input_sha256 IS NULL) AND (stored_size IS NULL) AND (stored_sha256 IS NULL) AND (width IS NULL) AND (height IS NULL) AND (request_hash IS NULL))))"
+      },
+      {
+        "name": "private_media_consent_sequence_fkey",
+        "table": "private_media",
+        "validated": true,
+        "definition": "FOREIGN KEY (consent_sequence) REFERENCES consent_event(sequence)"
+      },
+      {
+        "name": "private_media_height_check",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK ((height > 0))"
+      },
+      {
+        "name": "private_media_input_mime_check",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK ((input_mime = ANY (ARRAY['image/jpeg'::text, 'image/png'::text, 'image/webp'::text])))"
+      },
+      {
+        "name": "private_media_input_sha256_check",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK (((input_sha256 IS NULL) OR (input_sha256 ~ '^[0-9a-f]{64}$'::text)))"
+      },
+      {
+        "name": "private_media_input_size_check",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK (((input_size >= 1) AND (input_size <= 10485760)))"
+      },
+      {
+        "name": "private_media_last_error_code_check",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK (((last_error_code IS NULL) OR (last_error_code ~ '^[a-z_]{1,100}$'::text)))"
+      },
+      {
+        "name": "private_media_object_key_key",
+        "table": "private_media",
+        "validated": true,
+        "definition": "UNIQUE (object_key)"
+      },
+      {
+        "name": "private_media_owner_id_fkey",
+        "table": "private_media",
+        "validated": true,
+        "definition": "FOREIGN KEY (owner_id) REFERENCES app_user(id)"
+      },
+      {
+        "name": "private_media_owner_id_request_key_key",
+        "table": "private_media",
+        "validated": true,
+        "definition": "UNIQUE (owner_id, request_key)"
+      },
+      {
+        "name": "private_media_pkey",
+        "table": "private_media",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "private_media_policy_id_fkey",
+        "table": "private_media",
+        "validated": true,
+        "definition": "FOREIGN KEY (policy_id) REFERENCES policy_document(id)"
+      },
+      {
+        "name": "private_media_purge_attempts_check",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK ((purge_attempts >= 0))"
+      },
+      {
+        "name": "private_media_request_hash_check",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK (((request_hash IS NULL) OR (request_hash ~ '^[0-9a-f]{64}$'::text)))"
+      },
+      {
+        "name": "private_media_state_check",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK ((state = ANY (ARRAY['pending'::text, 'ready'::text, 'deletion_pending'::text, 'deleted'::text])))"
+      },
+      {
+        "name": "private_media_stored_sha256_check",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK (((stored_sha256 IS NULL) OR (stored_sha256 ~ '^[0-9a-f]{64}$'::text)))"
+      },
+      {
+        "name": "private_media_stored_size_check",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK (((stored_size >= 1) AND (stored_size <= 10485760)))"
+      },
+      {
+        "name": "private_media_width_check",
+        "table": "private_media",
+        "validated": true,
+        "definition": "CHECK ((width > 0))"
+      },
+      {
+        "name": "social_media_items_connection_id_creator_id_fkey",
+        "table": "social_media_items",
+        "validated": true,
+        "definition": "FOREIGN KEY (connection_id, creator_id) REFERENCES connected_social_accounts(id, creator_id)"
+      },
+      {
+        "name": "social_media_items_creator_id_fkey",
+        "table": "social_media_items",
+        "validated": true,
+        "definition": "FOREIGN KEY (creator_id) REFERENCES creator_profiles(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "social_media_items_creator_id_source_url_key",
+        "table": "social_media_items",
+        "validated": true,
+        "definition": "UNIQUE (creator_id, source_url)"
+      },
+      {
+        "name": "social_media_items_description_check",
+        "table": "social_media_items",
+        "validated": true,
+        "definition": "CHECK ((length(description) <= 4000))"
+      },
+      {
+        "name": "social_media_items_id_creator_id_key",
+        "table": "social_media_items",
+        "validated": true,
+        "definition": "UNIQUE (id, creator_id)"
+      },
+      {
+        "name": "social_media_items_pkey",
+        "table": "social_media_items",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "social_media_items_provider_check",
+        "table": "social_media_items",
+        "validated": true,
+        "definition": "CHECK ((provider = ANY (ARRAY['tiktok'::text, 'instagram'::text, 'youtube'::text, 'pinterest'::text, 'facebook'::text])))"
+      },
+      {
+        "name": "social_media_items_publication_status_check",
+        "table": "social_media_items",
+        "validated": true,
+        "definition": "CHECK ((publication_status = ANY (ARRAY['draft'::text, 'published'::text, 'rejected'::text])))"
+      },
+      {
+        "name": "social_media_items_source_check",
+        "table": "social_media_items",
+        "validated": true,
+        "definition": "CHECK ((source = ANY (ARRAY['creator_submitted'::text, 'authorized_api'::text])))"
+      },
+      {
+        "name": "social_media_items_source_url_check",
+        "table": "social_media_items",
+        "validated": true,
+        "definition": "CHECK ((length(source_url) <= 2048))"
+      },
+      {
+        "name": "social_media_items_title_check",
+        "table": "social_media_items",
+        "validated": true,
+        "definition": "CHECK (((length(btrim(title)) >= 1) AND (length(btrim(title)) <= 240)))"
+      },
+      {
+        "name": "style_passport_analysis_correction_revision_check",
+        "table": "style_passport_analysis",
+        "validated": true,
+        "definition": "CHECK ((correction_revision >= 0))"
+      },
+      {
+        "name": "style_passport_analysis_job_id_owner_id_fkey",
+        "table": "style_passport_analysis",
+        "validated": true,
+        "definition": "FOREIGN KEY (job_id, owner_id) REFERENCES analysis_job(id, owner_id)"
+      },
+      {
+        "name": "style_passport_analysis_owner_id_fkey",
+        "table": "style_passport_analysis",
+        "validated": true,
+        "definition": "FOREIGN KEY (owner_id) REFERENCES app_user(id)"
+      },
+      {
+        "name": "style_passport_analysis_passport_id_fkey",
+        "table": "style_passport_analysis",
+        "validated": true,
+        "definition": "FOREIGN KEY (passport_id) REFERENCES style_passports(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "style_passport_analysis_pkey",
+        "table": "style_passport_analysis",
+        "validated": true,
+        "definition": "PRIMARY KEY (passport_id)"
+      }
+    ],
+    "public_tables": [
+      "account_eligibility",
+      "alembic_version",
+      "analysis_correction",
+      "analysis_job",
+      "api_request_counters",
+      "app_user",
+      "audit_event",
+      "catalog_ai_job",
+      "catalog_approval",
+      "catalog_listing",
+      "catalog_media",
+      "catalog_projection",
+      "catalog_revision",
+      "connected_social_accounts",
+      "consent_event",
+      "creator_attribution_events",
+      "creator_campaign_applications",
+      "creator_campaign_briefs",
+      "creator_campaign_deliverables",
+      "creator_collection_items",
+      "creator_collections",
+      "creator_commission_agreements",
+      "creator_earnings",
+      "creator_payout_eligibility",
+      "creator_profiles",
+      "creator_referrals",
+      "creator_social_sync_logs",
+      "credit_account",
+      "credit_journal",
+      "credit_posting",
+      "credit_reservation",
+      "device_auth_preferences",
+      "idempotency_record",
+      "look",
+      "look_revision",
+      "market_policy_version",
+      "merchant_profiles",
+      "notification_preferences",
+      "organization_members",
+      "organizations",
+      "outbox_event",
+      "personal_routine",
+      "policy_document",
+      "private_media",
+      "product_categories",
+      "product_variants",
+      "products",
+      "professional_profiles",
+      "profiles",
+      "saved_requirement",
+      "social_media_items",
+      "staff_grant",
+      "style_passport_analysis",
+      "style_passports",
+      "user_preferences",
+      "workspace_capability",
+      "workspace_draft",
+      "workspace_invitation",
+      "workspace_role"
+    ],
+    "storage_policy": {
+      "cmd": "ALL",
+      "kind": "RESTRICTIVE",
+      "check": "(bucket_id <> 'glam-private-media'::text)",
+      "roles": [
+        "public"
+      ],
+      "using": "(bucket_id <> 'glam-private-media'::text)"
+    }
+  },
+  "migrations_executed": 4,
+  "new_tables": [
+    "creator_private.social_credentials",
+    "public.analysis_correction",
+    "public.analysis_job",
+    "public.connected_social_accounts",
+    "public.creator_attribution_events",
+    "public.creator_campaign_applications",
+    "public.creator_campaign_briefs",
+    "public.creator_campaign_deliverables",
+    "public.creator_collection_items",
+    "public.creator_collections",
+    "public.creator_commission_agreements",
+    "public.creator_earnings",
+    "public.creator_payout_eligibility",
+    "public.creator_profiles",
+    "public.creator_referrals",
+    "public.creator_social_sync_logs",
+    "public.private_media",
+    "public.social_media_items",
+    "public.style_passport_analysis"
+  ]
+}

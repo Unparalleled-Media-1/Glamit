@@ -1,0 +1,13 @@
+{
+  "check": "independent_read_only_table_queries",
+  "http_status": 201,
+  "result": [
+    {
+      "private_media_rows": 0,
+      "analysis_job_rows": 0,
+      "analysis_correction_rows": 0,
+      "passport_analysis_rows": 0,
+      "revision": "0017_analysis_passport"
+    }
+  ]
+}

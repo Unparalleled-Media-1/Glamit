@@ -1,5 +1,7 @@
 # Analyze slice — live readiness is BLOCKED
 
+Update, 10 November 2026 at 18:28 SAST: under the user's subsequent “Create the backend tables” instruction, canonical0014–0017 were applied and independently verified against the original production project. The four previously absent tables and private bucket now exist; all 19 new tables have RLS and matching tested catalog metadata. See [production schema results](../../../database/analysis-schema/RESULT.md). Schema absence is no longer a live blocker. Canonical API deployment/runtime permissions, approved policies/eligibility/retention, worker/provider qualification, public mobile build configuration and actual authenticated device journeys remain unverified. The observations below are preserved as the pre-deployment record, not the current table state.
+
 Read-only observations on10November2026 (Africa/Johannesburg), original Supabase bkkmsbxrxkqaveymcrgi:
 
 | Dependency | Actual observation | Consequence |
