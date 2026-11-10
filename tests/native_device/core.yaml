@@ -1,0 +1,129 @@
+appId: com.glambeauty.localverification
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "native-fixture-banner"
+    timeout: 20000
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - addMedia:
+          - ../../artifacts/native-device/test-photo.png
+- tapOn:
+    id: "native-tab-profile"
+- runFlow: login.yaml
+- scrollUntilVisible:
+    element:
+      text: "Enable biometric login"
+    direction: DOWN
+- tapOn: "Enable biometric login"
+- extendedWaitUntil:
+    visible: "Biometric unlock enabled on this device."
+    timeout: 25000
+- takeScreenshot: ${EVIDENCE_DIR}/01-authenticated
+- tapOn:
+    id: "native-tab-analyze"
+- scrollUntilVisible:
+    element:
+      text: "Choose my photo"
+    direction: DOWN
+- tapOn: "Choose my photo"
+- tapOn: "Allow device-only photo preview"
+- tapOn: "Choose a photo"
+- takeScreenshot: ${EVIDENCE_DIR}/02-actual-os-picker
+- tapOn:
+    text: "Photo taken on.*"
+    optional: true
+- tapOn:
+    text: "Photo,.*"
+    optional: true
+- extendedWaitUntil:
+    visible: "A clear starting point."
+    timeout: 15000
+- takeScreenshot: ${EVIDENCE_DIR}/03-selected-photo
+- scrollUntilVisible:
+    element:
+      text: "Choose my goals"
+    direction: DOWN
+- tapOn: "Choose my goals"
+- scrollUntilVisible:
+    element:
+      text: "Understand my features"
+    direction: UP
+- tapOn:
+    id: "analysis-goal-0"
+- scrollUntilVisible:
+    element:
+      text: "Review permissions and run analysis"
+    direction: DOWN
+- tapOn: "Review permissions and run analysis"
+- runFlow:
+    when:
+      visible: "Sign in for private analysis"
+    commands:
+      - tapOn: "Sign in for private analysis"
+      - runFlow: login.yaml
+      - scrollUntilVisible:
+          element:
+            text: "Continue selected photo analysis"
+          direction: DOWN
+      - tapOn: "Continue selected photo analysis"
+- tapOn: "Reload saved analysis and passport"
+- scrollUntilVisible:
+    element:
+      text: "I agree to storage"
+    direction: DOWN
+- tapOn: "I agree to storage"
+- tapOn: "Confirm storage permission"
+- scrollUntilVisible:
+    element:
+      text: "I agree to analysis"
+    direction: DOWN
+- tapOn: "I agree to analysis"
+- tapOn: "Confirm analysis permission"
+- takeScreenshot: ${EVIDENCE_DIR}/04-explicit-server-consent
+- scrollUntilVisible:
+    element:
+      text: "Upload privately and request analysis"
+    direction: DOWN
+- tapOn: "Upload privately and request analysis"
+- scrollUntilVisible:
+    element:
+      text: "Analysis queued.*"
+    direction: DOWN
+    timeout: 30000
+- takeScreenshot: ${EVIDENCE_DIR}/05-queued
+- repeat:
+    times: 8
+    commands:
+      - scrollUntilVisible:
+          element:
+            text: "Refresh analysis status"
+          direction: UP
+      - tapOn: "Refresh analysis status"
+- scrollUntilVisible:
+    element:
+      text: "Correct Face shape"
+    direction: DOWN
+- takeScreenshot: ${EVIDENCE_DIR}/06-persisted-report
+- tapOn: "Correct Face shape"
+- inputText: "DEVICE FIXTURE CORRECTION"
+- hideKeyboard
+- scrollUntilVisible:
+    element:
+      text: "Save corrections"
+    direction: DOWN
+- tapOn: "Save corrections"
+- scrollUntilVisible:
+    element:
+      text: "Save analysis to Style Passport"
+    direction: DOWN
+- tapOn: "Save analysis to Style Passport"
+- scrollUntilVisible:
+    element:
+      text: "Style Passport saved.*"
+    direction: DOWN
+- takeScreenshot: ${EVIDENCE_DIR}/07-saved-passport

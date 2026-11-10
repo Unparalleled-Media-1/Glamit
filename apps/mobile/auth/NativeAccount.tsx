@@ -385,6 +385,7 @@ export default function NativeAccount({ auth }: Props) {
               </Modal>
               <AuthText>Mobile number</AuthText>
               <TextInput
+                testID="auth-mobile-number"
                 accessibilityLabel="Mobile number"
                 autoComplete="tel"
                 textContentType="telephoneNumber"
@@ -414,6 +415,7 @@ export default function NativeAccount({ auth }: Props) {
             <>
               <AuthText>Verification code</AuthText>
               <TextInput
+                testID="auth-verification-code"
                 accessibilityLabel="Verification code"
                 keyboardType="number-pad"
                 textContentType="oneTimeCode"
