@@ -82,7 +82,7 @@ export default function NativeAnalysisJourney({ account, apiOrigin, photoUri, re
   });
   const withdraw = () => {
     // Clear private UI immediately, but claim withdrawal only after both server acknowledgments.
-    patch({ report: null, passport: null, edits: {}, job: null, history: [], consentUnknown: true });
+    patch({ report: null, passport: null, edits: {}, job: null, history: [], storageCheck: false, analysisCheck: false, consentUnknown: true });
     return run(async (signal, valid) => {
       const p = state.permissions || await client!.analysisPermissions(signal); if (!valid()) return;
       patch({ permissions: p, consentUnknown: true });
