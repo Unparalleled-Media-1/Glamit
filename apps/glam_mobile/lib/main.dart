@@ -96,12 +96,13 @@ class _AnalyzeJourneyState extends State<AnalyzeJourney> {
           content = PhotoReview(photo: controller.photo!, busy: controller.busy, onRetake: controller.retake, onAnalyze: () => _analyze(context));
         case 'consent': content = ConsentScreen(controller: controller);
         case 'report': content = ReportScreen(controller: controller);
+        case 'history': content = AnalysisHistory(controller:controller);
         default: content = _status(context);
       }
       final camera = CameraSurface(onPhoto: controller.select, onAccount: () => _account(context),
         onSaved: () async {
           if (!controller.session.authenticated) await _account(context);
-          if (context.mounted && controller.session.authenticated) await controller.resume();
+          if (context.mounted && controller.session.authenticated) await controller.loadHistory();
         });
       return Stack(children: [NavigatorPopHandler<Object?>(
         onPopWithResult: (_) => featureNavigator.currentState?.pop(),
@@ -120,7 +121,7 @@ class _AnalyzeJourneyState extends State<AnalyzeJourney> {
     final title = switch (phase) {
       'uploading' => 'Uploading privately', 'submitting' => 'Requesting analysis', 'processing' => 'Your analysis is processing',
       'uncertain' => 'Confirm the previous request', 'expired' => 'This report has expired', 'deletion_requested' => 'Removal requested',
-      'empty' => 'No saved analysis', _ => 'Analysis is not available',
+      'loading_history' => 'Loading your analysis', 'empty' => 'No saved analysis', _ => 'Analysis is not available',
     };
     final body = switch (phase) {
       'uncertain' => 'Your previous request may already exist. Resume checks it safely without starting a second analysis.',
@@ -134,6 +135,7 @@ class _AnalyzeJourneyState extends State<AnalyzeJourney> {
       if (controller.busy || phase == 'processing') const Padding(padding: EdgeInsets.only(bottom: 24), child: CircularProgressIndicator()),
       Text(title, textAlign: TextAlign.center, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w600)),
       const SizedBox(height: 16), Text(body, textAlign: TextAlign.center), const SizedBox(height: 24),
+      if (phase == 'loading_history' && !controller.busy) OutlinedButton(onPressed:controller.loadHistory,child:const Text('Reload history')),
       if (phase == 'uncertain') FilledButton(onPressed: controller.busy ? null : controller.confirmResume, child: const Text('Resume previous request')),
       if (['processing','stopped','expired'].contains(phase)) OutlinedButton(onPressed: controller.busy ? null : controller.resume, child: const Text('Reload from account')),
       if (controller.job != null) TextButton(onPressed: controller.busy ? null : controller.remove, child: const Text('Cancel and remove photo')),
@@ -267,6 +269,9 @@ class ReportScreen extends StatelessWidget {
           Expanded(child:ListView(controller:scroll,padding:const EdgeInsets.fromLTRB(20,0,20,16),children:[
             const Text('Face & colour',style:TextStyle(fontSize:24,fontWeight:FontWeight.w600)),
             const SizedBox(height:8),const Text('Image-based observations. Uncertainty matters.'),const SizedBox(height:16),
+            if(controller.photoError!=null) ListTile(contentPadding:EdgeInsets.zero,
+              title:const Text('Photo could not be loaded'),subtitle:const Text('Your verified observations are still available.'),
+              trailing:IconButton(tooltip:'Reload private photo',onPressed:controller.busy?null:controller.reloadPhoto,icon:const Icon(Icons.refresh))),
             for(final f in report.findings) ListTile(contentPadding:EdgeInsets.zero,minVerticalPadding:12,
               title:Text(f.value??'Not enough evidence',style:const TextStyle(fontSize:17,fontWeight:FontWeight.w600)),
               subtitle:Text('${f.key.replaceAll('-', ' ')} · ${f.userCorrected?'Your correction':f.certainty}'),
@@ -288,5 +293,27 @@ class ReportScreen extends StatelessWidget {
     Text(finding.userCorrected?'Your correction':finding.certainty),const SizedBox(height:12),Text(finding.uncertainty),const SizedBox(height:20),
     FilledButton(onPressed:(){Navigator.of(context,rootNavigator:true).pop();edit(context,finding);},child:const Text('Correct this observation')),
     if(finding.userCorrected) TextButton(onPressed:(){Navigator.of(context,rootNavigator:true).pop();controller.correct(finding.key,null);},child:const Text('Reset to observation')),
+  ]));
+}
+
+class AnalysisHistory extends StatelessWidget {
+  const AnalysisHistory({super.key,required this.controller});
+  final AnalyzeController controller;
+  @override Widget build(BuildContext context) => SafeArea(child:Column(children:[
+    Row(children:[TouchAction(label:'Return to camera',icon:Icons.arrow_back,onTap:controller.backToCapture),
+      const Expanded(child:Text('Your analyses',style:TextStyle(fontSize:20,fontWeight:FontWeight.w600))),
+      TouchAction(label:'Refresh analysis history',icon:Icons.refresh,onTap:controller.busy?null:controller.loadHistory)]),
+    Expanded(child:RefreshIndicator(onRefresh:controller.loadHistory,child:ListView(physics:const AlwaysScrollableScrollPhysics(),padding:const EdgeInsets.all(20),children:[
+      if(controller.pending!=null) Padding(padding:const EdgeInsets.only(bottom:16),child:OutlinedButton.icon(
+        onPressed:controller.busy?null:controller.resume,icon:const Icon(Icons.restore),label:const Text('Resume previous request'))),
+      if(controller.history.isEmpty) const Padding(padding:EdgeInsets.symmetric(vertical:48),child:Column(children:[
+        Icon(Icons.history,size:40),SizedBox(height:16),Text('No analysis records',style:TextStyle(fontSize:22)),
+        SizedBox(height:8),Text('New analyses appear here after the server accepts them.',textAlign:TextAlign.center)])),
+      for(final job in controller.history) ListTile(contentPadding:const EdgeInsets.symmetric(vertical:8),
+        leading:Icon(controller.selectedReportId==job.id?Icons.bookmark:Icons.face_retouching_natural),
+        title:Text(MaterialLocalizations.of(context).formatFullDate(job.created.toLocal())),
+        subtitle:Text(controller.selectedReportId==job.id?'Saved to Style Passport · ${job.state}':job.state),
+        trailing:const Icon(Icons.chevron_right),onTap:controller.busy?null:()=>controller.openHistory(job.id)),
+    ]))),
   ]));
 }

@@ -32,6 +32,7 @@ class TouchAction extends StatelessWidget {
   }, style: IconButton.styleFrom(minimumSize: const Size(48,48), backgroundColor: Colors.black45), icon: Icon(icon));
 }
 String message(String? code) => switch (code) {
+  'private_record_unavailable' => 'These private records are no longer available. Reload your account to confirm their status.',
   'api_not_configured' => 'Private analysis is unavailable. Your photo has not been uploaded.',
   'auth_not_configured' => 'Sign-in is unavailable in this build. Your photo has not been uploaded.',
   'sign_in_required' => 'Sign in to your existing account to continue.',

@@ -22,6 +22,29 @@ class AnalysisRepository {
     if (epoch != session.generation || owner != session.subject) throw const Failure('session_changed');
     return value;
   }
+  Future<List<AnalysisJob>> history() async {
+    final origin=config.api;if(origin==null)throw const Failure('api_not_configured');
+    final token=await session.token(),epoch=session.generation,owner=session.subject;
+    final values=await transport.jsonList(origin.resolve('/v1/analysis/jobs'),headers:{'Authorization':'Bearer $token'});
+    if(epoch!=session.generation || owner!=session.subject)throw const Failure('session_changed');
+    final jobs=values.map((v)=>AnalysisJob.fromJson(object(v))).toList();
+    require(jobs.map((v)=>v.id).toSet().length==jobs.length);
+    return jobs;
+  }
+  Future<Uint8List> photoFor(Report report) async {
+    final origin=config.api;if(origin==null)throw const Failure('api_not_configured');
+    if(!report.expires.isAfter(DateTime.now()))throw const Failure('report_expired');
+    final token=await session.token(),epoch=session.generation,owner=session.subject;
+    final media=MediaRecord.fromJson(await request('/v1/media/${identifier(report.mediaId)}'));
+    require(media.id==report.mediaId && media.state=='ready');
+    if(epoch!=session.generation || owner!=session.subject)throw const Failure('session_changed');
+    final bytes=await transport.privatePng(origin.resolve('/v1/media/${media.id}/content'),headers:{'Authorization':'Bearer $token'});
+    if(epoch!=session.generation || owner!=session.subject || !report.expires.isAfter(DateTime.now())) {
+      bytes.fillRange(0,bytes.length,0);throw const Failure('session_changed');
+    }
+    if(bytes.length!=media.storedSize){bytes.fillRange(0,bytes.length,0);throw const Failure('invalid_response');}
+    return bytes;
+  }
   Future<Permissions> permissions() async => Permissions.fromJson(await request('/v1/analysis/permissions'));
   Future<void> available() async {
     for (final (path, scope) in [('/v1/media/status','private_media_storage'),('/v1/analysis/status','cosmetic_analysis_and_passport')]) {

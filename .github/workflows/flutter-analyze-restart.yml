@@ -99,6 +99,13 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-front emulated -camera-back emulated -no-snapshot
           script: python3 scripts/flutter/run_command.py artifacts/analyze-restart/android/native.txt bash scripts/analyze-restart/evidence.sh android
+      - name: Build separately labeled ARM64 physical-phone review APK (device NOT TESTED)
+        run: |
+          python3 scripts/flutter/run_command.py artifacts/analyze-restart/android/arm64-build.txt bash -c 'cd apps/glam_mobile && flutter build apk --debug --target-platform=android-arm64 --no-pub'
+          cp apps/glam_mobile/build/app/outputs/flutter-apk/app-debug.apk artifacts/analyze-restart/android/glam-analyze-arm64-review-UNTESTED.apk
+          shasum -a 256 artifacts/analyze-restart/android/glam-analyze-arm64-review-UNTESTED.apk >> artifacts/analyze-restart/android/SHA256SUMS
+          signer=$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -1)
+          "$signer" verify --print-certs artifacts/analyze-restart/android/glam-analyze-arm64-review-UNTESTED.apk > artifacts/analyze-restart/android/arm64-signing-certificate.txt
       - uses: actions/upload-artifact@v7
         if: always()
         with:

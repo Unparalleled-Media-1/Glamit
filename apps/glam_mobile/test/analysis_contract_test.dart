@@ -46,7 +46,11 @@ class Harness {
   final requests = <http.Request>[];
   bool storage = false, analysis = false, selected = false;
   String state = 'CONNECTED', reportOwner = owner;
-  bool rejectSave = false, expiredOnRemoval = false;
+  bool rejectSave = false, expiredOnRemoval = false, denyPhoto = false, wrongPhotoMime = false, duplicateHistory = false;
+  Completer<http.Response>? photoWait;
+  bool photoRequested = false;
+  Uint8List get storedPhoto => File('test/fixtures/picker-fixture.png').readAsBytesSync();
+  Map<String,dynamic> jobRecord([String state='completed']) => {'id':jobId,'media_id':mediaId,'state':state,'created_at':DateTime.now().toIso8601String(),'expires_at':future,'error_code':null};
   final edits = <String,String>{};
   int correctionRevision = 0;
   Completer<http.Response>? reportWait;
@@ -77,14 +81,24 @@ class Harness {
       expect(r.headers['Idempotency-Key'] ?? r.headers['idempotency-key'], isNotEmpty);
       return response({'id':mediaId,'state':'pending','content_type':'image/png','expires_at':future,'created_at':DateTime.now().toIso8601String()});
     }
+    if(path=='/v1/media/$mediaId' && r.method=='GET') {
+      if(denyPhoto)return response({'detail':'private record unavailable'},403);
+      return response({'id':mediaId,'state':'ready','content_type':'image/png','width':512,'height':640,'stored_size':storedPhoto.length,
+        'expires_at':future,'created_at':DateTime.now().toIso8601String()});
+    }
+    if(path=='/v1/media/$mediaId/content' && r.method=='GET') {
+      photoRequested=true;
+      return photoWait==null?http.Response.bytes(storedPhoto,200,headers:{'content-type':wrongPhotoMime?'text/html':'image/png'}):photoWait!.future;
+    }
     if(path=='/v1/media/$mediaId/content') {
       expect(r.bodyBytes, protocolFixture);
       return response({'id':mediaId,'state':'ready','content_type':'image/png','width':512,'height':640,'stored_size':1024,
         'expires_at':future,'created_at':DateTime.now().toIso8601String()});
     }
-    if(path=='/v1/analysis/jobs/$jobId' && r.method=='DELETE') return response({'id':jobId,'media_id':mediaId,'state':expiredOnRemoval?'expired':'cancelled','expires_at':future,'error_code':null});
+    if(path=='/v1/analysis/jobs/$jobId' && r.method=='DELETE') return response(jobRecord(expiredOnRemoval?'expired':'cancelled'));
     if(path=='/v1/media/$mediaId' && r.method=='DELETE') return response({'id':mediaId,'state':'deletion_pending'});
-    if(path=='/v1/analysis/jobs' || path=='/v1/analysis/jobs/$jobId') return response({'id':jobId,'media_id':mediaId,'state':'completed','expires_at':future,'error_code':null});
+    if(path=='/v1/analysis/jobs' && r.method=='GET')return response([jobRecord(),if(duplicateHistory)jobRecord()]);
+    if(path=='/v1/analysis/jobs' || path=='/v1/analysis/jobs/$jobId') return response(jobRecord());
     if(path.endsWith('/corrected-report')) { reportRequested=true; return reportWait==null?response(report()):reportWait!.future; }
     if(path.endsWith('/corrections')) {
       final body=jsonDecode(r.body) as Map; expect(body['expected_revision'],correctionRevision);
@@ -212,6 +226,52 @@ void main() {
     await h.controller.remove();expect(h.controller.error,isNull);expect(h.controller.report,isNull);
     expect(h.controller.phase,'deletion_requested');
     expect(h.vault.values.containsKey(pendingStorageKey(owner)),isFalse);
+  });
+
+  test('History is loaded from authenticated records and opens the stored private photo', () async {
+    final h=Harness();addTearDown(h.dispose);await h.begin();await h.analyze();await h.controller.save();
+    h.controller.backToCapture();await h.controller.loadHistory();
+    expect(h.controller.error,isNull);expect(h.controller.phase,'history');expect(h.controller.history.length,1);
+    expect(h.controller.selectedReportId,jobId);
+    await h.controller.openHistory(jobId);
+    expect(h.controller.error,isNull);expect(h.controller.saved,isTrue);expect(h.controller.photo,h.storedPhoto);
+    expect(h.requests.where((r)=>r.url.path=='/v1/analysis/jobs'&&r.method=='GET').length,1);
+  });
+  test('Fresh sign-in reopens the saved report and fetches its photo without local picture persistence', () async {
+    final h=Harness();addTearDown(h.dispose);await h.begin();await h.analyze();await h.controller.save();h.controller.lock();
+    await h.session.signIn('fixture@example.test','unit-password');await h.controller.resume();
+    expect(h.controller.photo,h.storedPhoto);expect(h.controller.report!.id,jobId);
+    expect(h.vault.values.values.join(),isNot(contains(base64Encode(h.storedPhoto))));
+  });
+  test('Revoked photo access clears the associated cached report rather than showing stale private data', () async {
+    final h=Harness();addTearDown(h.dispose);await h.begin();await h.analyze();await h.controller.save();h.denyPhoto=true;
+    await h.controller.resume();
+    expect(h.controller.photo,isNull);expect(h.controller.report,isNull);expect(h.controller.phase,'expired');
+    expect(h.controller.error,'private_record_unavailable');
+  });
+  test('An invalid image MIME never becomes the portrait canvas', () async {
+    final h=Harness();addTearDown(h.dispose);await h.begin();await h.analyze();await h.controller.save();h.wrongPhotoMime=true;
+    await h.controller.resume();
+    expect(h.controller.photo,isNull);expect(h.controller.photoError,'invalid_response');expect(h.controller.report!.id,jobId);
+  });
+  test('Lock rejects a late private-image response and clears report and portrait', () async {
+    final h=Harness();addTearDown(h.dispose);await h.begin();await h.analyze();await h.controller.save();h.photoWait=Completer<http.Response>();
+    final operation=h.controller.resume();
+    for(var i=0;i<100&&!h.photoRequested;i++){await Future<void>.delayed(const Duration(milliseconds:1));}
+    expect(h.photoRequested,isTrue);h.controller.lock();
+    h.photoWait!.complete(http.Response.bytes(h.storedPhoto,200,headers:{'content-type':'image/png'}));await operation;
+    expect(h.controller.photo,isNull);expect(h.controller.report,isNull);expect(h.controller.phase,'capture');
+  });
+  test('Duplicate job identities in history are rejected', () async {
+    final h=Harness();addTearDown(h.dispose);await h.begin();h.duplicateHistory=true;await h.controller.loadHistory();
+    expect(h.controller.error,'invalid_response');expect(h.controller.history,isEmpty);
+  });
+  test('Saving an older report preserves another recoverable request from the same account', () async {
+    final h=Harness();addTearDown(h.dispose);await h.begin();await h.analyze();
+    final active={'owner':owner,'media_id':mediaId,'policy_id':policy2,'request_key':policy1,'job_id':other};
+    h.controller.pending=active;await h.vault.write(pendingStorageKey(owner),jsonEncode(active));
+    await h.controller.save();expect(h.controller.saved,isTrue);
+    expect(jsonDecode(h.vault.values[pendingStorageKey(owner)]!)['job_id'],other);
   });
 
 }

@@ -33,25 +33,27 @@ class MediaRecord {
     id = identifier(value['id']); state = text(value['state'], 32);
     require(['pending','ready','deletion_pending','deleted'].contains(state));
     require(value['content_type'] == 'image/png'); expires = instant(value['expires_at']);
-    require(expires.isAfter(DateTime.now()));
+    if(!expires.isAfter(DateTime.now()))throw const Failure('private_record_unavailable');
     instant(value['created_at']);
+    storedSize = value['stored_size'] is int ? value['stored_size'] as int : null;
     if (state == 'ready') {
       for (final key in ['width','height','stored_size']) { require(value[key] is int && (value[key] as int) > 0); }
       require((value['stored_size'] as int) <= 10 * 1024 * 1024);
     }
   }
   late final String id, state;
+  late final int? storedSize;
   late final DateTime expires;
 }
 class AnalysisJob {
   AnalysisJob.fromJson(Map<String, dynamic> value) {
     id = identifier(value['id']); mediaId = identifier(value['media_id']); state = text(value['state'], 32);
     require(['queued','running','completed','failed','cancelled','expired'].contains(state));
-    expires = instant(value['expires_at']);
+    created = instant(value['created_at']); expires = instant(value['expires_at']);
     require(value['error_code'] == null || value['error_code'] is String);
   }
   late final String id, mediaId, state;
-  late final DateTime expires;
+  late final DateTime created, expires;
   bool get pending => ['queued','running'].contains(state) && expires.isAfter(DateTime.now());
 }
 class Finding {
@@ -78,7 +80,7 @@ class Report {
     id = identifier(value['id']); mediaId = identifier(value['media_id']);
     require(value['subject'] == owner && value['provider'] == 'openai');
     model = text(value['model'], 200); expires = instant(value['expires_at']);
-    require(expires.isAfter(DateTime.now())); correctionRevision = revision(value['correction_revision']);
+    if(!expires.isAfter(DateTime.now()))throw const Failure('private_record_unavailable'); correctionRevision = revision(value['correction_revision']);
     final corrections = object(value['corrections']);
     require(corrections.length <= 5);
     userCorrections = {};
