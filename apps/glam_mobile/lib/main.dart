@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -138,7 +139,7 @@ class PhotoReview extends StatelessWidget {
   final bool busy;
   final VoidCallback onRetake, onAnalyze;
   @override Widget build(BuildContext context) => Semantics(identifier: 'native-photo-review', child: Stack(fit: StackFit.expand, children: [
-    Image.memory(photo, fit: BoxFit.contain, excludeFromSemantics: true),
+    PrivatePhoto(bytes: photo),
     SafeArea(child: Column(children: [
       Padding(padding: const EdgeInsets.all(16), child: Align(alignment: Alignment.centerLeft, child: TouchAction(label: 'Retake photo', icon: Icons.arrow_back, onTap: busy ? null : onRetake))),
       const Spacer(),
@@ -149,6 +150,19 @@ class PhotoReview extends StatelessWidget {
       ])),
     ])),
   ]));
+}
+class PrivatePhoto extends StatefulWidget {
+  const PrivatePhoto({super.key, required this.bytes});
+  final Uint8List bytes;
+  @override State<PrivatePhoto> createState() => _PrivatePhotoState();
+}
+class _PrivatePhotoState extends State<PrivatePhoto> {
+  @override void didUpdateWidget(PrivatePhoto oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.bytes, widget.bytes)) unawaited(MemoryImage(oldWidget.bytes).evict());
+  }
+  @override void dispose() { unawaited(MemoryImage(widget.bytes).evict()); super.dispose(); }
+  @override Widget build(BuildContext context) => Image.memory(widget.bytes, fit: BoxFit.contain, excludeFromSemantics: true);
 }
 class SignInSheet extends StatefulWidget {
   const SignInSheet({super.key, required this.controller});
