@@ -1,0 +1,175 @@
+Yes — I recommend restarting the mobile app's frontend development, but NOT restarting the entire project.
+
+Given the repeated failures with Codex, the problem is no longer simply poor screen design. It appears to be the development approach: Codex keeps reproducing the website's structure, even when instructed to build a mobile-first Flutter application.
+
+Starting from scratch again using the same instructions, repository structure and development process will probably produce the same result.
+
+## My recommendation: a controlled mobile reset
+
+Mobile UI and navigation
+
+Rebuild
+
+Backend APIs and database
+
+Preserve
+
+Authentication and payment integrations
+
+Reuse after verification
+
+Existing Flutter code
+
+Selective reuse
+
+Mobile design system
+
+Redesign
+
+The current GLAM Beauty F1 builds already demonstrate that Flutter can run on both Android and iOS. Flutter is not the problem. The problem is using a web-first product structure as the blueprint for a mobile application.
+
+## What I would do differently this time
+
+### 1. Separate the mobile app from the website
+
+Create a fresh Flutter application with its own presentation layer, navigation architecture, screen components and mobile design system.
+
+The website remains operational. The mobile app consumes the same authorized backend services, but it does not import or imitate the website's screens.
+
+### 2. Design the mobile experience before coding it
+
+[GlowScan Skin Analysis | NumberC](https://images.openai.com/static-rsc-4/hLvsmYCC90gEiBSKslr-HPC38WNC2nGKOOleyfbyUY7SLWUhO-TnKqUY0p2yqBKVKZt4DaWyvb9BKQIGzMIhrZRHJyho_IXhFWbpx67ohWSNE52n7olaNuKxxBlTc6ayIg2ayOAnTJaOGTHUuHCmfr0ZNKeyOSgFaAIXJPZtlgE?purpose=inline)
+
+Analyze
+
+Camera-first, full-screen experience.
+
+[Beauty Make Up AI Mobile - Magic Cam by Jëlly for Odama on Dribbble](https://images.openai.com/static-rsc-4/R80HDJ0Jd3jpnh_NOsdmQSSs0iCRvX6pM7pZjgz6FXYbFhlOs08i1SMz70x93oFGeb0AOmfJ_aA-9BjWtqhSH14PbElVW_P58nOjPtaboed5BtbWGOAFERJ1tjQre7ES82UudhLFbCk3YzAk7IxfthVlsEYBVUAsAnLFZ1138wI?purpose=inline)
+
+AI Studio
+
+Interactive portrait canvas and touch controls.
+
+[Fashion Styling App Drest Debuts Beauty Filters on Instagram - PAPER Magazine](https://images.openai.com/static-rsc-4/f9UMnM6BdOM9QGuFmnJzPxP6bz6D9FPmJMgyoNNMAgtlP2sYHdBSM5ZQcIv9blwwglFgYH1PnUq9MpODoI0cgNzbcIDnvBWRgCifogXqW9A141f4ioVZxjlpWN5umr7V2oGuiRWDQXri5LGkh4V2kt1h9iGb-yzrkcxMW4Lv2GY?purpose=inline)
+
+Discover
+
+Immersive inspiration and discovery.
+
+[Skin care App UI design by Thrihash Raj K on Dribbble](https://images.openai.com/static-rsc-4/AN66r-Rh1VlHwRBpVoqMa4vxde6TRrgj0YddNK-6DnHpxqLRU6A2LcbbkT7m_2RJHHxWm-kv7NQQWsjzWsc4hug73nHExW3fa-JaOHJNzPR1W_HR4CbKLU1NKQ5AYvzjUS5GNc5JPvpSmUfa3g6pxRm1Eo0RCBthn3hMV1gzWUk?purpose=inline)
+
+Home
+
+Personalized and action-focused.
+
+Illustrative references for the intended mobile interaction direction, not approved GLAM Beauty screen designs.
+
+### 3. Change how Codex is instructed
+
+Instead of asking Codex to build the whole mobile app, make it complete one vertical feature at a time:
+
+- First, implement and demonstrate one genuinely native mobile screen.
+- Then connect that screen to its actual backend functionality.
+- Run the app on Android and iOS simulators.
+- Record the interaction.
+- Obtain design approval.
+- Only then move to the next feature.
+
+This makes it much harder for the builder to hide incomplete functionality behind attractive static screens.
+
+## Copy this into Codex
+
+# GLAM BEAUTY — CONTROLLED FLUTTER MOBILE RESTART
+
+**Decision: Restart the mobile presentation layer. Preserve the existing backend and business logic.**
+
+The previous Flutter F1 mobile implementation is rejected because it reproduces website-style screens instead of a purpose-built mobile application.
+
+## Phase 1 — Preserve and isolate
+
+1. Create a permanent backup branch of the existing mobile implementation.
+2. Record the current working commit and build artifacts.
+3. Inventory reusable API clients, authentication, data models, services and tests.
+4. Preserve all functioning backend infrastructure.
+5. Create a clean Flutter mobile application in a separate development branch.
+6. Do not delete the existing mobile implementation until the replacement is approved.
+
+## Phase 2 — Build a genuinely mobile-first foundation
+
+Use:
+
+- Flutter and Dart.
+- Native Android and iOS platform integrations.
+- A mobile-specific design system.
+- Proper mobile routing and navigation.
+- Secure session management.
+- Reusable backend API clients.
+- Accessible, responsive Flutter widgets.
+
+Do not use WebView as the primary application interface.
+
+Do not port website pages into Flutter widgets.
+
+Do not reuse the website's information architecture as the mobile screen blueprint.
+
+## Phase 3 — Build one complete vertical slice
+
+Start with the Analyze experience.
+
+Implement:
+
+1. Native mobile landing screen.
+2. Camera permission request.
+3. Camera preview.
+4. Photo capture or gallery selection.
+5. Secure image upload.
+6. Actual analysis API request.
+7. Processing and error states.
+8. Real analysis results.
+9. Save results to the authenticated account.
+10. Return navigation and session recovery.
+
+No mock success states.
+
+If the backend analysis service is unavailable, report that dependency instead of simulating completion.
+
+## Phase 4 — Prove the experience
+
+Deliver:
+
+- Android simulator recording.
+- iOS simulator recording.
+- Actual source code.
+- Backend integration evidence.
+- Navigation test results.
+- Screen-size and accessibility checks.
+- A comparison explaining why the new UI is different from the responsive website.
+
+Stop for design approval after this first complete feature.
+
+## Phase 5 — Continue only after approval
+
+Build Studio, Discover, Home, Profile and remaining features using the same approved mobile design language.
+
+Do not attempt to implement every screen in one giant development task.
+
+## Acceptance rules
+
+The restart is successful only if:
+
+- The new UI is visibly and structurally mobile-first.
+- The Analyze feature performs a real end-to-end operation.
+- Android and iOS navigation works.
+- The app does not depend on embedded website pages.
+- The existing backend remains compatible.
+- The first vertical slice passes review.
+
+Do not deploy or replace the current application automatically.
+
+## Should you abandon Codex?
+
+Not necessarily. I would give Codex one tightly scoped opportunity to deliver the new Analyze vertical slice using this approach.
+
+If it again produces a web-style interface or static demonstration, stop assigning it end-to-end mobile design work. Use a dedicated mobile UX design process to establish the screens, then use Codex primarily for implementing the approved Flutter designs, backend integration and automated tests.
+
+My final recommendation: Restart GLAM Beauty's mobile frontend now, not the whole GLAM Beauty platform. Preserve what already works, establish a genuinely mobile-native design, and require proof from one fully functional feature before committing resources to another complete app build.

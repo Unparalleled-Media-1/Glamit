@@ -1,0 +1,151 @@
+name: Flutter Analyze controlled restart
+on:
+  pull_request:
+    paths:
+      - 'apps/glam_mobile/**'
+      - 'scripts/analyze-restart/**'
+      - '.github/workflows/flutter-analyze-restart.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: analyze-restart-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+env:
+  CI: 'true'
+  MAESTRO_DRIVER_STARTUP_TIMEOUT: '300000'
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          flutter-version: '3.47.9'
+          channel: stable
+          cache: true
+      - run: python3 scripts/flutter/run_command.py artifacts/analyze-restart/bootstrap.txt bash scripts/analyze-restart/bootstrap.sh
+      - name: Resolve one native dependency lock
+        working-directory: apps/glam_mobile
+        run: |
+          flutter pub get
+          dart run flutter_launcher_icons
+      - name: Analyze clean Flutter source
+        run: python3 scripts/flutter/run_command.py artifacts/analyze-restart/analyze.txt bash -c 'cd apps/glam_mobile && flutter analyze --no-fatal-infos'
+      - name: Contract privacy recovery and native-layout checks (isolated tests)
+        run: python3 scripts/flutter/run_command.py artifacts/analyze-restart/tests.txt bash -c 'cd apps/glam_mobile && flutter test --no-pub'
+      - name: Verify native generator preserves authored app
+        run: git diff --exit-code -- apps/glam_mobile/lib apps/glam_mobile/pubspec.yaml
+      - uses: actions/upload-artifact@v7
+        with:
+          name: analyze-restart-native-inputs
+          path: |
+            apps/glam_mobile/pubspec.lock
+            apps/glam_mobile/android
+            apps/glam_mobile/ios
+          include-hidden-files: true
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: analyze-restart-source-checks
+          path: artifacts/analyze-restart
+  android:
+    needs: source
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          flutter-version: '3.47.9'
+          channel: stable
+          cache: true
+      - uses: actions/download-artifact@v7
+        with:
+          name: analyze-restart-native-inputs
+          path: apps/glam_mobile
+      - run: flutter pub get --enforce-lockfile
+        working-directory: apps/glam_mobile
+      - run: bash scripts/analyze-restart/install-maestro.sh
+      - name: Compile actual native camera application
+        run: python3 scripts/flutter/run_command.py artifacts/analyze-restart/android/build.txt bash -c 'cd apps/glam_mobile && flutter build apk --debug --target-platform=android-x64 --no-pub'
+      - name: Retain actual emulator APK and checksum
+        run: |
+          mkdir -p artifacts/analyze-restart/android
+          cp apps/glam_mobile/build/app/outputs/flutter-apk/app-debug.apk artifacts/analyze-restart/android/glam-analyze-x64-emulator.apk
+          shasum -a 256 artifacts/analyze-restart/android/glam-analyze-x64-emulator.apk > artifacts/analyze-restart/android/SHA256SUMS
+      - name: Enable emulator KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Actual camera permission capture and return navigation
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-front emulated -camera-back emulated -no-snapshot
+          script: python3 scripts/flutter/run_command.py artifacts/analyze-restart/android/native.txt bash scripts/analyze-restart/evidence.sh android
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: analyze-restart-android-native
+          path: artifacts/analyze-restart/android
+  ios:
+    needs: source
+    runs-on: macos-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          flutter-version: '3.47.9'
+          channel: stable
+          cache: true
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: actions/download-artifact@v7
+        with:
+          name: analyze-restart-native-inputs
+          path: apps/glam_mobile
+      - run: flutter pub get --enforce-lockfile
+        working-directory: apps/glam_mobile
+      - run: bash scripts/analyze-restart/install-maestro.sh
+      - name: Compile actual iOS native application
+        run: python3 scripts/flutter/run_command.py artifacts/analyze-restart/ios/build.txt bash -c 'cd apps/glam_mobile && flutter build ios --simulator --debug --no-codesign --no-pub'
+      - name: Retain actual simulator application
+        run: |
+          mkdir -p artifacts/analyze-restart/ios
+          ditto -c -k --sequesterRsrc --keepParent apps/glam_mobile/build/ios/iphonesimulator/Runner.app artifacts/analyze-restart/ios/glam-analyze-simulator.zip
+          shasum -a 256 artifacts/analyze-restart/ios/glam-analyze-simulator.zip > artifacts/analyze-restart/ios/SHA256SUMS
+      - name: Boot actual iPhone simulator
+        run: |
+          xcrun simctl list devices available --json > artifacts/analyze-restart/ios/simulators.json
+          device=$(jq -r '[.devices[][] | select(.isAvailable and (.name | startswith("iPhone")))][0].udid' artifacts/analyze-restart/ios/simulators.json)
+          test "$device" != null
+          echo "$device" > artifacts/analyze-restart/ios/device-id.txt
+          state=$(jq -r --arg id "$device" '.devices[][] | select(.udid == $id) | .state' artifacts/analyze-restart/ios/simulators.json)
+          if [ "$state" != Booted ]; then xcrun simctl boot "$device"; fi
+          xcrun simctl bootstatus "$device" -b
+      - name: Actual library selection and iOS swipe-back (not physical camera proof)
+        run: python3 scripts/flutter/run_command.py artifacts/analyze-restart/ios/native.txt bash scripts/analyze-restart/evidence.sh ios
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: analyze-restart-ios-native
+          path: artifacts/analyze-restart/ios
