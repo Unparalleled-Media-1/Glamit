@@ -75,7 +75,7 @@ class AnalysisRepository {
   }
   Future<void> remove(String jobId, String mediaId) async {
     final cancelled = AnalysisJob.fromJson(await request('/v1/analysis/jobs/${identifier(jobId)}', method:'DELETE'));
-    require(cancelled.state == 'cancelled');
+    require(['cancelled','expired'].contains(cancelled.state) && cancelled.id == jobId);
     final media = await request('/v1/media/${identifier(mediaId)}', method:'DELETE');
     require(['deletion_pending','deleted'].contains(media['state']));
   }

@@ -46,7 +46,7 @@ class Harness {
   final requests = <http.Request>[];
   bool storage = false, analysis = false, selected = false;
   String state = 'CONNECTED', reportOwner = owner;
-  bool rejectSave = false;
+  bool rejectSave = false, expiredOnRemoval = false;
   final edits = <String,String>{};
   int correctionRevision = 0;
   Completer<http.Response>? reportWait;
@@ -82,6 +82,8 @@ class Harness {
       return response({'id':mediaId,'state':'ready','content_type':'image/png','width':512,'height':640,'stored_size':1024,
         'expires_at':future,'created_at':DateTime.now().toIso8601String()});
     }
+    if(path=='/v1/analysis/jobs/$jobId' && r.method=='DELETE') return response({'id':jobId,'media_id':mediaId,'state':expiredOnRemoval?'expired':'cancelled','expires_at':future,'error_code':null});
+    if(path=='/v1/media/$mediaId' && r.method=='DELETE') return response({'id':mediaId,'state':'deletion_pending'});
     if(path=='/v1/analysis/jobs' || path=='/v1/analysis/jobs/$jobId') return response({'id':jobId,'media_id':mediaId,'state':'completed','expires_at':future,'error_code':null});
     if(path.endsWith('/corrected-report')) { reportRequested=true; return reportWait==null?response(report()):reportWait!.future; }
     if(path.endsWith('/corrections')) {
@@ -203,6 +205,13 @@ void main() {
       await tester.drag(find.byKey(const ValueKey('native-results-sheet')),const Offset(0,-180));await tester.pumpAndSettle();
       expect(tester.takeException(),isNull);
     } finally { await tester.pumpWidget(const SizedBox());await tester.pumpAndSettle();h.dispose(); }
+  });
+
+  test('Removal accepts the server expired terminal state and confirms only deletion requested', () async {
+    final h=Harness();addTearDown(h.dispose);await h.begin();await h.analyze();h.expiredOnRemoval=true;
+    await h.controller.remove();expect(h.controller.error,isNull);expect(h.controller.report,isNull);
+    expect(h.controller.phase,'deletion_requested');
+    expect(h.vault.values.containsKey(pendingStorageKey(owner)),isFalse);
   });
 
 }
