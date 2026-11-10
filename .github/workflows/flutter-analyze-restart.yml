@@ -13,6 +13,7 @@ concurrency:
   cancel-in-progress: true
 env:
   CI: 'true'
+  GLAM_ANALYZE_REVIEW: '1'
   MAESTRO_DRIVER_STARTUP_TIMEOUT: '300000'
 jobs:
   source:

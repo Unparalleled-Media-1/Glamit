@@ -45,7 +45,7 @@ set +e
 maestro --device "$device" test apps/glam_mobile/maestro/"$platform".yaml --test-output-dir "$GLAM_FLUTTER_EVIDENCE/maestro"
 status=$?
 set -e
-if [ "$status" -ne 0 ]; then python3 scripts/flutter/failure-evidence.py "$platform" "$device" || true; fi
+if [ "$status" -ne 0 ]; then python3 scripts/analyze-restart/failure-evidence.py "$platform" "$device" || true; fi
 cleanup
 if [ "$status" -ne 0 ]; then exit "$status"; fi
 if [ "$platform" = android ]; then

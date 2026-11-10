@@ -19,7 +19,8 @@ appId: com.glambeauty.analyzereview
     timeout: 30000
 - takeScreenshot: 06-native-photo-picker
 - tapOn:
-    point: '16%,30%'
+    text: '(?s)Photo,.*'
+    index: 0
 - extendedWaitUntil:
     visible:
       id: native-photo-review

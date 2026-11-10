@@ -1,0 +1,22 @@
+[
+  {
+    "title": "",
+    "message": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+  },
+  {
+    "title": "",
+    "message": "Process completed with exit code 1."
+  },
+  {
+    "title": "Flutter F1 last failure evidence",
+    "message": "Running on iPhone 17 Pro - iOS 26.4 - 2CC7A2C1-E1A7-4633-911A-DB60BDEB97F0\n > Flow ios\nLaunch app \"com.glambeauty.analyzereview\" with clear state... COMPLETED\nAssert that \"Analyze\" is visible... COMPLETED\nTake screenshot 01-camera-entry... COMPLETED\nTap on id: native-shutter... COMPLETED\nAssert that id: camera-source-error|native-camera-live is visible... COMPLETED\nTake screenshot 02-native-camera-capability... COMPLETED\nTap on \"Photo library\"... COMPLETED\nAssert that \"Cancel\" is visible... COMPLETED\nTake screenshot 06-native-photo-picker... COMPLETED\nTap on point (16%,30%)... COMPLETED\nAssert that id: native-photo-review is visible... FAILED\n\nAssertion is false: id: native-photo-review is visible\n\nAssertion 'id: native-photo-review is visible' failed. Check the UI hierarchy in debug artifacts to verify the element state and properties.\n\nPossible causes:\n- Element selector may be incorrect - check if there are similar elements with slightly different names/properties.\n- Element may be temporarily unavailable due to loading state\n- This could be a real regression that needs to be addressed\n\n==== Debug output (logs & screenshots) ====\n\n/Users/runner/work/Glamit/Glamit/artifacts/analyze-restart/ios/maestro/2026-11-10_084258\nIsolated visual-review runner only\n"
+  },
+  {
+    "title": "Flutter F1 first failure evidence",
+    "message": "Running on iPhone 17 Pro - iOS 26.4 - 2CC7A2C1-E1A7-4633-911A-DB60BDEB97F0\n > Flow ios\nLaunch app \"com.glambeauty.analyzereview\" with clear state... COMPLETED\nAssert that \"Analyze\" is visible... COMPLETED\nTake screenshot 01-camera-entry... COMPLETED\nTap on id: native-shutter... COMPLETED\nAssert that id: camera-source-error|native-camera-live is visible... COMPLETED\nTake screenshot 02-native-camera-capability... COMPLETED\nTap on \"Photo library\"... COMPLETED\nAssert that \"Cancel\" is visible... COMPLETED\nTake screenshot 06-native-photo-picker... COMPLETED\nTap on point (16%,30%)... COMPLETED\nAssert that id: native-photo-review is visible... FAILED\n\nAssertion is false: id: native-photo-review is visible\n\nAssertion 'id: native-photo-review is visible' failed. Check the UI hierarchy in debug artifacts to verify the element state and properties.\n\nPossible causes:\n- Element selector may be incorrect - check if there are similar elements with slightly different names/properties.\n- Element may be temporarily unavailable due to loading state\n- This could be a real regression that needs to be addressed\n\n==== Debug output (logs & screenshots) ====\n\n/Users/runner/work/Glamit/Glamit/artifacts/analyze-restart/ios/maestro/2026-11-10_084258\nIsolated visual-review runner only\n"
+  },
+  {
+    "title": "",
+    "message": "Due to capacity constraints, jobs targeting macOS arm64 runners may experience longer queue times."
+  }
+]
