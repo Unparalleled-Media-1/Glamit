@@ -36,6 +36,7 @@ String message(String? code) => switch (code) {
   'auth_not_configured' => 'Sign-in is unavailable in this build. Your photo has not been uploaded.',
   'sign_in_required' => 'Sign in to your existing account to continue.',
   'sign_in_unavailable' => 'Email sign-in is unavailable. No account was created.',
+  'device_cleanup_unconfirmed' => 'Local account cleanup could not be confirmed. Unlock your device and retry.',
   'session_changed' => 'Your session changed. Reopen your saved analysis after signing in.',
   'analysis_unavailable' || 'service_unavailable' => 'The analysis service is unavailable. Your result has not been simulated.',
   'eligibility_required' => 'This account is not currently eligible for private photo analysis.',

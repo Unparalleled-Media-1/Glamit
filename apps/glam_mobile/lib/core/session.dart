@@ -67,8 +67,17 @@ class Session {
     await _accept(value, epoch);
   }
   void lock() { generation++; _token = null; _refresh = null; subject = null; transport.cancel(); }
-  Future<void> signOut() async {
-    final owner = subject; lock();
-    if (owner != null) await vault.remove(pendingStorageKey(owner));
+  Future<bool> signOut() async {
+    final owner = subject, bearer = _token; lock();
+    var revoked = false;
+    if (bearer != null && config.authConfigured) {
+      try {
+        await transport.json(_url('logout?scope=local'), method:'POST', headers:{..._headers,'Authorization':'Bearer $bearer'});
+        revoked = true;
+      } catch (_) { /* Local credentials are still cleared; no false server-revocation claim. */ }
+    }
+    try { if (owner != null) await vault.remove(pendingStorageKey(owner)); }
+    catch (_) { throw const Failure('device_cleanup_unconfirmed'); }
+    return revoked;
   }
 }

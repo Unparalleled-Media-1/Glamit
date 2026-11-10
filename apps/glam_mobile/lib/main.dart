@@ -65,14 +65,22 @@ class _AnalyzeJourneyState extends State<AnalyzeJourney> {
     : MaterialPage<void>(key: ValueKey(key), child: child);
   Future<void> _account(BuildContext context) async {
     if (controller.session.authenticated) {
-      await MobileDesign.sheet<void>(context, Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      final removing = ValueNotifier(false);
+      try { await MobileDesign.sheet<void>(context, Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         const Text('Your account', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)), const SizedBox(height: 12),
         const Text('Private analysis is scoped to your signed-in account.'), const SizedBox(height: 20),
-        FilledButton(onPressed: () async {
-          await controller.session.signOut(); controller.lock();
-          if (context.mounted) Navigator.of(context, rootNavigator: true).pop();
-        }, child: const Text('Remove this device session')),
-      ]));
+        ValueListenableBuilder<bool>(valueListenable: removing, builder: (_, busy, _) => FilledButton(onPressed: busy ? null : () async {
+          if (removing.value) return; removing.value = true;
+          String? notice;
+          try { final revoked = await controller.session.signOut(); if (!revoked) notice = 'This device is cleared. Server sign-out could not be confirmed.'; }
+          on Failure catch (e) { notice = message(e.code); }
+          controller.lock();
+          if (context.mounted) {
+            if (Navigator.of(context, rootNavigator:true).canPop()) Navigator.of(context, rootNavigator:true).pop();
+            if (notice != null) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text(notice)));
+          }
+        }, child: Text(busy ? 'Removing session…' : 'Sign out on this device'))),
+      ])); } finally { removing.dispose(); }
     } else { await MobileDesign.sheet<void>(context, SignInSheet(controller: controller)); }
   }
   Future<void> _analyze(BuildContext context) async {

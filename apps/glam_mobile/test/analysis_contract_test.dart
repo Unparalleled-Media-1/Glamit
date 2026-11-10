@@ -60,6 +60,7 @@ class Harness {
     if(path=='/auth/v1/settings') return response({'external':{'email':true}});
     if(path=='/auth/v1/token') return response({'access_token':'unit-access','refresh_token':'unit-refresh','expires_in':3600});
     if(path=='/auth/v1/user') return response({'id':owner});
+    if(path=='/auth/v1/logout') { expect(r.url.queryParameters['scope'],'local');return http.Response('',204); }
     expect(r.headers['Authorization'] ?? r.headers['authorization'], 'Bearer unit-access');
     if(path=='/v1/analysis/permissions') return response({'eligible':true,
       'storage':{'granted':storage,'policy':{'id':policy1,'purpose':'private_photo_storage','version':'unit','content':'Test storage policy'}},
@@ -172,6 +173,14 @@ void main() {
     expect(h.vault.values[pendingStorageKey(other)],jsonEncode({'owner':other,'job_id':jobId}));
     h.controller.lock();await h.session.signIn('fixture@example.test','unit-password');await h.controller.resume();
     expect(h.controller.error,isNull);expect(h.controller.report!.id,jobId);
+  });
+
+  test('Device sign-out calls Supabase local-scope revocation and clears only that owner handle', () async {
+    final h=Harness();addTearDown(h.dispose);await h.begin();
+    await h.vault.write(pendingStorageKey(owner),'owner fixture');await h.vault.write(pendingStorageKey(other),'other fixture');
+    expect(await h.session.signOut(),isTrue);expect(h.session.authenticated,isFalse);
+    expect(h.vault.values.containsKey(pendingStorageKey(owner)),isFalse);
+    expect(h.vault.values[pendingStorageKey(other)],'other fixture');
   });
 
 }
