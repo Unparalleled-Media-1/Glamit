@@ -42,8 +42,8 @@ class _AnalyzeScreenState extends State<AnalyzeScreen> {
           child: Stack(fit: StackFit.expand, children: [
             const DecoratedBox(decoration: BoxDecoration(gradient: RadialGradient(colors: [Color(0xff47333f), GlamColors.charcoal], radius: .9))),
             const CustomPaint(painter: _FaceGuide()),
-            const Positioned(top: 12, left: 20, right: 20, child: Text('PHOTO GUIDE · CAMERA OFFLINE', textAlign: TextAlign.center, style: TextStyle(color: GlamColors.champagne, fontSize: 10, letterSpacing: 1))),
-            Positioned(bottom: 12, left: 24, right: 24, child: Text(tips[guide], textAlign: TextAlign.center, style: const TextStyle(color: GlamColors.ivory, fontSize: 14))),
+            const Positioned(top: 12, left: 20, right: 20, child: Semantics(identifier: 'analyze-mode', container: true, child: Text('PHOTO GUIDE · CAMERA OFFLINE', textAlign: TextAlign.center, style: TextStyle(color: GlamColors.champagne, fontSize: 10, letterSpacing: 1)))),
+            Positioned(bottom: 12, left: 24, right: 24, child: Semantics(identifier: 'analyze-guidance', container: true, liveRegion: true, child: Text(tips[guide], textAlign: TextAlign.center, style: const TextStyle(color: GlamColors.ivory, fontSize: 14)))),
           ]))),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: List.generate(3, (i) => Semantics(label: 'Photo tip ${i + 1}', button: true, selected: guide == i,
           child: InkWell(key: ValueKey('guide-$i'), onTap: () => setState(() => guide = i), child: SizedBox(width: 48, height: 48,

@@ -8,7 +8,8 @@ appId: com.glambeauty.visualreview
 - takeScreenshot: 01-home
 - tapOn:
     id: tab-analyze
-- assertVisible: 'PHOTO GUIDE · CAMERA OFFLINE'
+- assertVisible:
+    id: analyze-mode
 - takeScreenshot: 02-analyze
 - tapOn:
     id: analyze-camera
