@@ -31,7 +31,7 @@ The corrected-report backend currently exposes face-shape/eyes/brows/lips/undert
 - test: request/response contract, owner isolation, session lock, consent gating, readiness failures, idempotency/revisions, save verification and camera-first compact/large-text layout checks. Fixtures are test-only; not provider/live evidence.
 - scripts/analyze-restart and dedicated read-only workflow: pinned official Flutter, generated native permission declarations, independent Android/iOS binaries, actual native permission/source interactions and OS evidence. Compilation is separate from UI, hardware and live API acceptance.
 
-No database migrations are required for the frontend. Existing pending production migrations/readiness/provider-data approvals stay gated. This task does not apply them, enable OpenAI dispatch, change Auth settings, alter10% commission, deploy or replace applications.
+No new database migrations are required for the frontend. Read-only target inspection subsequently confirmed private_media, analysis_job, analysis_correction and style_passport_analysis are absent; the existing migrations remain required and unapplied here. See LIVE_READINESS.md. Existing pending production migrations/readiness/provider-data approvals stay gated. This task does not apply them, enable OpenAI dispatch, change Auth settings, alter10% commission, deploy or replace applications.
 
 ## Known live blockers (read-only observations)
 
