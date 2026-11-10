@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:glam_mobile/main.dart';
+import 'package:glam_mobile/presentation/design.dart';
 // Isolated HTTP test fixtures only. Nothing in this file is imported by the app.
 import 'dart:async';
 import 'dart:convert';
@@ -181,6 +185,23 @@ void main() {
     expect(await h.session.signOut(),isTrue);expect(h.session.authenticated,isFalse);
     expect(h.vault.values.containsKey(pendingStorageKey(owner)),isFalse);
     expect(h.vault.values[pendingStorageKey(other)],'other fixture');
+  });
+
+  testWidgets('Results use an accessible draggable mobile sheet over the selected photo',(tester)async {
+    final h=Harness();
+    tester.view.physicalSize=const Size(360,740);tester.view.devicePixelRatio=1;
+    addTearDown(tester.view.resetPhysicalSize);addTearDown(tester.view.resetDevicePixelRatio);
+    try {
+      await tester.runAsync(() async { await h.begin();await h.analyze(); });
+      h.controller.photo=File('test/fixtures/picker-fixture.png').readAsBytesSync();
+      await tester.pumpWidget(MaterialApp(theme:MobileDesign.theme(),home:MediaQuery(
+        data:const MediaQueryData(textScaler:TextScaler.linear(2)),child:Scaffold(body:ReportScreen(controller:h.controller)))));
+      await tester.pumpAndSettle();
+      expect(find.byType(DraggableScrollableSheet),findsOneWidget);
+      expect(find.text('Save to Style Passport'),findsOneWidget);
+      await tester.drag(find.byKey(const ValueKey('native-results-sheet')),const Offset(0,-180));await tester.pumpAndSettle();
+      expect(tester.takeException(),isNull);
+    } finally { await tester.pumpWidget(const SizedBox());await tester.pumpAndSettle();h.dispose(); }
   });
 
 }

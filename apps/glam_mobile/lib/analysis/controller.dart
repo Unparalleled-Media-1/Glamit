@@ -78,7 +78,7 @@ class AnalyzeController extends ChangeNotifier {
       pending!['job_id'] = job!.id;
       await vault.write(pendingStorageKey(pending!['owner'] as String), jsonEncode(pending)); check(epoch);
     } catch (_) { if (epoch == _epoch) phase = 'uncertain'; rethrow; }
-    clearPhoto(); phase = 'processing'; await _readJob(epoch);
+    phase = 'processing'; await _readJob(epoch);
   });
   Future<void> resume() => run((epoch) async {
     await session.token(); check(epoch);
@@ -115,7 +115,7 @@ class AnalyzeController extends ChangeNotifier {
     final fetched = await repository.job(id); check(epoch); job = fetched;
     if (job!.state == 'completed' && job!.expires.isAfter(DateTime.now())) {
       final received = await repository.report(id); check(epoch); report = received; saved = false;
-      clearPhoto(); phase = 'report'; _poll?.cancel(); _expire(report!.expires);
+      phase = 'report'; _poll?.cancel(); _expire(report!.expires);
     } else if (job!.pending) {
       phase = 'processing'; _poll?.cancel();
       _poll = Timer(const Duration(seconds: 3), () { if (!_disposed && phase == 'processing') unawaited(refresh()); });
@@ -124,7 +124,7 @@ class AnalyzeController extends ChangeNotifier {
   void _expire(DateTime expiry) {
     _expiry?.cancel(); final delay = expiry.difference(DateTime.now());
     _expiry = Timer(delay.isNegative ? Duration.zero : delay, () {
-      report = null; saved = false; phase = 'expired'; _notify();
+      clearPhoto(); report = null; saved = false; phase = 'expired'; _notify();
     });
   }
   Future<void> save() => run((epoch) async {

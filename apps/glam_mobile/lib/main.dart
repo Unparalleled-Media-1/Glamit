@@ -130,7 +130,7 @@ class _AnalyzeJourneyState extends State<AnalyzeJourney> {
       'processing' => 'You can reopen this request from your account after returning.',
       _ => 'Results appear only after the server confirms completion.',
     };
-    return SafeArea(child: Center(child: SingleChildScrollView(padding: const EdgeInsets.all(28), child: Column(mainAxisSize: MainAxisSize.min, children: [
+    final controls = SafeArea(child: Center(child: SingleChildScrollView(padding: const EdgeInsets.all(28), child: Column(mainAxisSize: MainAxisSize.min, children: [
       if (controller.busy || phase == 'processing') const Padding(padding: EdgeInsets.only(bottom: 24), child: CircularProgressIndicator()),
       Text(title, textAlign: TextAlign.center, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w600)),
       const SizedBox(height: 16), Text(body, textAlign: TextAlign.center), const SizedBox(height: 24),
@@ -139,6 +139,13 @@ class _AnalyzeJourneyState extends State<AnalyzeJourney> {
       if (controller.job != null) TextButton(onPressed: controller.busy ? null : controller.remove, child: const Text('Cancel and remove photo')),
       TextButton(onPressed: controller.backToCapture, child: const Text('Return to camera')),
     ]))));
+    if (controller.photo == null) return controls;
+    return Stack(fit:StackFit.expand, children:[
+      PrivatePhoto(bytes:controller.photo!),
+      const DecoratedBox(decoration:BoxDecoration(gradient:LinearGradient(begin:Alignment.topCenter,end:Alignment.bottomCenter,colors:[Colors.black26,Colors.black87]))),
+      Align(alignment:Alignment.bottomCenter,child:ConstrainedBox(constraints:BoxConstraints(maxHeight:MediaQuery.sizeOf(context).height*.55),child:controls)),
+    ]);
+
   }
 }
 class PhotoReview extends StatelessWidget {
@@ -244,26 +251,42 @@ class ReportScreen extends StatelessWidget {
   }
   @override Widget build(BuildContext context) {
     final report = controller.report!;
-    return SafeArea(child: Column(children: [
-      Row(children: [TouchAction(label: 'Return to camera', icon: Icons.arrow_back, onTap: controller.busy ? null : controller.backToCapture),
-        const Expanded(child: Text('Your analysis', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)))]),
-      Expanded(child: ListView(padding: const EdgeInsets.all(20), children: [
-        const Text('Cosmetic observations', style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600)),
-        const SizedBox(height: 8), Text('Provider: OpenAI · ${report.model}'), const SizedBox(height: 20),
-        for (final f in report.findings) Padding(padding: const EdgeInsets.only(bottom: 12), child: Material(color: const Color(0xff282329), borderRadius: BorderRadius.circular(20),
-          child: Padding(padding: const EdgeInsets.all(18), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(f.key, style: const TextStyle(color: MobileDesign.blush)), const SizedBox(height: 8),
-            Text(f.value ?? 'Not enough evidence', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
-            Text(f.userCorrected ? 'Your correction' : f.certainty), const SizedBox(height: 8), Text(f.uncertainty),
-            Wrap(spacing: 8, children: [TextButton(onPressed: controller.busy ? null : () => edit(context, f), child: const Text('Correct')),
-              if (f.userCorrected) TextButton(onPressed: controller.busy ? null : () => controller.correct(f.key, null), child: const Text('Reset to observation'))]),
-          ])))),
-        if (report.directions.isNotEmpty) const Padding(padding: EdgeInsets.symmetric(vertical: 16), child: Text('Style directions', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600))),
-        for (final d in report.directions) ListTile(contentPadding: EdgeInsets.zero, title: Text(d.title), subtitle: Text(d.rationale)),
-        const SizedBox(height: 12), TextButton(onPressed: controller.busy ? null : controller.remove, child: const Text('Remove analysis and stored photo')),
-      ])),
-      Padding(padding: const EdgeInsets.all(20), child: SizedBox(width: double.infinity, child: FilledButton(onPressed: controller.busy || controller.saved ? null : controller.save,
-        child: Text(controller.saved ? 'Saved to your account' : 'Save to Style Passport')))),
-    ]));
+    return Stack(fit:StackFit.expand,children:[
+      if(controller.photo!=null) PrivatePhoto(bytes:controller.photo!)
+      else const DecoratedBox(decoration:BoxDecoration(gradient:RadialGradient(colors:[Color(0xff45333e),MobileDesign.background],radius:.9))),
+      SafeArea(child:Align(alignment:Alignment.topCenter,child:Padding(padding:const EdgeInsets.fromLTRB(12,4,20,0),child:Row(children:[
+        TouchAction(label:'Return to camera',icon:Icons.arrow_back,onTap:controller.busy?null:controller.backToCapture),
+        const SizedBox(width:8),const Expanded(child:Text('Your analysis',style:TextStyle(fontSize:19,fontWeight:FontWeight.w600))),
+        if(controller.saved) const Icon(Icons.bookmark,color:MobileDesign.blush),
+      ])))),
+      DraggableScrollableSheet(initialChildSize:.57,minChildSize:.32,maxChildSize:.92,builder:(context,scroll)=>Material(
+        key:const ValueKey('native-results-sheet'),color:MobileDesign.background,
+        borderRadius:const BorderRadius.vertical(top:Radius.circular(28)),clipBehavior:Clip.antiAlias,
+        child:SafeArea(top:false,child:Column(children:[
+          const Padding(padding:EdgeInsets.symmetric(vertical:12),child:SizedBox(width:36,height:4,child:ColoredBox(color:Colors.white38))),
+          Expanded(child:ListView(controller:scroll,padding:const EdgeInsets.fromLTRB(20,0,20,16),children:[
+            const Text('Face & colour',style:TextStyle(fontSize:24,fontWeight:FontWeight.w600)),
+            const SizedBox(height:8),const Text('Image-based observations. Uncertainty matters.'),const SizedBox(height:16),
+            for(final f in report.findings) ListTile(contentPadding:EdgeInsets.zero,minVerticalPadding:12,
+              title:Text(f.value??'Not enough evidence',style:const TextStyle(fontSize:17,fontWeight:FontWeight.w600)),
+              subtitle:Text('${f.key.replaceAll('-', ' ')} · ${f.userCorrected?'Your correction':f.certainty}'),
+              trailing:const Icon(Icons.chevron_right),onTap:controller.busy?null:()=>details(context,f)),
+            if(report.directions.isNotEmpty) const Padding(padding:EdgeInsets.symmetric(vertical:16),child:Text('Style directions',style:TextStyle(fontSize:19,fontWeight:FontWeight.w600))),
+            for(final d in report.directions) ListTile(contentPadding:EdgeInsets.zero,title:Text(d.title),subtitle:Text(d.rationale)),
+            const SizedBox(height:16),Text('OpenAI · ${report.model}',style:const TextStyle(fontSize:11,color:Colors.white60)),
+            TextButton(onPressed:controller.busy?null:controller.remove,child:const Text('Remove analysis and stored photo')),
+          ])),
+          Padding(padding:const EdgeInsets.fromLTRB(20,8,20,12),child:SizedBox(width:double.infinity,child:FilledButton(
+            onPressed:controller.busy||controller.saved?null:controller.save,child:Text(controller.saved?'Saved to your account':'Save to Style Passport')))),
+        ])),
+      )),
+    ]);
   }
+  Future<void> details(BuildContext context,Finding finding) => MobileDesign.sheet<void>(context,Column(crossAxisAlignment:CrossAxisAlignment.stretch,children:[
+    Text(finding.key.replaceAll('-',' '),style:const TextStyle(fontSize:22,fontWeight:FontWeight.w600)),const SizedBox(height:12),
+    Text(finding.value??'Not enough evidence',style:const TextStyle(fontSize:20)),const SizedBox(height:8),
+    Text(finding.userCorrected?'Your correction':finding.certainty),const SizedBox(height:12),Text(finding.uncertainty),const SizedBox(height:20),
+    FilledButton(onPressed:(){Navigator.of(context,rootNavigator:true).pop();edit(context,finding);},child:const Text('Correct this observation')),
+    if(finding.userCorrected) TextButton(onPressed:(){Navigator.of(context,rootNavigator:true).pop();controller.correct(finding.key,null);},child:const Text('Reset to observation')),
+  ]));
 }
