@@ -44,9 +44,11 @@ class StudioScreen extends ConsumerWidget {
                 labelStyle: TextStyle(color: state.tool == i ? GlamColors.ink : GlamColors.ivory), onSelected: (_) => controller.tool(i)))),
             Row(children: [
               const Padding(padding: EdgeInsets.only(right: 8), child: Text('Mood', style: TextStyle(color: GlamColors.ivory, fontSize: 12))),
-              Expanded(child: SizedBox(height: 48, child: ListView(scrollDirection: Axis.horizontal, children: List.generate(moods.length, (i) => Semantics(label: 'Mood ${i + 1}', selected: state.mood == i, button: true,
-                child: InkWell(key: ValueKey('mood-$i'), onTap: () => controller.mood(i), child: SizedBox(width: 48, child: Center(child: Container(width: 26, height: 26,
-                  decoration: BoxDecoration(shape: BoxShape.circle, color: moods[i], border: Border.all(color: state.mood == i ? Colors.white : Colors.transparent, width: 3)))))))))),
+              Expanded(child: SizedBox(height: 48, child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: List.generate(moods.length, (i) => _MoodDot(
+                  index: i, selected: state.mood == i, onTap: () => controller.mood(i))),
+              ))),
             ]),
             FilledButton.icon(key: const ValueKey('studio-brief'), onPressed: () => glamSheet(context, const _BriefComposer()),
               icon: const Icon(Icons.edit_outlined), label: Text(state.brief.isEmpty ? 'Imagine a look' : 'Refine my brief')),
@@ -57,6 +59,19 @@ class StudioScreen extends ConsumerWidget {
       ]))),
     );
   }
+}
+
+class _MoodDot extends StatelessWidget {
+  const _MoodDot({required this.index, required this.selected, required this.onTap});
+  final int index;
+  final bool selected;
+  final VoidCallback onTap;
+  @override
+  Widget build(BuildContext context) => Semantics(label: 'Mood ${index + 1}', selected: selected, button: true,
+    child: InkWell(key: ValueKey('mood-$index'), onTap: onTap,
+      child: SizedBox(width: 48, child: Center(child: Container(width: 26, height: 26,
+        decoration: BoxDecoration(shape: BoxShape.circle, color: moods[index],
+          border: Border.all(color: selected ? Colors.white : Colors.transparent, width: 3)))))));
 }
 
 class _ComparisonClip extends CustomClipper<Rect> {
