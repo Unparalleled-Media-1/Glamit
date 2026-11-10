@@ -2,6 +2,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'config.dart';
 import 'transport.dart';
 
+String pendingStorageKey(String owner) => 'glam.analyze.pending.v1.$owner';
+
 abstract interface class Vault {
   Future<String?> read(String key);
   Future<void> write(String key, String value);
@@ -66,7 +68,7 @@ class Session {
   }
   void lock() { generation++; _token = null; _refresh = null; subject = null; transport.cancel(); }
   Future<void> signOut() async {
-    lock(); subject = null;
-    await vault.remove('glam.analyze.pending.v1');
+    final owner = subject; lock();
+    if (owner != null) await vault.remove(pendingStorageKey(owner));
   }
 }

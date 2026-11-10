@@ -164,4 +164,14 @@ void main() {
     final mismatched=h.report();(mismatched['findings'] as List)[0]['display_value']='invented';
     expect(()=>Report.fromJson(mismatched,owner),throwsA(isA<Failure>()));
   });
+  test('Pending job metadata is namespaced by owner and never overwrites another account', () async {
+    final h=Harness();addTearDown(h.dispose);await h.begin();
+    await h.vault.write(pendingStorageKey(other), jsonEncode({'owner':other,'job_id':jobId}));
+    await h.analyze();
+    expect(h.vault.values.containsKey(pendingStorageKey(owner)),isTrue);
+    expect(h.vault.values[pendingStorageKey(other)],jsonEncode({'owner':other,'job_id':jobId}));
+    h.controller.lock();await h.session.signIn('fixture@example.test','unit-password');await h.controller.resume();
+    expect(h.controller.error,isNull);expect(h.controller.report!.id,jobId);
+  });
+
 }

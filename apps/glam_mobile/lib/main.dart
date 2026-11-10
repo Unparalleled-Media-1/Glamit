@@ -69,7 +69,7 @@ class _AnalyzeJourneyState extends State<AnalyzeJourney> {
         const Text('Your account', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)), const SizedBox(height: 12),
         const Text('Private analysis is scoped to your signed-in account.'), const SizedBox(height: 20),
         FilledButton(onPressed: () async {
-          controller.lock(); await controller.session.signOut();
+          await controller.session.signOut(); controller.lock();
           if (context.mounted) Navigator.of(context, rootNavigator: true).pop();
         }, child: const Text('Remove this device session')),
       ]));

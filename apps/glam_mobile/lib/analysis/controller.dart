@@ -71,18 +71,18 @@ class AnalyzeController extends ChangeNotifier {
     pending = {'owner':session.subject, 'media_id':media.id, 'policy_id':verified.analysis.id,
       'request_key':repository.key(), 'job_id':null};
     // Persist before the potentially billable POST. A timeout is ambiguous, not failure proof.
-    await vault.write('glam.analyze.pending.v1', jsonEncode(pending)); check(epoch);
+    await vault.write(pendingStorageKey(pending!['owner'] as String), jsonEncode(pending)); check(epoch);
     phase = 'submitting'; _notify();
     try {
       final submitted = await repository.submit(pending!); check(epoch); job = submitted;
       pending!['job_id'] = job!.id;
-      await vault.write('glam.analyze.pending.v1', jsonEncode(pending)); check(epoch);
+      await vault.write(pendingStorageKey(pending!['owner'] as String), jsonEncode(pending)); check(epoch);
     } catch (_) { if (epoch == _epoch) phase = 'uncertain'; rethrow; }
     clearPhoto(); phase = 'processing'; await _readJob(epoch);
   });
   Future<void> resume() => run((epoch) async {
     await session.token(); check(epoch);
-    final raw = await vault.read('glam.analyze.pending.v1'); check(epoch);
+    final raw = await vault.read(pendingStorageKey(session.subject!)); check(epoch);
     if (raw != null) {
       final record = object(jsonDecode(raw));
       if (record['owner'] != session.subject) throw const Failure('session_changed');
@@ -105,7 +105,7 @@ class AnalyzeController extends ChangeNotifier {
     await repository.available(); check(epoch);
     // Explicit user action, same body and same idempotency key; never automatic billing retry.
     final submitted = await repository.submit(pending!); check(epoch); job = submitted; pending!['job_id'] = job!.id;
-    await vault.write('glam.analyze.pending.v1', jsonEncode(pending)); check(epoch);
+    await vault.write(pendingStorageKey(pending!['owner'] as String), jsonEncode(pending)); check(epoch);
     await _readJob(epoch);
   });
   Future<void> refresh() => run(_readJob);
@@ -131,7 +131,7 @@ class AnalyzeController extends ChangeNotifier {
     final result = report; if (result == null) throw const Failure('report_missing');
     final response = await repository.save(result); check(epoch);
     report = response.report; saved = true;
-    pending = null; await vault.remove('glam.analyze.pending.v1'); check(epoch);
+    pending = null; await vault.remove(pendingStorageKey(session.subject!)); check(epoch);
   });
   Future<void> correct(String key, String? value) => run((epoch) async {
     if ((value != null && (value.trim().isEmpty || value.length > 240)) || report == null) throw const Failure('invalid_correction');
@@ -143,7 +143,7 @@ class AnalyzeController extends ChangeNotifier {
     if (id == null || media == null) throw const Failure('job_missing');
     await repository.remove(id, media); check(epoch);
     report = null; job = null; pending = null; saved = false; phase = 'deletion_requested';
-    await vault.remove('glam.analyze.pending.v1'); check(epoch); _expiry?.cancel(); _poll?.cancel();
+    await vault.remove(pendingStorageKey(session.subject!)); check(epoch); _expiry?.cancel(); _poll?.cancel();
   });
   void lock() {
     _epoch++; _poll?.cancel(); _expiry?.cancel(); session.lock();
