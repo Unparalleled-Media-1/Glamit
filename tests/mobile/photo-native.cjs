@@ -31,7 +31,7 @@ const deferred = () => { let resolve; const promise = new Promise(r => resolve =
             return n; if (!n?.children)
             return ''; return n.children.map(allText).join(' '); };
         const press = title => { const nodes = view.root.findAll(n => n.type === 'Pressable' && allText(n).trim() === title); assert(nodes.length, 'Missing native action: ' + title); return nodes[0].props.onPress(); };
-        const open = async () => { await act(async () => { view = Renderer.create(React.createElement(App)); }); await act(async () => view.root.findByType('HomeProbe').props.go('consent')); await act(async () => view.root.findByType('Switch').props.onValueChange(true)); };
+        const open = async () => { await act(async () => { view = Renderer.create(React.createElement(App)); }); for (const label of ['Profile', 'Analyze']) { const tab = view.root.findAll(n => n.type === 'Pressable' && n.props.accessibilityRole === 'tab' && n.props.accessibilityLabel === label); assert.equal(tab.length, 1, platform + ': native tab needs an exact accessible name: ' + label); assert.equal(typeof tab[0].props.onPress, 'function'); } await act(async () => view.root.findByType('HomeProbe').props.go('consent')); await act(async () => view.root.findByType('Switch').props.onValueChange(true)); };
         const close = async () => { await act(async () => view.unmount()); };
         // Leaving while the camera permission dialog is unresolved must not open a camera later.
         permission = deferred();

@@ -48,8 +48,20 @@ def target(xml, label):
 
 def ready_tab(label, timeout=30):
     deadline = time.monotonic() + timeout
+    launcher_waited = False
     while True:
         xml = hierarchy()
+        # An emulator launcher ANR can overlay the already-started app. Dismiss
+        # only this exact unrelated dialog once; a GLAM ANR remains a failure.
+        if not launcher_waited and b"Quickstep isn't responding" in xml:
+            OUTPUT.mkdir(parents=True, exist_ok=True)
+            (OUTPUT / "launcher-anr.xml").write_bytes(xml)
+            (OUTPUT / "launcher-anr.png").write_bytes(adb("exec-out", "screencap", "-p"))
+            x, y = target(xml, "Wait")
+            adb("shell", "input", "tap", x, y)
+            adb("shell", "am", "start", "-W", "-n", PACKAGE + "/.MainActivity")
+            launcher_waited = True
+            continue
         try:
             return xml, target(xml, label)
         except RuntimeError:

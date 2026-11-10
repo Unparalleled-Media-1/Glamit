@@ -1,0 +1,37 @@
+appId: com.glambeauty.localverification
+---
+- runFlow:
+    when:
+      visible: "Unlock with device biometrics"
+    commands:
+      - tapOn: "Unlock with device biometrics"
+      - extendedWaitUntil:
+          visible: "Your GLAM account"
+          timeout: 20000
+- runFlow:
+    when:
+      notVisible: "Your GLAM account"
+    commands:
+      - tapOn:
+          text: "Use SMS or a linked account"
+          optional: true
+      - scrollUntilVisible:
+          element:
+            text: "Mobile number"
+          direction: DOWN
+      - tapOn:
+          id: "auth-mobile-number"
+      - inputText: "+27820000001"
+      - hideKeyboard
+      - tapOn: "Continue with SMS"
+      - extendedWaitUntil:
+          visible: "Verification code"
+          timeout: 15000
+      - tapOn:
+          id: "auth-verification-code"
+      - inputText: "246810"
+      - hideKeyboard
+      - tapOn: "Verify code"
+      - extendedWaitUntil:
+          visible: "Your GLAM account"
+          timeout: 15000
