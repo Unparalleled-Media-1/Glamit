@@ -1,3 +1,19 @@
+# Native-first rebuild — design approval OPEN, product acceptance FAIL
+
+The user's [10 November P0 directive](../../../specification/sources/2026-11-native-first-rejection-directive.md) rejects the current Flutter UX and requires a complete screen replacement inventory and five Android/iOS design candidates before broader implementation. The earlier compile/native test results never constituted design approval.
+
+Current deliverables:
+
+- [Complete replacement screen inventory](REPLACEMENT_SCREEN_INVENTORY.csv): all actual routes, collection variants, presented sheets and explicit missing workflows; no screen certified NATIVE-FIRST.
+- [Five-screen Android/iOS candidate review and implementation boundaries](DESIGN_REVIEW.md).
+- [Source/native evidence for candidate1b5aa12](evidence/native-revision-1b5aa12.json): Dart analysis and eight widget tests pass; actual Android and iOS limited UI journeys pass separately. iOS required a targeted retry after a driver-startup timeout; that failure is retained.
+
+These results prove UI execution only. Actual camera, analysis, try-on, authenticated saved records, subscriptions, discovery and booking operations are NOT established in Flutter. Session-only preview state does not satisfy them. Physical-device usability is NOT TESTED. The visual comparison/approval is OPEN; this executor cannot inspect downloaded images because signed artifact downloads are network-blocked. No F2 expansion, merge or production operation is authorized by these checks.
+
+## Historical rejected candidate and earlier failures
+
+The following historical results refer to their exact older application sources; they do not approve the replacement candidate or override the latest directive.
+
 # Flutter F1 — appearance REJECTED; revision pending native verification
 
 The user rejected the previous appearance on 10 November as still resembling mobile web. The next revision replaces the promotional Home, scroll-page Analyze/Studio, large Profile promotional block and inset Discover card with task-focused native compositions and platform tab bars. New native verification is required; prior passes below apply only to the rejected candidate. F2 remains paused.
