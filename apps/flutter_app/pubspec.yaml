@@ -1,0 +1,37 @@
+name: glam_beauty
+description: GLAM Beauty independent Flutter visual and interaction review.
+publish_to: none
+version: 0.1.0+1
+environment:
+  sdk: '>=3.12.0 <4.0.0'
+  flutter: '>=3.47.9'
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: 3.5.0
+  go_router: 18.1.3
+  cupertino_icons: 2.0.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: 6.0.0
+  flutter_launcher_icons: 0.14.4
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/brand/
+    - assets/editorial/
+    - assets/fonts/
+  fonts:
+    - family: Cormorant
+      fonts:
+        - asset: assets/fonts/CormorantGaramond.ttf
+    - family: Manrope
+      fonts:
+        - asset: assets/fonts/Manrope.ttf
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/brand/app-icon.png
+  remove_alpha_ios: true
+  background_color_ios: '#f8f3ef'

@@ -1,0 +1,244 @@
+Then we need to change the instruction entirely. Codex is repeatedly producing the same application because the existing screens are still being treated as the implementation to preserve. Every time you request improvements, it may modify the underlying code while retaining essentially the same visual structure.
+
+You've already given it several opportunities to redesign the experience. I would stop asking it to improve the existing React Native UI.
+
+My recommendation is to authorize a clean Flutter mobile frontend, while preserving GLAM Beauty's existing backend, database, web platform and business logic.
+
+This is a product and implementation decision, not proof that React Native cannot build a premium app. The point is to break the repeated cycle.
+
+### What changes this time
+
+| Previous approach                    | New directive                                  |
+| ------------------------------------ | ---------------------------------------------- |
+| Improve existing Expo screens        | Build a new Flutter UI from scratch            |
+| Preserve existing mobile layouts     | Explicitly prohibit copying them               |
+| Reuse existing navigation            | Create Flutter navigation independently        |
+| Keep modifying `apps/mobile`         | Build separately in `apps/flutter_app`         |
+| Accept build-success reports         | Require installed-app visual acceptance        |
+| Finish backend and UI simultaneously | Preserve backend; rebuild only mobile frontend |
+| Allow Codex to declare success       | Require your approval of the actual appearance |
+
+There is one especially important requirement: Codex must stop before building the full Flutter application and show you the first five screens from an actual Flutter build. Otherwise, you risk spending money on another large implementation that looks identical.
+
+## Send Codex this replacement directive
+
+# GLAM BEAUTY — STOP REBUILDING THE SAME MOBILE APP
+
+## FINAL FRAMEWORK DECISION: FLUTTER
+
+We have repeatedly instructed you to redesign the GLAM Beauty native mobile applications, but the resulting builds continue to reproduce essentially the same website-style interface.
+
+This approach is no longer accepted.
+
+The decision is to build a new, independent Flutter/Dart mobile frontend for iOS and Android.
+
+This is not another request to audit, polish, restyle or refactor the existing Expo application.
+
+## 1. Stop working on the old mobile UI
+
+Do not continue redesigning the existing React Native screens.
+
+Do not reuse their JSX layouts, screen compositions, navigation patterns or styling structures.
+
+Do not port the current UI line-for-line into Flutter.
+
+Do not use apps/web/components/GlamApp.tsx, HTML prototypes or existing web pages as layout templates.
+
+The existing mobile application may be consulted only for functional requirements, API contracts, business rules and previously verified behavior.
+
+Keep the old mobile source intact for reference and rollback.
+
+## 2. Create an independent Flutter project
+
+Create:
+
+apps/flutter_app/
+
+Use Flutter/Dart with a clean, maintainable architecture.
+
+Implement:
+
+- Native iOS and Android build targets.
+- go_router navigation.
+- Riverpod state management.
+- Dio or equivalent authenticated HTTP client.
+- Supabase authentication integration.
+- Secure token storage.
+- Native camera and gallery access.
+- Biometric authentication.
+- Appropriate Cupertino and Material behavior.
+- Accessible touch targets.
+- Responsive layouts for different phone sizes.
+- Proper error/loading/offline handling.
+
+Do not use WebViews for core consumer screens.
+
+## 3. Completely new mobile design
+
+GLAM Beauty must look and behave like a premium AI beauty application, not a responsive website.
+
+Design a new mobile interface from first principles.
+
+Primary navigation:
+
+HOME | ANALYZE | STUDIO | DISCOVER | PROFILE
+
+### Home
+
+Immersive, personalized mobile home experience.
+
+Prioritize AI beauty, recent analysis, saved looks and personalized styling.
+
+Use strong imagery, editorial typography, native interactions and clear calls to action.
+
+Do not reproduce the current website-style dashboard cards.
+
+### Analyze
+
+Camera-first full-screen experience.
+
+Native camera controls, gallery selection, consent, photo guidance and progress.
+
+Results must use a dedicated mobile report experience.
+
+### Studio
+
+Immersive AI creation interface.
+
+Makeup, hairstyles, hair color and outfits.
+
+Use full-screen imagery, swipeable editing tools, before/after comparison and native bottom sheets.
+
+Do not recreate the existing static editorial preview.
+
+### Discover
+
+Native content discovery experience.
+
+Beauty looks, creators, tutorials, products and professionals.
+
+Support feed navigation, saved items, creator profiles and shoppable looks.
+
+### Profile
+
+Personal Style Passport, wardrobe, saved looks, purchases, appointments, settings and workspace switching.
+
+Use native navigation and grouped settings rather than a desktop dashboard layout.
+
+## 4. Mandatory visual approval gate
+
+DO NOT build all 140 platform requirements immediately.
+
+First implement the five primary Flutter screens with genuine Flutter widgets and functional navigation.
+
+Build and install the application on:
+
+- iOS simulator.
+- Android emulator.
+
+Provide actual screenshots of all five screens from the installed Flutter applications.
+
+Provide a short native interaction recording if the environment supports it.
+
+Include the Flutter source commit and build receipts.
+
+These must be genuine Flutter runtime screenshots.
+
+No HTML.\
+No React Native.\
+No browser previews.\
+No web screenshots.\
+No image-only mockups substituted for Flutter implementation.
+
+STOP after this visual milestone and wait for explicit approval of the mobile design.
+
+Do not claim that a successful build means the design has been approved.
+
+## 5. Preserve all existing backend functionality
+
+Do not rewrite or replace:
+
+- FastAPI.
+- Supabase Auth.
+- PostgreSQL.
+- Supabase Storage.
+- Private-media services.
+- Durable analysis jobs.
+- Corrected reports.
+- Style Passport persistence.
+- OpenAI integrations.
+- Marketplace APIs.
+- Stripe integration.
+- Organization and role permissions.
+- Existing financial rules.
+
+The new Flutter application must consume these services through authenticated API clients.
+
+The approved physical-product commission remains 10% of the discounted item amount, excluding separately charged shipping and taxes.
+
+## 6. After visual approval
+
+Once the five-screen design is explicitly approved, connect the Flutter frontend to the existing services in this order:
+
+1. Authentication and secure sessions.
+2. Native camera/photo picker.
+3. Private media upload and consent.
+4. Durable analysis.
+5. Saved reports and corrections.
+6. Style Passport persistence.
+7. AI Advisor.
+8. AI Studio.
+9. Wardrobe and saved looks.
+10. Discover and creator content.
+11. Marketplace and checkout.
+12. Professional bookings.
+13. Role-specific companion dashboards.
+14. Notifications and deep links.
+15. Full privacy lifecycle.
+
+Every operation must use real backend contracts, with explicit test adapters only in isolated environments.
+
+## 7. Prevent repetition of the old application
+
+Before accepting the visual milestone:
+
+- Compare Flutter screenshots against the previous Expo screenshots.
+- Identify the actual differences in layout, navigation and interaction.
+- Confirm that no web UI or React Native screen was reused as a layout template.
+- Confirm all five screens are genuine Flutter widgets.
+- Confirm Android and iOS are independently built.
+- Confirm the application has a working native navigation stack.
+
+If the new Flutter application still resembles the old website-style interface, the milestone fails regardless of successful compilation.
+
+## 8. Reporting rules
+
+Do not produce another broad audit.
+
+Do not claim 100% completion.
+
+Do not modify production infrastructure.
+
+Do not merge or delete the old mobile app.
+
+Do not proceed beyond the first visual approval gate without authorization.
+
+Your first deliverable is a new Flutter mobile application with five genuinely redesigned, navigable screens running on iOS and Android.
+
+BEGIN THE FLUTTER IMPLEMENTATION NOW.
+
+## One further safeguard
+
+I would also require Codex to maintain two separate milestones:
+
+Milestone F1 — Visual and interaction approval
+
+Five redesigned Flutter screens, working native navigation and real iOS/Android screenshots. No full-platform implementation yet.
+
+Milestone F2 — Functional implementation
+
+Connect approved Flutter screens to existing GLAM Beauty APIs and complete every required native workflow, preserving security and persistence.
+
+The crucial difference: Codex no longer gets to decide that the design is acceptable simply because the code compiles or the tests pass. You approve what the actual installed Flutter app looks and feels like before it proceeds with the expensive functional build.
+
+That is how I would break the repeated-build cycle.

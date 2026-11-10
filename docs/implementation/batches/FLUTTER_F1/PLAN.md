@@ -1,0 +1,17 @@
+# Flutter F1 — visual and interaction approval
+
+The final replacement directive supersedes the earlier React Native remediation/fallback approach. Preserve all three supplied source documents under docs/specification/sources. The new mobile frontend is apps/flutter_app; the old Expo and web implementations remain intact. This branch starts at7216423, with PR44 preserved separately and unmerged. No production setting or backend is changed.
+
+F1 delivers ONLY five newly composed Flutter screens: Home, Analyze, Studio, Discover, Profile. Use go_router stateful branch navigation, native platform detail transitions, Riverpod local state, safe areas, accessible controls, local typography and the supplied brand artwork. Existing JSX, web layouts and old screen compositions are not templates. Reuse canonical brand colours and image assets only.
+
+Interactions: branch switching, root/detail back stack, photo guidance bottom sheets, local monochrome comparison slider, mood/tool selection, editable local creative brief, vertical editorial discovery, reversible local bookmarks, saved collection and clearing preview selections. No camera/gallery permission, account, AI result, product listing, order or business privilege is fabricated. These operations remain intentionally disconnected until F2 after explicit design approval.
+
+Build with official Flutter3.47.9 (frameworkc197ca5199e9ee5661e865596c9c07294dfab51c), pinned direct Dart dependencies. Generate native Android/iOS shells using that exact SDK and the committed bootstrap recipe. A single CI job resolves the dependency lock and native inputs; BOTH platform jobs consume that same lock with --enforce-lockfile. Retain the generated native source and lock as an artifact. Do not represent generated/unreviewed native files as hand-authored implementation.
+
+Actual installed evidence: Maestro sends real OS input to the normal Flutter app on an iOS simulator and Android emulator. Capture all five primary screens plus native sheets/detail routes and local state interactions. Record OS video where available. Retain exact source, dependency-lock hash, SDK receipt and runtime logs. Separately package the Android main-entry debug-signed review APK and iOS main-entry simulator application. Local identifiercom.glambeauty.visualreview is UNREGISTERED and never used to claim approved store identity/signing, TestFlight or physical-device distribution.
+
+No HTML, WebViews, browser screenshots, Expo output or image-only mockups qualify. No F1 test or compiler result constitutes user visual approval. Compare actual screenshots with previous Expo evidence once accessible, identifying composition/navigation/interaction differences. If artifact access is blocked, state that limitation and retain the actual CI artifacts without claiming visual review.
+
+STOP at this milestone for explicit user approval. Do not implement the140 requirements, F2 service connections, production migrations0014–0017, deployment, live AI/payments, signing registration or merges. The approved physical-product commission remains10% of discounted eligible items, excluding separate shipping/tax; F1 does not touch finance.
+
+F2, only after approval: authenticated/secure sessions, camera/gallery, consent/private media, durable analysis, saved corrections/Passport, Advisor/Studio, wardrobe/Discover, commerce/bookings, role companions, notifications/deep links and complete privacy lifecycle, using existing authenticated backend contracts.

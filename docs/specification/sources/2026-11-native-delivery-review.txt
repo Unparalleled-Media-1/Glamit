@@ -1,0 +1,216 @@
+GLAM Beauty — Actual iOS and Android build analysis
+I extracted and inspected both ZIP files, including the build logs, native screenshots, Android APK, navigation evidence and source commit identifiers.
+
+The main finding: your native apps are compiling successfully. The bigger problem is that the builds are showing an incomplete, disconnected application experience.
+Android
+
+BUILD SUCCESSFUL
+Release APK generated
+
+5 native tabs captured
+
+iOS
+
+BUILD SUCCEEDED
+Simulator application launched
+
+Home screen captured
+
+
+
+1. Actual screenshots from your builds
+Android — Home, Analyze, Studio, Advisor and Profile
+See extracted contact sheet below
+
+
+
+
+I combined the six native screenshots into a single inspection sheet.
+
+
+
+Open the full screenshot comparison
+
+The screenshots show a coherent visual identity, but also reveal several important issues:
+- “Private development build · Connections pending” appears across the screens. The application itself is telling us that backend connectivity is not ready.
+- Profile says SMS sign-in isn't available right now. The account entry flow is not production-ready.
+- AI Studio shows an editorial reference, not a generated preview. This is a designed screen, not proof that real virtual try-on works.
+- Analyze displays local photo preparation. The screenshot does not demonstrate successful private upload, durable analysis or saved results.
+- The five tabs work on Android, but this is not proof of proper native stack navigation or deep linking.
+- The Advisor screenshot shows styling options, but does not demonstrate a real OpenAI response.
+There is also a UI architecture discrepancy: the app currently displays Home, Analyze, AI Studio, AI Advisor, Profile, rather than the previously approved Home, Analyze, Studio, Discover, Profile navigation. Advisor could be nested within Studio or accessed from Home, freeing the Discover tab.
+2. Build evidence — what passed and what did not
+Check	Android	iOS
+Native compilation	Pass	Pass
+App launch evidence	Pass	Pass
+Source commit	803e28e	803e28e
+Native screenshot evidence	5 tabs	Home only
+Full login journey	Not demonstrated	Not demonstrated
+Live backend integration	Not demonstrated	Not demonstrated
+Analysis → Style Passport	Not demonstrated	Not demonstrated
+Physical-device testing	Not demonstrated	Not demonstrated
+Store distribution signing	Not established	Not established
+
+Android build
+The archive contains a real app-release.apk, approximately 25.3 MB uncompressed.
+
+The Gradle log ends with:
+> Task :app:assembleRelease
+BUILD SUCCESSFUL in 5m 28s
+313 actionable tasks: 313 executed
+
+
+It also reports deprecated Gradle features that may be incompatible with Gradle 10. That is a future maintenance concern, not the cause of this build failing, because this build succeeded.
+
+The Android artifact includes UI hierarchy XML and screenshots for five native tabs. That is credible evidence of an installed emulator application, although the empty runtime.txt does not establish clean runtime logs or successful backend operations.
+iOS build
+The iOS log ends with:
+** BUILD SUCCEEDED **
+
+
+The launch receipt contains:
+com.glambeauty.localverification: 17316
+
+
+The archive includes a simulator Home screenshot, but not a distributable .ipa or an iOS simulator .app bundle. It proves compilation and a reported simulator launch, not that an installable iPhone build is ready for TestFlight.
+
+Both archives use the same source SHA, which is good for cross-platform comparison.
+3. The likely reason you're still struggling
+I see three separate problems being treated as one.
+Problem A — Can Expo compile native applications?
+
+In these artifacts, yes. Both platforms successfully compiled, and startup evidence exists.
+
+
+
+Problem B — Are those builds connected to real services?
+
+Not demonstrated. The screens explicitly say connections are pending. You need a configured API origin, reachable backend, authenticated test identity, approved test database and enabled test services.
+
+
+
+Problem C — Can you install and distribute the apps?
+
+Not yet established. Android has an APK to inspect, but signing and physical-device compatibility need checking. iOS still needs the appropriate signing, EAS configuration and a distributable build.
+
+
+
+A fourth concern is source freshness. The two artifacts correspond to commit 803e28e. Codex's newer native-analysis implementation may be on a different commit. These screenshots therefore cannot establish whether the latest Style Passport work is present in the binaries.
+4. What I would instruct Codex to do now
+GLAM BEAUTY — FIX ACTUAL MOBILE BUILD AND RUNTIME DELIVERY
+I have independently inspected the uploaded iOS and Android native build artifacts.
+
+Both native compilers succeeded on source SHA 803e28ea5fc255a068452bbb8bc8dd2400ded9c6.
+
+Android generated an actual release APK and captured five native tabs. iOS compiled, launched in a simulator and captured Home.
+
+STOP treating native compilation as the primary unresolved issue.
+
+The remaining issues are build freshness, distribution, runtime service connections, incomplete native operations and installed-app verification.
+1. Verify the source being built
+Compare commit 803e28e against the current approved implementation branches.
+
+Confirm whether the latest native analysis, private-media, correction, Style Passport and OpenAI Advisor changes are included.
+
+If not, produce new native builds from the correct reviewed integration commit.
+
+Do not accidentally discard unmerged PR work.
+2. Separate the three build targets
+ANDROID EMULATOR:
+Generate and install an emulator-compatible APK.
+
+ANDROID PHYSICAL DEVICE:
+Generate a correctly signed, installable testing APK or approved EAS internal-distribution build.
+
+IOS SIMULATOR:
+Generate a simulator-compatible application and verify installation.
+
+IOS PHYSICAL DEVICE / TESTFLIGHT:
+Configure the approved Apple developer team, bundle ID, EAS project and signing/distribution profile. Produce the appropriate signed build.
+
+Do not confuse simulator binaries with store-distributable artifacts.
+
+Do not use placeholder bundle IDs for actual store registration.
+3. Repair runtime connectivity
+The native screenshots display:
+"Private development build · Connections pending"
+
+Determine precisely why.
+
+Verify:
+- EXPO_PUBLIC_GLAM_API_ORIGIN is configured for the intended test backend.
+- The URL is reachable from both emulators and devices.
+- TLS certificates are valid.
+- Backend health endpoints respond.
+- Supabase Auth is configured for the intended environment.
+- Authentication tokens reach FastAPI correctly.
+- Required CORS/deep-link/callback configuration is correct where applicable.
+- Test database and private storage are available.
+- Required feature flags are enabled only in the isolated test environment.
+- Native screens use the actual authenticated service composition layer.
+Do not solve this by adding fake success responses or bypassing authorization.
+4. Verify actual native journeys
+On iOS and Android, test:
+- Launch.
+- Login.
+- Home navigation.
+- Camera/photo picker.
+- Consent.
+- Private upload.
+- Analysis job creation.
+- Job completion.
+- Saved report.
+- Correction.
+- Saved Style Passport.
+- Full process termination.
+- Relaunch.
+- Persisted Style Passport retrieval.
+- Logout and account isolation.
+Capture real native screenshots and runtime logs.
+5. Investigate user-visible gaps
+Address:
+- Connections pending banner.
+- Unavailable SMS login.
+- Editorial-only AI Studio previews.
+- Missing Discover tab/navigation discrepancy.
+- Any buttons that only open static previews.
+- Unavailable or disconnected native API operations.
+Do not remove truthful unavailable states until the underlying operations genuinely work.
+6. Deliver installable artifacts
+Provide:
+- Android test APK.
+- Android SHA-256 and signing certificate details.
+- iOS simulator build artifact.
+- iOS TestFlight/internal-distribution build when authorized.
+- Exact source commit.
+- EAS build IDs.
+- Installation instructions.
+- Platform-specific startup logs.
+- Screenshots.
+- Backend connection test results.
+7. Preserve safety
+Do not change production Supabase, Railway, Stripe or OpenAI settings without approval.
+
+Use isolated test infrastructure.
+
+Do not apply production migrations 0014–0017 without explicit approval and verified recovery.
+Acceptance
+The batch is complete only when the latest reviewed source builds successfully, both installed native apps connect to the approved test backend, and the scoped persistent analysis-to-Style-Passport journey is demonstrated.
+
+Report separately any remaining physical-device, signing, provider or production deployment blockers.
+
+Do not start another broad audit. Fix and verify the specific delivery gaps.
+
+
+
+
+5. Available Android build
+The uploaded Android ZIP contains an actual APK. I extracted it so you can test installation separately:
+Android release APK
+
+Approximately 25.3 MB · source 803e28e · signing suitability not independently verified
+
+
+I haven't yet extracted the APK into a separate downloadable file, so the confirmed artifact is still inside your uploaded Android ZIP at apps/mobile/android/app/build/outputs/apk/release/app-release.apk.
+
+My conclusion: You do not need to restart the mobile apps or replace React Native. You already have genuine native builds. The next engineering effort should focus on getting the latest source into signed, installable builds with working backend connectivity, then proving the complete workflows on those installed apps.

@@ -1,0 +1,63 @@
+appId: com.glambeauty.visualreview
+---
+- launchApp
+- extendedWaitUntil:
+    visible:
+      id: tab-home
+    timeout: 30000
+- takeScreenshot: 01-home
+- tapOn:
+    id: tab-analyze
+- assertVisible:
+    id: analyze-mode
+- takeScreenshot: 02-analyze
+- tapOn:
+    id: analyze-camera
+- assertVisible: 'Your camera. Your choice.'
+- takeScreenshot: 06-native-photo-sheet
+- tapOn: 'Explore photo guidance'
+- assertVisible: 'Face forward, comfortably'
+- tapOn:
+    id: tab-studio
+- takeScreenshot: 03-studio
+- scrollUntilVisible:
+    element:
+      text: 'Imagine a look'
+    direction: DOWN
+- tapOn: 'Imagine a look'
+- tapOn:
+    id: brief-input
+- inputText: 'Soft rose, an effortless evening'
+- assertVisible: 'Soft rose, an effortless evening'
+- tapOn: 'What are you imagining\?'
+- scrollUntilVisible:
+    element:
+      text: 'Keep this brief'
+    direction: DOWN
+- tapOn: 'Keep this brief'
+- scrollUntilVisible:
+    element:
+      id: brief-status-saved
+    direction: DOWN
+- assertVisible: 'Refine my brief'
+- tapOn:
+    id: tab-discover
+- takeScreenshot: 04-discover
+- tapOn:
+    id: save-look-0
+- tapOn:
+    id: open-look-0
+- assertVisible: 'The soft-focus edit'
+- takeScreenshot: 07-native-look-stack
+- tapOn: 'Back'
+- tapOn:
+    id: tab-profile
+- takeScreenshot: 05-profile
+- scrollUntilVisible:
+    element:
+      id: row-saved-inspiration
+    direction: DOWN
+- tapOn:
+    id: row-saved-inspiration
+- assertVisible: 'The soft-focus edit'
+- takeScreenshot: 08-local-saved-inspiration

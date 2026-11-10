@@ -1,0 +1,16 @@
+.dart_tool/
+.flutter-plugins*
+build/
+coverage/
+android/local.properties
+android/.gradle/
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/ephemeral/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+**/xcuserdata/
+*.jks
+*.keystore
+key.properties
+.env*

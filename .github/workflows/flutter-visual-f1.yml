@@ -1,0 +1,163 @@
+name: Flutter F1 native visual gate
+on:
+  pull_request:
+    paths:
+      - 'apps/flutter_app/**'
+      - 'scripts/flutter/**'
+      - '.github/workflows/flutter-visual-f1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: flutter-f1-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+env:
+  GLAM_FLUTTER_VISUAL_GATE: F1
+  CI: 'true'
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          flutter-version: '3.47.9'
+          channel: stable
+          cache: true
+      - run: python3 scripts/flutter/run_command.py artifacts/flutter-f1/bootstrap.txt bash scripts/flutter/bootstrap-platforms.sh
+      - name: Resolve a single dependency lock for BOTH platforms
+        working-directory: apps/flutter_app
+        run: |
+          flutter pub get
+          dart run flutter_launcher_icons
+      - name: Analyse genuine Dart sources
+        run: python3 scripts/flutter/run_command.py artifacts/flutter-f1/analyze.txt bash -c 'cd apps/flutter_app && flutter analyze --no-fatal-infos'
+      - name: Verify navigation, local state and compact layouts
+        run: python3 scripts/flutter/run_command.py artifacts/flutter-f1/widget-tests.txt bash -c 'cd apps/flutter_app && flutter test --no-pub'
+      - name: Verify generator preserves authored source
+        run: git diff --exit-code -- apps/flutter_app/lib apps/flutter_app/pubspec.yaml
+      - uses: actions/upload-artifact@v7
+        with:
+          name: flutter-f1-resolved-native-inputs
+          path: |
+            apps/flutter_app/pubspec.lock
+            apps/flutter_app/android
+            apps/flutter_app/ios
+          include-hidden-files: true
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: flutter-f1-source-checks
+          path: artifacts/flutter-f1
+  android:
+    needs: source
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          flutter-version: '3.47.9'
+          channel: stable
+          cache: true
+      - uses: actions/download-artifact@v7
+        with:
+          name: flutter-f1-resolved-native-inputs
+          path: apps/flutter_app
+      - working-directory: apps/flutter_app
+        run: flutter pub get --enforce-lockfile
+      - run: bash scripts/flutter/install-maestro.sh
+      - name: Compile Flutter main entry before emulator boot
+        run: python3 scripts/flutter/run_command.py artifacts/flutter-f1/android/build.txt bash -c 'cd apps/flutter_app && flutter build apk --debug --target lib/main.dart --target-platform=android-x64 --no-pub'
+      - name: Retain built emulator APK even when UI verification fails
+        run: |
+          mkdir -p artifacts/flutter-f1/android/distribution
+          cp apps/flutter_app/build/app/outputs/flutter-apk/app-debug.apk artifacts/flutter-f1/android/distribution/glam-beauty-f1-android-x64-emulator.apk
+          shasum -a 256 artifacts/flutter-f1/android/distribution/glam-beauty-f1-android-x64-emulator.apk > artifacts/flutter-f1/android/distribution/SHA256SUMS
+      - name: Enable emulator KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Actual installed Flutter Android interactions and screenshots
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          script: python3 scripts/flutter/run_command.py artifacts/flutter-f1/android/native-test.txt bash scripts/flutter/native-evidence.sh android
+      - name: Build separately labelled main-entry review APK
+        working-directory: apps/flutter_app
+        run: |
+          mkdir -p ../../artifacts/flutter-f1/android/distribution
+          cp build/app/outputs/flutter-apk/app-debug.apk ../../artifacts/flutter-f1/android/distribution/glam-beauty-f1-android-x64-emulator.apk
+          shasum -a 256 ../../artifacts/flutter-f1/android/distribution/glam-beauty-f1-android-x64-emulator.apk > ../../artifacts/flutter-f1/android/distribution/SHA256SUMS
+          signer=$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -1)
+          "$signer" verify --print-certs ../../artifacts/flutter-f1/android/distribution/glam-beauty-f1-android-x64-emulator.apk > ../../artifacts/flutter-f1/android/distribution/signing-certificate.txt
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: flutter-f1-android-native-screens-recording-apk
+          path: artifacts/flutter-f1/android
+  ios:
+    needs: source
+    runs-on: macos-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          flutter-version: '3.47.9'
+          channel: stable
+          cache: true
+      - uses: actions/download-artifact@v7
+        with:
+          name: flutter-f1-resolved-native-inputs
+          path: apps/flutter_app
+      - working-directory: apps/flutter_app
+        run: flutter pub get --enforce-lockfile
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: bash scripts/flutter/install-maestro.sh
+      - name: Compile Flutter main entry before simulator boot
+        run: python3 scripts/flutter/run_command.py artifacts/flutter-f1/ios/build.txt bash -c 'cd apps/flutter_app && flutter build ios --simulator --debug --no-codesign --target lib/main.dart --no-pub'
+      - name: Retain built simulator app even when UI verification fails
+        run: |
+          mkdir -p artifacts/flutter-f1/ios
+          ditto -c -k --sequesterRsrc --keepParent apps/flutter_app/build/ios/iphonesimulator/Runner.app artifacts/flutter-f1/ios/glam-beauty-f1-simulator.zip
+      - name: Boot actual iOS simulator
+        run: |
+          mkdir -p artifacts/flutter-f1/ios
+          xcrun simctl list devices available --json > artifacts/flutter-f1/ios/simulators.json
+          device=$(jq -r '[.devices[][] | select(.isAvailable and (.name | startswith("iPhone")))][0].udid' artifacts/flutter-f1/ios/simulators.json)
+          test "$device" != null
+          echo "$device" > artifacts/flutter-f1/ios/device-id.txt
+          state=$(jq -r --arg id "$device" '.devices[][] | select(.udid == $id) | .state' artifacts/flutter-f1/ios/simulators.json)
+          if [ "$state" != Booted ]; then xcrun simctl boot "$device"; fi
+          xcrun simctl bootstatus "$device" -b
+      - name: Actual installed Flutter iOS interactions and screenshots
+        run: python3 scripts/flutter/run_command.py artifacts/flutter-f1/ios/native-test.txt bash scripts/flutter/native-evidence.sh ios
+      - name: Retain main-entry simulator application (NOT TestFlight)
+        working-directory: apps/flutter_app
+        run: |
+          ditto -c -k --sequesterRsrc --keepParent build/ios/iphonesimulator/Runner.app ../../artifacts/flutter-f1/ios/glam-beauty-f1-simulator.zip
+          shasum -a 256 ../../artifacts/flutter-f1/ios/glam-beauty-f1-simulator.zip > ../../artifacts/flutter-f1/ios/SHA256SUMS
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: flutter-f1-ios-native-screens-recording-simulator
+          path: artifacts/flutter-f1/ios
