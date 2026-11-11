@@ -110,7 +110,7 @@ jobs:
       - run: npm run test:artwork
         env:
           GLAM_BRAND_ARTIFACTS: ${{ runner.temp }}/brand-artwork
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: brand-artwork-previews
@@ -151,13 +151,13 @@ jobs:
       - run: npm run test:public-footer
         env:
           GLAM_PUBLIC_EVIDENCE: ${{ runner.temp }}/public-footer
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: public-footer-web-screenshots
           path: ${{ runner.temp }}/public-footer
           if-no-files-found: warn
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: ios-android-browser-previews-not-native-builds
