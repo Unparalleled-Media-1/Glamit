@@ -19,6 +19,7 @@ import { useNativeAccount } from "./auth/use-native-account";
 import { useEffect, useReducer, useRef, useState } from "react";
 import {
   Alert,
+  AppState,
   Image,
   Linking,
   Modal,
@@ -233,6 +234,19 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
   const scroll = useRef<React.ComponentRef<typeof ScrollView>>(null);
   const mounted = useRef(true);
   const request = useRef(0);
+  const legacyAccountScope = useRef(nativeAccount.account?.profile.id || "anonymous");
+  const latestLegacyAccount = useRef(legacyAccountScope.current);
+  latestLegacyAccount.current = nativeAccount.account?.profile.id || "anonymous";
+  useEffect(() => {
+    const subject = nativeAccount.account?.profile.id || "anonymous";
+    if (legacyAccountScope.current !== subject) { legacyAccountScope.current = subject; clearPhoto(); }
+  }, [nativeAccount.account?.profile.id]);
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", state => {
+      if (state === "background" && !pickerBusy.current) clearPhoto();
+    });
+    return () => subscription.remove();
+  }, []);
   const { width } = useWindowDimensions();
   const imageWidth = Math.min(width - 40, 700);
   useEffect(() => {
@@ -290,7 +304,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
   async function pick(camera = false) {
     if (!consentRef.current || pickerBusy.current || deletionPending) return;
     const ticket = ++request.current;
-    const current = () => mounted.current && consentRef.current && ticket === request.current;
+    const current = () => mounted.current && legacyAccountScope.current === latestLegacyAccount.current && consentRef.current && ticket === request.current;
     pickerBusy.current = true;
     setBusy(true);
     setError("");
@@ -435,7 +449,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
         privacyRevision={privacyRevision} onLogin={() => go("profile")}
         readPhoto={async () => {
           const current = photoRef.current;
-          if (!current || !consentRef.current || !ownedCopies.current.has(current.uri)) throw Error("local_photo_permission_required");
+          if (!current || legacyAccountScope.current !== (nativeAccount.account?.profile.id || "anonymous") || !consentRef.current || !ownedCopies.current.has(current.uri)) throw Error("local_photo_permission_required");
           const data = await new File(current.uri).arrayBuffer();
           if (photoRef.current !== current || !consentRef.current || !ownedCopies.current.has(current.uri) || data.byteLength !== current.bytes)
             throw Error("local_photo_changed");
@@ -956,6 +970,31 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
   const activeTab = reviewRole ? workspaces[reviewRole].mobile : mobileTabs;
   const beautyPage =
     !reviewRole && ["home", "analyze", "studio"].includes(state.page);
+  function renderRecommendations() { return (<ContextualRecommendations
+                key={recommendationContext}
+                context={recommendationContext}
+                saved={savedRequirements}
+                onSave={(r) => setSavedRequirements([...savedRequirements, r])}
+                onDelete={(id) =>
+                  setSavedRequirements(
+                    savedRequirements.filter((r) => r.id !== id),
+                  )
+                }
+                onComplete={() => go("complete")}
+                connection={connection}
+                location={journey}
+                onLocation={(location) =>
+                  setJourney((s) => ({ ...s, ...location }))
+                }
+                onReview={async (match, requirement) => {
+                  if (match.service_quote_required) {
+                    go("booking");
+                    return;
+                  }
+                  go("offer");
+                  await marketplace.request("offer", match, requirement);
+                }}
+              />); }
   function renderLegacy() { return (
     <View
       style={[
@@ -1100,31 +1139,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
               "guide",
               "studio",
             ].includes(state.page) && (
-              <ContextualRecommendations
-                key={recommendationContext}
-                context={recommendationContext}
-                saved={savedRequirements}
-                onSave={(r) => setSavedRequirements([...savedRequirements, r])}
-                onDelete={(id) =>
-                  setSavedRequirements(
-                    savedRequirements.filter((r) => r.id !== id),
-                  )
-                }
-                onComplete={() => go("complete")}
-                connection={connection}
-                location={journey}
-                onLocation={(location) =>
-                  setJourney((s) => ({ ...s, ...location }))
-                }
-                onReview={async (match, requirement) => {
-                  if (match.service_quote_required) {
-                    go("booking");
-                    return;
-                  }
-                  go("offer");
-                  await marketplace.request("offer", match, requirement);
-                }}
-              />
+              {renderRecommendations()}
             )}
           </>
         )}
@@ -1236,6 +1251,9 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
     </View>
   ); }
   function renderDesign(id: string, focused = true) {
+    if (deletionPending && ["GL-017", "GL-018", "GL-020", "GL-021", "TP-01"].includes(id)) return <NativePage title="Private photo cleanup" onBack={backDesign}>
+      <NativeRow title="Retry clearing private files" detail="Cleanup of a previous app-owned photo could not be confirmed. Clear it before choosing another photo. Your gallery originals are unchanged." onPress={clearPhoto} />
+    </NativePage>;
     // Preserve the existing picker -> goals -> authenticated analysis path for
     // callers still using it. New Capture explicitly selects the shared flow.
     if (legacyQuality && ["TP-01", "GL-026", "GL-027", "GL-033"].includes(id) && state.page === routePages[id]) return renderLegacy();
@@ -1245,7 +1263,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
     if (id === "GL-023") return legacyQuality ? renderLegacy() : <PhotoReview flow={analyzeFlow} />;
     if (id === "GL-024") return <AnalysisConsent flow={analyzeFlow} focused={focused} />;
     if (id === "GL-025") return <AnalysisProgress flow={analyzeFlow} focused={focused} />;
-    if (["GL-026", "GL-027", "GL-034"].includes(id)) return <AnalysisResults flow={analyzeFlow} />;
+    if (["GL-026", "GL-027", "GL-034"].includes(id)) return <AnalysisResults flow={analyzeFlow} recommendations={renderRecommendations()} />;
     if (["GL-033", "GL-121"].includes(id)) return <AnalysisHistory flow={analyzeFlow} focused={focused} />;
     if (id === "GL-117") return <NativeProfile account={nativeAccount.account} />;
     if (id === "GL-118") return <NativePage title="Edit account" onBack={backDesign}><NativeAccount auth={nativeAccount} /></NativePage>;

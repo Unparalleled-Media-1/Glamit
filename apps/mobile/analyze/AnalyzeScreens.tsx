@@ -66,7 +66,7 @@ export function AnalysisProgress({ flow, focused = true }: { flow: AnalyzeSessio
   </View></Page>;
 }
 
-export function AnalysisResults({ flow }: { flow: AnalyzeSession }) {
+export function AnalysisResults({ flow, recommendations }: { flow: AnalyzeSession; recommendations?: React.ReactNode }) {
   const op = flow.operations, s = op.state, { colors: c } = useNativeTheme();
   const unsaved = s.report?.findings.some(f => (s.edits[f.key] || "").trim() !== (f.user_correction || ""));
   return <Page title="Your analysis" onBack={back}><Copy kind="title">Your features. Your perspective.</Copy>
@@ -80,6 +80,7 @@ export function AnalysisResults({ flow }: { flow: AnalyzeSession }) {
     </> : <Copy>No current verified report is available. Open an account record to continue.</Copy>}
     {s.passport && <Card><Copy kind="section">Style Passport</Copy><Copy>Server revision {s.passport.revision} · {s.passport.analysis_state}</Copy><Copy kind="caption">Only a server-confirmed selected analysis is part of this account’s Passport.</Copy></Card>}
     {s.error && <Copy>{s.error}</Copy>}{s.message && <Copy>{s.message}</Copy>}
+    {recommendations}
     <Button title="Open analysis history" secondary onPress={() => go("GL-033")} />
   </Page>;
 }
