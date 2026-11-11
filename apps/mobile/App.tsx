@@ -3,6 +3,7 @@ import CreatorStudio from "./CreatorStudio";
 import NativeAIStylist from "./NativeAIStylist";
 import NativePrivatePhotos from "./NativePrivatePhotos";
 import NativeAnalysisJourney from "./NativeAnalysisJourney";
+import AnalyzeCapture from "./analyze/AnalyzeCapture";
 import type { AnalysisGoal } from "../../packages/product/analysis";
 import { usePersonalResults } from "../../packages/product/use-personal-results";
 import NativeAccount from "./auth/NativeAccount";
@@ -942,6 +943,9 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
   const activeTab = reviewRole ? workspaces[reviewRole].mobile : mobileTabs;
   const beautyPage =
     !reviewRole && ["home", "analyze", "studio"].includes(state.page);
+  if (!reviewRole && state.page === "analyze") {
+    return <AnalyzeCapture accountScope={nativeAccount.account?.profile.id || "anonymous"} onExit={() => go("home")} />;
+  }
   return (
     <View
       style={[

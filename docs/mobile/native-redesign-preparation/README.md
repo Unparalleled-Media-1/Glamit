@@ -1,5 +1,7 @@
 # Native redesign preparation — 11 November 2026
 
+**Batch 1 Capture implementation:** [scoped result, file list, mapping and verification](../../implementation/batches/ANALYZE_CAPTURE_BATCH1/RESULT.md). Only `apps/mobile` Capture is implemented; Review/Consent/Progress/Results and installed-device acceptance remain open. This does not close the broader native/launch backlog.
+
 **Later source inspection and current React Native planning:** the split source/artwork uploads have now been inspected. See [the React Native Analyze plan](REACT_NATIVE_ANALYZE_PLAN.md), [archive hashes](archive-manifest.json), and [232-route reconciliation](design-v3-route-reconciliation.csv). For this current React Native request the existing target is `apps/mobile`; `apps/glam_mobile` remains Flutter. The initial preparation below is preserved as historical evidence and its “ZIP not attached” statements describe the earlier task, not the completed split-upload inspection.
 
 This is preparation and source mapping, not a redesign implementation or design approval. The user confirms the newer Flutter redesign exists as a ZIP in their possession. It has not been attached to this task, so its contents, screen names, provenance and native routes are unverified. No verified-screen claim is made about that ZIP.

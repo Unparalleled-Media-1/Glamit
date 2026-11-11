@@ -180,6 +180,7 @@ jobs:
       - run: node scripts/ci/frozen-install.mjs node
       - run: npm run typecheck --workspace=@glam/mobile
       - run: npm run test:native-photo
+      - run: npm run test:analyze-capture
       - run: npm run test:native-stylist
       - run: npm run test:native-photos
       - run: npm run test:device-fixture

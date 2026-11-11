@@ -30,6 +30,15 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     name: "GLAM Beauty",
     slug: config.slug || "glam-ai",
     scheme: "glamai",
+    plugins: [
+      ...(config.plugins || []),
+      ["expo-camera", {
+        cameraPermission: "Use your camera for a private device photo. Upload and analysis require separate permission.",
+        microphonePermission: false,
+        recordAudioAndroid: false,
+        barcodeScannerEnabled: false,
+      }],
+    ],
     ...(owner ? { owner } : {}),
     ...(existsSync(path.resolve(__dirname, icon)) ? { icon } : {}),
     ...(existsSync(path.resolve(__dirname, splash)) ? { splash: { image: splash, resizeMode: "contain", backgroundColor: design.palette.ivory } } : {}),
