@@ -1,0 +1,827 @@
+# GLAM Beauty — Master Mobile Screen Inventory and Monorepo Architecture
+
+Scope: 208 original GL screens + 14 AI Transformation screens (TP-01–TP-14) + Consumer Home.
+
+This is the proposed canonical product and engineering handover for Claude Design and Codex. It preserves the full mobile functionality discussed so far while requiring the mobile app and web platform to operate from one monorepo, one shared Supabase project, one identity system and one set of business rules.
+
+The important distinction is that one backend does not mean one user interface. The mobile app must be built as a genuine Flutter application; the website and business dashboards retain their own web-native interfaces.
+
+## 1. Target monorepo architecture
+
+GLAM Beauty Monorepo
+
+One Git repository · Coordinated releases
+
+Flutter Mobile
+
+iOS / Android · Native-first UX
+
+React Web
+
+Consumer web · Merchant · Admin
+
+Shared API and Business Logic
+
+Auth · AI orchestration · Commerce · Bookings · Payments · Credits · Roles
+
+Shared Supabase
+
+PostgreSQL · Auth · Storage · RLS · Realtime · Edge Functions
+
+### Recommended repository structure
+
+```
+glam-beauty/
+├── apps/
+│   ├── web/                    # Existing React website and dashboards
+│   └── mobile/                 # Flutter Android and iOS app
+│       ├── lib/
+│       │   ├── app/
+│       │   │   ├── router/
+│       │   │   ├── theme/
+│       │   │   └── bootstrap/
+│       │   ├── core/
+│       │   │   ├── auth/
+│       │   │   ├── networking/
+│       │   │   ├── storage/
+│       │   │   └── permissions/
+│       │   ├── features/
+│       │   │   ├── onboarding/
+│       │   │   ├── home/
+│       │   │   ├── analyze/
+│       │   │   ├── transformation/
+│       │   │   ├── studio/
+│       │   │   ├── stylist/
+│       │   │   ├── wardrobe/
+│       │   │   ├── discover/
+│       │   │   ├── commerce/
+│       │   │   ├── bookings/
+│       │   │   ├── profile/
+│       │   │   ├── creator/
+│       │   │   ├── merchant/
+│       │   │   ├── professional/
+│       │   │   ├── advertiser/
+│       │   │   ├── affiliate/
+│       │   │   └── admin/
+│       │   └── shared/
+│       │       ├── widgets/
+│       │       ├── models/
+│       │       └── services/
+│       ├── android/
+│       ├── ios/
+│       └── test/
+├── services/
+│   └── api/                    # Existing API, if present
+├── packages/
+│   ├── contracts/              # OpenAPI, JSON Schema, API definitions
+│   ├── design-tokens/          # Platform-neutral design values
+│   └── shared-rules/           # Rules/specs, not cross-language UI code
+├── supabase/
+│   ├── migrations/
+│   ├── functions/
+│   ├── seed/
+│   └── tests/
+├── docs/
+│   ├── screen-registry/
+│   ├── route-registry/
+│   ├── api-contracts/
+│   └── architecture/
+└── .github/workflows/
+```
+
+This is a target structure. Codex must inspect the existing repository before moving files or changing build configuration. Existing deployed services and migrations must be preserved.
+
+### Non-negotiable shared-backend rules
+
+- One production Supabase project: Web and mobile use the same production identity, records, products, bookings, credits and transactions.
+- Separate development and production environments: Never test destructive migrations or payment flows against production.
+- One migration history: Supabase migrations are maintained centrally in the monorepo, not independently in web and mobile.
+- One user identity: A user can sign in on web and mobile and access the same account.
+- Server-enforced roles: Consumer, Creator, Merchant, Professional, Advertiser, Affiliate and Admin permissions must be enforced by RLS and backend authorization.
+- One financial ledger: Purchases, subscriptions, credits, commissions, refunds and payouts must be calculated and reconciled server-side.
+- One AI transformation record: Analysis, generated looks, tutorials and saved plans must be retrievable from both clients, subject to permissions.
+- No duplicate business logic: Flutter and React can have different UI implementations, but must use the same authoritative pricing, entitlements, order and booking rules.
+
+## 2. Complete screen inventory
+
+The following is the canonical proposed mapping. Each ID is a screen or meaningful screen state; route names are proposed and must be reconciled with the existing route registry. All listed functionality is required in the target product, but existing implementation status remains unverified.
+
+Tap a module to expand or collapse its screen inventory.
+
+Collapse all
+
+Authentication and onboardingGL-001–016 · 16 screens
+
+| ID     | Screen and function                                                | Proposed route          |
+| ------ | ------------------------------------------------------------------ | ----------------------- |
+| GL-001 | Splash and session check<br>Check session; route to welcome or app | /splash                 |
+| GL-002 | Welcome<br>Introduce Analyze, Studio and styling                   | /welcome                |
+| GL-003 | Onboarding introduction<br>Show app benefits and consent pathway   | /onboarding             |
+| GL-004 | Sign-in methods<br>Choose phone, email or supported provider       | /auth                   |
+| GL-005 | Phone sign-in<br>Enter phone and request OTP                       | /auth/phone             |
+| GL-006 | SMS verification<br>Verify OTP; resend and recover                 | /auth/otp               |
+| GL-007 | Email sign-in<br>Sign in or register                               | /auth/email             |
+| GL-008 | Social authentication<br>Google/Apple/Facebook where enabled       | /auth/social            |
+| GL-009 | Biometric setup<br>Enable device authentication                    | /auth/biometric         |
+| GL-010 | Profile creation<br>Set account details                            | /onboarding/profile     |
+| GL-011 | Beauty interests<br>Choose interests and goals                     | /onboarding/interests   |
+| GL-012 | Hair preferences<br>Capture optional hair preferences              | /onboarding/hair        |
+| GL-013 | Skin preferences<br>Capture optional skin preferences              | /onboarding/skin        |
+| GL-014 | Location permission<br>Allow location or enter manually            | /onboarding/location    |
+| GL-015 | Notifications and privacy<br>Configure permissions and privacy     | /onboarding/permissions |
+| GL-016 | Onboarding completion<br>Finish and enter Home                     | /onboarding/complete    |
+
+AI AnalyzeGL-017–034 · 18 screens
+
+| ID     | Screen and function                                                        | Proposed route                  |
+| ------ | -------------------------------------------------------------------------- | ------------------------------- |
+| GL-017 | Analyze landing<br>Start or resume analysis                                | /analyze                        |
+| GL-018 | Analysis type<br>Choose face, skin, hair or combined; optional goals first | /analyze/type                   |
+| GL-019 | Camera guidance<br>Explain framing and lighting                            | /analyze/guide                  |
+| GL-020 | Selfie camera<br>Capture user image                                        | /analyze/camera                 |
+| GL-021 | Photo library<br>Select existing photo                                     | /analyze/gallery                |
+| GL-022 | Image crop<br>Align, rotate and crop                                       | /analyze/crop                   |
+| GL-023 | Image quality check<br>Detect unusable input                               | /analyze/quality                |
+| GL-024 | Analysis consent<br>Approve image processing                               | /analyze/consent                |
+| GL-025 | Analysis processing<br>Run job, show status and retry                      | /analyze/processing             |
+| GL-026 | Results overview<br>Summarize insights; enter Transformation Plan          | /analyze/results/:id            |
+| GL-027 | Face insights<br>Explain facial features                                   | /analyze/results/:id/face       |
+| GL-028 | Skin insights<br>Explain visible cosmetic characteristics                  | /analyze/results/:id/skin       |
+| GL-029 | Hair insights<br>Explain visible hair characteristics                      | /analyze/results/:id/hair       |
+| GL-030 | Makeup recommendations<br>Recommend relevant looks                         | /analyze/results/:id/makeup     |
+| GL-031 | Hairstyle recommendations<br>Recommend styles and colours                  | /analyze/results/:id/hairstyles |
+| GL-032 | Beauty routine<br>Create actionable routine                                | /analyze/results/:id/routine    |
+| GL-033 | Analysis history<br>View previous analyses                                 | /analyze/history                |
+| GL-034 | Analysis actions<br>Save, share, open Studio or plan                       | /analyze/results/:id/actions    |
+
+AI Studio and virtual try-onGL-035–052 · 18 screens
+
+| ID     | Screen and function                                              | Proposed route            |
+| ------ | ---------------------------------------------------------------- | ------------------------- |
+| GL-035 | Studio home<br>Start or resume a look                            | /studio                   |
+| GL-036 | Source photo<br>Use camera, gallery or analysis photo            | /studio/source            |
+| GL-037 | Portrait canvas<br>Interactive full-screen preview               | /studio/canvas            |
+| GL-038 | Makeup categories<br>Select makeup tools                         | /studio/makeup            |
+| GL-039 | Lipstick<br>Select shade and intensity                           | /studio/makeup/lips       |
+| GL-040 | Foundation<br>Select shade, finish and coverage                  | /studio/makeup/foundation |
+| GL-041 | Eye makeup<br>Apply shadow, liner and lashes                     | /studio/makeup/eyes       |
+| GL-042 | Blush and contour<br>Control placement and intensity             | /studio/makeup/face       |
+| GL-043 | Makeup presets<br>Apply coordinated makeup looks                 | /studio/makeup/presets    |
+| GL-044 | Hairstyles<br>Preview hairstyle options                          | /studio/hair/styles       |
+| GL-045 | Wigs, braids and locs<br>Preview protective and wig styles       | /studio/hair/protective   |
+| GL-046 | Hair colour<br>Preview colour changes                            | /studio/hair/color        |
+| GL-047 | Custom AI prompt<br>Describe a desired look                      | /studio/generate          |
+| GL-048 | Generation progress<br>Show job progress, retry and cancellation | /studio/generating        |
+| GL-049 | Generated results<br>Choose and refine generated variants        | /studio/results/:id       |
+| GL-050 | Before/after<br>Compare original and simulated look              | /studio/compare           |
+| GL-051 | Save and share<br>Save image and share                           | /studio/save              |
+| GL-052 | Shop or book look<br>Find matching products and professionals    | /studio/look/:id/actions  |
+
+Personal stylist, events and wardrobeGL-053–068 · 16 screens
+
+| ID     | Screen and function                                                   | Proposed route                   |
+| ------ | --------------------------------------------------------------------- | -------------------------------- |
+| GL-053 | AI stylist landing<br>Start personalized styling                      | /stylist                         |
+| GL-054 | Stylist conversation<br>Discuss style goals with AI                   | /stylist/chat                    |
+| GL-055 | Styling goals<br>Set occasion and desired result                      | /stylist/goals                   |
+| GL-056 | Event selection<br>Select event or occasion                           | /stylist/events                  |
+| GL-057 | Event search<br>Find event inspirations                               | /stylist/events/search           |
+| GL-058 | Location and weather<br>Apply location and forecast context           | /stylist/location                |
+| GL-059 | Dress code and culture<br>Select user-controlled cultural preferences | /stylist/dress-code              |
+| GL-060 | Wardrobe upload<br>Capture or import clothing                         | /wardrobe/add                    |
+| GL-061 | Digital wardrobe<br>Organize owned items                              | /wardrobe                        |
+| GL-062 | Outfit generation<br>Generate coordinated suggestions                 | /stylist/generating              |
+| GL-063 | Outfit results<br>Browse complete looks                               | /stylist/results/:id             |
+| GL-064 | Outfit details<br>Inspect clothing, makeup and hair                   | /stylist/outfit/:id              |
+| GL-065 | Swap outfit pieces<br>Replace individual items                        | /stylist/outfit/:id/alternatives |
+| GL-066 | Tailors and designers<br>Find suitable providers                      | /stylist/designers               |
+| GL-067 | Styling plan<br>Schedule preparation and tasks                        | /stylist/plan/:id                |
+| GL-068 | Styling actions<br>Save, share, shop or book                          | /stylist/outfit/:id/actions      |
+
+Discover and communityGL-069–084 · 16 screens
+
+| ID     | Screen and function                                    | Proposed route              |
+| ------ | ------------------------------------------------------ | --------------------------- |
+| GL-069 | Discover feed<br>Browse visual inspiration             | /discover                   |
+| GL-070 | Discover search<br>Search looks, creators and products | /discover/search            |
+| GL-071 | Discover filters<br>Filter content                     | /discover/filters           |
+| GL-072 | Trending looks<br>Browse trends                        | /discover/trending          |
+| GL-073 | Look viewer<br>Immersive look viewing                  | /discover/look/:id          |
+| GL-074 | Creator profile<br>View creator and follow             | /discover/creator/:id       |
+| GL-075 | Following feed<br>View followed creators               | /discover/following         |
+| GL-076 | Look details<br>See tags, products and attribution     | /discover/look/:id/details  |
+| GL-077 | Save inspiration<br>Bookmark a look                    | /discover/look/:id/save     |
+| GL-078 | Collections<br>Organize saved content                  | /collections                |
+| GL-079 | Create collection<br>Name and configure collection     | /collections/new            |
+| GL-080 | Tutorial library<br>Find instructional content         | /discover/tutorials         |
+| GL-081 | Tutorial player<br>Watch or follow tutorial            | /discover/tutorial/:id      |
+| GL-082 | Comments<br>Discuss content                            | /discover/look/:id/comments |
+| GL-083 | Share content<br>Use native sharing                    | /discover/look/:id/share    |
+| GL-084 | Report or hide<br>Report, mute or hide content         | /discover/look/:id/report   |
+
+Marketplace and ordersGL-085–102 · 18 screens
+
+| ID     | Screen and function                                            | Proposed route             |
+| ------ | -------------------------------------------------------------- | -------------------------- |
+| GL-085 | Shop landing<br>Browse products and looks                      | /shop                      |
+| GL-086 | Product categories<br>Browse categories                        | /shop/categories           |
+| GL-087 | Product search<br>Search and filter inventory                  | /shop/search               |
+| GL-088 | Recommended products<br>Personalized matching                  | /shop/recommended          |
+| GL-089 | Product detail<br>View price, availability and description     | /shop/product/:id          |
+| GL-090 | Product variants<br>Select shade, size or colour               | /shop/product/:id/variants |
+| GL-091 | Product gallery<br>Zoom product media                          | /shop/product/:id/gallery  |
+| GL-092 | Merchant storefront<br>Browse merchant catalogue               | /shop/merchant/:id         |
+| GL-093 | Shop the Look<br>Build and edit a product bundle               | /shop/look/:id             |
+| GL-094 | Product comparison<br>Compare alternatives                     | /shop/compare              |
+| GL-095 | Shopping bag<br>Manage quantities and totals                   | /cart                      |
+| GL-096 | Delivery address<br>Select shipping address                    | /checkout/address          |
+| GL-097 | Shipping method<br>Choose delivery option                      | /checkout/shipping         |
+| GL-098 | Checkout review<br>Verify totals and policies                  | /checkout/review           |
+| GL-099 | Payment method<br>Authorize payment                            | /checkout/payment          |
+| GL-100 | Payment result<br>Handle processing, success or failure        | /checkout/result           |
+| GL-101 | Order confirmation<br>Show order and receipt                   | /orders/:id/confirmation   |
+| GL-102 | Order tracking and returns<br>Track, request return or support | /orders/:id                |
+
+Professionals and bookingsGL-103–116 · 14 screens
+
+| ID     | Screen and function                                            | Proposed route                        |
+| ------ | -------------------------------------------------------------- | ------------------------------------- |
+| GL-103 | Find professionals<br>Search salons, stylists and artists      | /professionals                        |
+| GL-104 | Nearby results<br>List/map results                             | /professionals/nearby                 |
+| GL-105 | Professional filters<br>Filter price, service and availability | /professionals/filters                |
+| GL-106 | Professional profile<br>Review portfolio and credentials       | /professionals/:id                    |
+| GL-107 | Service catalogue<br>Browse services                           | /professionals/:id/services           |
+| GL-108 | Service details<br>Review duration, price and policy           | /professionals/:id/service/:serviceId |
+| GL-109 | Booking calendar<br>Choose date                                | /bookings/calendar                    |
+| GL-110 | Available time slots<br>Choose time                            | /bookings/slots                       |
+| GL-111 | Booking details<br>Attach reference look and notes             | /bookings/details                     |
+| GL-112 | Booking confirmation<br>Pay or confirm as required             | /bookings/confirm                     |
+| GL-113 | My appointments<br>View upcoming and past bookings             | /bookings                             |
+| GL-114 | Manage booking<br>Cancel or reschedule                         | /bookings/:id/manage                  |
+| GL-115 | Professional messaging<br>Discuss appointment                  | /messages/:conversationId             |
+| GL-116 | Professional reviews<br>Read or submit review                  | /professionals/:id/reviews            |
+
+Profile, subscriptions and AI creditsGL-117–130 · 14 screens
+
+| ID     | Screen and function                                            | Proposed route          |
+| ------ | -------------------------------------------------------------- | ----------------------- |
+| GL-117 | Profile home<br>Access account, history and role switch        | /profile                |
+| GL-118 | Edit profile<br>Manage account details                         | /profile/edit           |
+| GL-119 | Beauty preferences<br>Change personal preferences              | /profile/preferences    |
+| GL-120 | Saved looks<br>View saved AI and creator looks                 | /profile/saved          |
+| GL-121 | Analysis history<br>Open previous analysis                     | /profile/analyses       |
+| GL-122 | Beauty library<br>Wardrobe, routines and plans                 | /profile/beauty-library |
+| GL-123 | Orders and bookings<br>View transaction activity               | /profile/activity       |
+| GL-124 | Subscription plans<br>Compare plans                            | /subscription/plans     |
+| GL-125 | Manage subscription<br>View, renew or cancel                   | /subscription/manage    |
+| GL-126 | AI credits<br>Balance and usage history                        | /credits                |
+| GL-127 | Buy credits<br>Purchase eligible credit packages               | /credits/buy            |
+| GL-128 | Billing history<br>Payment methods and receipts                | /profile/billing        |
+| GL-129 | Notification settings<br>Set preferences                       | /profile/notifications  |
+| GL-130 | Security and privacy<br>Sessions, consent, export and deletion | /profile/security       |
+
+Creator companionGL-131–142 · 12 screens
+
+| ID     | Screen and function                                           | Proposed route          |
+| ------ | ------------------------------------------------------------- | ----------------------- |
+| GL-131 | Creator dashboard<br>Performance and shortcuts                | /creator                |
+| GL-132 | Creator profile<br>Manage public identity                     | /creator/profile        |
+| GL-133 | Create content<br>Start photo/video post                      | /creator/create         |
+| GL-134 | Capture content<br>Camera or library                          | /creator/capture        |
+| GL-135 | Content editor<br>Trim, crop, caption and edit                | /creator/editor         |
+| GL-136 | Product tagging<br>Tag products and looks                     | /creator/tags           |
+| GL-137 | Publish<br>Preview and publish                                | /creator/publish        |
+| GL-138 | Content library<br>Drafts and published posts                 | /creator/content        |
+| GL-139 | Creator analytics<br>Engagement and conversions               | /creator/analytics      |
+| GL-140 | Creator affiliate tools<br>Create links and track attribution | /creator/affiliate      |
+| GL-141 | Creator earnings<br>Commissions and payouts                   | /creator/earnings       |
+| GL-142 | Collaborations<br>Brand campaign invitations                  | /creator/collaborations |
+
+Merchant and brand companionGL-143–154 · 12 screens
+
+| ID     | Screen and function                                        | Proposed route       |
+| ------ | ---------------------------------------------------------- | -------------------- |
+| GL-143 | Merchant dashboard<br>Sales and operational alerts         | /merchant            |
+| GL-144 | Merchant verification<br>Identity and business approval    | /merchant/onboarding |
+| GL-145 | Store profile<br>Manage storefront                         | /merchant/store      |
+| GL-146 | Product catalogue<br>Browse and edit products              | /merchant/products   |
+| GL-147 | Snap & List<br>Camera-led product listing                  | /merchant/snap-list  |
+| GL-148 | AI listing enhancement<br>Review generated listing content | /merchant/product-ai |
+| GL-149 | Inventory and pricing<br>Variants, stock and prices        | /merchant/inventory  |
+| GL-150 | Incoming orders<br>Process new orders                      | /merchant/orders/new |
+| GL-151 | Order fulfilment<br>Pack, dispatch and track               | /merchant/orders/:id |
+| GL-152 | Returns and support<br>Handle disputes and returns         | /merchant/returns    |
+| GL-153 | Merchant earnings<br>Revenue, commission and settlement    | /merchant/earnings   |
+| GL-154 | Promotions and settings<br>Configure promotions and store  | /merchant/settings   |
+
+Beauty professional companionGL-155–166 · 12 screens
+
+| ID     | Screen and function                                         | Proposed route                    |
+| ------ | ----------------------------------------------------------- | --------------------------------- |
+| GL-155 | Professional dashboard<br>Today's schedule and actions      | /professional                     |
+| GL-156 | Professional verification<br>Submit profile and credentials | /professional/onboarding          |
+| GL-157 | Service management<br>Create and price services             | /professional/services            |
+| GL-158 | Availability<br>Configure calendar and hours                | /professional/availability        |
+| GL-159 | Booking requests<br>Accept or reject requests               | /professional/requests            |
+| GL-160 | Booking detail<br>Inspect appointment                       | /professional/bookings/:id        |
+| GL-161 | Booking management<br>Confirm, change or cancel             | /professional/bookings/:id/manage |
+| GL-162 | Reference look<br>View attached authorized preview          | /professional/bookings/:id/look   |
+| GL-163 | Client messaging<br>Discuss appointments                    | /professional/messages            |
+| GL-164 | Professional portfolio<br>Upload examples of work           | /professional/portfolio           |
+| GL-165 | Professional earnings<br>View payouts                       | /professional/earnings            |
+| GL-166 | Professional settings<br>Manage policies and account        | /professional/settings            |
+
+Advertiser companionGL-167–176 · 10 screens
+
+| ID     | Screen and function                                  | Proposed route            |
+| ------ | ---------------------------------------------------- | ------------------------- |
+| GL-167 | Advertiser dashboard<br>Campaign performance         | /advertiser               |
+| GL-168 | Campaign list<br>Browse campaign states              | /advertiser/campaigns     |
+| GL-169 | Campaign detail<br>View and manage campaign          | /advertiser/campaigns/:id |
+| GL-170 | Create campaign<br>Campaign wizard                   | /advertiser/campaigns/new |
+| GL-171 | Audience targeting<br>Set allowed targeting criteria | /advertiser/targeting     |
+| GL-172 | Creative upload<br>Create and preview ads            | /advertiser/creative      |
+| GL-173 | Budget and schedule<br>Set limits and dates          | /advertiser/budget        |
+| GL-174 | Campaign analytics<br>Performance and attribution    | /advertiser/analytics     |
+| GL-175 | Advertiser billing<br>Charges and invoices           | /advertiser/billing       |
+| GL-176 | Campaign alerts<br>Approval and budget alerts        | /advertiser/notifications |
+
+Affiliate companionGL-177–186 · 10 screens
+
+| ID     | Screen and function                                     | Proposed route         |
+| ------ | ------------------------------------------------------- | ---------------------- |
+| GL-177 | Affiliate dashboard<br>Overview of referrals            | /affiliate             |
+| GL-178 | Affiliate onboarding<br>Verify payout eligibility       | /affiliate/onboarding  |
+| GL-179 | Referral links and QR<br>Generate and share links       | /affiliate/links       |
+| GL-180 | Affiliate campaigns<br>Share approved offers            | /affiliate/campaigns   |
+| GL-181 | Referral activity<br>Track referral lifecycle           | /affiliate/referrals   |
+| GL-182 | Conversion tracking<br>View qualifying conversions      | /affiliate/conversions |
+| GL-183 | Affiliate earnings<br>View commission ledger            | /affiliate/earnings    |
+| GL-184 | Withdrawal request<br>Request eligible payout           | /affiliate/withdraw    |
+| GL-185 | Payout history<br>Track completed payouts               | /affiliate/payouts     |
+| GL-186 | Affiliate support<br>Resolve payout and referral issues | /affiliate/support     |
+
+Admin mobile companionGL-187–196 · 10 screens
+
+| ID     | Screen and function                               | Proposed route           |
+| ------ | ------------------------------------------------- | ------------------------ |
+| GL-187 | Admin overview<br>Operational alerts              | /admin                   |
+| GL-188 | Verification queue<br>Review submissions          | /admin/verifications     |
+| GL-189 | User review<br>Inspect authorized account details | /admin/users/:id         |
+| GL-190 | Merchant approval<br>Approve or reject merchant   | /admin/merchants/:id     |
+| GL-191 | Professional approval<br>Review credentials       | /admin/professionals/:id |
+| GL-192 | Transaction exceptions<br>Review flagged orders   | /admin/exceptions        |
+| GL-193 | Financial alerts<br>Review reconciliation alerts  | /admin/payments          |
+| GL-194 | Content moderation<br>Review reports and content  | /admin/moderation        |
+| GL-195 | Support inbox<br>Handle cases                     | /admin/support           |
+| GL-196 | System health<br>Monitor incidents                | /admin/health            |
+
+Shared application and system statesGL-197–208 · 12 screens
+
+| ID     | Screen and function                                                 | Proposed route            |
+| ------ | ------------------------------------------------------------------- | ------------------------- |
+| GL-197 | Notification centre<br>Open relevant deep links                     | /notifications            |
+| GL-198 | Messaging<br>Conversations and attachments                          | /messages/:conversationId |
+| GL-199 | Support landing<br>Find help                                        | /support                  |
+| GL-200 | Help articles<br>Search support knowledge                           | /support/articles         |
+| GL-201 | Report a problem<br>Submit issue and evidence                       | /support/report           |
+| GL-202 | Role switcher<br>Switch authorized workspace                        | /roles                    |
+| GL-203 | Offline state<br>Explain offline and retry                          | /system/offline           |
+| GL-204 | Loading and retry<br>Handle pending operations                      | /system/loading           |
+| GL-205 | Permission recovery<br>Recover camera, photo or notification access | /system/permission        |
+| GL-206 | Session expired<br>Reauthenticate safely                            | /auth/session-expired     |
+| GL-207 | Operation failure<br>Recover from errors                            | /system/error             |
+| GL-208 | Maintenance and update<br>Show required update or outage            | /system/maintenance       |
+
+16\. AI Transformation PlanTP-01–TP-14 · 14 screens
+
+| ID    | Screen and function                                                   | Proposed route                       |
+| ----- | --------------------------------------------------------------------- | ------------------------------------ |
+| TP-01 | Beauty goals<br>Select desired transformation and preferences         | /analyze/goals                       |
+| TP-02 | Transformation plan overview<br>View recommendations and plan summary | /analyze/results/:id/plan            |
+| TP-03 | Three personalized looks<br>Select suggested direction                | /analyze/results/:id/transformations |
+| TP-04 | Actual-photo preview<br>Generate and review own-photo simulation      | /transformations/:id/preview         |
+| TP-05 | Before and after<br>Compare original and generated image              | /transformations/:id/compare         |
+| TP-06 | Why this look works<br>Explain suggestions and editable assumptions   | /transformations/:id/explanation     |
+| TP-07 | Guided transformation steps<br>Follow makeup, hair or styling steps   | /transformations/:id/tutorial        |
+| TP-08 | Products and tools<br>Build relevant checklist and shopping bag       | /transformations/:id/products        |
+| TP-09 | Professional matching<br>Find suitable provider                       | /transformations/:id/professionals   |
+| TP-10 | Transformation budget<br>Compare DIY, affordable and premium options  | /transformations/:id/budget          |
+| TP-11 | Save transformation<br>Persist plan, assets and selections            | /transformations/:id/save            |
+| TP-12 | My Beauty Plans<br>Reopen saved plans                                 | /profile/beauty-plans                |
+| TP-13 | Beauty progress<br>Track routines and user-recorded progress          | /profile/beauty-progress             |
+| TP-14 | Refine transformation<br>Adjust preferences and regenerate            | /transformations/:id/refine          |
+
+Consumer Home — HOME-001
+
+`/home` · Personalized dashboard, quick Analyze, Studio, stylist, recommendations, Discover, shop, bookings, notifications and role switching.
+
+Inventory totals
+
+# 208
+
+GL screens
+
+# 14
+
+TP screens
+
+# 223
+
+Total including Home
+
+Additional design states such as modal sheets, skeletons, error variants and system permission prompts may be implemented within these routes rather than assigned separate screen IDs.
+
+## 3. Additional functions that must not be lost
+
+The 223-screen inventory is the starting structure, but several original GLAM Beauty features require deeper functionality inside those screens. They should not be marked complete simply because a related screen exists.
+
+| Feature                   | Required behavior                                           | Primary home           |
+| ------------------------- | ----------------------------------------------------------- | ---------------------- |
+| Men's grooming            | Beard, haircut, styling previews, tutorials and barbers     | Analyze, TP, Studio    |
+| Inclusive hair styling    | Braids, locs, wigs, natural hair and diverse textures       | Analyze, Studio        |
+| Full makeup simulation    | Foundation, eye, lip, contour and complete looks            | Studio                 |
+| Beauty routines           | Morning/evening plans, reminders and progress               | Analyze, Profile       |
+| Event styling             | Durban July, weddings, religious attire, travel and weather | Stylist                |
+| Digital wardrobe          | Scan clothes, categorize, reuse and build outfits           | Wardrobe               |
+| Tailor/designer matching  | Find custom clothing providers and request services         | Stylist, Bookings      |
+| Snap & List               | Capture product, AI-enhance listing, approve and publish    | Merchant               |
+| AI recommendations        | Explain matching and distinguish paid placements            | Analyze, TP, Shop      |
+| Shop by Look              | Bundle products across merchants with availability checks   | Studio, Discover, Shop |
+| Beauty professionals      | Appointment management, reference looks and messaging       | Bookings               |
+| Creator monetization      | Shoppable content, attribution, collaboration and earnings  | Creator                |
+| Affiliate monetization    | Referral tracking, commission ledger and payout eligibility | Affiliate              |
+| Advertiser targeting      | Approved targeting, creative review, spend and attribution  | Advertiser             |
+| AI credit consumption     | Preflight pricing, debit, idempotency, failure refunds      | Credits, AI services   |
+| Multi-role access         | Same user identity, distinct authorized workspaces          | Profile, Roles         |
+| Image privacy             | Consent, private storage, retention and deletion            | Analyze, Studio, TP    |
+| Native device integration | Camera, photo picker, biometrics, push and deep links       | Mobile core            |
+
+Design rule: A recommendation is not complete until the user can understand it, preview it when appropriate, act on it and save the outcome.
+
+## 4. Shared Supabase data architecture
+
+The mobile app and web platform should not maintain separate user, commerce or AI datasets.
+
+The following are proposed logical data domains, not claims that these exact tables already exist. Codex must inspect the current Supabase schema and reuse existing canonical tables before proposing additions.
+
+| Data domain        | Logical records                                         | Used by                          |
+| ------------------ | ------------------------------------------------------- | -------------------------------- |
+| Identity           | Users, profiles, roles, verification                    | All clients                      |
+| Beauty preferences | Goals, skin/hair preferences, consent                   | Analyze, Stylist, Profile        |
+| Analysis           | Analysis jobs, results, history                         | Analyze, TP                      |
+| Transformation     | Plans, recommended looks, generated previews, tutorials | TP, Studio, Profile              |
+| AI generation      | Jobs, models, statuses, usage and output assets         | Analyze, Studio, Stylist         |
+| Wardrobe           | Items, categories, outfit combinations                  | Stylist, Profile                 |
+| Content            | Posts, creators, follows, likes, comments, collections  | Discover, Creator                |
+| Commerce           | Merchants, products, variants, inventory, carts, orders | Shop, Merchant                   |
+| Bookings           | Professionals, services, availability, appointments     | Consumer, Professional           |
+| Payments           | Payment intents, transactions, refunds, settlements     | Shop, Bookings                   |
+| Monetization       | Subscriptions, AI credits, commissions, payouts         | All monetized features           |
+| Advertising        | Campaigns, creatives, placements, spend and attribution | Advertiser, Consumer             |
+| Affiliates         | Referral codes, conversions, commission events          | Affiliate, Creator               |
+| Messaging          | Conversations, participants, messages                   | Consumer, Professionals, Support |
+| Administration     | Verifications, moderation, disputes, audit events       | Admin                            |
+| Notifications      | Templates, preferences, deliveries, device tokens       | All clients                      |
+
+### Example: one transformation across web and mobile
+
+Flutter: User creates a transformation
+
+Capture → Analyze → Generate looks → Save plan
+
+Shared backend
+
+Authenticate → Authorize → Process AI → Store results → Record credits
+
+Supabase: Canonical records
+
+Analysis ID · Plan ID · User ID · Generated asset references · Credit events
+
+Web and mobile retrieve the same saved plan
+
+One source of truth, different device-appropriate interfaces
+
+For security, the client should not directly write privileged values such as completed payment status, settled commission, AI-credit balance or verification approval. These must be controlled by trusted backend operations.
+
+## 5. Required shared service contracts
+
+The frontend route registry is separate from the backend API contract. Codex must not confuse `/transformations/:id/preview`, which is a navigation route, with a verified API endpoint.
+
+| Service           | Shared operation                         | Critical requirement                |
+| ----------------- | ---------------------------------------- | ----------------------------------- |
+| Auth              | Sign in, refresh, revoke, role lookup    | Same identity across devices        |
+| Analysis          | Create job, poll status, retrieve result | Consent and ownership checks        |
+| Transformation    | Create plan, recommend, refine, save     | Persist context across modules      |
+| Image generation  | Submit, poll, cancel, retrieve output    | Private assets and retry safety     |
+| Tutorials         | Retrieve/generate steps                  | Match selected transformation       |
+| Product matching  | Search and rank products                 | Stock, pricing and ad disclosure    |
+| Stylist           | Generate coordinated looks               | Preferences, weather and wardrobe   |
+| Booking           | Query availability, reserve, confirm     | Prevent double bookings             |
+| Checkout          | Quote, authorize, confirm, refund        | Server-verified amounts             |
+| Credits           | Quote usage, reserve/debit, reverse      | Atomic ledger and idempotency       |
+| Subscription      | Verify entitlement                       | Platform-specific purchase handling |
+| Merchant          | Publish, stock, fulfil and refund        | Server-side authorization           |
+| Creator/affiliate | Attribute conversion, accrue commission  | Avoid duplicate commissions         |
+| Advertising       | Approve, deliver and record campaigns    | Paid-placement disclosure           |
+| Notifications     | Register device, deliver, deep-link      | Per-user access controls            |
+| Administration    | Approve, moderate and audit              | RBAC and immutable audit events     |
+
+The existing API service should be reused if it already provides these contracts. A new API layer should only be introduced where justified.
+
+## 6. Cross-platform functional parity
+
+| Function             | Flutter mobile                    | React web                                |
+| -------------------- | --------------------------------- | ---------------------------------------- |
+| Consumer analysis    | Full camera-first experience      | Supported upload/analysis experience     |
+| AI transformation    | Full immersive experience         | Saved plans and supported creation flows |
+| AI Studio            | Native-first touch canvas         | Desktop-appropriate canvas               |
+| Stylist and wardrobe | Full consumer functionality       | Supported consumer functionality         |
+| Discover             | Immersive mobile feed             | Responsive content discovery             |
+| Shop and checkout    | Full                              | Full                                     |
+| Professional booking | Full                              | Full                                     |
+| Creator tools        | Mobile creation companion         | Extended management where available      |
+| Merchant tools       | Mobile operations and Snap & List | Full desktop merchant dashboard          |
+| Professional tools   | Calendar, bookings and messages   | Full desktop professional dashboard      |
+| Advertiser tools     | Essential campaign management     | Full advertiser dashboard                |
+| Affiliate tools      | Sharing and earnings              | Full affiliate dashboard                 |
+| Admin tools          | Restricted operational companion  | Full administrative console              |
+| Data and permissions | Shared Supabase                   | Shared Supabase                          |
+
+The Flutter application must not load the React website in a WebView to satisfy screen coverage. Sharing backend services, contracts and design tokens is correct; sharing web page layouts as the mobile UI is not.
+
+## 7. Master Codex instruction — monorepo and Supabase preservation
+
+This is the engineering directive to accompany the complete screen inventory when the design is approved.
+
+# GLAM BEAUTY — MONOREPO, SHARED SUPABASE AND MOBILE IMPLEMENTATION CONTRACT
+
+## MISSION
+
+Build the GLAM Beauty mobile application as a genuine Flutter Android/iOS application, alongside the existing React web platform, inside one monorepo.
+
+Both clients must use the same production Supabase project and canonical backend services.
+
+Preserve the existing backend, data, payments, AI services, permissions, user accounts and business rules.
+
+The approved mobile inventory contains:
+
+- GL-001 through GL-208.
+- TP-01 through TP-14.
+- HOME-001.
+
+Total: 223 registered screens or meaningful screen states.
+
+Do not treat this count as proof that all screens are already designed or implemented.
+
+## PHASE 0 — READ-ONLY REPOSITORY AUDIT
+
+Before editing anything:
+
+1. Inspect the entire existing repository.
+2. Identify the web framework and deployment configuration.
+3. Identify any existing Flutter or other mobile application.
+4. Identify the existing API service.
+5. Identify the canonical Supabase project and migration history.
+6. Inventory current authentication, roles, AI, commerce, bookings and payment functionality.
+7. Compare existing routes with the approved 223-screen registry.
+8. Identify duplicate business logic and schema definitions.
+9. Identify working features that must not regress.
+10. Produce a migration plan with rollback instructions.
+
+Do not delete, rename, replace or regenerate the existing backend.
+
+Do not apply migrations during this phase.
+
+## PHASE 1 — MONOREPO STRUCTURE
+
+Use the existing repository as the source of truth.
+
+Organize the code into logical applications and shared packages only where necessary.
+
+The intended structure is:
+
+apps/web\
+apps/mobile\
+services/api\
+packages/contracts\
+packages/design-tokens\
+supabase\
+docs
+
+If the repository already has a different working structure, preserve it unless a change is justified.
+
+Do not create a second disconnected repository for the Flutter application.
+
+## PHASE 2 — SHARED SUPABASE
+
+Both web and mobile must connect to the same canonical Supabase backend for each environment.
+
+Requirements:
+
+- Shared Supabase Auth.
+- Shared user profiles.
+- Shared role assignments.
+- Shared AI analysis history.
+- Shared transformation plans.
+- Shared products and orders.
+- Shared bookings.
+- Shared credits and subscriptions.
+- Shared messaging.
+- Shared commissions and financial records.
+- Shared notification data.
+
+Maintain one migration history.
+
+Do not recreate tables that already exist.
+
+Do not run old bulk-schema migrations again.
+
+Do not modify production data without an approved migration and rollback plan.
+
+## PHASE 3 — SECURITY AND ACCESS
+
+Implement:
+
+- Row Level Security.
+- Server-enforced RBAC.
+- Secure image storage.
+- Private user analysis assets.
+- Signed or authorized asset access.
+- Server-controlled financial operations.
+- Audit logging.
+- Consent and deletion workflows.
+- Device session management.
+
+Never embed a Supabase service-role key or equivalent privileged secret in the Flutter or React client.
+
+Use publishable/anon client credentials with appropriate RLS.
+
+## PHASE 4 — SHARED API CONTRACTS
+
+Inventory and verify all existing backend operations.
+
+Generate or maintain a canonical OpenAPI/JSON Schema contract where appropriate.
+
+Both Flutter and React must use compatible contract definitions.
+
+Do not invent API endpoints and mark them as implemented.
+
+For missing functionality, produce a documented backend task with required request, response, authorization, persistence and test behavior.
+
+## PHASE 5 — MOBILE ROUTER
+
+Implement the approved mobile route registry.
+
+Use a Flutter-native routing solution.
+
+Provide:
+
+- Five consumer bottom tabs.
+- Independent tab navigation stacks.
+- Deep links.
+- Authentication guards.
+- Role guards.
+- Contextual navigation to Shop, Bookings and Stylist.
+- Safe handling of interrupted AI jobs and payment flows.
+- Back navigation.
+- Android and iOS platform behavior.
+
+Every screen ID must map to a route, a specialized state or an explicitly documented alias.
+
+## PHASE 6 — REAL AI TRANSFORMATION
+
+Implement the approved journey:
+
+Goals → Selfie → Analysis → Personalized Recommendations → Transformation Preview → Before/After → Explanation → Tutorial → Products/Professionals → Save.
+
+Requirements:
+
+- User-owned images.
+- Explicit consent.
+- Real analysis jobs.
+- Real personalized recommendation records.
+- Real image generation or verified supported try-on capability.
+- Persistent transformation plans.
+- Credit accounting.
+- Failure recovery.
+- No sample-image filters presented as actual user transformations.
+
+Preserve the user's original image and distinguish simulations from guaranteed results.
+
+## PHASE 7 — COMMERCE AND MONETIZATION
+
+Preserve:
+
+- 10% platform commission on each marketplace item sold.
+- Merchant Snap & List.
+- Creator and affiliate attribution.
+- AI credit consumption.
+- Subscriptions.
+- Salon bookings.
+- Advertiser campaigns.
+- Merchant payouts.
+
+Apply commercial rules on the server.
+
+Do not add the platform commission as an undisclosed extra consumer checkout charge.
+
+Confirm Apple and Google billing requirements before enabling purchases of digital subscriptions or AI credits in mobile apps.
+
+## PHASE 8 — INCREMENTAL DELIVERY
+
+Do not implement all 223 screens in one unreviewed build.
+
+Recommended order:
+
+1. Flutter shell, auth and navigation.
+2. Analyze and image capture.
+3. AI Transformation Plan.
+4. Studio and try-on.
+5. Stylist and wardrobe.
+6. Discover and creators.
+7. Marketplace and checkout.
+8. Professionals and bookings.
+9. Profile, subscriptions and credits.
+10. Merchant, professional and creator companions.
+11. Advertiser, affiliate and admin companions.
+12. Final cross-platform integration.
+
+For every feature:
+
+- Implement the approved design.
+- Connect real services.
+- Add tests.
+- Verify on Android and iOS.
+- Check web regression.
+- Demonstrate the complete user journey.
+- Obtain approval before proceeding.
+
+## PHASE 9 — QUALITY GATES
+
+A feature is complete only when:
+
+- It renders correctly on real mobile device sizes.
+- It uses native Flutter UI rather than a WebView wrapper.
+- All visible controls work.
+- Its real backend contract is verified.
+- Data persists correctly.
+- Authentication and RLS are enforced.
+- Errors and retries work.
+- Credits and payments reconcile.
+- Android and iOS builds pass.
+- Existing web features remain operational.
+
+Do not report success based only on compilation or prototype navigation.
+
+## REQUIRED FIRST RESPONSE
+
+Before writing implementation code, deliver:
+
+1. Existing repository audit.
+2. Proposed monorepo structure.
+3. Current Supabase schema and migration findings.
+4. Current API contract inventory.
+5. 223-screen implementation matrix.
+6. Missing backend capability list.
+7. Design gaps and blockers.
+8. Risk and regression register.
+9. Incremental implementation plan.
+10. Explicit GO/HOLD recommendation.
+
+Do not begin implementation until the audit and plan are approved.
+
+## NON-NEGOTIABLE OUTCOME
+
+One GLAM Beauty platform.\
+One monorepo.\
+One canonical backend and Supabase data model per environment.\
+One identity and permissions system.\
+Two purpose-built frontends: React web and Flutter mobile.
+
+No duplicated business logic.\
+No disconnected mobile database.\
+No website wrapped as a mobile application.\
+No simulated functionality represented as production-ready.
+
+## 8. Recommended release approach
+
+Gate 1 — Design completeness
+
+Confirm the 223-screen registry, native interactions, missing men's grooming functionality and all transformation previews.
+
+Gate 2 — Backend and Supabase compatibility
+
+Verify the current schema, APIs, migrations, payments and role permissions without modifying production.
+
+Gate 3 — First complete Flutter journey
+
+Build and demonstrate Analyze → Personalized Transformation → Actual-photo AI Preview → Save. Verify persistence across web and mobile.
+
+Gate 4 — Controlled feature expansion
+
+Implement the remaining modules with Android/iOS QA, Supabase integration tests and web regression checks after each milestone.
+
+My recommendation: Treat the 223-screen registry as the complete baseline inventory, not the final limit on functionality. Preserve the 208 GL IDs, 14 TP IDs and Home, and implement missing capabilities as well-defined states or additional registered screens only when justified.
+
+Most importantly, do not restart GLAM Beauty's backend or create a new Supabase project to solve a mobile UI problem. The correct approach is to preserve the existing platform, certify the design, and build a genuinely mobile-first Flutter client against its shared services.

@@ -1,0 +1,39 @@
+{
+  "45": {
+    "state": "closed",
+    "draft": false,
+    "merged_at": "2026-11-10T16:48:55Z",
+    "merge_commit_sha": "2cc06794242f23291a9169a0b6a0e5f6ccfd2d03"
+  },
+  "46": {
+    "state": "closed",
+    "draft": false,
+    "merged_at": "2026-11-10T16:49:45Z",
+    "merge_commit_sha": "2d837e696c9f64887d515cf0c335f14c919a903f"
+  },
+  "47": {
+    "state": "closed",
+    "draft": false,
+    "merged_at": "2026-11-10T16:50:56Z",
+    "merge_commit_sha": "1fda1773186ffcd5b95eaefde5a6447eb71a884a"
+  },
+  "59": {
+    "state": "open",
+    "draft": true,
+    "merged_at": null,
+    "merge_commit_sha": null
+  },
+  "60": {
+    "state": "open",
+    "draft": true,
+    "merged_at": null,
+    "merge_commit_sha": "f62be4e5c5df1536f9796a0b70648ff1971a3c67"
+  },
+  "default_sha": "2d837e696c9f64887d515cf0c335f14c919a903f",
+  "comparison": {
+    "status": "diverged",
+    "ahead_by": 5,
+    "behind_by": 21,
+    "total_commits": 5
+  }
+}

@@ -1,0 +1,376 @@
+{
+  "observed_at": "2026-11-11T08:10:04.454214+02:00",
+  "read_only": true,
+  "project": {
+    "http_status": 200,
+    "id": "bkkmsbxrxkqaveymcrgi",
+    "status": "ACTIVE_HEALTHY",
+    "original_host": true
+  },
+  "branches": {
+    "http_status": 200,
+    "branches": []
+  },
+  "edge_functions": {
+    "http_status": 200,
+    "functions": [
+      {
+        "slug": "glam-api",
+        "status": "ACTIVE",
+        "version": 8
+      }
+    ]
+  },
+  "auth": {
+    "http_status": 200,
+    "enabled": {
+      "external_email_enabled": true,
+      "external_phone_enabled": false,
+      "external_google_enabled": false,
+      "external_apple_enabled": false,
+      "external_facebook_enabled": false
+    }
+  },
+  "schema": {
+    "http_status": 201,
+    "snapshot": {
+      "tables": [
+        {
+          "rls": true,
+          "name": "social_credentials",
+          "schema": "creator_private"
+        },
+        {
+          "rls": true,
+          "name": "account_eligibility",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "alembic_version",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "analysis_correction",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "analysis_job",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "api_request_counters",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "app_user",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "audit_event",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "catalog_ai_job",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "catalog_approval",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "catalog_listing",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "catalog_media",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "catalog_projection",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "catalog_revision",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "connected_social_accounts",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "consent_event",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "creator_attribution_events",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "creator_campaign_applications",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "creator_campaign_briefs",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "creator_campaign_deliverables",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "creator_collection_items",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "creator_collections",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "creator_commission_agreements",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "creator_earnings",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "creator_payout_eligibility",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "creator_profiles",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "creator_referrals",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "creator_social_sync_logs",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "credit_account",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "credit_journal",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "credit_posting",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "credit_reservation",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "device_auth_preferences",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "idempotency_record",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "look",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "look_revision",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "market_policy_version",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "merchant_profiles",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "notification_preferences",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "organization_members",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "organizations",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "outbox_event",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "personal_routine",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "policy_document",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "private_media",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "product_categories",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "product_variants",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "products",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "professional_profiles",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "profiles",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "saved_requirement",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "social_media_items",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "staff_grant",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "style_passport_analysis",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "style_passports",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "user_preferences",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "workspace_capability",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "workspace_draft",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "workspace_invitation",
+          "schema": "public"
+        },
+        {
+          "rls": true,
+          "name": "workspace_role",
+          "schema": "public"
+        }
+      ],
+      "functions": [
+        "glam_private.active_profile_id",
+        "glam_private.bootstrap_identity",
+        "glam_private.canonical_json",
+        "glam_private.creator_access",
+        "glam_private.creator_append_only",
+        "glam_private.creator_url",
+        "glam_private.current_app_user_id",
+        "glam_private.glam_account_api_v1",
+        "glam_private.glam_core_api_v1",
+        "glam_private.glam_routines_api_v1",
+        "glam_private.is_org_member",
+        "glam_private.touch_updated_at",
+        "public.enforce_credit_balance",
+        "public.glam_api_gate",
+        "public.glam_api_v1",
+        "public.glam_backend_status",
+        "public.guard_analysis_correction",
+        "public.guard_analysis_passport_owner",
+        "public.protect_journal",
+        "public.protect_posting_insert",
+        "public.reject_mutation",
+        "public.rls_auto_enable"
+      ],
+      "revisions": [
+        "0017_analysis_passport"
+      ],
+      "private_bucket": {
+        "id": "glam-private-media",
+        "public": false,
+        "file_size_limit": 10485760,
+        "allowed_mime_types": [
+          "image/png"
+        ]
+      }
+    }
+  }
+}
