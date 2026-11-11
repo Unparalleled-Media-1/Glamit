@@ -1,0 +1,1 @@
+PASS actual Supabase JS SDK OTP, signed user validation and refresh against isolated services; not native OS evidence

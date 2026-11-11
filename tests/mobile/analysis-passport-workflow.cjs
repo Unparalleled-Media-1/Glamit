@@ -49,6 +49,14 @@ global.__analysisPorts = {
     await act(async () => press(`Confirm ${name} permission`));
   }
   assert(text(view.toJSON()).includes('Permission confirmed'));
+  // Withdrawal must clear the local acknowledgments, not leave a one-tap regrant.
+  await act(async () => press('Withdraw photo and analysis permissions'));
+  for (const name of ['storage','analysis']) {
+    const toggle=view.root.findByProps({ accessibilityLabel: `I agree to ${name}` });
+    assert.equal(toggle.props.value,false,'Withdrawal must clear the cached consent checkbox');
+    await act(async () => toggle.props.onValueChange(true));
+    await act(async () => press(`Confirm ${name} permission`));
+  }
   const beforeGrants = calls.filter(c => c.url.includes('/consent')).length;
   await act(async () => press('Upload privately and request analysis'));
   assert(text(view.toJSON()).includes('Analysis queued'));

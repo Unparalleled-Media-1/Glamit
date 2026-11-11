@@ -1,0 +1,5 @@
+
+> glam-ai@0.1.0 test:device-fixture
+> tsc --noEmit -p tests/native_device/tsconfig.json && node tests/mobile/device-fixture-transport.cjs
+
+PASS fixture-only build refusal and default-deny loopback transport; not native/device evidence

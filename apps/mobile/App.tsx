@@ -578,6 +578,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
               {goals.map((n) => (
                 <View key={n} style={s.switchRow}>
                   <Switch
+                    testID={"analysis-goal-" + goals.indexOf(n)}
                     accessibilityLabel={n}
                     value={state.goals.includes(n)}
                     onValueChange={() =>
@@ -772,6 +773,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
               "Your private goals, session routines and authorized workspaces.",
             )}
             <NativeAccount auth={nativeAccount}/>
+            {photo && <Button title="Continue selected photo analysis" onPress={() => go("results")}/>}
             <NativeAnalysisJourney account={nativeAccount.account} apiOrigin={process.env.EXPO_PUBLIC_GLAM_API_ORIGIN || ""}
               goals={[]} privacyRevision={privacyRevision}/>
             <NativePrivatePhotos account={nativeAccount.account} apiOrigin={process.env.EXPO_PUBLIC_GLAM_API_ORIGIN || ""} onMediaChanged={() => setPrivacyRevision(v => v + 1)}/>
@@ -1124,6 +1126,8 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
           <Pressable
             key={n}
             accessibilityRole="tab"
+            accessibilityLabel={n}
+            testID={`native-tab-${n.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
             accessibilityState={{
               selected: reviewRole ? i === 0 : state.page === tabPage[n],
             }}
