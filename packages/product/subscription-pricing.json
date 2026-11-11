@@ -1,4 +1,11 @@
 {
+  "referral_program": {
+    "version": "refer-one-month-v1",
+    "months_per_person": 1,
+    "stackable": true,
+    "qualifying_event": "first_subscription_payment",
+    "program_state": "NOT CONFIGURED"
+  },
   "plans": [
     {
       "id": "glam_monthly",

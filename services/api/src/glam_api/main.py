@@ -178,15 +178,21 @@ def ready(db: Db):
         "0015_private_media",
         "0016_analysis_jobs",
         "0017_analysis_passport",
+        "0018_referral_months",
     }
     if not applied.intersection(current_heads):
         raise HTTPException(503, "Database migration is not current")
     if os.environ.get("GLAM_PRIVATE_MEDIA_ENABLED") == "true" and not applied.intersection(
-        {"0015_private_media", "0016_analysis_jobs", "0017_analysis_passport"}
+        {
+            "0015_private_media",
+            "0016_analysis_jobs",
+            "0017_analysis_passport",
+            "0018_referral_months",
+        }
     ):
         raise HTTPException(503, "Private media migration is not current")
     if os.environ.get("GLAM_ANALYSIS_ENABLED") == "true" and not applied.intersection(
-        {"0016_analysis_jobs", "0017_analysis_passport"}
+        {"0016_analysis_jobs", "0017_analysis_passport", "0018_referral_months"}
     ):
         raise HTTPException(503, "Analysis migration is not current")
     if not get_settings().oidc_issuer:

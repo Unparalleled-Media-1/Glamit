@@ -9,6 +9,8 @@ Approved by the user on 11 November 2026: **US$1.50 per month, or US$15 per year
 
 Annual saving is US$3 against twelve monthly payments. Existing eligible physical-product commission remains unchanged at10%; subscription revenue is separate from merchant Connect transfers and has no invented merchant commission.
 
+The subsequently approved [consumer referral offer](REFERRAL_MONTH_REWARDS.md) awards the referrer one free month per qualifying person, with cumulative months. Qualification is the first successful subscription payment; operational redemption remains pending; this does not change the two paid base prices.
+
 ## Implemented source
 
 - Server authority: services/api/src/glam_api/subscriptions.py. Public GET /v1/subscription-plans exposes exact plans and explicitly reports purchasing NOT CONFIGURED/disabled.
