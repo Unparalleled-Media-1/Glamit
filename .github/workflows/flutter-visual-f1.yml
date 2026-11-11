@@ -69,7 +69,7 @@ jobs:
           flutter-version: '3.47.9'
           channel: stable
           cache: true
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: flutter-f1-resolved-native-inputs
           path: apps/flutter_app
@@ -122,7 +122,7 @@ jobs:
           flutter-version: '3.47.9'
           channel: stable
           cache: true
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: flutter-f1-resolved-native-inputs
           path: apps/flutter_app
