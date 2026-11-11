@@ -14,7 +14,7 @@ jobs:
       backend: ${{ steps.paths.outputs.backend }}
       edge: ${{ steps.paths.outputs.edge }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Select independent build targets
@@ -68,7 +68,7 @@ jobs:
     if: needs.changes.outputs.edge == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
@@ -84,7 +84,7 @@ jobs:
       EXPO_NO_TELEMETRY: "1"
       EXPO_OFFLINE: "1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
@@ -110,7 +110,7 @@ jobs:
       - run: npm run test:artwork
         env:
           GLAM_BRAND_ARTIFACTS: ${{ runner.temp }}/brand-artwork
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: brand-artwork-previews
@@ -151,13 +151,13 @@ jobs:
       - run: npm run test:public-footer
         env:
           GLAM_PUBLIC_EVIDENCE: ${{ runner.temp }}/public-footer
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: public-footer-web-screenshots
           path: ${{ runner.temp }}/public-footer
           if-no-files-found: warn
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: ios-android-browser-previews-not-native-builds
@@ -172,7 +172,7 @@ jobs:
       EXPO_NO_TELEMETRY: "1"
       EXPO_OFFLINE: "1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
