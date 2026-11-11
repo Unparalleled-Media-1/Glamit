@@ -1893,6 +1893,37 @@ export interface components {
             granted: boolean;
             policy: components["schemas"]["PolicyRead"];
         };
+        /** ReferralPolicy */
+        ReferralPolicy: {
+            /**
+             * Months Per Person
+             * @default 1
+             * @constant
+             */
+            months_per_person: 1;
+            /**
+             * Program State
+             * @default NOT CONFIGURED
+             * @constant
+             */
+            program_state: "NOT CONFIGURED";
+            /**
+             * Qualifying Event
+             * @default first_subscription_payment
+             */
+            qualifying_event: "first_subscription_payment" | null;
+            /**
+             * Stackable
+             * @default true
+             * @constant
+             */
+            stackable: true;
+            /**
+             * Version
+             * @default refer-one-month-v1
+             */
+            version: string;
+        };
         /** Requirement */
         Requirement: {
             /** Budget Minor */
@@ -2092,6 +2123,16 @@ export interface components {
              * @constant
              */
             purchase_state: "NOT CONFIGURED";
+            /**
+             * @default {
+             *       "months_per_person": 1,
+             *       "program_state": "NOT CONFIGURED",
+             *       "qualifying_event": "first_subscription_payment",
+             *       "stackable": true,
+             *       "version": "refer-one-month-v1"
+             *     }
+             */
+            referral_program: components["schemas"]["ReferralPolicy"];
             /**
              * Yearly Saving Usd Minor
              * @default 300

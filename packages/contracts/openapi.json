@@ -2107,6 +2107,48 @@
         "title": "PurposePermission",
         "type": "object"
       },
+      "ReferralPolicy": {
+        "properties": {
+          "months_per_person": {
+            "const": 1,
+            "default": 1,
+            "title": "Months Per Person",
+            "type": "integer"
+          },
+          "program_state": {
+            "const": "NOT CONFIGURED",
+            "default": "NOT CONFIGURED",
+            "title": "Program State",
+            "type": "string"
+          },
+          "qualifying_event": {
+            "anyOf": [
+              {
+                "const": "first_subscription_payment",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": "first_subscription_payment",
+            "title": "Qualifying Event"
+          },
+          "stackable": {
+            "const": true,
+            "default": true,
+            "title": "Stackable",
+            "type": "boolean"
+          },
+          "version": {
+            "default": "refer-one-month-v1",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "title": "ReferralPolicy",
+        "type": "object"
+      },
       "Requirement": {
         "additionalProperties": false,
         "properties": {
@@ -2554,6 +2596,16 @@
             "default": "NOT CONFIGURED",
             "title": "Purchase State",
             "type": "string"
+          },
+          "referral_program": {
+            "$ref": "#/components/schemas/ReferralPolicy",
+            "default": {
+              "months_per_person": 1,
+              "program_state": "NOT CONFIGURED",
+              "qualifying_event": "first_subscription_payment",
+              "stackable": true,
+              "version": "refer-one-month-v1"
+            }
           },
           "yearly_saving_usd_minor": {
             "default": 300,

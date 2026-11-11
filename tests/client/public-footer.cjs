@@ -84,6 +84,9 @@ assert.equal(checkedPublicLink('android', 'https://play.google.com/store/apps/de
         await page.getByText('US$1.50 per month',{exact:true}).waitFor();
         await page.getByText('US$15.00 per year',{exact:true}).waitFor();
         assert(await page.getByText('Save US$3.00 compared with 12 monthly payments.',{exact:true}).isVisible());
+        assert(await page.getByRole('heading',{name:'Refer a friend, get a month free',exact:true}).isVisible());
+        assert(await page.getByText(/Rewards accumulate: refer 3 people, earn 3 free months/).isVisible());
+        assert(await page.getByText(/after their first successful subscription payment/).isVisible());
         assert(await page.getByText(/Subscription purchase and card saving are not available yet/).isVisible());
         assert.equal(await page.getByRole('link',{name:'Check app availability',exact:true}).getAttribute('href'),base+'/get-app');
         assert.equal(await page.locator('input[autocomplete="cc-number"], input[autocomplete="cc-csc"]').count(),0);

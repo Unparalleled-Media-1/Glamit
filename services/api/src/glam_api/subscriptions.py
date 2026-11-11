@@ -15,6 +15,7 @@ from pydantic import BaseModel, ConfigDict
 
 from glam_api.payments.config import PaymentError
 from glam_api.payments.stripe import Gateway
+from glam_api.referrals import POLICY, ReferralPolicy
 
 
 class SubscriptionPlan(BaseModel):
@@ -33,6 +34,7 @@ PLANS = (
 
 
 class SubscriptionCatalog(BaseModel):
+    referral_program: ReferralPolicy = POLICY
     plans: tuple[SubscriptionPlan, ...] = PLANS
     yearly_saving_usd_minor: int = 300
     local_currency_policy: str = "provider_quoted_equivalent"
