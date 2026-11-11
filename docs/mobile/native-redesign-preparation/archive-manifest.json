@@ -1,0 +1,345 @@
+{
+  "inspection": "Static source/route and binary hash inspection; no attached instruction treated as authority; no source scripts executed",
+  "archives": [
+    {
+      "filename": "GLAM Beauty Design System (3).zip",
+      "bytes": 193189,
+      "sha256": "9e429ce7d8e2abb1ff9ead8bca5cf60a335d931601ea3f762d6ae4742212186c",
+      "files": [
+        {
+          "path": "handover-source/GLAM Handover v3.html",
+          "bytes": 15778,
+          "sha256": "1284756d5686bf11da792c34aa6331a49dba5993dbf0ed616d8099c17bc0796e"
+        },
+        {
+          "path": "handover-source/guidelines/brand-logo.html",
+          "bytes": 723,
+          "sha256": "715c1368384d9d4c13583a94a82f87d572088d0b34cacedfe512513a1aad8488"
+        },
+        {
+          "path": "handover-source/guidelines/colors-brand.html",
+          "bytes": 1195,
+          "sha256": "80fc4c982b43f5fcb1b2d74affb778a780b77f963a2ae0585738bdd861b19585"
+        },
+        {
+          "path": "handover-source/guidelines/colors-dark.html",
+          "bytes": 1043,
+          "sha256": "248bf9702f629b24d02c80d51b08e475f426156feed242cfe12a7c78048a06f1"
+        },
+        {
+          "path": "handover-source/guidelines/colors-ui.html",
+          "bytes": 1118,
+          "sha256": "b1e9e2ec40bfe5f6dad5e19e04fb3491451ae80d2413bc86f087b2f729e4432d"
+        },
+        {
+          "path": "handover-source/guidelines/imagery.html",
+          "bytes": 1423,
+          "sha256": "9a37a49b1c2ab2cafd3db4f7fd59f2404014eb5779e23d4d04a6a5c5a10d99b2"
+        },
+        {
+          "path": "handover-source/guidelines/spacing-radius.html",
+          "bytes": 1538,
+          "sha256": "89e876246a80251da7d2531e4b781547f9e7e467ea6bdcb029b80c23d566b7f9"
+        },
+        {
+          "path": "handover-source/guidelines/type-body.html",
+          "bytes": 667,
+          "sha256": "c53aaf2b0e543dedeb7f9a76136e22d7db5480ea8f6625b06b4ff1322e2d4270"
+        },
+        {
+          "path": "handover-source/guidelines/type-display.html",
+          "bytes": 570,
+          "sha256": "1eec3284c08bb7e4460a1682d8aac69b1bf59346bf9e7be68e35f29d06811db7"
+        },
+        {
+          "path": "handover-source/readme.md",
+          "bytes": 4534,
+          "sha256": "cf5b961779d2a5d383fd6774a34dcbe818bcfcb35f19320c254c8b6984922b8b"
+        },
+        {
+          "path": "handover-source/styles.css",
+          "bytes": 92,
+          "sha256": "09194b77048c21724bab518d83061f74eab289349051d98ea3c591b66c2292cc"
+        },
+        {
+          "path": "handover-source/tokens/colors.css",
+          "bytes": 1067,
+          "sha256": "9c95a2e3e69fab5e6f3bf3c3fb580d6c7011f0c1471d506031bf0bbd54588d67"
+        },
+        {
+          "path": "handover-source/tokens/spacing.css",
+          "bytes": 416,
+          "sha256": "edea8f6bd5dc3a9b3b7108b11de6f49c48ae4e9f8467ee6e8e28262267fab536"
+        },
+        {
+          "path": "handover-source/tokens/typography.css",
+          "bytes": 898,
+          "sha256": "33c4f64447e4b8a030c810bc6b2e93a842e4625bda25e58459729af1fecd20f1"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/Canvas.html",
+          "bytes": 4667,
+          "sha256": "0b4c3b2b0c1eb67800f470eaf746fb9ac0d72f308b14b2df17866e423bfae891"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/Coverage.html",
+          "bytes": 32869,
+          "sha256": "faa6b740b620c291e90c96420c12a03d287b2354d69d9d655d746d70189da314"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/Handover.html",
+          "bytes": 21338,
+          "sha256": "615da0fb8c70c309731dc5c16d70f60bab6f21df89dd97b5eb85d5d73e40d092"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/Prototype.html",
+          "bytes": 5380,
+          "sha256": "0fe2fe678e14b1399d3a2ea17746c84648cabedfbe1ab445bd5f2b1f87477388"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/Routes.html",
+          "bytes": 5240,
+          "sha256": "d16ce3d058b62a7d98a1fe171eb8d17e904b3ea67b63c81bd3a83dd8b87ba0a5"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/arch.jsx",
+          "bytes": 14117,
+          "sha256": "8084c040f2fa07bb44675c920f97d13651c5223be4d778ee89293e8a0bae1a72"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/be.js",
+          "bytes": 4028,
+          "sha256": "f1df0e63e3fdb398447c30c642e3376a63d18e1886e59275e99236f438e5634d"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/chrome.jsx",
+          "bytes": 4114,
+          "sha256": "3aca551155eadf0e02605d15e8e4240bcea2e6e3f12825ab39fdbcbe542c595f"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/d1.jsx",
+          "bytes": 11825,
+          "sha256": "485b2ca808082c3125a7713cd1486b4cc525b61211453130fa61278b906c5f61"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/d2.jsx",
+          "bytes": 16185,
+          "sha256": "81e9d52b081cb76ee6500e706cdc76cf1b85206e32501411c01e6f91d27e5a1e"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/d3.jsx",
+          "bytes": 16756,
+          "sha256": "d74776405816eecfdf9ebbcbdf32c6fa5e5993fa9f9ebc66d332deb3831b4bb0"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/d4.jsx",
+          "bytes": 2133,
+          "sha256": "3797c7ad3fda32bedc3f69a2ac07f1d2e18cfdde699bceeaf3e5fd492c507f90"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/fit.js",
+          "bytes": 570,
+          "sha256": "8d10ac93dcaf4b83cf81c7f735f3c763d1f47d8aeac20b8a9c54c35440eab354"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/o1.jsx",
+          "bytes": 18252,
+          "sha256": "615946e6c88f3d170d8a98dd6ca0ee04dc582cb9af5fe3cfcd73dda82fe93114"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/o2.jsx",
+          "bytes": 14327,
+          "sha256": "e37c41e0987c31738356e32c28221bcf6ddbac6dfecc5fd4792ecf0eba103c72"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p1.jsx",
+          "bytes": 13278,
+          "sha256": "e3b1882fc28e7d634b76a2410acf91b06b2b37e2f500bd176590133973414a9c"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p10.jsx",
+          "bytes": 20650,
+          "sha256": "249490f11f68ba233dae0adc44ebf5494464012f2717515254b3ca3cc59babb4"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p10a.jsx",
+          "bytes": 1901,
+          "sha256": "9d420bb4ebbd25a368fe5ed5455b8582671401e7a9d83fc07c4a613b17223200"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p11.jsx",
+          "bytes": 8945,
+          "sha256": "7c6013b760999eebf5f4720c0ddf735e9d7e35dc0b2d88b0145cfb91d7bab568"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p12.jsx",
+          "bytes": 9721,
+          "sha256": "69565f2322e43f8816e9a313ed8b08bbfd1ce317af7b5fd4797fea91a831126d"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p13.jsx",
+          "bytes": 11529,
+          "sha256": "fb66f49c601defd232952fc64107f37e8eec3327af155d6d10b8e8143fe42446"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p14.jsx",
+          "bytes": 27941,
+          "sha256": "53b040cc43480451e4acc8c02151342ee5369f513c7ad94d4dd3e2264ec12970"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p2.jsx",
+          "bytes": 25565,
+          "sha256": "2bd1925b5f58ecde4b2ac6e233c6585a93c66234288f5bc8890e9db9bee99862"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p3.jsx",
+          "bytes": 5688,
+          "sha256": "7aad3196ee752c4f9caca07af910888cb6b979cda9b774fd890a6c2a3857fc1b"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p4.jsx",
+          "bytes": 15955,
+          "sha256": "4f3799e9fd2f129d09cdfcc1902d1c31a401f2357075d37b3644880c968ca31b"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p5.jsx",
+          "bytes": 11393,
+          "sha256": "af89c0d446a53bbee280dfa6e1aa2b72de27786684c760ad9178924bda722895"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p6.jsx",
+          "bytes": 11890,
+          "sha256": "a17b54161147eddc86f7e6882dbaee6d09831aae6082948473454b49eade2091"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p7.jsx",
+          "bytes": 19329,
+          "sha256": "8cd89a32c8ee6b15a8f1ee7bee91e91a42d1f0f6237bcf4dd10882bdf23c0290"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p8.jsx",
+          "bytes": 20902,
+          "sha256": "c708df6af4fba224826baa6ecf926a4d69afebb49d8f236b57448a73b35fc3e7"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/p9.jsx",
+          "bytes": 30435,
+          "sha256": "383d0313da8eb9fff5dcc84d4bf1bd17e87e91d38930091ccef51e672e2212ff"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/qa.js",
+          "bytes": 4092,
+          "sha256": "7fc31dbc583d05136896dfae920fc22566a8304014734b2cfbe6f1bf9724bceb"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/routes.js",
+          "bytes": 7068,
+          "sha256": "5c560d00bce4727bc7e609ab89817f28b7ce5e56bb5d9e19159ed1a1ec9391de"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/s1.jsx",
+          "bytes": 9290,
+          "sha256": "68e8776a19116890798c8a96ae888f9a57f23e45a000eea2fb5417a713fb8694"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/s2.jsx",
+          "bytes": 8625,
+          "sha256": "fe02c3e3e65862b42b99f44bc5f4bc526f9c1e8298dd5a4ab32e451a693c538b"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/s3.jsx",
+          "bytes": 12691,
+          "sha256": "9eba98f76dc44945560da827a8682644882751da6de539037855f8fd1590b9c7"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/s4.jsx",
+          "bytes": 9824,
+          "sha256": "cd3e2654c25d5bc08c3a5774e2184c87fa7fc6741da145cfaa438d259d890ebe"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/theme.css",
+          "bytes": 12740,
+          "sha256": "a8947cd56f971ecd27b79a5a72ba95602bd00af721ac66e6bf96851ad2c8bd2a"
+        },
+        {
+          "path": "handover-source/ui_kits/mobile-v3/ui.jsx",
+          "bytes": 4315,
+          "sha256": "b8350713553fae526964dd4aed1dfbae7d5cb4ec2ec4371c17636035165f7173"
+        }
+      ]
+    },
+    {
+      "filename": "GLAM Beauty Design System (4).zip",
+      "bytes": 3075352,
+      "sha256": "eb2957952b88e1fe96b3eb65766777cd2e589125ec579dc3145cf2ed2a2b475b",
+      "files": [
+        {
+          "path": "handover-assets/assets/brand/app-icon.png",
+          "bytes": 621393,
+          "sha256": "8e2d34aa7758c8af91169c07939d8643f5328aec06bd836a5dcb94c148fc45b2",
+          "matching_existing_repository_file": "apps/mobile/assets/brand/app-icon.png"
+        },
+        {
+          "path": "handover-assets/assets/brand/favicon.png",
+          "bytes": 74215,
+          "sha256": "bebb6f4fe0a2d108286c40b2fe315685ae91f72f64117804d7a7b0ef0eb100d2",
+          "matching_existing_repository_file": "apps/mobile/assets/brand/favicon.png"
+        },
+        {
+          "path": "handover-assets/assets/brand/glam-icon.png",
+          "bytes": 621393,
+          "sha256": "8e2d34aa7758c8af91169c07939d8643f5328aec06bd836a5dcb94c148fc45b2",
+          "matching_existing_repository_file": "apps/mobile/assets/brand/app-icon.png"
+        },
+        {
+          "path": "handover-assets/assets/brand/wordmark-dark.png",
+          "bytes": 671028,
+          "sha256": "010161a77fcb775b02cbd81d700a7be34fa7759068f41fef88d0b47df6603c92",
+          "matching_existing_repository_file": "apps/mobile/assets/brand/wordmark-dark.png"
+        },
+        {
+          "path": "handover-assets/assets/brand/wordmark.png",
+          "bytes": 533936,
+          "sha256": "34f468753b5873607fb0d4dec6f1f6c128f4c80c433eeee24e9bd5a73ad3a424",
+          "matching_existing_repository_file": "apps/mobile/assets/brand/wordmark.png"
+        },
+        {
+          "path": "handover-assets/assets/icons/apple.png",
+          "bytes": 1798,
+          "sha256": "6ba0cd542b4bbd5aceffc467c75f3d9a2fd81194353e5635906065b57a2ec09c",
+          "matching_existing_repository_file": "apps/mobile/auth/assets/apple.png"
+        },
+        {
+          "path": "handover-assets/assets/icons/facebook.png",
+          "bytes": 871,
+          "sha256": "fb136fbc18c95516366713d7461b8be36f69039ea1b5dfb410d27cf04920aff2",
+          "matching_existing_repository_file": "apps/mobile/auth/assets/facebook.png"
+        },
+        {
+          "path": "handover-assets/assets/icons/google.png",
+          "bytes": 3510,
+          "sha256": "d0d3ef8f66a0f9c99378a736ed0a641d77a1eb2355b6068967aebb97b76b89d9",
+          "matching_existing_repository_file": "apps/mobile/auth/assets/google.png"
+        },
+        {
+          "path": "handover-assets/assets/imagery/beauty-editorial.webp",
+          "bytes": 213804,
+          "sha256": "6dd1271800f04b2014cd344c362ce11ff2bcb2d14ea476388d3b58ca9bc98008",
+          "matching_existing_repository_file": "apps/mobile/assets/beauty-editorial.webp"
+        },
+        {
+          "path": "handover-assets/assets/imagery/beauty-products.webp",
+          "bytes": 120528,
+          "sha256": "bf54fdd3fa8b823955e7a85b048150339f8cf107a77dc9d54e66a609937da67a",
+          "matching_existing_repository_file": "apps/mobile/assets/beauty-products.webp"
+        },
+        {
+          "path": "handover-assets/assets/imagery/editorial.webp",
+          "bytes": 210692,
+          "sha256": "b683504a26f710b35afdd294bc96880af0bf93d1fd5fe5711459d1b95689a7b3",
+          "matching_existing_repository_file": "apps/mobile/assets/editorial.webp"
+        }
+      ]
+    }
+  ]
+}
