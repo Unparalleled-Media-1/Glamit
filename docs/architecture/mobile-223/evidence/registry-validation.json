@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "exact_screen_ids": 223,
+  "distinct_proposed_routes": 222,
+  "declared_duplicate_route_aliases": {
+    "/messages/:conversationId": [
+      "GL-115",
+      "GL-198"
+    ]
+  },
+  "partial_native_rows": 20,
+  "not_implemented_current_flutter": 203,
+  "api_operations": 70,
+  "backend_tasks": 20,
+  "risks": 15,
+  "all_partial_source_paths_exist": true,
+  "application_backend_migration_deployment_diff_from_audit_source": "EMPTY",
+  "flutter_lib_hashes_unchanged": true,
+  "relative_document_links": "PASS",
+  "source_commit": "97e3e7570c3da9d7ca5b8622ea044c3677040f33",
+  "no_runtime_or_production_mutations": true
+}

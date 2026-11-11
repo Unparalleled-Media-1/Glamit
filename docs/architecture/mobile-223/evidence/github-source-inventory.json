@@ -1,0 +1,113 @@
+{
+  "default_branch": "feat/platform-foundations",
+  "branch_names": [
+    "dependabot/github_actions/actions/checkout-7",
+    "dependabot/github_actions/actions/download-artifact-8",
+    "dependabot/github_actions/actions/setup-java-6",
+    "dependabot/github_actions/actions/upload-artifact-7",
+    "dependabot/npm_and_yarn/react-runtime-54c26d8e69",
+    "dependabot/npm_and_yarn/react-test-renderer-19.3.1",
+    "dependabot/uv/fastapi-0.162.2",
+    "dependabot/uv/hypothesis-6.170.15",
+    "dependabot/uv/pillow-13.0.0",
+    "dependabot/uv/psycopg-binary--gte-3.3.8-and-lt-4",
+    "dependabot/uv/ruff-0.17.4",
+    "feat/analyze-schema-deployment",
+    "feat/platform-foundations",
+    "feat/referral-month-rewards",
+    "feat/subscription-pricing"
+  ],
+  "open_prs": [
+    {
+      "number": 60,
+      "title": "feat(referrals): one free month for each referred first subscription payment",
+      "head": "feat/referral-month-rewards",
+      "base": "feat/subscription-pricing",
+      "draft": true
+    },
+    {
+      "number": 59,
+      "title": "feat(billing): $1.50 monthly / $15 yearly plans and hosted card-saving contracts",
+      "head": "feat/subscription-pricing",
+      "base": "feat/analyze-schema-deployment",
+      "draft": true
+    },
+    {
+      "number": 58,
+      "title": "build(deps-dev): bump hypothesis from 6.170.14 to 6.170.15",
+      "head": "dependabot/uv/hypothesis-6.170.15",
+      "base": "feat/platform-foundations",
+      "draft": false
+    },
+    {
+      "number": 57,
+      "title": "build(deps-dev): bump ruff from 0.17.3 to 0.17.4",
+      "head": "dependabot/uv/ruff-0.17.4",
+      "base": "feat/platform-foundations",
+      "draft": false
+    },
+    {
+      "number": 56,
+      "title": "build(deps-dev): bump react-test-renderer from 19.3.0 to 19.3.1",
+      "head": "dependabot/npm_and_yarn/react-test-renderer-19.3.1",
+      "base": "feat/platform-foundations",
+      "draft": false
+    },
+    {
+      "number": 55,
+      "title": "build(deps): bump pillow from 12.3.0 to 13.0.0",
+      "head": "dependabot/uv/pillow-13.0.0",
+      "base": "feat/platform-foundations",
+      "draft": false
+    },
+    {
+      "number": 54,
+      "title": "build(deps): update psycopg[binary] requirement from <4,>=3.3.7 to >=3.3.8,<4",
+      "head": "dependabot/uv/psycopg-binary--gte-3.3.8-and-lt-4",
+      "base": "feat/platform-foundations",
+      "draft": false
+    },
+    {
+      "number": 53,
+      "title": "build(deps): bump the react-runtime group with 2 updates",
+      "head": "dependabot/npm_and_yarn/react-runtime-54c26d8e69",
+      "base": "feat/platform-foundations",
+      "draft": false
+    },
+    {
+      "number": 52,
+      "title": "build(deps): bump actions/checkout from 4 to 7",
+      "head": "dependabot/github_actions/actions/checkout-7",
+      "base": "feat/platform-foundations",
+      "draft": false
+    },
+    {
+      "number": 51,
+      "title": "build(deps): bump fastapi from 0.162.0 to 0.162.2",
+      "head": "dependabot/uv/fastapi-0.162.2",
+      "base": "feat/platform-foundations",
+      "draft": false
+    },
+    {
+      "number": 50,
+      "title": "build(deps): bump actions/download-artifact from 7 to 8",
+      "head": "dependabot/github_actions/actions/download-artifact-8",
+      "base": "feat/platform-foundations",
+      "draft": false
+    },
+    {
+      "number": 49,
+      "title": "build(deps): bump actions/upload-artifact from 4 to 7",
+      "head": "dependabot/github_actions/actions/upload-artifact-7",
+      "base": "feat/platform-foundations",
+      "draft": false
+    },
+    {
+      "number": 48,
+      "title": "build(deps): bump actions/setup-java from 5 to 6",
+      "head": "dependabot/github_actions/actions/setup-java-6",
+      "base": "feat/platform-foundations",
+      "draft": false
+    }
+  ]
+}
