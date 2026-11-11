@@ -61,6 +61,7 @@ jobs:
       - run: node scripts/ci/frozen-install.mjs node
       - run: uv run --frozen pytest
       - run: uv run --frozen python scripts/export_contracts.py --check
+      - run: uv run --frozen python scripts/export_subscription_pricing.py --check
       - run: docker build -f deploy/railway/api.Dockerfile -t glam-beauty-api:deployment-test .
       - run: python scripts/smoke_deployment_images.py --component api
   hosted-api:

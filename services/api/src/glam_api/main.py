@@ -37,6 +37,7 @@ from glam_api.db import get_session
 from glam_api.deployment import cors_origins, deployment_revision
 from glam_api.observability import http_error, request_evidence, validation_error
 from glam_api.private_media import build_media_router
+from glam_api.subscriptions import SubscriptionCatalog
 from glam_api.workspaces import build_router
 
 app = FastAPI(title="GLAM Beauty", version="0.1.0", docs_url=None, redoc_url=None)
@@ -384,3 +385,8 @@ app.include_router(build_media_router(user, audit))
 app.include_router(build_stylist_router(user, audit))
 app.include_router(build_analysis_router(user, audit))
 app.include_router(build_passport_router(user, audit))
+
+
+@app.get("/v1/subscription-plans", response_model=SubscriptionCatalog)
+def subscription_plans():
+    return SubscriptionCatalog()

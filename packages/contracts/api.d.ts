@@ -985,6 +985,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/subscription-plans": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Subscription Plans */
+        get: operations["subscription_plans_v1_subscription_plans_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -2025,6 +2042,85 @@ export interface components {
             operational_actions_enabled: false;
             /** Roles */
             roles: string[];
+        };
+        /** SubscriptionCatalog */
+        SubscriptionCatalog: {
+            /**
+             * Card Storage
+             * @default payment_provider_only
+             */
+            card_storage: string;
+            /**
+             * Local Currency Policy
+             * @default provider_quoted_equivalent
+             */
+            local_currency_policy: string;
+            /**
+             * Native Billing
+             * @default store_billing_where_required
+             */
+            native_billing: string;
+            /**
+             * Plans
+             * @default [
+             *       {
+             *         "amount_minor": 150,
+             *         "currency": "USD",
+             *         "id": "glam_monthly",
+             *         "interval": "month",
+             *         "interval_count": 1
+             *       },
+             *       {
+             *         "amount_minor": 1500,
+             *         "currency": "USD",
+             *         "id": "glam_yearly",
+             *         "interval": "year",
+             *         "interval_count": 1
+             *       }
+             *     ]
+             */
+            plans: components["schemas"]["SubscriptionPlan"][];
+            /**
+             * Purchase Enabled
+             * @default false
+             * @constant
+             */
+            purchase_enabled: false;
+            /**
+             * Purchase State
+             * @default NOT CONFIGURED
+             * @constant
+             */
+            purchase_state: "NOT CONFIGURED";
+            /**
+             * Yearly Saving Usd Minor
+             * @default 300
+             */
+            yearly_saving_usd_minor: number;
+        };
+        /** SubscriptionPlan */
+        SubscriptionPlan: {
+            /** Amount Minor */
+            amount_minor: number;
+            /**
+             * Currency
+             * @default USD
+             * @constant
+             */
+            currency: "USD";
+            /** Id */
+            id: string;
+            /**
+             * Interval
+             * @enum {string}
+             */
+            interval: "month" | "year";
+            /**
+             * Interval Count
+             * @default 1
+             * @constant
+             */
+            interval_count: 1;
         };
         /** Suggestions */
         Suggestions: {
@@ -4120,6 +4216,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    subscription_plans_v1_subscription_plans_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SubscriptionCatalog"];
                 };
             };
         };

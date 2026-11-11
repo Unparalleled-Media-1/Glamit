@@ -1,0 +1,24 @@
+{
+  "plans": [
+    {
+      "id": "glam_monthly",
+      "currency": "USD",
+      "amount_minor": 150,
+      "interval": "month",
+      "interval_count": 1
+    },
+    {
+      "id": "glam_yearly",
+      "currency": "USD",
+      "amount_minor": 1500,
+      "interval": "year",
+      "interval_count": 1
+    }
+  ],
+  "yearly_saving_usd_minor": 300,
+  "local_currency_policy": "provider_quoted_equivalent",
+  "card_storage": "payment_provider_only",
+  "purchase_state": "NOT CONFIGURED",
+  "purchase_enabled": false,
+  "native_billing": "store_billing_where_required"
+}

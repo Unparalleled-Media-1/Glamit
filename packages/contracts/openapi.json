@@ -2503,6 +2503,106 @@
         "title": "StaffContext",
         "type": "object"
       },
+      "SubscriptionCatalog": {
+        "properties": {
+          "card_storage": {
+            "default": "payment_provider_only",
+            "title": "Card Storage",
+            "type": "string"
+          },
+          "local_currency_policy": {
+            "default": "provider_quoted_equivalent",
+            "title": "Local Currency Policy",
+            "type": "string"
+          },
+          "native_billing": {
+            "default": "store_billing_where_required",
+            "title": "Native Billing",
+            "type": "string"
+          },
+          "plans": {
+            "default": [
+              {
+                "amount_minor": 150,
+                "currency": "USD",
+                "id": "glam_monthly",
+                "interval": "month",
+                "interval_count": 1
+              },
+              {
+                "amount_minor": 1500,
+                "currency": "USD",
+                "id": "glam_yearly",
+                "interval": "year",
+                "interval_count": 1
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionPlan"
+            },
+            "title": "Plans",
+            "type": "array"
+          },
+          "purchase_enabled": {
+            "const": false,
+            "default": false,
+            "title": "Purchase Enabled",
+            "type": "boolean"
+          },
+          "purchase_state": {
+            "const": "NOT CONFIGURED",
+            "default": "NOT CONFIGURED",
+            "title": "Purchase State",
+            "type": "string"
+          },
+          "yearly_saving_usd_minor": {
+            "default": 300,
+            "title": "Yearly Saving Usd Minor",
+            "type": "integer"
+          }
+        },
+        "title": "SubscriptionCatalog",
+        "type": "object"
+      },
+      "SubscriptionPlan": {
+        "properties": {
+          "amount_minor": {
+            "title": "Amount Minor",
+            "type": "integer"
+          },
+          "currency": {
+            "const": "USD",
+            "default": "USD",
+            "title": "Currency",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "interval": {
+            "enum": [
+              "month",
+              "year"
+            ],
+            "title": "Interval",
+            "type": "string"
+          },
+          "interval_count": {
+            "const": 1,
+            "default": 1,
+            "title": "Interval Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "amount_minor",
+          "interval"
+        ],
+        "title": "SubscriptionPlan",
+        "type": "object"
+      },
       "Suggestions": {
         "additionalProperties": false,
         "properties": {
@@ -5907,6 +6007,24 @@
           }
         ],
         "summary": "Match Requirements"
+      }
+    },
+    "/v1/subscription-plans": {
+      "get": {
+        "operationId": "subscription_plans_v1_subscription_plans_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionCatalog"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Subscription Plans"
       }
     }
   }

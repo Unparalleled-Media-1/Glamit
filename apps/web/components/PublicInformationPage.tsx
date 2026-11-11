@@ -3,6 +3,7 @@ import SiteFooter, { StoreLinks, SiteLink } from "./SiteFooter";
 import { appPath } from "../lib/paths";
 import { businessPageLinks, publicPageLinks, publicSite } from "../../../packages/product/public-site";
 import type { PublicPage } from "../../../packages/product/public-site";
+import subscriptionPricing from "../../../packages/product/subscription-pricing.json";
 
 const documents = {
   terms: [
@@ -45,6 +46,17 @@ export default function PublicInformationPage({ section, onNavigate }: { section
     <header className="public-information-header"><SiteLink to="/" label="GLAM Beauty home" onNavigate={onNavigate}><BrandLogo/></SiteLink><nav aria-label="Public navigation"><SiteLink to="/get-app" onNavigate={onNavigate}>Get the GLAM app</SiteLink><SiteLink to="/business" onNavigate={onNavigate}>For business</SiteLink></nav></header>
     <main id="public-content" className="public-information-main" tabIndex={-1}>
       <p className="public-eyebrow">GLAM BEAUTY</p><h1>{title}</h1>
+      {section === "pricing" && <>
+        <p className="public-lead">Choose monthly flexibility or a full year of GLAM Beauty.</p>
+        {subscriptionPricing.plans.map(plan => <section key={plan.id}>
+          <h2>{plan.interval === "month" ? "Monthly" : "Yearly"}</h2>
+          <p><strong>US${(plan.amount_minor / 100).toFixed(2)} per {plan.interval}</strong></p>
+          {plan.interval === "year" && <p>Save US${(subscriptionPricing.yearly_saving_usd_minor / 100).toFixed(2)} compared with 12 monthly payments.</p>}
+        </section>)}
+        <section><h2>Your currency</h2><p>USD is the base price. Local equivalents will use current supported payment-provider or app-store pricing. If billed in USD, your card issuer determines conversion and may charge fees. Applicable taxes and the final billed amount will be shown before confirmation.</p></section>
+        <section><h2>Secure card saving</h2><p>When card billing becomes available, the payment provider will securely retain your card for recurring payments with your consent. Saving a card for other purchases is optional. GLAM Beauty does not store full card numbers or security codes.</p></section>
+        <section><h2>Manage your subscription</h2><p>Plans will renew automatically until cancelled. Native purchases will use Apple or Google billing where required, with store-managed payment methods. Subscription purchase and card saving are not available yet.</p><SiteLink className="public-primary-link" to="/get-app" onNavigate={onNavigate}>Check app availability</SiteLink></section>
+      </>}
       {business && <>
         <p className="public-lead">{business.description}</p>
         <section><h2>Your business workspace</h2><p>{business.details}</p></section>

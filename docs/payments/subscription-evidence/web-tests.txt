@@ -1,0 +1,1 @@
+PASS website public footer/routes, approved contact, legal draft disclosure, social/store pending states, app-first CTA/web fallback, keyboard order, 320–1440px overflow and protected business/Auth entry; no external requests. Browser evidence only.

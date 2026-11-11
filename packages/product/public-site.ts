@@ -1,5 +1,6 @@
 /** Public, operator-approved facts. Never infer social handles or store identifiers. */
 export const publicPageLinks = [
+  { slug: "pricing", label: "Subscription pricing" },
   { slug: "terms", label: "Terms & conditions" },
   { slug: "privacy-policy", label: "Privacy policy" },
   { slug: "cookies", label: "Cookies & device storage" },
