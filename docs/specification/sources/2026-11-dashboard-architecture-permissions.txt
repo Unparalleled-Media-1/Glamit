@@ -1,0 +1,331 @@
+# GLAM Beauty — Complete Dashboard Architecture and Permissions
+
+GLAM Beauty should operate as one connected platform with role-specific dashboards, rather than separate applications with duplicated accounts, permissions and business logic.
+
+The same user should be able to operate as a consumer, creator, merchant, beauty professional or affiliate when their account is approved for those roles. Each dashboard must expose the correct tools, records, financial information and permissions.
+
+The recommended structure is eight dashboards, with a native consumer experience, mobile companions for business users and full desktop management where necessary.
+
+## 1. Dashboard overview
+
+| Dashboard                    | Main purpose                                                | Primary interface           |
+| ---------------------------- | ----------------------------------------------------------- | --------------------------- |
+| Consumer                     | AI beauty, personal styling, discovery, shopping            | Native mobile               |
+| Creator / Influencer         | Content, shoppable looks, audience and earnings             | Native + desktop            |
+| Merchant / Brand             | Catalog, inventory, orders, promotions and sales            | Full web + mobile companion |
+| Beauty Professional / Salon  | Appointments, services, clients and availability            | Full web + mobile companion |
+| Advertiser                   | Campaigns, targeting, budgets and performance               | Full web + mobile companion |
+| Affiliate / Partner          | Referrals, commissions, campaigns and payouts               | Web + mobile companion      |
+| Platform Administrator       | Operations, security, moderation, payments and compliance   | Secure web                  |
+| Platform Owner / Super Admin | Governance, platform configuration and privileged approvals | Restricted secure web       |
+
+These are the recommended target capabilities, not a claim that all eight dashboards are already implemented.
+
+## 2. Consumer dashboard
+
+[Forever Beauty App Redesign Case Study | ANODA Design Agency](https://images.openai.com/static-rsc-4/mm_16dS1QLd1REDMfpYcDz6AkkW3g9O8EdQJNOpsi1O_68-2PJm-QHG54k9RHnuDtte3kkUyVdyKxWpD6quY0bpvKrQFZ0xzF1rYXAkWSF-U6srJfMvhZ5Ydsh_931AjgeRq9dT4i9APuysTdMorTwx4Wb4_iHdq29HkxQdC_4U?purpose=inline)
+
+Primary navigation: Home, Analyze, Studio, Discover, Profile.
+
+This is GLAM Beauty's main product experience. It should prioritize AI-powered beauty and styling rather than becoming a generic shopping app.
+
+Modules: Personalized home feed, face/hair/nonmedical skin analysis, Style Passport, AI Studio, makeup and hairstyle try-on, personal AI Advisor, digital wardrobe, saved looks, event and destination styling, weather-based suggestions, discovery, marketplace, cart, orders, professional bookings, notifications, credits/subscription, account and privacy controls.
+
+Permissions: Consumers can manage their own photos, reports, corrections, wardrobe, saved looks, orders, bookings and consent. They can publish content only when authorized by the relevant feature and moderation policy. They cannot access another person's private analysis, merchant finances, advertiser targeting data or platform administration.
+
+Important: Raw face photos and analysis details must never automatically become public creator content or advertising data.
+
+## 3. Creator / Influencer dashboard
+
+Modules: Creator overview, profile and portfolio, posts, short-form videos, tutorials, before/after looks, shoppable looks, product tagging, audience insights, followers, engagement, brand collaboration invitations, campaigns, affiliate links, commission earnings, payout history, content moderation and creator verification.
+
+Permissions: Creators can publish and edit their own content, tag eligible catalog products, review their own analytics, accept permitted collaborations and view their own earnings. They cannot alter merchant prices or inventory, approve their own payouts, view other creators' private contracts or access consumers' private AI analysis.
+
+A creator who also owns a store should receive a separately authorized Merchant workspace rather than inheriting merchant privileges from the Creator role.
+
+## 4. Merchant / Brand dashboard
+
+Modules: Business overview, verification/KYB, stores and branches, product catalog, AI-assisted Snap & List, categories, variants, stock and SKU management, pricing, promotions, orders, packing and shipping, returns/refunds, customer service, product reviews, merchant analytics, settlements, invoices, campaigns, staff accounts, permissions and integrations.
+
+Permissions: Merchants can manage products, inventory and fulfillment for stores they own or are explicitly assigned to. They can see the minimum customer delivery information needed to fulfill their orders. They cannot access competing merchants' sales, modify GLAM's platform commission, change settled financial records or initiate unrestricted refunds.
+
+Commercial rule: GLAM Beauty's approved physical-product marketplace commission is 10% of the discounted item amount, excluding separately charged shipping and taxes. This must be calculated and enforced on the server.
+
+## 5. Beauty Professional / Salon dashboard
+
+Modules: Professional profile, credentials and verification, salon/branch management, service catalog, pricing, staff schedules, appointment calendar, availability, bookings, deposits where supported, client check-in, cancellations, reviews, earnings, payouts, portfolio, promotions and business analytics.
+
+Permissions: A professional can manage assigned services and appointments. A salon owner can manage their organization's staff and branches. A receptionist can schedule appointments without seeing sensitive payout settings. A stylist can view their own bookings without automatically receiving organization-wide financial access.
+
+Private client photos, consultation notes and beauty-analysis records require explicit authorization and purpose-specific consent; a booking alone must not grant access.
+
+## 6. Advertiser dashboard
+
+Modules: Campaign overview, advertiser verification, creative assets, campaign objectives, eligible audiences, location targeting, budgets, schedules, approvals, placement inventory, spend, impressions, clicks, conversions, billing, invoices, attribution, performance analytics and campaign support.
+
+Permissions: Advertisers can create and manage campaigns for their authorized organization, review aggregate performance and manage assigned budgets. They cannot see identifiable face-analysis data, private wardrobes, individual sensitive attributes or another advertiser's campaigns.
+
+Sponsored recommendations must be clearly labeled. Targeting must respect consent, privacy restrictions and applicable advertising rules.
+
+## 7. Affiliate / Partner dashboard
+
+Modules: Partner onboarding, referral links and QR codes, campaigns, eligible conversions, commission ledger, payout requests, payout history, performance analytics, promotional materials, disputes and partner support.
+
+Permissions: Affiliates can view their own attributed referrals and earnings. They cannot inspect referred users' private profiles, alter attribution, approve their own commissions, change commission rates or access other partners' payout details.
+
+Commission schedules for affiliates must be separately approved; do not invent rates or apply the merchant's 10% platform commission as an affiliate payout rate.
+
+## 8. Platform Administrator dashboard
+
+Modules: Platform overview, users, organizations, roles and permissions, merchants, professionals, creators, advertisers, partners, product moderation, marketplace orders, bookings, AI provider operations, private-media operations, reports and abuse, payment monitoring, refunds, disputes, settlements, customer support, legal/privacy requests, notifications, analytics, feature flags, system health and audit logs.
+
+Permissions: Administrative access must be split into specialized roles. A support agent should not automatically have access to finance settings, private photos, production secrets or security administration.
+
+Sensitive actions require least privilege, strong authentication, audit trails and, where appropriate, second-person approval.
+
+## 9. Platform Owner / Super Admin dashboard
+
+Modules: All organization-level governance, admin-role assignment, platform commercial policy, approved fee configuration, production integrations, feature activation, compliance approvals, financial oversight, risk controls, security reviews, incident management, data-retention policy, platform analytics and deployment/release governance.
+
+Permissions: This is a highly restricted role. Even a super admin should not receive unrestricted raw database access, plaintext provider secrets or unlogged access to private consumer images through ordinary dashboard screens.
+
+Financial rule changes, privileged role grants, production AI activation and sensitive data exports should use controlled approval workflows.
+
+## 10. Permissions matrix
+
+Permissions should be enforced by role, organization, resource ownership and action, not merely by which dashboard is visible.
+
+Legend: Own = own records, Org = authorized organization, Assigned = explicitly assigned records, Scoped = permission-dependent administrative access, — = denied.
+
+| Capability              | Consumer    | Creator       | Merchant                | Salon                     | Advertiser         | Affiliate             | Admin                          |
+| ----------------------- | ----------- | ------------- | ----------------------- | ------------------------- | ------------------ | --------------------- | ------------------------------ |
+| Private AI analysis     | Own         | Own           | —                       | —                         | —                  | —                     | Scoped privacy operations only |
+| Style Passport          | Own         | Own           | —                       | Consent-based access only | —                  | —                     | No default access              |
+| Publish creator content | Optional    | Own           | Org promotional content | Org portfolio             | Campaign creatives | Authorized promotions | Moderate                       |
+| Products/inventory      | Browse      | Tag           | Org                     | —                         | Browse             | Browse                | Moderate                       |
+| Orders                  | Own         | Own purchases | Org orders              | —                         | —                  | —                     | Scoped                         |
+| Appointments            | Own         | Own           | —                       | Assigned/Org              | —                  | —                     | Scoped                         |
+| Campaign management     | —           | Collaborate   | Org promotions          | Org promotions            | Org                | Assigned              | Moderate                       |
+| Earnings/payouts        | Own refunds | Own           | Org                     | Org/Assigned              | Billing only       | Own                   | Finance scoped                 |
+| Team permissions        | —           | Assigned team | Org owner               | Org owner                 | Org owner          | Partner owner         | IAM scoped                     |
+| Platform configuration  | —           | —             | —                       | —                         | —                  | —                     | Restricted                     |
+
+### Role hierarchy and staff permissions
+
+Each business dashboard should support an owner plus delegated staff permissions.
+
+| Organization | Recommended staff roles                                                                               |
+| ------------ | ----------------------------------------------------------------------------------------------------- |
+| Merchant     | Owner, Manager, Catalog Editor, Inventory Manager, Fulfillment Agent, Finance Viewer                  |
+| Salon        | Owner, Branch Manager, Receptionist, Stylist, Finance Viewer                                          |
+| Advertiser   | Owner, Campaign Manager, Creative Editor, Analyst, Billing Manager                                    |
+| Creator      | Owner, Content Editor, Community Manager, Collaboration Manager, Earnings Viewer                      |
+| Affiliate    | Owner, Campaign Operator, Analyst, Finance Viewer                                                     |
+| Platform     | Super Admin, Operations, Support, Trust & Safety, Finance, Compliance, Security, Technical Operations |
+
+Use permission codes such as `catalog.product.write`, `orders.fulfill`, `appointments.manage`, `campaigns.publish`, `payouts.view`, `refunds.approve` and `roles.assign`. Check them in backend services and database policies, not just in React components.
+
+## 11. Required role-switching experience
+
+One authenticated GLAM Beauty account
+
+Consumer
+
+If authorized
+
+Creator
+
+If authorized
+
+Merchant
+
+If authorized
+
+Salon
+
+If authorized
+
+Advertiser
+
+If authorized
+
+Affiliate
+
+If authorized
+
+Switching dashboards changes the active workspace and available permissions, not the underlying identity. Each request must still be independently authorized.
+
+When a consumer applies to become a merchant, creator or professional, the new role must remain pending until the required onboarding and approval steps are satisfied. An account must never grant itself a privileged role simply by selecting a dashboard.
+
+## 12. Codex implementation instruction
+
+# GLAM BEAUTY — COMPLETE DASHBOARD AND RBAC IMPLEMENTATION DIRECTIVE
+
+Extend the current GLAM Beauty implementation roadmap to include every approved dashboard, its modules, staff permissions, native companion and backend operations.
+
+Do not assume these modules are already complete. Compare this target architecture against existing source code, specifications, feature IDs and defects. Preserve approved implementation and identify missing work.
+
+## Required dashboards
+
+1. Consumer
+2. Creator / Influencer
+3. Merchant / Brand
+4. Beauty Professional / Salon
+5. Advertiser
+6. Affiliate / Partner
+7. Platform Administrator
+8. Platform Owner / Super Admin
+
+Implement the complete module coverage and permission boundaries described in the dashboard specification above.
+
+## Architecture
+
+Maintain one identity system with multiple authorized roles and organization memberships.
+
+Implement:
+
+- Users and organizations.
+- Organization memberships.
+- Role definitions.
+- Granular permissions.
+- Role-permission assignments.
+- Membership role assignments.
+- Resource ownership and organization scope.
+- Role approval and revocation.
+- Active workspace selection.
+- Staff invitation and removal.
+- Audit logging.
+- Privileged action approval workflows.
+
+Prefer existing compatible schema and authorization services over duplicate tables.
+
+All authorization must be enforced server-side and through appropriate Supabase RLS policies.
+
+Client-side role checks are for presentation only.
+
+## Dashboard requirements
+
+Every dashboard must include:
+
+- Overview and relevant KPIs.
+- Functional navigation.
+- Real data loading.
+- Create/read/update/delete operations where authorized.
+- Search and filtering.
+- Relevant analytics.
+- Notifications.
+- Account and organization settings.
+- Staff management where applicable.
+- Audit history for sensitive actions.
+- Loading, empty, error and offline states.
+- Responsive web or native mobile presentation appropriate to the role.
+
+No dashboard should consist only of decorative cards, fabricated KPIs or nonfunctional controls.
+
+## Multi-role behavior
+
+A user may have multiple approved roles.
+
+Provide an accessible workspace switcher.
+
+Preserve the authenticated identity while changing the active role and organization context.
+
+Recheck authorization for every backend request.
+
+Clear or invalidate role-scoped cached data when switching workspaces.
+
+Prevent access to records from another organization or account.
+
+## Platform-specific delivery
+
+Consumer: complete native iOS and Android experience.
+
+Creator: complete native creation/publishing experience, with advanced desktop management.
+
+Merchant: complete desktop dashboard plus operational native companion.
+
+Salon: complete desktop management plus mobile-first appointment and staff operations.
+
+Advertiser: full desktop campaign management plus useful mobile monitoring and approvals.
+
+Affiliate: full responsive dashboard and native companion.
+
+Admin/Super Admin: secure desktop-first interfaces, with restricted mobile functionality only where explicitly approved.
+
+Do not create WebView copies of desktop dashboards as substitutes for native companion experiences.
+
+## Security requirements
+
+Implement least-privilege access, organization isolation, resource ownership, strong authentication for privileged roles and immutable audit evidence.
+
+Separate finance, support, compliance, security and operational permissions.
+
+Protect private analysis images, Style Passports, client consultation data, payout records and credentials.
+
+Use purpose-specific consent for access to sensitive consumer information.
+
+Never allow users to approve their own privileged roles, payout changes or restricted financial actions.
+
+Preserve the approved 10% physical-product marketplace commission.
+
+## Implementation sequence
+
+First finish the current native analysis-to-Style-Passport installed-app acceptance batch.
+
+Then complete the existing native navigation and service integration.
+
+After that, implement missing dashboard operations in dependency-ordered batches:
+
+A. Shared identity, organizations, RBAC and role switching.\
+B. Consumer and Creator operations.\
+C. Merchant catalog, inventory, orders and fulfillment.\
+D. Salon services, scheduling and bookings.\
+E. Advertiser campaigns and reporting.\
+F. Affiliate attribution and earnings.\
+G. Administrative operations, finance, moderation and compliance.\
+H. Native companions, notifications, analytics and complete acceptance tests.
+
+Do not destabilize working features or rewrite functioning backend services.
+
+## Acceptance testing
+
+For each dashboard and role, test:
+
+- Authorized access.
+- Unauthorized access denial.
+- Cross-organization isolation.
+- Staff permissions.
+- Revoked permissions.
+- Role switching.
+- Real CRUD operations.
+- Persistence after restart.
+- Audit logging.
+- Web/native behavior.
+- Error handling.
+- Relevant financial reconciliation.
+
+Maintain a permission-test matrix with explicit allow and deny cases.
+
+## Required reporting
+
+For every dashboard report:
+
+- Existing modules.
+- Missing modules.
+- Implemented permissions.
+- Missing permissions.
+- Backend endpoints.
+- Database/RLS dependencies.
+- Web completion.
+- iOS completion.
+- Android completion.
+- Functional test evidence.
+- Remaining blockers.
+
+Update existing feature and defect records rather than creating a competing audit system.
+
+Do not claim dashboard completion until its approved operations and permission boundaries are functionally verified.
+
+No production migrations, deployments, live payments or privileged configuration changes without explicit approval.
+
+The key architectural decision: GLAM Beauty should have one identity, multiple approved workspaces and granular permissions. This will let someone be a consumer, creator and merchant simultaneously without exposing one business's data or privileges to another.

@@ -1,0 +1,12 @@
+
+> glam-ai@0.1.0 typecheck
+> npm run typecheck --workspaces
+
+
+> @glam/mobile@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @glam/web@0.1.0 typecheck
+> tsc --noEmit
+
