@@ -14,7 +14,7 @@ jobs:
       backend: ${{ steps.paths.outputs.backend }}
       edge: ${{ steps.paths.outputs.edge }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Select independent build targets
@@ -68,7 +68,7 @@ jobs:
     if: needs.changes.outputs.edge == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
@@ -84,7 +84,7 @@ jobs:
       EXPO_NO_TELEMETRY: "1"
       EXPO_OFFLINE: "1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
@@ -172,7 +172,7 @@ jobs:
       EXPO_NO_TELEMETRY: "1"
       EXPO_OFFLINE: "1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
