@@ -1,0 +1,17 @@
+[
+  {
+    "source": "/workspace/glam-environment/install.sh",
+    "preserved_copy": "docs/environment-recovery/2026-11-11/original/install.sh",
+    "sha256": "9b51a3ca67355fa3f87b25ed01cdb8fe12e9c9cb9f00fc584fa9f24cad41e568"
+  },
+  {
+    "source": "/workspace/glam-environment/START.md",
+    "preserved_copy": "docs/environment-recovery/2026-11-11/original/START.md",
+    "sha256": "ce7af035bd75ae687783e59bc13caaf0e6b9c16a59f934761405c9254cb12631"
+  },
+  {
+    "source": "/workspace/glam-environment/RESULT.md",
+    "preserved_copy": "docs/environment-recovery/2026-11-11/original/RESULT.md",
+    "sha256": "49c49836750cfcb5b59a073f2fe07dc58dab7e5c237c9bc23635c4eb01f1c2a5"
+  }
+]
