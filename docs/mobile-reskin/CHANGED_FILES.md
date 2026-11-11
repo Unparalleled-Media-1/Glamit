@@ -1,0 +1,42 @@
+# Exact files changed
+
+Review checkpoint relative to `7ad9c01e1f0553a8eb153da3d0fa96950c6b1a16`. Generated native projects, SDKs, binaries, environment files, local databases and reference images are outside this source change.
+
+- `.github/workflows/ci.yml`
+- `.github/workflows/native-verification.yml`
+- `apps/mobile/App.tsx`
+- `apps/mobile/CreatorStudio.tsx`
+- `apps/mobile/NativeAnalysisJourney.tsx`
+- `apps/mobile/NativePrivatePhotos.tsx`
+- `apps/mobile/analyze/AnalyzeCapture.tsx`
+- `apps/mobile/analyze/AnalyzeScreens.tsx`
+- `apps/mobile/analyze/design.ts`
+- `apps/mobile/analyze/use-analyze-session.ts`
+- `apps/mobile/auth/NativeAccount.tsx`
+- `apps/mobile/package.json`
+- `apps/mobile/reskin/BeautyScreens.tsx`
+- `apps/mobile/reskin/CoreScreens.tsx`
+- `apps/mobile/reskin/PreferencesScreens.tsx`
+- `apps/mobile/reskin/navigation.tsx`
+- `apps/mobile/reskin/registry.json`
+- `apps/mobile/reskin/route-map.ts`
+- `apps/mobile/reskin/theme.tsx`
+- `apps/mobile/reskin/ui.tsx`
+- `docs/mobile-reskin/CHANGED_FILES.md`
+- `docs/mobile-reskin/NATIVE_VERIFICATION.md`
+- `docs/mobile-reskin/REQUEST.md`
+- `docs/mobile-reskin/RESULT.md`
+- `docs/mobile-reskin/VISUAL_EVIDENCE.md`
+- `docs/mobile-reskin/design-inputs.json`
+- `docs/mobile-reskin/evidence/7ad9c01-android-build.txt`
+- `docs/mobile-reskin/screen-parity-matrix.md`
+- `package-lock.json`
+- `package.json`
+- `scripts/mobile-reskin/capture-reference.cjs`
+- `scripts/mobile-reskin/compare.py`
+- `scripts/mobile/android_startup_smoke.py`
+- `tests/mobile/analyze-capture.cjs`
+- `tests/mobile/analyze-session.cjs`
+- `tests/mobile/photo-native.cjs`
+- `tests/mobile/reskin.cjs`
+- `tests/test_mobile_reskin_visual.py`

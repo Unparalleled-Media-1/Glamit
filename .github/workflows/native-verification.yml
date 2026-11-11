@@ -54,6 +54,7 @@ jobs:
       - run: node scripts/ci/frozen-install.mjs node
       - run: npm run test:native-photo
       - run: npm run test:analyze-capture
+      - run: npm run test:native-reskin
       - run: npm run test:native-stylist
       - run: npm run test:native-photos
       - run: npm run test:device-fixture
@@ -97,6 +98,7 @@ jobs:
           python3 scripts/mobile/run_logged.py artifacts/native-ios/build.txt xcodebuild -workspace "$workspace" -scheme "$scheme" -configuration Release -sdk iphonesimulator -destination "platform=iOS Simulator,id=$simulator_id" -derivedDataPath /tmp/glam-native-ios CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=YES
           app_bundle=$(find /tmp/glam-native-ios/Build/Products/Release-iphonesimulator -maxdepth 1 -name '*.app' -print -quit)
           test -n "$app_bundle"
+          ditto -c -k --sequesterRsrc --keepParent "$app_bundle" artifacts/native-ios/unsigned-simulator-app.zip
           xcrun simctl install "$simulator_id" "$app_bundle"
           xcrun simctl launch "$simulator_id" com.glambeauty.localverification | tee artifacts/native-ios/launch.txt
           sleep 10
@@ -142,6 +144,7 @@ jobs:
       - run: node scripts/ci/frozen-install.mjs node
       - run: npm run test:native-photo
       - run: npm run test:analyze-capture
+      - run: npm run test:native-reskin
       - run: npm run test:native-stylist
       - run: npm run test:native-photos
       - run: npm run test:device-fixture
@@ -168,7 +171,8 @@ jobs:
           set -euo pipefail
           mkdir -p artifacts/native-android
           cd apps/mobile/android
-          python3 ../../../scripts/mobile/run_logged.py ../../../artifacts/native-android/build.txt ./gradlew :app:assembleRelease -PreactNativeArchitectures=x86_64 --no-daemon --max-workers=2
+          python3 ../../../scripts/mobile/run_logged.py ../../../artifacts/native-android/build.txt ./gradlew :app:assembleRelease -PreactNativeArchitectures=x86_64,arm64-v8a --no-daemon --max-workers=2
+          sha256sum app/build/outputs/apk/release/app-release.apk > ../../../artifacts/native-android/apk-sha256.txt
       - name: Enable emulator KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules

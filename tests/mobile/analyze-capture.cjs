@@ -11,7 +11,7 @@ const deferred = () => { let resolve; const promise = new Promise(r => { resolve
 const text = node => typeof node === 'string' ? node : (node?.children || []).map(text).join(' ');
 
 (async () => {
-  const result = await build({ entryPoints: ['apps/mobile/analyze/AnalyzeCapture.tsx'], bundle: true, write: false,
+  const result = await build({ stdin: { contents: 'export { default } from "./apps/mobile/analyze/AnalyzeCapture"; export { CaptureFiles } from "./apps/mobile/analyze/capture-photo";', resolveDir: process.cwd(), loader: 'tsx' }, bundle: true, write: false,
     platform: 'node', format: 'cjs', jsx: 'automatic', loader: { '.webp': 'dataurl' }, external: ['react', 'react/jsx-runtime'],
     plugins: [{ name: 'capture-native-ports', setup(b) {
       b.onResolve({ filter: /^(react-native|react-native-safe-area-context|expo|expo-camera|expo-image-picker|expo-file-system|expo-crypto)$/ }, a => ({ path: a.path, namespace: 'ports' }));
@@ -62,11 +62,11 @@ const text = node => typeof node === 'string' ? node : (node?.children || []).ma
     function nodes(type) { return view.root.findAll(n => n.type === type); }
     function button(label) { const found = nodes('Pressable').filter(n => n.props.accessibilityLabel === label); assert.equal(found.length, 1, 'Missing button ' + label); return found[0]; }
     function press(label) { const node = button(label); assert(!node.props.disabled, 'Disabled ' + label); return node.props.onPress(); }
-    async function open() {
+    async function open(extra = {}) {
       copies = []; removed = []; files = new Map(); listeners = new Set(); backs = new Set(); exits = 0;
       permission = selection = capture = null; denyDelete = failCopy = false; permissionCalls = pickerCalls = captureCalls = 0;
       ports.available = true; ports.sdk.AppState.currentState = 'active';
-      await act(async () => { view = Renderer.create(React.createElement(Capture, { accountScope: 'account-a', onExit: () => exits++ })); });
+      await act(async () => { view = Renderer.create(React.createElement(Capture, { accountScope: 'account-a', onExit: () => exits++, ...extra })); });
     }
     async function close() { await act(async () => view.unmount()); assert.equal(listeners.size, 0); assert.equal(backs.size, 0); }
     async function guide() {
@@ -224,6 +224,23 @@ const text = node => typeof node === 'string' ? node : (node?.children || []).ma
     await open(); await guide(); await cameraReady(); capture = deferred(); files.set(cameraAsset.uri, 4096);
     await act(async () => { pending = press('Capture photo'); }); await close();
     await act(async () => { capture.resolve(cameraAsset); await pending; }); assert(!files.has(cameraAsset.uri)); checks++;
+    await open(); await guide(); permission = deferred();
+    await act(async () => { pending = press('Open camera'); });
+    await act(async () => view.update(React.createElement(Capture, { accountScope: 'account-a', focused: false, onExit: () => exits++ })));
+    assert.equal(backs.size,0,'Hidden Capture must not consume Review hardware-back events');
+    await act(async () => { permission.resolve({granted:true}); await pending; });
+    assert.equal(nodes('CameraView').length,0,'Hidden Capture must not mount a late camera'); checks++; await close();
+
+    const sharedFiles = new compiled.exports.CaptureFiles();let reviewCalls=0,selectedPhoto=null,selectedGoals=[];
+    await open({sessionFiles:sharedFiles,onReview:()=>reviewCalls++,onPhotoChanged:p=>{selectedPhoto=p},onGoalsChange:g=>{selectedGoals=g}});
+    await guide(); selection=deferred();files.set(galleryAsset.uri,2048);
+    await act(async()=>{pending=press('Choose from gallery')});
+    await act(async()=>{selection.resolve({canceled:false,assets:[galleryAsset]});await pending});
+    assert(selectedPhoto?.uri===sharedFiles.photo?.uri);assert(selectedGoals.includes('Everyday polish'));
+    await act(async()=>press('Review photo'));assert.equal(reviewCalls,1);
+    const retained=sharedFiles.photo.uri;await close();assert(files.has(retained),'Capture unmount must preserve the root-owned Review lease');
+    assert(sharedFiles.clear());assert(!files.has(retained));assert(files.has(galleryAsset.uri));checks++;
+
     assert.equal(networkCalls, 0, 'Capture performed a network operation'); global.fetch = originalFetch;
     console.log(`PASS ${platform}: native Capture handlers, source gates, races, privacy, cleanup and no network (OS/camera/filesystem doubled)`);
   }

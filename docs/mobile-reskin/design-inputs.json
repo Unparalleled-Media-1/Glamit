@@ -1,0 +1,18 @@
+{
+  "all-screens-standalone": {
+    "name": "GLAM All Screens (Standalone).html",
+    "bytes": 5786173,
+    "sha256": "78f68b243bcbd4d30e694e0ff76b40ec4ab5d2d61fbe3e078920a625f8d13ca6"
+  },
+  "handover-v3-standalone": {
+    "name": "GLAM Handover v3 Standalone.html",
+    "bytes": 1463296,
+    "sha256": "ff7eb39ff6bddf3398a1695e6d3e5d053acbae439aa84377f9f5786cc8657376"
+  },
+  "master-task": {
+    "name": "Pasted text.txt",
+    "bytes": 10346,
+    "sha256": "90bbf791f8fcdc223cf6cc5c2083190251e13412d84080e3f909bdc8da25fb37",
+    "repository_copy": "REQUEST.md; line endings and trailing whitespace normalized, wording retained"
+  }
+}

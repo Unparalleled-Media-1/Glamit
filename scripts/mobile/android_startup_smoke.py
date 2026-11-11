@@ -74,13 +74,15 @@ def ready_tab(label, timeout=30):
 
 def main():
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    for label, name in [
-        ("Home", "home"),
-        ("Analyze", "analysis"),
-        ("AI Studio", "studio"),
-        ("AI Advisor", "advisor"),
-        ("Profile", "profile"),
+    for labels, name in [
+        (["Home"], "home"),
+        (["Analyze"], "analysis"),
+        (["Studio", "AI Studio"], "studio"),
+        (["Discover", "AI Advisor"], "discovery-or-advisor"),
+        (["Profile"], "profile"),
     ]:
+        available = hierarchy()
+        label = next((name for name in labels if name.encode() in available), labels[0])
         xml, (x, y) = ready_tab(label)
         (OUTPUT / f"before-{name}.xml").write_bytes(xml)
         (OUTPUT / f"before-{name}.png").write_bytes(adb("exec-out", "screencap", "-p"))
@@ -91,6 +93,13 @@ def main():
         (OUTPUT / f"{name}.png").write_bytes(adb("exec-out", "screencap", "-p"))
         (OUTPUT / f"{name}.xml").write_bytes(hierarchy())
         print(f"Captured actual Android native tab: {label}", flush=True)
+        if name == "analysis":
+            # Capture is a full-screen native boundary. Its tabs are intentionally
+            # absent; close it explicitly before looking for another tab.
+            xml, (x, y) = ready_tab("Close Analyze")
+            (OUTPUT / "capture-landing.xml").write_bytes(xml)
+            adb("shell", "input", "tap", x, y)
+            time.sleep(1)
 
 
 if __name__ == "__main__":

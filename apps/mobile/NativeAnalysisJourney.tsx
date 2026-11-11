@@ -17,7 +17,7 @@ const fresh = (generation: number): State => ({ generation, busy: false, message
 const labels = { "face-shape": "Face shape", eyes: "Eyes", brows: "Brows", lips: "Lips", undertone: "Undertone" };
 
 /** Genuine RN controls; results only come from owner-authorized durable API records. */
-export default function NativeAnalysisJourney({ account, apiOrigin, photoUri, readPhoto, goals, onLogin, privacyRevision = 0 }: {
+export function useNativeAnalysis({ account, apiOrigin, photoUri, readPhoto, goals, onLogin, privacyRevision = 0 }: {
   account: CoreAccount | null; apiOrigin: string; photoUri?: string;
   readPhoto?: () => Promise<ArrayBuffer>; goals: AnalysisGoal[]; onLogin?: () => void; privacyRevision?: number;
 }) {
@@ -29,6 +29,7 @@ export default function NativeAnalysisJourney({ account, apiOrigin, photoUri, re
   const [stored, setStored] = useState(() => fresh(generation));
   const state = stored.generation === generation ? stored : fresh(generation);
   const mounted = useRef(true), sequence = useRef(0), active = useRef<AbortController | null>(null), busy = useRef(false);
+  const uploadAttempt = useRef<{ scope: string; mediaKey: string; jobKey: string } | null>(null);
   const client = useMemo(() => { try { return nativePrivateMedia(apiOrigin, () => scope.current.token || null, () => scope.current.subject); } catch { return null; } }, [apiOrigin]);
   const patch = (value: Partial<State>) => setStored(v => ({ ...(v.generation === generation ? v : fresh(generation)), ...value }));
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; sequence.current++; active.current?.abort(); }; }, []);
@@ -103,12 +104,17 @@ export default function NativeAnalysisJourney({ account, apiOrigin, photoUri, re
     if (status.state !== "CONNECTED") throw Error("analysis_unavailable");
     patch({ message: "Reading your selected device copy…" });
     const data = await readPhoto(); if (!valid()) return;
+    // Preserve keys across an explicit retry after an ambiguous response. Never
+    // create a second billable job merely because the first response was lost.
+    const requestScope = JSON.stringify([account!.profile.id, apiOrigin, photoUri, p.storage.policy.id, p.analysis.policy.id, goals]);
+    if (uploadAttempt.current?.scope !== requestScope) uploadAttempt.current = { scope: requestScope, mediaKey: Crypto.randomUUID(), jobKey: Crypto.randomUUID() };
+    const attempt = uploadAttempt.current;
     patch({ message: "Uploading to your private storage…" });
-    const media = await client!.uploadPhoto({ data, contentType: photoContentType(data), policyId: p.storage.policy.id }, Crypto.randomUUID(), signal);
+    const media = await client!.uploadPhoto({ data, contentType: photoContentType(data), policyId: p.storage.policy.id }, attempt.mediaKey, signal);
     if (!valid()) return;
     if (media.state !== "ready") throw Error("upload_not_ready");
     patch({ message: "Photo stored privately. Requesting analysis…" });
-    const job = await client!.submitAnalysis({ media_id: media.id, policy_id: p.analysis.policy.id, consent: true, goals }, Crypto.randomUUID(), signal);
+    const job = await client!.submitAnalysis({ media_id: media.id, policy_id: p.analysis.policy.id, consent: true, goals }, attempt.jobKey, signal);
     if (valid()) patch({ job, message: "Analysis queued. Refresh its status; no result is available until the server finishes." });
   });
   const openJob = (job: AnalysisJob) => run(async (signal, valid) => {
@@ -129,6 +135,17 @@ export default function NativeAnalysisJourney({ account, apiOrigin, photoUri, re
     const passport = await client!.selectAnalysis(state.report.id, current.revision, state.report.correction_revision, signal);
     if (valid()) patch({ passport, message: `Style Passport saved. Server revision ${passport.revision}.` });
   });
+  const cancelJob = () => run(async (signal, valid) => {
+    if (!state.job) return;
+    const job = await client!.cancelAnalysis(state.job.id, signal);
+    if (valid()) patch({ job, report: null, passport: null, edits: {}, message: "Server job cancellation confirmed. Stored photo removal is a separate operation." });
+  });
+  return { state, client, account, patch, reload, check, grant, withdraw, upload, openJob, saveCorrection, savePassport, stop, cancelJob, run };
+}
+
+export default function NativeAnalysisJourney(props: Parameters<typeof useNativeAnalysis>[0]) {
+  const { account, photoUri, readPhoto, goals, onLogin } = props;
+  const { state, client, patch, reload, check, grant, withdraw, upload, openJob, saveCorrection, savePassport, stop, run } = useNativeAnalysis(props);
   const button = (title: string, onPress: () => unknown, disabled = false, secondary = false) => <Pressable key={title} accessibilityRole="button" accessibilityLabel={title}
     accessibilityState={{ disabled }} disabled={disabled} onPress={onPress} style={[s.button, secondary && s.secondary, disabled && { opacity: 0.55 }]}><Text style={[s.buttonText, secondary && s.secondaryText]}>{title}</Text></Pressable>;
   if (!account) return <View style={s.card}><Text style={s.title}>Your private Style Passport</Text><Text style={s.text}>Sign in to upload, receive analysis and reopen saved results.</Text>{onLogin && button("Sign in for private analysis", onLogin)}</View>;

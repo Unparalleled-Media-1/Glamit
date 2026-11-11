@@ -15,6 +15,7 @@ import {
 } from "react-native";
 import type { TextProps } from "react-native";
 import design from "../../../packages/product/consumer-design.json";
+import { useOptionalNativeTheme } from "../reskin/theme";
 import * as WebBrowser from "expo-web-browser";
 import * as SecureStore from "expo-secure-store";
 import * as Crypto from "expo-crypto";
@@ -37,7 +38,7 @@ import { nativePublicKey, useNativeAccount } from "./use-native-account";
 
 WebBrowser.maybeCompleteAuthSession();
 type Props = { auth: ReturnType<typeof useNativeAccount> };
-const colors = design.palette;
+
 const providerImages = {
   google: require("./assets/google.png"),
   apple: require("./assets/apple.png"),
@@ -45,6 +46,8 @@ const providerImages = {
 };
 const callback = "glamai://auth/callback";
 export default function NativeAccount({ auth }: Props) {
+  const s = useAccountStyles();
+  const colors = useAccountColors();
   const insets = useSafeAreaInsets();
   const [available, setAvailable] = useState(unavailableAuth),
     [country, setCountry] = useState<CountryCode>("ZA");
@@ -502,18 +505,25 @@ export default function NativeAccount({ auth }: Props) {
   );
 }
 function AuthText({ style, ...props }: TextProps) {
+  const s = useAccountStyles();
   return <Text {...props} style={[s.body, style]} />;
 }
-const s = StyleSheet.create({
-  body: { color: colors.ink, fontSize: design.type.body, lineHeight: 21 },
+function useAccountColors() {
+  const theme = useOptionalNativeTheme();
+  return theme ? { ...design.palette, ivory: theme.colors.background, ink: theme.colors.text, muted: theme.colors.secondary, white: theme.colors.surface, line: theme.colors.line, mauve: theme.colors.accent, rose: theme.colors.primary, charcoal: theme.colors.onPrimary, blush: theme.colors.raised } : design.palette;
+}
+function useAccountStyles() {
+  const colors = useAccountColors();
+  return StyleSheet.create({
+  body: { color: colors.ink, fontSize: 15, lineHeight: 23 },
   card: {
-    padding: design.spacing.xl,
-    borderRadius: design.radius.sheet,
+    padding: 0,
+    borderRadius: 0,
     backgroundColor: colors.ivory,
     gap: design.spacing.md,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor: colors.line,
-    marginVertical: design.spacing.lg,
+    marginVertical: 0,
   },
   heading: {
     fontSize: design.type.heading,
@@ -527,7 +537,7 @@ const s = StyleSheet.create({
     padding: 14,
     borderWidth: 1,
     borderColor: colors.muted,
-    borderRadius: design.radius.card,
+    borderRadius: 14,
     color: colors.ink,
     backgroundColor: colors.white,
   },
@@ -537,7 +547,7 @@ const s = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.mauve,
     backgroundColor: colors.white,
-    borderRadius: design.radius.control,
+    borderRadius: 28,
     paddingHorizontal: 20,
     paddingVertical: 14,
     alignItems: "center",
@@ -570,3 +580,4 @@ const s = StyleSheet.create({
   },
   option: { minHeight: 48, padding: 14 },
 });
+}

@@ -4,6 +4,14 @@ import NativeAIStylist from "./NativeAIStylist";
 import NativePrivatePhotos from "./NativePrivatePhotos";
 import NativeAnalysisJourney from "./NativeAnalysisJourney";
 import AnalyzeCapture from "./analyze/AnalyzeCapture";
+import { NativeRouteHost, navigateDesign, backDesign } from "./reskin/navigation";
+import { NativePreferences, NativeSavedLooks, NativeHelp } from "./reskin/PreferencesScreens";
+import { NativeStudioHome, NativeBeautyWorkbench } from "./reskin/BeautyScreens";
+import { pageRoutes, routePages } from "./reskin/route-map";
+import { NativeHome, NativeProfile, NativeDiscover, NativeSearch, NativeWelcome, NativeDependencyScreen, NativeSystemScreen } from "./reskin/CoreScreens";
+import { NativePage, NativeRow } from "./reskin/ui";
+import { useAnalyzeSession } from "./analyze/use-analyze-session";
+import { PhotoReview, AnalysisConsent, AnalysisProgress, AnalysisResults, AnalysisHistory } from "./analyze/AnalyzeScreens";
 import type { AnalysisGoal } from "../../packages/product/analysis";
 import { usePersonalResults } from "../../packages/product/use-personal-results";
 import NativeAccount from "./auth/NativeAccount";
@@ -149,6 +157,8 @@ export function ConnectedApp({
 }
 function PersonalApp({ connection }: { connection?: CompanionConnection }) {
   const nativeAccount=useNativeAccount();
+  const [privacyRevision, setPrivacyRevision] = useState(0);
+  const analyzeFlow = useAnalyzeSession(nativeAccount.account, privacyRevision);
   const insets = useSafeAreaInsets();
   const [journey, setJourney] = useState(freshJourney);
   const [memoryReady, setMemoryReady] = useState(false);
@@ -196,7 +206,6 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
   const [editorialProduct, setEditorialProduct] = useState(0);
   const [photo, setPhoto] = useState<Photo | null>(null);
   const personal = usePersonalResults(connection, photo?.uri, state.goals);
-  const [privacyRevision, setPrivacyRevision] = useState(0);
   const trip = useDestination(connection);
   const marketplace = useMarketplace(connection, journey);
   const photoRef = useRef<Photo | null>(null);
@@ -220,6 +229,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
   const [plan, setPlan] = useState("");
   const [compare, setCompare] = useState(false);
   const [deletionPending, setDeletionPending] = useState(false);
+  const [legacyQuality, setLegacyQuality] = useState(false);
   const scroll = useRef<React.ComponentRef<typeof ScrollView>>(null);
   const mounted = useRef(true);
   const request = useRef(0);
@@ -241,11 +251,14 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
     };
   }, []);
   const go = (page: Page) => {
+    if (page === "quality") setLegacyQuality(true);
     if (pickerBusy.current) request.current++;
     dispatch({ type: "navigate", page });
     setMessage("");
     setError("");
     scroll.current?.scrollTo({ y: 0, animated: false });
+    const route = pageRoutes[page];
+    if (route) navigateDesign(route);
   };
   function deleteCached(p: Photo | null) {
     if (!p) return;
@@ -262,7 +275,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
     setConsent(false);
     photoRef.current = null;
     setPhoto(null);
-    let failed = false;
+    let failed = !analyzeFlow.clear();
     for (const p of ownedCopies.current.values()) {
       try { deleteCached(p); } catch { failed = true; }
     }
@@ -831,7 +844,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
               <Text style={s.listItem}>
                 Local preview: {photo ? "One cached copy" : "None"}
               </Text>
-              <Text style={s.listItem}>Server upload: None</Text>
+              <Text style={s.listItem}>Server records are separate. Check your authenticated private-photo library for current state.</Text>
               <Text style={s.listItem}>
                 Session routines: {state.routines.length}
               </Text>
@@ -943,10 +956,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
   const activeTab = reviewRole ? workspaces[reviewRole].mobile : mobileTabs;
   const beautyPage =
     !reviewRole && ["home", "analyze", "studio"].includes(state.page);
-  if (!reviewRole && state.page === "analyze") {
-    return <AnalyzeCapture accountScope={nativeAccount.account?.profile.id || "anonymous"} onExit={() => go("home")} />;
-  }
-  return (
+  function renderLegacy() { return (
     <View
       style={[
         s.app,
@@ -959,6 +969,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
       ]}
     >
       <View style={s.topbar}>
+        <Pressable accessibilityRole="button" accessibilityLabel="Back" onPress={backDesign} style={{ minHeight: 48, minWidth: 48, justifyContent: "center", alignItems: "center" }}><Text style={{ color: "#17151a", fontSize: 24 }}>‹</Text></Pressable>
         <BrandLogo dark={beautyPage} />
         <Pressable
           accessibilityRole="button"
@@ -1118,6 +1129,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
           </>
         )}
       </ScrollView>
+      {reviewRole && (
       <View
         accessibilityRole="tablist"
         style={[
@@ -1175,6 +1187,7 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
           </Pressable>
         ))}
       </View>
+      )}
       <Modal
         visible={switcher}
         animationType="slide"
@@ -1221,7 +1234,67 @@ function PersonalApp({ connection }: { connection?: CompanionConnection }) {
         </View>
       </Modal>
     </View>
-  );
+  ); }
+  function renderDesign(id: string, focused = true) {
+    // Preserve the existing picker -> goals -> authenticated analysis path for
+    // callers still using it. New Capture explicitly selects the shared flow.
+    if (legacyQuality && ["TP-01", "GL-026", "GL-027", "GL-033"].includes(id) && state.page === routePages[id]) return renderLegacy();
+    if (id === "home") return <NativeHome account={nativeAccount.account} />;
+    if (["GL-017", "GL-018", "GL-020", "GL-021", "TP-01"].includes(id)) return <AnalyzeCapture key={id} focused={focused} initialStage={id === "GL-018" ? "type" : id === "TP-01" ? "goals" : ["GL-020", "GL-021"].includes(id) ? "guide" : "landing"} accountScope={nativeAccount.account?.profile.id || "anonymous"} onExit={() => { analyzeFlow.clear(); backDesign(); }} sessionFiles={analyzeFlow.files}
+      onPhotoChanged={analyzeFlow.selectPhoto} onGoalsChange={analyzeFlow.selectGoals} onReview={() => { setLegacyQuality(false); navigateDesign("GL-023"); }} />;
+    if (id === "GL-023") return legacyQuality ? renderLegacy() : <PhotoReview flow={analyzeFlow} />;
+    if (id === "GL-024") return <AnalysisConsent flow={analyzeFlow} focused={focused} />;
+    if (id === "GL-025") return <AnalysisProgress flow={analyzeFlow} focused={focused} />;
+    if (["GL-026", "GL-027", "GL-034"].includes(id)) return <AnalysisResults flow={analyzeFlow} />;
+    if (["GL-033", "GL-121"].includes(id)) return <AnalysisHistory flow={analyzeFlow} focused={focused} />;
+    if (id === "GL-117") return <NativeProfile account={nativeAccount.account} />;
+    if (id === "GL-118") return <NativePage title="Edit account" onBack={backDesign}><NativeAccount auth={nativeAccount} /></NativePage>;
+    if (["GL-011", "GL-012", "GL-013", "GL-119"].includes(id)) return <NativePreferences id={id} journey={journey} setJourney={setJourney} />;
+    if (id === "GL-120") return <NativeSavedLooks journey={journey} setJourney={setJourney} />;
+    if (id === "GL-122") return <NativePage title="Wardrobe & routines" onBack={backDesign}>
+      <NativeRow title="Digital wardrobe" onPress={() => go("wardrobe")} /><NativeRow title="My routines" onPress={() => go("guide")} /><NativeRow title="Saved written looks" onPress={() => navigateDesign("GL-120")} />
+    </NativePage>;
+    if (id === "GL-130") return <NativePage title="Security & privacy" onBack={backDesign}>
+      <NativeAccount auth={nativeAccount} />
+      <NativePrivatePhotos account={nativeAccount.account} apiOrigin={process.env.EXPO_PUBLIC_GLAM_API_ORIGIN || ""} onMediaChanged={() => setPrivacyRevision(v => v + 1)} />
+      <NativeRow title="Clear app-owned device photo copies" detail={deletionPending ? "Cleanup not confirmed. Tap to retry." : "Your original library photos stay unchanged. Server records are separate."} onPress={clearPhoto} />
+      <NativeRow title="Storage and analysis permissions" onPress={() => navigateDesign("GL-024")} />
+    </NativePage>;
+    if (["GL-131", "GL-132", "GL-133", "GL-138", "GL-140"].includes(id)) return <NativePage title="Creator Studio" onBack={backDesign}><CreatorStudio key={nativeAccount.account?.profile.id || "guest"} token={nativeAccount.account?.token} /></NativePage>;
+    if (id === "GL-147") return <NativePage title="Snap & List" onBack={backDesign}><MerchantSnapList /></NativePage>;
+    if (["GL-199", "GL-200"].includes(id)) return <NativeHelp />;
+    if (id === "GL-035") return <NativeStudioHome />;
+    if (id === "GL-036") return <NativePage title="Choose a photo" onBack={backDesign}>
+      <NativeRow title="Open native photo selection" detail="Only your OS-selected photo is used. No editorial images are selectable as your photos." onPress={() => navigateDesign("GL-021")} />
+      <StylingJourney page="screenshot" data={journey} setData={setJourney} go={go} />
+    </NativePage>;
+    if (["GL-037", "GL-038", "GL-039", "GL-040", "GL-041", "GL-042", "GL-043", "GL-044", "GL-045", "GL-046", "GL-047"].includes(id)) return <NativeBeautyWorkbench key={id} id={id} journey={journey} setJourney={setJourney} photo={analyzeFlow.photo} />;
+    if (id === "GL-123") return <NativePage title="Orders & bookings" onBack={backDesign}><NativeRow title="Order history" onPress={() => go("orders")} /><NativeRow title="Find professionals" onPress={() => go("booking")} /></NativePage>;
+    if (id === "GL-069") return <NativeDiscover />;
+    if (id === "GL-070") return <NativeSearch />;
+    if (["GL-001", "GL-002", "GL-003"].includes(id)) return <NativeWelcome id={id} />;
+    if (["GL-004", "GL-005", "GL-006", "GL-007", "GL-008", "GL-009", "GL-010"].includes(id)) return <NativePage title="Your account" onBack={backDesign}><NativeAccount auth={nativeAccount} /></NativePage>;
+    if (id === "GL-202") return <NativePage title="Your workspaces" onBack={backDesign}>
+      {nativeAccount.account?.workspaces?.map(w => <NativeRow key={w.organization_id + w.workspace} title={w.name} detail={w.workspace} onPress={() => {
+        setActiveBusiness(w.organization_id + ':' + w.workspace);
+        setReviewRole(null); navigateDesign(w.workspace === "merchant" ? "GL-143" : w.workspace === "creator" ? "GL-131" : w.workspace === "professional" ? "GL-155" : w.workspace === "advertiser" ? "GL-167" : w.workspace === "affiliate" ? "GL-177" : "GL-117");
+      }} />)}
+      {!nativeAccount.account && <NativeRow title="Sign in to view authorized workspaces" onPress={() => navigateDesign("GL-004")} />}
+      <NativeRow title="Personal space" onPress={() => { setActiveBusiness(null); go("profile"); }} />
+      <NativeRow title="Merchant Snap & List draft tools" detail="Local drafts only. No workspace privilege or live listing is granted." onPress={() => navigateDesign("GL-147")} />
+    </NativePage>;
+    if (Number(id.slice(3)) >= 203 && Number(id.slice(3)) <= 208 && id.startsWith("GL-")) return <NativeSystemScreen id={id} />;
+    const page = routePages[id];
+    if (page) {
+      if (state.page !== page) return <NativePage title="Opening your space"><Note text="Opening the selected journey…" /></NativePage>;
+      return renderLegacy();
+    }
+    return <NativeDependencyScreen id={id} />;
+  }
+  return <NativeRouteHost render={renderDesign} onRoute={id => {
+    const page = routePages[id];
+    if (page && page !== state.page) dispatch({ type: "navigate", page });
+  }} />;
 }
 const s = StyleSheet.create({
   app: {

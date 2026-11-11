@@ -1,3 +1,4 @@
+import { useOptionalNativeTheme } from "./reskin/theme";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import design from "../../packages/product/consumer-design.json";
@@ -5,8 +6,10 @@ import { socialProviders } from "../../packages/product/creator";
 import type { CreatorProvider } from "../../packages/product/creator";
 import { useCreator } from "../../packages/product/use-creator";
 import { nativePublicKey } from "./auth/use-native-account";
-const colors = design.palette;
 export default function CreatorStudio({ token }: { token?: string }) {
+  const theme = useOptionalNativeTheme();
+  const colors = theme ? { ...design.palette, ivory: theme.colors.surface, ink: theme.colors.text, muted: theme.colors.line, white: theme.colors.raised, mauve: theme.colors.accent, blush: theme.colors.raised } : design.palette;
+  const s = creatorStyles(colors);
   const { data, busy, message, act } = useCreator(nativePublicKey, token);
   const [editing, setEditing] = useState(false), [handle, setHandle] = useState(""), [name, setName] = useState(""), [bio, setBio] = useState("");
   const [provider, setProvider] = useState<CreatorProvider>("tiktok"), [url, setUrl] = useState("");
@@ -48,7 +51,7 @@ export default function CreatorStudio({ token }: { token?: string }) {
     </>}
   </View>;
 }
-const s = StyleSheet.create({
+const creatorStyles = (colors: typeof design.palette) => StyleSheet.create({
   card: { padding: design.spacing.xl, backgroundColor: colors.ivory, borderRadius: design.radius.sheet, gap: design.spacing.md, marginVertical: design.spacing.lg },
   heading: { fontSize: design.type.heading, color: colors.ink }, text: { fontSize: design.type.body, color: colors.ink, lineHeight: 22 },
   input: { minHeight: 48, padding: 14, borderWidth: 1, borderColor: colors.muted, borderRadius: design.radius.card, backgroundColor: colors.white, color: colors.ink },

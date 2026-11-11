@@ -55,7 +55,8 @@
     "test:ai-stylist": "node tests/client/ai-stylist.cjs",
     "test:native-stylist": "node tests/mobile/ai-stylist-native.cjs",
     "test:device-fixture": "tsc --noEmit -p tests/native_device/tsconfig.json && node tests/mobile/device-fixture-transport.cjs",
-    "test:native-photos": "node tests/mobile/private-photos-native.cjs"
+    "test:native-photos": "node tests/mobile/private-photos-native.cjs",
+    "test:native-reskin": "node tests/mobile/reskin.cjs && node tests/mobile/analyze-session.cjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",

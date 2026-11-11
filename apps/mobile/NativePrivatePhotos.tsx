@@ -1,3 +1,4 @@
+import { useOptionalNativeTheme } from "./reskin/theme";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import type { CoreAccount } from "../../packages/auth/core";
@@ -27,6 +28,9 @@ export default function NativePrivatePhotos({ account, apiOrigin, onMediaChanged
   apiOrigin: string;
   onMediaChanged?: () => void;
 }) {
+  const theme = useOptionalNativeTheme();
+  const palette = theme ? { ...design.palette, ivory: theme.colors.surface, ink: theme.colors.text, muted: theme.colors.line, white: theme.colors.onPrimary, mauve: theme.colors.primary } : design.palette;
+  const s = libraryStyles(palette);
   const scope = useRef({ subject: account?.profile.id, token: account?.token, origin: apiOrigin, generation: 0 });
   if (scope.current.subject !== account?.profile.id || scope.current.token !== account?.token || scope.current.origin !== apiOrigin)
     scope.current = { subject: account?.profile.id, token: account?.token, origin: apiOrigin, generation: scope.current.generation + 1 };
@@ -109,12 +113,12 @@ export default function NativePrivatePhotos({ account, apiOrigin, onMediaChanged
       </>}
   </View>;
 }
-const s = StyleSheet.create({
-  card: { padding: design.spacing.xl, borderRadius: design.radius.sheet, backgroundColor: design.palette.ivory, gap: design.spacing.md },
-  heading: { fontSize: design.type.heading, color: design.palette.ink },
-  body: { fontSize: design.type.body, color: design.palette.ink, lineHeight: 22 },
-  fine: { fontSize: 12, color: design.palette.ink, lineHeight: 18 },
-  record: { paddingVertical: design.spacing.md, gap: design.spacing.sm, borderTopWidth: 1, borderColor: design.palette.muted },
-  button: { minHeight: 52, padding: 14, borderRadius: design.radius.control, backgroundColor: design.palette.mauve, alignItems: "center", justifyContent: "center" },
-  buttonText: { color: design.palette.white, fontWeight: "600" },
+const libraryStyles = (palette: typeof design.palette) => StyleSheet.create({
+  card: { padding: design.spacing.xl, borderRadius: design.radius.sheet, backgroundColor: palette.ivory, gap: design.spacing.md },
+  heading: { fontSize: design.type.heading, color: palette.ink },
+  body: { fontSize: design.type.body, color: palette.ink, lineHeight: 22 },
+  fine: { fontSize: 12, color: palette.ink, lineHeight: 18 },
+  record: { paddingVertical: design.spacing.md, gap: design.spacing.sm, borderTopWidth: 1, borderColor: palette.muted },
+  button: { minHeight: 52, padding: 14, borderRadius: design.radius.control, backgroundColor: palette.mauve, alignItems: "center", justifyContent: "center" },
+  buttonText: { color: palette.white, fontWeight: "600" },
 });

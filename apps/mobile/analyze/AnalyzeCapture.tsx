@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
 import type { CameraView } from "expo-camera";
 import { CaptureFiles, type CaptureAsset } from "./capture-photo";
-import { captureDesign as d } from "./design";
+import { useCaptureDesign } from "./design";
 import { loadCaptureCamera } from "./native-camera";
 
 type Stage = "landing" | "type" | "goals" | "guide" | "camera";
@@ -21,9 +21,16 @@ const choices = [
 ] as const;
 const goals = ["Everyday polish", "Event-ready", "Try a new colour palette", "Minimal makeup"];
 
-export default function AnalyzeCapture({ accountScope, onExit }: { accountScope: string; onExit: () => void }) {
+export default function AnalyzeCapture({ accountScope, onExit, sessionFiles, onReview, onGoalsChange, onPhotoChanged, initialStage = "landing", focused = true }: {
+  accountScope: string; onExit: () => void; sessionFiles?: CaptureFiles; onReview?: () => void;
+  onGoalsChange?: (goals: string[]) => void;
+  onPhotoChanged?: (photo: import("./capture-photo").CapturePhoto | null) => void;
+  initialStage?: Exclude<Stage, "camera">;
+  focused?: boolean;
+}) {
+  const d = useCaptureDesign(), s = captureStyles(d);
   const insets = useSafeAreaInsets();
-  const [stage, setStage] = useState<Stage>("landing");
+  const [stage, setStage] = useState<Stage>(initialStage);
   const [selected, setSelected] = useState<string[]>([]);
   const [exploring, setExploring] = useState(false);
   const [previewAllowed, setPreviewAllowed] = useState(false);
@@ -41,12 +48,14 @@ export default function AnalyzeCapture({ accountScope, onExit }: { accountScope:
   const foreground = useRef(AppState.currentState === "active");
   const operation = useRef<"permission" | "picker" | "capture" | null>(null);
   const ticket = useRef(0), lock = useRef(false), mounted = useRef(true);
+  const focus = useRef(focused); focus.current = focused;
   const foregroundWaits = useRef(new Set<() => void>());
-  const [files] = useState(() => new CaptureFiles());
+  const [files] = useState(() => sessionFiles || new CaptureFiles());
   const [, redraw] = useState(0);
   const scope = useRef(accountScope);
   const scopeChanged = scope.current !== accountScope;
   const photo = scopeChanged || !active ? null : files.photo;
+  useEffect(() => { onPhotoChanged?.(photo); }, [photo?.uri, onPhotoChanged]);
 
   function invalidate() {
     ticket.current++; setCameraOpen(false); setReady(false);
@@ -85,10 +94,14 @@ export default function AnalyzeCapture({ accountScope, onExit }: { accountScope:
     });
     return () => {
       mounted.current = false; ticket.current++; consent.current = false;
-      subscription.remove(); for (const finish of foregroundWaits.current) finish(); files.clear();
+      subscription.remove(); for (const finish of foregroundWaits.current) finish();
+      if (!sessionFiles) files.clear();
     };
   }, [files]);
+  useEffect(() => { onGoalsChange?.(exploring ? [] : selected); }, [selected, exploring, onGoalsChange]);
+  useEffect(() => { if (!focused) invalidate(); }, [focused]);
   useEffect(() => {
+    if (!focused) return;
     const subscription = BackHandler.addEventListener("hardwareBackPress", () => { back(); return true; });
     return () => subscription.remove();
   });
@@ -98,7 +111,7 @@ export default function AnalyzeCapture({ accountScope, onExit }: { accountScope:
     return () => clearTimeout(timer);
   }, [cameraOpen, ready]);
 
-  const current = (id: number, identity: string) => mounted.current && ticket.current === id &&
+  const current = (id: number, identity: string) => mounted.current && focus.current && ticket.current === id &&
     scope.current === identity && accountScope === identity && consent.current;
 
   async function run(kind: "permission" | "picker" | "capture", work: (id: number, identity: string) => Promise<void>) {
@@ -229,7 +242,7 @@ export default function AnalyzeCapture({ accountScope, onExit }: { accountScope:
           <Text accessibilityRole="header" style={s.title}>Three things for a great read.</Text>
           {[ ["Soft, even light", "Face a window; avoid harsh overhead light."], ["Camera at eye level", "Hold level, arm’s length."], ["No filters or heavy edits", "Natural colour gives better guidance."] ].map(([title, copy]) => <View key={title} style={s.option}><Text style={s.optionTitle}>{title}</Text><Text style={s.caption}>{copy}</Text></View>)}
         </ScrollView> : <View style={s.cameraArea}>
-          {NativeCamera && cameraOpen && active && !scopeChanged && <NativeCamera key={facing} ref={cameraRef} style={s.live} facing={facing} mode="picture" mute active={active}
+          {NativeCamera && cameraOpen && focused && active && !scopeChanged && <NativeCamera key={facing} ref={cameraRef} style={s.live} facing={facing} mode="picture" mute active={active}
             onCameraReady={() => { if (mounted.current && foreground.current && ticket.current === viewTicket) setReady(true); }}
             onMountError={() => { if (mounted.current && ticket.current === viewTicket) { setCameraOpen(false); setReady(false); setNotice("A camera is unavailable on this device. Choose a photo from your library or try again."); } }} />}
           {cameraOpen && !ready && <ActivityIndicator accessibilityLabel="Starting camera" color={d.action} />}
@@ -241,6 +254,7 @@ export default function AnalyzeCapture({ accountScope, onExit }: { accountScope:
               clear(); setNotice("This photo could not be displayed. Clear the private copy and choose another photo.");
             }} />
             <Text style={s.body}>Photo selected on this device.</Text>
+            {onReview && action("Review photo", () => { invalidate(); onReview(); }, optionsDisabled)}
             {action("Retake photo", retake, optionsDisabled, true)}
             {action("Clear private photo", clear, false, true)}
           </View>}
@@ -265,7 +279,7 @@ export default function AnalyzeCapture({ accountScope, onExit }: { accountScope:
   </View>;
 }
 
-const s = StyleSheet.create({
+function captureStyles(d: ReturnType<typeof useCaptureDesign>) { return StyleSheet.create({
   root: { flex: 1, backgroundColor: d.background }, flex: { flex: 1 }, content: { flex: 1 },
   header: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12, paddingVertical: 6 },
   headerText: { flex: 1, textAlign: "center", color: d.text, fontSize: 16, fontWeight: "700" },
@@ -289,4 +303,4 @@ const s = StyleSheet.create({
   controls: { paddingHorizontal: d.gutter, paddingTop: 12, gap: 10 }, notice: { color: d.error, fontSize: 14, lineHeight: 21 },
   selection: { alignItems: "center", gap: 12, padding: 16 }, thumbnail: { width: 96, height: 128, borderRadius: 16 },
   cover: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 20, backgroundColor: d.background, alignItems: "center", justifyContent: "center" },
-});
+}); }
