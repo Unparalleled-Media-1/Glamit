@@ -1,0 +1,28 @@
+{
+  "source_commit": "d35c23b98574fd77f82fcf9f975cfcd7966457cf",
+  "source_snapshot_matches_versioned_mobile_and_dependency_files": true,
+  "compared_files": 48,
+  "installed_versions": {
+    "expo": "58.0.23",
+    "react": "19.3.0",
+    "react-native": "0.88.1",
+    "expo-camera": "58.0.14",
+    "expo-linear-gradient": "58.0.3",
+    "react-native-screens": "4.30.1",
+    "@react-navigation/native": "7.5.1",
+    "@react-navigation/native-stack": "7.21.0"
+  },
+  "frozen_install": "567 packages, npm ci --ignore-scripts with writable task cache; no legacy-peer-deps",
+  "android_prebuild": "PASS: repeated after final application source overlay, isolated generated project; test package com.glambeauty.localverification",
+  "native_binary_produced": false,
+  "camera_compiled_into_binary": false,
+  "installed_app_tested": false,
+  "ios_native_build": "BLOCKED: no macOS/Xcode",
+  "source_lock_sha256": "70ae8f9f7f0736b047adb074c58b7b0907df516163237f3f55c3ee3cb568ccb9",
+  "ios_prebuild": "PASS: isolated iOS project generation with --no-install; CocoaPods, Xcode compilation, signing and installation not executed",
+  "generated_ios_permissions": {
+    "camera_usage_description_present": true,
+    "photo_library_usage_description_present": true,
+    "microphone_usage_description_present": false
+  }
+}

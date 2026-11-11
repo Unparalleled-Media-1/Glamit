@@ -1,0 +1,48 @@
+{
+  "kind": "approved-reference-and-blocked-comparison-evidence",
+  "unique_design_ids": 232,
+  "variants": [
+    {
+      "theme": "dark",
+      "platform": "ios",
+      "state": "default",
+      "reference_frames": 232,
+      "native_captures": 0,
+      "visual_passes": 0,
+      "blocked": 232,
+      "reference_source_sha256": "78f68b243bcbd4d30e694e0ff76b40ec4ab5d2d61fbe3e078920a625f8d13ca6"
+    },
+    {
+      "theme": "dark",
+      "platform": "android",
+      "state": "default",
+      "reference_frames": 232,
+      "native_captures": 0,
+      "visual_passes": 0,
+      "blocked": 232,
+      "reference_source_sha256": "78f68b243bcbd4d30e694e0ff76b40ec4ab5d2d61fbe3e078920a625f8d13ca6"
+    },
+    {
+      "theme": "light",
+      "platform": "ios",
+      "state": "default",
+      "reference_frames": 232,
+      "native_captures": 0,
+      "visual_passes": 0,
+      "blocked": 232,
+      "reference_source_sha256": "78f68b243bcbd4d30e694e0ff76b40ec4ab5d2d61fbe3e078920a625f8d13ca6"
+    },
+    {
+      "theme": "light",
+      "platform": "android",
+      "state": "default",
+      "reference_frames": 232,
+      "native_captures": 0,
+      "visual_passes": 0,
+      "blocked": 232,
+      "reference_source_sha256": "78f68b243bcbd4d30e694e0ff76b40ec4ab5d2d61fbe3e078920a625f8d13ca6"
+    }
+  ],
+  "native_screenshots_exist": false,
+  "similarity_score": null
+}

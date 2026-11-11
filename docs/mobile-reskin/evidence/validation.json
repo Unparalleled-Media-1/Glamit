@@ -1,0 +1,139 @@
+{
+  "application_source_commit": "d35c23b98574fd77f82fcf9f975cfcd7966457cf",
+  "checks": [
+    {
+      "check": "full-regression",
+      "command": "GLAM_TEST_DATABASE_URL=<isolated local glam_test> uv run --frozen pytest",
+      "result": "402 passed",
+      "local_log": "/tmp/glam-reskin-final-full-pytest.log",
+      "log_sha256": "c93547acc8c1a443cca4fd4417ec745d91a562b647d74cdf85db1a5ee5d442f2",
+      "tested_source_commit": "0391b806dba406816e28f1039b68b3d7fff68c11",
+      "followup": "Final App-only integration/privacy handoffs were checked again with typecheck, native-photo, native-reskin and Android/iOS JS exports; backend/tool sources unchanged."
+    },
+    {
+      "check": "types",
+      "command": "npm run typecheck",
+      "result": "PASS",
+      "local_log": "/tmp/glam-reskin-types.log",
+      "log_sha256": "08fa0083cc6e11679863ba907af623b7176fc12bf365f50742d3c805fd360990"
+    },
+    {
+      "check": "reskin-session",
+      "command": "npm run test:native-reskin",
+      "result": "PASS: both platform ports, not devices",
+      "local_log": "/tmp/glam-reskin-components-all.log",
+      "log_sha256": "ab445e5cedbfc8f3de8834cb8eb6cc1739e8e5ef4b349f6ec55800f2817b6c15"
+    },
+    {
+      "check": "capture",
+      "command": "npm run test:analyze-capture",
+      "result": "40 scenarios + SDK/plugin checks; native ports doubled",
+      "local_log": "/tmp/glam-reskin-capture-regression.log",
+      "log_sha256": "e9cd684e8127d74148d602d6a1a06368d8d316021bf61eecb7344b74ba790ec3"
+    },
+    {
+      "check": "legacy-photo",
+      "command": "npm run test:native-photo",
+      "result": "PASS: both platform ports including retained selected-photo analysis composition",
+      "local_log": "/tmp/glam-reskin-photo-regression.log",
+      "log_sha256": "df1c46510915c8e03252a60b0b1e376a744664b07f2e32d3fa67d285d13b8cd6"
+    },
+    {
+      "check": "native-library",
+      "command": "npm run test:native-photos",
+      "result": "PASS: both platform ports",
+      "local_log": "/tmp/glam-reskin-private-photos.log",
+      "log_sha256": "809f1db8c1af601264a6a42d2ee35cc2b262d9b49637cdb4222cd8c12f50b435"
+    },
+    {
+      "check": "native-advisor",
+      "command": "npm run test:native-stylist",
+      "result": "PASS: both platform ports",
+      "local_log": "/tmp/glam-reskin-stylist.log",
+      "log_sha256": "270b1c2cf60658f0b09c110ca670c5e0e518cad524a690456382b70333ff8577"
+    },
+    {
+      "check": "auth",
+      "command": "npm run test:auth",
+      "result": "PASS: contracts and native gate doubles",
+      "local_log": "/tmp/glam-reskin-auth.log",
+      "log_sha256": "c8fa20e652ea5c1294e8ea816197e9238b2f98e58c7ebd90e61e1e2fa8491287"
+    },
+    {
+      "check": "client",
+      "command": "npm run test:client",
+      "result": "13 passed",
+      "local_log": "/tmp/glam-reskin-client.log",
+      "log_sha256": "5594e127c3537d3ad8981827cac1efadefb2bc4766635f8aa7521924c6d2199a"
+    },
+    {
+      "check": "web-build",
+      "command": "npm run build:web",
+      "result": "PASS",
+      "local_log": "/tmp/glam-reskin-web-build.log",
+      "log_sha256": "e049decec39afc54db18c93a4ff779dabfe47e8dc7c7af14a6f7c689b642325e"
+    },
+    {
+      "check": "web-regression",
+      "command": "npm run test:web",
+      "result": "12 application groups passed; browser only",
+      "local_log": "/tmp/glam-reskin-web-regression.log",
+      "log_sha256": "c9cd3e427a047e79940a4e00d9632fde17e7db7ee0a4cc1e808b16b90b58df82"
+    },
+    {
+      "check": "js-export",
+      "command": "EXPO_OFFLINE=1 EXPO_NO_TELEMETRY=1 npm run export --workspace=@glam/mobile",
+      "result": "PASS: Android/iOS JS bundles, not binaries",
+      "local_log": "/tmp/glam-reskin-native-export.log",
+      "log_sha256": "3e7baab508ab22dc558a2ee6d510ce3a5a1f3d9438c6e32f89f1966779f11481"
+    },
+    {
+      "check": "config",
+      "command": "npm run test:deployment-config",
+      "result": "9 CI routing checks + native production gates pass",
+      "local_log": "/tmp/glam-reskin-build-config.log",
+      "log_sha256": "4939d6b1ab8c7c39bfb341be213a8425ee2edb992c3b197ab95918b3ec08b400"
+    },
+    {
+      "check": "expo",
+      "command": "EXPO_OFFLINE=1 npm exec --workspace=@glam/mobile -- expo install --check",
+      "result": "Up to date: offline SDK compatibility only",
+      "local_log": "/tmp/glam-reskin-expo-check.log",
+      "log_sha256": "d2647a0f603d24e6a6580082896deb52a3bb8525742e404528c308f508fc1e85"
+    },
+    {
+      "check": "react-runtime",
+      "command": "npm run check:client-runtime",
+      "result": "PASS: shared React",
+      "local_log": "/tmp/glam-reskin-runtime.log",
+      "log_sha256": "4aff1ec00f5ac8dbd8981a9ed8168c5a73fdb8d58e767303ea8b3b036adf29e6"
+    },
+    {
+      "check": "frozen-install",
+      "command": "npm_config_cache=/tmp/glam-npm-cache npm ci --ignore-scripts",
+      "result": "567 packages in isolated source snapshot",
+      "local_log": "/tmp/glam-reskin-frozen-install.log",
+      "log_sha256": "17fdba9b04bcfb44f87457221483c13115bcd5d56213d88c0948259b254fa4ee"
+    },
+    {
+      "check": "android-prebuild",
+      "command": "GLAM_BUILD_ENV=development GLAM_ANDROID_PACKAGE=com.glambeauty.localverification EXPO_OFFLINE=1 npm exec --workspace=@glam/mobile -- expo prebuild --platform android --no-install",
+      "result": "PASS: project generation only",
+      "local_log": "/tmp/glam-reskin-android-prebuild.log",
+      "log_sha256": "c2669db7a38953566b0cb40ccb3a2cea4dd2d82d70c27eeb44f9e3e7db05ee6e"
+    },
+    {
+      "check": "ios-prebuild",
+      "command": "GLAM_BUILD_ENV=development GLAM_IOS_BUNDLE_IDENTIFIER=com.glambeauty.localverification EXPO_OFFLINE=1 npm exec --workspace=@glam/mobile -- expo prebuild --platform ios --no-install",
+      "result": "PASS: project generation only; no CocoaPods/Xcode/native compilation",
+      "local_log": "/tmp/glam-reskin-ios-prebuild.log",
+      "log_sha256": "1c5aefdfcc10622b9caa6428ab167bc30cecaf99a2341eddb69e90559e64d2bf"
+    }
+  ],
+  "native_device_tests_executed": false,
+  "native_binary_produced": false,
+  "visual_similarity_measured": false,
+  "ruff": "uv run --frozen ruff check .: all checks passed; ruff format --check .: 346 files formatted",
+  "limits": "OS/network/provider ports remain doubles where stated. New core/session UI tests do not certify installed platforms. Original backend API/Auth/finance regression and web checks were rerun; no production service was contacted.",
+  "final_source_followup": "d35c23b preserves contextual matching and legacy photo analysis, adds identity/background revocation and cross-path cleanup fencing. Focused tests, types and JS exports rerun successfully."
+}

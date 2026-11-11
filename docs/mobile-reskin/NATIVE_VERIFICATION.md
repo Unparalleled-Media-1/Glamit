@@ -82,7 +82,7 @@ gh run list --repo Unparalleled-Media-1/Glamit \
 
 The original startup script at that SHA still has the Capture/tab issue. Use the repaired harness against the exact binary in an isolated verification job if startup fails for this reason; retain both failure and rerun receipts. Dispatch `feat/native-reskin-v3` separately to test the new source. Never label that binary as `7ad9c01`.
 
-The new reskin snapshot also passed a fresh frozen npm install (567 packages) and Android prebuild. Neither creates an installable APK. A fresh connection check still returned outbound CONNECT 403 for both required hosts.
+The new reskin snapshot also passed a fresh frozen npm install (567 packages) and Android/iOS prebuild. Project generation included the expected iOS camera/photo privacy text and no microphone usage text. CocoaPods/Xcode compilation was not executed. Neither generation step creates an installable APK. A fresh connection check still returned outbound CONNECT 403 for both required hosts.
 
 Required environment additions: **`repo.reactnative.dev`** and **`api.github.com`**, preserving current allowlist entries. Status reports a running runtime but network-policy state `unknown`; actual 403 responses remain authoritative for these failures. The environment draft tool was unavailable, so no saved configuration was overwritten. Enter secrets only in secure environment/repository settings.
 

@@ -29,14 +29,14 @@ Reference screenshots, gallery/report generation and exclusions are documented i
 
 | Check | Result / limit |
 | --- | --- |
-| Full current backend/tool regression | 402 passed on isolated local PostgreSQL `glam_test`; original API/Auth/finance contracts retained |
+| Full backend/tool regression before final App handoff fixes | 402 passed on isolated local PostgreSQL `glam_test`; original API/Auth/finance contracts retained |
 | Final focused backend/visual-tool checks | 4 passed, including actual native component → isolated HTTP/API/PostgreSQL Passport bridge for both platform ports; OS/provider doubles remain explicit |
 | Capture | 40 component scenarios, plus SDK/plugin checks; includes stale focus/back-handler fencing and shared Review lease ownership; OS/camera/filesystem are doubled |
 | New reskin/session tests | Both platform configurations pass Home/Profile/search/theme, Review/Consent/Progress, preferences, beauty directions/saved briefs, no implicit processing, original-key retry, withdrawal race, background/account fencing and cleanup retry |
 | Existing native tests | Photo handlers (including identity/background revocation and cleanup gates across old/new Capture paths), private-photo library, Advisor and Auth gate/contracts pass with explicit OS/network ports |
 | TypeScript | All mobile/web workspaces pass |
 | Client / web regressions | 13 client tests and 12 web application groups pass; web evidence is separate from native acceptance |
-| Frozen install / Android generation | 567 packages installed with the committed lockfile and no legacy peer override; Android prebuild succeeded in an isolated snapshot; not a compiled binary |
+| Frozen install / native project generation | 567 packages installed with the committed lockfile and no legacy peer override; Android and iOS prebuild succeeded in an isolated source-matched snapshot; not a compiled binary |
 | Expo / runtime | SDK dependency compatibility and single React-instance checks pass; React remains 19.3.0, no permanent legacy-peer-deps workaround |
 | Native JavaScript exports | Android/iOS Hermes bundles export successfully; this is not APK/IPA compilation |
 | Web production build | Pass; no deployment |

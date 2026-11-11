@@ -23,12 +23,16 @@ Review checkpoint relative to `7ad9c01e1f0553a8eb153da3d0fa96950c6b1a16`. Genera
 - `apps/mobile/reskin/theme.tsx`
 - `apps/mobile/reskin/ui.tsx`
 - `docs/mobile-reskin/CHANGED_FILES.md`
+- `docs/mobile-reskin/HANDOFF.md`
 - `docs/mobile-reskin/NATIVE_VERIFICATION.md`
 - `docs/mobile-reskin/REQUEST.md`
 - `docs/mobile-reskin/RESULT.md`
 - `docs/mobile-reskin/VISUAL_EVIDENCE.md`
 - `docs/mobile-reskin/design-inputs.json`
 - `docs/mobile-reskin/evidence/7ad9c01-android-build.txt`
+- `docs/mobile-reskin/evidence/prebuild-receipt.json`
+- `docs/mobile-reskin/evidence/validation.json`
+- `docs/mobile-reskin/evidence/visual-summary.json`
 - `docs/mobile-reskin/screen-parity-matrix.md`
 - `package-lock.json`
 - `package.json`
