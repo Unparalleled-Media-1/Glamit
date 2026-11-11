@@ -1,0 +1,24 @@
+{
+  "inspection_method": "Static AST extraction, including literal registration loops and later overrides; scripts not executed",
+  "source_file_count": 52,
+  "asset_file_count": 11,
+  "route_ids": 232,
+  "registered_unique_entries": 233,
+  "nonroute_entries": [
+    "DS"
+  ],
+  "id_groups": {
+    "home": 1,
+    "GL": 212,
+    "TP": 14,
+    "FB": 5
+  },
+  "unique_route_paths": 231,
+  "registry_unresolved": [],
+  "all_routes_have_registration": true,
+  "readme_count_claim": 208,
+  "user_count_claim": 224,
+  "contains_dart": false,
+  "all_assets_match_existing_repo": true,
+  "production_changes": false
+}
