@@ -5,3 +5,4 @@ android/
 ios/
 *.iml
 .pub-cache/
+pubspec.lock
