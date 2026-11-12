@@ -13,6 +13,7 @@ import 'core/session.dart';
 import 'core/transport.dart';
 import 'presentation/camera_surface.dart';
 import 'presentation/design.dart';
+import 'screens/tabs.dart';
 
 void main() { WidgetsFlutterBinding.ensureInitialized(); runApp(const AnalyzeApp()); }
 class AnalyzeApp extends StatefulWidget {
@@ -47,8 +48,11 @@ class _AnalyzeAppState extends State<AnalyzeApp> with WidgetsBindingObserver {
     if (widget.controller == null) controller.dispose(); transport.dispose(); super.dispose();
   }
   @override Widget build(BuildContext context) => MaterialApp(navigatorKey: navigator, title: 'GLAM Beauty',
-    debugShowCheckedModeBanner: false, theme: MobileDesign.theme(),
-    home: AnalyzeJourney(controller: controller), builder: (context, child) => Stack(children: [
+    debugShowCheckedModeBanner: false, theme: MobileDesign.theme(), darkTheme: MobileDesign.theme(), themeMode: ThemeMode.dark,
+    home: GlamShell(openAnalyze: ({required bool history}) {
+      navigator.currentState?.push(MobileDesign.route(navigator.currentState!.context, AnalyzeJourney(controller: controller)));
+      if (history && controller.session.authenticated) controller.loadHistory();
+    }), builder: (context, child) => Stack(children: [
       child!, if (obscured) const Positioned.fill(child: ColoredBox(color: MobileDesign.background)),
     ]));
 }

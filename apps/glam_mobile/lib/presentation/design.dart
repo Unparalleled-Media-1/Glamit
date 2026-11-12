@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../design/tokens.dart';
 
 /// Mobile chrome and touch scales; no website layout or typography is imported.
 abstract final class MobileDesign {
-  static const background = Color(0xff181719), cream = Color(0xfff8f3ef), rose = Color(0xffb76d8c), blush = Color(0xfff6c6d8);
+  static const background = Color(0xff0f0e10), cream = Color(0xfff8f3ef), rose = Color(0xffb76d8c), blush = Color(0xfff6c6d8);
   static ThemeData theme() => ThemeData(brightness: Brightness.dark, useMaterial3: true,
-    scaffoldBackgroundColor: background,
+    scaffoldBackgroundColor: background, extensions: const [GlamTokens.dark],
     colorScheme: const ColorScheme.dark(primary: blush, onPrimary: background, surface: background, onSurface: cream),
     filledButtonTheme: FilledButtonThemeData(style: FilledButton.styleFrom(minimumSize: const Size(48, 54),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)))),
