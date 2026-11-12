@@ -30,6 +30,21 @@ else
   xcrun simctl status_bar "$device" override --time 9:41 --batteryState charged --batteryLevel 100 --cellularBars 4 --wifiBars 3 || true
   set_theme() { xcrun simctl ui "$device" appearance "$1"; sleep 4; }
 fi
+mkdir -p "$out/perf"
+if [ "$platform" = android ]; then
+  # Emulator baseline: cold start of a stock system app measured the same way as the app.
+  adb shell am force-stop com.android.settings; adb shell am start -W -S -n com.android.settings/.Settings > "$out/perf/emulator-baseline-settings-cold-start.txt" 2>&1 || true
+  adb shell input keyevent KEYCODE_HOME; sleep 2
+  adb shell am force-stop com.glambeauty.analyzereview; adb shell am start -W -S -n com.glambeauty.analyzereview/com.glambeauty.analyzereview.MainActivity > "$out/perf/app-cold-start-am-start-W.txt" 2>&1 || true
+  adb shell input keyevent KEYCODE_HOME; sleep 2
+else
+  t0=$(python3 -c 'import time;print(time.time())'); xcrun simctl launch "$device" com.apple.Preferences > /dev/null 2>&1 || true
+  t1=$(python3 -c 'import time;print(time.time())'); echo "simctl launch com.apple.Preferences wall seconds: $(python3 -c "print(round($t1-$t0,2))")" > "$out/perf/emulator-baseline-settings-launch.txt"
+  xcrun simctl terminate "$device" com.apple.Preferences || true
+  t0=$(python3 -c 'import time;print(time.time())'); xcrun simctl launch "$device" com.glambeauty.analyzereview > /dev/null 2>&1 || true
+  t1=$(python3 -c 'import time;print(time.time())'); echo "simctl launch app wall seconds (process start only, not first frame): $(python3 -c "print(round($t1-$t0,2))")" > "$out/perf/app-launch.txt"
+  xcrun simctl terminate "$device" com.glambeauty.analyzereview || true
+fi
 status=0
 for theme in dark light; do
   set_theme "$theme"; settle

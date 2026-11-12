@@ -16,3 +16,13 @@ Legend: **NATIVE** = actual installed app on an Android emulator / iOS simulator
 | Typography vs real Georgia/Arial | NONE | NONE | See D3 |
 
 Statuses in `SCREEN_PARITY.csv` are updated only from the CI results, never from this table alone.
+
+## Responsiveness: emulator instability vs app performance
+
+The 20-second Maestro wait exists only to survive infrastructure stalls; it must not hide a slow app. The run therefore records and publishes:
+
+* **Cold start to interactive** (process start, engine, first frames, image decode) per flow, from Maestro's own command durations.
+* **Time to visible** for every navigation target, and every **failed command** (a lost tap or missing target is reported, never silently retried away).
+* An **emulator baseline** measured the same way: Android `am start -W` of the stock Settings app and of the app; iOS wall-clock `simctl launch`.
+
+`perf.md` / `perf.json` list SLOW flags (navigation wait > 3 s, cold start > 8 s). Those thresholds are reporting aids, not pass/fail: the owner judges them. Earlier Android data (superseded run `eb3bf68`, same app code): cold start 4.3–5.1 s on a software-GPU emulator; Studio target visible 72–114 ms after the tab tap in the capture flow, while the interaction failure was a **lost first tap**, not slow rendering. No application behaviour was changed to make automation pass; only test flows and scripts changed.
