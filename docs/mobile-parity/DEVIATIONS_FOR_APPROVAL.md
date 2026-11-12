@@ -1,4 +1,6 @@
-# Batch 1 deviations that need the owner's decision
+# Batch 1 deviations and decisions
+
+**Owner decisions (12 Nov 2026):** D1 accepted as implemented. D2 corrected (on-photo title colour in both themes, layout unchanged). Typography kept provisionally (D3). The five-screen visual direction is approved; the Android captures were reviewed. D4 and D5 remain open. Regression baselines in `apps/glam_mobile/test/goldens` now protect the approved appearance; update them only for an intentional change.
 
 Nothing below is treated as approved 1:1 parity. Each is a *documented deviation* until the owner chooses an option.
 
