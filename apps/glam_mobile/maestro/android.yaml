@@ -4,6 +4,12 @@ appId: com.glambeauty.analyzereview
     clearState: true
     permissions:
       camera: unset
+- tapOn:
+    id: tab-analyze
+- tapOn:
+    id: analyze-start
+- tapOn:
+    id: pending-interim
 - assertVisible: 'Analyze'
 - takeScreenshot: 01-camera-entry
 - tapOn:

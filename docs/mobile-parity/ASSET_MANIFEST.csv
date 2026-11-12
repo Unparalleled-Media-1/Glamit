@@ -1,0 +1,14 @@
+path_in_design_package,bytes,sha256,kind,license_or_provenance,used_by_batch1,repo_status
+assets/brand/app-icon.png,621393,8e2d34aa7758c8af91169c07939d8643f5328aec06bd836a5dcb94c148fc45b2,brand,"GLAM-supplied design asset; editorial imagery is illustrative, never personal results",True,to be copied
+assets/brand/favicon.png,74215,bebb6f4fe0a2d108286c40b2fe315685ae91f72f64117804d7a7b0ef0eb100d2,brand,"GLAM-supplied design asset; editorial imagery is illustrative, never personal results",False,not yet needed
+assets/brand/glam-icon.png,621393,8e2d34aa7758c8af91169c07939d8643f5328aec06bd836a5dcb94c148fc45b2,brand,"GLAM-supplied design asset; editorial imagery is illustrative, never personal results",True,to be copied
+assets/brand/wordmark-dark.png,671028,010161a77fcb775b02cbd81d700a7be34fa7759068f41fef88d0b47df6603c92,brand,"GLAM-supplied design asset; editorial imagery is illustrative, never personal results",False,not yet needed
+assets/brand/wordmark.png,533936,34f468753b5873607fb0d4dec6f1f6c128f4c80c433eeee24e9bd5a73ad3a424,brand,"GLAM-supplied design asset; editorial imagery is illustrative, never personal results",False,not yet needed
+assets/icons/apple.png,1798,6ba0cd542b4bbd5aceffc467c75f3d9a2fd81194353e5635906065b57a2ec09c,icons,"GLAM-supplied design asset; editorial imagery is illustrative, never personal results",False,not yet needed
+assets/icons/facebook.png,871,fb136fbc18c95516366713d7461b8be36f69039ea1b5dfb410d27cf04920aff2,icons,"GLAM-supplied design asset; editorial imagery is illustrative, never personal results",False,not yet needed
+assets/icons/google.png,3510,d0d3ef8f66a0f9c99378a736ed0a641d77a1eb2355b6068967aebb97b76b89d9,icons,"GLAM-supplied design asset; editorial imagery is illustrative, never personal results",False,not yet needed
+assets/imagery/beauty-editorial.webp,213804,6dd1271800f04b2014cd344c362ce11ff2bcb2d14ea476388d3b58ca9bc98008,imagery,"GLAM-supplied design asset; editorial imagery is illustrative, never personal results",True,to be copied
+assets/imagery/beauty-products.webp,120528,bf54fdd3fa8b823955e7a85b048150339f8cf107a77dc9d54e66a609937da67a,imagery,"GLAM-supplied design asset; editorial imagery is illustrative, never personal results",False,not yet needed
+assets/imagery/editorial.webp,210692,b683504a26f710b35afdd294bc96880af0bf93d1fd5fe5711459d1b95689a7b3,imagery,"GLAM-supplied design asset; editorial imagery is illustrative, never personal results",False,not yet needed
+Gelasio (Georgia substitute),,,font,SIL OFL 1.1,True,bundled in apps/glam_mobile/assets/fonts
+Arimo (Arial substitute),,,font,SIL OFL 1.1,True,bundled in apps/glam_mobile/assets/fonts
