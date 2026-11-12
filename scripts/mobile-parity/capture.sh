@@ -14,9 +14,12 @@ if [ "$platform" = android ]; then
   # 1080x2337 = the design's 390x844 aspect (19.5:9); recorded, and reset afterwards.
   adb shell wm size 1080x2337
   adb shell wm size > "$out/display.txt"; adb shell wm density >> "$out/display.txt"
+  adb shell settings put global hide_error_dialogs 1 || true
+  settle() { adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS > /dev/null 2>&1 || true; sleep 2; }
   set_theme() { adb shell cmd uimode night "$([ "$1" = dark ] && echo yes || echo no)"; sleep 4; }
   trap 'adb shell wm size reset || true' EXIT
 else
+  settle() { :; }
   device=$(cat artifacts/analyze-restart/ios/device-id.txt 2>/dev/null || cat artifacts/parity/ios/device-id.txt)
   xcrun simctl install "$device" apps/glam_mobile/build/ios/iphonesimulator/Runner.app
   xcrun simctl list devices available | grep "$device" > "$out/device.txt" || true
@@ -25,12 +28,13 @@ else
 fi
 status=0
 for theme in dark light; do
-  set_theme "$theme"
+  set_theme "$theme"; settle
   maestro --device "$device" test apps/glam_mobile/maestro/parity/capture.yaml -e "PREFIX=$platform-$theme-" --test-output-dir "$out/maestro-$theme" || status=$?
 done
-set_theme dark
+set_theme dark; settle
 maestro --device "$device" test apps/glam_mobile/maestro/parity/interactions.yaml --test-output-dir "$out/maestro-interactions" || status=$?
 if [ "$platform" = android ]; then
+  settle
   maestro --device "$device" test apps/glam_mobile/maestro/parity/android-back.yaml --test-output-dir "$out/maestro-android-back" || status=$?
 fi
 echo "$status" > "$out/maestro-exit-status.txt"

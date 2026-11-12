@@ -7,11 +7,23 @@ appId: com.glambeauty.analyzereview
     visible:
       id: home-analyze
     timeout: 45000
+- extendedWaitUntil:
+    visible:
+      id: tab-studio
+    timeout: 20000
 - tapOn:
     id: tab-studio
+- extendedWaitUntil:
+    visible:
+      id: studio-choose
+    timeout: 20000
 - tapOn:
     id: studio-choose
-- assertVisible: 'GL-036.*'
+- extendedWaitUntil:
+    visible: 'GL-036.*'
+    timeout: 20000
 - back
-- assertVisible:
-    id: studio-choose
+- extendedWaitUntil:
+    visible:
+      id: studio-choose
+    timeout: 20000

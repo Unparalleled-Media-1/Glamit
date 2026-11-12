@@ -1,4 +1,5 @@
 # Actual-OS navigation and interaction checks for the five Batch 1 tabs.
+# Every step waits (20s) for its target: software-GPU emulators render the first photo screens slowly.
 # Unbuilt destinations must open their honest pending screen carrying the design ID.
 appId: com.glambeauty.analyzereview
 ---
@@ -8,74 +9,200 @@ appId: com.glambeauty.analyzereview
     visible:
       id: home-analyze
     timeout: 45000
-# Home
+- extendedWaitUntil:
+    visible:
+      id: home-try
+    timeout: 20000
 - tapOn:
     id: home-try
-- assertVisible:
-    id: studio-choose
+- extendedWaitUntil:
+    visible:
+      id: studio-choose
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: tab-home
+    timeout: 20000
 - tapOn:
     id: tab-home
+- extendedWaitUntil:
+    visible:
+      id: home-analyze
+    timeout: 20000
 - tapOn:
     id: home-analyze
-- assertVisible:
-    id: analyze-start
-# Analyze -> GL-018 (pending) and back
+- extendedWaitUntil:
+    visible:
+      id: analyze-start
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: analyze-start
+    timeout: 20000
 - tapOn:
     id: analyze-start
-- assertVisible: 'GL-018.*'
-- assertVisible: '.*not built in the native app yet.*'
+- extendedWaitUntil:
+    visible: 'GL-018.*'
+    timeout: 20000
+- extendedWaitUntil:
+    visible: '.*not built in the native app yet.*'
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: pending-back
+    timeout: 20000
 - tapOn:
     id: pending-back
-- assertVisible:
-    id: analyze-start
-# Studio controls
+- extendedWaitUntil:
+    visible:
+      id: analyze-start
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: tab-studio
+    timeout: 20000
 - tapOn:
     id: tab-studio
+- extendedWaitUntil:
+    visible:
+      id: studio-makeup
+    timeout: 20000
 - tapOn:
     id: studio-makeup
-- assertVisible: 'GL-037.*'
+- extendedWaitUntil:
+    visible: 'GL-037.*'
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: pending-back
+    timeout: 20000
 - tapOn:
     id: pending-back
+- extendedWaitUntil:
+    visible:
+      id: studio-makeup
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: studio-hair
+    timeout: 20000
 - tapOn:
     id: studio-hair
-- assertVisible: 'GL-044.*'
+- extendedWaitUntil:
+    visible: 'GL-044.*'
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: pending-back
+    timeout: 20000
 - tapOn:
     id: pending-back
+- extendedWaitUntil:
+    visible:
+      id: studio-hair
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: studio-ai-look
+    timeout: 20000
 - tapOn:
     id: studio-ai-look
-- assertVisible: 'GL-047.*'
+- extendedWaitUntil:
+    visible: 'GL-047.*'
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: pending-back
+    timeout: 20000
 - tapOn:
     id: pending-back
+- extendedWaitUntil:
+    visible:
+      id: studio-ai-look
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: studio-choose
+    timeout: 20000
 - tapOn:
     id: studio-choose
-- assertVisible: 'GL-036.*'
+- extendedWaitUntil:
+    visible: 'GL-036.*'
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: pending-back
+    timeout: 20000
 - tapOn:
     id: pending-back
-- assertVisible:
-    id: studio-choose
-# Discover
+- extendedWaitUntil:
+    visible:
+      id: studio-choose
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: tab-discover
+    timeout: 20000
 - tapOn:
     id: tab-discover
+- extendedWaitUntil:
+    visible:
+      id: discover-follow
+    timeout: 20000
 - tapOn:
     id: discover-follow
-- assertVisible: 'Following ✓'
+- extendedWaitUntil:
+    visible: 'Following ✓'
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: discover-search
+    timeout: 20000
 - tapOn:
     id: discover-search
-- assertVisible: 'GL-070.*'
+- extendedWaitUntil:
+    visible: 'GL-070.*'
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: pending-back
+    timeout: 20000
 - tapOn:
     id: pending-back
-- assertVisible:
-    id: discover-follow
-# Profile
+- extendedWaitUntil:
+    visible:
+      id: discover-follow
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: tab-profile
+    timeout: 20000
 - tapOn:
     id: tab-profile
+- extendedWaitUntil:
+    visible: 'Analysis history'
+    timeout: 20000
 - tapOn: 'Analysis history'
-- assertVisible: 'GL-121.*'
+- extendedWaitUntil:
+    visible: 'GL-121.*'
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: pending-back
+    timeout: 20000
 - tapOn:
     id: pending-back
-- assertVisible:
-    id: profile-roles
+- extendedWaitUntil:
+    visible:
+      id: profile-roles
+    timeout: 20000
 # Tab state is kept: Discover still shows the toggled Follow state.
+- extendedWaitUntil:
+    visible:
+      id: tab-discover
+    timeout: 20000
 - tapOn:
     id: tab-discover
-- assertVisible: 'Following ✓'
+- extendedWaitUntil:
+    visible: 'Following ✓'
+    timeout: 20000
