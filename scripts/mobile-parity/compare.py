@@ -62,6 +62,7 @@ def main():
     mad = float(np.abs(ra.astype(float) - na.astype(float))[m].mean())
     out = pathlib.Path(a.out); out.mkdir(parents=True, exist_ok=True)
     stem = f'{a.id}_{a.theme}_{a.platform}'
+    ref.save(out / f'{stem}_reference.png'); nat.save(out / f'{stem}_native.png')
     side = Image.new('RGB', (W * 2 + 20, H), 'white'); side.paste(ref, (0, 0)); side.paste(nat, (W + 20, 0)); side.save(out / f'{stem}_side-by-side.png')
     d = np.abs(np.asarray(ref, float) - np.asarray(nat, float)).max(2)
     ov = np.asarray(nat, float) * 0.4; ov[..., 0] = np.clip(ov[..., 0] + d * 2.5, 0, 255); ov[~m] *= 0.3

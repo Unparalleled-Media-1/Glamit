@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../data/fixture_scope.dart';
 import '../data/fixtures.dart';
 import '../design/photo.dart';
 import '../design/tokens.dart';
@@ -31,6 +32,10 @@ class _DiscoverFeedScreenState extends State<DiscoverFeedScreen> {
   Widget build(BuildContext context) {
     final p = context.glam;
     final screenH = MediaQuery.sizeOf(context).height;
+    final fx = FixtureScope.of(context);
+    // No confirmed feed contract: without fixtures the sample post is not even built
+    // (an overlay would leave it in the semantics tree); the honest empty state is shown.
+    if (!fx) return const ScreenStateGate(state: 'empty', child: SizedBox.expand());
     return ScreenStateGate(child: ClipRect(child: Stack(fit: StackFit.expand, children: [
       Positioned(left: 0, right: 0, top: 0, height: screenH, child: const GlamPhoto(n: 1)),
       const Scrim(fraction: .55),
@@ -43,7 +48,7 @@ class _DiscoverFeedScreenState extends State<DiscoverFeedScreen> {
         child: Row(children: [for (final c in _chips) Padding(padding: const EdgeInsets.only(right: 8), child: GlamChip(c, glass: true, selected: filter == c, onTap: () => _select(c)))]))),
       // Deliberate deviation (DD-002): the design paints the featured-events strip over the
       // Try on / Shop buttons, making them untappable; here the action column stays on top.
-      if (kReferenceFixtures) const Positioned(top: 166, left: 0, right: 0, child: EventsCarousel(glass: true)),
+      if (fx) const Positioned(top: 166, left: 0, right: 0, child: EventsCarousel(glass: true)),
       Positioned(right: 14, bottom: 300, child: Column(mainAxisSize: MainAxisSize.min, spacing: 14, children: [
         for (final (g, t) in [('♡', 'Save'), ('✧', 'Try on'), ('☰', 'Shop'), ('↗', 'Share')]) Column(mainAxisSize: MainAxisSize.min, children: [
           GlassIconButton(glyph: g, label: t == 'Save' ? (saved ? 'Saved' : 'Save') : t, id: 'discover-${t.toLowerCase().replaceAll(' ', '-')}',
@@ -66,7 +71,7 @@ class _DiscoverFeedScreenState extends State<DiscoverFeedScreen> {
         const SizedBox(height: 4),
         Text('Soft rose lids, berry lip · Illustrative creator content', style: body(12, GlamPalette.onPhotoMuted, height: 18)),
       ])),
-      if (kReferenceFixtures) const Positioned(left: 12, right: 12, bottom: 96, child: PostAdPeek(adsPost)),
+      if (fx) const Positioned(left: 12, right: 12, bottom: 96, child: PostAdPeek(adsPost)),
     ])));
   }
 }

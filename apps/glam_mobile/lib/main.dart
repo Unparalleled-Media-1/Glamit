@@ -13,14 +13,18 @@ import 'core/config.dart';
 import 'core/session.dart';
 import 'core/transport.dart';
 import 'presentation/camera_surface.dart';
+import 'data/fixture_scope.dart';
+import 'data/fixtures.dart';
 import 'design/tokens.dart';
 import 'presentation/design.dart';
 import 'shell/router.dart';
 
 void main() { WidgetsFlutterBinding.ensureInitialized(); runApp(const AnalyzeApp()); }
 class AnalyzeApp extends StatefulWidget {
-  const AnalyzeApp({super.key, this.controller});
+  const AnalyzeApp({super.key, this.controller, this.fixtures});
   final AnalyzeController? controller;
+  /// Overrides kReferenceFixtures (tests/previews); null keeps the build default.
+  final bool? fixtures;
   @override State<AnalyzeApp> createState() => _AnalyzeAppState();
 }
 class _AnalyzeAppState extends State<AnalyzeApp> with WidgetsBindingObserver {
@@ -53,9 +57,9 @@ class _AnalyzeAppState extends State<AnalyzeApp> with WidgetsBindingObserver {
     interimAnalysis: (context) => Theme(data: MobileDesign.theme(), child: InterimAnalysis(controller: controller)));
   @override Widget build(BuildContext context) => MaterialApp.router(routerConfig: router, title: 'GLAM Beauty',
     debugShowCheckedModeBanner: false, theme: glamTheme(Brightness.light), darkTheme: glamTheme(Brightness.dark), themeMode: ThemeMode.system,
-    builder: (context, child) => Stack(children: [
+    builder: (context, child) => FixtureScope(enabled: widget.fixtures ?? kReferenceFixtures, child: Stack(children: [
       child!, if (obscured) Positioned.fill(child: ColoredBox(color: context.glam.bg)),
-    ]));
+    ])));
 }
 /// Existing camera-first analysis, hosted as an interim full-screen route
 /// until the design's GL-018..GL-025 screens are implemented.

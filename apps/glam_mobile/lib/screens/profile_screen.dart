@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../data/fixture_scope.dart';
 import '../data/fixtures.dart';
 import '../design/photo.dart';
 import '../design/tokens.dart';
@@ -14,6 +15,7 @@ class ProfileOverviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.glam;
+    final fx = FixtureScope.of(context);
     final used = credits.remaining / credits.monthly;
     void go(String id) => GlamNav.to(context, id);
     return ScreenStateGate(child: ColoredBox(color: p.bg, child: ListView(padding: const EdgeInsets.fromLTRB(22, 4, 22, 0), children: [
@@ -26,15 +28,18 @@ class ProfileOverviewScreen extends StatelessWidget {
         ])),
         GlassIconButton(glyph: '⇄', label: 'Switch role', blur: false, fill: p.sf2, color: p.tx, id: 'profile-roles', onTap: () => go('GL-202')),
       ])),
-      GlamCard(onTap: () => go('GL-126'), label: 'AI credits, ${credits.remaining} of ${credits.monthly} this month', child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      GlamCard(onTap: () => go('GL-126'), label: fx ? 'AI credits, ${credits.remaining} of ${credits.monthly} this month' : 'AI credits, balance unavailable', child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Text('AI credits', style: body(15, p.tx, w: FontWeight.w700)), Text('Free plan', style: body(12, p.tx2, height: 18)),
+          Text('AI credits', style: body(15, p.tx, w: FontWeight.w700)), if (fx) Text('Free plan', style: body(12, p.tx2, height: 18)),
         ]),
-        Padding(padding: const EdgeInsets.symmetric(vertical: 6), child: Text.rich(TextSpan(children: [
-          TextSpan(text: '${credits.remaining} ', style: display(34, 40, p.tx)),
-          TextSpan(text: 'of ${credits.monthly} this month', style: body(12, p.tx2)),
-        ]))),
-        GlamBar(used),
+        if (fx) ...[
+          Padding(padding: const EdgeInsets.symmetric(vertical: 6), child: Text.rich(TextSpan(children: [
+            TextSpan(text: '${credits.remaining} ', style: display(34, 40, p.tx)),
+            TextSpan(text: 'of ${credits.monthly} this month', style: body(12, p.tx2)),
+          ]))),
+          GlamBar(used),
+        ] else
+          Padding(padding: const EdgeInsets.only(top: 6), child: Text('Your balance appears here once your account is connected.', style: body(12, p.tx2, height: 18))),
       ])),
       GlamCard(padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 4), child: Column(children: [
         GlamRow(glyph: '✦', title: 'My beauty plans', subtitle: 'Transformations & progress', onTap: () => go('TP-12')),

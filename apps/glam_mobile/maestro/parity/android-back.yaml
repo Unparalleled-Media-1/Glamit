@@ -1,0 +1,17 @@
+# Android system Back returns from a pushed design screen to the originating tab.
+appId: com.glambeauty.analyzereview
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: home-analyze
+    timeout: 45000
+- tapOn:
+    id: tab-studio
+- tapOn:
+    id: studio-choose
+- assertVisible: 'GL-036.*'
+- back
+- assertVisible:
+    id: studio-choose

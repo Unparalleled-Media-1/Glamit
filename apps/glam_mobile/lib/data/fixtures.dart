@@ -1,9 +1,10 @@
 /// Design-reference content for Batch 1 (the sample copy shown in the supplied
 /// design). NOT live data: no endpoint is confirmed for feed ranking, ad
 /// serving, events or credits (see docs/mobile-parity/BACKEND_CONTRACT_MAP.csv).
-/// Release builds must set --dart-define=GLAM_REFERENCE_FIXTURES=false once the
-/// matching server contracts are wired; screens then show their empty state.
-const bool kReferenceFixtures = bool.fromEnvironment('GLAM_REFERENCE_FIXTURES', defaultValue: true);
+/// Default: ON in debug/profile builds (visual-parity captures) and OFF in
+/// release builds (`dart.vm.product`). An explicit
+/// --dart-define=GLAM_REFERENCE_FIXTURES=true|false overrides either way.
+const bool kReferenceFixtures = bool.fromEnvironment('GLAM_REFERENCE_FIXTURES', defaultValue: !bool.fromEnvironment('dart.vm.product'));
 
 /// `default|loading|empty|error` override used for visual-state capture; the
 /// design's State toggle. Production keeps `default`.
@@ -50,6 +51,10 @@ const featuredEvents = <ThemedEvent>[
 ];
 
 const homeLooks = ['Soft bronze', 'Rose after hours', 'Everyday natural', 'Clean & considered'];
+
+/// Strings that exist only as design sample content; the leak test asserts none
+/// appear when fixtures are disabled.
+const fixtureMarkers = <String>['Lumière', 'Atelier Noor', 'Cape Town Bridal', 'Gold & Midnight', '@amarabeauty', 'Rose after hours', '@glowlab', 'Soft bronze', 'Gold hour edit', 'of 20 this month', '12 credits', 'Sponsored'];
 
 class CreditsFixture { const CreditsFixture(this.remaining, this.monthly); final int remaining, monthly; }
 const credits = CreditsFixture(12, 20);

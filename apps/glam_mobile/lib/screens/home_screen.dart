@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../data/fixture_scope.dart';
 import '../data/fixtures.dart';
 import '../design/photo.dart';
 import '../design/tokens.dart';
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final p = context.glam;
+    final fx = FixtureScope.of(context);
     return ScreenStateGate(child: ColoredBox(color: p.bg, child: ListView(padding: EdgeInsets.zero, children: [
       // The design hero is 560px tall inside a viewport whose scroller starts 52px
       // above the visible area (`.vp .scr{top:-52px}`), so its top 52px is clipped.
@@ -39,13 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ]),
           ])),
         ]))))),
-      if (kReferenceFixtures) const HeroAdCard(adsHero),
+      if (fx) const HeroAdCard(adsHero),
       Padding(padding: const EdgeInsets.fromLTRB(22, 18, 22, 10), child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(children: [
         for (final c in _chips) Padding(padding: const EdgeInsets.only(right: 8), child: GlamChip(c, selected: filter == c, onTap: () => setState(() => filter = c))),
       ]))),
-      if (kReferenceFixtures) const CarouselAdStrip(adsCarousel),
-      if (kReferenceFixtures) const EventsCarousel(),
-      Padding(padding: const EdgeInsets.fromLTRB(22, 4, 22, 0), child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      if (fx) const CarouselAdStrip(adsCarousel),
+      if (fx) const EventsCarousel(),
+      if (fx) Padding(padding: const EdgeInsets.fromLTRB(22, 4, 22, 0), child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         for (var i = 0; i < homeLooks.length; i++) Padding(padding: const EdgeInsets.only(right: 12), child: Tappable(
           onTap: () => GlamNav.to(context, 'GL-035'), label: '${homeLooks[i]}, try on, illustrative',
           child: SizedBox(width: 150, child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

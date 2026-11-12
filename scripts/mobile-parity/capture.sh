@@ -30,6 +30,9 @@ for theme in dark light; do
 done
 set_theme dark
 maestro --device "$device" test apps/glam_mobile/maestro/parity/interactions.yaml --test-output-dir "$out/maestro-interactions" || status=$?
+if [ "$platform" = android ]; then
+  maestro --device "$device" test apps/glam_mobile/maestro/parity/android-back.yaml --test-output-dir "$out/maestro-android-back" || status=$?
+fi
 echo "$status" > "$out/maestro-exit-status.txt"
 mkdir -p "$out/screenshots"
 find "$out" -name "$platform-*.png" -not -path "$out/screenshots/*" -exec cp {} "$out/screenshots/" \;

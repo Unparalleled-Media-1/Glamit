@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../data/fixture_scope.dart';
 import '../data/fixtures.dart';
 import '../design/photo.dart';
 import '../design/tokens.dart';
@@ -55,7 +56,7 @@ class StudioLandingScreen extends StatelessWidget {
     return ScreenStateGate(child: ClipRect(child: Stack(fit: StackFit.expand, children: [
       Positioned(left: 0, right: 0, top: 0, height: screenH, child: const GlamPhoto(n: 1)),
       const Scrim(fraction: .65),
-      _LandingTop(title: 'Studio', actionLabel: '✧ ${credits.remaining} credits', onAction: () => GlamNav.to(context, 'GL-126')),
+      _LandingTop(title: 'Studio', actionLabel: FixtureScope.of(context) ? '✧ ${credits.remaining} credits' : '✧ Credits', onAction: () => GlamNav.to(context, 'GL-126')),
       Positioned(left: 22, right: 22, bottom: 112, child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
         const Kicker('Your expression lab', color: GlamPalette.blush),
         Text('Make it your own.', style: display(40, 42, GlamPalette.onPhoto, ls: -1.2)),

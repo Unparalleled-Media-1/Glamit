@@ -30,11 +30,12 @@ jobs:
           channel: stable
           cache: true
       - run: python3 scripts/flutter/run_command.py artifacts/parity/bootstrap.txt bash scripts/analyze-restart/bootstrap.sh
-      - name: Resolve one native dependency lock
+      - name: Resolve dependencies strictly from the committed pubspec.lock
         working-directory: apps/glam_mobile
         run: |
-          flutter pub get
+          flutter pub get --enforce-lockfile
           dart run flutter_launcher_icons
+          git diff --exit-code -- pubspec.lock
       - name: Route table is generated from the registry
         run: |
           python3 scripts/mobile-parity/gen_route_table.py
@@ -73,12 +74,20 @@ jobs:
       - name: Verify the committed design reference hashes
         working-directory: docs/mobile-parity/reference
         run: grep '\.html$' SHA256SUMS | sha256sum -c -
-      - name: Render the design atlas reference at 2x
+      - name: Render the design atlas at 2x with the bundled Gelasio/Arimo (engineering-consistent set)
         run: NODE_PATH="$RUNNER_TEMP/pw/node_modules" node scripts/mobile-parity/render_reference.js docs/mobile-parity/reference/GLAM_All_Screens_Standalone.html apps/glam_mobile/assets/fonts artifacts/parity/reference
+      - name: Render the design atlas at 2x with its own font stack (original-typography set)
+        run: NODE_PATH="$RUNNER_TEMP/pw/node_modules" node scripts/mobile-parity/render_reference.js docs/mobile-parity/reference/GLAM_All_Screens_Standalone.html apps/glam_mobile/assets/fonts artifacts/parity/reference-original home,GL-017,GL-035,GL-069,GL-117 original
+      - name: Record fonts available to the renderer (Georgia/Arial are not installed on runners)
+        run: fc-match Georgia > artifacts/parity/reference-original/fc-match.txt; fc-match Arial >> artifacts/parity/reference-original/fc-match.txt; cat artifacts/parity/reference-original/fc-match.txt
       - uses: actions/upload-artifact@v7
         with:
           name: parity-b1-reference
           path: artifacts/parity/reference
+      - uses: actions/upload-artifact@v7
+        with:
+          name: parity-b1-reference-original
+          path: artifacts/parity/reference-original
   android:
     needs: source
     runs-on: ubuntu-latest
@@ -181,11 +190,15 @@ jobs:
           name: parity-b1-ios
           path: artifacts/parity/ios
   compare:
-    needs: [reference, android, ios]
+    needs: [source, reference, android, ios]
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
+      - name: Every upstream job must have succeeded
+        run: |
+          echo "source=${{ needs.source.result }} reference=${{ needs.reference.result }} android=${{ needs.android.result }} ios=${{ needs.ios.result }}"
+          test "${{ needs.source.result }}" = success && test "${{ needs.reference.result }}" = success && test "${{ needs.android.result }}" = success && test "${{ needs.ios.result }}" = success
       - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
@@ -194,27 +207,38 @@ jobs:
           name: parity-b1-reference
           path: artifacts/parity/reference
       - uses: actions/download-artifact@v8
-        continue-on-error: true
+        with:
+          name: parity-b1-reference-original
+          path: artifacts/parity/reference-original
+      - uses: actions/download-artifact@v8
         with:
           name: parity-b1-android
           path: artifacts/parity/android
       - uses: actions/download-artifact@v8
-        continue-on-error: true
         with:
           name: parity-b1-ios
           path: artifacts/parity/ios
       - run: python3 -m pip install numpy pillow
-      - name: Compare every actual native screenshot with its design reference
+      - name: Require all 20 native screenshots, 40 references and passing interaction runs
+        run: python3 scripts/mobile-parity/verify_evidence.py inputs artifacts/parity
+      - name: Compare every native screenshot with both reference sets
         run: |
-          mkdir -p artifacts/parity/comparison
-          for shot in artifacts/parity/android/screenshots/*.png artifacts/parity/ios/screenshots/*.png; do
-            [ -f "$shot" ] || continue
-            base=$(basename "$shot" .png); platform=${base%%-*}; rest=${base#*-}; theme=${rest%%-*}; id=${rest#*-}
-            python3 scripts/mobile-parity/compare.py --ref "artifacts/parity/reference/${id}_${theme}_${platform}.png" --native "$shot" --out artifacts/parity/comparison --id "$id" --theme "$theme" --platform "$platform" --ref-crop 14,14,794,1702
+          for set in "reference:comparison" "reference-original:comparison-original"; do
+            refdir=${set%%:*}; outdir=artifacts/parity/${set##*:}
+            mkdir -p "$outdir"
+            for shot in artifacts/parity/android/screenshots/*.png artifacts/parity/ios/screenshots/*.png; do
+              base=$(basename "$shot" .png); platform=${base%%-*}; rest=${base#*-}; theme=${rest%%-*}; id=${rest#*-}
+              python3 scripts/mobile-parity/compare.py --ref "artifacts/parity/$refdir/${id}_${theme}_${platform}.png" --native "$shot" --out "$outdir" --id "$id" --theme "$theme" --platform "$platform" --ref-crop 14,14,794,1702 > /dev/null
+            done
           done
-          python3 scripts/mobile-parity/summarize.py artifacts/parity/comparison | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Require 20 complete comparisons per reference set and publish per-screen scores
+        run: |
+          python3 scripts/mobile-parity/verify_evidence.py results artifacts/parity
+          { python3 scripts/mobile-parity/summarize.py artifacts/parity/comparison "Substituted-font reference (Gelasio/Arimo)"; echo; python3 scripts/mobile-parity/summarize.py artifacts/parity/comparison-original "Original font stack as resolved on the renderer host"; } | tee -a "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: parity-b1-comparison
-          path: artifacts/parity/comparison
+          path: |
+            artifacts/parity/comparison
+            artifacts/parity/comparison-original
