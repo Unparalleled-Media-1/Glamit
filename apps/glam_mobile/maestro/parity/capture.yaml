@@ -1,0 +1,43 @@
+# Actual-OS captures of the five Batch 1 tabs. PREFIX (e.g. android-dark-) is passed with -e.
+appId: com.glambeauty.analyzereview
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: home-analyze
+    timeout: 45000
+- waitForAnimationToEnd
+- takeScreenshot: ${PREFIX}home
+- tapOn:
+    id: tab-analyze
+- extendedWaitUntil:
+    visible:
+      id: analyze-start
+    timeout: 20000
+- waitForAnimationToEnd
+- takeScreenshot: ${PREFIX}GL-017
+- tapOn:
+    id: tab-studio
+- extendedWaitUntil:
+    visible:
+      id: studio-choose
+    timeout: 20000
+- waitForAnimationToEnd
+- takeScreenshot: ${PREFIX}GL-035
+- tapOn:
+    id: tab-discover
+- extendedWaitUntil:
+    visible:
+      id: discover-follow
+    timeout: 20000
+- waitForAnimationToEnd
+- takeScreenshot: ${PREFIX}GL-069
+- tapOn:
+    id: tab-profile
+- extendedWaitUntil:
+    visible:
+      id: profile-roles
+    timeout: 20000
+- waitForAnimationToEnd
+- takeScreenshot: ${PREFIX}GL-117

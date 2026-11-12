@@ -1,0 +1,233 @@
+design_id,contract_status,endpoints,note
+home,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-017,confirmed,GET /v1/analysis/policy; GET /v1/analysis/status; GET /v1/analysis/permissions; POST /v1/media; POST /v1/analysis/requests; POST /v1/analysis/jobs; GET /v1/analysis/jobs/{job_id},Camera/gallery/crop are on-device; upload via /v1/media
+GL-018,confirmed,GET /v1/analysis/policy; GET /v1/analysis/status; GET /v1/analysis/permissions; POST /v1/media; POST /v1/analysis/requests; POST /v1/analysis/jobs; GET /v1/analysis/jobs/{job_id},Camera/gallery/crop are on-device; upload via /v1/media
+GL-019,confirmed,GET /v1/analysis/policy; GET /v1/analysis/status; GET /v1/analysis/permissions; POST /v1/media; POST /v1/analysis/requests; POST /v1/analysis/jobs; GET /v1/analysis/jobs/{job_id},Camera/gallery/crop are on-device; upload via /v1/media
+GL-020,confirmed,GET /v1/analysis/policy; GET /v1/analysis/status; GET /v1/analysis/permissions; POST /v1/media; POST /v1/analysis/requests; POST /v1/analysis/jobs; GET /v1/analysis/jobs/{job_id},Camera/gallery/crop are on-device; upload via /v1/media
+GL-023,confirmed,GET /v1/analysis/policy; GET /v1/analysis/status; GET /v1/analysis/permissions; POST /v1/media; POST /v1/analysis/requests; POST /v1/analysis/jobs; GET /v1/analysis/jobs/{job_id},Camera/gallery/crop are on-device; upload via /v1/media
+GL-024,confirmed,GET /v1/analysis/policy; GET /v1/analysis/status; GET /v1/analysis/permissions; POST /v1/media; POST /v1/analysis/requests; POST /v1/analysis/jobs; GET /v1/analysis/jobs/{job_id}; GET /v1/policies; POST /v1/policies/{policy_id}/consent,Camera/gallery/crop are on-device; upload via /v1/media
+GL-025,confirmed,GET /v1/analysis/policy; GET /v1/analysis/status; GET /v1/analysis/permissions; POST /v1/media; POST /v1/analysis/requests; POST /v1/analysis/jobs; GET /v1/analysis/jobs/{job_id},Camera/gallery/crop are on-device; upload via /v1/media
+GL-026,confirmed,GET /v1/analysis/jobs/{job_id}/report; POST /v1/analysis/jobs/{job_id}/corrections; GET /v1/analysis/jobs/{job_id}/corrected-report,
+GL-027,confirmed,GET /v1/analysis/jobs/{job_id}/report; POST /v1/analysis/jobs/{job_id}/corrections; GET /v1/analysis/jobs/{job_id}/corrected-report,
+GL-028,confirmed,GET /v1/analysis/jobs/{job_id}/report; POST /v1/analysis/jobs/{job_id}/corrections; GET /v1/analysis/jobs/{job_id}/corrected-report,
+GL-029,confirmed,GET /v1/analysis/jobs/{job_id}/report; POST /v1/analysis/jobs/{job_id}/corrections; GET /v1/analysis/jobs/{job_id}/corrected-report,
+GL-030,confirmed,GET /v1/analysis/jobs/{job_id}/report; POST /v1/analysis/jobs/{job_id}/corrections; GET /v1/analysis/jobs/{job_id}/corrected-report,
+GL-031,confirmed,GET /v1/analysis/jobs/{job_id}/report; POST /v1/analysis/jobs/{job_id}/corrections; GET /v1/analysis/jobs/{job_id}/corrected-report,
+GL-032,confirmed,GET/POST /v1/me/routines; PUT/DELETE /v1/me/routines/{routine},
+GL-033,confirmed,GET /v1/me/analysis-passport,
+GL-034,confirmed,POST /v1/looks; GET /v1/me/saved-requirements,
+GL-035,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-036,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-037,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-039,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-044,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-046,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-047,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-048,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-049,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-050,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-051,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-052,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-069,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-117,confirmed,GET /v1/me,
+GL-126,confirmed,GET /v1/me/credits,Purchase of credits (GL-127) unverified
+GL-202,confirmed,GET /v1/me/workspaces; GET /v1/me/workspace-invitations; POST /v1/me/workspace-invitations/{invitation}/accept,
+GL-203,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-205,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-001,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-002,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-003,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-004,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-005,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-006,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-007,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-008,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-009,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-010,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-011,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-012,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-013,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-014,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-015,confirmed,GET /v1/policies; POST /v1/policies/{policy_id}/consent,
+GL-016,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-021,confirmed,GET /v1/analysis/policy; GET /v1/analysis/status; GET /v1/analysis/permissions; POST /v1/media; POST /v1/analysis/requests; POST /v1/analysis/jobs; GET /v1/analysis/jobs/{job_id},Camera/gallery/crop are on-device; upload via /v1/media
+GL-022,confirmed,GET /v1/analysis/policy; GET /v1/analysis/status; GET /v1/analysis/permissions; POST /v1/media; POST /v1/analysis/requests; POST /v1/analysis/jobs; GET /v1/analysis/jobs/{job_id},Camera/gallery/crop are on-device; upload via /v1/media
+GL-038,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-040,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-041,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-042,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-043,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-045,partial,GET /v1/me/credits; POST /v1/looks; POST /v1/looks/{look_id}/revisions,"Credits and look persistence confirmed. Live try-on rendering, generation jobs and compare assets have NO confirmed endpoint"
+GL-053,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-054,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-055,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-056,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-057,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-058,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-059,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-060,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-061,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-062,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-063,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-064,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-065,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-066,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-067,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-068,partial,POST /v1/ai/stylist/advice; GET /v1/ai/stylist/policy; GET /v1/looks,"Stylist advice confirmed. Events, weather, wardrobe, outfit generation and tailor matching unverified"
+GL-070,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-071,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-072,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-073,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-074,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-075,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-076,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-077,partial,GET/POST /v1/me/saved-requirements; DELETE /v1/me/saved-requirements/{sid},Collections model unverified
+GL-078,partial,GET/POST /v1/me/saved-requirements; DELETE /v1/me/saved-requirements/{sid},Collections model unverified
+GL-079,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-080,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-081,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-082,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-083,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-084,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-085,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-086,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-087,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-088,confirmed,POST /v1/recommendations/matches,
+GL-089,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-090,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-091,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-092,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-093,partial,GET /v1/recommendations/listings/{lid}; POST /v1/recommendations/matches,Bundle pricing and cart unverified
+GL-094,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-095,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-096,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-097,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-098,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-099,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-100,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-101,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-102,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-103,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-104,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-105,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-106,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-107,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-108,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-109,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-110,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-111,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-112,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-113,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-114,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-115,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-116,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-118,confirmed,GET /v1/me,
+GL-119,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-120,confirmed,GET /v1/looks; GET /v1/me/analysis-passport,
+GL-121,confirmed,GET /v1/looks; GET /v1/me/analysis-passport,
+GL-122,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-123,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-124,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-125,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-127,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-128,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-129,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-130,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-131,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-132,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-133,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-134,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-135,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-136,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-137,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-138,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-139,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-140,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-141,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-142,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-143,partial,GET /v1/me/workspaces; GET /v1/organizations/{org_id}; GET/POST /v1/organizations/{org}/catalog/listings; POST …/listings/{lid}/enhancements; POST …/listings/{lid}/publish; GET …/listings/{lid}/revisions; POST …/listings/{lid}/withdraw,"Catalog & Snap & List confirmed. Orders, fulfilment, returns, payouts and promotions unverified"
+GL-144,partial,GET /v1/me/workspaces; GET /v1/organizations/{org_id}; GET/POST /v1/organizations/{org}/catalog/listings; POST …/listings/{lid}/enhancements; POST …/listings/{lid}/publish; GET …/listings/{lid}/revisions; POST …/listings/{lid}/withdraw,"Catalog & Snap & List confirmed. Orders, fulfilment, returns, payouts and promotions unverified"
+GL-145,partial,GET /v1/me/workspaces; GET /v1/organizations/{org_id}; GET/POST /v1/organizations/{org}/catalog/listings; POST …/listings/{lid}/enhancements; POST …/listings/{lid}/publish; GET …/listings/{lid}/revisions; POST …/listings/{lid}/withdraw,"Catalog & Snap & List confirmed. Orders, fulfilment, returns, payouts and promotions unverified"
+GL-146,partial,GET /v1/me/workspaces; GET /v1/organizations/{org_id}; GET/POST /v1/organizations/{org}/catalog/listings; POST …/listings/{lid}/enhancements; POST …/listings/{lid}/publish; GET …/listings/{lid}/revisions; POST …/listings/{lid}/withdraw,"Catalog & Snap & List confirmed. Orders, fulfilment, returns, payouts and promotions unverified"
+GL-147,partial,GET /v1/me/workspaces; GET /v1/organizations/{org_id}; GET/POST /v1/organizations/{org}/catalog/listings; POST …/listings/{lid}/enhancements; POST …/listings/{lid}/publish; GET …/listings/{lid}/revisions; POST …/listings/{lid}/withdraw,"Catalog & Snap & List confirmed. Orders, fulfilment, returns, payouts and promotions unverified"
+GL-148,partial,GET /v1/me/workspaces; GET /v1/organizations/{org_id}; GET/POST /v1/organizations/{org}/catalog/listings; POST …/listings/{lid}/enhancements; POST …/listings/{lid}/publish; GET …/listings/{lid}/revisions; POST …/listings/{lid}/withdraw,"Catalog & Snap & List confirmed. Orders, fulfilment, returns, payouts and promotions unverified"
+GL-149,partial,GET /v1/me/workspaces; GET /v1/organizations/{org_id}; GET/POST /v1/organizations/{org}/catalog/listings; POST …/listings/{lid}/enhancements; POST …/listings/{lid}/publish; GET …/listings/{lid}/revisions; POST …/listings/{lid}/withdraw,"Catalog & Snap & List confirmed. Orders, fulfilment, returns, payouts and promotions unverified"
+GL-150,partial,GET /v1/me/workspaces; GET /v1/organizations/{org_id}; GET/POST /v1/organizations/{org}/catalog/listings; POST …/listings/{lid}/enhancements; POST …/listings/{lid}/publish; GET …/listings/{lid}/revisions; POST …/listings/{lid}/withdraw,"Catalog & Snap & List confirmed. Orders, fulfilment, returns, payouts and promotions unverified"
+GL-151,partial,GET /v1/me/workspaces; GET /v1/organizations/{org_id}; GET/POST /v1/organizations/{org}/catalog/listings; POST …/listings/{lid}/enhancements; POST …/listings/{lid}/publish; GET …/listings/{lid}/revisions; POST …/listings/{lid}/withdraw,"Catalog & Snap & List confirmed. Orders, fulfilment, returns, payouts and promotions unverified"
+GL-152,partial,GET /v1/me/workspaces; GET /v1/organizations/{org_id}; GET/POST /v1/organizations/{org}/catalog/listings; POST …/listings/{lid}/enhancements; POST …/listings/{lid}/publish; GET …/listings/{lid}/revisions; POST …/listings/{lid}/withdraw,"Catalog & Snap & List confirmed. Orders, fulfilment, returns, payouts and promotions unverified"
+GL-153,partial,GET /v1/me/workspaces; GET /v1/organizations/{org_id}; GET/POST /v1/organizations/{org}/catalog/listings; POST …/listings/{lid}/enhancements; POST …/listings/{lid}/publish; GET …/listings/{lid}/revisions; POST …/listings/{lid}/withdraw,"Catalog & Snap & List confirmed. Orders, fulfilment, returns, payouts and promotions unverified"
+GL-154,partial,GET /v1/me/workspaces; GET /v1/organizations/{org_id}; GET/POST /v1/organizations/{org}/catalog/listings; POST …/listings/{lid}/enhancements; POST …/listings/{lid}/publish; GET …/listings/{lid}/revisions; POST …/listings/{lid}/withdraw,"Catalog & Snap & List confirmed. Orders, fulfilment, returns, payouts and promotions unverified"
+GL-155,unverified,GET /v1/me/workspaces,"Role grant lookup only; calendar, bookings, services, portfolio have no endpoint"
+GL-156,unverified,GET /v1/me/workspaces,"Role grant lookup only; calendar, bookings, services, portfolio have no endpoint"
+GL-157,unverified,GET /v1/me/workspaces,"Role grant lookup only; calendar, bookings, services, portfolio have no endpoint"
+GL-158,unverified,GET /v1/me/workspaces,"Role grant lookup only; calendar, bookings, services, portfolio have no endpoint"
+GL-159,unverified,GET /v1/me/workspaces,"Role grant lookup only; calendar, bookings, services, portfolio have no endpoint"
+GL-160,unverified,GET /v1/me/workspaces,"Role grant lookup only; calendar, bookings, services, portfolio have no endpoint"
+GL-161,unverified,GET /v1/me/workspaces,"Role grant lookup only; calendar, bookings, services, portfolio have no endpoint"
+GL-162,unverified,GET /v1/me/workspaces,"Role grant lookup only; calendar, bookings, services, portfolio have no endpoint"
+GL-163,unverified,GET /v1/me/workspaces,"Role grant lookup only; calendar, bookings, services, portfolio have no endpoint"
+GL-164,unverified,GET /v1/me/workspaces,"Role grant lookup only; calendar, bookings, services, portfolio have no endpoint"
+GL-165,unverified,GET /v1/me/workspaces,"Role grant lookup only; calendar, bookings, services, portfolio have no endpoint"
+GL-166,unverified,GET /v1/me/workspaces,"Role grant lookup only; calendar, bookings, services, portfolio have no endpoint"
+GL-167,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-168,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-169,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-170,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-171,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-172,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-173,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-174,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-175,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-176,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-177,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-178,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-179,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-180,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-181,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-182,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-183,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-184,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-185,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-186,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-187,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-188,partial,GET /v1/admin/context; GET /v1/admin/catalog/review-queue; POST /v1/admin/catalog/{lid}/revisions/{revision}/review,Catalog review confirmed. User/professional verification unverified
+GL-189,partial,GET /v1/admin/context; GET /v1/admin/catalog/review-queue; POST /v1/admin/catalog/{lid}/revisions/{revision}/review,Catalog review confirmed. User/professional verification unverified
+GL-190,partial,GET /v1/admin/context; GET /v1/admin/catalog/review-queue; POST /v1/admin/catalog/{lid}/revisions/{revision}/review,Catalog review confirmed. User/professional verification unverified
+GL-191,partial,GET /v1/admin/context; GET /v1/admin/catalog/review-queue; POST /v1/admin/catalog/{lid}/revisions/{revision}/review,Catalog review confirmed. User/professional verification unverified
+GL-192,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-193,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-194,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-195,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-196,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-197,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-198,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-199,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-200,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-201,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-204,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-206,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-207,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+GL-208,unverified,,No matching endpoint in packages/contracts/openapi.json. Auth/OTP via Supabase per repo docs; payments via Stripe per docs; contract still to be defined.
+TP-01,partial,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+TP-02,partial,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+TP-03,partial,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+TP-04,partial,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+TP-05,partial,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+TP-06,partial,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+TP-07,partial,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+TP-08,partial,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+TP-09,partial,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+TP-10,unverified,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+TP-11,partial,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+TP-12,unverified,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+TP-13,unverified,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+TP-14,partial,POST /v1/analysis/jobs/{job_id}/corrections; POST /v1/looks; POST /v1/looks/{look_id}/revisions; POST /v1/recommendations/matches; GET /v1/me/credits,"Look persistence & recommendations matches exist. Plan entity, previews from analysis context, tutorials, budget options and progress have NO confirmed endpoint"
+FB-01,unverified,,"Full-body virtual try-on, garment catalogue, measurements and design requests have NO confirmed endpoint. Analysis consent and media upload (POST /v1/media) exist."
+FB-02,unverified,,"Full-body virtual try-on, garment catalogue, measurements and design requests have NO confirmed endpoint. Analysis consent and media upload (POST /v1/media) exist."
+FB-03,unverified,,"Full-body virtual try-on, garment catalogue, measurements and design requests have NO confirmed endpoint. Analysis consent and media upload (POST /v1/media) exist."
+FB-04,unverified,,"Full-body virtual try-on, garment catalogue, measurements and design requests have NO confirmed endpoint. Analysis consent and media upload (POST /v1/media) exist."
+FB-05,unverified,,"Full-body virtual try-on, garment catalogue, measurements and design requests have NO confirmed endpoint. Analysis consent and media upload (POST /v1/media) exist."
+GL-209,unverified,,REQUIRES BACKEND VERIFICATION — events catalogue and ad placement/serving have no confirmed endpoint.
+GL-210,unverified,,REQUIRES BACKEND VERIFICATION — events catalogue and ad placement/serving have no confirmed endpoint.
+GL-211,unverified,,REQUIRES BACKEND VERIFICATION — events catalogue and ad placement/serving have no confirmed endpoint.
+GL-212,unverified,,REQUIRES BACKEND VERIFICATION — events catalogue and ad placement/serving have no confirmed endpoint.

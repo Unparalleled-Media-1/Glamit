@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/semantics.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'analysis/controller.dart';
 import 'analysis/contracts.dart';
@@ -12,7 +13,9 @@ import 'core/config.dart';
 import 'core/session.dart';
 import 'core/transport.dart';
 import 'presentation/camera_surface.dart';
+import 'design/tokens.dart';
 import 'presentation/design.dart';
+import 'shell/router.dart';
 
 void main() { WidgetsFlutterBinding.ensureInitialized(); runApp(const AnalyzeApp()); }
 class AnalyzeApp extends StatefulWidget {
@@ -46,10 +49,27 @@ class _AnalyzeAppState extends State<AnalyzeApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.removeObserver(this); semantics.dispose();
     if (widget.controller == null) controller.dispose(); transport.dispose(); super.dispose();
   }
-  @override Widget build(BuildContext context) => MaterialApp(navigatorKey: navigator, title: 'GLAM Beauty',
-    debugShowCheckedModeBanner: false, theme: MobileDesign.theme(),
-    home: AnalyzeJourney(controller: controller), builder: (context, child) => Stack(children: [
-      child!, if (obscured) const Positioned.fill(child: ColoredBox(color: MobileDesign.background)),
+  late final GoRouter router = buildRouter(navigatorKey: navigator,
+    interimAnalysis: (context) => Theme(data: MobileDesign.theme(), child: InterimAnalysis(controller: controller)));
+  @override Widget build(BuildContext context) => MaterialApp.router(routerConfig: router, title: 'GLAM Beauty',
+    debugShowCheckedModeBanner: false, theme: glamTheme(Brightness.light), darkTheme: glamTheme(Brightness.dark), themeMode: ThemeMode.system,
+    builder: (context, child) => Stack(children: [
+      child!, if (obscured) Positioned.fill(child: ColoredBox(color: context.glam.bg)),
+    ]));
+}
+/// Existing camera-first analysis, hosted as an interim full-screen route
+/// until the design's GL-018..GL-025 screens are implemented.
+class InterimAnalysis extends StatelessWidget {
+  const InterimAnalysis({super.key, required this.controller});
+  final AnalyzeController controller;
+  @override Widget build(BuildContext context) => PopScope(
+    canPop: controller.phase == 'capture',
+    child: Stack(children: [
+      AnalyzeJourney(controller: controller),
+      AnimatedBuilder(animation: controller, builder: (context, _) => controller.phase != 'capture' ? const SizedBox.shrink()
+        : SafeArea(child: Align(alignment: Alignment.topCenter, child: Padding(padding: const EdgeInsets.only(top: 12),
+          child: Semantics(identifier: 'interim-close', button: true, label: 'Close analysis',
+            child: TextButton(onPressed: () => Navigator.of(context).maybePop(), child: const Text('Close'))))))),
     ]));
 }
 class AnalyzeJourney extends StatefulWidget {

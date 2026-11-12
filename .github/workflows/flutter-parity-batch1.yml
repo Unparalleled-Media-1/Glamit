@@ -1,0 +1,220 @@
+name: Flutter 1:1 parity — Batch 1 (five consumer tabs)
+on:
+  pull_request:
+    paths:
+      - 'apps/glam_mobile/**'
+      - 'scripts/mobile-parity/**'
+      - 'scripts/analyze-restart/**'
+      - 'docs/mobile-parity/reference/**'
+      - '.github/workflows/flutter-parity-batch1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: parity-b1-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+env:
+  CI: 'true'
+  MAESTRO_DRIVER_STARTUP_TIMEOUT: '300000'
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          flutter-version: '3.47.9'
+          channel: stable
+          cache: true
+      - run: python3 scripts/flutter/run_command.py artifacts/parity/bootstrap.txt bash scripts/analyze-restart/bootstrap.sh
+      - name: Resolve one native dependency lock
+        working-directory: apps/glam_mobile
+        run: |
+          flutter pub get
+          dart run flutter_launcher_icons
+      - name: Route table is generated from the registry
+        run: |
+          python3 scripts/mobile-parity/gen_route_table.py
+          git diff --exit-code -- apps/glam_mobile/lib/shell/route_table.dart
+      - name: Analyze
+        run: python3 scripts/flutter/run_command.py artifacts/parity/analyze.txt bash -c 'cd apps/glam_mobile && flutter analyze --no-fatal-infos'
+      - name: Unit, widget, navigation and state tests (isolated; not native evidence)
+        run: python3 scripts/flutter/run_command.py artifacts/parity/tests.txt bash -c 'cd apps/glam_mobile && flutter test --no-pub'
+      - uses: actions/upload-artifact@v7
+        with:
+          name: parity-b1-native-inputs
+          path: |
+            apps/glam_mobile/pubspec.lock
+            apps/glam_mobile/android
+            apps/glam_mobile/ios
+          include-hidden-files: true
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: parity-b1-source-checks
+          path: artifacts/parity
+  reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Install Playwright (reference renderer only)
+        run: |
+          npm install --prefix "$RUNNER_TEMP/pw" playwright@1.63.0
+          "$RUNNER_TEMP/pw/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Verify the committed design reference hashes
+        working-directory: docs/mobile-parity/reference
+        run: grep '\.html$' SHA256SUMS | sha256sum -c -
+      - name: Render the design atlas reference at 2x
+        run: NODE_PATH="$RUNNER_TEMP/pw/node_modules" node scripts/mobile-parity/render_reference.js docs/mobile-parity/reference/GLAM_All_Screens_Standalone.html apps/glam_mobile/assets/fonts artifacts/parity/reference
+      - uses: actions/upload-artifact@v7
+        with:
+          name: parity-b1-reference
+          path: artifacts/parity/reference
+  android:
+    needs: source
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          flutter-version: '3.47.9'
+          channel: stable
+          cache: true
+      - uses: actions/download-artifact@v8
+        with:
+          name: parity-b1-native-inputs
+          path: apps/glam_mobile
+      - run: flutter pub get --enforce-lockfile
+        working-directory: apps/glam_mobile
+      - run: bash scripts/analyze-restart/install-maestro.sh
+        env:
+          RUNNER_TEMP: ${{ runner.temp }}
+      - name: Compile actual native Android application
+        run: python3 scripts/flutter/run_command.py artifacts/parity/android/build.txt bash -c 'cd apps/glam_mobile && flutter build apk --debug --target-platform=android-x64 --no-pub'
+      - name: Retain emulator APK and checksum
+        run: |
+          mkdir -p artifacts/parity/android
+          cp apps/glam_mobile/build/app/outputs/flutter-apk/app-debug.apk artifacts/parity/android/glam-parity-b1-x64-emulator.apk
+          shasum -a 256 artifacts/parity/android/glam-parity-b1-x64-emulator.apk > artifacts/parity/android/SHA256SUMS
+      - name: Enable emulator KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Actual Android captures (dark and light) and interactions
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
+          script: python3 scripts/flutter/run_command.py artifacts/parity/android/native.txt bash scripts/mobile-parity/capture.sh android
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: parity-b1-android
+          path: artifacts/parity/android
+  ios:
+    needs: source
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          flutter-version: '3.47.9'
+          channel: stable
+          cache: true
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: actions/download-artifact@v8
+        with:
+          name: parity-b1-native-inputs
+          path: apps/glam_mobile
+      - run: flutter pub get --enforce-lockfile
+        working-directory: apps/glam_mobile
+      - run: bash scripts/analyze-restart/install-maestro.sh
+        env:
+          RUNNER_TEMP: ${{ runner.temp }}
+      - name: Compile actual iOS native application
+        run: python3 scripts/flutter/run_command.py artifacts/parity/ios/build.txt bash -c 'cd apps/glam_mobile && flutter build ios --simulator --debug --no-codesign --no-pub'
+      - name: Retain simulator application
+        run: |
+          mkdir -p artifacts/parity/ios
+          ditto -c -k --sequesterRsrc --keepParent apps/glam_mobile/build/ios/iphonesimulator/Runner.app artifacts/parity/ios/glam-parity-b1-simulator.zip
+          shasum -a 256 artifacts/parity/ios/glam-parity-b1-simulator.zip > artifacts/parity/ios/SHA256SUMS
+      - name: Boot actual iPhone simulator
+        run: |
+          xcrun simctl list devices available --json > artifacts/parity/ios/simulators.json
+          device=$(jq -r '[.devices[][] | select(.isAvailable and (.name | startswith("iPhone")) and (.name | contains("Pro") | not) and (.name | contains("Plus") | not) and (.name | contains("Max") | not))][0].udid' artifacts/parity/ios/simulators.json)
+          test "$device" != null
+          echo "$device" > artifacts/parity/ios/device-id.txt
+          state=$(jq -r --arg id "$device" '.devices[][] | select(.udid == $id) | .state' artifacts/parity/ios/simulators.json)
+          if [ "$state" != Booted ]; then xcrun simctl boot "$device"; fi
+          xcrun simctl bootstatus "$device" -b
+      - name: Actual iOS captures (dark and light) and interactions
+        run: python3 scripts/flutter/run_command.py artifacts/parity/ios/native.txt bash scripts/mobile-parity/capture.sh ios
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: parity-b1-ios
+          path: artifacts/parity/ios
+  compare:
+    needs: [reference, android, ios]
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/download-artifact@v8
+        with:
+          name: parity-b1-reference
+          path: artifacts/parity/reference
+      - uses: actions/download-artifact@v8
+        continue-on-error: true
+        with:
+          name: parity-b1-android
+          path: artifacts/parity/android
+      - uses: actions/download-artifact@v8
+        continue-on-error: true
+        with:
+          name: parity-b1-ios
+          path: artifacts/parity/ios
+      - run: python3 -m pip install numpy pillow
+      - name: Compare every actual native screenshot with its design reference
+        run: |
+          mkdir -p artifacts/parity/comparison
+          for shot in artifacts/parity/android/screenshots/*.png artifacts/parity/ios/screenshots/*.png; do
+            [ -f "$shot" ] || continue
+            base=$(basename "$shot" .png); platform=${base%%-*}; rest=${base#*-}; theme=${rest%%-*}; id=${rest#*-}
+            python3 scripts/mobile-parity/compare.py --ref "artifacts/parity/reference/${id}_${theme}_${platform}.png" --native "$shot" --out artifacts/parity/comparison --id "$id" --theme "$theme" --platform "$platform" --ref-crop 14,14,794,1702
+          done
+          python3 scripts/mobile-parity/summarize.py artifacts/parity/comparison | tee -a "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: parity-b1-comparison
+          path: artifacts/parity/comparison

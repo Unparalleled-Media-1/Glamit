@@ -1,0 +1,81 @@
+# Actual-OS navigation and interaction checks for the five Batch 1 tabs.
+# Unbuilt destinations must open their honest pending screen carrying the design ID.
+appId: com.glambeauty.analyzereview
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: home-analyze
+    timeout: 45000
+# Home
+- tapOn:
+    id: home-try
+- assertVisible:
+    id: studio-choose
+- tapOn:
+    id: tab-home
+- tapOn:
+    id: home-analyze
+- assertVisible:
+    id: analyze-start
+# Analyze -> GL-018 (pending) and back
+- tapOn:
+    id: analyze-start
+- assertVisible: 'GL-018.*'
+- assertVisible: '.*not built in the native app yet.*'
+- tapOn:
+    id: pending-back
+- assertVisible:
+    id: analyze-start
+# Studio controls
+- tapOn:
+    id: tab-studio
+- tapOn:
+    id: studio-makeup
+- assertVisible: 'GL-037.*'
+- tapOn:
+    id: pending-back
+- tapOn:
+    id: studio-hair
+- assertVisible: 'GL-044.*'
+- tapOn:
+    id: pending-back
+- tapOn:
+    id: studio-ai-look
+- assertVisible: 'GL-047.*'
+- tapOn:
+    id: pending-back
+- tapOn:
+    id: studio-choose
+- assertVisible: 'GL-036.*'
+- tapOn:
+    id: pending-back
+- assertVisible:
+    id: studio-choose
+# Discover
+- tapOn:
+    id: tab-discover
+- tapOn:
+    id: discover-follow
+- assertVisible: 'Following ✓'
+- tapOn:
+    id: discover-search
+- assertVisible: 'GL-070.*'
+- tapOn:
+    id: pending-back
+- assertVisible:
+    id: discover-follow
+# Profile
+- tapOn:
+    id: tab-profile
+- tapOn: 'Analysis history'
+- assertVisible: 'GL-121.*'
+- tapOn:
+    id: pending-back
+- assertVisible:
+    id: profile-roles
+# Tab state is kept: Discover still shows the toggled Follow state.
+- tapOn:
+    id: tab-discover
+- assertVisible: 'Following ✓'
