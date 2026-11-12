@@ -15,6 +15,10 @@ if [ "$platform" = android ]; then
   adb shell wm size 1080x2337
   adb shell wm size > "$out/display.txt"; adb shell wm density >> "$out/display.txt"
   adb shell settings put global hide_error_dialogs 1 || true
+  # Gesture navigation (as in the design's home-indicator frame): the app is edge-to-edge, so the
+  # screenshot has the design's aspect and no 3-button bar inside it.
+  adb shell cmd overlay enable com.android.internal.systemui.navbar.gestural || true
+  sleep 5
   settle() { adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS > /dev/null 2>&1 || true; sleep 2; }
   set_theme() { adb shell cmd uimode night "$([ "$1" = dark ] && echo yes || echo no)"; sleep 4; }
   trap 'adb shell wm size reset || true' EXIT

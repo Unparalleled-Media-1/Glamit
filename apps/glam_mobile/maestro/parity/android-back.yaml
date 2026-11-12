@@ -7,21 +7,24 @@ appId: com.glambeauty.analyzereview
     visible:
       id: home-analyze
     timeout: 45000
-- extendedWaitUntil:
-    visible:
-      id: tab-studio
-    timeout: 20000
-- tapOn:
-    id: tab-studio
-- extendedWaitUntil:
-    visible:
-      id: studio-choose
-    timeout: 20000
-- tapOn:
-    id: studio-choose
-- extendedWaitUntil:
-    visible: 'GL-036.*'
-    timeout: 20000
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: tab-studio
+      - extendedWaitUntil:
+          visible:
+            id: studio-choose
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: studio-choose
+      - extendedWaitUntil:
+          visible: 'GL-036.*'
+          timeout: 8000
 - back
 - extendedWaitUntil:
     visible:

@@ -1,5 +1,6 @@
 # Actual-OS navigation and interaction checks for the five Batch 1 tabs.
-# Every step waits (20s) for its target: software-GPU emulators render the first photo screens slowly.
+# The first tap after a cold start can be lost on a slow software-GPU emulator, so every navigation
+# is a tap+expected-target pair retried up to 3 times (navigation taps are idempotent).
 # Unbuilt destinations must open their honest pending screen carrying the design ID.
 appId: com.glambeauty.analyzereview
 ---
@@ -9,200 +10,197 @@ appId: com.glambeauty.analyzereview
     visible:
       id: home-analyze
     timeout: 45000
-- extendedWaitUntil:
-    visible:
-      id: home-try
-    timeout: 20000
-- tapOn:
-    id: home-try
-- extendedWaitUntil:
-    visible:
-      id: studio-choose
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: tab-home
-    timeout: 20000
-- tapOn:
-    id: tab-home
-- extendedWaitUntil:
-    visible:
-      id: home-analyze
-    timeout: 20000
-- tapOn:
-    id: home-analyze
-- extendedWaitUntil:
-    visible:
-      id: analyze-start
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: analyze-start
-    timeout: 20000
-- tapOn:
-    id: analyze-start
-- extendedWaitUntil:
-    visible: 'GL-018.*'
-    timeout: 20000
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: home-try
+      - extendedWaitUntil:
+          visible:
+            id: studio-choose
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: tab-home
+      - extendedWaitUntil:
+          visible:
+            id: home-analyze
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: home-analyze
+      - extendedWaitUntil:
+          visible:
+            id: analyze-start
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: analyze-start
+      - extendedWaitUntil:
+          visible: 'GL-018.*'
+          timeout: 8000
 - extendedWaitUntil:
     visible: '.*not built in the native app yet.*'
     timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: pending-back
-    timeout: 20000
-- tapOn:
-    id: pending-back
-- extendedWaitUntil:
-    visible:
-      id: analyze-start
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: tab-studio
-    timeout: 20000
-- tapOn:
-    id: tab-studio
-- extendedWaitUntil:
-    visible:
-      id: studio-makeup
-    timeout: 20000
-- tapOn:
-    id: studio-makeup
-- extendedWaitUntil:
-    visible: 'GL-037.*'
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: pending-back
-    timeout: 20000
-- tapOn:
-    id: pending-back
-- extendedWaitUntil:
-    visible:
-      id: studio-makeup
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: studio-hair
-    timeout: 20000
-- tapOn:
-    id: studio-hair
-- extendedWaitUntil:
-    visible: 'GL-044.*'
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: pending-back
-    timeout: 20000
-- tapOn:
-    id: pending-back
-- extendedWaitUntil:
-    visible:
-      id: studio-hair
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: studio-ai-look
-    timeout: 20000
-- tapOn:
-    id: studio-ai-look
-- extendedWaitUntil:
-    visible: 'GL-047.*'
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: pending-back
-    timeout: 20000
-- tapOn:
-    id: pending-back
-- extendedWaitUntil:
-    visible:
-      id: studio-ai-look
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: studio-choose
-    timeout: 20000
-- tapOn:
-    id: studio-choose
-- extendedWaitUntil:
-    visible: 'GL-036.*'
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: pending-back
-    timeout: 20000
-- tapOn:
-    id: pending-back
-- extendedWaitUntil:
-    visible:
-      id: studio-choose
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: tab-discover
-    timeout: 20000
-- tapOn:
-    id: tab-discover
-- extendedWaitUntil:
-    visible:
-      id: discover-follow
-    timeout: 20000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: pending-back
+      - extendedWaitUntil:
+          visible:
+            id: analyze-start
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: tab-studio
+      - extendedWaitUntil:
+          visible:
+            id: studio-choose
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: studio-makeup
+      - extendedWaitUntil:
+          visible: 'GL-037.*'
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: pending-back
+      - extendedWaitUntil:
+          visible:
+            id: studio-makeup
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: studio-hair
+      - extendedWaitUntil:
+          visible: 'GL-044.*'
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: pending-back
+      - extendedWaitUntil:
+          visible:
+            id: studio-hair
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: studio-ai-look
+      - extendedWaitUntil:
+          visible: 'GL-047.*'
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: pending-back
+      - extendedWaitUntil:
+          visible:
+            id: studio-ai-look
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: studio-choose
+      - extendedWaitUntil:
+          visible: 'GL-036.*'
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: pending-back
+      - extendedWaitUntil:
+          visible:
+            id: studio-choose
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: tab-discover
+      - extendedWaitUntil:
+          visible:
+            id: discover-follow
+          timeout: 8000
 - tapOn:
     id: discover-follow
 - extendedWaitUntil:
     visible: 'Following ✓'
     timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: discover-search
-    timeout: 20000
-- tapOn:
-    id: discover-search
-- extendedWaitUntil:
-    visible: 'GL-070.*'
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: pending-back
-    timeout: 20000
-- tapOn:
-    id: pending-back
-- extendedWaitUntil:
-    visible:
-      id: discover-follow
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: tab-profile
-    timeout: 20000
-- tapOn:
-    id: tab-profile
-- extendedWaitUntil:
-    visible: 'Analysis history'
-    timeout: 20000
-- tapOn: 'Analysis history'
-- extendedWaitUntil:
-    visible: 'GL-121.*'
-    timeout: 20000
-- extendedWaitUntil:
-    visible:
-      id: pending-back
-    timeout: 20000
-- tapOn:
-    id: pending-back
-- extendedWaitUntil:
-    visible:
-      id: profile-roles
-    timeout: 20000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: discover-search
+      - extendedWaitUntil:
+          visible: 'GL-070.*'
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: pending-back
+      - extendedWaitUntil:
+          visible:
+            id: discover-follow
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: tab-profile
+      - extendedWaitUntil:
+          visible:
+            id: profile-roles
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn: 'Analysis history'
+      - extendedWaitUntil:
+          visible: 'GL-121.*'
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: pending-back
+      - extendedWaitUntil:
+          visible:
+            id: profile-roles
+          timeout: 8000
 # Tab state is kept: Discover still shows the toggled Follow state.
-- extendedWaitUntil:
-    visible:
-      id: tab-discover
-    timeout: 20000
-- tapOn:
-    id: tab-discover
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: tab-discover
+      - extendedWaitUntil:
+          visible:
+            id: discover-follow
+          timeout: 8000
 - extendedWaitUntil:
     visible: 'Following ✓'
     timeout: 20000
