@@ -33,6 +33,8 @@ jobs:
       - name: Resolve dependencies strictly from the committed pubspec.lock
         working-directory: apps/glam_mobile
         run: |
+          # `flutter create` (bootstrap) overwrites pubspec.lock with a template lock; restore the committed one.
+          git checkout -- pubspec.lock
           flutter pub get --enforce-lockfile
           dart run flutter_launcher_icons
           git diff --exit-code -- pubspec.lock
