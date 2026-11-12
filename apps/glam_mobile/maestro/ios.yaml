@@ -15,6 +15,10 @@ appId: com.glambeauty.analyzereview
 - tapOn: 'Analyze'
 - takeScreenshot: 00-tab-analyze
 - tapOn: 'Start analysis'
+- takeScreenshot: 00-gl018-choose-analysis
+- tapOn: 'Continue'
+- takeScreenshot: 00-gl019-before-you-start
+- tapOn: 'Open camera'
 - assertVisible: 'Analyze'
 - takeScreenshot: 01-camera-entry
 - tapOn:

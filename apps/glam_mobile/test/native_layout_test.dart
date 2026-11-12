@@ -12,11 +12,11 @@ void main() {
         addTearDown(tester.view.resetPhysicalSize);addTearDown(tester.view.resetDevicePixelRatio);addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
         await tester.pumpWidget(const AnalyzeApp());await tester.pumpAndSettle();
         await tester.tap(find.text('Analyze').last);await tester.pumpAndSettle();
-        await tester.tap(find.text('Start analysis'));await tester.pumpAndSettle();
+        await tester.tap(find.text('History'));for(var i=0;i<6;i++){await tester.pump(const Duration(milliseconds:200));}
         expect(find.byKey(const ValueKey('native-shutter')),findsOneWidget);
         expect(tester.getRect(find.byKey(const ValueKey('native-shutter'))).bottom,lessThan(size.height));
         expect(find.byType(NavigationBar),findsNothing);
-        await tester.tap(find.byTooltip('Account'));await tester.pumpAndSettle();
+        await tester.tap(find.bySemanticsLabel('Account'));await tester.pumpAndSettle();
         expect(find.text('Sign-in is unavailable in this build. Your photo has not been uploaded.'),findsOneWidget);
         expect(tester.takeException(),isNull);
         await tester.pumpWidget(const SizedBox());await tester.pumpAndSettle();

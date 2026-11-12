@@ -69,7 +69,7 @@ class GlassPill extends StatelessWidget {
       child: ConstrainedBox(constraints: const BoxConstraints(minHeight: 44), child: glassBlur(radius: r, child: ColoredBox(color: t.glass, child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14), child: Row(mainAxisSize: center ? MainAxisSize.max : MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center, children: [if (leading != null) ...[leading!, const SizedBox(width: 6)],
-            Flexible(child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis, style: GlamType.body(13, color: t.onGlass)))])))))));
+            Flexible(child: MediaQuery.withClampedTextScaling(maxScaleFactor: 1.3, child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis, style: GlamType.body(13, color: t.onGlass))))])))))));
   }
 }
 
@@ -126,8 +126,8 @@ class GlamCard extends StatelessWidget {
 
 /// `.row`: icon circle, title/subtitle, chevron.
 class GlamRow extends StatelessWidget {
-  const GlamRow({super.key, required this.glyph, required this.title, this.subtitle, this.onTap, this.last = false});
-  final String glyph, title; final String? subtitle; final VoidCallback? onTap; final bool last;
+  const GlamRow({super.key, required this.glyph, required this.title, this.subtitle, this.onTap, this.last = false, this.chevron = true});
+  final String glyph, title; final String? subtitle; final VoidCallback? onTap; final bool last, chevron;
   @override Widget build(BuildContext context) {
     final t = GlamTokens.of(context);
     return Semantics(button: onTap != null, child: GestureDetector(behavior: HitTestBehavior.opaque, onTap: onTap == null ? null : () => _tap(onTap!),
@@ -140,7 +140,7 @@ class GlamRow extends StatelessWidget {
             Text(title, style: GlamType.body(15, w: FontWeight.w600, color: t.tx)),
             if (subtitle != null) Text(subtitle!, style: GlamType.body(12, color: t.tx2)),
           ])),
-          Text('›', style: GlamType.body(20, color: t.tx2)),
+          if (chevron) Text('›', style: GlamType.body(20, color: t.tx2)),
         ]))));
   }
 }
@@ -188,5 +188,69 @@ class GlamTabBar extends StatelessWidget {
     return Positioned(left: 16, right: 16, bottom: inset > 18 ? inset - 16 : 18, child: glassBlur(sigma: 22, radius: BorderRadius.circular(33), child: Container(height: 66, padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(color: t.isDark ? t.glass : const Color(0xd9ffffff), borderRadius: BorderRadius.circular(33),
         border: Border.all(color: t.isDark ? const Color(0x14ffffff) : t.ln)), child: bar)));
+  }
+}
+
+/// `.tray`: bottom sheet surface (30px top radius, grab handle). Place inside a Stack.
+class GlamTray extends StatelessWidget {
+  const GlamTray({super.key, required this.child, this.top, this.maxHeightFraction});
+  final Widget child; final double? top, maxHeightFraction;
+  @override Widget build(BuildContext context) {
+    final t = GlamTokens.of(context), inset = MediaQuery.paddingOf(context).bottom;
+    final body = Container(width: double.infinity, padding: EdgeInsets.fromLTRB(22, 10, 22, inset > 34 ? inset : 34),
+      decoration: BoxDecoration(color: t.sf, borderRadius: BorderRadius.vertical(top: Radius.circular(isAndroid(context) ? 28 : 30)),
+        boxShadow: const [BoxShadow(color: Color(0x59000000), blurRadius: 40, offset: Offset(0, -10))]),
+      child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Center(child: Container(width: 40, height: 4, margin: const EdgeInsets.only(bottom: 14), decoration: BoxDecoration(color: t.ln, borderRadius: BorderRadius.circular(2)))),
+        if (top != null) Flexible(child: child) else child]));
+    return top != null ? Positioned(left: 0, right: 0, top: top, bottom: 0, child: body) : Positioned(left: 0, right: 0, bottom: 0, child: body);
+  }
+}
+
+/// `.sw`: 51×31 toggle (52×32 on Android).
+class GlamSwitch extends StatelessWidget {
+  const GlamSwitch({super.key, required this.on, required this.onChanged, required this.label});
+  final bool on; final ValueChanged<bool>? onChanged; final String label;
+  @override Widget build(BuildContext context) {
+    final t = GlamTokens.of(context);
+    return Semantics(toggled: on, label: label, enabled: onChanged != null, child: GestureDetector(behavior: HitTestBehavior.opaque,
+      onTap: onChanged == null ? null : () => _tap(() => onChanged!(!on)),
+      child: SizedBox(width: 51, height: 44, child: Center(child: AnimatedContainer(duration: const Duration(milliseconds: 160), width: 51, height: 31,
+        decoration: BoxDecoration(color: on ? t.ac2 : t.ln, borderRadius: BorderRadius.circular(16)),
+        child: AnimatedAlign(duration: const Duration(milliseconds: 160), alignment: on ? Alignment.centerRight : Alignment.centerLeft,
+          child: Padding(padding: const EdgeInsets.all(2), child: Container(width: 27, height: 27, decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle)))))))));
+  }
+}
+
+/// `.oval`: 250×340 face guide centred 40px above the viewport centre. Place inside a Stack.
+class OvalGuide extends StatelessWidget {
+  const OvalGuide({super.key, this.opacity = 1, this.dy = -40});
+  final double opacity, dy;
+  @override Widget build(BuildContext context) => IgnorePointer(child: Align(alignment: Alignment.center, child: Transform.translate(offset: Offset(0, dy), child: Opacity(opacity: opacity,
+    child: Container(width: 250, height: 340, decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: const Color(0xe6fff4f0), width: 2)))))));
+}
+
+/// `.scan`: sweeping line used while analysis runs.
+class ScanLine extends StatefulWidget { const ScanLine({super.key}); @override State<ScanLine> createState() => _ScanLineState(); }
+class _ScanLineState extends State<ScanLine> with SingleTickerProviderStateMixin {
+  late final AnimationController c = AnimationController(vsync: this, duration: const Duration(milliseconds: 2200))..repeat(reverse: true);
+  @override void dispose() { c.dispose(); super.dispose(); }
+  @override Widget build(BuildContext context) {
+    final t = GlamTokens.of(context);
+    return IgnorePointer(child: LayoutBuilder(builder: (context, box) => AnimatedBuilder(animation: c, builder: (_, _) => Stack(children: [
+      Positioned(left: 0, right: 0, top: box.maxHeight * (.18 + .54 * Curves.easeInOut.transform(c.value)), child: Container(height: 3,
+        decoration: BoxDecoration(color: t.ac, boxShadow: [BoxShadow(color: t.ac, blurRadius: 24, spreadRadius: 6)])))]))));
+  }
+}
+
+/// Plain-screen top bar (`.top` with back button + centred 18px display title).
+class GlamTopBar extends StatelessWidget {
+  const GlamTopBar({super.key, required this.title, this.onBack, this.onGlass = false});
+  final String title; final VoidCallback? onBack; final bool onGlass;
+  @override Widget build(BuildContext context) {
+    final t = GlamTokens.of(context);
+    return Positioned(top: MediaQuery.paddingOf(context).top + 6, left: 14, right: 14, child: Row(children: [
+      onBack == null ? const SizedBox(width: 44) : GlassCircle(glyph: isAndroid(context) ? '←' : '‹', label: 'Back', onTap: onBack),
+      Expanded(child: Text(title, textAlign: TextAlign.center, style: GlamType.display(18, color: onGlass ? kHeroText : t.tx))), const SizedBox(width: 44)]));
   }
 }

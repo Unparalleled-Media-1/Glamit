@@ -1,12 +1,12 @@
 design_id,module,title,flutter_status (apps/glam_mobile),primary_action,destinations,backend_note
 home,Consumer tabs,Home,Batch 1 · built,Analyze my face → GL-017,"GL-017, GL-035, GL-126, GL-197","Profile, credits balance, recommendations feed"
 GL-017,Analyze journey,Analyze landing,Batch 1 · built,Start analysis → GL-018,"GL-018, GL-033",Account; last analysis summary (optional)
-GL-018,Analyze journey,Choose analysis,Existing private flow (design parity pending),Continue → GL-019,GL-019,None (local choice)
-GL-019,Analyze journey,Camera preparation,Existing private flow (design parity pending),Open camera → GL-020,"GL-020, GL-021",Camera permission (OS)
-GL-020,Analyze journey,Camera viewfinder,Existing private flow (design parity pending),Shutter → GL-023,"GL-021, GL-023","Camera, device storage"
-GL-023,Analyze journey,Image quality check,Existing private flow (design parity pending),Use this photo → GL-024,"GL-024, GL-020",On-device image validation
-GL-024,Analyze journey,Analysis consent,Existing private flow (design parity pending),Analyze now → GL-025,GL-025,"Consent record, age/guardian check"
-GL-025,Analyze journey,AI processing,Existing private flow (design parity pending),Auto → GL-026,GL-026,"Analysis job (lease/poll), retry & cancel"
+GL-018,Analyze journey,Choose analysis,Batch 2 · built (only Face selectable; Skin/Hair/Combined shown as not available),Continue → GL-019,GL-019,None (local choice)
+GL-019,Analyze journey,Camera preparation,Batch 2 · built,Open camera → GL-020,"GL-020, GL-021",Camera permission (OS)
+GL-020,Analyze journey,Camera viewfinder,Batch 2 · restyled onto the real camera,Shutter → GL-023,"GL-021, GL-023","Camera, device storage"
+GL-023,Analyze journey,Image quality check,Batch 2 · restyled; fake quality checks replaced by honest status,Use this photo → GL-024,"GL-024, GL-020",On-device image validation
+GL-024,Analyze journey,Analysis consent,Batch 2 · restyled onto the real consent flow,Analyze now → GL-025,GL-025,"Consent record, age/guardian check"
+GL-025,Analyze journey,AI processing,Batch 2 · restyled onto the real processing/recovery states,Auto → GL-026,GL-026,"Analysis job (lease/poll), retry & cancel"
 GL-026,Analyze journey,Analysis overview,Existing private flow (design parity pending),See makeup picks → GL-030,"GL-027–031, GL-034, GL-037","Analysis result, confidence, corrections"
 GL-027,Analyze journey,Face shape & features,Pending,Makeup for my features → GL-030,GL-030,"Landmark overlay data, corrections"
 GL-028,Analyze journey,Skin appearance,Pending,Build my routine → GL-032,GL-032,"Skin appearance result, disclaimer copy"

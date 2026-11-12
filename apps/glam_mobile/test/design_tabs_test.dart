@@ -6,6 +6,7 @@ import 'package:glam_mobile/main.dart';
 import 'package:glam_mobile/screens/screen_registry.dart';
 
 void main() {
+  analyzeIntroTests();
   test('Registry carries all 232 reference screens plus the design-system board', () {
     expect(kScreenRegistry.length, 233);
     for (final id in ['home', 'GL-017', 'GL-035', 'GL-069', 'GL-117', 'GL-209', 'GL-212', 'DS']) { expect(kScreenRegistry.containsKey(id), isTrue, reason: id); }
@@ -41,5 +42,21 @@ void main() {
   });
   test('Dark tokens match theme.css', () {
     expect(GlamTokens.dark.bg, const Color(0xff0f0e10)); expect(GlamTokens.dark.ac, const Color(0xfff6c6d8)); expect(GlamTokens.light.ac2, const Color(0xff8f3157));
+  });
+}
+
+void analyzeIntroTests() {
+  testWidgets('GL-018 offers only the server-supported face mode and GL-019 reaches the camera', (tester) async {
+    await tester.pumpWidget(const AnalyzeApp()); await tester.pumpAndSettle();
+    await tester.tap(find.text('Analyze').last); await tester.pumpAndSettle();
+    await tester.tap(find.text('Start analysis')); await tester.pumpAndSettle();
+    expect(find.text('What shall we\nlook at?'), findsOneWidget);
+    expect(find.text('Not available yet'), findsNWidgets(3)); // Skin, Hair, Combined are not simulated
+    await tester.tap(find.text('Continue')); await tester.pumpAndSettle();
+    expect(find.text('Three things for\na great read.'), findsOneWidget);
+    expect(find.text('Choose from gallery'), findsOneWidget);
+    await tester.tap(find.text('Open camera')); for (var i = 0; i < 6; i++) { await tester.pump(const Duration(milliseconds: 200)); }
+    expect(find.byKey(const ValueKey('native-shutter')), findsOneWidget);
+    expect(find.bySemanticsLabel('Photo library'), findsOneWidget);
   });
 }

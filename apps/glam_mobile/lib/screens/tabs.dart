@@ -10,6 +10,9 @@ typedef GoTo = void Function(String id);
 Widget overlay(bool lightIcons, Widget child) => AnnotatedRegion<SystemUiOverlayStyle>(
   value: lightIcons ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark, child: child);
 
+/// Fixed-canvas photo screens cannot scroll without breaking the design, so display text is capped at 1.3x (system scale still applies up to that).
+Widget fixedCanvas(Widget child) => Builder(builder: (c) => MediaQuery.withClampedTextScaling(maxScaleFactor: 1.3, child: child));
+
 double topInset(BuildContext c) => MediaQuery.paddingOf(c).top + 6; // design: `.top{top:50px}` under a 44px status bar.
 
 /// `.top` row.
@@ -23,7 +26,7 @@ class TopRow extends StatelessWidget {
 class TabTitle extends StatelessWidget {
   const TabTitle(this.text, {super.key});
   final String text;
-  @override Widget build(BuildContext context) => Expanded(child: Text(text.toUpperCase(), style: GlamType.body(16, w: FontWeight.w700, spacing: 2, color: kHeroText)));
+  @override Widget build(BuildContext context) => Expanded(child: Text(text.toUpperCase(), maxLines: 1, overflow: TextOverflow.ellipsis, style: GlamType.body(16, w: FontWeight.w700, spacing: 2, color: kHeroText)));
 }
 
 const _creditsLabel = '✧ Credits'; // design shows "12 credits" sample data; balances come from the account (not connected in Batch 1).
@@ -76,7 +79,7 @@ class _HomeTabState extends State<HomeTab> {
 class AnalyzeTab extends StatelessWidget {
   const AnalyzeTab({super.key, required this.go, required this.onStart, required this.onHistory});
   final GoTo go; final VoidCallback onStart, onHistory;
-  @override Widget build(BuildContext context) => overlay(true, Stack(fit: StackFit.expand, children: [
+  @override Widget build(BuildContext context) => fixedCanvas(overlay(true, Stack(fit: StackFit.expand, children: [
     const SpritePhoto(n: 2), const Scrim(fraction: .6),
     Align(alignment: Alignment.center, child: Transform.translate(offset: const Offset(0, -80), child: Opacity(opacity: .7, child: Container(width: 250, height: 340,
       decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: const Color(0xe6fff4f0), width: 2)))))),
@@ -88,14 +91,14 @@ class AnalyzeTab extends StatelessWidget {
       PillButton('Start analysis', onTap: onStart),
       SizedBox(width: double.infinity, child: Text('Editorial image · your photo stays private', textAlign: TextAlign.center, style: GlamType.body(12, height: 18, color: const Color(0xffd9c9d2)))),
     ])),
-  ]));
+  ])));
 }
 
 // ───────────────────────── Studio landing (GL-035) ─────────────────────────
 class StudioTab extends StatelessWidget {
   const StudioTab({super.key, required this.go});
   final GoTo go;
-  @override Widget build(BuildContext context) => overlay(true, Stack(fit: StackFit.expand, children: [
+  @override Widget build(BuildContext context) => fixedCanvas(overlay(true, Stack(fit: StackFit.expand, children: [
     const SpritePhoto(n: 1), const Scrim(fraction: .65),
     TopRow(children: [const TabTitle('Studio'), GlassPill(label: _creditsLabel, onTap: () => go('GL-126'))]),
     Positioned(left: 22, right: 22, bottom: 112, child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -106,7 +109,7 @@ class StudioTab extends StatelessWidget {
           Expanded(child: SizedBox(height: 48, child: GlassPill(label: e.$1, center: true, onTap: () => go(e.$2))))]])),
       PillButton('Choose a photo', onTap: () => go('GL-036')),
     ])),
-  ]));
+  ])));
 }
 
 // ───────────────────────── Discover (GL-069) ─────────────────────────
@@ -119,7 +122,7 @@ class _DiscoverTabState extends State<DiscoverTab> {
   String filter = 'For you'; bool saved = false, following = false;
   @override Widget build(BuildContext context) {
     final t = GlamTokens.of(context), go = widget.go;
-    return overlay(true, Stack(fit: StackFit.expand, children: [
+    return fixedCanvas(overlay(true, Stack(fit: StackFit.expand, children: [
       const SpritePhoto(n: 1), const Scrim(fraction: .55),
       TopRow(children: [Expanded(child: GlassPill(label: '⌕ Search looks, creators…', height: 44, onTap: () => go('GL-070'))), GlassCircle(glyph: '♢', label: 'Notifications', onTap: () => go('GL-197'))]),
       Positioned(top: MediaQuery.paddingOf(context).top + 60, left: 0, right: 0, child: ChipRow(glass: true, items: const ['For you', 'Trending', 'Following', 'Tutorials'], value: filter,
@@ -137,7 +140,7 @@ class _DiscoverTabState extends State<DiscoverTab> {
         Text('Rose after hours', style: GlamType.display(26, height: 29, spacing: -.5, color: kHeroText)),
         Padding(padding: const EdgeInsets.only(top: 4), child: Text('Soft rose lids, berry lip · Illustrative creator content', style: GlamType.body(12, height: 18, color: const Color(0xffd9c9d2)))),
       ])),
-    ]));
+    ])));
   }
 }
 

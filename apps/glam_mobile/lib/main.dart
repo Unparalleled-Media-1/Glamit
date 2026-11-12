@@ -13,6 +13,9 @@ import 'core/session.dart';
 import 'core/transport.dart';
 import 'presentation/camera_surface.dart';
 import 'presentation/design.dart';
+import 'design/tokens.dart';
+import 'design/widgets.dart';
+import 'screens/analyze_intro.dart';
 import 'screens/tabs.dart';
 
 void main() { WidgetsFlutterBinding.ensureInitialized(); runApp(const AnalyzeApp()); }
@@ -50,15 +53,22 @@ class _AnalyzeAppState extends State<AnalyzeApp> with WidgetsBindingObserver {
   @override Widget build(BuildContext context) => MaterialApp(navigatorKey: navigator, title: 'GLAM Beauty',
     debugShowCheckedModeBanner: false, theme: MobileDesign.theme(), darkTheme: MobileDesign.theme(), themeMode: ThemeMode.dark,
     home: GlamShell(openAnalyze: ({required bool history}) {
-      navigator.currentState?.push(MobileDesign.route(navigator.currentState!.context, AnalyzeJourney(controller: controller)));
-      if (history && controller.session.authenticated) controller.loadHistory();
+      final nav = navigator.currentState!;
+      void journey(CaptureStart how) {
+        nav.push(MobileDesign.route(nav.context, AnalyzeJourney(controller: controller, start: how)));
+        if (history && controller.session.authenticated) controller.loadHistory();
+      }
+      if (history) { journey(CaptureStart.idle); return; }
+      nav.push(MobileDesign.route(nav.context, ChooseAnalysisScreen(onContinue: () =>
+        nav.push(MobileDesign.route(nav.context, PrepareScreen(onStart: journey))))));
     }), builder: (context, child) => Stack(children: [
       child!, if (obscured) const Positioned.fill(child: ColoredBox(color: MobileDesign.background)),
     ]));
 }
 class AnalyzeJourney extends StatefulWidget {
-  const AnalyzeJourney({super.key, required this.controller});
+  const AnalyzeJourney({super.key, required this.controller, this.start = CaptureStart.idle});
   final AnalyzeController controller;
+  final CaptureStart start;
   @override State<AnalyzeJourney> createState() => _AnalyzeJourneyState();
 }
 class _AnalyzeJourneyState extends State<AnalyzeJourney> {
@@ -103,7 +113,7 @@ class _AnalyzeJourneyState extends State<AnalyzeJourney> {
         case 'history': content = AnalysisHistory(controller:controller);
         default: content = _status(context);
       }
-      final camera = CameraSurface(onPhoto: controller.select, onAccount: () => _account(context),
+      final camera = CameraSurface(start: widget.start, onClose: () { controller.backToCapture(); Navigator.of(context, rootNavigator: true).maybePop(); }, onPhoto: controller.select, onAccount: () => _account(context),
         onSaved: () async {
           if (!controller.session.authenticated) await _account(context);
           if (context.mounted && controller.session.authenticated) await controller.loadHistory();
@@ -135,23 +145,27 @@ class _AnalyzeJourneyState extends State<AnalyzeJourney> {
       'processing' => 'You can reopen this request from your account after returning.',
       _ => 'Results appear only after the server confirms completion.',
     };
-    final controls = SafeArea(child: Center(child: SingleChildScrollView(padding: const EdgeInsets.all(28), child: Column(mainAxisSize: MainAxisSize.min, children: [
-      if (controller.busy || phase == 'processing') const Padding(padding: EdgeInsets.only(bottom: 24), child: CircularProgressIndicator()),
-      Text(title, textAlign: TextAlign.center, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w600)),
-      const SizedBox(height: 16), Text(body, textAlign: TextAlign.center), const SizedBox(height: 24),
-      if (phase == 'loading_history' && !controller.busy) OutlinedButton(onPressed:controller.loadHistory,child:const Text('Reload history')),
-      if (phase == 'uncertain') FilledButton(onPressed: controller.busy ? null : controller.confirmResume, child: const Text('Resume previous request')),
-      if (['processing','stopped','expired'].contains(phase)) OutlinedButton(onPressed: controller.busy ? null : controller.resume, child: const Text('Reload from account')),
-      if (controller.job != null) TextButton(onPressed: controller.busy ? null : controller.remove, child: const Text('Cancel and remove photo')),
-      TextButton(onPressed: controller.backToCapture, child: const Text('Return to camera')),
-    ]))));
-    if (controller.photo == null) return controls;
+    final t = GlamTokens.of(context);
+    final working = controller.busy || phase == 'processing';
+    Widget action(String label, VoidCallback? on, [BtnKind kind = BtnKind.glass]) => PillButton(label, kind: on == null ? BtnKind.disabled : kind, onTap: on);
+    final controls = Padding(padding: EdgeInsets.fromLTRB(22, 0, 22, 60 + MediaQuery.paddingOf(context).bottom), child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Kick(working ? 'Analyzing' : 'Status', color: kHeroKick),
+      Padding(padding: const EdgeInsets.only(bottom: 12), child: Text(title, style: GlamType.display(26, height: 30, spacing: -.6, color: kHeroText))),
+      Padding(padding: const EdgeInsets.only(bottom: 16), child: Text(body, style: GlamType.body(15, height: 23, color: const Color(0xffe8d9e0)))),
+      if (phase == 'loading_history' && !controller.busy) action('Reload history', controller.loadHistory),
+      if (phase == 'uncertain') action('Resume previous request', controller.busy ? null : controller.confirmResume, BtnKind.primary),
+      if (['processing','stopped','expired'].contains(phase)) action('Reload from account', controller.busy ? null : controller.resume),
+      if (controller.job != null) action('Cancel and remove photo', controller.busy ? null : controller.remove, BtnKind.ghost),
+      action('Return to camera', controller.backToCapture, BtnKind.ghost),
+    ]));
+    if (controller.photo == null) return ColoredBox(color: t.bg, child: Stack(fit: StackFit.expand, children: [if (working) const ScanLine(), Align(alignment: Alignment.bottomCenter, child: SingleChildScrollView(reverse: true, child: controls))]));
     return Stack(fit:StackFit.expand, children:[
-      PrivatePhoto(bytes:controller.photo!),
-      const DecoratedBox(decoration:BoxDecoration(gradient:LinearGradient(begin:Alignment.topCenter,end:Alignment.bottomCenter,colors:[Colors.black26,Colors.black87]))),
-      Align(alignment:Alignment.bottomCenter,child:ConstrainedBox(constraints:BoxConstraints(maxHeight:MediaQuery.sizeOf(context).height*.55),child:controls)),
+      PrivatePhoto(bytes:controller.photo!, fit: BoxFit.cover),
+      const ColoredBox(color: Color(0x8c000000)),
+      const OvalGuide(),
+      if (working) const ScanLine(),
+      Align(alignment:Alignment.bottomCenter,child:ConstrainedBox(constraints:BoxConstraints(maxHeight:MediaQuery.sizeOf(context).height*.6),child:SingleChildScrollView(reverse:true,child:controls))),
     ]);
-
   }
 }
 class PhotoReview extends StatelessWidget {
@@ -159,22 +173,27 @@ class PhotoReview extends StatelessWidget {
   final Uint8List photo;
   final bool busy;
   final VoidCallback onRetake, onAnalyze;
-  @override Widget build(BuildContext context) => Semantics(identifier: 'native-photo-review', child: Stack(fit: StackFit.expand, children: [
-    PrivatePhoto(bytes: photo),
-    SafeArea(child: Column(children: [
-      Padding(padding: const EdgeInsets.all(16), child: Align(alignment: Alignment.centerLeft, child: TouchAction(label: 'Retake photo', icon: Icons.arrow_back, onTap: busy ? null : onRetake))),
-      const Spacer(),
-      Container(color: Colors.black87, padding: const EdgeInsets.all(20), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        const Text('Only on this device', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-        const SizedBox(height: 6), const Text('Review permissions before private upload. No analysis has started.'), const SizedBox(height: 16),
-        FilledButton(onPressed: busy ? null : onAnalyze, child: const Text('Analyze this photo')),
+  @override Widget build(BuildContext context) {
+    final t = GlamTokens.of(context);
+    return Semantics(identifier: 'native-photo-review', child: Stack(fit: StackFit.expand, children: [
+      Positioned(top: 0, left: 0, right: 0, height: 480, child: PrivatePhoto(bytes: photo, fit: BoxFit.cover)),
+      GlamTopBar(title: 'Photo check', onGlass: true, onBack: busy ? null : onRetake),
+      GlamTray(top: 430, child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Padding(padding: const EdgeInsets.only(bottom: 6), child: Text('Photo ready.', style: GlamType.display(26, height: 30, spacing: -.6, color: t.tx))),
+        Padding(padding: const EdgeInsets.only(bottom: 6), child: Text('Quality checks are not computed on this device. No analysis has started.', style: GlamType.body(12, height: 18, color: t.tx2))),
+        for (final r in const [('Stored on', 'This device only'), ('Upload', 'Not started'), ('Analysis', 'Needs your permission')])
+          Container(constraints: const BoxConstraints(minHeight: 46), padding: const EdgeInsets.symmetric(vertical: 8), decoration: BoxDecoration(border: Border(bottom: BorderSide(color: t.ln))),
+            child: Row(children: [Expanded(child: Text(r.$1, style: GlamType.body(14, w: FontWeight.w600, color: t.tx))), Text(r.$2, style: GlamType.body(13, color: t.tx2))])),
+        PillButton('Analyze this photo', kind: busy ? BtnKind.disabled : BtnKind.primary, onTap: onAnalyze),
+        PillButton('Retake', kind: BtnKind.ghost, onTap: busy ? null : onRetake),
       ])),
-    ])),
-  ]));
+    ]));
+  }
 }
 class PrivatePhoto extends StatefulWidget {
-  const PrivatePhoto({super.key, required this.bytes});
+  const PrivatePhoto({super.key, required this.bytes, this.fit = BoxFit.contain});
   final Uint8List bytes;
+  final BoxFit fit;
   @override State<PrivatePhoto> createState() => _PrivatePhotoState();
 }
 class _PrivatePhotoState extends State<PrivatePhoto> {
@@ -183,7 +202,7 @@ class _PrivatePhotoState extends State<PrivatePhoto> {
     if (!identical(oldWidget.bytes, widget.bytes)) unawaited(MemoryImage(oldWidget.bytes).evict());
   }
   @override void dispose() { unawaited(MemoryImage(widget.bytes).evict()); super.dispose(); }
-  @override Widget build(BuildContext context) => Image.memory(widget.bytes, fit: BoxFit.contain, excludeFromSemantics: true);
+  @override Widget build(BuildContext context) => Image.memory(widget.bytes, fit: widget.fit, excludeFromSemantics: true);
 }
 class SignInSheet extends StatefulWidget {
   const SignInSheet({super.key, required this.controller});
@@ -226,19 +245,29 @@ class ConsentScreen extends StatefulWidget {
 class _ConsentScreenState extends State<ConsentScreen> {
   bool storage = false, analysis = false;
   @override Widget build(BuildContext context) {
-    final c = widget.controller, p = c.permissions!;
-    return SafeArea(child: Column(children: [
-      Row(children: [TouchAction(label: 'Back to photo', icon: Icons.arrow_back, onTap: c.busy ? null : c.backToPhoto),
-        const Expanded(child: Text('Your photo. Your choice.', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)))]),
-      Expanded(child: ListView(padding: const EdgeInsets.all(20), children: [
-        Text('Private photo storage · ${p.storage.version}', style: const TextStyle(fontWeight: FontWeight.w600)), const SizedBox(height: 8), Text(p.storage.content),
-        CheckboxListTile(contentPadding: EdgeInsets.zero, value: storage, onChanged: c.busy ? null : (v) => setState(() => storage = v!), title: const Text('I agree to private photo storage')),
-        const SizedBox(height: 20), Text('Cosmetic analysis · ${p.analysis.version}', style: const TextStyle(fontWeight: FontWeight.w600)), const SizedBox(height: 8), Text(p.analysis.content),
-        CheckboxListTile(contentPadding: EdgeInsets.zero, value: analysis, onChanged: c.busy ? null : (v) => setState(() => analysis = v!), title: const Text('I agree to cosmetic photo analysis')),
-        const Text('Cosmetic observations are not medical diagnoses. Account eligibility and current consent are enforced by the server.'),
+    final c = widget.controller, p = c.permissions!, t = GlamTokens.of(context);
+    Widget policy(String title, String content, bool value, ValueChanged<bool> set, String agree) => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Padding(padding: const EdgeInsets.only(top: 6, bottom: 8), child: Text(title, style: GlamType.body(15, w: FontWeight.w700, color: t.tx))),
+      Text(content, style: GlamType.body(15, height: 23, color: t.tx2)),
+      Container(constraints: const BoxConstraints(minHeight: 56), child: Row(children: [GlamSwitch(on: value, label: agree, onChanged: c.busy ? null : set), const SizedBox(width: 14),
+        Expanded(child: Text(agree, style: GlamType.body(14, height: 21, color: t.tx)))])),
+    ]);
+    return Stack(fit: StackFit.expand, children: [
+      if (c.photo != null) PrivatePhoto(bytes: c.photo!, fit: BoxFit.cover),
+      const ColoredBox(color: Color(0x8c000000)), // design: brightness(.45)
+      GlamTray(top: 250 + MediaQuery.paddingOf(context).top * 0, child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Padding(padding: const EdgeInsets.only(bottom: 12), child: Text('Your photo.\nYour permission.', style: GlamType.display(32, height: 35, spacing: -1, color: t.tx))),
+        Flexible(child: ListView(shrinkWrap: true, padding: EdgeInsets.zero, children: [
+          policy('Private photo storage · ${p.storage.version}', p.storage.content, storage, (v) => setState(() => storage = v), 'I agree to private photo storage'),
+          policy('Cosmetic analysis · ${p.analysis.version}', p.analysis.content, analysis, (v) => setState(() => analysis = v), 'I agree to cosmetic photo analysis'),
+          Padding(padding: const EdgeInsets.only(top: 4, bottom: 12), child: Text('Cosmetic observations are not medical diagnoses, and never rank or score you. Account eligibility and current consent are enforced by the server.', style: GlamType.body(12, height: 18, color: t.tx2))),
+        ])),
+        PillButton('Upload privately & analyze', kind: c.busy || !storage || !analysis ? BtnKind.disabled : BtnKind.primary,
+          onTap: () => c.analyze(storageChecked: storage, analysisChecked: analysis)),
+        PillButton('Back to photo', kind: BtnKind.ghost, onTap: c.busy ? null : c.backToPhoto),
       ])),
-      Padding(padding: const EdgeInsets.all(20), child: SizedBox(width: double.infinity, child: FilledButton(onPressed: c.busy || !storage || !analysis ? null : () => c.analyze(storageChecked: storage, analysisChecked: analysis), child: const Text('Upload privately & analyze')))),
-    ]));
+      Positioned(top: MediaQuery.paddingOf(context).top + 6, left: 14, child: GlassCircle(glyph: isAndroid(context) ? '←' : '‹', label: 'Back to photo', onTap: c.busy ? null : c.backToPhoto)),
+    ]);
   }
 }
 class ReportScreen extends StatelessWidget {
