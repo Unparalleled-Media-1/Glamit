@@ -7,15 +7,15 @@ GL-020,Analyze journey,Camera viewfinder,Batch 2 · restyled onto the real camer
 GL-023,Analyze journey,Image quality check,Batch 2 · restyled; fake quality checks replaced by honest status,Use this photo → GL-024,"GL-024, GL-020",On-device image validation
 GL-024,Analyze journey,Analysis consent,Batch 2 · restyled onto the real consent flow,Analyze now → GL-025,GL-025,"Consent record, age/guardian check"
 GL-025,Analyze journey,AI processing,Batch 2 · restyled onto the real processing/recovery states,Auto → GL-026,GL-026,"Analysis job (lease/poll), retry & cancel"
-GL-026,Analyze journey,Analysis overview,Existing private flow (design parity pending),See makeup picks → GL-030,"GL-027–031, GL-034, GL-037","Analysis result, confidence, corrections"
-GL-027,Analyze journey,Face shape & features,Pending,Makeup for my features → GL-030,GL-030,"Landmark overlay data, corrections"
-GL-028,Analyze journey,Skin appearance,Pending,Build my routine → GL-032,GL-032,"Skin appearance result, disclaimer copy"
-GL-029,Analyze journey,Hair type & texture,Pending,Hairstyle ideas → GL-031,GL-031,Hair analysis result
-GL-030,Analyze journey,Makeup recommendations,Pending,Try this look → GL-039,"GL-039, GL-034","Recommendation engine, shade references"
-GL-031,Analyze journey,Hairstyle & colour recs,Pending,Tap a style → GL-044,"GL-044, GL-046",Hair recommendation set
-GL-032,Analyze journey,Personalized routine,Pending,Save routine,GL-122,"Routine templates, user edits"
-GL-033,Analyze journey,Historical comparison,Existing private flow (design parity pending),Compare,GL-026,Analysis history list
-GL-034,Analyze journey,"Save, share or continue",Pending,Continue in Studio → GL-037,"GL-120, GL-037, GL-052","Saves, share intent"
+GL-026,Analyze journey,Analysis overview,Batch 3 · restyled onto the real report,See makeup picks → GL-030,"GL-027–031, GL-034, GL-037","Analysis result, confidence, corrections"
+GL-027,Analyze journey,Face shape & features,Batch 3 · built (real finding detail + correction),Makeup for my features → GL-030,GL-030,"Landmark overlay data, corrections"
+GL-028,Analyze journey,Skin appearance,"Batch 3 · honest ""not available yet"" (service has no skin analysis)",Build my routine → GL-032,GL-032,"Skin appearance result, disclaimer copy"
+GL-029,Analyze journey,Hair type & texture,"Batch 3 · honest ""not available yet"" (service has no hair analysis)",Hairstyle ideas → GL-031,GL-031,Hair analysis result
+GL-030,Analyze journey,Makeup recommendations,Batch 3 · built from the report's real style directions,Try this look → GL-039,"GL-039, GL-034","Recommendation engine, shade references"
+GL-031,Analyze journey,Hairstyle & colour recs,"Batch 3 · honest ""not available yet""",Tap a style → GL-044,"GL-044, GL-046",Hair recommendation set
+GL-032,Analyze journey,Personalized routine,"Batch 3 · honest ""not available yet""",Save routine,GL-122,"Routine templates, user edits"
+GL-033,Analyze journey,Historical comparison,Batch 3 · restyled onto real server history,Compare,GL-026,Analysis history list
+GL-034,Analyze journey,"Save, share or continue",Batch 3 · built (real save; share/Studio/Shop honest),Continue in Studio → GL-037,"GL-120, GL-037, GL-052","Saves, share intent"
 GL-035,Studio journey,Studio landing,Batch 1 · built,Choose a photo → GL-036,"GL-036, GL-037, GL-044, GL-047","Credits balance, recent looks"
 GL-036,Studio journey,Select photo or camera,Pending,Pick photo → GL-037,"GL-037, GL-020",Photo library permission (OS)
 GL-037,Studio journey,Portrait canvas,Pending,Pick a tool,"GL-038–047, GL-050, GL-051","Photo, rendering engine"

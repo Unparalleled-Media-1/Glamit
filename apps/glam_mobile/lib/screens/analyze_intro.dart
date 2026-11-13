@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../design/tokens.dart';
 import '../design/widgets.dart';
-import '../presentation/design.dart';
 
 enum CaptureStart { idle, camera, gallery }
 

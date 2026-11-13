@@ -16,6 +16,7 @@ import 'presentation/design.dart';
 import 'design/tokens.dart';
 import 'design/widgets.dart';
 import 'screens/analyze_intro.dart';
+import 'screens/analyze_results.dart';
 import 'screens/tabs.dart';
 
 void main() { WidgetsFlutterBinding.ensureInitialized(); runApp(const AnalyzeApp()); }
@@ -273,80 +274,66 @@ class _ConsentScreenState extends State<ConsentScreen> {
 class ReportScreen extends StatelessWidget {
   const ReportScreen({super.key, required this.controller});
   final AnalyzeController controller;
-  Future<void> edit(BuildContext context, Finding finding) async {
+  static Future<void> edit(BuildContext context, AnalyzeController controller, Finding finding) async {
     final input = TextEditingController(text: finding.value ?? '');
     try {
       final result = await MobileDesign.sheet<String>(context, Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         const Text('Your correction', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)), const SizedBox(height: 16),
-        TextField(controller: input, maxLength: 240, decoration: InputDecoration(labelText: finding.key)), const SizedBox(height: 12),
+        TextField(controller: input, maxLength: 240, decoration: InputDecoration(labelText: findingTitle(finding.key))), const SizedBox(height: 12),
         FilledButton(onPressed: () => Navigator.of(context, rootNavigator: true).pop(input.text), child: const Text('Save correction')),
       ]));
       if (result != null) await controller.correct(finding.key, result);
     } finally { input.dispose(); }
   }
+  void _push(BuildContext context, Widget page) => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
   @override Widget build(BuildContext context) {
-    final report = controller.report!;
-    return Stack(fit:StackFit.expand,children:[
-      if(controller.photo!=null) PrivatePhoto(bytes:controller.photo!)
-      else const DecoratedBox(decoration:BoxDecoration(gradient:RadialGradient(colors:[Color(0xff45333e),MobileDesign.background],radius:.9))),
-      SafeArea(child:Align(alignment:Alignment.topCenter,child:Padding(padding:const EdgeInsets.fromLTRB(12,4,20,0),child:Row(children:[
-        TouchAction(label:'Return to camera',icon:Icons.arrow_back,onTap:controller.busy?null:controller.backToCapture),
-        const SizedBox(width:8),const Expanded(child:Text('Your analysis',style:TextStyle(fontSize:19,fontWeight:FontWeight.w600))),
-        if(controller.saved) const Icon(Icons.bookmark,color:MobileDesign.blush),
-      ])))),
-      DraggableScrollableSheet(initialChildSize:.57,minChildSize:.32,maxChildSize:.92,builder:(context,scroll)=>Material(
-        key:const ValueKey('native-results-sheet'),color:MobileDesign.background,
-        borderRadius:const BorderRadius.vertical(top:Radius.circular(28)),clipBehavior:Clip.antiAlias,
-        child:SafeArea(top:false,child:Column(children:[
-          const Padding(padding:EdgeInsets.symmetric(vertical:12),child:SizedBox(width:36,height:4,child:ColoredBox(color:Colors.white38))),
-          Expanded(child:ListView(controller:scroll,padding:const EdgeInsets.fromLTRB(20,0,20,16),children:[
-            const Text('Face & colour',style:TextStyle(fontSize:24,fontWeight:FontWeight.w600)),
-            const SizedBox(height:8),const Text('Image-based observations. Uncertainty matters.'),const SizedBox(height:16),
-            if(controller.photoError!=null) ListTile(contentPadding:EdgeInsets.zero,
-              title:const Text('Photo could not be loaded'),subtitle:const Text('Your verified observations are still available.'),
-              trailing:IconButton(tooltip:'Reload private photo',onPressed:controller.busy?null:controller.reloadPhoto,icon:const Icon(Icons.refresh))),
-            for(final f in report.findings) ListTile(contentPadding:EdgeInsets.zero,minVerticalPadding:12,
-              title:Text(f.value??'Not enough evidence',style:const TextStyle(fontSize:17,fontWeight:FontWeight.w600)),
-              subtitle:Text('${f.key.replaceAll('-', ' ')} · ${f.userCorrected?'Your correction':f.certainty}'),
-              trailing:const Icon(Icons.chevron_right),onTap:controller.busy?null:()=>details(context,f)),
-            if(report.directions.isNotEmpty) const Padding(padding:EdgeInsets.symmetric(vertical:16),child:Text('Style directions',style:TextStyle(fontSize:19,fontWeight:FontWeight.w600))),
-            for(final d in report.directions) ListTile(contentPadding:EdgeInsets.zero,title:Text(d.title),subtitle:Text(d.rationale)),
-            const SizedBox(height:16),Text('OpenAI · ${report.model}',style:const TextStyle(fontSize:11,color:Colors.white60)),
-            TextButton(onPressed:controller.busy?null:controller.remove,child:const Text('Remove analysis and stored photo')),
+    final report = controller.report!, t = GlamTokens.of(context);
+    final headline = [for (final k in const ['face-shape', 'undertone']) report.findings.where((f) => f.key == k && f.value != null).map((f) => f.value!).firstOrNull].whereType<String>().join(' · ');
+    return Stack(fit: StackFit.expand, children: [
+      if (controller.photo != null) PrivatePhoto(bytes: controller.photo!, fit: BoxFit.cover)
+      else const DecoratedBox(decoration: BoxDecoration(gradient: RadialGradient(colors: [Color(0xff45333e), MobileDesign.background], radius: .9))),
+      const Scrim(fraction: .6),
+      Positioned(left: 22, right: 22, top: MediaQuery.sizeOf(context).height * .22, child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        const Kick('Your result', color: kHeroKick),
+        Text(headline.isEmpty ? 'Your analysis' : headline, style: GlamType.display(34, height: 38, spacing: -.8, color: kHeroText))])),
+      GlamTopBar(title: 'Your analysis', onGlass: true, onBack: controller.busy ? null : controller.backToCapture),
+      Positioned(top: MediaQuery.paddingOf(context).top + 6, right: 14, child: GlassCircle(glyph: '↗', label: 'More options', onTap: () => _push(context, SaveShareScreen(controller: controller)))),
+      DraggableScrollableSheet(initialChildSize: .58, minChildSize: .32, maxChildSize: .94, builder: (context, scroll) => Material(
+        key: const ValueKey('native-results-sheet'), color: t.bg, borderRadius: const BorderRadius.vertical(top: Radius.circular(28)), clipBehavior: Clip.antiAlias,
+        child: SafeArea(top: false, child: Column(children: [
+          Padding(padding: const EdgeInsets.symmetric(vertical: 12), child: Container(width: 40, height: 4, decoration: BoxDecoration(color: t.ln, borderRadius: BorderRadius.circular(2)))),
+          Expanded(child: ListView(controller: scroll, padding: const EdgeInsets.fromLTRB(22, 0, 22, 16), children: [
+            if (controller.photoError != null) GlamCard(child: Row(children: [
+              Expanded(child: Text('Photo could not be loaded. Your verified observations are still available.', style: GlamType.body(12, height: 18, color: t.tx2))),
+              GlassCircle(glyph: '↻', label: 'Reload private photo', solid: t.sf2, solidFg: t.tx, onTap: controller.busy ? null : controller.reloadPhoto)])),
+            for (final f in report.findings) GlamCard(onTap: controller.busy ? null : () => _push(context, FindingDetailScreen(controller: controller, findingKey: f.key)),
+              child: Row(children: [
+                Container(width: 44, height: 44, decoration: BoxDecoration(color: t.sf2, shape: BoxShape.circle), alignment: Alignment.center, child: Text(findingGlyph(f.key), style: GlamType.body(17, color: t.ac2))),
+                const SizedBox(width: 14),
+                Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(findingTitle(f.key), style: GlamType.body(15, w: FontWeight.w700, color: t.tx)),
+                  Text(f.value ?? 'Not enough evidence', style: GlamType.body(12, height: 18, color: t.tx2)),
+                  Padding(padding: const EdgeInsets.only(top: 6), child: Text('${certaintyLabel(f)} · you can correct this', style: GlamType.body(12, height: 18, color: t.tx2)))])),
+                Text('›', style: GlamType.body(20, color: t.tx2))])),
+            for (final m in [('❖', 'Skin appearance', skinScreen), ('∿', 'Hair type & texture', hairScreen)]) GlamCard(onTap: () => _push(context, m.$3()), child: Row(children: [
+              Container(width: 44, height: 44, decoration: BoxDecoration(color: t.sf2, shape: BoxShape.circle), alignment: Alignment.center, child: Text(m.$1, style: GlamType.body(17, color: t.ac2))),
+              const SizedBox(width: 14), Expanded(child: Text(m.$2, style: GlamType.body(15, w: FontWeight.w700, color: t.tx))),
+              Container(padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4), decoration: BoxDecoration(color: t.sf2, borderRadius: BorderRadius.circular(12)), child: Text('Not available yet', style: GlamType.body(11, w: FontWeight.w700, color: t.tx2)))])),
+            Padding(padding: const EdgeInsets.fromLTRB(0, 8, 0, 8), child: Text(kMedical, style: GlamType.body(12, height: 18, color: t.tx2))),
+            if (report.directions.isNotEmpty) PillButton('Style directions', kind: BtnKind.ghost, onTap: () => _push(context, DirectionsScreen(controller: controller))),
+            Text('OpenAI · ${report.model}', style: GlamType.body(11, color: t.tx2)),
+            PillButton('Remove analysis and stored photo', kind: BtnKind.ghost, onTap: controller.busy ? null : controller.remove),
           ])),
-          Padding(padding:const EdgeInsets.fromLTRB(20,8,20,12),child:SizedBox(width:double.infinity,child:FilledButton(
-            onPressed:controller.busy||controller.saved?null:controller.save,child:Text(controller.saved?'Saved to your account':'Save to Style Passport')))),
+          Padding(padding: const EdgeInsets.fromLTRB(22, 4, 22, 8), child: PillButton(controller.saved ? 'Saved to your account' : 'Save to Style Passport',
+            kind: controller.busy || controller.saved ? BtnKind.disabled : BtnKind.primary, onTap: controller.save)),
         ])),
       )),
     ]);
   }
-  Future<void> details(BuildContext context,Finding finding) => MobileDesign.sheet<void>(context,Column(crossAxisAlignment:CrossAxisAlignment.stretch,children:[
-    Text(finding.key.replaceAll('-',' '),style:const TextStyle(fontSize:22,fontWeight:FontWeight.w600)),const SizedBox(height:12),
-    Text(finding.value??'Not enough evidence',style:const TextStyle(fontSize:20)),const SizedBox(height:8),
-    Text(finding.userCorrected?'Your correction':finding.certainty),const SizedBox(height:12),Text(finding.uncertainty),const SizedBox(height:20),
-    FilledButton(onPressed:(){Navigator.of(context,rootNavigator:true).pop();edit(context,finding);},child:const Text('Correct this observation')),
-    if(finding.userCorrected) TextButton(onPressed:(){Navigator.of(context,rootNavigator:true).pop();controller.correct(finding.key,null);},child:const Text('Reset to observation')),
-  ]));
 }
 
 class AnalysisHistory extends StatelessWidget {
   const AnalysisHistory({super.key,required this.controller});
   final AnalyzeController controller;
-  @override Widget build(BuildContext context) => SafeArea(child:Column(children:[
-    Row(children:[TouchAction(label:'Return to camera',icon:Icons.arrow_back,onTap:controller.backToCapture),
-      const Expanded(child:Text('Your analyses',style:TextStyle(fontSize:20,fontWeight:FontWeight.w600))),
-      TouchAction(label:'Refresh analysis history',icon:Icons.refresh,onTap:controller.busy?null:controller.loadHistory)]),
-    Expanded(child:RefreshIndicator(onRefresh:controller.loadHistory,child:ListView(physics:const AlwaysScrollableScrollPhysics(),padding:const EdgeInsets.all(20),children:[
-      if(controller.pending!=null) Padding(padding:const EdgeInsets.only(bottom:16),child:OutlinedButton.icon(
-        onPressed:controller.busy?null:controller.resume,icon:const Icon(Icons.restore),label:const Text('Resume previous request'))),
-      if(controller.history.isEmpty) const Padding(padding:EdgeInsets.symmetric(vertical:48),child:Column(children:[
-        Icon(Icons.history,size:40),SizedBox(height:16),Text('No analysis records',style:TextStyle(fontSize:22)),
-        SizedBox(height:8),Text('New analyses appear here after the server accepts them.',textAlign:TextAlign.center)])),
-      for(final job in controller.history) ListTile(contentPadding:const EdgeInsets.symmetric(vertical:8),
-        leading:Icon(controller.selectedReportId==job.id?Icons.bookmark:Icons.face_retouching_natural),
-        title:Text(MaterialLocalizations.of(context).formatFullDate(job.created.toLocal())),
-        subtitle:Text(controller.selectedReportId==job.id?'Saved to Style Passport · ${job.state}':job.state),
-        trailing:const Icon(Icons.chevron_right),onTap:controller.busy?null:()=>controller.openHistory(job.id)),
-    ]))),
-  ]));
+  @override Widget build(BuildContext context) => HistoryScreen(controller: controller);
 }
