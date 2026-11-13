@@ -25,7 +25,7 @@ class GlamTokens extends ThemeExtension<GlamTokens> {
 
 /// Georgia display over Arial body, per the design system. Both are system fonts; the fallbacks keep Android on a serif/sans face.
 abstract final class GlamType {
-  static const _serif = ['Georgia', 'serif'], _sans = ['Arial', 'sans-serif'];
+  static const _serif = ['Georgia', 'serif', 'GlamSymbols'], _sans = ['Arial', 'sans-serif', 'GlamSymbols'];
   static TextStyle display(double size, {double? height, double spacing = 0, Color? color}) => TextStyle(fontFamily: 'Georgia',
     fontFamilyFallback: _serif, fontSize: size, height: height == null ? null : height / size, letterSpacing: spacing, color: color, fontWeight: FontWeight.w400);
   static TextStyle body(double size, {FontWeight w = FontWeight.w400, double? height, double spacing = 0, Color? color}) => TextStyle(

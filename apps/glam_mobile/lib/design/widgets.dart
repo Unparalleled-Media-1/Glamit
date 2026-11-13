@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'glyphs.dart';
 import 'tokens.dart';
 
 const kPhotoAspect = 0.75; // EW in ui.jsx: each sprite panel is 3:4.
@@ -55,7 +56,7 @@ class GlassCircle extends StatelessWidget {
     final t = GlamTokens.of(context);
     return Semantics(button: true, label: label, excludeSemantics: true, child: GestureDetector(behavior: HitTestBehavior.opaque, onTap: onTap == null ? null : () => _tap(onTap!),
       child: SizedBox(width: 44, height: 44, child: glassBlur(radius: BorderRadius.circular(22), child: ColoredBox(color: solid ?? t.glass,
-        child: Center(child: Text(glyph, style: GlamType.body(19, color: solidFg ?? t.onGlass))))))));
+        child: Center(child: GText(glyph, style: GlamType.body(19, color: solidFg ?? t.onGlass))))))));
   }
 }
 
@@ -69,7 +70,7 @@ class GlassPill extends StatelessWidget {
       child: ConstrainedBox(constraints: const BoxConstraints(minHeight: 44), child: glassBlur(radius: r, child: ColoredBox(color: t.glass, child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14), child: Row(mainAxisSize: center ? MainAxisSize.max : MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center, children: [if (leading != null) ...[leading!, const SizedBox(width: 6)],
-            Flexible(child: MediaQuery.withClampedTextScaling(maxScaleFactor: 1.3, child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis, style: GlamType.body(13, color: t.onGlass))))])))))));
+            Flexible(child: MediaQuery.withClampedTextScaling(maxScaleFactor: 1.3, child: GText(label, maxLines: 1, overflow: TextOverflow.ellipsis, style: GlamType.body(13, color: t.onGlass))))])))))));
   }
 }
 
@@ -134,7 +135,7 @@ class GlamRow extends StatelessWidget {
       child: Container(constraints: const BoxConstraints(minHeight: 56), padding: const EdgeInsets.symmetric(vertical: 13),
         decoration: BoxDecoration(border: last ? null : Border(bottom: BorderSide(color: t.ln))),
         child: Row(children: [
-          Container(width: 40, height: 40, decoration: BoxDecoration(color: t.sf2, shape: BoxShape.circle), alignment: Alignment.center, child: Text(glyph, style: GlamType.body(17, color: t.ac2))),
+          Container(width: 40, height: 40, decoration: BoxDecoration(color: t.sf2, shape: BoxShape.circle), alignment: Alignment.center, child: GText(glyph, style: GlamType.body(17, color: t.ac2))),
           const SizedBox(width: 14),
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
             Text(title, style: GlamType.body(15, w: FontWeight.w600, color: t.tx)),
@@ -175,7 +176,7 @@ class GlamTabBar extends StatelessWidget {
       child: GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => _tap(() => onSelect(i)),
         child: Container(decoration: BoxDecoration(color: i == index ? t.ac : Colors.transparent, borderRadius: BorderRadius.circular(android ? 16 : 27)),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(kTabs[i].glyph, style: GlamType.body(19, color: i == index ? t.onAc : t.tx2)),
+            GText(kTabs[i].glyph, style: GlamType.body(19, color: i == index ? t.onAc : t.tx2)),
             Padding(padding: const EdgeInsets.symmetric(horizontal: 2), child: FittedBox(fit: BoxFit.scaleDown, child: Text(kTabs[i].label, maxLines: 1,
               style: GlamType.body(android ? 12 : 11, w: i == index ? FontWeight.w700 : FontWeight.w400, color: i == index ? t.onAc : t.tx2)))),
           ])))))]);

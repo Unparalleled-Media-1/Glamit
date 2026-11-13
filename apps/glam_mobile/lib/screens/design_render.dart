@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../design/glyphs.dart';
 
 /// Renders screens extracted from the GLAM design (`scripts/design-extract`) with real Flutter widgets.
 /// The extraction holds each screen's resolved geometry/styles at two canvas heights (844 and 944); the renderer
@@ -82,16 +83,15 @@ class _Node extends StatelessWidget {
   }
 
   Widget _text(Json t, double x, double y, double w, double h) {
-    final st = t['t'] as Json, fs = _n(st['fs']), lh = _n(st['lh']), lines = (t['lines'] as num?)?.toInt() ?? 1;
-    final style = TextStyle(fontFamily: st['disp'] == 1 ? 'Georgia' : 'Arial', fontFamilyFallback: st['disp'] == 1 ? const ['serif'] : const ['sans-serif'],
+    final st = t['t'] as Json, fs = _n(st['fs']), lh = _n(st['lh']);
+    final style = TextStyle(fontFamily: st['disp'] == 1 ? 'Georgia' : 'Arial', fontFamilyFallback: st['disp'] == 1 ? const ['serif', 'GlamSymbols'] : const ['sans-serif', 'GlamSymbols'],
       fontSize: fs, fontWeight: FontWeight.values[((_n(st['fw']) / 100).round().clamp(1, 9)) - 1], letterSpacing: _n(st['ls']),
       color: st['c'] == null ? null : _c(st['c']), decoration: st['td'] == 1 ? TextDecoration.underline : null,
       height: lh > 0 ? lh / fs : 1.15, leadingDistribution: TextLeadingDistribution.even);
     final align = switch (st['ta']) { 'center' => TextAlign.center, 'right' || 'end' => TextAlign.right, _ => TextAlign.left };
-    final single = lines <= 1 || st['nw'] == 1;
-    final slack = single ? 40.0 : 3.0;
+    const slack = 40.0; // line breaks are explicit (captured from the design), so extra width never re-wraps
     final dx = align == TextAlign.center ? -slack / 2 : align == TextAlign.right ? -slack : 0.0;
-    return Positioned(left: x + dx, top: y, width: w + slack, child: Text(t['txt'] as String, softWrap: !single, textAlign: align, textScaler: TextScaler.noScaling,
+    return Positioned(left: x + dx, top: y, width: w + slack, child: GText(t['txt'] as String, scaled: false, softWrap: false, textAlign: align,
       overflow: TextOverflow.visible, style: style, strutStyle: StrutStyle(fontSize: fs, height: lh > 0 ? lh / fs : 1.15, forceStrutHeight: true, leadingDistribution: TextLeadingDistribution.even)));
   }
 
@@ -162,11 +162,12 @@ class _Node extends StatelessWidget {
 
   Widget _field(Json input, Json st, double w, double h) {
     final fs = _n(st['fs']);
+    final pad = (input['pad'] as List?)?.map(_n).toList() ?? const [14.0, 14.0, 14.0, 14.0];
     final style = TextStyle(fontFamily: 'Arial', fontFamilyFallback: const ['sans-serif'], fontSize: fs, color: st['c'] == null ? null : _c(st['c']));
     final ml = input['ml'] == true;
-    return Padding(padding: const EdgeInsets.symmetric(horizontal: 14), child: Align(alignment: ml ? Alignment.topLeft : Alignment.centerLeft,
+    return Padding(padding: EdgeInsets.only(left: pad[3], right: pad[1]), child: Align(alignment: ml ? Alignment.topLeft : Alignment.centerLeft,
       child: TextFormField(initialValue: input['v'] as String? ?? '', obscureText: input['pw'] == true, maxLines: ml ? null : 1, style: style, textInputAction: TextInputAction.next,
-        decoration: InputDecoration(isDense: true, border: InputBorder.none, filled: false, contentPadding: EdgeInsets.symmetric(vertical: ml ? 14 : 0), hintText: input['ph'] as String?, hintStyle: style.copyWith(color: style.color?.withValues(alpha: .5))))));
+        decoration: InputDecoration(isDense: true, border: InputBorder.none, filled: false, contentPadding: EdgeInsets.symmetric(vertical: ml ? pad[0] : 0), hintText: input['ph'] as String?, hintStyle: style.copyWith(color: style.color?.withValues(alpha: .5))))));
   }
   Widget _range(List r, double w, double h) {
     final v = ((_n(r[0]) - _n(r[1])) / math.max(1, _n(r[2]) - _n(r[1]))).clamp(0.0, 1.0);
