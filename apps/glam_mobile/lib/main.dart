@@ -70,13 +70,13 @@ class _AnalyzeAppState extends State<AnalyzeApp> with WidgetsBindingObserver {
     return true;
   }
   @override Widget build(BuildContext context) => MaterialApp(navigatorKey: navigator, title: 'GLAM Beauty',
-    debugShowCheckedModeBanner: false, theme: MobileDesign.theme(), darkTheme: MobileDesign.theme(), themeMode: ThemeMode.dark,
+    debugShowCheckedModeBanner: false, theme: MobileDesign.theme(dark: false), darkTheme: MobileDesign.theme(), themeMode: ThemeMode.system,
     home: GlamShell(openAnalyze: ({required bool history}) {
       final nav = navigator.currentState!;
       if (history) { _journey(CaptureStart.idle, history: true); return; }
       nav.push(MobileDesign.route(nav.context, ChooseAnalysisScreen(onContinue: () =>
         nav.push(MobileDesign.route(nav.context, PrepareScreen(onStart: (how) => _journey(how))))))); }, openHand: _openHand), builder: (context, child) => Stack(children: [
-      child!, if (obscured) const Positioned.fill(child: ColoredBox(color: MobileDesign.background)),
+      child!, if (obscured) Positioned.fill(child: ColoredBox(color: Theme.of(context).scaffoldBackgroundColor)),
     ]));
 }
 class AnalyzeJourney extends StatefulWidget {

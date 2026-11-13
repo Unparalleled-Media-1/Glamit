@@ -13,14 +13,20 @@ typedef Json = Map<String, dynamic>;
 typedef NavTo = void Function(String id);
 
 class DesignStore {
-  static Map<String, dynamic>? _data;
-  static Future<Map<String, dynamic>> load() async {
-    if (_data != null) return _data!;
-    final bytes = (await rootBundle.load('assets/screens/screens.json.gz')).buffer.asUint8List();
-    return _data = jsonDecode(utf8.decode(gzip.decode(bytes))) as Map<String, dynamic>;
+  static final _data = <String, Map<String, dynamic>>{};
+  static const base = 'dark_ios';
+  /// `dark_ios`, `dark_android`, `light_ios` or `light_android`.
+  static String variant(Brightness b, TargetPlatform p) => '${b == Brightness.dark ? 'dark' : 'light'}_${p == TargetPlatform.android ? 'android' : 'ios'}';
+  static Future<Map<String, dynamic>> load([String v = base]) async {
+    final hit = _data[v]; if (hit != null) return hit;
+    try {
+      final bytes = (await rootBundle.load('assets/screens/$v.json.gz')).buffer.asUint8List();
+      return _data[v] = jsonDecode(utf8.decode(gzip.decode(bytes))) as Map<String, dynamic>;
+    } catch (_) { if (v == base) rethrow; return load(base); }
   }
-  static bool has(String id) => _data?.containsKey(id) ?? false;
-  @visibleForTesting static void debugSet(Map<String, dynamic> d) => _data = d;
+  static bool has(String id) => _data[base]?.containsKey(id) ?? false;
+  static Map<String, dynamic>? get(String v) => _data[v] ?? _data[base];
+  @visibleForTesting static void debugSet(Map<String, dynamic> d) => _data[base] = d;
 }
 
 const kSampleNotice = 'DESIGN PREVIEW · SAMPLE CONTENT · NOT LIVE';
@@ -36,7 +42,11 @@ class DesignScreen extends StatelessWidget {
   const DesignScreen({super.key, required this.id, required this.go, this.data});
   final String id; final NavTo go; final Map<String, dynamic>? data;
   @override Widget build(BuildContext context) {
-    final entry = (data ?? DesignStore._data)?[id] as Json?;
+    final v = DesignStore.variant(Theme.of(context).brightness, Theme.of(context).platform);
+    if (data == null && DesignStore.get(v) == null || (data == null && !DesignStore._data.containsKey(v))) {
+      return FutureBuilder<Map<String, dynamic>>(future: DesignStore.load(v), builder: (_, snap) => snap.hasData ? DesignScreen(key: ValueKey('$id/$v'), id: id, go: go) : const ColoredBox(color: Color(0xff0f0e10), child: SizedBox.expand()));
+    }
+    final entry = (data ?? DesignStore.get(v))?[id] as Json?;
     if (entry == null) return const SizedBox.shrink();
     final a = entry['a'] as Json, b = entry['b'] as Json?, acts = (entry['acts'] as Map?)?.cast<String, dynamic>() ?? const {};
     final bg = _c(a['bg'] ?? 0xff0f0e10);
@@ -51,14 +61,29 @@ class DesignScreen extends StatelessWidget {
   }
 }
 
-class _Node extends StatelessWidget {
-  const _Node({required this.a, required this.b, required this.f, required this.acts, required this.go, this.root = false});
+class _Node extends StatefulWidget {
+  const _Node({super.key, required this.a, required this.b, required this.f, required this.acts, required this.go, this.root = false});
   final Json a; final Json? b; final double f; final Map<String, dynamic> acts; final NavTo go; final bool root;
+  @override State<_Node> createState() => _NodeState();
+}
+class _NodeState extends State<_Node> {
+  Json get a => widget.a; Json? get b => widget.b; double get f => widget.f; Map<String, dynamic> get acts => widget.acts; NavTo get go => widget.go;
+  int? chipSel;      // index (within this node's children) of the selected chip when a chip group has local state
+  bool? swOn;
+  late final List<int> chipIdx = _chipIndices();
+  List<int> _chipIndices() {
+    final k = (a['k'] as List?)?.cast<Json>() ?? const <Json>[];
+    final out = <int>[];
+    for (var i = 0; i < k.length; i++) { if (k[i]['pressed'] != null && (k[i]['ix'] == null || acts['${k[i]['ix']}'] == null)) out.add(i); }
+    return out.length >= 2 ? out : const [];
+  }
   @override Widget build(BuildContext context) {
     final w = _lerp(a, b, 'w', f), h = math.max(0.0, _lerp(a, b, 'h', f));
     Widget body = _box(context, w, h);
     final ix = a['ix'], act = ix == null ? null : acts['$ix'] as String?;
-    if (act != null && !act.startsWith('toast:Unavailable')) {
+    if (a['sw'] != null) {
+      body = GestureDetector(behavior: HitTestBehavior.opaque, onTap: () { HapticFeedback.selectionClick(); setState(() => swOn = !(swOn ?? a['sw'] == 1)); }, child: body);
+    } else if (act != null && !act.startsWith('toast:Unavailable')) {
       body = GestureDetector(behavior: HitTestBehavior.opaque, onTap: () {
         HapticFeedback.selectionClick();
         if (act.startsWith('toast:')) {
@@ -66,20 +91,51 @@ class _Node extends StatelessWidget {
         } else { go(act); }
       }, child: body);
     }
-    return root ? body : body;
+    return body;
   }
 
+  /// Chip groups keep their own selection: the selected chip's look moves to the tapped chip.
+  Json _chipLook(Json chip, Json tpl) {
+    final out = Map<String, dynamic>.from(chip);
+    for (final k in ['bg', 'bw', 'bc']) { tpl.containsKey(k) ? out[k] = tpl[k] : out.remove(k); }
+    final tk = (tpl['k'] as List?)?.cast<Json>(), ck = (chip['k'] as List?)?.cast<Json>();
+    if (tk != null && ck != null) {
+      final tc = tk.firstWhere((e) => e.containsKey('txt'), orElse: () => const {});
+      if (tc.isNotEmpty) { out['k'] = [for (final c in ck) c.containsKey('txt') ? {...c, 't': {...(c['t'] as Json), 'c': (tc['t'] as Json)['c'], 'fw': (tc['t'] as Json)['fw']}} : c]; }
+    }
+    return out;
+  }
   Widget _kids(BuildContext context, double w, double h) {
-    final ka = (a['k'] as List?)?.cast<Json>() ?? const <Json>[], kb = (b?['k'] as List?)?.cast<Json>();
+    var ka = (a['k'] as List?)?.cast<Json>() ?? const <Json>[], kb = (b?['k'] as List?)?.cast<Json>();
     final ok = kb != null && kb.length == ka.length;
+    if (a['sw'] != null && swOn != null && swOn != (a['sw'] == 1) && ka.isNotEmpty) { // toggle: knob slides, track recolours
+      final onNow = swOn!;
+      final track = _swTrack(context, onNow);
+      return Stack(clipBehavior: Clip.none, children: [Positioned.fill(child: IgnorePointer(child: DecoratedBox(decoration: BoxDecoration(color: track, borderRadius: BorderRadius.circular(16))))),
+        for (final k in ka) _child(context, {...k, 'x': (k['x'] as num) + (onNow ? 20 : -20)}, null)]);
+    }
+    if (chipIdx.isNotEmpty) {
+      final sel = chipSel ?? chipIdx.firstWhere((i) => ka[i]['pressed'] == 1, orElse: () => chipIdx.first);
+      final onTpl = ka[chipIdx.firstWhere((i) => ka[i]['pressed'] == 1, orElse: () => chipIdx.first)];
+      final offTpl = ka[chipIdx.firstWhere((i) => ka[i]['pressed'] == 0, orElse: () => chipIdx.last)];
+      return Stack(clipBehavior: Clip.none, children: [for (var i = 0; i < ka.length; i++)
+        if (chipIdx.contains(i)) Positioned(left: _lerp(ka[i], ok ? kb[i] : null, 'x', f), top: _lerp(ka[i], ok ? kb[i] : null, 'y', f), width: _lerp(ka[i], ok ? kb[i] : null, 'w', f), height: _lerp(ka[i], ok ? kb[i] : null, 'h', f),
+          child: GestureDetector(behavior: HitTestBehavior.opaque, onTap: () { HapticFeedback.selectionClick(); setState(() => chipSel = i); },
+            child: _Node(key: ValueKey('chip$i${i == sel}'), a: _chipLook(ka[i], i == sel ? onTpl : offTpl), b: ok ? kb[i] : null, f: f, acts: const {}, go: go)))
+        else _child(context, ka[i], ok ? kb[i] : null)]);
+    }
     return Stack(clipBehavior: Clip.none, children: [
       for (var i = 0; i < ka.length; i++) _child(context, ka[i], ok ? kb[i] : null),
     ]);
   }
+  Color _swTrack(BuildContext context, bool on) {
+    final dark = Theme.of(context).brightness == Brightness.dark;
+    return on ? (dark ? const Color(0xffe2a6c1) : const Color(0xff8f3157)) : (dark ? const Color(0xff352d36) : const Color(0xffe3dad7));
+  }
   Widget _child(BuildContext context, Json ca, Json? cb) {
     final x = _lerp(ca, cb, 'x', f), y = _lerp(ca, cb, 'y', f), w = _lerp(ca, cb, 'w', f), h = _lerp(ca, cb, 'h', f);
     if (ca.containsKey('txt')) return _text(ca, x, y, w, h);
-    return Positioned(left: x, top: y, width: w, height: math.max(0, h), child: _Node(a: ca, b: cb, f: f, acts: acts, go: go));
+    return Positioned(left: x, top: y, width: w, height: math.max(0, h), child: _Node(key: ValueKey('${ca['x']}/${ca['y']}/${ca['ix']}'), a: ca, b: cb, f: f, acts: acts, go: go));
   }
 
   Widget _text(Json t, double x, double y, double w, double h) {
@@ -131,7 +187,16 @@ class _Node extends StatelessWidget {
     final img = a['img'] as Json?;
     if (img != null) { content = Stack(clipBehavior: Clip.hardEdge, fit: StackFit.expand, children: [_sprite(img), content]); }
     if (ringW != null) { content = Stack(fit: StackFit.expand, children: [content, ringW]); }
-    Widget node = Container(width: w, height: h, decoration: deco, clipBehavior: (a['clipc'] != null || img != null) ? Clip.antiAlias : Clip.none, child: content);
+    final bp = (a['bgpad'] as List?)?.map(_n).toList();
+    Widget node;
+    if (bp != null) {
+      final inner = BoxDecoration(color: deco.color, gradient: deco.gradient, borderRadius: deco.borderRadius, border: deco.border, boxShadow: deco.boxShadow);
+      final track = a['sw'] != null && swOn != null ? _swTrack(context, swOn!) : null;
+      node = SizedBox(width: w, height: h, child: Stack(clipBehavior: Clip.none, children: [
+        Positioned(left: bp[3], top: bp[0], right: bp[1], bottom: bp[2], child: DecoratedBox(decoration: track != null ? inner.copyWith(color: track) : inner)), content]));
+    } else {
+      node = Container(width: w, height: h, decoration: deco, clipBehavior: (a['clipc'] != null || img != null) ? Clip.antiAlias : Clip.none, child: content);
+    }
     final clip = a['clip'] as String?;
     if (clip != null && clip.startsWith('inset(')) { node = ClipRect(clipper: _InsetClipper(clip), child: node); }
     if (a['bf'] != null && _n(a['bf']) > 0) {

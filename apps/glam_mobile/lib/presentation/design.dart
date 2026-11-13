@@ -6,15 +6,19 @@ import '../design/tokens.dart';
 /// Mobile chrome and touch scales; no website layout or typography is imported.
 abstract final class MobileDesign {
   static const background = Color(0xff0f0e10), cream = Color(0xfff8f3ef), rose = Color(0xffb76d8c), blush = Color(0xfff6c6d8);
-  static ThemeData theme() => ThemeData(brightness: Brightness.dark, useMaterial3: true,
-    scaffoldBackgroundColor: background, extensions: const [GlamTokens.dark],
-    colorScheme: const ColorScheme.dark(primary: blush, onPrimary: background, surface: background, onSurface: cream),
-    filledButtonTheme: FilledButtonThemeData(style: FilledButton.styleFrom(minimumSize: const Size(48, 54),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)))),
-    bottomSheetTheme: const BottomSheetThemeData(showDragHandle: true, backgroundColor: Color(0xff282329),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(28)))),
-    inputDecorationTheme: const InputDecorationTheme(border: OutlineInputBorder(), filled: true),
-  );
+  static ThemeData theme({bool dark = true}) {
+    final t = dark ? GlamTokens.dark : GlamTokens.light;
+    return ThemeData(brightness: dark ? Brightness.dark : Brightness.light, useMaterial3: true,
+      scaffoldBackgroundColor: t.bg, extensions: [t],
+      colorScheme: dark ? const ColorScheme.dark(primary: blush, onPrimary: Color(0xff181719), surface: Color(0xff0f0e10), onSurface: cream)
+        : ColorScheme.light(primary: t.ac, onPrimary: t.onAc, surface: t.bg, onSurface: t.tx),
+      filledButtonTheme: FilledButtonThemeData(style: FilledButton.styleFrom(minimumSize: const Size(48, 54),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)))),
+      bottomSheetTheme: BottomSheetThemeData(showDragHandle: true, backgroundColor: dark ? const Color(0xff282329) : t.sf,
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(28)))),
+      inputDecorationTheme: const InputDecorationTheme(border: OutlineInputBorder(), filled: true),
+    );
+  }
   static Future<T?> sheet<T>(BuildContext context, Widget child) => showModalBottomSheet<T>(context: context,
     isScrollControlled: true, useSafeArea: true, useRootNavigator: true, builder: (context) => Padding(
       padding: EdgeInsets.fromLTRB(20, 0, 20, MediaQuery.viewInsetsOf(context).bottom + 20),
