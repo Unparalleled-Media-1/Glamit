@@ -1,0 +1,16 @@
+# Native back from a pushed design screen: Android system Back, iOS edge swipe.
+appId: com.glambeauty.analyzereview
+---
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - back
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - swipe:
+          start: '1%,45%'
+          end: '85%,45%'
+          duration: 500

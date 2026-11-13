@@ -45,7 +45,7 @@ GoRouter buildRouter({required GlobalKey<NavigatorState> navigatorKey, required 
           GoRoute(path: s.path, builder: (context, state) {
             // Hand-built screens over the real private-analysis flow (camera, consent, server analysis, results, history).
             switch (s.id) {
-              case 'GL-018': return ChooseAnalysisScreen(onContinue: () => GlamNav.to(context, 'GL-019'));
+              case 'GL-018': return Semantics(identifier: 'screen-GL-018', container: true, explicitChildNodes: true, child: ChooseAnalysisScreen(onContinue: () => GlamNav.to(context, 'GL-019')));
               case 'GL-019': return PrepareScreen(onStart: (how) => context.push(interimAnalysisPath, extra: how));
               case 'GL-020' || 'GL-023' || 'GL-024' || 'GL-025': return interimAnalysis(context, CaptureStart.camera);
               case 'GL-026' || 'GL-027' || 'GL-028' || 'GL-029' || 'GL-030' || 'GL-031' || 'GL-032' || 'GL-033' || 'GL-034': return interimAnalysis(context, CaptureStart.idle);

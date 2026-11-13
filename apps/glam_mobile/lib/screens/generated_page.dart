@@ -28,6 +28,7 @@ class _GeneratedPageState extends State<GeneratedPage> {
   }
   @override Widget build(BuildContext context) => Scaffold(
     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-    body: FutureBuilder<Map<String, dynamic>>(future: DesignStore.load(), builder: (_, snap) => snap.hasData
-      ? GeneratedScreen(id: widget.screen.id, go: _go) : const SizedBox.expand()));
+    body: Semantics(identifier: 'screen-${widget.screen.id}', container: true, explicitChildNodes: true,
+      child: FutureBuilder<Map<String, dynamic>>(future: DesignStore.load(), builder: (_, snap) => snap.hasData
+        ? GeneratedScreen(id: widget.screen.id, go: _go) : const SizedBox.expand())));
 }
