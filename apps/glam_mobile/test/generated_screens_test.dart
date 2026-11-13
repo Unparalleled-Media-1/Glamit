@@ -6,12 +6,13 @@ import 'package:glam_mobile/screens/design_render.dart';
 import 'package:glam_mobile/screens/screen_registry.dart';
 import 'package:glam_mobile/screens/tabs.dart';
 
-const handBuilt = {'home', 'DS', 'GL-035', 'GL-069', 'GL-117', 'GL-017', 'GL-018', 'GL-019', 'GL-020', 'GL-021', 'GL-022', 'GL-023', 'GL-024', 'GL-025', 'GL-026', 'GL-027', 'GL-028', 'GL-029', 'GL-030', 'GL-031', 'GL-032', 'GL-033', 'GL-034'};
+const handBuilt = {'home', 'DS', 'GL-035', 'GL-069', 'GL-117', 'GL-017', 'GL-018', 'GL-019', 'GL-020', 'GL-023', 'GL-024', 'GL-025', 'GL-026', 'GL-027', 'GL-028', 'GL-029', 'GL-030', 'GL-031', 'GL-032', 'GL-033', 'GL-034'};
 const variants = [('dark', TargetPlatform.iOS), ('dark', TargetPlatform.android), ('light', TargetPlatform.iOS), ('light', TargetPlatform.android)];
 
 void main() {
   testWidgets('Every one of the 232 reference screens has a Flutter implementation in all four variants', (tester) async {
     expect(kScreenRegistry.length, 233);
+    expect(handBuilt.length, 21); // exactly: 5 tabs, design board marker, GL-018/019/020/023/024/025 and GL-026-034; every other id must exist in the generated data
     for (final (theme, platform) in variants) {
       final v = DesignStore.variant(theme == 'dark' ? Brightness.dark : Brightness.light, platform);
       final data = await tester.runAsync(() => DesignStore.load(v)) as Map<String, dynamic>;

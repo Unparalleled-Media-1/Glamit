@@ -4,6 +4,7 @@ import '../design/tokens.dart';
 import '../design/widgets.dart';
 import 'design_render.dart';
 import 'pending.dart';
+import 'screen_registry.dart';
 
 typedef GoTo = void Function(String id);
 
@@ -195,7 +196,7 @@ class _GlamShellState extends State<GlamShell> {
     DesignStore.load().then((_) { if (mounted) setState(() => storeReady = true); }, onError: (_) {});
   }
   void go(String raw) {
-    final id = kAlias[raw] ?? raw, i = tabId.indexOf(id);
+    final id = kScreenRegistry.containsKey(raw) ? raw : (kAlias[raw] ?? raw), i = tabId.indexOf(id); // alias only for ids with no screen of their own
     if (i >= 0) {
       if (id == 'GL-017' && index == 1 && stack.isEmpty) { widget.openAnalyze(history: false); return; }
       Navigator.of(context).popUntil((r) => r.isFirst); stack.clear(); setState(() => index = i); return;
