@@ -8,12 +8,10 @@ appId: com.glambeauty.analyzereview
     id: tab-analyze
 - tapOn:
     id: analyze-start
-- tapOn:
-    id: pending-interim
-- assertVisible: 'Analyze'
-- takeScreenshot: 01-camera-entry
-- tapOn:
-    id: native-shutter
+- takeScreenshot: 00-gl018-choose-analysis
+- tapOn: 'Continue'
+- takeScreenshot: 00-gl019-before-you-start
+- tapOn: 'Open camera'
 - runFlow:
     when:
       visible: 'While using the app'
@@ -23,6 +21,7 @@ appId: com.glambeauty.analyzereview
     visible:
       id: native-camera-live
     timeout: 45000
+- takeScreenshot: 01-camera-entry
 - takeScreenshot: 02-device-camera
 - tapOn:
     id: native-shutter
@@ -38,7 +37,7 @@ appId: com.glambeauty.analyzereview
 - back
 - assertVisible:
     id: native-photo-review
-- tapOn: 'Retake photo'
+- tapOn: 'Retake'
 - assertVisible:
     id: native-shutter
 - takeScreenshot: 05-native-return

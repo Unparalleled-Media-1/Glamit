@@ -76,7 +76,7 @@ class GlassPill extends StatelessWidget {
   }
 }
 
-enum GlamButtonKind { primary, glass }
+enum GlamButtonKind { primary, glass, ghost, disabled }
 
 /// `.btn`: 54px pill action (radius 27), 15px bold.
 class GlamButton extends StatelessWidget {
@@ -88,13 +88,15 @@ class GlamButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.glam;
-    final glass = kind == GlamButtonKind.glass;
+    final glass = kind == GlamButtonKind.glass, ghost = kind == GlamButtonKind.ghost, off = kind == GlamButtonKind.disabled;
+    final fg = glass ? p.onGlass : ghost ? p.tx : off ? p.tx2 : p.onBtn;
     final child = ConstrainedBox(constraints: const BoxConstraints(minHeight: 54),
       child: Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: Center(
-        child: Text(label, textAlign: TextAlign.center, style: body(15, glass ? p.onGlass : p.onBtn, w: FontWeight.w700)))));
-    return Padding(padding: const EdgeInsets.symmetric(vertical: 6), child: Tappable(onTap: onTap, label: label, id: id,
+        child: Text(label, textAlign: TextAlign.center, style: body(15, fg, w: FontWeight.w700)))));
+    return Padding(padding: const EdgeInsets.symmetric(vertical: 6), child: Tappable(onTap: off ? null : onTap, label: label, id: id,
       child: glass ? GlassSurface(radius: 27, child: child)
-        : DecoratedBox(decoration: BoxDecoration(color: p.btn, borderRadius: BorderRadius.circular(27)), child: child)));
+        : DecoratedBox(decoration: BoxDecoration(color: ghost ? Colors.transparent : off ? p.sf2 : p.btn, borderRadius: BorderRadius.circular(27),
+            border: ghost ? Border.all(color: p.ln) : null), child: child)));
   }
 }
 
