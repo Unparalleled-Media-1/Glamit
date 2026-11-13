@@ -140,7 +140,7 @@ class _NodeState extends State<_Node> {
 
   Widget _text(Json t, double x, double y, double w, double h) {
     final st = t['t'] as Json, fs = _n(st['fs']), lh = _n(st['lh']);
-    final style = TextStyle(fontFamily: st['disp'] == 1 ? 'Georgia' : 'Arial', fontFamilyFallback: st['disp'] == 1 ? const ['serif', 'GlamSymbols'] : const ['sans-serif', 'GlamSymbols'],
+    final style = TextStyle(fontFamily: st['disp'] == 1 ? 'Georgia' : 'Arial', fontFamilyFallback: st['disp'] == 1 ? const ['serif'] : const ['sans-serif'],
       fontSize: fs, fontWeight: FontWeight.values[((_n(st['fw']) / 100).round().clamp(1, 9)) - 1], letterSpacing: _n(st['ls']),
       color: st['c'] == null ? null : _c(st['c']), decoration: st['td'] == 1 ? TextDecoration.underline : null,
       height: lh > 0 ? lh / fs : 1.15, leadingDistribution: TextLeadingDistribution.even);
@@ -169,7 +169,9 @@ class _NodeState extends State<_Node> {
     }
     final shadows = _shadows(a['sh'] as String?);
     final grad = _gradient(a['grad'] as String?);
-    final deco = BoxDecoration(color: a['bg'] == null ? null : _c(a['bg']), gradient: grad, borderRadius: radius, border: border, boxShadow: shadows);
+    // Browsers ignore a range input's own box (background/border); only the track and thumb are drawn.
+    final isRange = a['range'] != null;
+    final deco = isRange ? const BoxDecoration() : BoxDecoration(color: a['bg'] == null ? null : _c(a['bg']), gradient: grad, borderRadius: radius, border: border, boxShadow: shadows);
     final isScroll = a['scroll'] != null;
     final ringW = ring;
     Widget content;
@@ -184,6 +186,8 @@ class _NodeState extends State<_Node> {
       final path = _brandAssets[a['imgtag']];
       if (path != null) content = Image.asset(path, width: w, height: h, fit: BoxFit.contain, excludeFromSemantics: true);
     }
+    final chk = a['checker'] as Json?;
+    if (chk != null) { content = Stack(fit: StackFit.expand, children: [CustomPaint(painter: _CheckerPainter(_c(chk['a']), _c(chk['b']), _n(chk['size']))), content]); }
     final img = a['img'] as Json?;
     if (img != null) { content = Stack(clipBehavior: Clip.hardEdge, fit: StackFit.expand, children: [_sprite(img), content]); }
     if (ringW != null) { content = Stack(fit: StackFit.expand, children: [content, ringW]); }
@@ -324,4 +328,19 @@ class _RingPainter extends CustomPainter {
     }
   }
   @override bool shouldRepaint(_RingPainter o) => o.width != width || o.colors != colors;
+}
+
+/// `repeating-conic-gradient(a 0 25%, b 0 50%) 0 0 / Npx Npx`: a checkerboard of N/2 cells, top-right cell = a.
+class _CheckerPainter extends CustomPainter {
+  _CheckerPainter(this.a, this.b, this.tile);
+  final Color a, b; final double tile;
+  @override void paint(Canvas canvas, Size size) {
+    final cell = tile / 2, pa = Paint()..color = a, pb = Paint()..color = b;
+    canvas.drawRect(Offset.zero & size, pb);
+    for (var y = 0; y * cell < size.height; y++) { for (var x = 0; x * cell < size.width; x++) {
+      // quadrant parity: (col odd, row even) and (col even, row odd) share a colour (top-right = a, top-left = b)
+      if ((x + y).isOdd) { canvas.drawRect(Rect.fromLTWH(x * cell, y * cell, cell, cell), pa); }
+    } }
+  }
+  @override bool shouldRepaint(_CheckerPainter o) => o.a != a || o.b != b || o.tile != tile;
 }

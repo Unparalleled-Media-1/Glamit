@@ -10,7 +10,7 @@ class _GlyphPainter extends CustomPainter {
   _GlyphPainter(this.ch, this.color);
   final String ch; final Color color;
   @override void paint(Canvas canvas, Size s) {
-    final u = s.width, w = u * .085;
+    final u = s.width, w = u * .1;
     final p = Paint()..color = color..style = PaintingStyle.stroke..strokeWidth = w..strokeCap = StrokeCap.round;
     final c = Offset(s.width / 2, s.height / 2);
     switch (ch) {
@@ -41,7 +41,10 @@ class _GlyphPainter extends CustomPainter {
 }
 
 /// A glyph-aware replacement for `Text`: the five drawn symbols become inline vectors, everything else is ordinary text.
+bool _needsSymbols(String t) => t.runes.any((r) => r >= 0x2190);
 InlineSpan glyphSpan(String text, TextStyle style) {
+  // The bundled symbol font is a fallback only for strings that contain symbol glyphs, so ordinary text keeps its own metrics.
+  if (_needsSymbols(text)) style = style.copyWith(fontFamilyFallback: [...?style.fontFamilyFallback, ...kSymbolFallback]);
   if (!text.runes.any((r) => kDrawnGlyphs.contains(String.fromCharCode(r)))) return TextSpan(text: text, style: style);
   final fs = style.fontSize ?? 14, color = style.color ?? Colors.white;
   final out = <InlineSpan>[]; final buf = StringBuffer();
@@ -49,7 +52,7 @@ InlineSpan glyphSpan(String text, TextStyle style) {
     final ch = String.fromCharCode(r);
     if (kDrawnGlyphs.contains(ch)) {
       if (buf.isNotEmpty) { out.add(TextSpan(text: buf.toString())); buf.clear(); }
-      out.add(WidgetSpan(alignment: PlaceholderAlignment.middle, child: SizedBox(width: fs * 1.05, height: fs, child: CustomPaint(painter: _GlyphPainter(ch, color)))));
+      out.add(WidgetSpan(alignment: PlaceholderAlignment.middle, child: SizedBox(width: fs * .78, height: fs * .78, child: CustomPaint(painter: _GlyphPainter(ch, color)))));
     } else { buf.write(ch); }
   }
   if (buf.isNotEmpty) out.add(TextSpan(text: buf.toString()));

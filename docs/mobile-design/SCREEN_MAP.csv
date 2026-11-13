@@ -17,218 +17,218 @@ GL-032,Analyze journey,Personalized routine,"Batch 3 · honest ""not available y
 GL-033,Analyze journey,Historical comparison,Batch 3 · restyled onto real server history,Compare,GL-026,Analysis history list
 GL-034,Analyze journey,"Save, share or continue",Batch 3 · built (real save; share/Studio/Shop honest),Continue in Studio → GL-037,"GL-120, GL-037, GL-052","Saves, share intent"
 GL-035,Studio journey,Studio landing,Batch 1 · built,Choose a photo → GL-036,"GL-036, GL-037, GL-044, GL-047","Credits balance, recent looks"
-GL-036,Studio journey,Select photo or camera,Pending,Pick photo → GL-037,"GL-037, GL-020",Photo library permission (OS)
-GL-037,Studio journey,Portrait canvas,Pending,Pick a tool,"GL-038–047, GL-050, GL-051","Photo, rendering engine"
-GL-039,Studio journey,Lipstick try-on,Pending,Save look → GL-051,"GL-050, GL-051, GL-052","Face-landmark rendering, shade catalog (references until verified)"
-GL-044,Studio journey,Hairstyle gallery,Pending,Tap a style → GL-049,"GL-045, GL-046, GL-049","Style catalog, inclusive coverage of textures"
-GL-046,Studio journey,Hair colour,Pending,Save look → GL-051,"GL-050, GL-051","Hair segmentation, colour catalog"
-GL-047,Studio journey,AI custom-look prompt,Pending,Generate → GL-048,GL-048,"Generation provider, credits debit, content-safety"
-GL-048,Studio journey,Generation progress,Pending,Auto → GL-049,GL-049,"Async job status, cancel, failure refund"
-GL-049,Studio journey,Generated results,Pending,Compare → GL-050 / Shop or book → GL-052,"GL-050, GL-051, GL-052","Generation results, storage"
-GL-050,Studio journey,Before / after,Pending,Save look → GL-051,"GL-051, GL-049",Original + generated image pair
-GL-051,Studio journey,"Save, download, share",Pending,Shop or book → GL-052,"GL-052, GL-120","Storage, collections, share intent"
-GL-052,Studio journey,Shop or book the look,Pending,Find a stylist → GL-103,"GL-089, GL-093, GL-103","Verified catalog matches, professional directory, 10% item commission (server-side)"
+GL-036,Studio journey,Select photo or camera,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Pick photo → GL-037,"GL-037, GL-020",Photo library permission (OS)
+GL-037,Studio journey,Portrait canvas,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Pick a tool,"GL-038–047, GL-050, GL-051","Photo, rendering engine"
+GL-039,Studio journey,Lipstick try-on,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Save look → GL-051,"GL-050, GL-051, GL-052","Face-landmark rendering, shade catalog (references until verified)"
+GL-044,Studio journey,Hairstyle gallery,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Tap a style → GL-049,"GL-045, GL-046, GL-049","Style catalog, inclusive coverage of textures"
+GL-046,Studio journey,Hair colour,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Save look → GL-051,"GL-050, GL-051","Hair segmentation, colour catalog"
+GL-047,Studio journey,AI custom-look prompt,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Generate → GL-048,GL-048,"Generation provider, credits debit, content-safety"
+GL-048,Studio journey,Generation progress,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Auto → GL-049,GL-049,"Async job status, cancel, failure refund"
+GL-049,Studio journey,Generated results,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Compare → GL-050 / Shop or book → GL-052,"GL-050, GL-051, GL-052","Generation results, storage"
+GL-050,Studio journey,Before / after,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Save look → GL-051,"GL-051, GL-049",Original + generated image pair
+GL-051,Studio journey,"Save, download, share",Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Shop or book → GL-052,"GL-052, GL-120","Storage, collections, share intent"
+GL-052,Studio journey,Shop or book the look,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Find a stylist → GL-103,"GL-089, GL-093, GL-103","Verified catalog matches, professional directory, 10% item commission (server-side)"
 GL-069,Consumer tabs,Discover feed,Batch 1 · built,Try on → GL-035,"GL-070, GL-074, GL-035, GL-052","Feed ranking, creators, saves, attribution"
 GL-117,Consumer tabs,Profile overview,Batch 1 · built,Switch role → GL-202,"GL-120–130, GL-202","Profile, entitlements, credit ledger"
-GL-126,Consumer tabs,AI credits balance,Pending,Get more credits → GL-127,GL-127,Entitlements & credit ledger (server)
-GL-202,System states,Role switcher,Pending,Select role,Role dashboards (Stage 4),"Role grants, RBAC; admin requires explicit authorization"
-GL-203,System states,Offline,Pending,Try again,Previous screen,"Connectivity monitor, cached content"
-GL-205,System states,Permission denied,Pending,Open Settings,GL-021,OS permission state
-DS,Checkpoint 1 · Design system,Design system board,Pending,—,—,—
-GL-001,Module 01 · Welcome & onboarding,Splash,Pending,Continue → GL-002,GL-002,"Session token, remote config"
-GL-002,Module 01 · Welcome & onboarding,Welcome,Pending,Get started → GL-003,"GL-003, GL-004",App data
-GL-003,Module 01 · Welcome & onboarding,Walkthrough,Pending,Next → GL-004,GL-004,App data
-GL-004,Module 01 · Welcome & onboarding,Sign in,Pending,—,GL-002,Auth providers
-GL-005,Module 01 · Welcome & onboarding,Mobile number,Pending,Send my code → GL-006,"GL-004, GL-006",SMS OTP provider
-GL-006,Module 01 · Welcome & onboarding,Verify code,Pending,Verify → GL-011,"GL-005, GL-011","OTP verify, rate limiting"
-GL-007,Module 01 · Welcome & onboarding,Email sign-in,Pending,Sign in → GL-010,"GL-004, GL-010, GL-008","Auth email/password, reset"
-GL-008,Module 01 · Welcome & onboarding,Create account,Pending,Create account → GL-010,"GL-007, GL-010","Auth sign-up, email verification"
-GL-009,Module 01 · Welcome & onboarding,Social sign-in,Pending,—,GL-004,OAuth PKCE redirect
-GL-010,Module 01 · Welcome & onboarding,Biometric setup,Pending,Enable → GL-011,GL-011,"OS biometric, secure storage"
-GL-011,Module 01 · Welcome & onboarding,Your details,Pending,Continue → GL-012,"GL-010, GL-012","Profile write, age-mode rules"
-GL-012,Module 01 · Welcome & onboarding,Beauty interests,Pending,Continue → GL-013,"GL-011, GL-013",Preference store
-GL-013,Module 01 · Welcome & onboarding,Preferences,Pending,Continue → GL-014,"GL-012, GL-014",Preference store
-GL-014,Module 01 · Welcome & onboarding,Permissions,Pending,Continue → GL-015,"GL-013, GL-015",OS permissions
-GL-015,Module 01 · Welcome & onboarding,Privacy & AI consent,Pending,I understand → GL-016,"GL-014, GL-016",Consent record
-GL-016,Module 01 · Welcome & onboarding,You’re set,Pending,Start my first analysis → GL-017,"GL-017, home",Onboarding flag
-GL-021,Module 02 · Analysis (additional),Gallery,Pending,Use photo → GL-022,"GL-019, GL-022",Photo library (OS)
-GL-022,Module 02 · Analysis (additional),Frame & crop,Pending,Done → GL-023,"GL-021, GL-023",Local image editing
-GL-038,Module 03 · Studio (additional),Makeup categories,Pending,—,GL-037,App data
-GL-040,Module 03 · Studio (additional),Foundation,Pending,Save look → GL-051,"GL-038, GL-051, GL-050",Skin-tone-inclusive shade set
-GL-041,Module 03 · Studio (additional),Eyes,Pending,Save look → GL-051,"GL-038, GL-051, GL-050",App data
-GL-042,Module 03 · Studio (additional),Blush & contour,Pending,Save look → GL-051,"GL-038, GL-051, GL-050",App data
-GL-043,Module 03 · Studio (additional),Look presets,Pending,—,GL-038,Preset library
-GL-045,Module 03 · Studio (additional),"Wigs, braids & locs",Pending,Try on → GL-049,"GL-044, GL-049",Style catalog
-GL-053,Module 04 · Personal styling & events,Stylist home,Pending,—,home,App data
-GL-054,Module 04 · Personal styling & events,AI stylist,Pending,—,GL-053,"LLM stylist, safety filters"
-GL-055,Module 04 · Personal styling & events,Styling goal,Pending,Continue → GL-056,"GL-053, GL-056",App data
-GL-056,Module 04 · Personal styling & events,Occasion,Pending,—,GL-055,Event taxonomy
-GL-057,Module 04 · Personal styling & events,Event search,Pending,Add my own event → GL-058,"GL-056, GL-058",Events provider
-GL-058,Module 04 · Personal styling & events,Location & weather,Pending,Continue → GL-059,"GL-057, GL-059",Weather API
-GL-059,Module 04 · Personal styling & events,Dress code & culture,Pending,Create outfits → GL-062,"GL-058, GL-062",Preference store
-GL-060,Module 04 · Personal styling & events,Add wardrobe item,Pending,Capture → GL-061,GL-061,"Camera, image classification"
-GL-061,Module 04 · Personal styling & events,Digital wardrobe,Pending,Add an item → GL-060,"GL-053, GL-060, GL-062",Wardrobe store
-GL-062,Module 04 · Personal styling & events,Creating outfits,Pending,Skip → GL-063,GL-063,Outfit generation job
-GL-063,Module 04 · Personal styling & events,Outfit ideas,Pending,—,GL-059,Outfit engine
-GL-064,Module 04 · Personal styling & events,Outfit detail,Pending,Save or shop → GL-068,"GL-063, GL-068, GL-065",App data
-GL-065,Module 04 · Personal styling & events,Alternatives,Pending,Back to outfit → GL-064,"GL-064, GL-067",Outfit engine
-GL-066,Module 04 · Personal styling & events,Tailor match,Pending,—,GL-064,Professional directory
-GL-067,Module 04 · Personal styling & events,Styling plan,Pending,Add to calendar → GL-068,"GL-064, GL-068","Reminders, calendar"
-GL-068,Module 04 · Personal styling & events,"Save, share, shop",Pending,—,GL-064,App data
-GL-070,Module 05 · Discover & community,Search,Pending,Filters → GL-071,"GL-069, GL-071",Search index
-GL-071,Module 05 · Discover & community,Filters,Pending,Show results → GL-072,"GL-070, GL-072",App data
-GL-072,Module 05 · Discover & community,Trending looks,Pending,—,GL-069,Trending ranking
-GL-073,Module 05 · Discover & community,Look viewer,Pending,—,GL-072,"Look, creator, attribution"
-GL-074,Module 05 · Discover & community,Creator profile,Pending,Follow → GL-075,"GL-073, GL-075, GL-076","Creator profile, follow graph"
-GL-075,Module 05 · Discover & community,Following,Pending,Discover creators → GL-072,"GL-069, GL-072",App data
-GL-076,Module 05 · Discover & community,Look details,Pending,Try this look → GL-035,"GL-073, GL-035, GL-077","Look metadata, product mapping"
-GL-077,Module 05 · Discover & community,Save inspiration,Pending,—,GL-076,App data
-GL-078,Module 05 · Discover & community,Collections,Pending,—,GL-117,Collections store
-GL-079,Module 05 · Discover & community,New collection,Pending,Create → GL-078,GL-078,App data
-GL-080,Module 05 · Discover & community,Tutorials,Pending,—,GL-069,App data
-GL-081,Module 05 · Discover & community,Tutorial player,Pending,Next step → GL-081,"GL-080, GL-081, GL-035",Video streaming
-GL-082,Module 05 · Discover & community,Comments,Pending,—,GL-073,"Comments, moderation"
-GL-083,Module 05 · Discover & community,Share,Pending,—,GL-073,App data
-GL-084,Module 05 · Discover & community,Report or hide,Pending,Done → GL-072,"GL-073, GL-072",Moderation queue
-GL-085,Module 06 · Shopping & marketplace,Shop,Pending,—,"GL-069, GL-088",Catalog
-GL-086,Module 06 · Shopping & marketplace,Categories,Pending,—,GL-085,App data
-GL-087,Module 06 · Shopping & marketplace,Results & filters,Pending,—,"GL-086, GL-094","Search, facets"
-GL-088,Module 06 · Shopping & marketplace,For you,Pending,—,GL-085,Recommendation engine
-GL-089,Module 06 · Shopping & marketplace,Product,Pending,Add to bag → GL-095,"GL-085, GL-095, GL-039","Product, merchant, stock"
-GL-090,Module 06 · Shopping & marketplace,Variations,Pending,Add to bag → GL-095,"GL-089, GL-095",Variant stock
-GL-091,Module 06 · Shopping & marketplace,Gallery,Pending,—,GL-089,App data
-GL-092,Module 06 · Shopping & marketplace,Storefront,Pending,View products → GL-087,"GL-089, GL-087",Merchant profile
-GL-093,Module 06 · Shopping & marketplace,Shop the look,Pending,Add all to bag → GL-095,"GL-076, GL-095",Look→product mapping
-GL-094,Module 06 · Shopping & marketplace,Compare,Pending,Choose one → GL-089,"GL-087, GL-089",App data
-GL-095,Module 06 · Shopping & marketplace,Bag,Pending,Checkout → GL-096,"GL-085, GL-096",Cart service
-GL-096,Module 06 · Shopping & marketplace,Address,Pending,Continue → GL-097,"GL-095, GL-097",Address validation
-GL-097,Module 06 · Shopping & marketplace,Shipping,Pending,—,GL-096,Delivery quotes
-GL-098,Module 06 · Shopping & marketplace,Checkout summary,Pending,Choose payment → GL-099,"GL-097, GL-099","Pricing, tax, commission engine"
-GL-099,Module 06 · Shopping & marketplace,Payment,Pending,—,GL-098,Stripe
-GL-100,Module 06 · Shopping & marketplace,Processing,Pending,Continue → GL-101,"GL-101, GL-207",Stripe webhook
-GL-101,Module 06 · Shopping & marketplace,Order confirmed,Pending,Track order → GL-102,"GL-102, home",Order record
-GL-102,Module 06 · Shopping & marketplace,Order tracking,Pending,Start a return → GL-102,"GL-101, GL-102, GL-199","Courier tracking, returns"
-GL-103,Module 07 · Salons & bookings,Find professionals,Pending,—,"GL-052, GL-105",Professional index
-GL-104,Module 07 · Salons & bookings,Nearby,Pending,—,GL-103,"Location, maps"
-GL-105,Module 07 · Salons & bookings,Filters,Pending,Apply → GL-103,GL-103,App data
-GL-106,Module 07 · Salons & bookings,Professional profile,Pending,Book → GL-107,"GL-103, GL-107, GL-115",Professional profile
-GL-107,Module 07 · Salons & bookings,Services,Pending,—,GL-106,Services
-GL-108,Module 07 · Salons & bookings,Service detail,Pending,Choose a time → GL-109,"GL-107, GL-109","Service, pricing"
-GL-109,Module 07 · Salons & bookings,Calendar,Pending,Continue → GL-110,"GL-108, GL-110",Availability
-GL-110,Module 07 · Salons & bookings,Time slot,Pending,—,GL-109,Slot hold
-GL-111,Module 07 · Salons & bookings,Booking details,Pending,Continue to payment → GL-112,"GL-110, GL-112",Booking draft
-GL-112,Module 07 · Salons & bookings,Pay & confirm,Pending,Pay deposit → GL-113,"GL-111, GL-113","Stripe, deposit policy"
-GL-113,Module 07 · Salons & bookings,Upcoming,Pending,Book another → GL-103,"GL-117, GL-103",Bookings
-GL-114,Module 07 · Salons & bookings,Reschedule or cancel,Pending,—,GL-113,"Policy engine, refunds"
-GL-115,Module 07 · Salons & bookings,Messages,Pending,—,GL-106,Chat service
-GL-116,Module 07 · Salons & bookings,Reviews,Pending,Write a review → GL-116,"GL-106, GL-116",Reviews
-GL-118,"Module 08 · Profile, credits & subscriptions",Edit profile,Pending,Save → GL-117,GL-117,Profile
-GL-119,"Module 08 · Profile, credits & subscriptions",Beauty preferences,Pending,—,GL-117,Preference store
-GL-120,"Module 08 · Profile, credits & subscriptions",Saved looks,Pending,—,GL-117,Saves
-GL-121,"Module 08 · Profile, credits & subscriptions",Analysis history,Pending,New analysis → GL-017,"GL-117, GL-017",Analysis history
-GL-122,"Module 08 · Profile, credits & subscriptions",Wardrobe & routines,Pending,—,GL-117,App data
-GL-123,"Module 08 · Profile, credits & subscriptions",Orders & bookings,Pending,—,GL-117,"Orders, bookings"
-GL-124,"Module 08 · Profile, credits & subscriptions",Plans,Pending,Continue → GL-125,"GL-117, GL-125","Store product listings, receipt verification, entitlement sync"
-GL-125,"Module 08 · Profile, credits & subscriptions",Manage subscription,Pending,View credits → GL-126,"GL-117, GL-126",Subscription state
-GL-127,"Module 08 · Profile, credits & subscriptions",Buy credits,Pending,Buy with App Store / Google Play → GL-100,"GL-126, GL-100","Store IAP, server receipt verification, credit ledger"
-GL-128,"Module 08 · Profile, credits & subscriptions",Billing,Pending,Add method → GL-128,"GL-117, GL-128",Stripe customer
-GL-129,"Module 08 · Profile, credits & subscriptions",Notifications,Pending,—,GL-117,Push topics
-GL-130,"Module 08 · Profile, credits & subscriptions",Security & privacy,Pending,—,GL-117,"Auth, deletion jobs"
-GL-131,Part D · Creator companion,Dashboard,Pending,Create a look → GL-133,"GL-133, GL-139",Creator analytics
-GL-132,Part D · Creator companion,Profile,Pending,Edit profile → GL-132,GL-132,Creator profile
-GL-133,Part D · Creator companion,Create,Pending,—,—,App data
-GL-134,Part D · Creator companion,Capture,Pending,Capture → GL-135,"GL-133, GL-135","Camera, microphone"
-GL-135,Part D · Creator companion,Editor,Pending,Next → GL-136,"GL-134, GL-136",Media editor
-GL-136,Part D · Creator companion,Tag products,Pending,Next → GL-137,"GL-135, GL-137","Catalog search, attribution"
-GL-137,Part D · Creator companion,Publish,Pending,Publish → GL-138,"GL-136, GL-138","Publishing, moderation"
-GL-138,Part D · Creator companion,Library,Pending,Create → GL-133,GL-133,App data
-GL-139,Part D · Creator companion,Analytics,Pending,—,—,Analytics
-GL-140,Part D · Creator companion,Affiliate links,Pending,New link → GL-140,GL-140,Attribution links
-GL-141,Part D · Creator companion,Earnings,Pending,Withdraw → GL-184,"GL-184, GL-142","Ledger, payouts"
-GL-142,Part D · Creator companion,Collaborations,Pending,—,—,Collab marketplace
-GL-143,Part E · Merchant companion,Dashboard,Pending,—,GL-144,"Orders, sales"
-GL-144,Part E · Merchant companion,Verification,Pending,Continue → GL-145,"GL-143, GL-145",KYB provider
-GL-145,Part E · Merchant companion,Store profile,Pending,Save → GL-143,GL-143,Merchant profile
-GL-146,Part E · Merchant companion,Catalogue,Pending,Snap & List → GL-147,GL-147,Catalog
-GL-147,Part E · Merchant companion,Snap & List,Pending,Capture → GL-148,"GL-143, GL-148",Camera
-GL-148,Part E · Merchant companion,AI enhancement,Pending,Set price & stock → GL-149,"GL-147, GL-149","Image/Text AI, review gate"
-GL-149,Part E · Merchant companion,Price & stock,Pending,Publish → GL-146,"GL-148, GL-146","Catalog write, commission calc"
-GL-150,Part E · Merchant companion,New orders,Pending,—,—,"Orders, push"
-GL-151,Part E · Merchant companion,Order detail,Pending,Mark as shipped → GL-150,"GL-150, GL-152","Orders, shipping labels"
-GL-152,Part E · Merchant companion,Returns & support,Pending,—,GL-150,"Returns, messaging"
-GL-153,Part E · Merchant companion,Sales & earnings,Pending,Promotions & settings → GL-154,GL-154,Ledger
-GL-154,Part E · Merchant companion,Promotions & settings,Pending,—,—,Merchant settings
-GL-155,Part F · Beauty professional companion,Dashboard,Pending,—,GL-156,Bookings
-GL-156,Part F · Beauty professional companion,Onboarding,Pending,Continue → GL-157,"GL-155, GL-157",KYC/credentials
-GL-157,Part F · Beauty professional companion,Services,Pending,Add service → GL-157,GL-157,Services
-GL-158,Part F · Beauty professional companion,Availability,Pending,Save hours → GL-155,GL-155,Availability store
-GL-159,Part F · Beauty professional companion,Requests,Pending,—,—,"Bookings, push"
-GL-160,Part F · Beauty professional companion,Booking detail,Pending,Respond → GL-161,"GL-159, GL-161, GL-163",Booking
-GL-161,Part F · Beauty professional companion,Respond,Pending,—,GL-160,App data
-GL-162,Part F · Beauty professional companion,Client references,Pending,—,GL-160,App data
-GL-163,Part F · Beauty professional companion,Client chat,Pending,—,GL-160,Chat
-GL-164,Part F · Beauty professional companion,Portfolio,Pending,Upload → GL-164,GL-164,Media storage
-GL-165,Part F · Beauty professional companion,Earnings,Pending,Payout settings → GL-166,GL-166,Ledger
-GL-166,Part F · Beauty professional companion,Settings,Pending,—,—,App data
-GL-167,Part G · Advertiser companion,Dashboard,Pending,New campaign → GL-170,"GL-170, GL-176",Ads
-GL-168,Part G · Advertiser companion,Campaigns,Pending,—,—,Ads
-GL-169,Part G · Advertiser companion,Campaign detail,Pending,Full performance → GL-174,"GL-168, GL-174",Ads
-GL-170,Part G · Advertiser companion,Create,Pending,Continue → GL-171,"GL-168, GL-171",Ads
-GL-171,Part G · Advertiser companion,Targeting,Pending,Continue → GL-172,"GL-170, GL-172",Ads policy
-GL-172,Part G · Advertiser companion,Creative,Pending,Choose placements → GL-211,"GL-171, GL-211","Media, review"
-GL-173,Part G · Advertiser companion,Budget,Pending,Review & launch → GL-168,"GL-212, GL-168",Billing
-GL-174,Part G · Advertiser companion,Performance,Pending,—,—,Analytics
-GL-175,Part G · Advertiser companion,Billing,Pending,—,—,Billing
-GL-176,Part G · Advertiser companion,Alerts,Pending,—,—,Push
-GL-177,Part H · Affiliate companion,Dashboard,Pending,Share a link → GL-179,"GL-179, GL-178",Affiliate analytics
-GL-178,Part H · Affiliate companion,Onboarding,Pending,Apply → GL-177,GL-177,Application
-GL-179,Part H · Affiliate companion,Referral link & QR,Pending,Share → GL-180,GL-180,Link service
-GL-180,Part H · Affiliate companion,Campaigns,Pending,—,—,App data
-GL-181,Part H · Affiliate companion,Referral activity,Pending,See conversions → GL-182,GL-182,Attribution
-GL-182,Part H · Affiliate companion,Conversions,Pending,—,GL-181,Attribution
-GL-183,Part H · Affiliate companion,Commission,Pending,Withdraw → GL-184,GL-184,Ledger
-GL-184,Part H · Affiliate companion,Withdraw,Pending,Request payout → GL-185,"GL-183, GL-185",Payout provider
-GL-185,Part H · Affiliate companion,Payout history,Pending,Get help → GL-186,"GL-183, GL-186",App data
-GL-186,Part H · Affiliate companion,Support,Pending,—,—,App data
-GL-187,Part I · Administrator companion,Overview,Pending,—,—,"RBAC, audit log"
-GL-188,Part I · Administrator companion,Verification queue,Pending,—,—,Queues
-GL-189,Part I · Administrator companion,User review,Pending,Approve → GL-188,GL-188,KYC
-GL-190,Part I · Administrator companion,Merchant approval,Pending,Approve → GL-188,GL-188,"KYB, audit"
-GL-191,Part I · Administrator companion,Professional approval,Pending,Approve → GL-188,GL-188,"Credentials, audit"
-GL-192,Part I · Administrator companion,Exceptions,Pending,—,—,"Orders, bookings"
-GL-193,Part I · Administrator companion,Payment alerts,Pending,—,—,Stripe webhooks
-GL-194,Part I · Administrator companion,Moderation,Pending,Review → GL-194,GL-194,Moderation queue
-GL-195,Part I · Administrator companion,Support inbox,Pending,—,—,Support desk
-GL-196,Part I · Administrator companion,System health,Pending,—,—,Monitoring
-GL-197,Part J · Shared system,Notifications,Pending,Notification settings → GL-129,"home, GL-129",Notification service
-GL-198,Part J · Shared system,Chat,Pending,—,GL-197,Chat service
-GL-199,Part J · Shared system,Help & support,Pending,—,GL-117,Support
-GL-200,Part J · Shared system,FAQ,Pending,—,GL-199,CMS
-GL-201,Part J · Shared system,Report a problem,Pending,Send report → GL-199,GL-199,"Support, logs"
-GL-204,Part J · Shared system,Loading & retry,Pending,Keep waiting → GL-204,"GL-204, home","Timeouts, retry"
-GL-206,Part J · Shared system,Session expired,Pending,Sign in → GL-004,GL-004,"Session, refresh"
-GL-207,Part J · Shared system,Operation failed,Pending,Try again → GL-099,"GL-099, GL-199",Stripe errors
-GL-208,Part J · Shared system,Update & maintenance,Pending,Check again → home,home,"Remote config, version gate"
-TP-01,Transformation journey (added),My beauty goals,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-TP-02,Transformation journey (added),Transformation plan,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-TP-03,Transformation journey (added),Recommended transformations,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-TP-04,Transformation journey (added),Personalized look preview,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-TP-05,Transformation journey (added),Compare transformation options,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-TP-06,Transformation journey (added),Why this look works,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-TP-07,Transformation journey (added),How to achieve this look,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-TP-08,Transformation journey (added),Product & tool checklist,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-TP-09,Transformation journey (added),Find someone to recreate it,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-TP-10,Transformation journey (added),Transformation budget options,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-TP-11,Transformation journey (added),Save my beauty plan,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-TP-12,Transformation journey (added),My beauty plans,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-TP-13,Transformation journey (added),Routine & progress tracking,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-TP-14,Transformation journey (added),Adjust my recommendations,Pending,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
-FB-01,Fashion & full-body (added),Full-body capture,Pending,,,"Full-body try-on provider, garment catalogue, measurements, design-request service — no confirmed endpoint"
-FB-02,Fashion & full-body (added),Virtual fitting room,Pending,,,"Full-body try-on provider, garment catalogue, measurements, design-request service — no confirmed endpoint"
-FB-03,Fashion & full-body (added),Head-to-toe outfit builder,Pending,,,"Full-body try-on provider, garment catalogue, measurements, design-request service — no confirmed endpoint"
-FB-04,Fashion & full-body (added),Garment detail & size guidance,Pending,,,"Full-body try-on provider, garment catalogue, measurements, design-request service — no confirmed endpoint"
-FB-05,Fashion & full-body (added),Design brief to tailor/designer,Pending,,,"Full-body try-on provider, garment catalogue, measurements, design-request service — no confirmed endpoint"
-GL-209,Themed events (added),Themed event directory,Pending,,,"Event catalogue, organiser content, merchant and professional links — REQUIRES BACKEND VERIFICATION"
-GL-210,Themed events (added),Themed event detail,Pending,,,"Event catalogue, organiser content, merchant and professional links — REQUIRES BACKEND VERIFICATION"
-GL-211,Advertiser placements (added),Ad placement selection,Pending,,,"Placement inventory, creative review, ad serving — REQUIRES BACKEND VERIFICATION"
-GL-212,Advertiser placements (added),Ad preview (consumer layout),Pending,,,"Placement inventory, creative review, ad serving — REQUIRES BACKEND VERIFICATION"
+GL-126,Consumer tabs,AI credits balance,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Get more credits → GL-127,GL-127,Entitlements & credit ledger (server)
+GL-202,System states,Role switcher,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Select role,Role dashboards (Stage 4),"Role grants, RBAC; admin requires explicit authorization"
+GL-203,System states,Offline,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Try again,Previous screen,"Connectivity monitor, cached content"
+GL-205,System states,Permission denied,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Open Settings,GL-021,OS permission state
+DS,Checkpoint 1 · Design system,Design system board,Design-system board: not a screen (tokens in lib/design/tokens.dart),—,—,—
+GL-001,Module 01 · Welcome & onboarding,Splash,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-002,GL-002,"Session token, remote config"
+GL-002,Module 01 · Welcome & onboarding,Welcome,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Get started → GL-003,"GL-003, GL-004",App data
+GL-003,Module 01 · Welcome & onboarding,Walkthrough,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Next → GL-004,GL-004,App data
+GL-004,Module 01 · Welcome & onboarding,Sign in,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-002,Auth providers
+GL-005,Module 01 · Welcome & onboarding,Mobile number,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Send my code → GL-006,"GL-004, GL-006",SMS OTP provider
+GL-006,Module 01 · Welcome & onboarding,Verify code,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Verify → GL-011,"GL-005, GL-011","OTP verify, rate limiting"
+GL-007,Module 01 · Welcome & onboarding,Email sign-in,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Sign in → GL-010,"GL-004, GL-010, GL-008","Auth email/password, reset"
+GL-008,Module 01 · Welcome & onboarding,Create account,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Create account → GL-010,"GL-007, GL-010","Auth sign-up, email verification"
+GL-009,Module 01 · Welcome & onboarding,Social sign-in,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-004,OAuth PKCE redirect
+GL-010,Module 01 · Welcome & onboarding,Biometric setup,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Enable → GL-011,GL-011,"OS biometric, secure storage"
+GL-011,Module 01 · Welcome & onboarding,Your details,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-012,"GL-010, GL-012","Profile write, age-mode rules"
+GL-012,Module 01 · Welcome & onboarding,Beauty interests,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-013,"GL-011, GL-013",Preference store
+GL-013,Module 01 · Welcome & onboarding,Preferences,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-014,"GL-012, GL-014",Preference store
+GL-014,Module 01 · Welcome & onboarding,Permissions,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-015,"GL-013, GL-015",OS permissions
+GL-015,Module 01 · Welcome & onboarding,Privacy & AI consent,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,I understand → GL-016,"GL-014, GL-016",Consent record
+GL-016,Module 01 · Welcome & onboarding,You’re set,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Start my first analysis → GL-017,"GL-017, home",Onboarding flag
+GL-021,Module 02 · Analysis (additional),Gallery,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Use photo → GL-022,"GL-019, GL-022",Photo library (OS)
+GL-022,Module 02 · Analysis (additional),Frame & crop,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Done → GL-023,"GL-021, GL-023",Local image editing
+GL-038,Module 03 · Studio (additional),Makeup categories,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-037,App data
+GL-040,Module 03 · Studio (additional),Foundation,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Save look → GL-051,"GL-038, GL-051, GL-050",Skin-tone-inclusive shade set
+GL-041,Module 03 · Studio (additional),Eyes,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Save look → GL-051,"GL-038, GL-051, GL-050",App data
+GL-042,Module 03 · Studio (additional),Blush & contour,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Save look → GL-051,"GL-038, GL-051, GL-050",App data
+GL-043,Module 03 · Studio (additional),Look presets,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-038,Preset library
+GL-045,Module 03 · Studio (additional),"Wigs, braids & locs",Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Try on → GL-049,"GL-044, GL-049",Style catalog
+GL-053,Module 04 · Personal styling & events,Stylist home,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,home,App data
+GL-054,Module 04 · Personal styling & events,AI stylist,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-053,"LLM stylist, safety filters"
+GL-055,Module 04 · Personal styling & events,Styling goal,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-056,"GL-053, GL-056",App data
+GL-056,Module 04 · Personal styling & events,Occasion,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-055,Event taxonomy
+GL-057,Module 04 · Personal styling & events,Event search,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Add my own event → GL-058,"GL-056, GL-058",Events provider
+GL-058,Module 04 · Personal styling & events,Location & weather,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-059,"GL-057, GL-059",Weather API
+GL-059,Module 04 · Personal styling & events,Dress code & culture,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Create outfits → GL-062,"GL-058, GL-062",Preference store
+GL-060,Module 04 · Personal styling & events,Add wardrobe item,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Capture → GL-061,GL-061,"Camera, image classification"
+GL-061,Module 04 · Personal styling & events,Digital wardrobe,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Add an item → GL-060,"GL-053, GL-060, GL-062",Wardrobe store
+GL-062,Module 04 · Personal styling & events,Creating outfits,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Skip → GL-063,GL-063,Outfit generation job
+GL-063,Module 04 · Personal styling & events,Outfit ideas,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-059,Outfit engine
+GL-064,Module 04 · Personal styling & events,Outfit detail,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Save or shop → GL-068,"GL-063, GL-068, GL-065",App data
+GL-065,Module 04 · Personal styling & events,Alternatives,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Back to outfit → GL-064,"GL-064, GL-067",Outfit engine
+GL-066,Module 04 · Personal styling & events,Tailor match,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-064,Professional directory
+GL-067,Module 04 · Personal styling & events,Styling plan,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Add to calendar → GL-068,"GL-064, GL-068","Reminders, calendar"
+GL-068,Module 04 · Personal styling & events,"Save, share, shop",Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-064,App data
+GL-070,Module 05 · Discover & community,Search,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Filters → GL-071,"GL-069, GL-071",Search index
+GL-071,Module 05 · Discover & community,Filters,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Show results → GL-072,"GL-070, GL-072",App data
+GL-072,Module 05 · Discover & community,Trending looks,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-069,Trending ranking
+GL-073,Module 05 · Discover & community,Look viewer,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-072,"Look, creator, attribution"
+GL-074,Module 05 · Discover & community,Creator profile,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Follow → GL-075,"GL-073, GL-075, GL-076","Creator profile, follow graph"
+GL-075,Module 05 · Discover & community,Following,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Discover creators → GL-072,"GL-069, GL-072",App data
+GL-076,Module 05 · Discover & community,Look details,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Try this look → GL-035,"GL-073, GL-035, GL-077","Look metadata, product mapping"
+GL-077,Module 05 · Discover & community,Save inspiration,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-076,App data
+GL-078,Module 05 · Discover & community,Collections,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-117,Collections store
+GL-079,Module 05 · Discover & community,New collection,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Create → GL-078,GL-078,App data
+GL-080,Module 05 · Discover & community,Tutorials,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-069,App data
+GL-081,Module 05 · Discover & community,Tutorial player,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Next step → GL-081,"GL-080, GL-081, GL-035",Video streaming
+GL-082,Module 05 · Discover & community,Comments,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-073,"Comments, moderation"
+GL-083,Module 05 · Discover & community,Share,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-073,App data
+GL-084,Module 05 · Discover & community,Report or hide,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Done → GL-072,"GL-073, GL-072",Moderation queue
+GL-085,Module 06 · Shopping & marketplace,Shop,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,"GL-069, GL-088",Catalog
+GL-086,Module 06 · Shopping & marketplace,Categories,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-085,App data
+GL-087,Module 06 · Shopping & marketplace,Results & filters,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,"GL-086, GL-094","Search, facets"
+GL-088,Module 06 · Shopping & marketplace,For you,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-085,Recommendation engine
+GL-089,Module 06 · Shopping & marketplace,Product,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Add to bag → GL-095,"GL-085, GL-095, GL-039","Product, merchant, stock"
+GL-090,Module 06 · Shopping & marketplace,Variations,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Add to bag → GL-095,"GL-089, GL-095",Variant stock
+GL-091,Module 06 · Shopping & marketplace,Gallery,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-089,App data
+GL-092,Module 06 · Shopping & marketplace,Storefront,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,View products → GL-087,"GL-089, GL-087",Merchant profile
+GL-093,Module 06 · Shopping & marketplace,Shop the look,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Add all to bag → GL-095,"GL-076, GL-095",Look→product mapping
+GL-094,Module 06 · Shopping & marketplace,Compare,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Choose one → GL-089,"GL-087, GL-089",App data
+GL-095,Module 06 · Shopping & marketplace,Bag,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Checkout → GL-096,"GL-085, GL-096",Cart service
+GL-096,Module 06 · Shopping & marketplace,Address,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-097,"GL-095, GL-097",Address validation
+GL-097,Module 06 · Shopping & marketplace,Shipping,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-096,Delivery quotes
+GL-098,Module 06 · Shopping & marketplace,Checkout summary,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Choose payment → GL-099,"GL-097, GL-099","Pricing, tax, commission engine"
+GL-099,Module 06 · Shopping & marketplace,Payment,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-098,Stripe
+GL-100,Module 06 · Shopping & marketplace,Processing,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-101,"GL-101, GL-207",Stripe webhook
+GL-101,Module 06 · Shopping & marketplace,Order confirmed,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Track order → GL-102,"GL-102, home",Order record
+GL-102,Module 06 · Shopping & marketplace,Order tracking,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Start a return → GL-102,"GL-101, GL-102, GL-199","Courier tracking, returns"
+GL-103,Module 07 · Salons & bookings,Find professionals,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,"GL-052, GL-105",Professional index
+GL-104,Module 07 · Salons & bookings,Nearby,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-103,"Location, maps"
+GL-105,Module 07 · Salons & bookings,Filters,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Apply → GL-103,GL-103,App data
+GL-106,Module 07 · Salons & bookings,Professional profile,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Book → GL-107,"GL-103, GL-107, GL-115",Professional profile
+GL-107,Module 07 · Salons & bookings,Services,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-106,Services
+GL-108,Module 07 · Salons & bookings,Service detail,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Choose a time → GL-109,"GL-107, GL-109","Service, pricing"
+GL-109,Module 07 · Salons & bookings,Calendar,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-110,"GL-108, GL-110",Availability
+GL-110,Module 07 · Salons & bookings,Time slot,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-109,Slot hold
+GL-111,Module 07 · Salons & bookings,Booking details,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue to payment → GL-112,"GL-110, GL-112",Booking draft
+GL-112,Module 07 · Salons & bookings,Pay & confirm,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Pay deposit → GL-113,"GL-111, GL-113","Stripe, deposit policy"
+GL-113,Module 07 · Salons & bookings,Upcoming,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Book another → GL-103,"GL-117, GL-103",Bookings
+GL-114,Module 07 · Salons & bookings,Reschedule or cancel,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-113,"Policy engine, refunds"
+GL-115,Module 07 · Salons & bookings,Messages,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-106,Chat service
+GL-116,Module 07 · Salons & bookings,Reviews,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Write a review → GL-116,"GL-106, GL-116",Reviews
+GL-118,"Module 08 · Profile, credits & subscriptions",Edit profile,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Save → GL-117,GL-117,Profile
+GL-119,"Module 08 · Profile, credits & subscriptions",Beauty preferences,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-117,Preference store
+GL-120,"Module 08 · Profile, credits & subscriptions",Saved looks,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-117,Saves
+GL-121,"Module 08 · Profile, credits & subscriptions",Analysis history,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,New analysis → GL-017,"GL-117, GL-017",Analysis history
+GL-122,"Module 08 · Profile, credits & subscriptions",Wardrobe & routines,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-117,App data
+GL-123,"Module 08 · Profile, credits & subscriptions",Orders & bookings,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-117,"Orders, bookings"
+GL-124,"Module 08 · Profile, credits & subscriptions",Plans,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-125,"GL-117, GL-125","Store product listings, receipt verification, entitlement sync"
+GL-125,"Module 08 · Profile, credits & subscriptions",Manage subscription,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,View credits → GL-126,"GL-117, GL-126",Subscription state
+GL-127,"Module 08 · Profile, credits & subscriptions",Buy credits,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Buy with App Store / Google Play → GL-100,"GL-126, GL-100","Store IAP, server receipt verification, credit ledger"
+GL-128,"Module 08 · Profile, credits & subscriptions",Billing,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Add method → GL-128,"GL-117, GL-128",Stripe customer
+GL-129,"Module 08 · Profile, credits & subscriptions",Notifications,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-117,Push topics
+GL-130,"Module 08 · Profile, credits & subscriptions",Security & privacy,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-117,"Auth, deletion jobs"
+GL-131,Part D · Creator companion,Dashboard,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Create a look → GL-133,"GL-133, GL-139",Creator analytics
+GL-132,Part D · Creator companion,Profile,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Edit profile → GL-132,GL-132,Creator profile
+GL-133,Part D · Creator companion,Create,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,App data
+GL-134,Part D · Creator companion,Capture,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Capture → GL-135,"GL-133, GL-135","Camera, microphone"
+GL-135,Part D · Creator companion,Editor,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Next → GL-136,"GL-134, GL-136",Media editor
+GL-136,Part D · Creator companion,Tag products,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Next → GL-137,"GL-135, GL-137","Catalog search, attribution"
+GL-137,Part D · Creator companion,Publish,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Publish → GL-138,"GL-136, GL-138","Publishing, moderation"
+GL-138,Part D · Creator companion,Library,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Create → GL-133,GL-133,App data
+GL-139,Part D · Creator companion,Analytics,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,Analytics
+GL-140,Part D · Creator companion,Affiliate links,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,New link → GL-140,GL-140,Attribution links
+GL-141,Part D · Creator companion,Earnings,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Withdraw → GL-184,"GL-184, GL-142","Ledger, payouts"
+GL-142,Part D · Creator companion,Collaborations,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,Collab marketplace
+GL-143,Part E · Merchant companion,Dashboard,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-144,"Orders, sales"
+GL-144,Part E · Merchant companion,Verification,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-145,"GL-143, GL-145",KYB provider
+GL-145,Part E · Merchant companion,Store profile,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Save → GL-143,GL-143,Merchant profile
+GL-146,Part E · Merchant companion,Catalogue,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Snap & List → GL-147,GL-147,Catalog
+GL-147,Part E · Merchant companion,Snap & List,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Capture → GL-148,"GL-143, GL-148",Camera
+GL-148,Part E · Merchant companion,AI enhancement,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Set price & stock → GL-149,"GL-147, GL-149","Image/Text AI, review gate"
+GL-149,Part E · Merchant companion,Price & stock,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Publish → GL-146,"GL-148, GL-146","Catalog write, commission calc"
+GL-150,Part E · Merchant companion,New orders,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,"Orders, push"
+GL-151,Part E · Merchant companion,Order detail,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Mark as shipped → GL-150,"GL-150, GL-152","Orders, shipping labels"
+GL-152,Part E · Merchant companion,Returns & support,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-150,"Returns, messaging"
+GL-153,Part E · Merchant companion,Sales & earnings,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Promotions & settings → GL-154,GL-154,Ledger
+GL-154,Part E · Merchant companion,Promotions & settings,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,Merchant settings
+GL-155,Part F · Beauty professional companion,Dashboard,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-156,Bookings
+GL-156,Part F · Beauty professional companion,Onboarding,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-157,"GL-155, GL-157",KYC/credentials
+GL-157,Part F · Beauty professional companion,Services,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Add service → GL-157,GL-157,Services
+GL-158,Part F · Beauty professional companion,Availability,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Save hours → GL-155,GL-155,Availability store
+GL-159,Part F · Beauty professional companion,Requests,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,"Bookings, push"
+GL-160,Part F · Beauty professional companion,Booking detail,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Respond → GL-161,"GL-159, GL-161, GL-163",Booking
+GL-161,Part F · Beauty professional companion,Respond,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-160,App data
+GL-162,Part F · Beauty professional companion,Client references,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-160,App data
+GL-163,Part F · Beauty professional companion,Client chat,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-160,Chat
+GL-164,Part F · Beauty professional companion,Portfolio,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Upload → GL-164,GL-164,Media storage
+GL-165,Part F · Beauty professional companion,Earnings,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Payout settings → GL-166,GL-166,Ledger
+GL-166,Part F · Beauty professional companion,Settings,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,App data
+GL-167,Part G · Advertiser companion,Dashboard,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,New campaign → GL-170,"GL-170, GL-176",Ads
+GL-168,Part G · Advertiser companion,Campaigns,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,Ads
+GL-169,Part G · Advertiser companion,Campaign detail,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Full performance → GL-174,"GL-168, GL-174",Ads
+GL-170,Part G · Advertiser companion,Create,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-171,"GL-168, GL-171",Ads
+GL-171,Part G · Advertiser companion,Targeting,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Continue → GL-172,"GL-170, GL-172",Ads policy
+GL-172,Part G · Advertiser companion,Creative,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Choose placements → GL-211,"GL-171, GL-211","Media, review"
+GL-173,Part G · Advertiser companion,Budget,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Review & launch → GL-168,"GL-212, GL-168",Billing
+GL-174,Part G · Advertiser companion,Performance,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,Analytics
+GL-175,Part G · Advertiser companion,Billing,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,Billing
+GL-176,Part G · Advertiser companion,Alerts,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,Push
+GL-177,Part H · Affiliate companion,Dashboard,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Share a link → GL-179,"GL-179, GL-178",Affiliate analytics
+GL-178,Part H · Affiliate companion,Onboarding,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Apply → GL-177,GL-177,Application
+GL-179,Part H · Affiliate companion,Referral link & QR,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Share → GL-180,GL-180,Link service
+GL-180,Part H · Affiliate companion,Campaigns,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,App data
+GL-181,Part H · Affiliate companion,Referral activity,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,See conversions → GL-182,GL-182,Attribution
+GL-182,Part H · Affiliate companion,Conversions,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-181,Attribution
+GL-183,Part H · Affiliate companion,Commission,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Withdraw → GL-184,GL-184,Ledger
+GL-184,Part H · Affiliate companion,Withdraw,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Request payout → GL-185,"GL-183, GL-185",Payout provider
+GL-185,Part H · Affiliate companion,Payout history,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Get help → GL-186,"GL-183, GL-186",App data
+GL-186,Part H · Affiliate companion,Support,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,App data
+GL-187,Part I · Administrator companion,Overview,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,"RBAC, audit log"
+GL-188,Part I · Administrator companion,Verification queue,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,Queues
+GL-189,Part I · Administrator companion,User review,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Approve → GL-188,GL-188,KYC
+GL-190,Part I · Administrator companion,Merchant approval,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Approve → GL-188,GL-188,"KYB, audit"
+GL-191,Part I · Administrator companion,Professional approval,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Approve → GL-188,GL-188,"Credentials, audit"
+GL-192,Part I · Administrator companion,Exceptions,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,"Orders, bookings"
+GL-193,Part I · Administrator companion,Payment alerts,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,Stripe webhooks
+GL-194,Part I · Administrator companion,Moderation,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Review → GL-194,GL-194,Moderation queue
+GL-195,Part I · Administrator companion,Support inbox,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,Support desk
+GL-196,Part I · Administrator companion,System health,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,—,Monitoring
+GL-197,Part J · Shared system,Notifications,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Notification settings → GL-129,"home, GL-129",Notification service
+GL-198,Part J · Shared system,Chat,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-197,Chat service
+GL-199,Part J · Shared system,Help & support,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-117,Support
+GL-200,Part J · Shared system,FAQ,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,—,GL-199,CMS
+GL-201,Part J · Shared system,Report a problem,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Send report → GL-199,GL-199,"Support, logs"
+GL-204,Part J · Shared system,Loading & retry,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Keep waiting → GL-204,"GL-204, home","Timeouts, retry"
+GL-206,Part J · Shared system,Session expired,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Sign in → GL-004,GL-004,"Session, refresh"
+GL-207,Part J · Shared system,Operation failed,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Try again → GL-099,"GL-099, GL-199",Stripe errors
+GL-208,Part J · Shared system,Update & maintenance,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,Check again → home,home,"Remote config, version gate"
+TP-01,Transformation journey (added),My beauty goals,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+TP-02,Transformation journey (added),Transformation plan,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+TP-03,Transformation journey (added),Recommended transformations,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+TP-04,Transformation journey (added),Personalized look preview,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+TP-05,Transformation journey (added),Compare transformation options,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+TP-06,Transformation journey (added),Why this look works,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+TP-07,Transformation journey (added),How to achieve this look,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+TP-08,Transformation journey (added),Product & tool checklist,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+TP-09,Transformation journey (added),Find someone to recreate it,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+TP-10,Transformation journey (added),Transformation budget options,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+TP-11,Transformation journey (added),Save my beauty plan,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+TP-12,Transformation journey (added),My beauty plans,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+TP-13,Transformation journey (added),Routine & progress tracking,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+TP-14,Transformation journey (added),Adjust my recommendations,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Plan entity, transformation previews, tutorials, budget — no confirmed endpoint"
+FB-01,Fashion & full-body (added),Full-body capture,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Full-body try-on provider, garment catalogue, measurements, design-request service — no confirmed endpoint"
+FB-02,Fashion & full-body (added),Virtual fitting room,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Full-body try-on provider, garment catalogue, measurements, design-request service — no confirmed endpoint"
+FB-03,Fashion & full-body (added),Head-to-toe outfit builder,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Full-body try-on provider, garment catalogue, measurements, design-request service — no confirmed endpoint"
+FB-04,Fashion & full-body (added),Garment detail & size guidance,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Full-body try-on provider, garment catalogue, measurements, design-request service — no confirmed endpoint"
+FB-05,Fashion & full-body (added),Design brief to tailor/designer,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Full-body try-on provider, garment catalogue, measurements, design-request service — no confirmed endpoint"
+GL-209,Themed events (added),Themed event directory,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Event catalogue, organiser content, merchant and professional links — REQUIRES BACKEND VERIFICATION"
+GL-210,Themed events (added),Themed event detail,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Event catalogue, organiser content, merchant and professional links — REQUIRES BACKEND VERIFICATION"
+GL-211,Advertiser placements (added),Ad placement selection,Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Placement inventory, creative review, ad serving — REQUIRES BACKEND VERIFICATION"
+GL-212,Advertiser placements (added),Ad preview (consumer layout),Generated from design (dark/light × iOS/Android); sample content labelled; no backend,,,"Placement inventory, creative review, ad serving — REQUIRES BACKEND VERIFICATION"

@@ -34,11 +34,11 @@ void main() {
       }
     }
   }
-  testWidgets('Unbuilt destinations open an honest mapped placeholder', (tester) async {
+  testWidgets('Tab destinations open the generated design screen, labelled as sample content', (tester) async {
     await tester.pumpWidget(const AnalyzeApp()); await tester.pumpAndSettle();
     await tester.tap(find.text('✧ Credits')); await tester.pumpAndSettle();
-    expect(find.textContaining('Nothing here is simulated'), findsOneWidget);
-    expect(find.text(kScreenRegistry['GL-126']!.title), findsOneWidget);
+    expect(find.text('DESIGN PREVIEW · SAMPLE CONTENT · NOT LIVE'), findsOneWidget);
+    expect(find.text('AI credits'), findsWidgets);
   });
   test('Dark tokens match theme.css', () {
     expect(GlamTokens.dark.bg, const Color(0xff0f0e10)); expect(GlamTokens.dark.ac, const Color(0xfff6c6d8)); expect(GlamTokens.light.ac2, const Color(0xff8f3157));

@@ -175,11 +175,11 @@ class GlamTabBar extends StatelessWidget {
     final items = Row(children: [for (var i = 0; i < kTabs.length; i++) Expanded(child: Semantics(button: true, selected: i == index, label: kTabs[i].label, excludeSemantics: true,
       child: GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => _tap(() => onSelect(i)),
         child: Container(decoration: BoxDecoration(color: i == index ? t.ac : Colors.transparent, borderRadius: BorderRadius.circular(android ? 16 : 27)),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          child: FittedBox(fit: BoxFit.scaleDown, child: Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [
             GText(kTabs[i].glyph, style: GlamType.body(19, color: i == index ? t.onAc : t.tx2)),
             Padding(padding: const EdgeInsets.symmetric(horizontal: 2), child: FittedBox(fit: BoxFit.scaleDown, child: Text(kTabs[i].label, maxLines: 1,
               style: GlamType.body(android ? 12 : 11, w: i == index ? FontWeight.w700 : FontWeight.w400, color: i == index ? t.onAc : t.tx2)))),
-          ])))))]);
+          ]))))))]);
     final bar = MediaQuery.withClampedTextScaling(maxScaleFactor: 1.3, child: items);
     if (android) {
       final bottom = inset > 20 ? inset : 20.0;
