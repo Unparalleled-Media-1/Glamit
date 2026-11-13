@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../design/tokens.dart';
 import '../design/widgets.dart';
+import 'design_render.dart';
 import 'pending.dart';
 
 typedef GoTo = void Function(String id);
@@ -173,20 +174,37 @@ class ProfileTab extends StatelessWidget {
 }
 
 // ───────────────────────── Shell ─────────────────────────
+/// design `ALIAS` (ids that open another designed screen).
+const kAlias = {'GL-021': 'GL-036', 'GL-038': 'GL-037', 'GL-040': 'GL-039', 'GL-041': 'GL-039', 'GL-042': 'GL-039', 'GL-043': 'GL-039', 'GL-045': 'GL-044'};
+
 class GlamShell extends StatefulWidget {
-  const GlamShell({super.key, required this.openAnalyze});
+  const GlamShell({super.key, required this.openAnalyze, this.openHand});
   /// Opens the real private Analyze journey (camera → consent → server analysis); `history` loads the account's saved analyses.
   final void Function({required bool history}) openAnalyze;
+  /// Opens hand-built screens that wrap real flows (Analyze capture/results). Returns true when handled.
+  final bool Function(String id)? openHand;
   @override State<GlamShell> createState() => _GlamShellState();
 }
 class _GlamShellState extends State<GlamShell> {
   int index = 0;
+  final stack = <String>[];
   static const tabId = ['home', 'GL-017', 'GL-035', 'GL-069', 'GL-117'];
-  void go(String id) {
-    final i = tabId.indexOf(id);
-    if (id == 'GL-017' && index == 1) { widget.openAnalyze(history: false); return; }
-    if (i >= 0) { setState(() => index = i); return; }
-    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => PendingScreen(id: id, go: go)));
+  bool storeReady = DesignStore.has('GL-209');
+  @override void initState() {
+    super.initState();
+    DesignStore.load().then((_) { if (mounted) setState(() => storeReady = true); }, onError: (_) {});
+  }
+  void go(String raw) {
+    final id = kAlias[raw] ?? raw, i = tabId.indexOf(id);
+    if (i >= 0) {
+      if (id == 'GL-017' && index == 1 && stack.isEmpty) { widget.openAnalyze(history: false); return; }
+      Navigator.of(context).popUntil((r) => r.isFirst); stack.clear(); setState(() => index = i); return;
+    }
+    if (widget.openHand?.call(id) ?? false) return;
+    if (stack.length >= 2 && stack[stack.length - 2] == id) { Navigator.of(context).pop(); return; }
+    stack.add(id);
+    final page = DesignStore.has(id) ? Scaffold(backgroundColor: const Color(0xff0f0e10), body: DesignScreen(id: id, go: go)) : PendingScreen(id: id, go: go);
+    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => overlay(true, page))).then((_) { if (stack.isNotEmpty) stack.removeLast(); });
   }
   @override Widget build(BuildContext context) {
     final t = GlamTokens.of(context);

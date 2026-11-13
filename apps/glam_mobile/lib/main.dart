@@ -51,18 +51,31 @@ class _AnalyzeAppState extends State<AnalyzeApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.removeObserver(this); semantics.dispose();
     if (widget.controller == null) controller.dispose(); transport.dispose(); super.dispose();
   }
+  void _journey(CaptureStart how, {bool history = false}) {
+    final nav = navigator.currentState!;
+    nav.push(MobileDesign.route(nav.context, AnalyzeJourney(controller: controller, start: how)));
+    if (history && controller.session.authenticated) controller.loadHistory();
+  }
+  /// Design ids whose real behaviour lives in hand-built screens (never replaced by sample-content renderings).
+  bool _openHand(String id) {
+    final nav = navigator.currentState!;
+    switch (id) {
+      case 'GL-018':
+        nav.push(MobileDesign.route(nav.context, ChooseAnalysisScreen(onContinue: () => nav.push(MobileDesign.route(nav.context, PrepareScreen(onStart: (how) => _journey(how)))))));
+      case 'GL-019': nav.push(MobileDesign.route(nav.context, PrepareScreen(onStart: (how) => _journey(how))));
+      case 'GL-020' || 'GL-023' || 'GL-024' || 'GL-025': _journey(CaptureStart.camera);
+      case 'GL-026' || 'GL-027' || 'GL-028' || 'GL-029' || 'GL-030' || 'GL-031' || 'GL-032' || 'GL-033' || 'GL-034': _journey(CaptureStart.idle, history: true);
+      default: return false;
+    }
+    return true;
+  }
   @override Widget build(BuildContext context) => MaterialApp(navigatorKey: navigator, title: 'GLAM Beauty',
     debugShowCheckedModeBanner: false, theme: MobileDesign.theme(), darkTheme: MobileDesign.theme(), themeMode: ThemeMode.dark,
     home: GlamShell(openAnalyze: ({required bool history}) {
       final nav = navigator.currentState!;
-      void journey(CaptureStart how) {
-        nav.push(MobileDesign.route(nav.context, AnalyzeJourney(controller: controller, start: how)));
-        if (history && controller.session.authenticated) controller.loadHistory();
-      }
-      if (history) { journey(CaptureStart.idle); return; }
+      if (history) { _journey(CaptureStart.idle, history: true); return; }
       nav.push(MobileDesign.route(nav.context, ChooseAnalysisScreen(onContinue: () =>
-        nav.push(MobileDesign.route(nav.context, PrepareScreen(onStart: journey))))));
-    }), builder: (context, child) => Stack(children: [
+        nav.push(MobileDesign.route(nav.context, PrepareScreen(onStart: (how) => _journey(how))))))); }, openHand: _openHand), builder: (context, child) => Stack(children: [
       child!, if (obscured) const Positioned.fill(child: ColoredBox(color: MobileDesign.background)),
     ]));
 }

@@ -25,6 +25,8 @@ flutter:
   assets:
     - assets/brand/
     - assets/imagery/
+    - assets/icons/
+    - assets/screens/
 flutter_launcher_icons:
   android: true
   ios: true
