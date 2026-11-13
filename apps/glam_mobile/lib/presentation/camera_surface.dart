@@ -5,17 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../analysis/photo_source.dart';
 import '../core/config.dart';
-import '../design/tokens.dart';
-import '../design/widgets.dart';
-import '../screens/analyze_intro.dart';
 import 'design.dart';
 
 class CameraSurface extends StatefulWidget {
-  const CameraSurface({super.key, required this.onPhoto, required this.onAccount, required this.onSaved, this.start = CaptureStart.idle, this.onClose});
+  const CameraSurface({super.key, required this.onPhoto, required this.onAccount, required this.onSaved});
   final ValueChanged<Uint8List> onPhoto;
   final VoidCallback onAccount, onSaved;
-  final VoidCallback? onClose;
-  final CaptureStart start;
   @override State<CameraSurface> createState() => _CameraSurfaceState();
 }
 class _CameraSurfaceState extends State<CameraSurface> with WidgetsBindingObserver {
@@ -24,10 +19,7 @@ class _CameraSurfaceState extends State<CameraSurface> with WidgetsBindingObserv
   bool _busy = false, _wanted = false;
   int _generation = 0;
   final source = PhotoSource();
-  @override void initState() {
-    super.initState(); WidgetsBinding.instance.addObserver(this);
-    if (widget.start != CaptureStart.idle) WidgetsBinding.instance.addPostFrameCallback((_) { if (!mounted) return; widget.start == CaptureStart.gallery ? _pick() : _open(); });
-  }
+  @override void initState() { super.initState(); WidgetsBinding.instance.addObserver(this); }
   @override void dispose() {
     _generation++; WidgetsBinding.instance.removeObserver(this); unawaited(_camera?.dispose()); super.dispose();
   }
@@ -93,39 +85,35 @@ class _CameraSurfaceState extends State<CameraSurface> with WidgetsBindingObserv
     catch (_) { if (mounted) setState(() => _error = 'photo_unreadable'); }
     finally { if (mounted) setState(() => _busy = false); }
   }
-  @override Widget build(BuildContext context) {
-    final t = GlamTokens.of(context);
-    final guidance = _error == null ? (_camera == null ? 'Your photo stays on this device until you choose to upload.' : 'Face the light · Hold level') : message(_error);
-    return Stack(fit: StackFit.expand, children: [
-      if (_camera?.value.isInitialized == true) Semantics(identifier: 'native-camera-live', label: 'Live device camera', child: CameraPreview(_camera!))
-      else const DecoratedBox(decoration: BoxDecoration(gradient: RadialGradient(colors: [Color(0xff45333e), MobileDesign.background], radius: .9))),
-      const OvalGuide(),
-      TopRowCamera(children: [
-        GlassCircle(glyph: '✕', label: 'Close', onTap: _busy ? null : () => _leave(widget.onClose ?? () => Navigator.of(context).maybePop())),
-        const Spacer(),
-        GlassPill(label: 'History', onTap: _busy ? null : () => _leave(widget.onSaved)),
-        GlassCircle(glyph: '○', label: 'Account', onTap: _busy ? null : () => _leave(widget.onAccount)),
-      ]),
-      Positioned(top: MediaQuery.paddingOf(context).top + 100, left: 22, right: 22, child: Center(child: Semantics(container: true, identifier: _error == null ? 'capture-guidance' : 'camera-source-error',
-        child: GlassPill(label: guidance)))),
-      Positioned(left: 0, right: 0, bottom: 40 + MediaQuery.paddingOf(context).bottom * .5, child: Padding(padding: const EdgeInsets.symmetric(horizontal: 30), child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        GlassCircle(key: const ValueKey('native-gallery'), glyph: '▣', label: 'Photo library', onTap: _busy ? null : _pick),
+  @override Widget build(BuildContext context) => Stack(fit: StackFit.expand, children: [
+    if (_camera?.value.isInitialized == true) Semantics(identifier: 'native-camera-live', label: 'Live device camera', child: CameraPreview(_camera!))
+    else const DecoratedBox(decoration: BoxDecoration(gradient: RadialGradient(colors: [Color(0xff45333e), MobileDesign.background], radius: .9))),
+    const IgnorePointer(child: CustomPaint(painter: FaceFrame())),
+    SafeArea(child: Column(children: [
+      Padding(padding: const EdgeInsets.fromLTRB(16,8,16,0), child: Row(children: [
+        Image.asset('assets/brand/app-icon.png', width: 32, height: 32),
+        const SizedBox(width: 10), const Expanded(child: Text('Analyze', style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600))),
+        TouchAction(label: 'Saved analysis', icon: Icons.history, onTap: _busy ? null : () => _leave(widget.onSaved)),
+        TouchAction(label: 'Account', icon: Icons.person_outline, onTap: _busy ? null : () => _leave(widget.onAccount)),
+      ])),
+      const Spacer(),
+      Padding(padding: const EdgeInsets.symmetric(horizontal: 24), child: Semantics(container: true, identifier: _error == null ? 'capture-guidance' : 'camera-source-error', child: Text(
+        _error == null ? (_camera == null ? 'Your photo stays on this device until you choose to upload.' : 'Position your face inside the frame') : message(_error),
+        textAlign: TextAlign.center, style: const TextStyle(fontSize: 14, shadows: [Shadow(blurRadius: 8)])))),
+      const SizedBox(height: 16),
+      Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        TouchAction(key: const ValueKey('native-gallery'), label: 'Photo library', icon: Icons.photo_library_outlined, onTap: _busy ? null : _pick),
         Semantics(identifier: 'native-shutter', label: _camera == null ? 'Open camera' : 'Take photo', button: true,
           child: GestureDetector(key: const ValueKey('native-shutter'), onTap: _busy ? null : _capture,
-            child: Container(width: 76, height: 76, padding: const EdgeInsets.all(4), decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 4)),
-              child: DecoratedBox(decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-                child: _busy ? Padding(padding: const EdgeInsets.all(22), child: CircularProgressIndicator(strokeWidth: 3, color: t.bg)) : null)))),
-        GlassCircle(glyph: '⟲', label: 'Switch camera', onTap: _busy || _camera == null ? null : () => _open(reverse: _camera!.description.lensDirection == CameraLensDirection.front)),
-      ]))),
-    ]);
-  }
-}
-/// Top row for full-bleed photo screens (`.top`).
-class TopRowCamera extends StatelessWidget {
-  const TopRowCamera({super.key, required this.children});
-  final List<Widget> children;
-  @override Widget build(BuildContext context) => Positioned(top: MediaQuery.paddingOf(context).top + 6, left: 14, right: 14,
-    child: Row(children: [for (var i = 0; i < children.length; i++) ...[if (i > 0) const SizedBox(width: 8), children[i]]]));
+            child: Container(width: 82, height: 82, padding: const EdgeInsets.all(5), decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: MobileDesign.cream, width: 2)),
+              child: DecoratedBox(decoration: const BoxDecoration(shape: BoxShape.circle, color: MobileDesign.cream),
+                child: _busy ? const Padding(padding: EdgeInsets.all(22), child: CircularProgressIndicator(color: MobileDesign.background))
+                  : Icon(_camera == null ? Icons.camera_alt_outlined : Icons.circle, color: MobileDesign.background, size: 28))))),
+        TouchAction(label: 'Switch camera', icon: Icons.cameraswitch_outlined, onTap: _busy || _camera == null ? null : () => _open(reverse: _camera!.description.lensDirection == CameraLensDirection.front)),
+      ]),
+      const Padding(padding: EdgeInsets.symmetric(vertical: 16), child: Text('Face & colour · cosmetic observations', style: TextStyle(fontSize: 11, color: Colors.white70))),
+    ])),
+  ]);
 }
 class FaceFrame extends CustomPainter {
   const FaceFrame();

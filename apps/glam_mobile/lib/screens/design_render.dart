@@ -38,13 +38,13 @@ const _brandAssets = {
   'apple.png': 'assets/icons/apple.png', 'google.png': 'assets/icons/google.png', 'facebook.png': 'assets/icons/facebook.png',
 };
 
-class DesignScreen extends StatelessWidget {
-  const DesignScreen({super.key, required this.id, required this.go, this.data});
+class GeneratedScreen extends StatelessWidget {
+  const GeneratedScreen({super.key, required this.id, required this.go, this.data});
   final String id; final NavTo go; final Map<String, dynamic>? data;
   @override Widget build(BuildContext context) {
     final v = DesignStore.variant(Theme.of(context).brightness, Theme.of(context).platform);
     if (data == null && DesignStore.get(v) == null || (data == null && !DesignStore._data.containsKey(v))) {
-      return FutureBuilder<Map<String, dynamic>>(future: DesignStore.load(v), builder: (_, snap) => snap.hasData ? DesignScreen(key: ValueKey('$id/$v'), id: id, go: go) : const ColoredBox(color: Color(0xff0f0e10), child: SizedBox.expand()));
+      return FutureBuilder<Map<String, dynamic>>(future: DesignStore.load(v), builder: (_, snap) => snap.hasData ? GeneratedScreen(key: ValueKey('$id/$v'), id: id, go: go) : const ColoredBox(color: Color(0xff0f0e10), child: SizedBox.expand()));
     }
     final entry = (data ?? DesignStore.get(v))?[id] as Json?;
     if (entry == null) return const SizedBox.shrink();

@@ -1,0 +1,32 @@
+# Android system Back returns from a pushed design screen to the originating tab.
+appId: com.glambeauty.analyzereview
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: home-analyze
+    timeout: 45000
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: tab-studio
+      - extendedWaitUntil:
+          visible:
+            id: studio-choose
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: studio-choose
+      - extendedWaitUntil:
+          visible: 'GL-036.*'
+          timeout: 8000
+- back
+- extendedWaitUntil:
+    visible:
+      id: studio-choose
+    timeout: 20000

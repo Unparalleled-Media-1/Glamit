@@ -1,0 +1,2295 @@
+{
+ "source": "graph derived statically from handover spec.n fields (zip ui_kits/mobile-v3); the handover's reported 639 crawl links are a baseline NOT reproduced here (Handover.html crawler throws in headless load)",
+ "screens": 232,
+ "edges": [
+  {
+   "from": "home",
+   "to": "GL-017",
+   "action": "Analyze my face \u2192 GL-017",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "home",
+   "to": "GL-035",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "home",
+   "to": "GL-126",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "home",
+   "to": "GL-197",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-017",
+   "to": "GL-018",
+   "action": "Start analysis \u2192 GL-018",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-017",
+   "to": "GL-033",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-018",
+   "to": "GL-019",
+   "action": "Continue \u2192 GL-019",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-019",
+   "to": "GL-020",
+   "action": "Open camera \u2192 GL-020",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-019",
+   "to": "GL-021",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-020",
+   "to": "GL-021",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-020",
+   "to": "GL-023",
+   "action": "Shutter \u2192 GL-023",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-023",
+   "to": "GL-024",
+   "action": "Use this photo \u2192 GL-024",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-023",
+   "to": "GL-020",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-024",
+   "to": "GL-025",
+   "action": "Analyze now \u2192 GL-025",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-025",
+   "to": "GL-026",
+   "action": "Auto \u2192 GL-026",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-026",
+   "to": "GL-027",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-026",
+   "to": "GL-028",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-026",
+   "to": "GL-029",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-026",
+   "to": "GL-030",
+   "action": "See makeup picks \u2192 GL-030",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-026",
+   "to": "GL-031",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-026",
+   "to": "GL-034",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-026",
+   "to": "GL-037",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-027",
+   "to": "GL-030",
+   "action": "Makeup for my features \u2192 GL-030",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-028",
+   "to": "GL-032",
+   "action": "Build my routine \u2192 GL-032",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-029",
+   "to": "GL-031",
+   "action": "Hairstyle ideas \u2192 GL-031",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-030",
+   "to": "GL-039",
+   "action": "Try this look \u2192 GL-039",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-030",
+   "to": "GL-034",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-031",
+   "to": "GL-044",
+   "action": "Tap a style \u2192 GL-044",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-031",
+   "to": "GL-046",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-032",
+   "to": "GL-122",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-033",
+   "to": "GL-026",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-034",
+   "to": "GL-120",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-034",
+   "to": "GL-037",
+   "action": "Continue in Studio \u2192 GL-037",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-034",
+   "to": "GL-052",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-035",
+   "to": "GL-036",
+   "action": "Choose a photo \u2192 GL-036",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-035",
+   "to": "GL-037",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-035",
+   "to": "GL-044",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-035",
+   "to": "GL-047",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-036",
+   "to": "GL-037",
+   "action": "Pick photo \u2192 GL-037",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-036",
+   "to": "GL-020",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-037",
+   "to": "GL-038",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-037",
+   "to": "GL-039",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-037",
+   "to": "GL-040",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-037",
+   "to": "GL-041",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-037",
+   "to": "GL-042",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-037",
+   "to": "GL-043",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-037",
+   "to": "GL-044",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-037",
+   "to": "GL-045",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-037",
+   "to": "GL-046",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-037",
+   "to": "GL-047",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-037",
+   "to": "GL-050",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-037",
+   "to": "GL-051",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-039",
+   "to": "GL-050",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-039",
+   "to": "GL-051",
+   "action": "Save look \u2192 GL-051",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-039",
+   "to": "GL-052",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-044",
+   "to": "GL-045",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-044",
+   "to": "GL-046",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-044",
+   "to": "GL-049",
+   "action": "Tap a style \u2192 GL-049",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-046",
+   "to": "GL-050",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-046",
+   "to": "GL-051",
+   "action": "Save look \u2192 GL-051",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-047",
+   "to": "GL-048",
+   "action": "Generate \u2192 GL-048",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-048",
+   "to": "GL-049",
+   "action": "Auto \u2192 GL-049",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-049",
+   "to": "GL-050",
+   "action": "Compare \u2192 GL-050 / Shop or book \u2192 GL-052",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-049",
+   "to": "GL-051",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-049",
+   "to": "GL-052",
+   "action": "Compare \u2192 GL-050 / Shop or book \u2192 GL-052",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-050",
+   "to": "GL-051",
+   "action": "Save look \u2192 GL-051",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-050",
+   "to": "GL-049",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-051",
+   "to": "GL-052",
+   "action": "Shop or book \u2192 GL-052",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-051",
+   "to": "GL-120",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-052",
+   "to": "GL-089",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-052",
+   "to": "GL-093",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-052",
+   "to": "GL-103",
+   "action": "Find a stylist \u2192 GL-103",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-069",
+   "to": "GL-070",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-069",
+   "to": "GL-074",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-069",
+   "to": "GL-035",
+   "action": "Try on \u2192 GL-035",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-069",
+   "to": "GL-052",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-117",
+   "to": "GL-120",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-117",
+   "to": "GL-121",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-117",
+   "to": "GL-122",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-117",
+   "to": "GL-123",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-117",
+   "to": "GL-124",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-117",
+   "to": "GL-125",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-117",
+   "to": "GL-126",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-117",
+   "to": "GL-127",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-117",
+   "to": "GL-128",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-117",
+   "to": "GL-129",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-117",
+   "to": "GL-130",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-117",
+   "to": "GL-202",
+   "action": "Switch role \u2192 GL-202",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-126",
+   "to": "GL-127",
+   "action": "Get more credits \u2192 GL-127",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-205",
+   "to": "GL-021",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-001",
+   "to": "GL-002",
+   "action": "Continue \u2192 GL-002",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-002",
+   "to": "GL-003",
+   "action": "Get started \u2192 GL-003",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-002",
+   "to": "GL-004",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-003",
+   "to": "GL-004",
+   "action": "Next \u2192 GL-004",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-004",
+   "to": "GL-002",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-005",
+   "to": "GL-004",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-005",
+   "to": "GL-006",
+   "action": "Send my code \u2192 GL-006",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-006",
+   "to": "GL-005",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-006",
+   "to": "GL-011",
+   "action": "Verify \u2192 GL-011",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-007",
+   "to": "GL-004",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-007",
+   "to": "GL-010",
+   "action": "Sign in \u2192 GL-010",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-007",
+   "to": "GL-008",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-008",
+   "to": "GL-007",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-008",
+   "to": "GL-010",
+   "action": "Create account \u2192 GL-010",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-009",
+   "to": "GL-004",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-010",
+   "to": "GL-011",
+   "action": "Enable \u2192 GL-011",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-011",
+   "to": "GL-010",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-011",
+   "to": "GL-012",
+   "action": "Continue \u2192 GL-012",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-012",
+   "to": "GL-011",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-012",
+   "to": "GL-013",
+   "action": "Continue \u2192 GL-013",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-013",
+   "to": "GL-012",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-013",
+   "to": "GL-014",
+   "action": "Continue \u2192 GL-014",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-014",
+   "to": "GL-013",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-014",
+   "to": "GL-015",
+   "action": "Continue \u2192 GL-015",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-015",
+   "to": "GL-014",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-015",
+   "to": "GL-016",
+   "action": "I understand \u2192 GL-016",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-016",
+   "to": "GL-017",
+   "action": "Start my first analysis \u2192 GL-017",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-016",
+   "to": "home",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-021",
+   "to": "GL-019",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-021",
+   "to": "GL-022",
+   "action": "Use photo \u2192 GL-022",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-022",
+   "to": "GL-021",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-022",
+   "to": "GL-023",
+   "action": "Done \u2192 GL-023",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-038",
+   "to": "GL-037",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-040",
+   "to": "GL-038",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-040",
+   "to": "GL-051",
+   "action": "Save look \u2192 GL-051",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-040",
+   "to": "GL-050",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-041",
+   "to": "GL-038",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-041",
+   "to": "GL-051",
+   "action": "Save look \u2192 GL-051",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-041",
+   "to": "GL-050",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-042",
+   "to": "GL-038",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-042",
+   "to": "GL-051",
+   "action": "Save look \u2192 GL-051",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-042",
+   "to": "GL-050",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-043",
+   "to": "GL-038",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-045",
+   "to": "GL-044",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-045",
+   "to": "GL-049",
+   "action": "Try on \u2192 GL-049",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-053",
+   "to": "home",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-054",
+   "to": "GL-053",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-055",
+   "to": "GL-053",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-055",
+   "to": "GL-056",
+   "action": "Continue \u2192 GL-056",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-056",
+   "to": "GL-055",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-057",
+   "to": "GL-056",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-057",
+   "to": "GL-058",
+   "action": "Add my own event \u2192 GL-058",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-058",
+   "to": "GL-057",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-058",
+   "to": "GL-059",
+   "action": "Continue \u2192 GL-059",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-059",
+   "to": "GL-058",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-059",
+   "to": "GL-062",
+   "action": "Create outfits \u2192 GL-062",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-060",
+   "to": "GL-061",
+   "action": "Capture \u2192 GL-061",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-061",
+   "to": "GL-053",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-061",
+   "to": "GL-060",
+   "action": "Add an item \u2192 GL-060",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-061",
+   "to": "GL-062",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-062",
+   "to": "GL-063",
+   "action": "Skip \u2192 GL-063",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-063",
+   "to": "GL-059",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-064",
+   "to": "GL-063",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-064",
+   "to": "GL-068",
+   "action": "Save or shop \u2192 GL-068",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-064",
+   "to": "GL-065",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-065",
+   "to": "GL-064",
+   "action": "Back to outfit \u2192 GL-064",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-065",
+   "to": "GL-067",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-066",
+   "to": "GL-064",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-067",
+   "to": "GL-064",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-067",
+   "to": "GL-068",
+   "action": "Add to calendar \u2192 GL-068",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-068",
+   "to": "GL-064",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-070",
+   "to": "GL-069",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-070",
+   "to": "GL-071",
+   "action": "Filters \u2192 GL-071",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-071",
+   "to": "GL-070",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-071",
+   "to": "GL-072",
+   "action": "Show results \u2192 GL-072",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-072",
+   "to": "GL-069",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-073",
+   "to": "GL-072",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-074",
+   "to": "GL-073",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-074",
+   "to": "GL-075",
+   "action": "Follow \u2192 GL-075",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-074",
+   "to": "GL-076",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-075",
+   "to": "GL-069",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-075",
+   "to": "GL-072",
+   "action": "Discover creators \u2192 GL-072",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-076",
+   "to": "GL-073",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-076",
+   "to": "GL-035",
+   "action": "Try this look \u2192 GL-035",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-076",
+   "to": "GL-077",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-077",
+   "to": "GL-076",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-078",
+   "to": "GL-117",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-079",
+   "to": "GL-078",
+   "action": "Create \u2192 GL-078",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-080",
+   "to": "GL-069",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-081",
+   "to": "GL-080",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-081",
+   "to": "GL-081",
+   "action": "Next step \u2192 GL-081",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-081",
+   "to": "GL-035",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-082",
+   "to": "GL-073",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-083",
+   "to": "GL-073",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-084",
+   "to": "GL-073",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-084",
+   "to": "GL-072",
+   "action": "Done \u2192 GL-072",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-085",
+   "to": "GL-069",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-085",
+   "to": "GL-088",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-086",
+   "to": "GL-085",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-087",
+   "to": "GL-086",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-087",
+   "to": "GL-094",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-088",
+   "to": "GL-085",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-089",
+   "to": "GL-085",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-089",
+   "to": "GL-095",
+   "action": "Add to bag \u2192 GL-095",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-089",
+   "to": "GL-039",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-090",
+   "to": "GL-089",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-090",
+   "to": "GL-095",
+   "action": "Add to bag \u2192 GL-095",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-091",
+   "to": "GL-089",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-092",
+   "to": "GL-089",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-092",
+   "to": "GL-087",
+   "action": "View products \u2192 GL-087",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-093",
+   "to": "GL-076",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-093",
+   "to": "GL-095",
+   "action": "Add all to bag \u2192 GL-095",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-094",
+   "to": "GL-087",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-094",
+   "to": "GL-089",
+   "action": "Choose one \u2192 GL-089",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-095",
+   "to": "GL-085",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-095",
+   "to": "GL-096",
+   "action": "Checkout \u2192 GL-096",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-096",
+   "to": "GL-095",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-096",
+   "to": "GL-097",
+   "action": "Continue \u2192 GL-097",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-097",
+   "to": "GL-096",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-098",
+   "to": "GL-097",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-098",
+   "to": "GL-099",
+   "action": "Choose payment \u2192 GL-099",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-099",
+   "to": "GL-098",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-100",
+   "to": "GL-101",
+   "action": "Continue \u2192 GL-101",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-100",
+   "to": "GL-207",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-101",
+   "to": "GL-102",
+   "action": "Track order \u2192 GL-102",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-101",
+   "to": "home",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-102",
+   "to": "GL-101",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-102",
+   "to": "GL-102",
+   "action": "Start a return \u2192 GL-102",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-102",
+   "to": "GL-199",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-103",
+   "to": "GL-052",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-103",
+   "to": "GL-105",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-104",
+   "to": "GL-103",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-105",
+   "to": "GL-103",
+   "action": "Apply \u2192 GL-103",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-106",
+   "to": "GL-103",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-106",
+   "to": "GL-107",
+   "action": "Book \u2192 GL-107",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-106",
+   "to": "GL-115",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-107",
+   "to": "GL-106",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-108",
+   "to": "GL-107",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-108",
+   "to": "GL-109",
+   "action": "Choose a time \u2192 GL-109",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-109",
+   "to": "GL-108",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-109",
+   "to": "GL-110",
+   "action": "Continue \u2192 GL-110",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-110",
+   "to": "GL-109",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-111",
+   "to": "GL-110",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-111",
+   "to": "GL-112",
+   "action": "Continue to payment \u2192 GL-112",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-112",
+   "to": "GL-111",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-112",
+   "to": "GL-113",
+   "action": "Pay deposit \u2192 GL-113",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-113",
+   "to": "GL-117",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-113",
+   "to": "GL-103",
+   "action": "Book another \u2192 GL-103",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-114",
+   "to": "GL-113",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-115",
+   "to": "GL-106",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-116",
+   "to": "GL-106",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-116",
+   "to": "GL-116",
+   "action": "Write a review \u2192 GL-116",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-118",
+   "to": "GL-117",
+   "action": "Save \u2192 GL-117",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-119",
+   "to": "GL-117",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-120",
+   "to": "GL-117",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-121",
+   "to": "GL-117",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-121",
+   "to": "GL-017",
+   "action": "New analysis \u2192 GL-017",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-122",
+   "to": "GL-117",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-123",
+   "to": "GL-117",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-124",
+   "to": "GL-117",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-124",
+   "to": "GL-125",
+   "action": "Continue \u2192 GL-125",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-125",
+   "to": "GL-117",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-125",
+   "to": "GL-126",
+   "action": "View credits \u2192 GL-126",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-127",
+   "to": "GL-126",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-127",
+   "to": "GL-100",
+   "action": "Buy with App Store / Google Play \u2192 GL-100",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-128",
+   "to": "GL-117",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-128",
+   "to": "GL-128",
+   "action": "Add method \u2192 GL-128",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-129",
+   "to": "GL-117",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-130",
+   "to": "GL-117",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-131",
+   "to": "GL-133",
+   "action": "Create a look \u2192 GL-133",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-131",
+   "to": "GL-139",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-132",
+   "to": "GL-132",
+   "action": "Edit profile \u2192 GL-132",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-134",
+   "to": "GL-133",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-134",
+   "to": "GL-135",
+   "action": "Capture \u2192 GL-135",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-135",
+   "to": "GL-134",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-135",
+   "to": "GL-136",
+   "action": "Next \u2192 GL-136",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-136",
+   "to": "GL-135",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-136",
+   "to": "GL-137",
+   "action": "Next \u2192 GL-137",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-137",
+   "to": "GL-136",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-137",
+   "to": "GL-138",
+   "action": "Publish \u2192 GL-138",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-138",
+   "to": "GL-133",
+   "action": "Create \u2192 GL-133",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-140",
+   "to": "GL-140",
+   "action": "New link \u2192 GL-140",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-141",
+   "to": "GL-184",
+   "action": "Withdraw \u2192 GL-184",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-141",
+   "to": "GL-142",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-143",
+   "to": "GL-144",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-144",
+   "to": "GL-143",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-144",
+   "to": "GL-145",
+   "action": "Continue \u2192 GL-145",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-145",
+   "to": "GL-143",
+   "action": "Save \u2192 GL-143",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-146",
+   "to": "GL-147",
+   "action": "Snap & List \u2192 GL-147",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-147",
+   "to": "GL-143",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-147",
+   "to": "GL-148",
+   "action": "Capture \u2192 GL-148",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-148",
+   "to": "GL-147",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-148",
+   "to": "GL-149",
+   "action": "Set price & stock \u2192 GL-149",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-149",
+   "to": "GL-148",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-149",
+   "to": "GL-146",
+   "action": "Publish \u2192 GL-146",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-151",
+   "to": "GL-150",
+   "action": "Mark as shipped \u2192 GL-150",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-151",
+   "to": "GL-152",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-152",
+   "to": "GL-150",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-153",
+   "to": "GL-154",
+   "action": "Promotions & settings \u2192 GL-154",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-155",
+   "to": "GL-156",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-156",
+   "to": "GL-155",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-156",
+   "to": "GL-157",
+   "action": "Continue \u2192 GL-157",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-157",
+   "to": "GL-157",
+   "action": "Add service \u2192 GL-157",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-158",
+   "to": "GL-155",
+   "action": "Save hours \u2192 GL-155",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-160",
+   "to": "GL-159",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-160",
+   "to": "GL-161",
+   "action": "Respond \u2192 GL-161",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-160",
+   "to": "GL-163",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-161",
+   "to": "GL-160",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-162",
+   "to": "GL-160",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-163",
+   "to": "GL-160",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-164",
+   "to": "GL-164",
+   "action": "Upload \u2192 GL-164",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-165",
+   "to": "GL-166",
+   "action": "Payout settings \u2192 GL-166",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-167",
+   "to": "GL-170",
+   "action": "New campaign \u2192 GL-170",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-167",
+   "to": "GL-176",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-169",
+   "to": "GL-168",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-169",
+   "to": "GL-174",
+   "action": "Full performance \u2192 GL-174",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-170",
+   "to": "GL-168",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-170",
+   "to": "GL-171",
+   "action": "Continue \u2192 GL-171",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-171",
+   "to": "GL-170",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-171",
+   "to": "GL-172",
+   "action": "Continue \u2192 GL-172",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-172",
+   "to": "GL-171",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-172",
+   "to": "GL-211",
+   "action": "Choose placements \u2192 GL-211",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-173",
+   "to": "GL-212",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-173",
+   "to": "GL-168",
+   "action": "Review & launch \u2192 GL-168",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-177",
+   "to": "GL-179",
+   "action": "Share a link \u2192 GL-179",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-177",
+   "to": "GL-178",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-178",
+   "to": "GL-177",
+   "action": "Apply \u2192 GL-177",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-179",
+   "to": "GL-180",
+   "action": "Share \u2192 GL-180",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-181",
+   "to": "GL-182",
+   "action": "See conversions \u2192 GL-182",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-182",
+   "to": "GL-181",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-183",
+   "to": "GL-184",
+   "action": "Withdraw \u2192 GL-184",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-184",
+   "to": "GL-183",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-184",
+   "to": "GL-185",
+   "action": "Request payout \u2192 GL-185",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-185",
+   "to": "GL-183",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-185",
+   "to": "GL-186",
+   "action": "Get help \u2192 GL-186",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-189",
+   "to": "GL-188",
+   "action": "Approve \u2192 GL-188",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-190",
+   "to": "GL-188",
+   "action": "Approve \u2192 GL-188",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-191",
+   "to": "GL-188",
+   "action": "Approve \u2192 GL-188",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-194",
+   "to": "GL-194",
+   "action": "Review \u2192 GL-194",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-197",
+   "to": "home",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-197",
+   "to": "GL-129",
+   "action": "Notification settings \u2192 GL-129",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-198",
+   "to": "GL-197",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-199",
+   "to": "GL-117",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-200",
+   "to": "GL-199",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-201",
+   "to": "GL-199",
+   "action": "Send report \u2192 GL-199",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-204",
+   "to": "GL-204",
+   "action": "Keep waiting \u2192 GL-204",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-204",
+   "to": "home",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-206",
+   "to": "GL-004",
+   "action": "Sign in \u2192 GL-004",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-207",
+   "to": "GL-099",
+   "action": "Try again \u2192 GL-099",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-207",
+   "to": "GL-199",
+   "action": "",
+   "source": "handover spec.n"
+  },
+  {
+   "from": "GL-208",
+   "to": "home",
+   "action": "Check again \u2192 home",
+   "source": "handover spec.n"
+  }
+ ],
+ "edge_count": 341,
+ "unresolved_targets": [],
+ "proposed_routes": {
+  "GL-209": "/events",
+  "GL-210": "/events/:id",
+  "GL-211": "/advertiser/campaigns/new/placements",
+  "GL-212": "/advertiser/campaigns/new/preview",
+  "FB-01": "/fashion/capture",
+  "FB-02": "/fashion/fitting-room",
+  "FB-03": "/fashion/outfit-builder",
+  "FB-04": "/fashion/garment/:id",
+  "FB-05": "/fashion/design-brief",
+  "TP-01": "/analyze/goals",
+  "TP-02": "/analyze/results/:id/plan",
+  "TP-03": "/analyze/results/:id/transformations",
+  "TP-04": "/transformations/:id/preview",
+  "TP-05": "/transformations/:id/compare",
+  "TP-06": "/transformations/:id/explanation",
+  "TP-07": "/transformations/:id/tutorial",
+  "TP-08": "/transformations/:id/products",
+  "TP-09": "/transformations/:id/professionals",
+  "TP-10": "/transformations/:id/budget",
+  "TP-11": "/transformations/:id/save",
+  "TP-12": "/profile/beauty-plans",
+  "TP-13": "/profile/beauty-progress",
+  "TP-14": "/transformations/:id/refine",
+  "home": "/home",
+  "GL-001": "/splash",
+  "GL-002": "/welcome",
+  "GL-003": "/onboarding",
+  "GL-004": "/auth",
+  "GL-005": "/auth/phone",
+  "GL-006": "/auth/otp",
+  "GL-007": "/auth/email",
+  "GL-008": "/auth/register",
+  "GL-009": "/auth/social",
+  "GL-010": "/auth/biometric",
+  "GL-011": "/onboarding/profile",
+  "GL-012": "/onboarding/interests",
+  "GL-013": "/onboarding/preferences",
+  "GL-014": "/onboarding/location",
+  "GL-015": "/onboarding/consent",
+  "GL-016": "/onboarding/complete",
+  "GL-017": "/analyze",
+  "GL-018": "/analyze/type",
+  "GL-019": "/analyze/guide",
+  "GL-020": "/analyze/camera",
+  "GL-021": "/analyze/gallery",
+  "GL-022": "/analyze/crop",
+  "GL-023": "/analyze/quality",
+  "GL-024": "/analyze/consent",
+  "GL-025": "/analyze/processing",
+  "GL-026": "/analyze/results/:id",
+  "GL-027": "/analyze/results/:id/face",
+  "GL-028": "/analyze/results/:id/skin",
+  "GL-029": "/analyze/results/:id/hair",
+  "GL-030": "/analyze/results/:id/makeup",
+  "GL-031": "/analyze/results/:id/hairstyles",
+  "GL-032": "/analyze/results/:id/routine",
+  "GL-033": "/analyze/history",
+  "GL-034": "/analyze/results/:id/actions",
+  "GL-035": "/studio",
+  "GL-036": "/studio/source",
+  "GL-037": "/studio/canvas",
+  "GL-038": "/studio/makeup",
+  "GL-039": "/studio/makeup/lips",
+  "GL-040": "/studio/makeup/foundation",
+  "GL-041": "/studio/makeup/eyes",
+  "GL-042": "/studio/makeup/face",
+  "GL-043": "/studio/makeup/presets",
+  "GL-044": "/studio/hair/styles",
+  "GL-045": "/studio/hair/protective",
+  "GL-046": "/studio/hair/color",
+  "GL-047": "/studio/generate",
+  "GL-048": "/studio/generating",
+  "GL-049": "/studio/results/:id",
+  "GL-050": "/studio/compare",
+  "GL-051": "/studio/save",
+  "GL-052": "/studio/look/:id/actions",
+  "GL-053": "/stylist",
+  "GL-054": "/stylist/chat",
+  "GL-055": "/stylist/goals",
+  "GL-056": "/stylist/events",
+  "GL-057": "/stylist/events/search",
+  "GL-058": "/stylist/location",
+  "GL-059": "/stylist/dress-code",
+  "GL-060": "/wardrobe/add",
+  "GL-061": "/wardrobe",
+  "GL-062": "/stylist/generating",
+  "GL-063": "/stylist/results/:id",
+  "GL-064": "/stylist/outfit/:id",
+  "GL-065": "/stylist/outfit/:id/alternatives",
+  "GL-066": "/stylist/designers",
+  "GL-067": "/stylist/plan/:id",
+  "GL-068": "/stylist/outfit/:id/actions",
+  "GL-069": "/discover",
+  "GL-070": "/discover/search",
+  "GL-071": "/discover/filters",
+  "GL-072": "/discover/trending",
+  "GL-073": "/discover/look/:id",
+  "GL-074": "/discover/creator/:id",
+  "GL-075": "/discover/following",
+  "GL-076": "/discover/look/:id/details",
+  "GL-077": "/discover/look/:id/save",
+  "GL-078": "/collections",
+  "GL-079": "/collections/new",
+  "GL-080": "/discover/tutorials",
+  "GL-081": "/discover/tutorial/:id",
+  "GL-082": "/discover/look/:id/comments",
+  "GL-083": "/discover/look/:id/share",
+  "GL-084": "/discover/look/:id/report",
+  "GL-085": "/shop",
+  "GL-086": "/shop/categories",
+  "GL-087": "/shop/search",
+  "GL-088": "/shop/recommended",
+  "GL-089": "/shop/product/:id",
+  "GL-090": "/shop/product/:id/variants",
+  "GL-091": "/shop/product/:id/gallery",
+  "GL-092": "/shop/merchant/:id",
+  "GL-093": "/shop/look/:id",
+  "GL-094": "/shop/compare",
+  "GL-095": "/cart",
+  "GL-096": "/checkout/address",
+  "GL-097": "/checkout/shipping",
+  "GL-098": "/checkout/review",
+  "GL-099": "/checkout/payment",
+  "GL-100": "/checkout/result",
+  "GL-101": "/orders/:id/confirmation",
+  "GL-102": "/orders/:id",
+  "GL-103": "/professionals",
+  "GL-104": "/professionals/nearby",
+  "GL-105": "/professionals/filters",
+  "GL-106": "/professionals/:id",
+  "GL-107": "/professionals/:id/services",
+  "GL-108": "/professionals/:id/service/:serviceId",
+  "GL-109": "/bookings/calendar",
+  "GL-110": "/bookings/slots",
+  "GL-111": "/bookings/details",
+  "GL-112": "/bookings/confirm",
+  "GL-113": "/bookings",
+  "GL-114": "/bookings/:id/manage",
+  "GL-115": "/messages/:conversationId",
+  "GL-116": "/professionals/:id/reviews",
+  "GL-117": "/profile",
+  "GL-118": "/profile/edit",
+  "GL-119": "/profile/preferences",
+  "GL-120": "/profile/saved",
+  "GL-121": "/profile/analyses",
+  "GL-122": "/profile/beauty-library",
+  "GL-123": "/profile/activity",
+  "GL-124": "/subscription/plans",
+  "GL-125": "/subscription/manage",
+  "GL-126": "/credits",
+  "GL-127": "/credits/buy",
+  "GL-128": "/profile/billing",
+  "GL-129": "/profile/notifications",
+  "GL-130": "/profile/security",
+  "GL-131": "/creator",
+  "GL-132": "/creator/profile",
+  "GL-133": "/creator/create",
+  "GL-134": "/creator/capture",
+  "GL-135": "/creator/editor",
+  "GL-136": "/creator/tags",
+  "GL-137": "/creator/publish",
+  "GL-138": "/creator/content",
+  "GL-139": "/creator/analytics",
+  "GL-140": "/creator/affiliate",
+  "GL-141": "/creator/earnings",
+  "GL-142": "/creator/collaborations",
+  "GL-143": "/merchant",
+  "GL-144": "/merchant/onboarding",
+  "GL-145": "/merchant/store",
+  "GL-146": "/merchant/products",
+  "GL-147": "/merchant/snap-list",
+  "GL-148": "/merchant/product-ai",
+  "GL-149": "/merchant/inventory",
+  "GL-150": "/merchant/orders/new",
+  "GL-151": "/merchant/orders/:id",
+  "GL-152": "/merchant/returns",
+  "GL-153": "/merchant/earnings",
+  "GL-154": "/merchant/settings",
+  "GL-155": "/professional",
+  "GL-156": "/professional/onboarding",
+  "GL-157": "/professional/services",
+  "GL-158": "/professional/availability",
+  "GL-159": "/professional/requests",
+  "GL-160": "/professional/bookings/:id",
+  "GL-161": "/professional/bookings/:id/manage",
+  "GL-162": "/professional/bookings/:id/look",
+  "GL-163": "/professional/messages",
+  "GL-164": "/professional/portfolio",
+  "GL-165": "/professional/earnings",
+  "GL-166": "/professional/settings",
+  "GL-167": "/advertiser",
+  "GL-168": "/advertiser/campaigns",
+  "GL-169": "/advertiser/campaigns/:id",
+  "GL-170": "/advertiser/campaigns/new",
+  "GL-171": "/advertiser/targeting",
+  "GL-172": "/advertiser/creative",
+  "GL-173": "/advertiser/budget",
+  "GL-174": "/advertiser/analytics",
+  "GL-175": "/advertiser/billing",
+  "GL-176": "/advertiser/notifications",
+  "GL-177": "/affiliate",
+  "GL-178": "/affiliate/onboarding",
+  "GL-179": "/affiliate/links",
+  "GL-180": "/affiliate/campaigns",
+  "GL-181": "/affiliate/referrals",
+  "GL-182": "/affiliate/conversions",
+  "GL-183": "/affiliate/earnings",
+  "GL-184": "/affiliate/withdraw",
+  "GL-185": "/affiliate/payouts",
+  "GL-186": "/affiliate/support",
+  "GL-187": "/admin",
+  "GL-188": "/admin/verifications",
+  "GL-189": "/admin/users/:id",
+  "GL-190": "/admin/merchants/:id",
+  "GL-191": "/admin/professionals/:id",
+  "GL-192": "/admin/exceptions",
+  "GL-193": "/admin/payments",
+  "GL-194": "/admin/moderation",
+  "GL-195": "/admin/support",
+  "GL-196": "/admin/health",
+  "GL-197": "/notifications",
+  "GL-198": "/messages/:conversationId",
+  "GL-199": "/support",
+  "GL-200": "/support/articles",
+  "GL-201": "/support/report",
+  "GL-202": "/roles",
+  "GL-203": "/system/offline",
+  "GL-204": "/system/loading",
+  "GL-205": "/system/permission",
+  "GL-206": "/auth/session-expired",
+  "GL-207": "/system/error",
+  "GL-208": "/system/maintenance"
+ },
+ "tab_roots": {
+  "Home": "home",
+  "Analyze": "GL-017",
+  "Studio": "GL-035",
+  "Discover": "GL-069",
+  "Profile": "GL-117"
+ }
+}

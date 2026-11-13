@@ -1,0 +1,380 @@
+{
+ "placements": [
+  {
+   "id": "ADS-01",
+   "group": "Home",
+   "name": "Home \u00b7 sponsored hero card",
+   "screens": [
+    "home"
+   ],
+   "formats": [
+    "Hero card 342\u00d7200"
+   ],
+   "variant": "hero",
+   "dest": "GL-092",
+   "adv": "Lumi\u00e8re Beauty",
+   "camp": "CMP-1042",
+   "freq": "1 per Home view \u00b7 max 3 per day \u00b7 24 h cooldown after Hide",
+   "fail": "Slot collapses; organic Home content moves up; no placeholder",
+   "reach": "12\u201318k / wk",
+   "c": {
+    "h": "This season\u2019s beauty collection",
+    "s": "Sponsored brand campaign",
+    "cta": "Shop collection",
+    "n": 0,
+    "src": "beauty-products.webp"
+   }
+  },
+  {
+   "id": "ADS-02",
+   "group": "Home",
+   "name": "Home \u00b7 sponsored collection carousel",
+   "screens": [
+    "home"
+   ],
+   "formats": [
+    "Collection carousel \u00b7 3 tiles 150\u00d7190"
+   ],
+   "variant": "carousel",
+   "dest": "GL-093",
+   "adv": "Atelier Noor",
+   "camp": "CMP-1043",
+   "freq": "1 per feed view \u00b7 max 2 per day \u00b7 below recommendations",
+   "fail": "Carousel omitted; recommendation sections stay adjacent",
+   "reach": "8\u201312k / wk",
+   "c": {
+    "h": "Sponsored collections",
+    "s": "Atelier Noor",
+    "cta": "Shop the look",
+    "n": 2,
+    "items": [
+     [
+      "Gold hour edit",
+      1
+     ],
+     [
+      "Wedding guest",
+      2
+     ],
+     [
+      "Soft tailoring",
+      3
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ADS-03",
+   "group": "Discover",
+   "name": "Discover \u00b7 native sponsored post",
+   "screens": [
+    "GL-069"
+   ],
+   "formats": [
+    "Native post peek 358\u00d776"
+   ],
+   "variant": "post",
+   "dest": "GL-074",
+   "adv": "@glowlab",
+   "camp": "CMP-1044",
+   "freq": "1 per 8 organic posts \u00b7 max 3 per day",
+   "fail": "Post omitted; next organic post shown",
+   "reach": "9\u201314k / wk",
+   "c": {
+    "h": "Glass skin in 5 steps",
+    "s": "Collab with @glowlab",
+    "cta": "Shop the Look",
+    "n": 3
+   }
+  },
+  {
+   "id": "ADS-04",
+   "group": "Search",
+   "name": "Search & trending \u00b7 promoted result",
+   "screens": [
+    "GL-070",
+    "GL-072"
+   ],
+   "formats": [
+    "Promoted result row 342\u00d772"
+   ],
+   "variant": "row",
+   "dest": "GL-089",
+   "adv": "Lumi\u00e8re Beauty",
+   "camp": "CMP-1045",
+   "freq": "1 per results page \u00b7 position 3 \u00b7 max 4 per day",
+   "fail": "Row omitted; results renumber normally",
+   "reach": "7\u201310k / wk",
+   "c": {
+    "h": "Velvet lip \u2014 Rose 03",
+    "s": "Promoted result",
+    "cta": "View",
+    "n": 1,
+    "src": "beauty-products.webp"
+   }
+  },
+  {
+   "id": "ADS-05",
+   "group": "Analysis",
+   "name": "Analysis \u00b7 sponsored product card",
+   "screens": [
+    "GL-026",
+    "GL-028",
+    "GL-030",
+    "GL-031",
+    "GL-032"
+   ],
+   "formats": [
+    "Native product card 342\u00d788 under a Sponsored heading"
+   ],
+   "variant": "card",
+   "head": "Sponsored products",
+   "dest": "GL-089",
+   "adv": "Lumi\u00e8re Beauty",
+   "camp": "CMP-1046",
+   "freq": "1 per report screen \u00b7 max 2 per day \u00b7 never inside findings",
+   "fail": "Section collapses; report layout unchanged",
+   "reach": "9\u201314k / wk",
+   "c": {
+    "h": "Leave-in care for curls",
+    "s": "Not part of your analysis",
+    "cta": "View",
+    "n": 1,
+    "src": "beauty-products.webp"
+   }
+  },
+  {
+   "id": "ADS-06",
+   "group": "Studio",
+   "name": "Studio \u00b7 sponsored try-on item",
+   "screens": [
+    "GL-039",
+    "GL-044",
+    "GL-052"
+   ],
+   "formats": [
+    "Try-on item tile 342\u00d772 in selection panel"
+   ],
+   "variant": "tile",
+   "dest": "GL-089",
+   "adv": "Lumi\u00e8re Beauty",
+   "camp": "CMP-1047",
+   "freq": "1 per selection panel \u00b7 max 3 per day \u00b7 never over the canvas",
+   "fail": "Tile omitted; selection list unchanged",
+   "reach": "6\u20139k / wk",
+   "c": {
+    "h": "Sponsored shade \u00b7 Rose Velvet",
+    "s": "Try on or view product",
+    "cta": "Try on",
+    "n": 2,
+    "src": "beauty-products.webp"
+   }
+  },
+  {
+   "id": "ADS-07",
+   "group": "Events",
+   "name": "Events & outfits \u00b7 sponsored designer / collection",
+   "screens": [
+    "GL-209",
+    "GL-210",
+    "GL-064",
+    "home",
+    "GL-069"
+   ],
+   "formats": [
+    "Designer card 342\u00d788",
+    "Sponsored event tile (carousel)"
+   ],
+   "variant": "card",
+   "head": "Featured event designer",
+   "dest": "GL-093",
+   "adv": "Atelier Noor",
+   "camp": "CMP-1048",
+   "freq": "1 per screen \u00b7 max 3 per day",
+   "fail": "Slot collapses; organic events and outfits move up",
+   "reach": "6\u20139k / wk",
+   "c": {
+    "h": "Wedding guest collection",
+    "s": "Atelier Noor \u00b7 Cape Town",
+    "cta": "Shop",
+    "n": 0
+   }
+  },
+  {
+   "id": "ADS-08",
+   "group": "Shop",
+   "name": "Shop \u00b7 sponsored product",
+   "screens": [
+    "GL-085",
+    "GL-087",
+    "GL-088"
+   ],
+   "formats": [
+    "Product card 342\u00d788 in grid or list"
+   ],
+   "variant": "card",
+   "dest": "GL-089",
+   "adv": "Lumi\u00e8re Beauty",
+   "camp": "CMP-1049",
+   "freq": "1 per 8 products \u00b7 max 4 per day",
+   "fail": "Card omitted; grid reflows",
+   "reach": "10\u201315k / wk",
+   "c": {
+    "h": "Rose powder \u00b7 R 329",
+    "s": "Sample price \u00b7 Lumi\u00e8re Beauty",
+    "cta": "View",
+    "n": 2,
+    "src": "beauty-products.webp"
+   }
+  },
+  {
+   "id": "ADS-09",
+   "group": "Professionals",
+   "name": "Professionals \u00b7 promoted provider",
+   "screens": [
+    "GL-103",
+    "GL-104"
+   ],
+   "formats": [
+    "Promoted provider row 342\u00d776"
+   ],
+   "variant": "row",
+   "dest": "GL-106",
+   "adv": "Studio Nia",
+   "camp": "CMP-1050",
+   "freq": "1 per results page \u00b7 top 5 \u00b7 max 3 per day",
+   "fail": "Row omitted; results unchanged",
+   "reach": "5\u20138k / wk",
+   "c": {
+    "h": "Studio Nia \u00b7 Salon",
+    "s": "\u26054.9 \u00b7 1.2 km \u00b7 Promoted",
+    "cta": "View",
+    "n": 3
+   }
+  },
+  {
+   "id": "ADS-10",
+   "group": "Creator",
+   "name": "Transformation & creators \u00b7 sponsored collaboration",
+   "screens": [
+    "TP-08",
+    "GL-074",
+    "GL-081"
+   ],
+   "formats": [
+    "Collaboration card 342\u00d788"
+   ],
+   "variant": "card",
+   "head": "Sponsored collaboration",
+   "dest": "GL-089",
+   "adv": "Glow Lab",
+   "camp": "CMP-1051",
+   "freq": "1 per screen \u00b7 max 2 per day",
+   "fail": "Card omitted; tagged organic products unchanged",
+   "reach": "4\u20137k / wk",
+   "c": {
+    "h": "Glow Lab \u00d7 @amarabeauty",
+    "s": "Shop the products in this look",
+    "cta": "View",
+    "n": 1,
+    "src": "beauty-products.webp"
+   }
+  }
+ ],
+ "events": [
+  {
+   "id": "bridal",
+   "n": "Cape Town Bridal Showcase",
+   "iso": "2026-12-12",
+   "d": "Sat 12 Dec 2026",
+   "loc": "V&A Waterfront, Cape Town",
+   "th": "Bridal & wedding guest",
+   "dc": "Cocktail \u00b7 soft pastels or jewel tones",
+   "img": 1,
+   "cat": "Bridal"
+  },
+  {
+   "id": "lumiere",
+   "n": "Lumi\u00e8re Beauty Open Day",
+   "iso": "2026-12-05",
+   "d": "Sat 5 Dec 2026",
+   "loc": "Lumi\u00e8re Atelier, Cape Town",
+   "th": "Beauty pop-up",
+   "dc": "Come as you are",
+   "img": 0,
+   "cat": "Pop-up",
+   "sp": 1
+  },
+  {
+   "id": "garden",
+   "n": "Summer Glow Garden Party",
+   "iso": "2026-12-19",
+   "d": "Sat 19 Dec 2026",
+   "loc": "Constantia, Cape Town",
+   "th": "Garden party",
+   "dc": "Smart casual \u00b7 florals and linen",
+   "img": 0,
+   "cat": "Garden"
+  },
+  {
+   "id": "nye",
+   "n": "Gold & Midnight NYE Gala",
+   "iso": "2026-12-31",
+   "d": "Thu 31 Dec 2026",
+   "loc": "Sandton, Johannesburg",
+   "th": "Black tie",
+   "dc": "Black tie \u00b7 metallics, deep jewel tones",
+   "img": 2,
+   "cat": "Black tie"
+  },
+  {
+   "id": "july",
+   "n": "Durban July Race Day",
+   "iso": "2027-07-03",
+   "d": "Sat 3 Jul 2027",
+   "loc": "Greyville Racecourse, Durban",
+   "th": "Race day",
+   "dc": "Fashion-forward \u00b7 hats and fascinators",
+   "img": 1,
+   "cat": "Race day"
+  },
+  {
+   "id": "heritage",
+   "n": "Heritage Day Celebration",
+   "iso": "2027-09-24",
+   "d": "Fri 24 Sep 2027",
+   "loc": "Durban",
+   "th": "Cultural celebration",
+   "dc": "Traditional attire welcome \u2014 your choice",
+   "img": 3,
+   "cat": "Cultural"
+  }
+ ],
+ "ad_blocked_screens": [
+  "GL-014",
+  "GL-015",
+  "GL-019",
+  "GL-020",
+  "GL-021",
+  "GL-022",
+  "GL-023",
+  "GL-024",
+  "GL-025",
+  "GL-060",
+  "GL-096",
+  "GL-097",
+  "GL-098",
+  "GL-099",
+  "GL-100",
+  "GL-101",
+  "GL-112",
+  "GL-124",
+  "GL-125",
+  "GL-127",
+  "GL-128",
+  "GL-130",
+  "GL-134",
+  "GL-147",
+  "FB-01"
+ ]
+}
