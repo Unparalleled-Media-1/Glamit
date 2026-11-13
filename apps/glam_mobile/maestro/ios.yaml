@@ -4,7 +4,7 @@ appId: com.glambeauty.analyzereview
     clearState: true
     permissions:
       camera: unset
-- assertVisible: 'Your next look'
+- assertVisible: '.*Your next look.*'
 - takeScreenshot: 00-tab-home
 - tapOn: 'Studio'
 - takeScreenshot: 00-tab-studio
@@ -19,7 +19,8 @@ appId: com.glambeauty.analyzereview
 - tapOn: 'Continue'
 - takeScreenshot: 00-gl019-before-you-start
 - tapOn: 'Open camera'
-- assertVisible: 'Analyze'
+- assertVisible:
+    id: native-shutter
 - takeScreenshot: 01-camera-entry
 - tapOn:
     id: native-shutter
