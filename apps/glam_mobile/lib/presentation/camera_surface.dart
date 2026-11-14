@@ -107,7 +107,7 @@ class _CameraSurfaceState extends State<CameraSurface> with WidgetsBindingObserv
         GlassPill(label: 'History', onTap: _busy ? null : () => _leave(widget.onSaved)),
         GlassIconButton(glyph: '○', label: 'Account', onTap: _busy ? null : () => _leave(widget.onAccount)),
       ]),
-      Positioned(top: MediaQuery.paddingOf(context).top + 100, left: 22, right: 22, child: Center(child: Semantics(container: true, identifier: _error == null ? 'capture-guidance' : 'camera-source-error',
+      Positioned(top: MediaQuery.paddingOf(context).top + 100, left: 22, right: 22, child: Center(child: Semantics(container: true, excludeSemantics: true, identifier: _error == null ? 'capture-guidance' : 'camera-source-error', label: guidance,
         child: GlassPill(label: guidance, onTap: null)))),
       Positioned(left: 0, right: 0, bottom: 40 + MediaQuery.paddingOf(context).bottom * .5, child: Padding(padding: const EdgeInsets.symmetric(horizontal: 30), child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         GlassIconButton(key: const ValueKey('native-gallery'), glyph: '▣', label: 'Photo library', onTap: _busy ? null : _pick),
