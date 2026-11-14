@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:glam_mobile/design/tokens.dart';
 import 'package:glam_mobile/main.dart';
+import 'package:glam_mobile/screens/generated_page.dart';
 import 'package:glam_mobile/screens/state_overlay.dart';
+import 'package:go_router/go_router.dart';
 import 'package:glam_mobile/shell/nav.dart';
 import 'package:glam_mobile/shell/route_table.dart';
 import 'support/fonts.dart';
@@ -19,6 +21,14 @@ Future<void> _boot(WidgetTester tester, {double scale = 1}) async {
 }
 
 Finder _id(String id) => find.bySemanticsIdentifier(id);
+
+/// Arrival at a design destination: the pending placeholder shows the id, a generated screen is identified by its page.
+Finder _at(String id) => find.byWidgetPredicate((w) => (w is GeneratedPage && w.screen.id == id) || (w is Text && (w.data ?? '').contains(id) && w.data!.length < 40));
+Future<void> _back(WidgetTester tester) async {
+  final pending = _id('pending-back');
+  if (pending.evaluate().isNotEmpty) { await tester.tap(pending); } else { GoRouter.of(tester.element(find.byType(GeneratedPage))).pop(); }
+  await tester.pumpAndSettle();
+}
 
 /// The app holds a SemanticsHandle for its lifetime, so each widget test unmounts it.
 void testApp(String name, Future<void> Function(WidgetTester) body) => testWidgets(name, (tester) async {
@@ -65,12 +75,11 @@ void main() {
     await _boot(tester);
     await tester.tap(_id('tab-studio')); await tester.pumpAndSettle();
     await tester.tap(_id('studio-choose')); await tester.pumpAndSettle();
-    expect(find.textContaining('GL-036'), findsOneWidget);
-    expect(find.textContaining('not built in the native app yet'), findsOneWidget);
-    await tester.tap(_id('pending-back')); await tester.pumpAndSettle();
+    expect(_at('GL-036'), findsOneWidget);
+    await _back(tester);
     expect(find.text('Make it your own.'), findsOneWidget);
     await tester.tap(_id('studio-hair')); await tester.pumpAndSettle();
-    expect(find.textContaining('GL-044'), findsOneWidget);
+    expect(_at('GL-044'), findsOneWidget);
   });
 
   testApp('Home try-a-look switches to the Studio tab; analyze goes to GL-017', (tester) async {
@@ -91,14 +100,14 @@ void main() {
     await tester.tap(_id('discover-save')); await tester.pumpAndSettle();
     expect(tester.getSemantics(_id('discover-save')).label, 'Saved');
     await tester.tap(find.text('Trending')); await tester.pumpAndSettle();
-    expect(find.textContaining('GL-072'), findsOneWidget);
+    expect(_at('GL-072'), findsOneWidget);
   });
 
   testApp('Profile rows route to their design IDs', (tester) async {
     await _boot(tester);
     await tester.tap(_id('tab-profile')); await tester.pumpAndSettle();
     await tester.tap(find.text('Analysis history')); await tester.pumpAndSettle();
-    expect(find.textContaining('GL-121'), findsOneWidget);
+    expect(_at('GL-121'), findsOneWidget);
   });
 
   testApp('Sponsored placements are labelled, explainable and hideable', (tester) async {

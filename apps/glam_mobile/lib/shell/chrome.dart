@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../design/glyphs.dart';
 import 'package:go_router/go_router.dart';
 import '../design/tokens.dart';
 import '../design/widgets.dart';
@@ -76,7 +77,7 @@ class _Tab extends StatelessWidget {
       child: GestureDetector(behavior: HitTestBehavior.opaque, onTap: onTap, child: DecoratedBox(
         decoration: BoxDecoration(color: selected ? p.ac : null, borderRadius: BorderRadius.circular(android ? 16 : 27)),
         child: Center(child: FittedBox(fit: BoxFit.scaleDown, child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Text(glyph, strutStyle: const StrutStyle(fontSize: 19, height: 23 / 19, forceStrutHeight: true), style: body(19, fg, height: 23)),
+          GText(glyph, strutStyle: const StrutStyle(fontSize: 19, height: 23 / 19, forceStrutHeight: true), style: body(19, fg, height: 23)),
           const SizedBox(height: 1),
           Text(label, strutStyle: StrutStyle(fontSize: android ? 12 : 11, height: 14 / (android ? 12 : 11), forceStrutHeight: true), style: body(android ? 12 : 11, fg, w: selected ? FontWeight.w700 : FontWeight.w400, height: 14)),
         ]))))));
