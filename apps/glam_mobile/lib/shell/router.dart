@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart' show MaterialPage, Theme;
 import 'package:go_router/go_router.dart';
 import '../screens/discover_screen.dart';
 import '../screens/analyze_intro.dart';
@@ -42,16 +44,23 @@ GoRouter buildRouter({required GlobalKey<NavigatorState> navigatorKey, required 
       GoRoute(path: interimAnalysisPath, builder: (context, state) => interimAnalysis(context, (state.extra as CaptureStart?) ?? CaptureStart.idle)),
       for (final s in designScreens)
         if (seen.add(s.path))
-          GoRoute(path: s.path, builder: (context, state) {
-            // Hand-built screens over the real private-analysis flow (camera, consent, server analysis, results, history).
-            switch (s.id) {
-              case 'GL-018': return Semantics(identifier: 'screen-GL-018', container: true, explicitChildNodes: true, child: ChooseAnalysisScreen(onContinue: () => GlamNav.to(context, 'GL-019')));
-              case 'GL-019': return PrepareScreen(onStart: (how) => context.push(interimAnalysisPath, extra: how));
-              case 'GL-020' || 'GL-023' || 'GL-024' || 'GL-025': return interimAnalysis(context, CaptureStart.camera);
-              case 'GL-026' || 'GL-027' || 'GL-028' || 'GL-029' || 'GL-030' || 'GL-031' || 'GL-032' || 'GL-033' || 'GL-034': return interimAnalysis(context, CaptureStart.idle);
-            }
-            return generatedIds.contains(s.id) ? GeneratedPage(screen: s) : PendingScreen(screen: s);
+          GoRoute(path: s.path, pageBuilder: (context, state) {
+            final Widget child = _designPage(context, s, interimAnalysis, generatedIds);
+            // iOS pushes use Cupertino pages so the native edge-swipe back works on every design screen.
+            return Theme.of(context).platform == TargetPlatform.iOS
+              ? CupertinoPage<void>(key: state.pageKey, child: child) : MaterialPage<void>(key: state.pageKey, child: child);
           }),
     ],
   );
+}
+
+/// The widget behind a design route: hand-built analysis screens, generated screens, or the honest pending screen.
+Widget _designPage(BuildContext context, DesignScreen s, Widget Function(BuildContext, CaptureStart) interimAnalysis, Set<String> generatedIds) {
+  switch (s.id) {
+    case 'GL-018': return Semantics(identifier: 'screen-GL-018', container: true, explicitChildNodes: true, child: ChooseAnalysisScreen(onContinue: () => GlamNav.to(context, 'GL-019')));
+    case 'GL-019': return PrepareScreen(onStart: (how) => context.push(interimAnalysisPath, extra: how));
+    case 'GL-020' || 'GL-023' || 'GL-024' || 'GL-025': return interimAnalysis(context, CaptureStart.camera);
+    case 'GL-026' || 'GL-027' || 'GL-028' || 'GL-029' || 'GL-030' || 'GL-031' || 'GL-032' || 'GL-033' || 'GL-034': return interimAnalysis(context, CaptureStart.idle);
+  }
+  return generatedIds.contains(s.id) ? GeneratedPage(screen: s) : PendingScreen(screen: s);
 }
