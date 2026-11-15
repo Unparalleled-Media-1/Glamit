@@ -10,12 +10,13 @@ import 'state_overlay.dart';
 /// Row shared by the on-photo landings: uppercase section title (`.ttl` override
 /// in s1/s3) and a glass pill on the right.
 class _LandingTop extends StatelessWidget {
-  const _LandingTop({required this.title, required this.actionLabel, required this.onAction});
+  const _LandingTop({required this.title, required this.actionLabel, required this.onAction, this.titleColor});
   final String title, actionLabel;
+  final Color? titleColor;
   final VoidCallback onAction;
   @override
   Widget build(BuildContext context) => Positioned(top: 8, left: 14, right: 14, child: SizedBox(height: 44, child: Row(children: [
-    Expanded(child: Text(title.toUpperCase(), style: body(16, context.glam.onGlass, w: FontWeight.w700, ls: 2))),
+    Expanded(child: Text(title.toUpperCase(), style: body(16, titleColor ?? context.glam.onGlass, w: FontWeight.w700, ls: 2))),
     GlassPill(label: actionLabel, onTap: onAction, id: 'landing-action'),
   ])));
 }
@@ -56,7 +57,9 @@ class StudioLandingScreen extends StatelessWidget {
     return ScreenStateGate(child: ClipRect(child: Stack(fit: StackFit.expand, children: [
       Positioned(left: 0, right: 0, top: 0, height: screenH, child: const GlamPhoto(n: 1)),
       const Scrim(fraction: .65),
-      _LandingTop(title: 'Studio', actionLabel: FixtureScope.of(context) ? '✧ ${credits.remaining} credits' : '✧ Credits', onAction: () => GlamNav.to(context, 'GL-126')),
+      // D2 (owner-approved fix): the design's light-theme title colour (#17151a) vanishes on the dark portrait,
+      // so Studio uses the on-photo colour in both themes. Layout is unchanged; Analyze is untouched.
+      _LandingTop(title: 'Studio', titleColor: GlamPalette.onPhoto, actionLabel: FixtureScope.of(context) ? '✧ ${credits.remaining} credits' : '✧ Credits', onAction: () => GlamNav.to(context, 'GL-126')),
       Positioned(left: 22, right: 22, bottom: 112, child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
         const Kicker('Your expression lab', color: GlamPalette.blush),
         Text('Make it your own.', style: display(40, 42, GlamPalette.onPhoto, ls: -1.2)),
