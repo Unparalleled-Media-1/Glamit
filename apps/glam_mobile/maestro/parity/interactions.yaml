@@ -1,7 +1,7 @@
 # Actual-OS navigation and interaction checks for the five Batch 1 tabs.
 # The first tap after a cold start can be lost on a slow software-GPU emulator, so every navigation
 # is a tap+expected-target pair retried up to 3 times (navigation taps are idempotent).
-# Unbuilt destinations must open their honest pending screen carrying the design ID.
+# Every destination is identified by its `screen-<design id>` semantics identifier (generated, hand-built or pending screen).
 appId: com.glambeauty.analyzereview
 ---
 - launchApp:
@@ -44,16 +44,13 @@ appId: com.glambeauty.analyzereview
       - tapOn:
           id: analyze-start
       - extendedWaitUntil:
-          visible: 'GL-018.*'
+          visible:
+            id: 'screen-GL-018'
           timeout: 8000
-- extendedWaitUntil:
-    visible: '.*not built in the native app yet.*'
-    timeout: 20000
 - retry:
     maxRetries: 3
     commands:
-      - tapOn:
-          id: pending-back
+      - runFlow: _back.yaml
       - extendedWaitUntil:
           visible:
             id: analyze-start
@@ -73,13 +70,13 @@ appId: com.glambeauty.analyzereview
       - tapOn:
           id: studio-makeup
       - extendedWaitUntil:
-          visible: 'GL-037.*'
+          visible:
+            id: 'screen-GL-037'
           timeout: 8000
 - retry:
     maxRetries: 3
     commands:
-      - tapOn:
-          id: pending-back
+      - runFlow: _back.yaml
       - extendedWaitUntil:
           visible:
             id: studio-makeup
@@ -90,13 +87,13 @@ appId: com.glambeauty.analyzereview
       - tapOn:
           id: studio-hair
       - extendedWaitUntil:
-          visible: 'GL-044.*'
+          visible:
+            id: 'screen-GL-044'
           timeout: 8000
 - retry:
     maxRetries: 3
     commands:
-      - tapOn:
-          id: pending-back
+      - runFlow: _back.yaml
       - extendedWaitUntil:
           visible:
             id: studio-hair
@@ -107,13 +104,13 @@ appId: com.glambeauty.analyzereview
       - tapOn:
           id: studio-ai-look
       - extendedWaitUntil:
-          visible: 'GL-047.*'
+          visible:
+            id: 'screen-GL-047'
           timeout: 8000
 - retry:
     maxRetries: 3
     commands:
-      - tapOn:
-          id: pending-back
+      - runFlow: _back.yaml
       - extendedWaitUntil:
           visible:
             id: studio-ai-look
@@ -124,13 +121,13 @@ appId: com.glambeauty.analyzereview
       - tapOn:
           id: studio-choose
       - extendedWaitUntil:
-          visible: 'GL-036.*'
+          visible:
+            id: 'screen-GL-036'
           timeout: 8000
 - retry:
     maxRetries: 3
     commands:
-      - tapOn:
-          id: pending-back
+      - runFlow: _back.yaml
       - extendedWaitUntil:
           visible:
             id: studio-choose
@@ -155,13 +152,13 @@ appId: com.glambeauty.analyzereview
       - tapOn:
           id: discover-search
       - extendedWaitUntil:
-          visible: 'GL-070.*'
+          visible:
+            id: 'screen-GL-070'
           timeout: 8000
 - retry:
     maxRetries: 3
     commands:
-      - tapOn:
-          id: pending-back
+      - runFlow: _back.yaml
       - extendedWaitUntil:
           visible:
             id: discover-follow
@@ -180,13 +177,13 @@ appId: com.glambeauty.analyzereview
     commands:
       - tapOn: 'Analysis history'
       - extendedWaitUntil:
-          visible: 'GL-121.*'
+          visible:
+            id: 'screen-GL-121'
           timeout: 8000
 - retry:
     maxRetries: 3
     commands:
-      - tapOn:
-          id: pending-back
+      - runFlow: _back.yaml
       - extendedWaitUntil:
           visible:
             id: profile-roles

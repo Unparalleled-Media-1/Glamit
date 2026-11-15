@@ -8,16 +8,15 @@ appId: com.glambeauty.analyzereview
     id: tab-analyze
 - tapOn:
     id: analyze-start
-- tapOn:
-    id: pending-interim
-- assertVisible: 'Analyze'
-- takeScreenshot: 01-camera-entry
-- tapOn:
-    id: native-shutter
+- takeScreenshot: 00-gl018-choose-analysis
+- tapOn: 'Continue'
+- takeScreenshot: 00-gl019-before-you-start
+- tapOn: 'Open camera'
 - extendedWaitUntil:
     visible:
       id: 'camera-source-error|native-camera-live'
     timeout: 45000
+- takeScreenshot: 01-camera-entry
 - takeScreenshot: 02-native-camera-capability
 - tapOn: 'Photo library'
 - extendedWaitUntil:

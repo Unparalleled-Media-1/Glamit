@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'glyphs.dart';
 import 'tokens.dart';
 
 TextStyle display(double size, double height, Color color, {double ls = 0}) =>
@@ -46,7 +47,7 @@ class GlassIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = context.glam;
     final inner = SizedBox(width: 44, height: 44, child: Stack(alignment: Alignment.center, children: [
-      Text(glyph, style: body(19, color ?? p.onGlass)),
+      GText(glyph, style: body(19, color ?? p.onGlass)),
       if (badge) Positioned(top: 9, right: 10, child: Container(width: 9, height: 9,
         decoration: BoxDecoration(color: p.ac2, shape: BoxShape.circle, border: Border.all(color: p.sf2, width: 2)))),
     ]));
@@ -67,7 +68,7 @@ class GlassPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.glam;
-    final text = Text(label, maxLines: 1, overflow: TextOverflow.clip, softWrap: false, style: body(fontSize, p.onGlass));
+    final text = GText(label, maxLines: 1, overflow: TextOverflow.clip, softWrap: false, style: body(fontSize, p.onGlass));
     return Tappable(onTap: onTap, label: label, id: id, child: GlassSurface(radius: context.isAndroidStyle ? 10 : 20,
       child: ConstrainedBox(constraints: BoxConstraints(minHeight: minHeight, minWidth: expand ? double.infinity : 0),
         child: Padding(padding: const EdgeInsets.symmetric(horizontal: 14),
@@ -75,7 +76,7 @@ class GlassPill extends StatelessWidget {
   }
 }
 
-enum GlamButtonKind { primary, glass }
+enum GlamButtonKind { primary, glass, ghost, disabled }
 
 /// `.btn`: 54px pill action (radius 27), 15px bold.
 class GlamButton extends StatelessWidget {
@@ -87,13 +88,15 @@ class GlamButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.glam;
-    final glass = kind == GlamButtonKind.glass;
+    final glass = kind == GlamButtonKind.glass, ghost = kind == GlamButtonKind.ghost, off = kind == GlamButtonKind.disabled;
+    final fg = glass ? p.onGlass : ghost ? p.tx : off ? p.tx2 : p.onBtn;
     final child = ConstrainedBox(constraints: const BoxConstraints(minHeight: 54),
       child: Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: Center(
-        child: Text(label, textAlign: TextAlign.center, style: body(15, glass ? p.onGlass : p.onBtn, w: FontWeight.w700)))));
-    return Padding(padding: const EdgeInsets.symmetric(vertical: 6), child: Tappable(onTap: onTap, label: label, id: id,
+        child: Text(label, textAlign: TextAlign.center, style: body(15, fg, w: FontWeight.w700)))));
+    return Padding(padding: const EdgeInsets.symmetric(vertical: 6), child: Tappable(onTap: off ? null : onTap, label: label, id: id,
       child: glass ? GlassSurface(radius: 27, child: child)
-        : DecoratedBox(decoration: BoxDecoration(color: p.btn, borderRadius: BorderRadius.circular(27)), child: child)));
+        : DecoratedBox(decoration: BoxDecoration(color: ghost ? Colors.transparent : off ? p.sf2 : p.btn, borderRadius: BorderRadius.circular(27),
+            border: ghost ? Border.all(color: p.ln) : null), child: child)));
   }
 }
 
@@ -166,7 +169,7 @@ class GlamRow extends StatelessWidget {
       decoration: BoxDecoration(border: last ? null : Border(bottom: BorderSide(color: p.ln))),
       child: Row(children: [
         Container(width: 40, height: 40, alignment: Alignment.center, decoration: BoxDecoration(color: p.sf2, shape: BoxShape.circle),
-          child: Text(glyph, style: body(17, p.ac2))),
+          child: GText(glyph, style: body(17, p.ac2))),
         const SizedBox(width: 14),
         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
           Text(title, style: body(15, p.tx, w: FontWeight.w700)),

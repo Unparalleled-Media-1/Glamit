@@ -23,7 +23,8 @@ appId: com.glambeauty.analyzereview
       - tapOn:
           id: studio-choose
       - extendedWaitUntil:
-          visible: 'GL-036.*'
+          visible:
+            id: 'screen-GL-036'
           timeout: 8000
 - back
 - extendedWaitUntil:

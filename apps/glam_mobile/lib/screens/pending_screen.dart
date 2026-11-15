@@ -15,7 +15,7 @@ class PendingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.glam;
-    return Scaffold(backgroundColor: p.bg, body: SafeArea(child: Padding(padding: const EdgeInsets.fromLTRB(14, 6, 22, 22),
+    return Scaffold(backgroundColor: p.bg, body: Semantics(identifier: 'screen-${screen.id}', container: true, explicitChildNodes: true, child: SafeArea(child: Padding(padding: const EdgeInsets.fromLTRB(14, 6, 22, 22),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         GlassIconButton(glyph: context.isAndroidStyle ? '←' : '‹', label: 'Back', blur: false, fill: p.sf2, color: p.tx, id: 'pending-back', onTap: () => context.canPop() ? context.pop() : context.go('/home')),
         Expanded(child: Padding(padding: const EdgeInsets.only(left: 8, top: 24), child: SingleChildScrollView(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -27,6 +27,6 @@ class PendingScreen extends StatelessWidget {
           Semantics(container: true, identifier: 'pending-notice', child: Text('This screen is not built in the native app yet. No data is shown and nothing here is simulated.', style: body(13, p.tx2, height: 19))),
           if (onInterim != null) ...[const SizedBox(height: 18), GlamButton(interimLabel ?? 'Continue', id: 'pending-interim', onTap: onInterim)],
         ])))),
-      ]))));
+      ])))));
   }
 }

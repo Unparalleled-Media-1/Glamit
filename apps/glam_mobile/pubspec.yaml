@@ -26,6 +26,8 @@ flutter:
   assets:
     - assets/brand/
     - assets/imagery/
+    - assets/icons/
+    - assets/screens/
   fonts:
     # Reference typography is Georgia (display) and Arial (body). Neither is
     # redistributable, so metric-compatible SIL OFL substitutes are bundled:
@@ -33,6 +35,9 @@ flutter:
     - family: Gelasio
       fonts:
         - asset: assets/fonts/Gelasio.ttf
+    - family: GlamSymbols
+      fonts:
+        - asset: assets/fonts/DejaVuSans.ttf
     - family: Arimo
       fonts:
         - asset: assets/fonts/Arimo.ttf
