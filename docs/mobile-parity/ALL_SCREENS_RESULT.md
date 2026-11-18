@@ -6,7 +6,8 @@ Builds on the Batch 0/1 foundation (go_router shell, route table, fixtures, nati
 |---|---|---|
 | Consumer tabs | home, GL-017, GL-035, GL-069, GL-117 | Batch 1 hand-built shell screens |
 | Analyze path | GL-018, 019, 020, 023, 024, 025, 026–034 (15) | hand-built over the real private-analysis logic; GL-021/022 are generated |
-| Everything else | 212 | generated from the design's resolved layout (`lib/screens/design_render.dart`, data in `assets/screens/{dark,light}_{ios,android}.json.gz`, reproducible with `scripts/design-extract/`) |
+| Event dressing GL-057, 058, 059, 063, 067 (5) | on-device, user-entered event → dress code → three directions → deadline checklist (`lib/events/`, `lib/screens/event_dress.dart`) |
+| Everything else | 207 | generated from the design's resolved layout (`lib/screens/design_render.dart`, data in `assets/screens/{dark,light}_{ios,android}.json.gz`, reproducible with `scripts/design-extract/`) |
 
 Honest limits (REQUIRES BACKEND VERIFICATION for all backend behaviour):
 - Skin, hair, hairstyle and routine screens say "not available yet": the analysis service returns face-feature/undertone observations only.

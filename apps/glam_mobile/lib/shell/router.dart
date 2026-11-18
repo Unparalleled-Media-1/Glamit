@@ -3,7 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart' show MaterialPage, Theme;
 import 'package:go_router/go_router.dart';
 import '../screens/discover_screen.dart';
+import '../events/event_controller.dart';
 import '../screens/analyze_intro.dart';
+import '../screens/event_dress.dart';
 import '../screens/generated_ids.dart';
 import '../screens/generated_page.dart';
 import '../screens/home_screen.dart';
@@ -20,7 +22,8 @@ const interimAnalysisPath = '/analyze/interim-capture';
 /// StatefulShellRoute (state is kept per tab); every other design screen is a
 /// full-screen route at its proposed path. Screens without a native
 /// implementation resolve to [PendingScreen], never a fake success.
-GoRouter buildRouter({required GlobalKey<NavigatorState> navigatorKey, required Widget Function(BuildContext context, CaptureStart start) interimAnalysis, String initialLocation = '/home'}) {
+GoRouter buildRouter({required GlobalKey<NavigatorState> navigatorKey, required Widget Function(BuildContext context, CaptureStart start) interimAnalysis, EventDressController? eventDress, String initialLocation = '/home'}) {
+  final events = eventDress ?? EventDressController();
   final generatedIds = kGeneratedScreenIds;
   final tabPaths = GlamNav.tabRoots.values.toSet();
   final seen = <String>{...tabPaths, interimAnalysisPath};
@@ -45,7 +48,7 @@ GoRouter buildRouter({required GlobalKey<NavigatorState> navigatorKey, required 
       for (final s in designScreens)
         if (seen.add(s.path))
           GoRoute(path: s.path, pageBuilder: (context, state) {
-            final Widget child = _designPage(context, s, interimAnalysis, generatedIds);
+            final Widget child = _designPage(context, s, interimAnalysis, generatedIds, events);
             // iOS pushes use Cupertino pages so the native edge-swipe back works on every design screen.
             return Theme.of(context).platform == TargetPlatform.iOS
               ? CupertinoPage<void>(key: state.pageKey, child: child) : MaterialPage<void>(key: state.pageKey, child: child);
@@ -55,8 +58,14 @@ GoRouter buildRouter({required GlobalKey<NavigatorState> navigatorKey, required 
 }
 
 /// The widget behind a design route: hand-built analysis screens, generated screens, or the honest pending screen.
-Widget _designPage(BuildContext context, DesignScreen s, Widget Function(BuildContext, CaptureStart) interimAnalysis, Set<String> generatedIds) {
+Widget _designPage(BuildContext context, DesignScreen s, Widget Function(BuildContext, CaptureStart) interimAnalysis, Set<String> generatedIds, EventDressController events) {
+  Widget id(Widget w) => Semantics(identifier: 'screen-${s.id}', container: true, explicitChildNodes: true, child: w);
   switch (s.id) {
+    case 'GL-057': return id(EventAddScreen(controller: events));
+    case 'GL-058': return id(EventWhenScreen(controller: events));
+    case 'GL-059': return id(EventCodeScreen(controller: events));
+    case 'GL-063': return id(EventIdeasScreen(controller: events));
+    case 'GL-067': return id(EventPlanScreen(controller: events));
     case 'GL-018': return Semantics(identifier: 'screen-GL-018', container: true, explicitChildNodes: true, child: ChooseAnalysisScreen(onContinue: () => GlamNav.to(context, 'GL-019')));
     case 'GL-019': return PrepareScreen(onStart: (how) => context.push(interimAnalysisPath, extra: how));
     case 'GL-020' || 'GL-023' || 'GL-024' || 'GL-025': return interimAnalysis(context, CaptureStart.camera);
