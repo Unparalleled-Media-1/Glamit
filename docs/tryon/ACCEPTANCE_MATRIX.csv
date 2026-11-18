@@ -24,3 +24,14 @@ T-22,Commerce,Only verified listings are offered for try-on and purchase; price/
 T-23,Booking,"Verified professionals show real availability; booking, cancel and refund work in a test account",backend + native,P5,NOT RUN
 T-24,Legal (G2),"PIA complete; counsel sign-off on consent text, retention, cross-border mechanism, labelling; provider DPAs incl. no-training and deletion; platform-policy review",signed documents,P6,NOT RUN
 T-25,Pricing,Credit price rule approved by the owner from measured costs; versioned; past jobs keep the price charged,owner approval record,P6,NOT RUN
+T-26,Credit separation,"No LifeSwap or Stay Credit identifier exists in code, schema, dependencies, endpoints or queues; a boundary test fails the build if one appears",static boundary test (repo + schema),P1,NOT RUN
+T-27,Credit separation,Try-on jobs can reserve only from a glam_ai_credit account; a credit_kind CHECK prevents mixing another kind into the GLAM ledger,isolated-DB test,P1,NOT RUN
+T-28,Money separation,"Provider cost, customer credit price, reservations, captures, refunds and usage are held in separate auditable tables and reconcile",isolated-DB test + reporting views,P1/P6,NOT RUN
+T-29,Sharing,Results are private by default; saving or sharing requires an explicit user action; exported images carry the AI-generated label,widget + native run,P1/P3,NOT RUN
+T-30,Photo rights,Attestation is required per photo; multiple-person images are rejected; no match to the account photo is required,backend test (double) + native run,P1/P3,NOT RUN
+T-31,Identity,Any output with a replaced or altered face is rejected; a provider that produces one fails the bake-off,bake-off rating + automated check,P2,NOT RUN
+T-32,Honesty,Release builds contain no fixture or simulated try-on path (fixture-leak tests cover the try-on screens),widget + release-build leak test,P1,NOT RUN
+T-33,Spend control,The bake-off harness refuses to call a provider without a recorded spend authorisation and stops at 80% of the ceiling pending fresh approval,harness test + spend ledger,P2,NOT RUN
+T-34,Statistics,The harness reproduces the protocol's Clopper-Pearson and kappa values on synthetic data,unit test against the table in BAKEOFF_PROTOCOL.md,P1,NOT RUN
+T-35,Method integrity,The rating protocol commit predates the first real result file; thresholds unchanged since,git history check,P2,NOT RUN
+T-36,Release safety,Try-on is off by default in every production configuration; no paid generation is enabled until G2 and owner approval,configuration test + release checklist,P1/P6,NOT RUN
