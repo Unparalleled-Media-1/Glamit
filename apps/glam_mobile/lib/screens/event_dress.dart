@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../design/analyze_widgets.dart';
+import '../design/photo.dart';
 import '../design/tokens.dart';
 import '../design/widgets.dart';
 import '../events/event_brief.dart';
 import '../events/event_controller.dart';
+import '../events/sourcing.dart';
+import '../events/themed_events.dart';
 import '../shell/nav.dart';
 
 const _notice = 'Rule-based inspiration from the choices you make here — not an AI result, and nothing is uploaded or saved on a server. Products, prices, stock and weather are not checked.';
@@ -63,6 +66,8 @@ class _EventAddState extends State<EventAddScreen> {
     return AnimatedBuilder(animation: c, builder: (context, _) => _EventPage(title: 'Your event', step: 'STEP 1 OF 4', headline: 'Add your event.',
       lead: 'Event listings need a connected events provider, so enter the details from your invite or flyer. They stay on this device.',
       children: [
+        GlamCard(onTap: () => GlamNav.to(context, 'GL-209'), child: Row(children: [Text('◈', style: body(22, context.glam.ac2)), const SizedBox(width: 14),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Start from a themed event', style: body(15, context.glam.tx, w: FontWeight.w700)), Text('Bridal, garden, black tie, race day, cultural, pop-ups', style: body(12, context.glam.tx2, height: 18))])), Text('›', style: body(20, context.glam.tx2))])),
         _Field(label: 'Event name', controller: name, hint: 'e.g. Livgreen Summer Club — All White Day Club', id: 'event-name', onChanged: (v) => c.update((b) => b.name = v)),
         _Field(label: 'Venue (optional)', controller: venue, hint: 'e.g. Sandown Sports Ground', id: 'event-venue', onChanged: (v) => c.update((b) => b.venue = v)),
         _Field(label: 'City (optional)', controller: city, hint: 'e.g. Sandton', id: 'event-city', onChanged: (v) => c.update((b) => b.city = v)),
@@ -155,6 +160,10 @@ class _EventIdeasState extends State<EventIdeasScreen> {
     return _EventPage(title: 'Outfit ideas', step: 'STEP 4 OF 4', headline: '${ds.length == 3 ? 'Three' : ds.length == 4 ? 'Four' : '${ds.length}'} directions.',
       lead: '${b.title} · ${b.hasDate ? formatDayYear(b.date!) : 'date not set'}${days == null ? '' : ' · ${countdown(days)}'} · ${b.code == DressCode.custom ? b.customTheme.trim() : (b.code?.label ?? '')}',
       children: [
+        if (b.hostNote.isNotEmpty || b.eventTips.isNotEmpty) GlamCard(color: p.sf2, child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const Kicker('About this event'),
+          if (b.hostNote.isNotEmpty) Text('Host dress code: ${b.hostNote}', style: body(14, p.tx, height: 21, w: FontWeight.w700)),
+          for (final t in b.eventTips) Padding(padding: const EdgeInsets.only(top: 8), child: Text('• $t', style: body(14, p.tx, height: 21)))])),
         for (final (i, d) in ds.indexed) GlamCard(onTap: () => setState(() => open = open == i ? -1 : i), padding: const EdgeInsets.all(18), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [Expanded(child: Text(d.title, style: display(22, 26, p.tx))), Text(open == i ? '–' : '+', style: body(20, p.tx2))]),
           const SizedBox(height: 4), Text(d.summary, style: body(14, p.tx2, height: 21)),
@@ -166,6 +175,8 @@ class _EventIdeasState extends State<EventIdeasScreen> {
             section('Shoes', d.footwear), section('Hair & makeup', d.beauty), section('Good to know', d.notes.map((n) => '• $n').join('\n')),
           ],
         ])),
+        SourcingSections(controller: c),
+        const TryOnStatusCard(),
         Padding(padding: const EdgeInsets.only(top: 6), child: Text(_notice, style: body(12, p.tx2, height: 18))),
       ],
       actions: [
@@ -207,4 +218,120 @@ class EventPlanScreen extends StatelessWidget {
           GlamButton('Edit event', kind: GlamButtonKind.ghost, onTap: () => GlamNav.to(context, 'GL-057'))]);
     });
   }
+}
+
+/// "Where to find the outfit" and "Makeup & hair" guidance. No business, price or stock is named or claimed; the only action is a search the
+/// user starts in their own maps app.
+class SourcingSections extends StatelessWidget {
+  const SourcingSections({super.key, required this.controller, this.brief});
+  final EventDressController controller; final EventBrief? brief;
+  Future<void> _search(BuildContext context, String q) async {
+    final ok = await controller.openUrl(mapsSearchUri(q));
+    if (!ok) {
+      await Clipboard.setData(ClipboardData(text: q));
+      if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Could not open a maps app. The search text was copied instead.')));
+    }
+  }
+  @override Widget build(BuildContext context) {
+    final p = context.glam, b = brief ?? controller.brief, today = controller.today;
+    Widget group(String kick, List<SourceTip> tips, String idPrefix) => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Padding(padding: const EdgeInsets.only(top: 14), child: Kicker(kick)),
+      GlamCard(padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 6), child: Column(children: [
+        for (final (i, t) in tips.indexed) Container(padding: const EdgeInsets.symmetric(vertical: 12), decoration: BoxDecoration(border: i == tips.length - 1 ? null : Border(bottom: BorderSide(color: p.ln))),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(t.title, style: body(15, p.tx, w: FontWeight.w700)), const SizedBox(height: 2), Text(t.detail, style: body(13, p.tx2, height: 19)),
+            if (t.search != null) Padding(padding: const EdgeInsets.only(top: 8), child: Semantics(identifier: '$idPrefix-$i', child: GlamChip('Search “${t.search}” ›', selected: false, onTap: () => _search(context, t.search!))))]))])),
+    ]);
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      group('Where to find your outfit', outfitSources(b, today), 'search-outfit'),
+      group('Makeup & hair', beautySources(b, today), 'search-beauty'),
+      Padding(padding: const EdgeInsets.only(top: 4), child: Text('Search buttons open your maps app with the text shown. GLAM has not verified any business, price or stock${b.city.trim().isEmpty ? '; add a city to your event to search nearby' : ''}.', style: body(12, p.tx2, height: 18))),
+    ]);
+  }
+}
+
+/// A picture of you in the outfit needs a generation service that is not connected. GLAM shows no avatar and no stand-in image.
+class TryOnStatusCard extends StatelessWidget {
+  const TryOnStatusCard({super.key});
+  @override Widget build(BuildContext context) {
+    final p = context.glam;
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      const Padding(padding: EdgeInsets.only(top: 14), child: Kicker('See it on you')),
+      Semantics(identifier: 'tryon-status', container: true, child: GlamCard(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text('Not available yet', style: display(22, 26, p.tx)),
+        const SizedBox(height: 6),
+        Text('A picture of you in this outfit needs an image-generation service that is not connected. Until it is, GLAM will not show an avatar or a stand-in picture.', style: body(14, p.tx2, height: 21)),
+        const SizedBox(height: 8),
+        Text('When it is available it will use only a photo you choose, ask for its own permission, and label the result as AI-generated.', style: body(14, p.tx2, height: 21)),
+        const SizedBox(height: 6),
+        GlamButton('See it on me — not available yet', kind: GlamButtonKind.disabled, onTap: null)]))),
+    ]);
+  }
+}
+
+/// GL-209 — themed events directory (sample events from the design; verify details with the organiser).
+class ThemedEventsScreen extends StatefulWidget {
+  const ThemedEventsScreen({super.key, required this.controller});
+  final EventDressController controller;
+  @override State<ThemedEventsScreen> createState() => _ThemedEventsState();
+}
+class _ThemedEventsState extends State<ThemedEventsScreen> {
+  String category = 'All';
+  @override Widget build(BuildContext context) {
+    final p = context.glam, c = widget.controller, events = themedEventsIn(category);
+    return _EventPage(title: 'Themed events', step: 'SAMPLE EVENTS', headline: 'Themed events.',
+      lead: 'Sample events for design only. Dates, venues and dress codes come from organisers and need verifying.',
+      children: [
+        SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(children: [for (final k in kThemedCategories) Padding(padding: const EdgeInsets.only(right: 8), child: GlamChip(k, selected: k == category, onTap: () => setState(() => category = k)))])),
+        const SizedBox(height: 8),
+        for (final e in events) Semantics(identifier: 'event-${e.id}', button: true, label: e.name, child: GlamCard(onTap: () { c.select(e); GlamNav.to(context, 'GL-210'); }, padding: const EdgeInsets.all(14), child: Row(children: [
+          GlamPhoto(n: e.photo, width: 72, height: 72, radius: 16), const SizedBox(width: 14),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(e.name, style: body(15, p.tx, w: FontWeight.w700)), const SizedBox(height: 2),
+            Text('${formatDayYear(e.date)} · ${e.location}', style: body(12, p.tx2, height: 18)), const SizedBox(height: 2),
+            Text(e.theme, style: body(12, p.ac2, w: FontWeight.w700))])),
+          Text('›', style: body(20, p.tx2))]))),
+        if (events.isEmpty) Text('No events in this category.', style: body(14, p.tx2)),
+        GlamCard(onTap: () => GlamNav.to(context, 'GL-057'), child: Row(children: [Text('＋', style: body(22, p.ac2)), const SizedBox(width: 14),
+          Expanded(child: Text('Add my own event', style: body(15, p.tx, w: FontWeight.w700))), Text('›', style: body(20, p.tx2))])),
+      ],
+      actions: [GlamButton('Add my own event', kind: GlamButtonKind.ghost, onTap: () => GlamNav.to(context, 'GL-057'))]);
+  }
+}
+
+/// GL-210 — themed event detail: facts, host dress code, preparation timeline, where to buy / get makeup done, and the dress-up entry.
+class ThemedEventDetailScreen extends StatelessWidget {
+  const ThemedEventDetailScreen({super.key, required this.controller});
+  final EventDressController controller;
+  @override Widget build(BuildContext context) => AnimatedBuilder(animation: controller, builder: (context, _) {
+    final p = context.glam, inset = MediaQuery.paddingOf(context), e = controller.selectedEvent, today = controller.today, preset = e.toBrief();
+    final days = daysToGo(today, e.date), plan = planFor(preset, today);
+    Widget fact(String k, String v) => Padding(padding: const EdgeInsets.symmetric(vertical: 8), child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      SizedBox(width: 92, child: Text(k, style: body(12, p.tx2, w: FontWeight.w700, ls: .5))), Expanded(child: Text(v, style: body(14, p.tx, height: 20)))]));
+    return Scaffold(backgroundColor: p.bg, body: Stack(children: [
+      ListView(padding: EdgeInsets.only(bottom: 220 + inset.bottom), children: [
+        SizedBox(height: 300, child: Stack(fit: StackFit.expand, children: [
+          GlamPhoto(n: e.photo, height: 300), const Scrim(fraction: .7),
+          Positioned(left: 22, right: 22, bottom: 18, child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+            Kicker(e.theme, color: GlamPalette.blush, bottom: 6), Text(e.name, style: display(30, 33, GlamPalette.onPhoto, ls: -.6))]))])),
+        Padding(padding: const EdgeInsets.fromLTRB(22, 14, 22, 0), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          GlamCard(padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8), child: Column(children: [
+            fact('DATE', '${formatDayYear(e.date)} · ${countdown(days)}'), fact('LOCATION', e.location), fact('THEME', e.theme), fact('DRESS CODE', e.hostDressCode)])),
+          Text('Sample event from the design. Confirm the date, venue and dress code with the organiser.', style: body(12, p.tx2, height: 18)),
+          if (e.tips.isNotEmpty) Padding(padding: const EdgeInsets.only(top: 14), child: Kicker('Good to know')),
+          if (e.tips.isNotEmpty) GlamCard(color: p.sf2, child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [for (final t in e.tips) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('• $t', style: body(14, p.tx, height: 21)))])),
+          const Padding(padding: EdgeInsets.only(top: 6), child: Kicker('Preparation timeline')),
+          if (plan.isEmpty) Text('This event has passed.', style: body(14, p.tx2)) else GlamCard(padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 4), child: Column(children: [
+            for (final (i, it) in plan.indexed) Container(constraints: const BoxConstraints(minHeight: 48), padding: const EdgeInsets.symmetric(vertical: 8), decoration: BoxDecoration(border: i == plan.length - 1 ? null : Border(bottom: BorderSide(color: p.ln))),
+              child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [SizedBox(width: 74, child: Text(formatDay(it.due), style: body(12, p.ac2, w: FontWeight.w700, height: 20))), Expanded(child: Text(it.title, style: body(14, p.tx, height: 20)))]))])),
+          SourcingSections(controller: controller, brief: preset),
+          const TryOnStatusCard(),
+        ])),
+      ]),
+      GlamTray(child: Column(mainAxisSize: MainAxisSize.min, children: [
+        GlamButton('Dress for this event', id: 'event-dress', onTap: () { controller.applyThemed(e); GlamNav.to(context, 'GL-063'); }),
+        GlamButton('Edit details first', kind: GlamButtonKind.ghost, onTap: () { controller.applyThemed(e); GlamNav.to(context, 'GL-057'); })])),
+      GlamTopBar(title: '', onBack: () => Navigator.of(context).maybePop(), onPhoto: true),
+    ]));
+  });
 }

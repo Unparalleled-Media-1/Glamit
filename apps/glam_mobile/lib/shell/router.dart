@@ -61,6 +61,8 @@ GoRouter buildRouter({required GlobalKey<NavigatorState> navigatorKey, required 
 Widget _designPage(BuildContext context, DesignScreen s, Widget Function(BuildContext, CaptureStart) interimAnalysis, Set<String> generatedIds, EventDressController events) {
   Widget id(Widget w) => Semantics(identifier: 'screen-${s.id}', container: true, explicitChildNodes: true, child: w);
   switch (s.id) {
+    case 'GL-209': return id(ThemedEventsScreen(controller: events));
+    case 'GL-210': return id(ThemedEventDetailScreen(controller: events));
     case 'GL-057': return id(EventAddScreen(controller: events));
     case 'GL-058': return id(EventWhenScreen(controller: events));
     case 'GL-059': return id(EventCodeScreen(controller: events));

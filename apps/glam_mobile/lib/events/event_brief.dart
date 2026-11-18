@@ -4,14 +4,14 @@ import 'dart:ui' show Color;
 /// those choices. Nothing here is a personalised AI result, nothing is uploaded, no culture/faith/body attribute is inferred,
 /// and no product, price, stock or weather is claimed (REQUIRES BACKEND VERIFICATION for any of those).
 
-enum DressCode { allWhite, blackTie, cocktail, gardenParty, smartCasual, festival, traditional, custom }
+enum DressCode { allWhite, blackTie, cocktail, gardenParty, smartCasual, festival, raceDay, comeAsYouAre, traditional, custom }
 enum DayPart { morning, day, evening, night }
 enum Setting { outdoors, indoors, mixed }
 
 extension DressCodeLabel on DressCode {
   String get label => switch (this) {
     DressCode.allWhite => 'All white', DressCode.blackTie => 'Black tie', DressCode.cocktail => 'Cocktail',
-    DressCode.gardenParty => 'Garden party', DressCode.smartCasual => 'Smart casual', DressCode.festival => 'Festival / beach',
+    DressCode.gardenParty => 'Garden party', DressCode.smartCasual => 'Smart casual', DressCode.festival => 'Festival / beach', DressCode.raceDay => 'Race day', DressCode.comeAsYouAre => 'Come as you are',
     DressCode.traditional => 'Traditional', DressCode.custom => 'Theme colours' };
 }
 extension DayPartLabel on DayPart { String get label => switch (this) { DayPart.morning => 'Morning', DayPart.day => 'Day', DayPart.evening => 'Evening', DayPart.night => 'Night' }; }
@@ -19,8 +19,10 @@ extension SettingLabel on Setting { String get label => switch (this) { Setting.
 
 class EventBrief {
   EventBrief({this.name = '', this.venue = '', this.city = '', this.date, this.dayPart = DayPart.day, this.setting = Setting.outdoors,
-    this.code, this.customTheme = '', this.modest = false, this.traditionalOptions = false});
-  String name, venue, city, customTheme;
+    this.code, this.customTheme = '', this.modest = false, this.traditionalOptions = false, this.hostNote = '', this.eventTips = const []});
+  String name, venue, city, customTheme, hostNote;
+  /// Etiquette that belongs to the kind of event (e.g. weddings), shown with the directions.
+  List<String> eventTips;
   DateTime? date;
   DayPart dayPart;
   Setting setting;
@@ -109,6 +111,23 @@ List<Direction> directionsFor(EventBrief b) {
         footwear: _footwear(b.setting, indoor: 'Sandals', outdoor: 'Flat sandals or slides'), beauty: 'Water-resistant SPF, minimal makeup, salt-friendly hair.', notes: const ['Sand and salt are hard on fabrics — pick washable pieces.']),
       Direction(title: 'Street festival', summary: 'Relaxed layers and sneakers with one standout item.', palette: const [_black, _denim, _terracotta, _cream], pieces: const [Piece('Relaxed trousers or skirt', ''), Piece('Statement top or jacket', 'The standout'), Piece('Cross-body bag', '')],
         footwear: _footwear(b.setting, indoor: 'Sneakers or boots', outdoor: 'Broken-in sneakers'), beauty: 'Bold liner or a bright lip; hair you can forget about.', notes: const ['Wear shoes you have already broken in.']),
+    ],
+    DressCode.raceDay => [
+      Direction(title: 'Fashion-forward', summary: 'A statement dress or tailored set with a headpiece — the day rewards confidence.', palette: const [_blush, _champagne, _terracotta, _sage],
+        pieces: const [Piece('Statement dress, jumpsuit or tailored set', 'Colour or print; structured shoulders photograph well'), Piece('Hat, fascinator or headband', 'Practise wearing it for a few hours'), Piece('Small bag', 'Hands free for the bar and the betting slip')],
+        footwear: _footwear(b.setting, indoor: 'Polished heels or loafers', outdoor: 'Block heels or wedges — turf and grandstand steps are unforgiving; carry flats'), beauty: day ? 'Skin that survives sun and wind: SPF, matte-to-satin base, a long-wear lip. Hair that works with the hat.' : 'Defined eyes, a rosy lip; hair styled around the headpiece.', notes: const ['Pin hats and fascinators securely — breezes are common.', 'Check the host or course dress rules on headwear and hem length.']),
+      Direction(title: 'Tailored & sharp', summary: 'Sleek tailoring in a bold colour with one statement accessory.', palette: const [_navy, _terracotta, _ivory, _gold], pieces: const [Piece('Tailored suit, set or structured dress', ''), Piece('Statement hat or hair accessory', ''), Piece('Pocket square, scarf or bold earrings', '')],
+        footwear: _footwear(b.setting, indoor: 'Polished loafers or heels', outdoor: 'Block heels or smart boots'), beauty: 'Clean, polished; let the hat lead.', notes: const ['Mid-weight fabrics hold up over a long day outdoors.']),
+      Direction(title: 'Print & movement', summary: 'A flowing print dress or co-ord with a coordinated headpiece.', palette: const [_blush, _sage, _champagne, _terracotta], pieces: const [Piece('Printed midi or maxi, or co-ord', 'Lined, crease-resistant'), Piece('Headpiece in a matching shade', ''), Piece('Light wrap', 'Grandstands get breezy')],
+        footwear: _footwear(b.setting, indoor: 'Strappy sandals', outdoor: 'Wedges or block heels'), beauty: 'Dewy base, soft cheek, a glossy lip.', notes: const ['Choose a print you will still love in the photos.']),
+    ],
+    DressCode.comeAsYouAre => [
+      Direction(title: 'Your comfortable best', summary: 'Whatever makes you feel like you — clean, comfortable and pulled together.', palette: const [_ivory, _sand, _blush, _sage], pieces: const [Piece('A favourite outfit that fits well', 'Pressed or steamed'), Piece('Layer for the venue temperature', ''), Piece('Simple bag', '')],
+        footwear: _footwear(b.setting, indoor: 'Comfortable shoes you love', outdoor: 'Comfortable shoes for standing and walking'), beauty: 'Your usual routine, plus SPF if you are outdoors.', notes: const ['No dress code means no wrong answer — comfort for a few hours matters most.']),
+      Direction(title: 'A little extra', summary: 'Everyday pieces with one detail that feels special.', palette: const [_champagne, _cream, _terracotta, _navy], pieces: const [Piece('Everyday base', ''), Piece('One special piece', 'Jewellery, a jacket, a bold lip'), Piece('Comfortable shoes', '')],
+        footwear: _footwear(b.setting, indoor: 'Your favourite pair', outdoor: 'Comfortable closed shoes or sandals'), beauty: 'One feature to play up: lips, lids or nails.', notes: const ['One special detail is plenty.']),
+      Direction(title: 'Brand-friendly', summary: 'If the event is hosted by a brand, a look that suits their world without copying it.', palette: const [_blush, _ivory, _gold, _sand], pieces: const [Piece('Outfit in the brand\'s colour family', ''), Piece('Camera-ready detail', 'Texture or a simple shine'), Piece('Comfortable shoes', '')],
+        footwear: _footwear(b.setting, indoor: 'Comfortable shoes', outdoor: 'Comfortable shoes'), beauty: 'Photo-friendly skin and a lip colour you love.', notes: const ['Check the invite or social page for the host\'s own styling cues.']),
     ],
     DressCode.traditional => [
       Direction(title: 'Your own attire', summary: 'You decide what traditional attire means for you; GLAM only helps you plan around it.', palette: const [_gold, _cream, _terracotta, _navy], pieces: const [Piece('The outfit you choose', 'Your own garment, borrowed or tailored'), Piece('Accessories that complete it', ''), Piece('A backup layer', 'For weather and movement')],

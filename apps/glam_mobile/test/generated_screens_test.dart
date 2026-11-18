@@ -8,7 +8,7 @@ import 'package:glam_mobile/shell/route_table.dart';
 
 /// Ids that are NOT rendered by the generator: the five consumer tabs (hand-built shell screens) and the Analyze path
 /// (hand-built over the real private-analysis logic, or still the interim flow until its batch lands).
-const handBuilt = {'home', 'GL-017', 'GL-035', 'GL-069', 'GL-117', 'GL-018', 'GL-019', 'GL-020', 'GL-023', 'GL-024', 'GL-025', 'GL-026', 'GL-027', 'GL-028', 'GL-029', 'GL-030', 'GL-031', 'GL-032', 'GL-033', 'GL-034', 'GL-057', 'GL-058', 'GL-059', 'GL-063', 'GL-067'};
+const handBuilt = {'home', 'GL-017', 'GL-035', 'GL-069', 'GL-117', 'GL-018', 'GL-019', 'GL-020', 'GL-023', 'GL-024', 'GL-025', 'GL-026', 'GL-027', 'GL-028', 'GL-029', 'GL-030', 'GL-031', 'GL-032', 'GL-033', 'GL-034', 'GL-057', 'GL-058', 'GL-059', 'GL-063', 'GL-067', 'GL-209', 'GL-210'};
 const variants = [(Brightness.dark, TargetPlatform.iOS), (Brightness.dark, TargetPlatform.android), (Brightness.light, TargetPlatform.iOS), (Brightness.light, TargetPlatform.android)];
 
 void main() {
