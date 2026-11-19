@@ -35,6 +35,16 @@ const adsCarousel = CarouselAd(id: 'ADS-02', advertiser: 'Atelier Noor', heading
   items: [AdItem('Gold hour edit', 1), AdItem('Wedding guest', 2), AdItem('Soft tailoring', 3)]);
 const adsPost = PostAd(id: 'ADS-03', advertiser: '@glowlab', title: 'Glass skin in 5 steps', cta: 'Shop the Look', dest: 'GL-074', portrait: 3);
 
+/// Native card/row placements (ADS-05 analysis product card, ADS-07 featured event designer).
+class CardAd {
+  const CardAd({required this.id, required this.advertiser, required this.head, required this.title, required this.sub, required this.cta, required this.dest, required this.portrait, this.asset});
+  final String id, advertiser, head, title, sub, cta, dest;
+  final int portrait;
+  final String? asset;
+}
+const adsAnalysis = CardAd(id: 'ADS-05', advertiser: 'Lumière Beauty', head: 'Sponsored products', title: 'Leave-in care for curls', sub: 'Not part of your analysis', cta: 'View', dest: 'GL-089', portrait: 1, asset: 'assets/imagery/beauty-products.webp');
+const adsDesigner = CardAd(id: 'ADS-07', advertiser: 'Atelier Noor', head: 'Featured event designer', title: 'Wedding guest collection', sub: 'Atelier Noor · Cape Town', cta: 'Shop', dest: 'GL-093', portrait: 0);
+
 class ThemedEvent {
   const ThemedEvent(this.id, this.name, this.date, this.city, this.category, this.portrait, {this.sponsored = false});
   final String id, name, date, city, category;
@@ -54,7 +64,7 @@ const homeLooks = ['Soft bronze', 'Rose after hours', 'Everyday natural', 'Clean
 
 /// Strings that exist only as design sample content; the leak test asserts none
 /// appear when fixtures are disabled.
-const fixtureMarkers = <String>['Lumière', 'Atelier Noor', 'Cape Town Bridal', 'Gold & Midnight', '@amarabeauty', 'Rose after hours', '@glowlab', 'Soft bronze', 'Gold hour edit', 'of 20 this month', '12 credits', 'Sponsored'];
+const fixtureMarkers = <String>['Lumière', 'Atelier Noor', 'Cape Town Bridal', 'Gold & Midnight', '@amarabeauty', 'Rose after hours', '@glowlab', 'Soft bronze', 'Gold hour edit', 'Leave-in care for curls', 'Wedding guest collection', 'of 20 this month', '12 credits', 'Sponsored'];
 
 class CreditsFixture { const CreditsFixture(this.remaining, this.monthly); final int remaining, monthly; }
 const credits = CreditsFixture(12, 20);
