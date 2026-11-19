@@ -352,6 +352,7 @@ String tryOnMessage(String? code) => switch (code) {
   'eligibility_required' => 'This needs an account that is confirmed as eligible.',
   'explicit_consent_required' => 'Tick the permission boxes to continue.',
   'photo_required' => 'Choose a photo first.',
+  'outfit_required' => 'Say what you want to try on first.',
   'tryon_insufficient_credits' || 'request_rejected' => 'You do not have enough GLAM AI credits for this preview.',
   'rate_limited' => 'You have reached the hourly limit. Try again later.',
   'still_processing' => 'Still working. You can check again or cancel.',
