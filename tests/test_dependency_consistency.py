@@ -43,7 +43,7 @@ def test_react_patch_cannot_leave_stale_workspace_lock_and_overrides(tmp_path):
     root = fixture(tmp_path)
     p = root / "apps/mobile/package.json"
     value = json.loads(p.read_text())
-    value["dependencies"]["react"] = "19.3.1"
+    value["dependencies"]["react"] = "19.3.2"  # a patch ahead of the lock and overrides
     p.write_text(json.dumps(value))
     errors = module.check(root)
     assert any("package-lock.json" in error for error in errors)
