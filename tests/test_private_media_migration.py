@@ -93,6 +93,7 @@ def test_empty_only_rollback_and_reapply_are_transactionally_reversible(db):
                 # No production migration or application path sets this internal Storage GUC.
                 c.execute(text("SET LOCAL storage.allow_delete_query='true'"))
                 c.execute(text("DELETE FROM storage.buckets WHERE id='glam-private-media'"))
+                migration("0018_tryon").downgrade()
                 migration("0017_analysis_passport").downgrade()
                 migration("0016_analysis_jobs").downgrade()
                 migration().downgrade()
@@ -100,6 +101,7 @@ def test_empty_only_rollback_and_reapply_are_transactionally_reversible(db):
                 migration().upgrade()
                 migration("0016_analysis_jobs").upgrade()
                 migration("0017_analysis_passport").upgrade()
+                migration("0018_tryon").upgrade()
                 assert c.scalar(text("SELECT to_regclass('public.private_media')")) is not None
         finally:
             transaction.rollback()
