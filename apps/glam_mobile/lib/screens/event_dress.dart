@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../tryon/tryon_controller.dart';
 import 'package:flutter/services.dart';
+import '../data/fixture_scope.dart';
+import '../data/fixtures.dart';
 import '../design/analyze_widgets.dart';
 import '../design/photo.dart';
 import '../design/tokens.dart';
@@ -10,6 +12,7 @@ import '../events/event_controller.dart';
 import '../events/sourcing.dart';
 import '../events/themed_events.dart';
 import '../shell/nav.dart';
+import 'ad_widgets.dart';
 
 const _notice = 'Rule-based inspiration from the choices you make here — not an AI result. Nothing is uploaded unless you choose “See it on me”. Products, prices, stock and weather are not checked.';
 
@@ -285,13 +288,15 @@ class _ThemedEventsState extends State<ThemedEventsScreen> {
       children: [
         SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(children: [for (final k in kThemedCategories) Padding(padding: const EdgeInsets.only(right: 8), child: GlamChip(k, selected: k == category, onTap: () => setState(() => category = k)))])),
         const SizedBox(height: 8),
-        for (final e in events) Semantics(identifier: 'event-${e.id}', button: true, label: e.name, child: GlamCard(onTap: () { c.select(e); GlamNav.to(context, 'GL-210'); }, padding: const EdgeInsets.all(14), child: Row(children: [
+        for (final (i, e) in events.indexed) ...[Semantics(identifier: 'event-${e.id}', button: true, label: e.name, child: GlamCard(onTap: () { c.select(e); GlamNav.to(context, 'GL-210'); }, padding: const EdgeInsets.all(14), child: Row(children: [
           GlamPhoto(n: e.photo, width: 72, height: 72, radius: 16), const SizedBox(width: 14),
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(e.name, style: body(15, p.tx, w: FontWeight.w700)), const SizedBox(height: 2),
             Text('${formatDayYear(e.date)} · ${e.location}', style: body(12, p.tx2, height: 18)), const SizedBox(height: 2),
             Text(e.theme, style: body(12, p.ac2, w: FontWeight.w700))])),
           Text('›', style: body(20, p.tx2))]))),
+          if (FixtureScope.of(context) && i == 1) const CardAdSlot(adsDesigner)],
+        if (FixtureScope.of(context) && events.length == 1) const CardAdSlot(adsDesigner),
         if (events.isEmpty) Text('No events in this category.', style: body(14, p.tx2)),
         GlamCard(onTap: () => GlamNav.to(context, 'GL-057'), child: Row(children: [Text('＋', style: body(22, p.ac2)), const SizedBox(width: 14),
           Expanded(child: Text('Add my own event', style: body(15, p.tx, w: FontWeight.w700))), Text('›', style: body(20, p.tx2))])),
@@ -325,6 +330,7 @@ class ThemedEventDetailScreen extends StatelessWidget {
           if (plan.isEmpty) Text('This event has passed.', style: body(14, p.tx2)) else GlamCard(padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 4), child: Column(children: [
             for (final (i, it) in plan.indexed) Container(constraints: const BoxConstraints(minHeight: 48), padding: const EdgeInsets.symmetric(vertical: 8), decoration: BoxDecoration(border: i == plan.length - 1 ? null : Border(bottom: BorderSide(color: p.ln))),
               child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [SizedBox(width: 74, child: Text(formatDay(it.due), style: body(12, p.ac2, w: FontWeight.w700, height: 20))), Expanded(child: Text(it.title, style: body(14, p.tx, height: 20)))]))])),
+          if (FixtureScope.of(context)) const CardAdSlot(adsDesigner),
           SourcingSections(controller: controller, brief: preset),
           TryOnSection(controller: controller, garments: tryOnGarments(directionsFor(e.toBrief())[0]), occasion: e.name),
         ])),

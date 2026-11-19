@@ -20,3 +20,4 @@ dist/
 # Supabase CLI local deployment metadata; project target is versioned in config.toml.
 supabase/.temp/
 supabase/.branches/
+.claude/settings.local.json

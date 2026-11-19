@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import '../analysis/contracts.dart';
 import '../analysis/controller.dart';
+import '../data/fixture_scope.dart';
+import '../data/fixtures.dart';
 import '../design/analyze_widgets.dart';
 import '../design/photo.dart';
 import '../design/tokens.dart';
 import '../design/widgets.dart';
 import '../main.dart' show PrivatePhoto, editFinding;
 import '../shell/nav.dart';
+import 'ad_widgets.dart';
 
 const kMedical = 'Cosmetic styling observations only — not a medical diagnosis.';
 const _titles = {'face-shape': 'Face shape', 'eyes': 'Eyes', 'brows': 'Brows', 'lips': 'Lips', 'undertone': 'Undertone'};
@@ -71,6 +74,7 @@ class UnavailableModeScreen extends StatelessWidget {
       GlamCard(color: t.sf2, child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [const Kicker('Not available yet'),
         Text(what, style: body(15, t.tx, height: 23))])),
       Text('Nothing is estimated or shown as a placeholder result. $kMedical', style: body(12, t.tx2, height: 18)),
+      if (FixtureScope.of(context)) const CardAdSlot(adsAnalysis),
     ]);
   }
 }
@@ -103,6 +107,7 @@ class _DirectionsState extends State<DirectionsScreen> {
         Padding(padding: const EdgeInsets.symmetric(horizontal: 22), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(d?.rationale ?? 'This report did not include style directions.', style: body(15, t.tx2, height: 23)),
           Padding(padding: const EdgeInsets.symmetric(vertical: 12), child: Text('Directions are inspiration, not verified products. $kMedical', style: body(12, t.tx2, height: 18))),
+          if (FixtureScope.of(context)) const CardAdSlot(adsAnalysis),
           GlamButton('More options', onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => SaveShareScreen(controller: c)))),
           GlamButton('Hairstyle ideas', kind: GlamButtonKind.ghost, onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => hairScreen()))),
         ])),

@@ -24,6 +24,7 @@ import 'presentation/design.dart';
 import 'design/analyze_widgets.dart';
 import 'design/photo.dart';
 import 'design/widgets.dart';
+import 'screens/ad_widgets.dart';
 import 'screens/analyze_intro.dart';
 import 'screens/analyze_results.dart';
 import 'shell/router.dart';
@@ -333,6 +334,7 @@ class ReportScreen extends StatelessWidget {
                   Text(f.value ?? 'Not enough evidence', style: body(12, t.tx2, height: 18)),
                   Padding(padding: const EdgeInsets.only(top: 6), child: Text('${certaintyLabel(f)} · you can correct this', style: body(12, t.tx2, height: 18)))])),
                 Text('›', style: body(20, t.tx2))])),
+            if (FixtureScope.of(context)) const CardAdSlot(adsAnalysis),
             for (final m in [('❖', 'Skin appearance', skinScreen), ('∿', 'Hair type & texture', hairScreen)]) GlamCard(onTap: () => _push(context, m.$3()), child: Row(children: [
               Container(width: 44, height: 44, decoration: BoxDecoration(color: t.sf2, shape: BoxShape.circle), alignment: Alignment.center, child: Text(m.$1, style: body(17, t.ac2))),
               const SizedBox(width: 14), Expanded(child: Text(m.$2, style: body(15, t.tx, w: FontWeight.w700))),
