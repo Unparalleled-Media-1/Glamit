@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tryon/tryon_controller.dart';
 import 'package:flutter/services.dart';
 import '../design/analyze_widgets.dart';
 import '../design/photo.dart';
@@ -10,7 +11,7 @@ import '../events/sourcing.dart';
 import '../events/themed_events.dart';
 import '../shell/nav.dart';
 
-const _notice = 'Rule-based inspiration from the choices you make here — not an AI result, and nothing is uploaded or saved on a server. Products, prices, stock and weather are not checked.';
+const _notice = 'Rule-based inspiration from the choices you make here — not an AI result. Nothing is uploaded unless you choose “See it on me”. Products, prices, stock and weather are not checked.';
 
 /// Shared frame for the five event screens: back bar, scrolling body, bottom tray of actions.
 class _EventPage extends StatelessWidget {
@@ -176,7 +177,7 @@ class _EventIdeasState extends State<EventIdeasScreen> {
           ],
         ])),
         SourcingSections(controller: c),
-        const TryOnStatusCard(),
+        TryOnSection(controller: c, garments: tryOnGarments(ds[open < 0 ? 0 : open]), occasion: b.title),
         Padding(padding: const EdgeInsets.only(top: 6), child: Text(_notice, style: body(12, p.tx2, height: 18))),
       ],
       actions: [
@@ -325,7 +326,7 @@ class ThemedEventDetailScreen extends StatelessWidget {
             for (final (i, it) in plan.indexed) Container(constraints: const BoxConstraints(minHeight: 48), padding: const EdgeInsets.symmetric(vertical: 8), decoration: BoxDecoration(border: i == plan.length - 1 ? null : Border(bottom: BorderSide(color: p.ln))),
               child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [SizedBox(width: 74, child: Text(formatDay(it.due), style: body(12, p.ac2, w: FontWeight.w700, height: 20))), Expanded(child: Text(it.title, style: body(14, p.tx, height: 20)))]))])),
           SourcingSections(controller: controller, brief: preset),
-          const TryOnStatusCard(),
+          TryOnSection(controller: controller, garments: tryOnGarments(directionsFor(e.toBrief())[0]), occasion: e.name),
         ])),
       ]),
       GlamTray(child: Column(mainAxisSize: MainAxisSize.min, children: [
@@ -334,4 +335,95 @@ class ThemedEventDetailScreen extends StatelessWidget {
       GlamTopBar(title: '', onBack: () => Navigator.of(context).maybePop(), onPhoto: true),
     ]));
   });
+}
+
+
+List<Map<String, String>> tryOnGarments(Direction d) =>
+  [for (final x in d.pieces.take(6)) {'label': x.label.length > 80 ? x.label.substring(0, 80) : x.label, 'category': 'other'}];
+
+String tryOnMessage(String? code) => switch (code) {
+  'sign_in_required' => 'Sign in to see an outfit on you.',
+  'eligibility_required' => 'This needs an account that is confirmed as eligible.',
+  'explicit_consent_required' => 'Tick the permission boxes to continue.',
+  'photo_required' => 'Choose a photo first.',
+  'tryon_insufficient_credits' || 'request_rejected' => 'You do not have enough GLAM AI credits for this preview.',
+  'rate_limited' => 'You have reached the hourly limit. Try again later.',
+  'still_processing' => 'Still working. You can check again or cancel.',
+  'tryon_provider_rejected' => 'The service could not create a preview from this photo. You were not charged.',
+  'tryon_outcome_ambiguous' || 'tryon_provider_timeout' => 'The service did not confirm a result. You were not charged.',
+  'service_unavailable' => 'The service is not available right now.',
+  null => '',
+  _ => 'Something went wrong. You were not charged. Try again.',
+};
+
+/// "See it on you". Shows the honest "not available" card unless the server reports the service configured.
+/// Never draws an avatar or stand-in image: the only picture shown is a server-generated result of the user's own photo.
+class TryOnSection extends StatefulWidget {
+  const TryOnSection({super.key, required this.controller, required this.garments, this.occasion = ''});
+  final EventDressController controller;
+  final List<Map<String, String>> garments;
+  final String occasion;
+  @override State<TryOnSection> createState() => _TryOnSectionState();
+}
+class _TryOnSectionState extends State<TryOnSection> {
+  bool storage = false, tryOn = false;
+  TryOnController? get t => widget.controller.tryOn;
+  @override void initState() { super.initState(); t?.addListener(_changed); if (t?.phase == 'unknown') t!.check(); }
+  @override void dispose() { t?.removeListener(_changed); super.dispose(); }
+  void _changed() { if (mounted) setState(() {}); }
+  String get _occasion { final o = widget.occasion.trim(); return o.isEmpty ? 'Event outfit' : (o.length > 80 ? o.substring(0, 80) : o); }
+  @override Widget build(BuildContext context) {
+    final c = t;
+    if (c == null || c.phase == 'unknown' || c.phase == 'unavailable') return const TryOnStatusCard();
+    final p = context.glam;
+    Widget check(String id, bool v, ValueChanged<bool> on, String label) => Semantics(identifier: id, checked: v, child: InkWell(onTap: c.busy ? null : () => on(!v),
+      child: Padding(padding: const EdgeInsets.symmetric(vertical: 8), child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Icon(v ? Icons.check_box : Icons.check_box_outline_blank, color: p.ac2), const SizedBox(width: 10), Expanded(child: Text(label, style: body(14, p.tx, height: 21)))]))));
+    final err = tryOnMessage(c.error);
+    final body_ = switch (c.phase) {
+      'consent' => [
+        Text('Choose a photo of yourself that you are allowed to use. It is stored privately, sent to the image service only to make this preview, and you can delete it any time.', style: body(14, p.tx2, height: 21)),
+        const SizedBox(height: 8), Text(c.policy!.content, maxLines: 6, overflow: TextOverflow.ellipsis, style: body(12, p.tx2, height: 18)),
+        const SizedBox(height: 8),
+        GlamButton(!c.hasPhoto ? 'Choose a photo' : 'Photo chosen — change', id: 'tryon-photo', kind: GlamButtonKind.ghost, onTap: c.busy ? null : c.choosePhoto),
+        if (!c.storageGranted) check('tryon-consent-storage', storage, (v) => setState(() => storage = v), 'I allow GLAM to store this photo privately for my previews.'),
+        check('tryon-consent-generate', tryOn, (v) => setState(() => tryOn = v), 'I allow this photo to be sent to an image-generation service to create an AI-generated preview of me in this outfit.'),
+        if (c.quote != null) Text('Uses ${c.quote!.units} GLAM AI credits only if a preview is created.', style: body(12, p.tx2, height: 18)),
+        const SizedBox(height: 8),
+        GlamButton('Create my preview', id: 'tryon-submit',
+          kind: c.hasPhoto && tryOn && (c.storageGranted || storage) ? GlamButtonKind.primary : GlamButtonKind.disabled,
+          onTap: c.busy || !c.hasPhoto || !tryOn || !(c.storageGranted || storage) ? null : () => c.submit(storageChecked: storage || c.storageGranted, tryOnChecked: tryOn, occasion: _occasion, garments: widget.garments)),
+      ],
+      'submitting' || 'processing' => [
+        Text(c.phase == 'submitting' ? 'Sending your request…' : 'Creating your preview…', style: display(22, 26, p.tx)),
+        const SizedBox(height: 6), Text('This can take a minute. If it fails or you cancel, you are not charged.', style: body(14, p.tx2, height: 21)),
+        const SizedBox(height: 8), if (c.phase == 'processing' && err.isNotEmpty) GlamButton('Check again', id: 'tryon-refresh', kind: GlamButtonKind.ghost, onTap: c.busy ? null : c.refresh),
+        if (c.job != null) GlamButton('Cancel', id: 'tryon-cancel', kind: GlamButtonKind.ghost, onTap: c.busy && c.phase == 'submitting' ? null : c.remove),
+      ],
+      'done' => [
+        Semantics(identifier: 'tryon-result', image: true, label: 'AI-generated preview of you in this outfit', child: ClipRRect(borderRadius: BorderRadius.circular(16), child: Image.memory(c.result!, fit: BoxFit.cover, gaplessPlayback: true))),
+        const SizedBox(height: 8),
+        Semantics(identifier: 'tryon-label', child: Text(c.syntheticTest ? 'TEST OUTPUT — not a real try-on' : 'AI-generated preview', style: body(13, p.ac2, w: FontWeight.w700))),
+        Text('Not a guarantee of fit or of how the outfit will look in person. Only you can see this. Saving or sharing it is up to you.', style: body(12, p.tx2, height: 18)),
+        const SizedBox(height: 8), GlamButton('Delete this preview', id: 'tryon-delete', kind: GlamButtonKind.ghost, onTap: c.busy ? null : c.remove),
+      ],
+      'failed' || 'cancelled' => [
+        Text(c.phase == 'cancelled' ? 'Cancelled. You were not charged.' : 'No preview was made', style: display(22, 26, p.tx)),
+        if (c.phase == 'failed') Text(err, style: body(14, p.tx2, height: 21)),
+        const SizedBox(height: 8), GlamButton('Start again', id: 'tryon-restart', kind: GlamButtonKind.ghost, onTap: () => c.reset(keepAvailability: true)),
+      ],
+      _ => [
+        Text('See this outfit on you', style: display(22, 26, p.tx)), const SizedBox(height: 6),
+        Text('Uses a photo you choose, asks for its own permission, and shows the result labelled as an AI-generated preview. It is never an avatar.', style: body(14, p.tx2, height: 21)),
+        const SizedBox(height: 8), GlamButton('See it on me', id: 'tryon-begin', onTap: c.busy ? null : c.begin),
+      ],
+    };
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      const Padding(padding: EdgeInsets.only(top: 14), child: Kicker('See it on you')),
+      Semantics(identifier: 'tryon-status', container: true, child: GlamCard(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        ...body_,
+        if (err.isNotEmpty && !['failed', 'processing'].contains(c.phase)) Padding(padding: const EdgeInsets.only(top: 8), child: Text(err, style: body(13, p.ac2, w: FontWeight.w700))),
+      ]))),
+    ]);
+  }
 }
