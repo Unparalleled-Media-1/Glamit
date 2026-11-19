@@ -52,7 +52,7 @@ def db(engine):
         connection.execute(
             text(
                 "TRUNCATE app_user, organizations, policy_document, outbox_event, "
-                "audit_event, auth.users, product_categories "
+                "audit_event, auth.users, product_categories, generation_price_rule "
                 "RESTART IDENTITY CASCADE"
             )
         )

@@ -37,6 +37,7 @@ from glam_api.db import get_session
 from glam_api.deployment import cors_origins, deployment_revision
 from glam_api.observability import http_error, request_evidence, validation_error
 from glam_api.private_media import build_media_router
+from glam_api.tryon_jobs import build_tryon_router
 from glam_api.workspaces import build_router
 
 app = FastAPI(title="GLAM Beauty", version="0.1.0", docs_url=None, redoc_url=None)
@@ -177,15 +178,16 @@ def ready(db: Db):
         "0015_private_media",
         "0016_analysis_jobs",
         "0017_analysis_passport",
+        "0018_tryon",
     }
     if not applied.intersection(current_heads):
         raise HTTPException(503, "Database migration is not current")
     if os.environ.get("GLAM_PRIVATE_MEDIA_ENABLED") == "true" and not applied.intersection(
-        {"0015_private_media", "0016_analysis_jobs", "0017_analysis_passport"}
+        {"0015_private_media", "0016_analysis_jobs", "0017_analysis_passport", "0018_tryon"}
     ):
         raise HTTPException(503, "Private media migration is not current")
     if os.environ.get("GLAM_ANALYSIS_ENABLED") == "true" and not applied.intersection(
-        {"0016_analysis_jobs", "0017_analysis_passport"}
+        {"0016_analysis_jobs", "0017_analysis_passport", "0018_tryon"}
     ):
         raise HTTPException(503, "Analysis migration is not current")
     if not get_settings().oidc_issuer:
@@ -384,3 +386,4 @@ app.include_router(build_media_router(user, audit))
 app.include_router(build_stylist_router(user, audit))
 app.include_router(build_analysis_router(user, audit))
 app.include_router(build_passport_router(user, audit))
+app.include_router(build_tryon_router(user, audit))
