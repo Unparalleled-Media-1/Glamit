@@ -31,6 +31,11 @@ def process_one(engine) -> bool:
         ).one()
         # Same lock as the API: deletion and new private writes cannot race.
         db.execute(text("SELECT id FROM app_user WHERE id=:id FOR UPDATE"), {"id": consent.user_id})
+        if consent.purpose in ("ai_look_generation", "private_photo_storage"):
+            from glam_api.tryon_jobs import expire_owner
+
+            if db.scalar(text("SELECT to_regclass('public.tryon_job')")) is not None:
+                expire_owner(db, consent.user_id)
         if consent.purpose == "private_look_storage":
             look_ids = db.scalars(
                 text("SELECT id FROM look WHERE owner_id=:u AND created_at<=:t"),
@@ -72,11 +77,13 @@ def main():
     while True:
         from glam_api.analysis_jobs import process_one as process_analysis_one
         from glam_api.catalog_jobs import process_ai_one, process_index_one
+        from glam_api.tryon_jobs import process_one as process_tryon_one
 
         processed = process_one(engine)
         processed = process_index_one(engine) or processed
         processed = process_ai_one(engine) or processed
         processed = process_analysis_one(engine) or processed
+        processed = process_tryon_one(engine) or processed
         if not processed:
             if args.once:
                 return

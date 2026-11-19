@@ -13,6 +13,10 @@ import 'core/config.dart';
 import 'core/session.dart';
 import 'core/transport.dart';
 import 'presentation/camera_surface.dart';
+import 'events/event_controller.dart';
+import 'analysis/photo_source.dart';
+import 'tryon/tryon_controller.dart';
+import 'tryon/tryon_service.dart';
 import 'data/fixture_scope.dart';
 import 'data/fixtures.dart';
 import 'design/tokens.dart';
@@ -26,8 +30,10 @@ import 'shell/router.dart';
 
 void main() { WidgetsFlutterBinding.ensureInitialized(); runApp(const AnalyzeApp()); }
 class AnalyzeApp extends StatefulWidget {
-  const AnalyzeApp({super.key, this.controller, this.fixtures});
+  const AnalyzeApp({super.key, this.controller, this.fixtures, this.eventDress});
   final AnalyzeController? controller;
+  /// Overrides the in-memory event journey state (tests).
+  final EventDressController? eventDress;
   /// Overrides kReferenceFixtures (tests/previews); null keeps the build default.
   final bool? fixtures;
   @override State<AnalyzeApp> createState() => _AnalyzeAppState();
@@ -58,7 +64,9 @@ class _AnalyzeAppState extends State<AnalyzeApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.removeObserver(this); semantics.dispose();
     if (widget.controller == null) controller.dispose(); transport.dispose(); super.dispose();
   }
-  late final GoRouter router = buildRouter(navigatorKey: navigator,
+  late final EventDressController events = widget.eventDress ?? EventDressController(
+    tryOn: TryOnController(TryOnRepository(controller.repository), pickPhoto: PhotoSource().gallery));
+  late final GoRouter router = buildRouter(navigatorKey: navigator, eventDress: events,
     interimAnalysis: (context, start) => InterimAnalysis(controller: controller, start: start));
   @override Widget build(BuildContext context) => MaterialApp.router(routerConfig: router, title: 'GLAM Beauty',
     debugShowCheckedModeBanner: false, theme: glamTheme(Brightness.light), darkTheme: glamTheme(Brightness.dark), themeMode: ThemeMode.system,
