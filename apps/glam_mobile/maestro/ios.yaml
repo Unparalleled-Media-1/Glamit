@@ -4,12 +4,38 @@ appId: com.glambeauty.analyzereview
     clearState: true
     permissions:
       camera: unset
-- tapOn:
-    id: tab-analyze
-- tapOn:
-    id: analyze-start
+- extendedWaitUntil:
+    visible:
+      id: home-analyze
+    timeout: 45000
+- waitForAnimationToEnd
+# The first tap after a cold start can be lost on a slow emulator/simulator: tap + expected target, retried (taps are idempotent).
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: tab-analyze
+      - extendedWaitUntil:
+          visible:
+            id: analyze-start
+          timeout: 8000
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: analyze-start
+      - extendedWaitUntil:
+          visible:
+            id: 'screen-GL-018'
+          timeout: 8000
 - takeScreenshot: 00-gl018-choose-analysis
-- tapOn: 'Continue'
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn: 'Continue'
+      - extendedWaitUntil:
+          visible: 'Open camera'
+          timeout: 8000
 - takeScreenshot: 00-gl019-before-you-start
 - tapOn: 'Open camera'
 - extendedWaitUntil:
