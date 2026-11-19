@@ -1,4 +1,5 @@
 import os
+import re
 from pathlib import Path
 from uuid import uuid4
 
@@ -61,8 +62,15 @@ def db(engine):
 
 @pytest.fixture
 def client(db):
+    # Opt-in: run every API request as a restricted role to prove its grants are sufficient
+    # (see scripts/db/runtime_privileges.py). Unset = the superuser test connection, as before.
+    role = os.environ.get("GLAM_TEST_APP_ROLE")
+    assert role is None or re.fullmatch(r"[a-z_][a-z0-9_]{0,62}", role)
+
     def session():
         with Session(db) as value, value.begin():
+            if role:
+                value.execute(text(f"SET LOCAL ROLE {role}"))
             yield value
 
     app.dependency_overrides[get_session] = session
