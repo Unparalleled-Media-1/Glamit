@@ -30,6 +30,7 @@ NOT_TABLES = {
     "each",
     "pg_class",
 }
+SET_VERSION = "UPDATE alembic_version SET version_num=:new WHERE version_num=:old"
 NEW_PRIVATE_TABLES = [
     "private_media", "analysis_job", "analysis_correction", "style_passport_analysis",
     "tryon_job", "tryon_result", "generation_cost_event", "generation_price_rule",
@@ -146,3 +147,28 @@ def test_alembic_application_head_is_the_try_on_migration_and_chain_is_linear():
         "0013_passwordless_accounts", "0014_creator_studio", "0015_private_media",
         "0016_analysis_jobs", "0017_analysis_passport", "0018_tryon",
     ]  # fmt: skip
+
+
+def test_readiness_refuses_try_on_until_its_migration_is_applied(client, db, monkeypatch):
+    from types import SimpleNamespace
+
+    import glam_api.config as config
+
+    monkeypatch.setattr(
+        config, "get_settings", lambda: SimpleNamespace(oidc_issuer="https://test.invalid")
+    )
+    monkeypatch.setenv("GLAM_TRYON_ENABLED", "true")
+    assert client.get("/health/ready").status_code == 200  # fully migrated database
+    with db.begin() as c:
+        c.execute(text(SET_VERSION), {"new": "0017_analysis_passport", "old": "0018_tryon"})
+    try:
+        response = client.get("/health/ready")
+        assert response.status_code == 503
+        assert "Try-on migration" in response.text
+        monkeypatch.delenv("GLAM_TRYON_ENABLED")
+        assert (
+            client.get("/health/ready").status_code == 200
+        )  # flag off: older schema is acceptable
+    finally:
+        with db.begin() as c:
+            c.execute(text(SET_VERSION), {"new": "0018_tryon", "old": "0017_analysis_passport"})

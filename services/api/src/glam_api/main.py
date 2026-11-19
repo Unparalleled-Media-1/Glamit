@@ -190,6 +190,8 @@ def ready(db: Db):
         {"0016_analysis_jobs", "0017_analysis_passport", "0018_tryon"}
     ):
         raise HTTPException(503, "Analysis migration is not current")
+    if os.environ.get("GLAM_TRYON_ENABLED") == "true" and "0018_tryon" not in applied:
+        raise HTTPException(503, "Try-on migration is not current")
     if not get_settings().oidc_issuer:
         raise HTTPException(503, "Identity provider is not configured")
     return {"status": "ready", "scope": "foundation_api"}
