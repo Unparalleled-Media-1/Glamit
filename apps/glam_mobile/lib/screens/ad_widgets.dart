@@ -145,13 +145,14 @@ class _CardAdSlotState extends State<CardAdSlot> with _AdState {
     if (hidden) return const SizedBox.shrink();
     final ad = widget.ad, p = context.glam;
     return Semantics(identifier: 'ad-${ad.id}', container: true, child: Padding(padding: const EdgeInsets.symmetric(vertical: 12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Padding(padding: const EdgeInsets.only(top: 4, bottom: 4), child: Row(children: [const SponsoredTag(), const SizedBox(width: 8), Flexible(child: Kicker(ad.head))])),
+      if (ad.head != null) Padding(padding: const EdgeInsets.only(top: 4, bottom: 4), child: Row(children: [const SponsoredTag(), const SizedBox(width: 8), Flexible(child: Kicker(ad.head!))])),
       Container(padding: const EdgeInsets.fromLTRB(10, 10, 4, 10), margin: const EdgeInsets.only(top: 8),
         decoration: BoxDecoration(color: p.sf, borderRadius: BorderRadius.vertical(top: const Radius.circular(20), bottom: Radius.circular(why ? 0 : 20))),
         child: Row(children: [
           ad.asset == null ? GlamPhoto(n: ad.portrait, width: 64, height: 64, radius: 14) : GlamPhoto(n: ad.portrait, asset: ad.asset!, width: 64, height: 64, radius: 14),
           const SizedBox(width: 12),
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+            if (ad.head == null) const Align(alignment: Alignment.centerLeft, child: SponsoredTag()),
             Text(ad.title, style: body(14, p.tx, w: FontWeight.w700)),
             Text('${ad.advertiser} · ${ad.sub}', style: body(12, p.tx2, height: 18)),
           ])),

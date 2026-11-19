@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart' show MaterialPage, Theme;
 import 'package:go_router/go_router.dart';
+import '../screens/ad_campaign.dart';
 import '../screens/discover_screen.dart';
 import '../events/event_controller.dart';
 import '../screens/analyze_intro.dart';
@@ -61,6 +62,8 @@ GoRouter buildRouter({required GlobalKey<NavigatorState> navigatorKey, required 
 Widget _designPage(BuildContext context, DesignScreen s, Widget Function(BuildContext, CaptureStart) interimAnalysis, Set<String> generatedIds, EventDressController events) {
   Widget id(Widget w) => Semantics(identifier: 'screen-${s.id}', container: true, explicitChildNodes: true, child: w);
   switch (s.id) {
+    case 'GL-211': return id(const AdPlacementsScreen());
+    case 'GL-212': return id(const AdPreviewScreen());
     case 'GL-209': return id(ThemedEventsScreen(controller: events));
     case 'GL-210': return id(ThemedEventDetailScreen(controller: events));
     case 'GL-057': return id(EventAddScreen(controller: events));

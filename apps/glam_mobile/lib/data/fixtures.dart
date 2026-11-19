@@ -37,10 +37,10 @@ const adsPost = PostAd(id: 'ADS-03', advertiser: '@glowlab', title: 'Glass skin 
 
 /// Native card/row placements (ADS-05 analysis product card, ADS-07 featured event designer).
 class CardAd {
-  const CardAd({required this.id, required this.advertiser, required this.head, required this.title, required this.sub, required this.cta, required this.dest, required this.portrait, this.asset});
-  final String id, advertiser, head, title, sub, cta, dest;
+  const CardAd({required this.id, required this.advertiser, this.head, required this.title, required this.sub, required this.cta, required this.dest, required this.portrait, this.asset});
+  final String id, advertiser, title, sub, cta, dest;
   final int portrait;
-  final String? asset;
+  final String? asset, head;
 }
 const adsAnalysis = CardAd(id: 'ADS-05', advertiser: 'Lumière Beauty', head: 'Sponsored products', title: 'Leave-in care for curls', sub: 'Not part of your analysis', cta: 'View', dest: 'GL-089', portrait: 1, asset: 'assets/imagery/beauty-products.webp');
 const adsDesigner = CardAd(id: 'ADS-07', advertiser: 'Atelier Noor', head: 'Featured event designer', title: 'Wedding guest collection', sub: 'Atelier Noor · Cape Town', cta: 'Shop', dest: 'GL-093', portrait: 0);
