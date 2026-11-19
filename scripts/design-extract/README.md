@@ -11,3 +11,5 @@ sprite crops, scroll areas) at two canvas heights, plus the destination every co
 5. Visual QA: `node shot_all.js` (design screenshots), render the Flutter screens with `render_all_shots_test.dart.txt` (rename to `.dart`, drop into `apps/glam_mobile/test`, pass `--dart-define=THEME= --dart-define=PLAT= --dart-define=OUT=`), then `python3 compare.py <dir>`.
 
 The `scratchpad` paths inside the scripts are from the session that produced them; edit them for your machine.
+
+Screens that are later hand-built (e.g. GL-057/058/059/063/067, the event-dressing journey) stay in the extracted data but are removed from `lib/screens/generated_ids.dart`, which the router checks after its hand-built cases.
