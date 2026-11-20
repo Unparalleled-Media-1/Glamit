@@ -1,4 +1,7 @@
 "use client";
+import { staffKeyForLabel } from "../lib/workspace-access";
+import AdminModuleView from "./AdminModuleView";
+import { apiOrigin } from "../lib/api-origin";
 import BrandLogo from "./BrandLogo";
 import type { ApprovedWorkspace } from "../lib/workspace-access";
 import { appPath } from "../lib/paths";
@@ -27,6 +30,7 @@ export default function BusinessPortal({
     onSignOut: () => void;
     onNavigate?: (path: string) => void;
     staffModules?: string[];
+    staffToken?: string;
   };
 }) {
   const [catalogDrafts, setCatalogDrafts] = useState<MerchantDraft[]>([]);
@@ -294,8 +298,23 @@ export default function BusinessPortal({
             {access && !admin && !selectedWorkspace?.can_write && (
               <p className="notice">This workspace has read-only access.</p>
             )}
-            {admin ? (
+            {admin &&
+            access?.staffToken &&
+            apiOrigin &&
+            staffKeyForLabel(visibleAdmin[module]) ? (
+              <AdminModuleView
+                apiOrigin={apiOrigin}
+                token={access.staffToken}
+                moduleKey={staffKeyForLabel(visibleAdmin[module]) as string}
+              />
+            ) : admin ? (
               <>
+                {access && !apiOrigin && (
+                  <div role="alert" className="notice">
+                    The API address is not configured for this build, so admin
+                    data cannot be loaded.
+                  </div>
+                )}
                 <div className="metric-grid">
                   {["Qualified users", "Service health", "Open exceptions"].map(
                     (n) => (

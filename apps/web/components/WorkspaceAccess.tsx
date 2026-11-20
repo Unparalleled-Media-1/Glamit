@@ -10,6 +10,7 @@ import {
 import { appPath } from "../lib/paths";
 import { clearWebSession, publicAuthKey, webAuth } from "../lib/passwordless";
 import { AUTH_URL } from "../../../packages/auth/core";
+import { apiOrigin } from "../lib/api-origin";
 
 export default function WorkspaceAccess({
   admin = false,
@@ -45,11 +46,14 @@ export default function WorkspaceAccess({
     setStaff(null);
     setStaffError("");
     if (admin && session && !checking) {
-      void fetch(AUTH_URL + "/functions/v1/glam-api/v1/admin/context", {
-        headers: {
-          apikey: publicAuthKey,
-          Authorization: "Bearer " + session.token,
-        },
+      if (!apiOrigin) {
+        setStaffError(
+          "Staff access could not be verified: the API address is not configured for this build. Access remains restricted.",
+        );
+        return () => abort.abort();
+      }
+      void fetch(apiOrigin + "/v1/admin/context", {
+        headers: { Authorization: "Bearer " + session.token },
         cache: "no-store",
         credentials: "omit",
         redirect: "error",
@@ -173,6 +177,7 @@ export default function WorkspaceAccess({
           onSignOut: () => void signOut(),
           onNavigate: navigate,
           staffModules: staff.modules,
+          staffToken: staff.token,
         }}
       />
     );

@@ -31,6 +31,7 @@
     "test:hosted-account": "node tests/client/hosted-account.cjs",
     "build:godaddy": "node scripts/build-godaddy-web.mjs",
     "test:public-config": "node --test tests/client/public-config.test.mjs",
+    "test:admin-dashboard": "node --test tests/client/admin-dashboard.test.mjs",
     "test:godaddy": "node tests/client/godaddy-web.cjs",
     "typecheck:godaddy": "tsc --noEmit -p deploy/godaddy/tsconfig.json",
     "test:auth": "node tests/auth/contracts.cjs && node tests/auth/native-gate.cjs",
