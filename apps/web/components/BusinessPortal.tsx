@@ -1,6 +1,7 @@
 "use client";
 import { staffKeyForLabel } from "../lib/workspace-access";
 import AdminModuleView from "./AdminModuleView";
+import CatalogReviewPanel from "./CatalogReviewPanel";
 import { apiOrigin } from "../lib/api-origin";
 import BrandLogo from "./BrandLogo";
 import type { ApprovedWorkspace } from "../lib/workspace-access";
@@ -31,6 +32,7 @@ export default function BusinessPortal({
     onNavigate?: (path: string) => void;
     staffModules?: string[];
     staffToken?: string;
+    catalogReview?: boolean;
   };
 }) {
   const [catalogDrafts, setCatalogDrafts] = useState<MerchantDraft[]>([]);
@@ -302,11 +304,20 @@ export default function BusinessPortal({
             access?.staffToken &&
             apiOrigin &&
             staffKeyForLabel(visibleAdmin[module]) ? (
-              <AdminModuleView
-                apiOrigin={apiOrigin}
-                token={access.staffToken}
-                moduleKey={staffKeyForLabel(visibleAdmin[module]) as string}
-              />
+              <>
+                <AdminModuleView
+                  apiOrigin={apiOrigin}
+                  token={access.staffToken}
+                  moduleKey={staffKeyForLabel(visibleAdmin[module]) as string}
+                />
+                {access.catalogReview &&
+                  staffKeyForLabel(visibleAdmin[module]) === "content" && (
+                    <CatalogReviewPanel
+                      apiOrigin={apiOrigin}
+                      token={access.staffToken}
+                    />
+                  )}
+              </>
             ) : admin ? (
               <>
                 {access && !apiOrigin && (

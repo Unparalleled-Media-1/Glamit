@@ -151,3 +151,22 @@ def test_executive_and_ai_reflect_real_job_and_cost_data(client, db):
         m["label"] for m in configuration["metrics"]
     }
     assert configuration["tables"][0]["rows"]  # applied revisions
+
+
+def test_users_module_shows_staff_grants_and_workspace_role_counts(client, db):
+    staff(client, db, "super_admin")
+    users = client.get("/v1/admin/modules/users").json()
+    titles = [t["title"] for t in users["tables"]]
+    assert any(t.startswith("Staff access grants") for t in titles)
+    assert "Business workspace roles (counts)" in titles
+    grants = next(t for t in users["tables"] if t["title"].startswith("Staff access grants"))
+    assert grants["rows"][0][1] == "super_admin" and grants["rows"][0][2] == "True"
+    # only an id prefix, never the issuer subject
+    assert len(grants["rows"][0][0]) == 8
+
+
+def test_configuration_reports_backlog_and_lag_indicators(client, db):
+    staff(client, db, "super_admin")
+    labels = {m["label"] for m in client.get("/v1/admin/modules/configuration").json()["metrics"]}
+    assert "Oldest undelivered outbox event (seconds)" in labels
+    assert {"Try-on jobs queued", "Analysis jobs running over 5 minutes"} <= labels
