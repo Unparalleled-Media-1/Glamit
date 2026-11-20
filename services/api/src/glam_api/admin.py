@@ -168,6 +168,24 @@ def users(db):
         tables=[
             Table(title="Eligibility bands", columns=["Band", "Users"], rows=bands),
             Table(
+                title="Staff access grants (who holds platform authority)",
+                columns=["User", "Role", "Active", "Expires", "Evidence recorded"],
+                rows=rows(
+                    db,
+                    f"SELECT {short('user_id')}, role, active AND expires_at>now(), "
+                    "to_char(expires_at,'YYYY-MM-DD'), coalesce(evidence_ref,'')<>'' "
+                    "FROM staff_grant ORDER BY active DESC, role, expires_at DESC LIMIT 50",
+                ),
+            ),
+            Table(
+                title="Business workspace roles (counts)",
+                columns=["Workspace", "Role", "Members"],
+                rows=rows(
+                    db,
+                    "SELECT workspace, role, count(*) FROM workspace_role GROUP BY 1,2 ORDER BY 1,2",
+                ),
+            ),
+            Table(
                 title="Latest users (pseudonymous id prefix; no contact details held here)",
                 columns=[
                     "Id",
@@ -448,6 +466,34 @@ def analytics(db):
     )
 
 
+def health_metrics(db) -> list[Metric]:
+    """Backlog and lag indicators. A growing number means a background service is not running."""
+    seconds = "coalesce(extract(epoch FROM now()-min(created_at))::bigint,0)"
+    out = [
+        Metric(
+            label="Oldest undelivered outbox event (seconds)",
+            value=str(one(db, f"SELECT {seconds} FROM outbox_event WHERE delivered_at IS NULL")),
+        )
+    ]
+    for table, label in (("analysis_job", "Analysis"), ("tryon_job", "Try-on")):
+        if not has(db, table):
+            out.append(Metric(label=f"{label} queue", value="Not migrated"))
+            continue
+        queued = one(db, f"SELECT count(*) FROM {table} WHERE state='queued'")
+        oldest = one(db, f"SELECT {seconds} FROM {table} WHERE state='queued'")
+        stuck = one(
+            db,
+            f"SELECT count(*) FROM {table} WHERE state='running' "
+            "AND attempted_at<now()-interval '5 minutes'",
+        )
+        out += [
+            Metric(label=f"{label} jobs queued", value=str(queued)),
+            Metric(label=f"{label} oldest queued job (seconds)", value=str(oldest)),
+            Metric(label=f"{label} jobs running over 5 minutes", value=str(stuck)),
+        ]
+    return out
+
+
 def configuration(db):
     def flag(name):
         return "on" if os.environ.get(name) == "true" else "off"
@@ -470,6 +516,8 @@ def configuration(db):
                 label="Served commit",
                 value=(os.environ.get("RAILWAY_GIT_COMMIT_SHA") or "unknown")[:12],
             ),
+            Metric(label="Database reachable", value="yes"),
+            *health_metrics(db),
         ],
         tables=[
             Table(

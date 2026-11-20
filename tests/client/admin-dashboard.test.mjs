@@ -23,6 +23,10 @@ const { parseModule } = await bundle(
   "apps/web/components/AdminModuleView.tsx",
   "view",
 );
+const { parseQueue, reviewRequest } = await bundle(
+  "apps/web/components/CatalogReviewPanel.tsx",
+  "review",
+);
 const { staffKeyForLabel, approvedStaffModules } = await bundle(
   "apps/web/lib/workspace-access.ts",
   "access",
@@ -104,4 +108,48 @@ test("every approved staff label maps back to the API module key", () => {
   assert.equal(labels.length, 15);
   assert.deepEqual(labels.map(staffKeyForLabel), keys);
   assert.equal(staffKeyForLabel("Anything else"), undefined);
+});
+
+const facts = {
+  title: "Serum",
+  category: "skincare",
+  description: "",
+  currency: "USD",
+  price_minor: 1200,
+  countries: ["US"],
+  source_sku: "S1",
+  source_ref: "invoice-1",
+  condition: "new",
+  purchase_url: "https://shop.example/s1",
+};
+
+test("review queue parser rejects malformed rows", () => {
+  const row = { id: "a", organization_id: "o", current_revision: 2, facts };
+  assert.equal(parseQueue([row]).length, 1);
+  assert.throws(() => parseQueue({}));
+  assert.throws(() => parseQueue([{ ...row, current_revision: "2" }]));
+  assert.throws(() =>
+    parseQueue([{ ...row, facts: { ...facts, price_minor: 1.5 } }]),
+  );
+});
+
+test("review request targets the revision with an idempotency key and no cookies", () => {
+  const { url, init } = reviewRequest(
+    "https://api.example.com",
+    "tok",
+    { id: "a/b", current_revision: 3 },
+    "approved",
+    true,
+    "key-1",
+  );
+  assert.equal(
+    url,
+    "https://api.example.com/v1/admin/catalog/a%2Fb/revisions/3/review",
+  );
+  assert.equal(init.headers["Idempotency-Key"], "key-1");
+  assert.equal(init.credentials, "omit");
+  assert.deepEqual(JSON.parse(init.body), {
+    decision: "approved",
+    identifier_verified: true,
+  });
 });

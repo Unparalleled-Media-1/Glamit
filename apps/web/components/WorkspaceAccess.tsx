@@ -33,6 +33,7 @@ export default function WorkspaceAccess({
   const [staff, setStaff] = useState<{
     token: string;
     modules: string[];
+    catalogReview: boolean;
   } | null>(null);
   const [staffError, setStaffError] = useState("");
   useEffect(() => {
@@ -73,7 +74,11 @@ export default function WorkspaceAccess({
           const modules = approvedStaffModules(value.modules);
           if (!modules.length) throw Error();
           if (!abort.signal.aborted)
-            setStaff({ token: session.token, modules });
+            setStaff({
+              token: session.token,
+              modules,
+              catalogReview: value.catalog_review_enabled === true,
+            });
         })
         .catch(() => {
           if (!abort.signal.aborted)
@@ -178,6 +183,7 @@ export default function WorkspaceAccess({
           onNavigate: navigate,
           staffModules: staff.modules,
           staffToken: staff.token,
+          catalogReview: staff.catalogReview,
         }}
       />
     );

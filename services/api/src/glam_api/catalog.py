@@ -357,8 +357,11 @@ def build_catalog_router(user, audit, replay, remember):
                 "LEFT JOIN catalog_approval a ON a.listing_id=r.listing_id "
                 "AND a.revision=r.revision "
                 "WHERE l.state='draft' AND r.merchant_reviewed AND a.decision IS NULL "
+                "AND NOT EXISTS(SELECT 1 FROM organization_members m "
+                "WHERE m.organization_id=l.organization_id AND m.user_id=:u AND m.active) "
                 "ORDER BY l.created_at,l.id LIMIT 100"
-            )
+            ),
+            {"u": uid},
         ).mappings()
         audit(db, uid, "catalog.review_queue_read", uid)
         return [read_listing(db, row) for row in rows]
@@ -368,9 +371,21 @@ def build_catalog_router(user, audit, replay, remember):
         uid = user(db, identity)
         require_staff_roles(db, uid, identity, {"super_admin", "content_moderation"})
         row = db.execute(
-            text("SELECT current_revision FROM catalog_listing WHERE id=:id FOR UPDATE"),
+            text(
+                "SELECT current_revision,organization_id FROM catalog_listing "
+                "WHERE id=:id FOR UPDATE"
+            ),
             {"id": lid},
         ).first()
+        # Separation of duties: nobody reviews a listing of an organization they belong to.
+        if row and db.scalar(
+            text(
+                "SELECT EXISTS(SELECT 1 FROM organization_members WHERE "
+                "organization_id=:o AND user_id=:u AND active)"
+            ),
+            {"o": row.organization_id, "u": uid},
+        ):
+            raise HTTPException(403, "Reviewers cannot review their own organization's listings")
         route = f"catalog/{lid}/{revision}/approval"
         payload = body.model_dump(mode="json")
         if result := replay(db, uid, route, key, payload):

@@ -706,3 +706,59 @@ def test_stale_worker_response_cannot_overwrite_another_lease(client, db, monkey
             and result.lease_token == replacement
             and result.suggestions is None
         )
+
+
+def staff_reviewer(client, db, subject):
+    uid = account(client, subject)
+    qualify(db, uid)
+    with db.begin() as c:
+        c.execute(
+            text(
+                "INSERT INTO staff_grant(user_id,role,expires_at,evidence_ref) VALUES "
+                "(:u,'content_moderation',now()+interval '1 day','test-only')"
+            ),
+            {"u": uid},
+        )
+    app.dependency_overrides[get_principal] = lambda: Principal(
+        "https://test.invalid", subject, "aal2", int(time.time())
+    )
+    return uid
+
+
+def test_staff_who_belong_to_the_listing_organization_cannot_review_it(client, db):
+    owner, org, lid, f = create(client, db)
+    original(db, org, lid)
+    assert revise(client, org, lid, f).status_code == 200
+    # The merchant owner also holds a moderation grant: still refused for their own organization.
+    with db.begin() as c:
+        c.execute(
+            text(
+                "INSERT INTO staff_grant(user_id,role,expires_at,evidence_ref) VALUES "
+                "(:u,'content_moderation',now()+interval '1 day','test-only')"
+            ),
+            {"u": owner},
+        )
+    qualify(db, owner)
+    app.dependency_overrides[get_principal] = lambda: Principal(
+        "https://test.invalid", "merchant", "aal2", int(time.time())
+    )
+    body = {"decision": "approved", "identifier_verified": True}
+    own = client.post(
+        f"/v1/admin/catalog/{lid}/revisions/2/review",
+        json=body,
+        headers={"Idempotency-Key": str(uuid4())},
+    )
+    assert own.status_code == 403
+    assert lid not in [row["id"] for row in client.get("/v1/admin/catalog/review-queue").json()]
+    with db.begin() as c:
+        assert c.scalar(text("SELECT count(*) FROM catalog_approval")) == 0
+    # An independent reviewer sees it in the queue and may decide.
+    staff_reviewer(client, db, "independent")
+    assert lid in [row["id"] for row in client.get("/v1/admin/catalog/review-queue").json()]
+    decided = client.post(
+        f"/v1/admin/catalog/{lid}/revisions/2/review",
+        json=body,
+        headers={"Idempotency-Key": str(uuid4())},
+    )
+    assert decided.status_code == 200
+    as_user("merchant")
