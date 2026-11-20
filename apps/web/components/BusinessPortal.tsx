@@ -2,6 +2,7 @@
 import { staffKeyForLabel } from "../lib/workspace-access";
 import AdminModuleView from "./AdminModuleView";
 import CatalogReviewPanel from "./CatalogReviewPanel";
+import MerchantListings from "./MerchantListings";
 import { apiOrigin } from "../lib/api-origin";
 import BrandLogo from "./BrandLogo";
 import type { ApprovedWorkspace } from "../lib/workspace-access";
@@ -32,6 +33,7 @@ export default function BusinessPortal({
     onNavigate?: (path: string) => void;
     staffModules?: string[];
     staffToken?: string;
+    token?: string;
     catalogReview?: boolean;
   };
 }) {
@@ -388,6 +390,18 @@ export default function BusinessPortal({
                   ))}
                 </div>
                 {role === "merchant" &&
+                !admin &&
+                access?.token &&
+                apiOrigin &&
+                selectedWorkspace &&
+                ["My Products", "Draft Listings"].includes(current.name) ? (
+                  <MerchantListings
+                    apiOrigin={apiOrigin}
+                    token={access.token}
+                    organizationId={selectedWorkspace.organization_id}
+                    canWrite={selectedWorkspace.can_write}
+                  />
+                ) : role === "merchant" &&
                 [
                   "Snap & List",
                   "My Products",

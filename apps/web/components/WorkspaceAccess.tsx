@@ -168,6 +168,7 @@ export default function WorkspaceAccess({
           displayName: session.profile.display_name || "Your account",
           onSignOut: () => void signOut(),
           onNavigate: navigate,
+          token: session.token,
         }}
       />
     );
