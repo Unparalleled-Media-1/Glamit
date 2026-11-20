@@ -52,7 +52,16 @@ export function parseListings(value: unknown): Listing[] {
   });
 }
 
-export function statusOf(l: Pick<Listing, "state" | "decision" | "merchant_reviewed" | "published_revision" | "current_revision">) {
+export function statusOf(
+  l: Pick<
+    Listing,
+    | "state"
+    | "decision"
+    | "merchant_reviewed"
+    | "published_revision"
+    | "current_revision"
+  >,
+) {
   if (l.state === "withdrawn") return "Withdrawn";
   if (l.published_revision === l.current_revision) return "Live";
   if (l.decision === "rejected") return "Rejected: revise and resubmit";
@@ -67,16 +76,30 @@ export function priceToMinor(text: string): number | null {
   return minor > 0 ? minor : null;
 }
 
-export function buildFacts(f: Record<string, string>, base?: Facts): Facts | string {
+export function buildFacts(
+  f: Record<string, string>,
+  base?: Facts,
+): Facts | string {
   const price = priceToMinor(f.price || "");
-  if (price === null) return "Enter a price greater than zero, with at most two decimals.";
-  if (!/^\d{1,9}$/.test(f.stock || "")) return "Stock must be a whole number, 0 or more.";
+  if (price === null)
+    return "Enter a price greater than zero, with at most two decimals.";
+  if (!/^\d{1,9}$/.test(f.stock || ""))
+    return "Stock must be a whole number, 0 or more.";
   const expires = new Date(f.expires || "");
-  if (Number.isNaN(expires.getTime())) return "Enter when the source offer expires.";
-  const tags = (f.tags || "").split(",").map((t) => t.trim().toLowerCase()).filter(Boolean);
-  const countries = (f.countries || "").split(",").map((t) => t.trim().toUpperCase()).filter(Boolean);
-  if (!f.title?.trim() || !f.sku?.trim() || !f.ref?.trim()) return "Title, SKU and source evidence are required.";
-  if (!tags.length || !countries.length) return "Add at least one tag and one country code.";
+  if (Number.isNaN(expires.getTime()))
+    return "Enter when the source offer expires.";
+  const tags = (f.tags || "")
+    .split(",")
+    .map((t) => t.trim().toLowerCase())
+    .filter(Boolean);
+  const countries = (f.countries || "")
+    .split(",")
+    .map((t) => t.trim().toUpperCase())
+    .filter(Boolean);
+  if (!f.title?.trim() || !f.sku?.trim() || !f.ref?.trim())
+    return "Title, SKU and source evidence are required.";
+  if (!tags.length || !countries.length)
+    return "Add at least one tag and one country code.";
   return {
     ...(base || {}),
     title: f.title.trim(),
@@ -94,6 +117,37 @@ export function buildFacts(f: Record<string, string>, base?: Facts): Facts | str
     purchase_url: f.url,
     condition: f.condition,
   } as Facts;
+}
+
+export function uploadRequest(
+  apiOrigin: string,
+  token: string,
+  base: string,
+  listingId: string,
+  file: { type: string; size: number },
+) {
+  return {
+    url: `${apiOrigin}${base}/listings/${encodeURIComponent(listingId)}/original-images`,
+    init: {
+      method: "PUT",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": file.type,
+        "X-Rights-Confirmed": "true",
+      },
+      cache: "no-store" as const,
+      credentials: "omit" as const,
+      redirect: "error" as const,
+    },
+  };
+}
+
+export function imageProblem(file: { type: string; size: number }): string {
+  if (!["image/jpeg", "image/png", "image/webp"].includes(file.type))
+    return "Use a JPEG, PNG or WebP image.";
+  if (file.size > 10 * 1024 * 1024)
+    return "The image must be 10 MB or smaller.";
+  return "";
 }
 
 export function request(
@@ -121,11 +175,23 @@ export function request(
   };
 }
 
-const CATEGORIES = ["cosmetics", "hair", "skincare", "clothing", "footwear", "accessories", "tool"];
+const CATEGORIES = [
+  "cosmetics",
+  "hair",
+  "skincare",
+  "clothing",
+  "footwear",
+  "accessories",
+  "tool",
+];
 const money = (c: string, m: number) => `${c} ${(m / 100).toFixed(2)}`;
 const localInput = (iso: string) => {
   const d = new Date(iso);
-  return Number.isNaN(d.getTime()) ? "" : new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+  return Number.isNaN(d.getTime())
+    ? ""
+    : new Date(d.getTime() - d.getTimezoneOffset() * 60000)
+        .toISOString()
+        .slice(0, 16);
 };
 const initial = (b?: Facts): Record<string, string> => ({
   title: b?.title || "",
@@ -161,11 +227,17 @@ function FactsForm({
   const [f, setF] = useState(initial(base));
   const [reviewed, setReviewed] = useState(!confirmLabel);
   const [problem, setProblem] = useState("");
-  const set = (k: string) => (e: { target: { value: string } }) => setF({ ...f, [k]: e.target.value });
+  const set = (k: string) => (e: { target: { value: string } }) =>
+    setF({ ...f, [k]: e.target.value });
   const input = (k: string, label: string, type = "text", disabled = false) => (
     <label>
       {label}
-      <input value={f[k]} onChange={set(k)} type={type} disabled={disabled || busy} />
+      <input
+        value={f[k]}
+        onChange={set(k)}
+        type={type}
+        disabled={disabled || busy}
+      />
     </label>
   );
   return (
@@ -183,15 +255,23 @@ function FactsForm({
       {input("ref", "Source evidence (invoice, supplier reference)")}
       <label>
         Category
-        <select value={f.category} onChange={set("category")} disabled={busy || Boolean(base)}>
-          {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+        <select
+          value={f.category}
+          onChange={set("category")}
+          disabled={busy || Boolean(base)}
+        >
+          {CATEGORIES.map((c) => (
+            <option key={c}>{c}</option>
+          ))}
         </select>
       </label>
       {input("tags", "Tags (comma separated)")}
       <label>
         Currency
         <select value={f.currency} onChange={set("currency")} disabled={busy}>
-          {["ZAR", "USD", "EUR", "GBP"].map((c) => <option key={c}>{c}</option>)}
+          {["ZAR", "USD", "EUR", "GBP"].map((c) => (
+            <option key={c}>{c}</option>
+          ))}
         </select>
       </label>
       {input("price", "Price")}
@@ -201,22 +281,151 @@ function FactsForm({
       {input("url", "Purchase page (https)", "url")}
       <label>
         Description
-        <textarea value={f.description} onChange={set("description")} disabled={busy} maxLength={3000} />
+        <textarea
+          value={f.description}
+          onChange={set("description")}
+          disabled={busy}
+          maxLength={3000}
+        />
       </label>
       {confirmLabel && (
         <label>
-          <input type="checkbox" checked={reviewed} onChange={(e) => setReviewed(e.target.checked)} /> {confirmLabel}
+          <input
+            type="checkbox"
+            checked={reviewed}
+            onChange={(e) => setReviewed(e.target.checked)}
+          />{" "}
+          {confirmLabel}
         </label>
       )}
-      {problem && <div role="alert" className="notice">{problem}</div>}
-      <button className="button" disabled={busy || !reviewed}>{submitLabel}</button>
+      {problem && (
+        <div role="alert" className="notice">
+          {problem}
+        </div>
+      )}
+      <button className="button" disabled={busy || !reviewed}>
+        {submitLabel}
+      </button>
       {onCancel && (
         <>
           {" "}
-          <button type="button" className="button secondary" disabled={busy} onClick={onCancel}>Cancel</button>
+          <button
+            type="button"
+            className="button secondary"
+            disabled={busy}
+            onClick={onCancel}
+          >
+            Cancel
+          </button>
         </>
       )}
     </form>
+  );
+}
+
+function ListingImages({
+  apiOrigin,
+  token,
+  base,
+  listingId,
+  canWrite,
+}: {
+  apiOrigin: string;
+  token: string;
+  base: string;
+  listingId: string;
+  canWrite: boolean;
+}) {
+  const [count, setCount] = useState<number | null>(null);
+  const [rights, setRights] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [note, setNote] = useState("");
+  const load = useCallback(() => {
+    const { url, init } = request(
+      apiOrigin,
+      token,
+      `${base}/listings/${encodeURIComponent(listingId)}/original-images`,
+      "GET",
+    );
+    fetch(url, init)
+      .then(async (r) => {
+        const j = r.ok ? await r.json() : null;
+        setCount(Array.isArray(j) ? j.length : null);
+      })
+      .catch(() => setCount(null));
+  }, [apiOrigin, token, base, listingId]);
+  useEffect(load, [load]);
+  async function choose(file: File | undefined) {
+    if (!file) return;
+    const problem = imageProblem(file);
+    if (problem) return setNote(problem);
+    setBusy(true);
+    setNote("");
+    const { url, init } = uploadRequest(
+      apiOrigin,
+      token,
+      base,
+      listingId,
+      file,
+    );
+    try {
+      const r = await fetch(url, { ...init, body: file });
+      if (r.ok) {
+        setNote("Image added. It was re-encoded and stripped of metadata.");
+        load();
+      } else if (r.status === 503) {
+        setNote("Image storage is not available yet. Nothing was uploaded.");
+      } else {
+        let detail = "";
+        try {
+          const j = await r.json();
+          if (typeof j?.detail === "string") detail = j.detail;
+        } catch {
+          /* no body */
+        }
+        setNote(`The image was not accepted${detail ? `: ${detail}` : ""}.`);
+      }
+    } catch {
+      setNote("The upload failed. Nothing was saved.");
+    } finally {
+      setBusy(false);
+    }
+  }
+  return (
+    <div>
+      <p className="fine" data-testid="image-count">
+        {count === null
+          ? "Original images unavailable"
+          : `${count} original image${count === 1 ? "" : "s"} (required to publish)`}
+      </p>
+      {canWrite && (
+        <>
+          <label>
+            <input
+              type="checkbox"
+              checked={rights}
+              onChange={(e) => setRights(e.target.checked)}
+            />{" "}
+            I own or am licensed to use this image
+          </label>
+          <input
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            aria-label="Add original image"
+            disabled={busy || !rights}
+            onChange={(e) => {
+              void choose(e.target.files?.[0]);
+              e.target.value = "";
+            }}
+          />
+        </>
+      )}
+      {note && (
+        <div role="status" className="notice">
+          {note}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -241,10 +450,16 @@ export default function MerchantListings({
 
   const load = useCallback(
     (signal?: AbortSignal) => {
-      const { url, init } = request(apiOrigin, token, `${base}/listings`, "GET");
+      const { url, init } = request(
+        apiOrigin,
+        token,
+        `${base}/listings`,
+        "GET",
+      );
       fetch(url, { ...init, signal })
         .then(async (r) => {
-          if (r.status === 401 || r.status === 403 || r.status === 404) throw Error("DENIED");
+          if (r.status === 401 || r.status === 403 || r.status === 404)
+            throw Error("DENIED");
           if (!r.ok) throw Error("FAILED");
           setItems(parseListings(await r.json()));
           setError("");
@@ -268,10 +483,22 @@ export default function MerchantListings({
     return () => abort.abort();
   }, [load]);
 
-  async function send(path: string, body?: unknown, key?: string, success = "Saved.") {
+  async function send(
+    path: string,
+    body?: unknown,
+    key?: string,
+    success = "Saved.",
+  ) {
     setBusy(true);
     setMessage("");
-    const { url, init } = request(apiOrigin, token, path, "POST", body ?? {}, key);
+    const { url, init } = request(
+      apiOrigin,
+      token,
+      path,
+      "POST",
+      body ?? {},
+      key,
+    );
     try {
       const r = await fetch(url, init);
       if (r.ok) {
@@ -302,26 +529,55 @@ export default function MerchantListings({
     }
   }
 
-  if (error) return <div role="alert" className="notice">{error}</div>;
-  if (!items) return <div role="status" className="notice">Loading your products…</div>;
+  if (error)
+    return (
+      <div role="alert" className="notice">
+        {error}
+      </div>
+    );
+  if (!items)
+    return (
+      <div role="status" className="notice">
+        Loading your products…
+      </div>
+    );
   return (
     <section className="panel" aria-label="My products">
       <h2>My products</h2>
       <p className="fine">
-        Price and stock changes create a new revision. A revision goes live only after content review approves it, and
-        every change is recorded.
+        Price and stock changes create a new revision. A revision goes live only
+        after content review approves it, and every change is recorded.
       </p>
-      {!canWrite && <p className="notice">This workspace has read-only access.</p>}
-      {message && <div role="status" className="notice">{message}</div>}
+      {!canWrite && (
+        <p className="notice">This workspace has read-only access.</p>
+      )}
+      {message && (
+        <div role="status" className="notice">
+          {message}
+        </div>
+      )}
       {canWrite && !creating && (
-        <button className="button" disabled={busy} onClick={() => setCreating(true)}>Add a product</button>
+        <button
+          className="button"
+          disabled={busy}
+          onClick={() => setCreating(true)}
+        >
+          Add a product
+        </button>
       )}
       {creating && (
         <FactsForm
           busy={busy}
           submitLabel="Save draft"
           onCancel={() => setCreating(false)}
-          onSubmit={(facts) => void send(`${base}/listings`, { facts }, crypto.randomUUID(), "Draft saved. Confirm your review to submit it.")}
+          onSubmit={(facts) =>
+            void send(
+              `${base}/listings`,
+              { facts },
+              crypto.randomUUID(),
+              "Draft saved. Confirm your review to submit it.",
+            )
+          }
         />
       )}
       {items.length === 0 ? (
@@ -333,9 +589,18 @@ export default function MerchantListings({
               <div>
                 <strong>{l.facts.title}</strong>
                 <p className="fine">
-                  SKU {l.facts.source_sku} · {money(l.facts.currency, l.facts.price_minor)} · stock {l.facts.stock_quantity} · revision {l.current_revision}
+                  SKU {l.facts.source_sku} ·{" "}
+                  {money(l.facts.currency, l.facts.price_minor)} · stock{" "}
+                  {l.facts.stock_quantity} · revision {l.current_revision}
                 </p>
                 <p data-testid="status">{statusOf(l)}</p>
+                <ListingImages
+                  apiOrigin={apiOrigin}
+                  token={token}
+                  base={base}
+                  listingId={l.id}
+                  canWrite={canWrite}
+                />
               </div>
               {canWrite && editing === l.id ? (
                 <FactsForm
@@ -347,7 +612,11 @@ export default function MerchantListings({
                   onSubmit={(facts) =>
                     void send(
                       `${base}/listings/${encodeURIComponent(l.id)}/revisions`,
-                      { facts, expected_revision: l.current_revision, merchant_reviewed: true },
+                      {
+                        facts,
+                        expected_revision: l.current_revision,
+                        merchant_reviewed: true,
+                      },
                       crypto.randomUUID(),
                       "Revision submitted for content review. It stays off sale until approved.",
                     )
@@ -356,21 +625,43 @@ export default function MerchantListings({
               ) : (
                 canWrite && (
                   <div>
-                    <button className="button secondary" disabled={busy} onClick={() => setEditing(l.id)}>Edit price & stock</button>{" "}
-                    {l.decision === "approved" && l.published_revision !== l.current_revision && l.state !== "withdrawn" && (
-                      <button
-                        className="button"
-                        disabled={busy}
-                        onClick={() => void send(`${base}/listings/${encodeURIComponent(l.id)}/publish`, { revision: l.current_revision }, undefined, "Published.")}
-                      >
-                        Publish
-                      </button>
-                    )}{" "}
+                    <button
+                      className="button secondary"
+                      disabled={busy}
+                      onClick={() => setEditing(l.id)}
+                    >
+                      Edit price & stock
+                    </button>{" "}
+                    {l.decision === "approved" &&
+                      l.published_revision !== l.current_revision &&
+                      l.state !== "withdrawn" && (
+                        <button
+                          className="button"
+                          disabled={busy}
+                          onClick={() =>
+                            void send(
+                              `${base}/listings/${encodeURIComponent(l.id)}/publish`,
+                              { revision: l.current_revision },
+                              undefined,
+                              "Published.",
+                            )
+                          }
+                        >
+                          Publish
+                        </button>
+                      )}{" "}
                     {l.published_revision !== null && (
                       <button
                         className="button secondary"
                         disabled={busy}
-                        onClick={() => void send(`${base}/listings/${encodeURIComponent(l.id)}/withdraw`, undefined, undefined, "Withdrawn from sale.")}
+                        onClick={() =>
+                          void send(
+                            `${base}/listings/${encodeURIComponent(l.id)}/withdraw`,
+                            undefined,
+                            undefined,
+                            "Withdrawn from sale.",
+                          )
+                        }
                       >
                         Withdraw
                       </button>

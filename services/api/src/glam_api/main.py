@@ -18,6 +18,7 @@ from glam_api.analysis_jobs import build_analysis_router
 from glam_api.analysis_passport import build_passport_router
 from glam_api.auth import Principal, get_principal
 from glam_api.catalog import build_catalog_router
+from glam_api.catalog_media import build_catalog_media_router
 from glam_api.contracts import (
     ConsentChoice,
     ConsentResult,
@@ -383,6 +384,7 @@ def delete_look(look_id: UUID, db: Db, identity: Identity):
 app.include_router(build_router(user, audit, replay, remember))
 
 app.include_router(build_catalog_router(user, audit, replay, remember))
+app.include_router(build_catalog_media_router(user, audit))
 
 app.include_router(build_media_router(user, audit))
 
