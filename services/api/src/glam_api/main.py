@@ -17,6 +17,7 @@ from glam_api.ai_stylist import build_stylist_router
 from glam_api.analysis_jobs import build_analysis_router
 from glam_api.analysis_passport import build_passport_router
 from glam_api.auth import Principal, get_principal
+from glam_api.bookings import build_booking_router
 from glam_api.catalog import build_catalog_router
 from glam_api.catalog_media import build_catalog_media_router
 from glam_api.contracts import (
@@ -181,18 +182,32 @@ def ready(db: Db):
         "0016_analysis_jobs",
         "0017_analysis_passport",
         "0018_tryon",
+        "0019_professional_bookings",
     }
     if not applied.intersection(current_heads):
         raise HTTPException(503, "Database migration is not current")
     if os.environ.get("GLAM_PRIVATE_MEDIA_ENABLED") == "true" and not applied.intersection(
-        {"0015_private_media", "0016_analysis_jobs", "0017_analysis_passport", "0018_tryon"}
+        {
+            "0015_private_media",
+            "0016_analysis_jobs",
+            "0017_analysis_passport",
+            "0018_tryon",
+            "0019_professional_bookings",
+        }
     ):
         raise HTTPException(503, "Private media migration is not current")
     if os.environ.get("GLAM_ANALYSIS_ENABLED") == "true" and not applied.intersection(
-        {"0016_analysis_jobs", "0017_analysis_passport", "0018_tryon"}
+        {
+            "0016_analysis_jobs",
+            "0017_analysis_passport",
+            "0018_tryon",
+            "0019_professional_bookings",
+        }
     ):
         raise HTTPException(503, "Analysis migration is not current")
-    if os.environ.get("GLAM_TRYON_ENABLED") == "true" and "0018_tryon" not in applied:
+    if os.environ.get("GLAM_TRYON_ENABLED") == "true" and not applied.intersection(
+        {"0018_tryon", "0019_professional_bookings"}
+    ):
         raise HTTPException(503, "Try-on migration is not current")
     if not get_settings().oidc_issuer:
         raise HTTPException(503, "Identity provider is not configured")
@@ -385,6 +400,7 @@ app.include_router(build_router(user, audit, replay, remember))
 
 app.include_router(build_catalog_router(user, audit, replay, remember))
 app.include_router(build_catalog_media_router(user, audit))
+app.include_router(build_booking_router(user, audit, replay, remember))
 
 app.include_router(build_media_router(user, audit))
 
