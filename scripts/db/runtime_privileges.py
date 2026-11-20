@@ -25,6 +25,7 @@ NOT_TABLES = {
     "only",
     "each",
     "pg_class",
+    "group",  # an f-string table placeholder folded to empty text before GROUP BY
 }
 EXTERNAL = {
     "sessions",
