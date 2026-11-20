@@ -143,9 +143,10 @@ def test_alembic_application_head_is_the_try_on_migration_and_chain_is_linear():
         -1
     ] != "0013_passwordless_accounts":
         chain.append(down)
-    assert list(reversed(chain[:6])) == [
+    assert list(reversed(chain[:7])) == [
         "0013_passwordless_accounts", "0014_creator_studio", "0015_private_media",
         "0016_analysis_jobs", "0017_analysis_passport", "0018_tryon",
+        "0019_professional_bookings",
     ]  # fmt: skip
 
 
@@ -160,7 +161,10 @@ def test_readiness_refuses_try_on_until_its_migration_is_applied(client, db, mon
     monkeypatch.setenv("GLAM_TRYON_ENABLED", "true")
     assert client.get("/health/ready").status_code == 200  # fully migrated database
     with db.begin() as c:
-        c.execute(text(SET_VERSION), {"new": "0017_analysis_passport", "old": "0018_tryon"})
+        c.execute(
+            text(SET_VERSION),
+            {"new": "0017_analysis_passport", "old": "0019_professional_bookings"},
+        )
     try:
         response = client.get("/health/ready")
         assert response.status_code == 503
@@ -171,4 +175,7 @@ def test_readiness_refuses_try_on_until_its_migration_is_applied(client, db, mon
         )  # flag off: older schema is acceptable
     finally:
         with db.begin() as c:
-            c.execute(text(SET_VERSION), {"new": "0018_tryon", "old": "0017_analysis_passport"})
+            c.execute(
+                text(SET_VERSION),
+                {"new": "0019_professional_bookings", "old": "0017_analysis_passport"},
+            )

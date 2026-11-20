@@ -32,6 +32,7 @@ CHAIN = {
     "0016_analysis_jobs": "0015_private_media",
     "0017_analysis_passport": "0016_analysis_jobs",
     "0018_tryon": "0017_analysis_passport",
+    "0019_professional_bookings": "0018_tryon",
 }
 SANDBOX = "0009_stripe_test_ledger"
 BASE = "https://api.supabase.com/v1/projects/"
