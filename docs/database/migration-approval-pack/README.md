@@ -2,7 +2,7 @@
 
 **Nothing in this pack has been applied to production or to any shared database.** Everything below was produced from the repository at commit `494e800` (`feat/platform-foundations` after PR #85) and executed only on throwaway local PostgreSQL 16 databases. The owner has not approved any SQL here.
 
-**Verdict: NO-GO for production until the owner decisions in §13 are made.** The SQL itself replays cleanly and matches the application; the blockers are production state that cannot be verified from here, a missing worker deployment, and missing approvals.
+**Verdict: NO-GO for production.** The owner has accepted D1-D7; open items are in §13 and §13a (notably D8, the runtime role, and the owner's approval of the exact SQL). The SQL itself replays cleanly and matches the application; the blockers are production state that cannot be verified from here, a missing worker deployment, and missing approvals.
 
 Evidence labels used throughout: **VERIFIED-LOCAL** (I ran it in this session, output reproducible with the commands in §14) · **DOCUMENTED** (stated in repo reports, with date, not re-checked) · **UNVERIFIED** (no direct evidence available; needs a read-only query against production).
 
@@ -122,6 +122,7 @@ If a lock cannot be taken in 5 s the transaction aborts and nothing changes; ret
 * **P7** drift: run `schema_fingerprint.sql` on production and on a local replica built to 0013; digests for all 9 kinds must match (known acceptable differences, such as Supabase's own `rls_auto_enable`, must be listed and approved).
 * **P8** Storage permission for 0015: `SELECT current_user, has_schema_privilege('storage','USAGE'), has_table_privilege('storage.buckets','INSERT'), pg_has_role(current_user,(SELECT relowner FROM pg_class WHERE oid='storage.objects'::regclass),'USAGE');` — the last must be true or the policy creation will fail.
 * **P9** runtime role: identify the DB role the API/worker will connect with; confirm `SELECT rolbypassrls FROM pg_roles WHERE rolname=…` or that it owns the tables; record that it is not `anon`/`authenticated`.
+* **P8b** BYPASSRLS creation right: `SELECT rolcreaterole, rolbypassrls, rolsuper FROM pg_roles WHERE rolname=current_user;` (needed before the D8 role can be created; UNVERIFIED).
 * **P10** record current counts for a later regression comparison (`profiles, app_user, credit_account, credit_reservation, credit_posting, private_media(if any)`).
 
 ## 7. Backup requirements
@@ -182,14 +183,16 @@ All flags must be unset/`false` at first deploy:
 | 4 | Production fingerprint matches local 0013 replica (P7) | NOT RUN |
 | 5 | Execution method decided (D2) and credentials available through a secure channel | OPEN |
 | 6 | Maintenance/low-traffic window agreed | OPEN |
-| 7 | Worker service defined and deployed before media/analysis flags (finding 3) | NOT DONE |
-| 8 | PR #86 merged (readiness gate + contract tests) | OPEN |
+| 7 | Worker services deployed before media/analysis flags (finding 3) | Definitions committed (D6); services NOT created or deployed |
+| 8 | PR #86 merged (readiness gate + contract tests) | Merged (`b998e05`) |
 | 9 | CI green on the deployment commit (currently billing-locked) | BLOCKED |
-| 10 | Rollback/forward-fix scripts for 0014 written and reviewed, or explicit acceptance that backup restore is the only recovery | OPEN |
+| 10 | 0014 forward-fix script written and tested; owner review of its exact SQL | Written and tested; review NOT GIVEN |
+| 13 | D8: production runtime role created and granted (BYPASSRLS question settled), proposal reviewed | OPEN, blocks API features |
 | 11 | All feature flags confirmed off, `GLAM_DEPLOYMENT_ENV=production` set | NOT DONE |
 | 12 | Post-migration verification owner named, execution log template ready | OPEN |
 
 ### Decisions the owner must make
+* **D8 — Production runtime role (new, open):** see §13a. D1-D7 were accepted by the owner as recommended.
 * **D1 — Go ahead at all, and in what order?** Recommended: apply 0014→0018 in order (the Alembic chain is linear), pausing after 0014 and 0015.
 * **D2 — Who executes, and how?** The existing script is 0010-only. Options: (a) generalize the deploy script for incremental releases with the same safeguards (project check, backup ≤ 48 h, checksum, single attempt), then run it; (b) run the artifacts manually through the Supabase SQL editor under two-person review. Recommended: (a).
 * **D3 — Apply 0014 now or defer?** It has no consumer and is the only revision that replaces a public RPC. Deferral is not possible without altering the linear chain (0015+ are stamped after it) — the real choice is accept the risk, or require the 0014 forward-fix script first. Recommended: require the forward-fix script (item 10) before applying.
@@ -197,6 +200,24 @@ All flags must be unset/`false` at first deploy:
 * **D5 — Staging:** accept local replay as the only rehearsal, or authorize a separate staging project (currently prohibited by repository rules).
 * **D6 — Worker service:** approve defining and deploying `worker` and `media_cleanup` on Railway before any flag is enabled.
 * **D7 — Which features may be enabled after the schema is in place** (private media, analysis, try-on). Try-on remains off regardless: no provider, price, legal approval or bake-off exists.
+
+## 13a. Owner decisions D1-D7 accepted as recommended — what now exists (added after PR #87)
+The owner accepted D1-D7 as recommended. **That is not approval to run anything on production**: checklist item 1 (approval of the exact SQL and checksums), the backup, pre-flight output and credentials remain open. Supporting work done offline:
+| Decision | Result in the repo | Evidence |
+|---|---|---|
+| D2 executor | `scripts/deploy_incremental_release.py`: dry run by default; apply needs `--production-approved`, `--approved-sha256` equal to the artifact checksum, untouched manifest and canonical sources, backup under 48 h, exact starting revision; one attempt, never retried; verifies the new revision and FK validity. | `tests/test_deploy_incremental_release.py` (10 tests, in-memory Management API double; the five candidate artifacts pass structural validation). **Never run against production.** |
+| D3 forward-fix for 0014 | `db/migrations/recovery/0014_creator_studio_rollback.sql`: valid only while the head is exactly 0014 and every creator table is empty; restores the original `public.glam_api_v1` (same signature and grants) and drops the creator objects. | `tests/test_recovery_0014.py`: after the script a database at 0014 has a catalog fingerprint **identical to 0013**; it refuses a wrong head and existing creator data and changes nothing. **Needs owner review of this exact SQL.** If 0015+ is applied it refuses (use backup restore). |
+| D4 restore rehearsal | Required before GO; none performed. | open |
+| D5 staging | Local replay only (done, §4); no staging project. | — |
+| D6 worker services | `deploy/railway/worker.railway.json` (privacy worker: consent erasure, analysis and try-on jobs), `media-cleanup.railway.json`, shared `worker.Dockerfile`, `scripts/start-worker.py` (same production guards as the API; no HTTP port, no healthcheck). **Definitions only: no Railway service was created.** | `tests/test_start_worker.py`, `npm run check:railway` (10 tests). |
+| D7 features | Try-on stays off. Private media and analysis only after schema, worker and runtime role are in place, enabled one flag at a time. | — |
+
+### New finding 7 and decision D8 — the production API runtime role does not exist in the repo
+`scripts/start-api.py` refuses to start in production under `postgres`, `supabase_admin` or `service_role` and demands a restricted role, but **no migration or document creates that role or grants it anything**. Findings from `scripts/db/runtime_privileges.py` and a full local run:
+* The role needs table grants on **every** table the API/worker touches (generated, 48 lines: `runtime_role_proposal.sql`), plus `USAGE` on schema `auth` and `SELECT` on `auth.sessions` (session-revocation checks) and `USAGE` on schema `storage` (catalog lookups). The new tables are not granted to any role by migrations 0014-0018, so without these grants the API fails closed (`*_runtime_permissions_required`) on media, analysis and try-on.
+* The role must also **bypass row-level security (BYPASSRLS) or own the tables**: every table has RLS enabled with policies only for `authenticated`. **VERIFIED-LOCAL:** running all 449 API tests as a role with exactly the generated grants and BYPASSRLS passes; the same role without BYPASSRLS fails immediately on the first insert (`new row violates row-level security policy for table "app_user"`).
+* Whether the Supabase `postgres` user may create a BYPASSRLS role in production is **UNVERIFIED** (pre-flight P8b).
+* **D8 (owner):** approve creating the restricted role (name, BYPASSRLS or an alternative design such as explicit policies for that role, credential storage) and the grant list in `runtime_role_proposal.sql`; or choose another runtime-identity design. **This blocks every API feature that reads the database in production, not only the new ones, until the role is confirmed.** (Whether the already-deployed API uses such a role is UNVERIFIED.)
 
 ## 14. Reproduce this evidence
 ```
