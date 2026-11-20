@@ -15,7 +15,7 @@ buildSync({
   outfile,
   jsx: "automatic",
 });
-const { parseListings, statusOf, priceToMinor, buildFacts, request } = await import(outfile);
+const { parseListings, statusOf, priceToMinor, buildFacts, request, uploadRequest, imageProblem } = await import(outfile);
 
 const form = {
   title: " Serum ",
@@ -82,4 +82,19 @@ test("writes send a bearer token and idempotency key and never cookies", () => {
   assert.equal(init.headers.Authorization, "Bearer tok");
   assert.equal(init.headers["Idempotency-Key"], "k1");
   assert.equal(init.credentials, "omit");
+});
+
+test("image uploads confirm rights, carry the file type and never use cookies", () => {
+  const { url, init } = uploadRequest("https://api.example.com", "tok", "/v1/organizations/o/catalog", "a/b", { type: "image/webp", size: 5 });
+  assert.equal(url, "https://api.example.com/v1/organizations/o/catalog/listings/a%2Fb/original-images");
+  assert.equal(init.method, "PUT");
+  assert.equal(init.headers["X-Rights-Confirmed"], "true");
+  assert.equal(init.headers["Content-Type"], "image/webp");
+  assert.equal(init.credentials, "omit");
+});
+
+test("unsupported or oversized images are refused before upload", () => {
+  assert.equal(imageProblem({ type: "image/png", size: 1000 }), "");
+  assert.match(imageProblem({ type: "image/gif", size: 1000 }), /JPEG/);
+  assert.match(imageProblem({ type: "image/png", size: 11 * 1024 * 1024 }), /10 MB/);
 });
