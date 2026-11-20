@@ -28,6 +28,7 @@ const fs = require("node:fs"),
     define: {
       "process.env.NODE_ENV": '"production"',
       "process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY": '"ui-fixture-public-key"',
+      "process.env.NEXT_PUBLIC_GLAM_API_ORIGIN": '"https://api.glam.invalid"',
       "process.env.NEXT_PUBLIC_GLAM_BASE_PATH": '""',
       "process.env.NEXT_PUBLIC_GLAM_STATIC_PREVIEW": '"false"',
     },
@@ -124,9 +125,13 @@ const fs = require("node:fs"),
     await context.route("https://**/*", async (route) => {
       const r = route.request(),
         p = new URL(r.url()).pathname;
-      assert.equal(
-        new URL(r.url()).origin,
-        "https://bkkmsbxrxkqaveymcrgi.supabase.co",
+      // Only the original Supabase project and the configured GLAM API origin may be contacted.
+      assert(
+        [
+          "https://bkkmsbxrxkqaveymcrgi.supabase.co",
+          "https://api.glam.invalid",
+        ].includes(new URL(r.url()).origin),
+        "unexpected origin " + new URL(r.url()).origin,
       );
       calls.push({
         path: p,
@@ -174,6 +179,27 @@ const fs = require("node:fs"),
         return route.fulfill({ status: 200, json: [] });
       if (p.endsWith("/v1/me/workspaces"))
         return route.fulfill({ status: 200, json: grants });
+      if (p.startsWith("/v1/admin/modules/")) {
+        const key = p.split("/").pop();
+        return route.fulfill({
+          status: 200,
+          json: {
+            module: key,
+            title: key,
+            available: true,
+            generated_at: "2026-11-20T00:00:00Z",
+            read_only: true,
+            metrics: [{ label: "Fixture metric " + key, value: "7" }],
+            tables: [
+              {
+                title: "Fixture table " + key,
+                columns: ["Id", "Value"],
+                rows: [["abcd1234", "ok"]],
+              },
+            ],
+          },
+        });
+      }
       if (p.endsWith("/v1/admin/context"))
         return route.fulfill({
           status: staffDenied ? 403 : 200,
@@ -366,6 +392,21 @@ const fs = require("node:fs"),
     );
     checks.push(
       "Verified staff context limits navigation to actual server modules",
+    );
+    await page.getByText("Fixture metric users").waitFor();
+    assert.equal(await page.getByText("Fixture table users").count(), 1);
+    assert.equal(await page.getByText("Verified data not connected").count(), 0);
+    await page
+      .getByRole("navigation", { name: "Admin modules" })
+      .getByRole("button", { name: /Trust/ })
+      .click();
+    await page.getByText("Fixture metric trust").waitFor();
+    assert(
+      calls.some((c) => c.path === "/v1/admin/modules/trust"),
+      "module data is fetched from the API per module",
+    );
+    checks.push(
+      "Each admin module renders server data read-only; no placeholder figures",
     );
     expired = true;
     await page.evaluate(() => {

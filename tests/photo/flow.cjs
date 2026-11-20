@@ -43,6 +43,7 @@ const { build } = require("esbuild"),
       "process.env.NODE_ENV": '"production"',
       "process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY": '""',
       "process.env.NEXT_PUBLIC_GLAM_BASE_PATH": '""',
+      "process.env.NEXT_PUBLIC_GLAM_API_ORIGIN": '""',
       "process.env.NEXT_PUBLIC_GLAM_STATIC_PREVIEW": '"true"',
     },
   });

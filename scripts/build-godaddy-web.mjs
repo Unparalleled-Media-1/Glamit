@@ -25,6 +25,7 @@ const result = await build({
   define: {
     "process.env.NODE_ENV": '"production"',
     "process.env.NEXT_PUBLIC_GLAM_BASE_PATH": '""',
+    "process.env.NEXT_PUBLIC_GLAM_API_ORIGIN": JSON.stringify(process.env.NEXT_PUBLIC_GLAM_API_ORIGIN || ""),
     "process.env.NEXT_PUBLIC_GLAM_STATIC_PREVIEW": '"true"',
     "process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY": JSON.stringify(key),
   },

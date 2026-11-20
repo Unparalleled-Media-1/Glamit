@@ -22,6 +22,7 @@ const http = require("node:http"),
       "process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY": '"ui-fixture-public-key"',
       "process.env.NODE_ENV": '"test"',
       "process.env.NEXT_PUBLIC_GLAM_BASE_PATH": '""',
+      "process.env.NEXT_PUBLIC_GLAM_API_ORIGIN": '""',
       "process.env.NEXT_PUBLIC_GLAM_STATIC_PREVIEW": '"true"',
     },
   });

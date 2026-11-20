@@ -149,6 +149,35 @@ def authorize(db, uid, org, workspace, write=False):
     return can_write
 
 
+STAFF_MODULES = {
+    "super_admin": [
+        "executive",
+        "users",
+        "ai",
+        "content",
+        "merchants",
+        "professionals",
+        "advertising",
+        "commerce",
+        "subscriptions",
+        "creators",
+        "regions",
+        "trust",
+        "privacy",
+        "analytics",
+        "configuration",
+    ],
+    "support": ["users", "trust", "privacy"],
+    "finance": ["commerce", "subscriptions"],
+    "ai_operations": ["ai"],
+    "content_moderation": ["content", "creators"],
+    "trust_safety": ["trust"],
+    "compliance": ["privacy", "trust"],
+    "regional_operations": ["regions"],
+    "analyst": ["analytics"],
+}
+
+
 def require_staff_roles(db, uid, identity, allowed=None):
     import time
 
@@ -589,33 +618,7 @@ def build_router(user, audit, replay, remember):
     def staff_context(db: Db, identity: Identity):
         uid = user(db, identity)
         roles = require_staff_roles(db, uid, identity)
-        modules = {
-            "super_admin": [
-                "executive",
-                "users",
-                "ai",
-                "content",
-                "merchants",
-                "professionals",
-                "advertising",
-                "commerce",
-                "subscriptions",
-                "creators",
-                "regions",
-                "trust",
-                "privacy",
-                "analytics",
-                "configuration",
-            ],
-            "support": ["users", "trust", "privacy"],
-            "finance": ["commerce", "subscriptions"],
-            "ai_operations": ["ai"],
-            "content_moderation": ["content", "creators"],
-            "trust_safety": ["trust"],
-            "compliance": ["privacy", "trust"],
-            "regional_operations": ["regions"],
-            "analyst": ["analytics"],
-        }
+        modules = STAFF_MODULES
         audit(db, uid, "staff.context_read", uid)
         return {
             "roles": roles,

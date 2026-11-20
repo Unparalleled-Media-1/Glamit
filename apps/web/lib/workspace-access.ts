@@ -11,11 +11,11 @@ export function approvedWorkspaces(
     (row): row is ApprovedWorkspace =>
       Boolean(
         row &&
-          Object.hasOwn(workspaces, row.workspace) &&
-          /^[a-f0-9-]{36}$/i.test(row.organization_id) &&
-          typeof row.name === "string" &&
-          row.name.length > 0 &&
-          typeof row.can_write === "boolean",
+        Object.hasOwn(workspaces, row.workspace) &&
+        /^[a-f0-9-]{36}$/i.test(row.organization_id) &&
+        typeof row.name === "string" &&
+        row.name.length > 0 &&
+        typeof row.can_write === "boolean",
       ),
   );
 }
@@ -74,4 +74,10 @@ export function approvedStaffModules(value: unknown): string[] {
   )
     return [];
   return [...new Set(value)].map((key) => staffLabels[staffKeys.indexOf(key)]);
+}
+
+/** Module key (as the API names it) for a staff module label; undefined for unknown labels. */
+export function staffKeyForLabel(label: string): string | undefined {
+  const index = staffLabels.indexOf(label);
+  return index === -1 ? undefined : staffKeys[index];
 }

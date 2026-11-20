@@ -23,6 +23,7 @@ const { build } = require("esbuild"),
     define: {
       "process.env.NODE_ENV": '"production"',
       "process.env.NEXT_PUBLIC_GLAM_BASE_PATH": '""',
+      "process.env.NEXT_PUBLIC_GLAM_API_ORIGIN": '""',
     },
   });
   const js = bundle.outputFiles.find((f) => f.path.endsWith(".js")).text,
